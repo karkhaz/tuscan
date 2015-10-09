@@ -21,11 +21,10 @@ convenience.
 Directories
 -----------
 
-*   deps_graph:
+*   deps_to_ninja
 
     A python script and associated container that outputs dependency
-    relationships between all Arch Linux packages. This only needs to be
-    run once, although it's fairly speedy.
+    relationships between all Arch Linux packages as a ninja build file.
 
 
 
@@ -35,3 +34,7 @@ Dependencies
 *   docker
 
     (you should add your user to the 'docker' group)
+
+*   ninja
+
+    http://martine.github.io/ninja/
