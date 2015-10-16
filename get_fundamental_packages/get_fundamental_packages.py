@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+#
 # Copyright 2015 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,26 +14,4 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# Makefile for launching a single docker container. Invoke as
-#
-# 	make PACKAGE_NAME
-#
-#	If no PACKAGE_NAME is given, this Makefile defaults to building
-#	cmus.
 
-LOG_DIR=$(shell pwd)/logs/$(shell date +%Y%m%dT%H%M%S)
-CONTAINER=deps-graph-container
-
-$(shell pwd)/logs/latest/deps: .container_build
-	@mkdir -p $(LOG_DIR)
-	@-rm $(shell pwd)/logs/latest
-	@ln -sf $(LOG_DIR) $(shell pwd)/logs/latest
-	@docker run -v $(LOG_DIR):/build/logs $(CONTAINER) $(PACKAGE)
-
-.container_build: Dockerfile deps_graph.py
-	@docker build -t $(CONTAINER) .
-	@touch $@
-
-deps_graph.py:
-	@pylint --reports=n $@
