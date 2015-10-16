@@ -210,7 +210,7 @@ def ninja_builds_for(abs_dir):
 
     with lock:
         ninja.build(target_packages, "makepkg", build_name)
-        ninja.build(build_name, "empty", depends)
+        ninja.build(build_name, "phony", depends)
         ninja.output.flush()
 
         number_of_packages.value += len(target_packages)
@@ -228,7 +228,7 @@ def main():
         ninja = Writer(log, 72)
 
         ninja.rule("makepkg", "cd /var/abs/${in} && makepkg")
-        ninja.rule("empty", "/usr/bin/true")
+        ninja.rule("phony", "# phony ${out}")
 
         log.flush()
 

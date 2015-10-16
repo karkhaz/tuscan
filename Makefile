@@ -17,14 +17,41 @@
 
 TIMESTAMP=$(shell date +%Y%m%dT%H%M%S)
 
-define make_log_dir
-@mkdir -p logs/$1/$(TIMESTAMP)
-@-rm logs/$1/latest
-@ln -sf $(shell pwd)/logs/$1/$(TIMESTAMP) logs/$1/latest
+output_dir = $(shell pwd)/output/$1/$(TIMESTAMP)
+
+IGNORE_ERROR = 2>/dev/null || true
+
+MY_UID = $(shell id -u)
+MY_GID = $(shell id -g)
+MY_UNAME = $(shell whoami)
+MY_GROUP = $(shell groups | awk '{print $$1}')
+
+define make_output_dir
+@mkdir -p $(output_dir)
+@-rm $(shell pwd)/output/$1/latest $(IGNORE_ERROR)
+@ln -sf $(output_dir) $(shell pwd)/output/$1/latest
 endef
 
-BUILD_FILE = $(shell pwd)/logs/deps_to_ninja/latest/build.ninja
+BUILD_FILE = $(shell pwd)/output/deps_to_ninja/latest/build.ninja
 ECHO = >&2 echo
+
+DIR_GFP = get_fundamental_packages
+DIR_DTN = deps_to_ninja
+
+CONTAINER_GFP = $(DIR_GFP)_container
+CONTAINER_DTN = $(DIR_DTN)_container
+
+SCRIPT_GFP = $(DIR_GFP)/$(DIR_GFP).py
+SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
+
+DOCKERFILE_GFP = $(DIR_GFP)/Dockerfile
+DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
+
+MARKER_GFP = .$(DIR_GFP)_marker
+MARKER_DTN = .$(DIR_DTN)_marker
+
+BUILD_MARKER_GFP = .$(DIR_GFP)_container_marker
+BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
 
 # Top-level targets
 # `````````````````
@@ -35,32 +62,78 @@ default: deps_to_ninja
 deps_to_ninja: $(BUILD_FILE)
 
 
+# We want docker to create files using our own username and group, so
+# that we can access them afterward. Generate Dockerfiles with our
+# user's information written in
+%/Dockerfile: %/Dockerfile.mk
+	@$(ECHO) Generating $@
+	@cat dne_message > $@
+	@echo "#   $<,"  >> $@
+	@echo -e "#\n# so edit that instead and rerun make.\n#" >> $@
+	@head -n 3 dne_message | tail -n 1 >> $@
+	@sed "s/__USER_NAME/$(MY_UNAME)/g;  \
+		    s/__GROUP_NAME/$(MY_GROUP)/g; \
+				s/__UID/$(MY_UID)/g;          \
+				s/__GID/$(MY_GID)/g;          \
+				 /#.*/d;" < $<  >> $@
+
+
 # Directory 'deps_to_ninja'
 # ``````````````````````
 
-$(BUILD_FILE): .container_build_deps_to_ninja
-	@$(call make_log_dir,deps_to_ninja)
+$(BUILD_FILE): $(BUILD_MARKER_DTN) $(MARKER_GFP)
+	@$(call make_output_dir,$(DIR_DTN))
 	@$(ECHO) Calculating dependencies
-	@docker run                                    \
-	  -v $(shell pwd)/logs/deps_to_ninja/$(TIMESTAMP):/build/logs \
-	  deps_to_ninja_container
-	@-ln -s $@ build.ninja
+	@docker run -v $(call output_dir,$(DIR_DTN)):/build/logs \
+		$(CONTAINER_DTN)
+	@-ln -s $@ build.ninja 2>/dev/null || true
 
-.container_build_deps_to_ninja: \
-	deps_to_ninja/Dockerfile deps_to_ninja/deps_to_ninja.py
+$(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) .pull_arch
 	@$(ECHO) Building dependencies container
 	@cp ninja_syntax.py deps_to_ninja/.ninja_syntax.py
-	@docker build -q -t deps_to_ninja_container deps_to_ninja >/dev/null
+	@docker build -q -t $(CONTAINER_DTN) $(DIR_DTN) >/dev/null
+	@-rm deps_to_ninja/.ninja_syntax.py $(IGNORE_ERROR)
 	@touch $@
 
 
-# docker is a disk space hog.
-.PHONY: docker_stop docker_cleanup
+# Directory 'get_fundamental_packages'
+# ````````````````````````````````````
+
+$(MARKER_GFP): $(BUILD_MARKER_GFP)
+	@$(ECHO) Getting fundamental packages
+	@docker run -v $(call output_dir,$(DIR_GFP)):/build/packages \
+		$(CONTAINER_GFP) >/dev/null
+	@touch $@
+
+$(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) .pull_arch
+	@$(ECHO) Building fundamental packages container
+	@$(call make_output_dir,$(DIR_GFP))
+	@docker build -q -t $(CONTAINER_GFP) $(DIR_GFP) >/dev/null
+	@touch $@
+
+
+# Retrieving Arch image
+# `````````````````````
+
+.pull_arch: docker_cleanup
+	@$(ECHO) Retrieving Arch Linux image
+	@docker pull base/arch:latest >/dev/null
+	@touch $@
+
+# Cleanup
+# ```````
+
+.PHONY: clean_output
+clean_output:
+	@-rm -r $(MARKER_DTN) $(MARKER_GFP) output $(IGNORE_ERROR)
+
+.PHONY: docker_stop
 docker_stop:
-	@-docker stop $$(docker ps -a -q)
-	@-docker rm $$(docker ps -a -q)
-	@rm .container_build_deps_to_ninja
+	@-docker stop $$(docker ps -a -q) $(IGNORE_ERROR)
+	@-docker rm $$(docker ps -a -q)   $(IGNORE_ERROR)
+	@-rm $(BUILD_MARKER_GFP) $(BUILD_MARKER_DTN) $(IGNORE_ERROR)
 
 # Also delete images
+.PHONY: docker_cleanup
 docker_cleanup: docker_stop
-	@-docker rmi -f $$(docker images -q)
+	@-docker rmi -f $$(docker images -q) $(IGNORE_ERROR)
