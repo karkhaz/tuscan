@@ -1,6 +1,8 @@
 Project Tuscan
 ==============
 
+[![Build Status](https://travis-ci.org/karkhaz/tuscan.svg)](https://travis-ci.org/karkhaz/tuscan)
+
 Experiments for evaluating the compilability of a large corpus of
 programs in various compilation environments:
 
