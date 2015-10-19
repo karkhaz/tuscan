@@ -76,10 +76,11 @@ packages are not rebuilt unnecessarily.
 """
 
 from glob import glob
-from multiprocessing import Value, Lock, Pool, cpu_count
+from multiprocessing import Value, Lock, Pool, cpu_count, Manager
 from ninja_syntax import Writer
+from os import linesep
 from re import sub
-from subprocess import PIPE, Popen, TimeoutExpired
+from subprocess import PIPE, Popen, TimeoutExpired, run
 from sys import stderr, stdout
 from tempfile import NamedTemporaryFile as tempfile
 from textwrap import dedent
@@ -193,7 +194,36 @@ def makedepends_of(pkgbuild):
         return depends
 
 
+def print_statistics():
+    with tempfile(mode="w") as dat:
+        for n_deps, freq in dependency_frequencies.items():
+            print(str(freq) + " " + str(n_deps), file=dat)
+            dat.flush()
+        gnu_file = dedent(
+            """\
+            set title "How many packages have x immediate makedeps?"
+            set xlabel "# of dependencies"
+            set ylabel "# packages"
+            set key off
+            set ytics
+            set xrange [0:8]
+            set style data histogram
+            set terminal dumb
+            plot "%s" using 1, 2
+            """ % dat.name)
+
+        proc = run(["gnuplot"], input=gnu_file, stdout=PIPE,
+                universal_newlines=True)
+        print(proc.stdout, file=stderr)
+
+
 def ninja_builds_for(abs_dir):
+    """Outputs ninja build rules for the packages built from abs_dir.
+
+    Arguments:
+        abs_dir: Path to an ABS build directory (e.g.
+        "/var/abs/core/glibc").
+    """
     pkgbuild = abs_dir + "/PKGBUILD"
     target_packages = pkgnames_of(pkgbuild)
     if not target_packages: return
@@ -213,6 +243,11 @@ def ninja_builds_for(abs_dir):
         ninja.build(build_name, "empty", depends)
         ninja.output.flush()
 
+        n_deps = len(depends)
+        if not n_deps in dependency_frequencies:
+            dependency_frequencies[n_deps] = 0
+        dependency_frequencies[n_deps] += len(target_packages)
+
         number_of_packages.value += len(target_packages)
         counter.value += 1
         print("\r" + str(counter.value) + "/" + builds_len +
@@ -222,7 +257,9 @@ def ninja_builds_for(abs_dir):
 
 def main():
     """This script should be run inside a container."""
-    global builds_len, ninja
+    global builds_len, ninja, dependency_frequencies
+
+    dependency_frequencies = Manager().dict()
 
     with open("/build/logs/build.ninja", "w") as log:
         ninja = Writer(log, 72)
@@ -239,6 +276,8 @@ def main():
             p.map(ninja_builds_for, builds)
 
         print("", file=stderr)
+        print_statistics()
+        stdout.flush()
 
 
 # Globals, referenced from spawned processes. Remember to initialize
@@ -248,6 +287,7 @@ number_of_packages = Value("i", 0)
 lock = Lock()
 builds_len = ""
 ninja = None
+dependency_frequencies = None
 
 
 # Arch Linux packages in the 'base' group, i.e. expected to be installed
