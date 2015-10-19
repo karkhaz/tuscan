@@ -69,6 +69,8 @@ BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
 
 default: deps_to_ninja
 
+test: deps_to_ninja
+
 deps_to_ninja: $(BUILD_FILE)
 
 
