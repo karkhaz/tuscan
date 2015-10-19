@@ -76,10 +76,12 @@ packages are not rebuilt unnecessarily.
 """
 
 from argparse import ArgumentParser
+from datetime import datetime
 from glob import glob
 from multiprocessing import Value, Lock, Pool, cpu_count, Manager
 from ninja_syntax import Writer
-from os import linesep
+from os import linesep, makedirs, remove, symlink
+from os.path import basename, lexists, splitext
 from re import sub
 from subprocess import PIPE, Popen, TimeoutExpired, run
 from sys import stderr, stdout, argv
@@ -195,8 +197,8 @@ def makedepends_of(pkgbuild):
         return depends
 
 
-def print_statistics():
-    with open("/build/logs/stats.dat", "w") as dat:
+def print_statistics(out_dir):
+    with open(out_dir + "/stats.dat", "w") as dat:
         for n_deps, freq in dependency_frequencies.items():
             print(str(freq) + " " + str(n_deps), file=dat)
             dat.flush()
@@ -240,6 +242,25 @@ def ninja_builds_for(abs_dir):
               " packages found.", file=stderr, end="")
 
 
+class OutputDirectory():
+    def __init__(self):
+        top_level = splitext(basename(__file__))[0]
+        self.top_level = args.shared_directory + "/" + top_level
+
+        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        self.path = self.top_level + "/" + timestamp
+
+    def __enter__(self):
+        makedirs(self.path, exist_ok=True)
+        return self.path
+
+    def __exit__(self, type, value, traceback):
+        latest = self.top_level + "/latest"
+        if lexists(latest):
+            remove(latest)
+        symlink(self.path, latest)
+
+
 def setup_argparse():
     global args
     parser = ArgumentParser()
@@ -247,6 +268,8 @@ def setup_argparse():
                         dest="verbose", action="store_true")
     parser.add_argument("-t", "--statistics",
                         dest="statistics", action="store_true")
+    parser.add_argument("-d", "--shared-directory",
+                        dest="shared_directory", action="store")
     args = parser.parse_args()
 
 
@@ -258,25 +281,25 @@ def main():
 
     dependency_frequencies = Manager().dict()
 
-    with open("/build/logs/build.ninja", "w") as log:
-        ninja = Writer(log, 72)
+    with OutputDirectory() as out_dir:
+        with open(out_dir + "/build.ninja", "w") as log:
+            ninja = Writer(log, 72)
 
-        ninja.rule("makepkg", "cd /var/abs/${in} && makepkg")
-        ninja.rule("phony", "# phony ${out}")
+            ninja.rule("makepkg", "cd /var/abs/${in} && makepkg")
+            ninja.rule("phony", "# phony ${out}")
 
-        log.flush()
+            log.flush()
 
-        builds = glob("/var/abs/*/*")
-        builds = [b for b in builds if not excluded(b)]
-        builds_len = str(len(builds))
+            builds = glob("/var/abs/*/*")
+            builds = [b for b in builds if not excluded(b)]
+            builds_len = str(len(builds))
 
-        with Pool(cpu_count()) as p:
-            p.map(ninja_builds_for, builds)
-        print("", file=stderr)
+            with Pool(cpu_count()) as p:
+                p.map(ninja_builds_for, builds)
+            print("", file=stderr)
 
         if args.statistics:
             print_statistics()
-
 
 # Globals, referenced from spawned processes. Remember to initialize
 # these things in main!
@@ -287,7 +310,6 @@ builds_len = ""
 ninja = None
 dependency_frequencies = None
 args = None
-
 
 if __name__ == "__main__":
     main()
