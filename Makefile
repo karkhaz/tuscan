@@ -21,8 +21,10 @@ output_dir = $(shell pwd)/output/$1/$(TIMESTAMP)
 
 ifeq "$(origin VERBOSE)" "undefined"
 VERBOSE := >/dev/null
+VERBOSE_SWITCH := 
 else
 VERBOSE := 
+VERBOSE_SWITCH := "-v"
 endif
 
 IGNORE_ERROR = 2>/dev/null || true
@@ -52,6 +54,7 @@ SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
 
 DOCKERFILE_GFP = $(DIR_GFP)/Dockerfile
 DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
+.INTERMEDIATE: $(DOCKERFILE_GFP) $(DOCKERFILE_DTN)
 
 PULL_ARCH_MARKER = .pull_arch
 
@@ -83,10 +86,11 @@ deps_to_ninja: $(BUILD_FILE)
 	@echo "#   $<,"  >> $@
 	@printf "#\n# so edit that instead and rerun make.\n#\n" >> $@
 	@head -n 3 dne_message | tail -n 1 >> $@
-	@sed "s/__USER_NAME/$(MY_UNAME)/g;  \
-		    s/__GROUP_NAME/$(MY_GROUP)/g; \
-				s/__UID/$(MY_UID)/g;          \
-				s/__GID/$(MY_GID)/g;          \
+	@sed "s/__USER_NAME/$(MY_UNAME)/g;      \
+		    s/__GROUP_NAME/$(MY_GROUP)/g;     \
+				s/__UID/$(MY_UID)/g;              \
+				s/__GID/$(MY_GID)/g;              \
+				s/__VERBOSE/$(VERBOSE_SWITCH)/g;  \
 				 /#.*/d;" < $<  >> $@
 
 
