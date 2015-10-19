@@ -24,9 +24,18 @@ VERBOSE := >/dev/null
 VERBOSE_SWITCH := 
 else
 VERBOSE := 
-VERBOSE_SWITCH := "-v"
+VERBOSE_SWITCH := "--verbose"
 endif
 
+ifeq "$(origin STATISTICS)" "undefined"
+STATS_SWITCH := 
+else
+STATS_SWITCH := "--statistics"
+endif
+
+SWITCHES = $(VERBOSE_SWITCH) $(STATS_SWITCH)
+
+IGNORE_ERROR = 2>/dev/null || true
 IGNORE_ERROR = 2>/dev/null || true
 
 MY_UID = $(shell id -u)
@@ -90,7 +99,6 @@ deps_to_ninja: $(BUILD_FILE)
 		    s/__GROUP_NAME/$(MY_GROUP)/g;     \
 				s/__UID/$(MY_UID)/g;              \
 				s/__GID/$(MY_GID)/g;              \
-				s/__VERBOSE/$(VERBOSE_SWITCH)/g;  \
 				 /#.*/d;" < $<  >> $@
 
 
@@ -101,7 +109,7 @@ $(BUILD_FILE): $(BUILD_MARKER_DTN) $(MARKER_GFP)
 	@$(ECHO) Calculating dependencies
 	@$(call make_output_dir,$(DIR_DTN))
 	@docker run -v $(call output_dir,$(DIR_DTN)):/build/logs \
-		$(CONTAINER_DTN) $(VERBOSE)
+		$(CONTAINER_DTN) $(SWITCHES) $(VERBOSE)
 	@-ln -s $@ build.ninja $(IGNORE_ERROR)
 
 $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
@@ -118,7 +126,7 @@ $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
 $(MARKER_GFP): $(BUILD_MARKER_GFP)
 	@$(ECHO) Getting fundamental packages
 	@docker run -v $(call output_dir,$(DIR_GFP)):/build/packages \
-		$(CONTAINER_GFP) $(VERBOSE)
+		$(CONTAINER_GFP) $(SWITCHES) $(VERBOSE)
 	@touch $@
 
 $(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) $(PULL_ARCH_MARKER)
