@@ -15,10 +15,6 @@
 #
 # Top-level tuscan Makefile.
 
-TIMESTAMP=$(shell date +%Y%m%dT%H%M%S)
-
-output_dir = $(shell pwd)/output/$1/$(TIMESTAMP)
-
 ifeq "$(origin VERBOSE)" "undefined"
 VERBOSE := >/dev/null
 VERBOSE_SWITCH := 
@@ -33,9 +29,9 @@ else
 STATS_SWITCH := "--statistics"
 endif
 
-SWITCHES = $(VERBOSE_SWITCH) $(STATS_SWITCH)
+SWITCHES = $(VERBOSE_SWITCH) $(STATS_SWITCH) \
+					 --shared-directory /$(DATA)
 
-IGNORE_ERROR = 2>/dev/null || true
 IGNORE_ERROR = 2>/dev/null || true
 
 MY_UID = $(shell id -u)
@@ -43,37 +39,36 @@ MY_GID = $(shell id -g)
 MY_UNAME = $(shell whoami)
 MY_GROUP = $(shell groups | awk '{print $$1}')
 
-define make_output_dir
-@mkdir -p $(output_dir)
-@-rm $(shell pwd)/output/$1/latest $(IGNORE_ERROR)
-@ln -sf $(output_dir) $(shell pwd)/output/$1/latest
-endef
-
 BUILD_FILE = $(shell pwd)/output/deps_to_ninja/latest/build.ninja
 ECHO = >&2 echo
 
-DIR_GFP = get_fundamental_packages
 DIR_DTN = deps_to_ninja
+DIR_TEST = test
 
-CONTAINER_GFP = $(DIR_GFP)_container
 CONTAINER_DTN = $(DIR_DTN)_container
+CONTAINER_TEST = $(DIR_TEST)_container
 
-SCRIPT_GFP = $(DIR_GFP)/$(DIR_GFP).py
 SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
 
-DOCKERFILE_GFP = $(DIR_GFP)/Dockerfile
 DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
-.INTERMEDIATE: $(DOCKERFILE_GFP) $(DOCKERFILE_DTN)
+DOCKERFILE_TEST = $(DIR_TEST)/Dockerfile
+.INTERMEDIATE: $(DOCKERFILE_DTN)
 
 PULL_ARCH_MARKER = .pull_arch
+DATA = tuscan_data
 
-MARKER_GFP = .$(DIR_GFP)_marker
+
 MARKER_DTN = .$(DIR_DTN)_marker
-.PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_GFP) $(MARKER_DTN)
+MARKER_TEST = .$(DIR_TEST)_marker
+.PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_DTN)
 
-BUILD_MARKER_GFP = .$(DIR_GFP)_container_marker
 BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
-.PRECIOUS: $(BUILD_MARKER_DTN) $(BUILD_MARKER_GFP)
+BUILD_MARKER_TEST = .$(DIR_TEST)_container_marker
+BUILD_MARKER_DATA = .$(DATA)_container_marker
+.PRECIOUS: $(BUILD_MARKER_DTN) $(BUILD_MARKER_TEST)
+
+TESTS = $(patsubst test/%,%,$(wildcard $(DIR_TEST)/*.py))
+ALL_TESTS_MARKERS = $(patsubst %,$(MARKER_TEST)_%,$(TESTS))
 
 # Top-level targets
 # `````````````````
@@ -81,7 +76,7 @@ BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
 
 default: deps_to_ninja
 
-test: deps_to_ninja
+test: $(ALL_TESTS_MARKERS)
 
 deps_to_ninja: $(BUILD_FILE)
 
@@ -102,13 +97,21 @@ deps_to_ninja: $(BUILD_FILE)
 				 /#.*/d;" < $<  >> $@
 
 
+# Data container
+# ``````````````
+
+$(BUILD_MARKER_DATA): $(PULL_ARCH_MARKER)
+	@$(ECHO) Building data container
+	@docker create -v /$(DATA) --name $(DATA) base/arch /bin/true
+
+
 # Directory 'deps_to_ninja'
 # ``````````````````````
 
-$(BUILD_FILE): $(BUILD_MARKER_DTN) $(MARKER_GFP)
+$(BUILD_FILE): $(BUILD_MARKER_DTN) $(BUILD_MARKER_DATA)
 	@$(ECHO) Calculating dependencies
 	@$(call make_output_dir,$(DIR_DTN))
-	@docker run -v $(call output_dir,$(DIR_DTN)):/build/logs \
+	@docker run -v /$(DATA) --volumes-from $(DATA) \
 		$(CONTAINER_DTN) $(SWITCHES) $(VERBOSE)
 	@-ln -s $@ build.ninja $(IGNORE_ERROR)
 
@@ -120,20 +123,22 @@ $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
 	@touch $@
 
 
-# Directory 'get_fundamental_packages'
-# ````````````````````````````````````
+# Test directory
+# ``````````````
 
-$(MARKER_GFP): $(BUILD_MARKER_GFP)
-	@$(ECHO) Getting fundamental packages
-	@docker run -v $(call output_dir,$(DIR_GFP)):/build/packages \
-		$(CONTAINER_GFP) $(SWITCHES) $(VERBOSE)
+$(MARKER_TEST)_%: $(BUILD_MARKER_TEST) $(BUILD_FILE)
+	@echo Running test for \
+		$(patsubst %.py,%,$(patsubst $(MARKER_TEST)_%,%,$@))
+	@docker run -v /test -v /$(DATA) --volumes-from $(DATA) \
+		$(CONTAINER_TEST) /test/$(patsubst $(MARKER_TEST)_%,%,$@) \
+		$(SWITCHES)
 	@touch $@
 
-$(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) $(PULL_ARCH_MARKER)
-	@$(ECHO) Building fundamental packages container
-	@$(call make_output_dir,$(DIR_GFP))
-	@docker build -q -t $(CONTAINER_GFP) $(DIR_GFP) $(VERBOSE)
+$(BUILD_MARKER_TEST): $(DOCKERFILE_TEST) $(PULL_ARCH_MARKER)
+	@$(ECHO) Building test container
+	@docker build -q -t $(CONTAINER_TEST) $(DIR_TEST) $(VERBOSE)
 	@touch $@
+
 
 
 # Retrieving Arch image
@@ -144,21 +149,22 @@ $(PULL_ARCH_MARKER):
 	@docker pull base/arch:latest $(VERBOSE)
 	@touch $@
 
+
 # Cleanup
 # ```````
 
 .PHONY: clean_output
 clean_output:
-	@-rm -r $(MARKER_DTN) $(MARKER_GFP) output $(IGNORE_ERROR)
+	@-rm -rf $(MARKER_DTN) $(ALL_TEST_MARKERS)
 
 clean_docker_builds:
-	@-rm -r $(BUILD_MARKER_DTN) $(BUILD_MARKER_GFP)
+	@-rm -rf $(BUILD_MARKER_DTN)
 
 .PHONY: docker_stop
 docker_stop:
 	@-docker stop $$(docker ps -a -q) $(IGNORE_ERROR)
 	@-docker rm $$(docker ps -a -q)   $(IGNORE_ERROR)
-	@-rm $(BUILD_MARKER_GFP) $(BUILD_MARKER_DTN) $(IGNORE_ERROR)
+	@-rm $(BUILD_MARKER_DTN) $(IGNORE_ERROR)
 
 # Also delete images
 .PHONY: docker_cleanup
