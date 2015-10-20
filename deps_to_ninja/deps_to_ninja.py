@@ -304,29 +304,5 @@ dependency_frequencies = None
 args = None
 
 
-# Arch Linux packages in the 'base' group, i.e. expected to be installed
-# on all Arch Linux systems
-base_packages = [
-    "bash", "bzip2", "coreutils", "cryptsetup", "device-mapper",
-    "dhcpcd", "diffutils", "e2fsprogs", "file", "filesystem",
-    "findutils", "gawk", "gcc-libs", "gettext", "glibc", "grep", "gzip",
-    "inetutils", "iproute2", "iputils", "jfsutils", "less", "licenses",
-    "linux", "logrotate", "lvm2", "man-db", "man-pages", "mdadm",
-    "nano", "netctl", "pacman", "pciutils", "pcmciautils", "perl",
-    "procps-ng", "psmisc", "reiserfsprogs", "s-nail", "sed", "shadow",
-    "sysfsutils", "systemd-sysvcompat", "tar", "texinfo", "usbutils",
-    "util-linux", "vi", "which", "xfsprogs"
-]
-
-# Arch Linux packages in the 'base-devel' group, expected to be
-# installed if one wishes to build packages from source using makepkg
-base_devel_packages = [
-    "autoconf", "automake", "binutils", "bison", "fakeroot", "file",
-    "findutils", "flex", "gawk", "gcc", "gettext", "grep", "groff",
-    "gzip", "libtool", "m4", "make", "pacman", "patch", "pkg-config",
-    "sed", "sudo", "texinfo", "util-linux", "which"
-]
-
-
 if __name__ == "__main__":
     main()
