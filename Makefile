@@ -34,139 +34,141 @@ SWITCHES = $(VERBOSE_SWITCH) $(STATS_SWITCH) \
 
 IGNORE_ERROR = 2>/dev/null || true
 
-MY_UID = $(shell id -u)
-MY_GID = $(shell id -g)
-MY_UNAME = $(shell whoami)
-MY_GROUP = $(shell groups | awk '{print $$1}')
-
-BUILD_FILE = $(shell pwd)/output/deps_to_ninja/latest/build.ninja
 ECHO = >&2 echo
 
-DIR_DTN = deps_to_ninja
-DIR_TEST = test
 
-CONTAINER_DTN = $(DIR_DTN)_container
-CONTAINER_TEST = $(DIR_TEST)_container
+define touch
+@-mkdir -p .markers
+@-touch $1
+endef
 
-SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
 
-DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
-DOCKERFILE_TEST = $(DIR_TEST)/Dockerfile
-.INTERMEDIATE: $(DOCKERFILE_DTN)
+# Functions to retrieve files associated with containers
+# ``````````````````````````````````````````````````````
+container    = $1_container
+script       = $1/$1.py
+dockerfile   = $1/Dockerfile
+run_marker   = .markers/$1_run
+build_marker = .markers/$1_build
+pull_marker  = .markers/$1_pull
+test_marker  = .markers/$1_test
 
-PULL_ARCH_MARKER = .pull_arch
+
+
+# Containers and their markers
+# ````````````````````````````
+
+# Containers that are built and then run
+DTN  = deps_to_ninja
+TEST = test
+RUNS   += $(DTN) $(TEST)
+BUILDS += $(DTN) $(TEST)
+
+# Data-only container
 DATA = tuscan_data
+BUILDS += $(DATA)
+
+# Base container, must be pulled before anything else is built. All
+# builds should depend on $(call pull_marker,$(ARCH_PULL)).
+ARCH_PULL = arch_pull
+PULLS += $(ARCH_PULL)
+
+.PRECIOUS: $(patsubst %,$(call run_marker,%),$(RUNS))
+.PRECIOUS: $(patsubst %,$(call build_marker,%),$(BUILDS))
+.PRECIOUS: $(patsubst %,$(call tull_marker,%),$(PULLS))
+
+TESTS := $(patsubst test/%,%,$(wildcard $(TEST)/*.py))
+ALL_TESTS_MARKERS := $(patsubst %.py,$(call test_marker,%),$(TESTS))
 
 
-MARKER_DTN = .$(DIR_DTN)_marker
-MARKER_TEST = .$(DIR_TEST)_marker
-.PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_DTN)
-
-BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
-BUILD_MARKER_TEST = .$(DIR_TEST)_container_marker
-BUILD_MARKER_DATA = .$(DATA)_container_marker
-.PRECIOUS: $(BUILD_MARKER_DTN) $(BUILD_MARKER_TEST)
-
-TESTS = $(patsubst test/%,%,$(wildcard $(DIR_TEST)/*.py))
-ALL_TESTS_MARKERS = $(patsubst %,$(MARKER_TEST)_%,$(TESTS))
 
 # Top-level targets
 # `````````````````
-# each target corresponds to a top-level directory in this repository.
 
 default: deps_to_ninja
 
 test: $(ALL_TESTS_MARKERS)
 
-deps_to_ninja: $(BUILD_FILE)
+deps_to_ninja: $(call run_marker,$(DTN))
 
-
-# We want docker to create files using our own username and group, so
-# that we can access them afterward. Generate Dockerfiles with our
-# user's information written in
-%/Dockerfile: %/Dockerfile.mk
-	@$(ECHO) Generating $@
-	@cat dne_message > $@
-	@echo "#   $<,"  >> $@
-	@printf "#\n# so edit that instead and rerun make.\n#\n" >> $@
-	@head -n 3 dne_message | tail -n 1 >> $@
-	@sed "s/__USER_NAME/$(MY_UNAME)/g;      \
-		    s/__GROUP_NAME/$(MY_GROUP)/g;     \
-				s/__UID/$(MY_UID)/g;              \
-				s/__GID/$(MY_GID)/g;              \
-				 /#.*/d;" < $<  >> $@
 
 
 # Data container
 # ``````````````
 
-$(BUILD_MARKER_DATA): $(PULL_ARCH_MARKER)
+$(call build_marker,$(DATA)): $(call pull_marker,$(ARCH_PULL))
 	@$(ECHO) Building data container
-	@docker create -v /$(DATA) --name $(DATA) base/arch /bin/true
+	@-docker create -v /$(DATA) --name $(DATA) base/arch /bin/true \
+		$(IGNORE_ERROR)
+	$(call touch,$@)
 
 
-# Directory 'deps_to_ninja'
-# ``````````````````````
 
-$(BUILD_FILE): $(BUILD_MARKER_DTN) $(BUILD_MARKER_DATA)
+# Container 'deps_to_ninja'
+# `````````````````````````
+
+$(call run_marker,$(DTN)): $(call build_marker,$(DTN)) \
+	                         $(call build_marker,$(DATA))
 	@$(ECHO) Calculating dependencies
-	@$(call make_output_dir,$(DIR_DTN))
+	@$(call make_output_dir,$(DTN))
 	@docker run -v /$(DATA) --volumes-from $(DATA) \
-		$(CONTAINER_DTN) $(SWITCHES) $(VERBOSE)
+		$(call container,$(DTN)) $(SWITCHES) $(VERBOSE)
 	@-ln -s $@ build.ninja $(IGNORE_ERROR)
+	$(call touch,$@)
 
-$(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
+$(call build_marker,$(DTN)): $(call dockerfile,$(DTN)) \
+	                           $(call script,$(DTN))     \
+														 $(call pull_marker,$(ARCH_PULL))
 	@$(ECHO) Building dependencies container
 	@cp ninja_syntax.py deps_to_ninja/.ninja_syntax.py
-	@docker build -q -t $(CONTAINER_DTN) $(DIR_DTN) $(VERBOSE)
+	@docker build -q -t $(call container,$(DTN)) $(DTN) $(VERBOSE)
 	@-rm deps_to_ninja/.ninja_syntax.py $(IGNORE_ERROR)
-	@touch $@
+	$(call touch,$@)
 
 
-# Test directory
+
+# Test container
 # ``````````````
 
-$(MARKER_TEST)_%: $(BUILD_MARKER_TEST) $(BUILD_FILE)
-	@echo Running test for \
-		$(patsubst %.py,%,$(patsubst $(MARKER_TEST)_%,%,$@))
+.markers/%_test: $(call build_marker,$(TEST)) \
+	               $(call run_marker,%)
+	@echo Running test for $(patsubst .markers/%_test,%,$@)
 	@docker run -v /test -v /$(DATA) --volumes-from $(DATA) \
-		$(CONTAINER_TEST) /test/$(patsubst $(MARKER_TEST)_%,%,$@) \
+		$(call container,$(TEST))                             \
+		/test/$(patsubst .markers/%_test,%.py,$@)      \
 		$(SWITCHES)
-	@touch $@
+	@#Don't touch, so that tests run every time
 
-$(BUILD_MARKER_TEST): $(DOCKERFILE_TEST) $(PULL_ARCH_MARKER)
+$(call build_marker,$(TEST)): $(call dockerfile,$(TEST)) \
+	                            $(call pull_marker,$(ARCH_PULL))
 	@$(ECHO) Building test container
-	@docker build -q -t $(CONTAINER_TEST) $(DIR_TEST) $(VERBOSE)
-	@touch $@
+	@docker build -q -t $(call container,$(TEST)) $(TEST) $(VERBOSE)
+	$(call touch,$@)
 
 
 
 # Retrieving Arch image
 # `````````````````````
 
-$(PULL_ARCH_MARKER):
+$(call pull_marker,$(ARCH_PULL)):
 	@$(ECHO) Retrieving Arch Linux image
 	@docker pull base/arch:latest $(VERBOSE)
-	@touch $@
+	$(call touch,$@)
+
 
 
 # Cleanup
 # ```````
 
-.PHONY: clean_output
-clean_output:
-	@-rm -rf $(MARKER_DTN) $(ALL_TEST_MARKERS)
+.PHONY: clean_runs clean_builds clean_pulls clean_all
 
-clean_docker_builds:
-	@-rm -rf $(BUILD_MARKER_DTN)
+clean_runs:
+	@-rm $(patsubst %,$(call run_marker,%),$(RUNS)) $(IGNORE_ERROR)
 
-.PHONY: docker_stop
-docker_stop:
-	@-docker stop $$(docker ps -a -q) $(IGNORE_ERROR)
-	@-docker rm $$(docker ps -a -q)   $(IGNORE_ERROR)
-	@-rm $(BUILD_MARKER_DTN) $(IGNORE_ERROR)
+clean_builds:
+	@-rm $(patsubst %,$(call build_marker,%),$(BUILDS)) $(IGNORE_ERROR)
 
-# Also delete images
-.PHONY: docker_cleanup
-docker_cleanup: docker_stop
-	@-docker rmi -f $$(docker images -q) $(IGNORE_ERROR)
+clean_pulls:
+	@-rm $(patsubst %,$(call pull_marker,%),$(PULLS)) $(IGNORE_ERROR)
+
+clean_all: clean_runs clean_builds clean_pulls
