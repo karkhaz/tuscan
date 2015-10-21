@@ -75,13 +75,11 @@ packages are not rebuilt unnecessarily.
 [1] http://martine.github.io/ninja/
 """
 
-from argparse import ArgumentParser
-from datetime import datetime
+from utilities import OutputDirectory, setup_argparse
+
 from glob import glob
 from multiprocessing import Value, Lock, Pool, cpu_count, Manager
 from ninja_syntax import Writer
-from os import linesep, makedirs, remove, symlink
-from os.path import basename, lexists, splitext
 from re import sub
 from subprocess import PIPE, Popen, TimeoutExpired, run
 from sys import stderr, stdout, argv
@@ -242,46 +240,19 @@ def ninja_builds_for(abs_dir):
               " packages found.", file=stderr, end="")
 
 
-class OutputDirectory():
-    def __init__(self):
-        top_level = splitext(basename(__file__))[0]
-        self.top_level = args.shared_directory + "/" + top_level
-
-        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        self.path = self.top_level + "/" + timestamp
-
-    def __enter__(self):
-        makedirs(self.path, exist_ok=True)
-        return self.path
-
-    def __exit__(self, type, value, traceback):
-        latest = self.top_level + "/latest"
-        if lexists(latest):
-            remove(latest)
-        symlink(self.path, latest)
-
-
-def setup_argparse():
-    global args
-    parser = ArgumentParser()
-    parser.add_argument("-v", "--verbose",
-                        dest="verbose", action="store_true")
-    parser.add_argument("-t", "--statistics",
-                        dest="statistics", action="store_true")
-    parser.add_argument("-d", "--shared-directory",
-                        dest="shared_directory", action="store")
-    args = parser.parse_args()
-
-
 def main():
     """This script should be run inside a container."""
     global builds_len, ninja, dependency_frequencies
 
-    setup_argparse()
+    args = setup_argparse()
 
     dependency_frequencies = Manager().dict()
 
-    with OutputDirectory() as out_dir:
+    with OutputDirectory(args, __file__) as out_dir:
+        if args.verbose:
+            print("Output shall be written in " + out_dir,
+                  file=stderr)
+
         with open(out_dir + "/build.ninja", "w") as log:
             ninja = Writer(log, 72)
 

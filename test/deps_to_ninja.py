@@ -42,6 +42,7 @@ class TestDepsToNinja(unittest.TestCase):
     def test_ninja_file_nonempty(self):
         counter = 0
         ninja_file = "/tuscan_data/deps_to_ninja/latest/build.ninja"
+        if not exists(ninja_file): self.assertTrue(False)
         with open(ninja_file) as ninja_file:
             for line in ninja_file:
                 self.assertTrue(True)

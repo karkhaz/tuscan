@@ -24,5 +24,6 @@ MAINTAINER Kareem Khazem <khazem@google.com>
 
 COPY deps_to_ninja.py /build/deps_to_ninja.py
 COPY ninja_syntax.py /build/ninja_syntax.py
+COPY utilities.py /build/utilities.py
 
 ENTRYPOINT ["/usr/bin/python", "-u", "/build/deps_to_ninja.py"]
