@@ -41,6 +41,7 @@ endef
 container    = $1_container
 script       = $1/$1.py
 dockerfile   = $1/Dockerfile
+test         = test/$1.py
 run_marker   = .markers/$1_run
 build_marker = .markers/$1_build
 pull_marker  = .markers/$1_pull
@@ -127,12 +128,12 @@ $(call build_marker,$(DTN)): $(call dockerfile,$(DTN)) \
 	@echo Running test for $(patsubst .markers/%_test,%,$@)
 	@docker run -v /test -v /$(DATA) --volumes-from $(DATA) \
 	  $(call container,$(TEST))                             \
-	  /test/$(patsubst .markers/%_test,%.py,$@)             \
-	  $(SWITCHES)
+	  /test/$(patsubst .markers/%_test,%.py,$@)
 	@#Don't touch, so that tests run every time
 
-$(call build_marker,$(TEST)): $(call dockerfile,$(TEST)) \
-	                            $(call pull_marker,$(ARCH_PULL))
+$(call build_marker,$(TEST)): $(call dockerfile,$(TEST))       \
+                              $(call pull_marker,$(ARCH_PULL)) \
+                              $(wildcard $(TEST)/*.py)
 	@$(ECHO) Building test container
 	@docker build -q -t $(call container,$(TEST)) $(TEST) $(VERBOSE)
 	$(call touch,$@)

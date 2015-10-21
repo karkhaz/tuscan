@@ -29,5 +29,3 @@ RUN pacman -Syu --needed --noconfirm base
 RUN pacman -Syu --needed --noconfirm python
 
 COPY . /test
-
-CMD ["/usr/bin/true"]
