@@ -19,6 +19,12 @@ TIMESTAMP=$(shell date +%Y%m%dT%H%M%S)
 
 output_dir = $(shell pwd)/output/$1/$(TIMESTAMP)
 
+ifeq "$(origin VERBOSE)" "undefined"
+VERBOSE := >/dev/null
+else
+VERBOSE := 
+endif
+
 IGNORE_ERROR = 2>/dev/null || true
 
 MY_UID = $(shell id -u)
@@ -47,11 +53,15 @@ SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
 DOCKERFILE_GFP = $(DIR_GFP)/Dockerfile
 DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
 
+PULL_ARCH_MARKER = .pull_arch
+
 MARKER_GFP = .$(DIR_GFP)_marker
 MARKER_DTN = .$(DIR_DTN)_marker
+.PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_GFP) $(MARKER_DTN)
 
 BUILD_MARKER_GFP = .$(DIR_GFP)_container_marker
 BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
+.PRECIOUS: $(BUILD_MARKER_DTN) $(BUILD_MARKER_GFP)
 
 # Top-level targets
 # `````````````````
@@ -69,7 +79,7 @@ deps_to_ninja: $(BUILD_FILE)
 	@$(ECHO) Generating $@
 	@cat dne_message > $@
 	@echo "#   $<,"  >> $@
-	@echo -e "#\n# so edit that instead and rerun make.\n#" >> $@
+	@printf "#\n# so edit that instead and rerun make.\n#\n" >> $@
 	@head -n 3 dne_message | tail -n 1 >> $@
 	@sed "s/__USER_NAME/$(MY_UNAME)/g;  \
 		    s/__GROUP_NAME/$(MY_GROUP)/g; \
@@ -82,16 +92,16 @@ deps_to_ninja: $(BUILD_FILE)
 # ``````````````````````
 
 $(BUILD_FILE): $(BUILD_MARKER_DTN) $(MARKER_GFP)
-	@$(call make_output_dir,$(DIR_DTN))
 	@$(ECHO) Calculating dependencies
+	@$(call make_output_dir,$(DIR_DTN))
 	@docker run -v $(call output_dir,$(DIR_DTN)):/build/logs \
-		$(CONTAINER_DTN)
-	@-ln -s $@ build.ninja 2>/dev/null || true
+		$(CONTAINER_DTN) $(VERBOSE)
+	@-ln -s $@ build.ninja $(IGNORE_ERROR)
 
-$(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) .pull_arch
+$(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
 	@$(ECHO) Building dependencies container
 	@cp ninja_syntax.py deps_to_ninja/.ninja_syntax.py
-	@docker build -q -t $(CONTAINER_DTN) $(DIR_DTN) >/dev/null
+	@docker build -q -t $(CONTAINER_DTN) $(DIR_DTN) $(VERBOSE)
 	@-rm deps_to_ninja/.ninja_syntax.py $(IGNORE_ERROR)
 	@touch $@
 
@@ -102,22 +112,22 @@ $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) .pull_arch
 $(MARKER_GFP): $(BUILD_MARKER_GFP)
 	@$(ECHO) Getting fundamental packages
 	@docker run -v $(call output_dir,$(DIR_GFP)):/build/packages \
-		$(CONTAINER_GFP) >/dev/null
+		$(CONTAINER_GFP) $(VERBOSE)
 	@touch $@
 
-$(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) .pull_arch
+$(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) $(PULL_ARCH_MARKER)
 	@$(ECHO) Building fundamental packages container
 	@$(call make_output_dir,$(DIR_GFP))
-	@docker build -q -t $(CONTAINER_GFP) $(DIR_GFP) >/dev/null
+	@docker build -q -t $(CONTAINER_GFP) $(DIR_GFP) $(VERBOSE)
 	@touch $@
 
 
 # Retrieving Arch image
 # `````````````````````
 
-.pull_arch: docker_cleanup
+$(PULL_ARCH_MARKER):
 	@$(ECHO) Retrieving Arch Linux image
-	@docker pull base/arch:latest >/dev/null
+	@docker pull base/arch:latest $(VERBOSE)
 	@touch $@
 
 # Cleanup
@@ -126,6 +136,9 @@ $(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) .pull_arch
 .PHONY: clean_output
 clean_output:
 	@-rm -r $(MARKER_DTN) $(MARKER_GFP) output $(IGNORE_ERROR)
+
+clean_docker_builds:
+	@-rm -r $(BUILD_MARKER_DTN) $(BUILD_MARKER_GFP)
 
 .PHONY: docker_stop
 docker_stop:
