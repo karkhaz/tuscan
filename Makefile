@@ -118,7 +118,7 @@ $(call run_marker,$(DTN)): $(call build_marker,$(DTN)) \
 
 $(call build_marker,$(DTN)): $(call dockerfile,$(DTN)) \
 	                           $(call script,$(DTN))     \
-														 $(call pull_marker,$(ARCH_PULL))
+	                           $(call pull_marker,$(ARCH_PULL))
 	@$(ECHO) Building dependencies container
 	@cp ninja_syntax.py deps_to_ninja/.ninja_syntax.py
 	@docker build -q -t $(call container,$(DTN)) $(DTN) $(VERBOSE)
