@@ -54,9 +54,10 @@ test_marker  = .markers/$1_test
 
 # Containers that are built and then run
 DTN  = deps_to_ninja
+GBPN = get_base_package_names
 TEST = test
-RUNS   += $(DTN) $(TEST)
-BUILDS += $(DTN) $(TEST)
+RUNS   += $(DTN) $(GBPN) $(TEST)
+BUILDS += $(DTN) $(GBPN) $(TEST)
 
 # Data-only container
 DATA = tuscan_data
@@ -79,11 +80,12 @@ ALL_TESTS_MARKERS := $(patsubst %.py,$(call test_marker,%),$(TESTS))
 # Top-level targets
 # `````````````````
 
-default: deps_to_ninja
+default: $(DTN) $(GBPN)
 
 test: $(ALL_TESTS_MARKERS)
 
-deps_to_ninja: $(call run_marker,$(DTN))
+$(DTN): $(call run_marker,$(DTN))
+$(GBPN): $(call run_marker,$(GBPN))
 
 
 
@@ -94,6 +96,29 @@ $(call build_marker,$(DATA)): $(call pull_marker,$(ARCH_PULL))
 	@$(ECHO) Building data container
 	@-docker create -v /$(DATA) --name $(DATA) base/arch /bin/true \
 	  $(IGNORE_ERROR)
+	$(call touch,$@)
+
+
+
+# Container 'get_base_package_names'
+# ``````````````````````````````````
+
+$(call run_marker,$(GBPN)): $(call build_marker,$(GBPN)) \
+	                          $(call build_marker,$(DATA))
+	@$(ECHO) Getting base package names
+	@$(call make_output_dir,$(GBPN))
+	@docker run -v /$(DATA) --volumes-from $(DATA) \
+	  $(call container,$(GBPN)) $(SWITCHES) $(VERBOSE)
+	@-ln -s $@ build.ninja $(IGNORE_ERROR)
+	$(call touch,$@)
+
+$(call build_marker,$(GBPN)): $(call dockerfile,$(GBPN)) \
+	                            $(call script,$(GBPN))     \
+	                            utilities.py               \
+	                            $(call pull_marker,$(ARCH_PULL))
+	@$(ECHO) Building base package names container
+	@cp utilities.py    $(GBPN)/utilities.py
+	@docker build -q -t $(call container,$(GBPN)) $(GBPN) $(VERBOSE)
 	$(call touch,$@)
 
 
