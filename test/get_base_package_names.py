@@ -57,25 +57,38 @@ class TestGetBasePackageNames(unittest.TestCase):
         """It was not possible to import base package names from the
         expected location."""
         path.insert(0, "/tuscan_data/get_base_package_names/latest/")
-        from names import base
-        from names import base_devel
+        from names import base_package_names
+        from names import base_devel_package_names
 
     def test_names_are_packages(self):
         """Each of the package names written by get_base_package_names
         should indeed be the name of a package."""
         path.insert(0, "/tuscan_data/get_base_package_names/latest/")
-        from names import base
-        from names import base_devel
-        for pack in base:
+        from names import base_package_names
+        from names import base_devel_package_names
+        for pack in base_package_names + base_devel_package_names:
             ret = run(["pacman", "--query", "--info", pack],
                       stdout=DEVNULL, universal_newlines=True)
             self.assertEqual([pack, ret.returncode],
                              [pack, 0])
-        for pack in base_devel:
+        for pack in base_devel_package_names:
             ret = run(["pacman", "--query", "--info", pack],
                       stdout=DEVNULL, universal_newlines=True)
             self.assertEqual([pack, ret.returncode],
                              [pack, 0])
+
+
+    def test_correct_number_of_base_packages(self):
+        """There should be 52 packages in base."""
+        path.insert(0, "/tuscan_data/get_base_package_names/latest/")
+        from names import base_package_names
+        self.assertEqual(len(base_package_names), 52)
+
+    def test_correct_number_of_base_packages(self):
+        """There should be 25 packages in base-devel."""
+        path.insert(0, "/tuscan_data/get_base_package_names/latest/")
+        from names import base_devel_package_names
+        self.assertEqual(len(base_devel_package_names), 25)
 
 
 if __name__ == "__main__":

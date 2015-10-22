@@ -80,11 +80,13 @@ ALL_TESTS_MARKERS := $(patsubst %.py,$(call test_marker,%),$(TESTS))
 # Top-level targets
 # `````````````````
 
-default: $(DTN) $(GBPN)
+default: $(DTN)
 
 test: $(ALL_TESTS_MARKERS)
 
+
 $(DTN): $(call run_marker,$(DTN))
+
 $(GBPN): $(call run_marker,$(GBPN))
 
 
@@ -126,8 +128,9 @@ $(call build_marker,$(GBPN)): $(call dockerfile,$(GBPN)) \
 # Container 'deps_to_ninja'
 # `````````````````````````
 
-$(call run_marker,$(DTN)): $(call build_marker,$(DTN)) \
-	                         $(call build_marker,$(DATA))
+$(call run_marker,$(DTN)): $(call build_marker,$(DTN))  \
+	                         $(call build_marker,$(DATA)) \
+													 $(call run_marker,$(GBPN))
 	@$(ECHO) Calculating dependencies
 	@$(call make_output_dir,$(DTN))
 	@docker run -v /$(DATA) --volumes-from $(DATA) \
