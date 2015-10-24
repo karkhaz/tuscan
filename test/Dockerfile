@@ -15,17 +15,7 @@
 # limitations under the License.
 
 
-FROM base/arch:latest
+FROM karkhaz/arch-tuscan:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
-
-# Make sure everything is up to date
-RUN pacman-key  --refresh-keys
-RUN pacman -Syyu --needed --noconfirm
-RUN pacman-db-upgrade
-
-# Install needed software
-RUN pacman -Syu --needed --noconfirm base-devel
-RUN pacman -Syu --needed --noconfirm base
-RUN pacman -Syu --needed --noconfirm python
 
 COPY . /test

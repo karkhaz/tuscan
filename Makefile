@@ -111,10 +111,12 @@ $(call run_marker,$(DTN)): $(call build_marker,$(DTN)) \
 	$(call touch,$@)
 
 $(call build_marker,$(DTN)): $(call dockerfile,$(DTN)) \
-                             $(call script,$(DTN))     \
-                             $(call pull_marker,$(ARCH_PULL))
+	                           $(call script,$(DTN))     \
+	                           utilities.py              \
+	                           $(call pull_marker,$(ARCH_PULL))
 	@$(ECHO) Building dependencies container
-	@cp ninja_syntax.py deps_to_ninja/ninja_syntax.py
+	@cp ninja_syntax.py $(DTN)/ninja_syntax.py
+	@cp utilities.py    $(DTN)/utilities.py
 	@docker build -q -t $(call container,$(DTN)) $(DTN) $(VERBOSE)
 	$(call touch,$@)
 
@@ -145,7 +147,7 @@ $(call build_marker,$(TEST)): $(call dockerfile,$(TEST))       \
 
 $(call pull_marker,$(ARCH_PULL)):
 	@$(ECHO) Retrieving Arch Linux image
-	@docker pull base/arch:latest $(VERBOSE)
+	@docker pull karkhaz/arch-tuscan:latest $(VERBOSE)
 	$(call touch,$@)
 
 

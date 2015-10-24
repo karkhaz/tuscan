@@ -19,24 +19,11 @@
 # USAGE:
 #   docker run container_name
 
-FROM base/arch:latest
+FROM karkhaz/arch-tuscan:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
-
-# Make sure everything is up to date
-RUN pacman-key  --refresh-keys
-RUN pacman -Syyu --needed --noconfirm
-RUN pacman-db-upgrade
-
-# Install needed software
-RUN pacman -Syu --needed --noconfirm base-devel
-RUN pacman -Syu --needed --noconfirm base
-RUN pacman -Syu --needed --noconfirm python
-RUN pacman -Syu --needed --noconfirm abs
-
-# Sync Arch Build System repository
-RUN abs
 
 COPY deps_to_ninja.py /build/deps_to_ninja.py
 COPY ninja_syntax.py /build/ninja_syntax.py
+COPY utilities.py /build/utilities.py
 
 ENTRYPOINT ["/usr/bin/python", "-u", "/build/deps_to_ninja.py"]
