@@ -145,7 +145,7 @@ $(call build_marker,$(TEST)): $(call dockerfile,$(TEST))       \
 
 $(call pull_marker,$(ARCH_PULL)):
 	@$(ECHO) Retrieving Arch Linux image
-	@docker pull base/arch:latest $(VERBOSE)
+	@docker pull karkhaz/arch-tuscan:latest $(VERBOSE)
 	$(call touch,$@)
 
 
