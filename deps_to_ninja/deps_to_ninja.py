@@ -80,11 +80,26 @@ from utilities import OutputDirectory, setup_argparse
 from glob import glob
 from multiprocessing import Value, Lock, Pool, cpu_count, Manager
 from ninja_syntax import Writer
+from os.path import exists
 from re import sub
 from subprocess import PIPE, Popen, TimeoutExpired, run
-from sys import stderr, stdout, argv
+from sys import argv, path, stderr, stdout
 from tempfile import NamedTemporaryFile as tempfile
 from textwrap import dedent
+
+args = setup_argparse()
+
+# We need to import a list of base package names
+package_names_dir = (args.shared_directory +
+                     "/get_base_package_names/latest")
+if not exists(package_names_dir):
+    print("Could not find dir for base pakage names at " +
+          package_names_dir, file=stderr)
+    print("Ensure that get_base_package_names container has run first.")
+    exit(1)
+
+path.insert(0, package_names_dir)
+from names import base_package_names, base_devel_package_names
 
 
 def excluded(pkgbuild):
@@ -138,6 +153,14 @@ def pkgnames_of(pkgbuild):
             print(pkgbuild + " has no pkgname",
                   file=stderr)
             exit(1)
+
+        names = [n for n in names]
+
+        for n in names:
+            if(n in base_package_names
+            or n in base_devel_package_names):
+                return None
+
         return names
 
 
@@ -190,8 +213,15 @@ def makedepends_of(pkgbuild):
             print(pkgbuild + " took too long to source",
                   file=stderr)
             exit(1)
-        depends = ["binaries/" + p.decode().strip() + ".pkg.tar.xz"
-                   for p in list(proc.stdout) if p.decode().strip()]
+
+        depends = [p.decode().strip() for p in list(proc.stdout)
+                   if p.decode().strip()]
+
+        depends += base_package_names
+        depends += base_devel_package_names
+
+        depends = ["binaries/" + d + ".pkg.tar.xz" for d in depends]
+
         return depends
 
 
@@ -244,8 +274,6 @@ def main():
     """This script should be run inside a container."""
     global builds_len, ninja, dependency_frequencies
 
-    args = setup_argparse()
-
     dependency_frequencies = Manager().dict()
 
     with OutputDirectory(args, __file__) as out_dir:
@@ -272,6 +300,7 @@ def main():
         if args.statistics:
             print_statistics()
 
+
 # Globals, referenced from spawned processes. Remember to initialize
 # these things in main!
 counter = Value("i", 0)
@@ -280,7 +309,6 @@ lock = Lock()
 builds_len = ""
 ninja = None
 dependency_frequencies = None
-args = None
 
 if __name__ == "__main__":
     main()

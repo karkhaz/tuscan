@@ -56,10 +56,10 @@ def main():
 
     with OutputDirectory(args, __file__) as out_dir:
         with open(out_dir + "/names.py", "w") as names:
-            print(format_as_python(base_list, "base"),
+            print(format_as_python(base_list, "base_package_names"),
                   file=names)
-            print(format_as_python(base_devel_list, "base_devel"),
-                  file=names)
+            print(format_as_python(base_devel_list,
+                  "base_devel_package_names"), file=names)
 
 
 if __name__ == "__main__":
