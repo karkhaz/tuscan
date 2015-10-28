@@ -19,7 +19,7 @@ FROM base/arch:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
 
 # Make sure everything is up to date
-RUN pacman-key  --refresh-keys
+RUN pacman-key --refresh-keys
 RUN pacman -Syyu --needed --noconfirm
 RUN pacman-db-upgrade
 

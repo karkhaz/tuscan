@@ -243,7 +243,7 @@ def ninja_builds_for(abs_dir):
 
 
 class OutputDirectory():
-    def __init__(self):
+    def __init__(self, args):
         top_level = splitext(basename(__file__))[0]
         self.top_level = args.shared_directory + "/" + top_level
 
@@ -261,8 +261,11 @@ class OutputDirectory():
         symlink(self.path, latest)
 
 
-def setup_argparse():
-    global args
+
+def main():
+    """This script should be run inside a container."""
+    global builds_len, ninja, dependency_frequencies
+
     parser = ArgumentParser()
     parser.add_argument("-v", "--verbose",
                         dest="verbose", action="store_true")
@@ -272,16 +275,9 @@ def setup_argparse():
                         dest="shared_directory", action="store")
     args = parser.parse_args()
 
-
-def main():
-    """This script should be run inside a container."""
-    global builds_len, ninja, dependency_frequencies
-
-    setup_argparse()
-
     dependency_frequencies = Manager().dict()
 
-    with OutputDirectory() as out_dir:
+    with OutputDirectory(args) as out_dir:
         with open(out_dir + "/build.ninja", "w") as log:
             ninja = Writer(log, 72)
 
@@ -309,7 +305,6 @@ lock = Lock()
 builds_len = ""
 ninja = None
 dependency_frequencies = None
-args = None
 
 if __name__ == "__main__":
     main()
