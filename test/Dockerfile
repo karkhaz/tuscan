@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-#
+# vim: set syntax=dockerfile:
 # Copyright 2015 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,3 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+FROM base/arch:latest
+MAINTAINER Kareem Khazem <khazem@google.com>
+
+# Make sure everything is up to date
+RUN pacman-key --refresh-keys
+RUN pacman -Syyu --needed --noconfirm
+RUN pacman-db-upgrade
+
+# Install needed software
+RUN pacman -Syu --needed --noconfirm base-devel
+RUN pacman -Syu --needed --noconfirm base
+RUN pacman -Syu --needed --noconfirm python
+
+COPY . /test
+
+CMD ["/usr/bin/true"]
