@@ -30,12 +30,6 @@ endif
 SWITCHES = $(VERBOSE_SWITCH)
 
 IGNORE_ERROR = 2>/dev/null || true
-IGNORE_ERROR = 2>/dev/null || true
-
-MY_UID = $(shell id -u)
-MY_GID = $(shell id -g)
-MY_UNAME = $(shell whoami)
-MY_GROUP = $(shell groups | awk '{print $$1}')
 
 define make_output_dir
 @mkdir -p $(output_dir)
@@ -46,28 +40,22 @@ endef
 BUILD_FILE = $(shell pwd)/output/deps_to_ninja/latest/build.ninja
 ECHO = >&2 echo
 
-DIR_GFP = get_fundamental_packages
 DIR_DTN = deps_to_ninja
 
-CONTAINER_GFP = $(DIR_GFP)_container
 CONTAINER_DTN = $(DIR_DTN)_container
 
-SCRIPT_GFP = $(DIR_GFP)/$(DIR_GFP).py
 SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
 
-DOCKERFILE_GFP = $(DIR_GFP)/Dockerfile
 DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
-.INTERMEDIATE: $(DOCKERFILE_GFP) $(DOCKERFILE_DTN)
+.INTERMEDIATE: $(DOCKERFILE_DTN)
 
 PULL_ARCH_MARKER = .pull_arch
 
-MARKER_GFP = .$(DIR_GFP)_marker
 MARKER_DTN = .$(DIR_DTN)_marker
-.PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_GFP) $(MARKER_DTN)
+.PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_DTN)
 
-BUILD_MARKER_GFP = .$(DIR_GFP)_container_marker
 BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
-.PRECIOUS: $(BUILD_MARKER_DTN) $(BUILD_MARKER_GFP)
+.PRECIOUS: $(BUILD_MARKER_DTN)
 
 # Top-level targets
 # `````````````````
@@ -80,26 +68,12 @@ test: deps_to_ninja
 deps_to_ninja: $(BUILD_FILE)
 
 
-# We want docker to create files using our own username and group, so
-# that we can access them afterward. Generate Dockerfiles with our
-# user's information written in
-%/Dockerfile: %/Dockerfile.mk
-	@$(ECHO) Generating $@
-	@cat dne_message > $@
-	@echo "#   $<,"  >> $@
-	@printf "#\n# so edit that instead and rerun make.\n#\n" >> $@
-	@head -n 3 dne_message | tail -n 1 >> $@
-	@sed "s/__USER_NAME/$(MY_UNAME)/g;      \
-		    s/__GROUP_NAME/$(MY_GROUP)/g;     \
-				s/__UID/$(MY_UID)/g;              \
-				s/__GID/$(MY_GID)/g;              \
-				 /#.*/d;" < $<  >> $@
 
 
 # Directory 'deps_to_ninja'
 # ``````````````````````
 
-$(BUILD_FILE): $(BUILD_MARKER_DTN) $(MARKER_GFP)
+$(BUILD_FILE): $(BUILD_MARKER_DTN)
 	@$(ECHO) Calculating dependencies
 	@$(call make_output_dir,$(DIR_DTN))
 	@docker run -v $(call output_dir,$(DIR_DTN)):/build/logs \
@@ -113,20 +87,11 @@ $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
 	@touch $@
 
 
-# Directory 'get_fundamental_packages'
-# ````````````````````````````````````
 
-$(MARKER_GFP): $(BUILD_MARKER_GFP)
-	@$(ECHO) Getting fundamental packages
-	@docker run -v $(call output_dir,$(DIR_GFP)):/build/packages \
-		$(CONTAINER_GFP) $(SWITCHES) $(VERBOSE)
 	@touch $@
 
-$(BUILD_MARKER_GFP): $(DOCKERFILE_GFP) $(SCRIPT_GFP) $(PULL_ARCH_MARKER)
-	@$(ECHO) Building fundamental packages container
-	@$(call make_output_dir,$(DIR_GFP))
-	@docker build -q -t $(CONTAINER_GFP) $(DIR_GFP) $(VERBOSE)
 	@touch $@
+
 
 
 # Retrieving Arch image
@@ -137,21 +102,22 @@ $(PULL_ARCH_MARKER):
 	@docker pull base/arch:latest $(VERBOSE)
 	@touch $@
 
+
 # Cleanup
 # ```````
 
 .PHONY: clean_output
 clean_output:
-	@-rm -r $(MARKER_DTN) $(MARKER_GFP) output $(IGNORE_ERROR)
+	@-rm -rf $(MARKER_DTN)
 
 clean_docker_builds:
-	@-rm -r $(BUILD_MARKER_DTN) $(BUILD_MARKER_GFP)
+	@-rm -rf $(BUILD_MARKER_DTN)
 
 .PHONY: docker_stop
 docker_stop:
 	@-docker stop $$(docker ps -a -q) $(IGNORE_ERROR)
 	@-docker rm $$(docker ps -a -q)   $(IGNORE_ERROR)
-	@-rm $(BUILD_MARKER_GFP) $(BUILD_MARKER_DTN) $(IGNORE_ERROR)
+	@-rm $(BUILD_MARKER_DTN) $(IGNORE_ERROR)
 
 # Also delete images
 .PHONY: docker_cleanup
