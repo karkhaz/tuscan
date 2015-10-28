@@ -15,10 +15,6 @@
 #
 # Top-level tuscan Makefile.
 
-TIMESTAMP=$(shell date +%Y%m%dT%H%M%S)
-
-output_dir = $(shell pwd)/output/$1/$(TIMESTAMP)
-
 ifeq "$(origin VERBOSE)" "undefined"
 VERBOSE := >/dev/null
 VERBOSE_SWITCH := 
@@ -27,35 +23,39 @@ VERBOSE :=
 VERBOSE_SWITCH := "--verbose"
 endif
 
-SWITCHES = $(VERBOSE_SWITCH)
+SWITCHES = $(VERBOSE_SWITCH) --shared-directory /$(DATA)
 
 IGNORE_ERROR = 2>/dev/null || true
-
-define make_output_dir
-@mkdir -p $(output_dir)
-@-rm $(shell pwd)/output/$1/latest $(IGNORE_ERROR)
-@ln -sf $(output_dir) $(shell pwd)/output/$1/latest
-endef
 
 BUILD_FILE = $(shell pwd)/output/deps_to_ninja/latest/build.ninja
 ECHO = >&2 echo
 
 DIR_DTN = deps_to_ninja
+DIR_TEST = test
 
 CONTAINER_DTN = $(DIR_DTN)_container
+CONTAINER_TEST = $(DIR_TEST)_container
 
 SCRIPT_DTN = $(DIR_DTN)/$(DIR_DTN).py
 
 DOCKERFILE_DTN = $(DIR_DTN)/Dockerfile
+DOCKERFILE_TEST = $(DIR_TEST)/Dockerfile
 .INTERMEDIATE: $(DOCKERFILE_DTN)
 
 PULL_ARCH_MARKER = .pull_arch
+DATA = tuscan_data
 
 MARKER_DTN = .$(DIR_DTN)_marker
+MARKER_TEST = .$(DIR_TEST)_marker
 .PRECIOUS: $(PULL_ARCH_MARKER) $(MARKER_DTN)
 
 BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
-.PRECIOUS: $(BUILD_MARKER_DTN)
+BUILD_MARKER_TEST = .$(DIR_TEST)_container_marker
+BUILD_MARKER_DATA = .$(DATA)_container_marker
+.PRECIOUS: $(BUILD_MARKER_DTN) $(BUILD_MARKER_TEST)
+
+TESTS = $(patsubst test/%,%,$(wildcard $(DIR_TEST)/*.py))
+ALL_TESTS_MARKERS = $(patsubst %,$(MARKER_TEST)_%,$(TESTS))
 
 # Top-level targets
 # `````````````````
@@ -63,21 +63,27 @@ BUILD_MARKER_DTN = .$(DIR_DTN)_container_marker
 
 default: deps_to_ninja
 
-test: deps_to_ninja
+test: $(ALL_TESTS_MARKERS)
 
 deps_to_ninja: $(BUILD_FILE)
 
 
+# Data container
+# ``````````````
+
+$(BUILD_MARKER_DATA): $(PULL_ARCH_MARKER)
+	@$(ECHO) Building data container
+	@docker create -v /$(DATA) --name $(DATA) base/arch /bin/true
 
 
 # Directory 'deps_to_ninja'
 # ``````````````````````
 
-$(BUILD_FILE): $(BUILD_MARKER_DTN)
+$(BUILD_FILE): $(BUILD_MARKER_DTN) $(BUILD_MARKER_DATA)
 	@$(ECHO) Calculating dependencies
 	@$(call make_output_dir,$(DIR_DTN))
-	@docker run -v $(call output_dir,$(DIR_DTN)):/build/logs \
-		$(CONTAINER_DTN) $(SWITCHES) $(VERBOSE)
+	@docker run -v /$(DATA) --volumes-from $(DATA) \
+	  $(CONTAINER_DTN) $(SWITCHES) $(VERBOSE)
 	@-ln -s $@ build.ninja $(IGNORE_ERROR)
 
 $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
@@ -88,10 +94,21 @@ $(BUILD_MARKER_DTN): $(DOCKERFILE_DTN) $(SCRIPT_DTN) $(PULL_ARCH_MARKER)
 
 
 
+# Test directory
+# ``````````````
+
+$(MARKER_TEST)_%: $(BUILD_MARKER_TEST) $(BUILD_FILE)
+	@echo Running test for \
+	  $(patsubst %.py,%,$(patsubst $(MARKER_TEST)_%,%,$@))
+	@docker run -v /test -v /$(DATA) --volumes-from $(DATA)     \
+	  $(CONTAINER_TEST) /test/$(patsubst $(MARKER_TEST)_%,%,$@) \
+	  $(SWITCHES)
 	@touch $@
 
+$(BUILD_MARKER_TEST): $(DOCKERFILE_TEST) $(PULL_ARCH_MARKER)
+	@$(ECHO) Building test container
+	@docker build -q -t $(CONTAINER_TEST) $(DIR_TEST) $(VERBOSE)
 	@touch $@
-
 
 
 # Retrieving Arch image
@@ -108,7 +125,7 @@ $(PULL_ARCH_MARKER):
 
 .PHONY: clean_output
 clean_output:
-	@-rm -rf $(MARKER_DTN)
+	@-rm -rf $(MARKER_DTN) $(ALL_TEST_MARKERS)
 
 clean_docker_builds:
 	@-rm -rf $(BUILD_MARKER_DTN)
