@@ -75,19 +75,20 @@ packages are not rebuilt unnecessarily.
 [1] http://martine.github.io/ninja/
 """
 
-from argparse import ArgumentParser
-from datetime import datetime
+from utilities import OutputDirectory, get_argparser
+
+from functools import partial
 from glob import glob
+from json import load
 from multiprocessing import Value, Lock, Pool, cpu_count, Manager
 from ninja_syntax import Writer
-from os import linesep, makedirs, remove, symlink
-from os.path import basename, lexists, splitext
-from re import sub
+from os.path import exists, join
+from random import shuffle
+from re import search, sub
 from subprocess import PIPE, Popen, TimeoutExpired, run
-from sys import stderr, stdout, argv
+from sys import argv, path, stderr, stdout
 from tempfile import NamedTemporaryFile as tempfile
 from textwrap import dedent
-
 
 def excluded(pkgbuild):
     """Shall we not bother to make packages described by pkgbuild?"""
@@ -97,10 +98,40 @@ def excluded(pkgbuild):
         # for all operations
         "/var/abs/extra/libreoffice-fresh-i18n/PKGBUILD",
         "/var/abs/extra/libreoffice-still-i18n/PKGBUILD",
+
+        # virtualbox depends on some 32-bit libraries in multilib, we
+        # don't want to get into that.
+        "/var/abs/community/virtualbox/PKGBUILD",
+        "/var/abs/community/virtualbox-host-dkms/PKGBUILD",
+        "/var/abs/community/virtualbox-guest-iso/PKGBUILD",
+        "/var/abs/community/virtualbox-modules/PKGBUILD",
+        "/var/abs/community/virtualbox-modules-lts/PKGBUILD",
+        # Same with lmms, it makedepends on wine.
+        "/var/abs/community/lmms/PKGBUILD",
+        "/var/abs/community/ogmrip/PKGBUILD",
     ]
 
 
-def pkgnames_of(pkgbuild):
+def canonicalize_pkgname(pkgname, provides):
+    """Transform pkgname to a standard form."""
+
+    # Some packages specified as dependencies have a version number,
+    # e.g. gcc>=5.1. We shouldn't care about this, we always sync to an
+    # up-to-date mirror before building packages, so strip this info.
+    for pat in [r">=", r"<=", r"=", r"<", r">"]:
+        depth = search(pat, pkgname)
+        if depth:
+            pkgname = pkgname[:depth.start()]
+
+    # Some packages 'provide' others, e.g. bash provides sh. Transform
+    # sh into bash, since sh isn't a real package.
+    if pkgname in provides:
+        pkgname = provides[pkgname]
+
+    return pkgname
+
+
+def pkgnames_of(pkgbuild, name_data, provides):
     """The pkgnames defined by a PKGBUILD file
 
     A single PKGBUILD may build one or more binary packages when makepkg
@@ -136,14 +167,21 @@ def pkgnames_of(pkgbuild):
             exit(1)
         names = [p.decode().strip() for p in list(proc.stdout)
                  if p.decode().strip()]
+
         if len(names) == 0:
             print(pkgbuild + " has no pkgname",
                   file=stderr)
             exit(1)
+
+        names = [n for n in names
+                   if n not in name_data["base"]
+                   and n not in name_data["base_devel"]
+                   and n not in name_data["break_circular"]]
+        names = [canonicalize_pkgname(n, provides) for n in names]
         return names
 
 
-def makedepends_of(pkgbuild):
+def makedepends_of(pkgbuild, name_data, provides):
     """The makedepends defined by a PKGBUILD file
 
     A single PKGBUILD may contain a makedepends array, which indicates
@@ -192,119 +230,123 @@ def makedepends_of(pkgbuild):
             print(pkgbuild + " took too long to source",
                   file=stderr)
             exit(1)
-        depends = ["binaries/" + p.decode().strip() + ".pkg.tar.xz"
-                   for p in list(proc.stdout) if p.decode().strip()]
+
+        depends = [p.decode().strip() for p in list(proc.stdout)
+                   if p.decode().strip()]
+
+        depends += name_data["base"]
+        depends += name_data["base_devel"]
+
+        depends = [canonicalize_pkgname(d, provides) for d in depends]
+
+        depends = [d + ".json" for d in depends]
+
         return depends
 
 
-def print_statistics(out_dir):
-    with open(out_dir + "/stats.dat", "w") as dat:
-        for n_deps, freq in dependency_frequencies.items():
-            print(str(freq) + " " + str(n_deps), file=dat)
-            dat.flush()
-
-
-def ninja_builds_for(abs_dir):
-    """Outputs ninja build rules for the packages built from abs_dir.
+def ninja_builds_for(abs_dir, name_data, args,
+                     global_builds, global_deps, provides):
+    """Adds ninja build rules and dependency info to shared variables.
 
     Arguments:
         abs_dir: Path to an ABS build directory (e.g.
         "/var/abs/core/glibc").
     """
     pkgbuild = abs_dir + "/PKGBUILD"
-    target_packages = pkgnames_of(pkgbuild)
+    target_packages = pkgnames_of(pkgbuild, name_data, provides)
     if not target_packages: return
 
-    target_packages = ["binaries/" + n + ".pkg.tar.xz"
-                       for n in target_packages]
+    target_packages = [n + ".json" for n in target_packages]
 
-    depends = makedepends_of(pkgbuild)
+    depends = makedepends_of(pkgbuild, name_data, provides)
 
     build_name = sub("/var/abs/\w+/", "", abs_dir)
     build_name = sub("/", "@", build_name)
 
     if build_name in depends: depends.remove(build_name)
 
-    with lock:
-        ninja.build(target_packages, "makepkg", build_name)
-        ninja.build(build_name, "phony", depends)
-        ninja.output.flush()
+    build(target_packages, "makepkg", build_name, args, global_builds)
+    build(build_name, "phony", depends, args, global_builds)
 
-        n_deps = len(depends)
-        if not n_deps in dependency_frequencies:
-            dependency_frequencies[n_deps] = 0
-        dependency_frequencies[n_deps] += len(target_packages)
-
-        number_of_packages.value += len(target_packages)
-        counter.value += 1
-        print("\r" + str(counter.value) + "/" + builds_len +
-              ", " + str(number_of_packages.value) +
-              " packages found.", file=stderr, end="")
+    global_deps.append(build_name + " " + " ".join(depends))
 
 
-class OutputDirectory():
-    def __init__(self, args):
-        top_level = splitext(basename(__file__))[0]
-        self.top_level = args.shared_directory + "/" + top_level
+def build(outputs, rule, inputs, args, build_list):
+    """Add a triple representing a ninja build to build_list.
 
-        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        self.path = self.top_level + "/" + timestamp
+    Assumes that build_list is a list that has been synchronised to be
+    process-safe, somehow. This method appends a triple (o, r, i) to
+    build_list, where the tuple represents the outputs, rule and inputs
+    of a ninja build.
+    """
+    prefix = (join(args.output_directory, "pkgbuild_markers", ""))
 
-    def __enter__(self):
-        makedirs(self.path, exist_ok=True)
-        return self.path
+    if isinstance(inputs, str):
+        inputs = [inputs]
+    if isinstance(outputs, str):
+        outputs = [outputs]
 
-    def __exit__(self, type, value, traceback):
-        latest = self.top_level + "/latest"
-        if lexists(latest):
-            remove(latest)
-        symlink(self.path, latest)
+    prefixed_inputs = [prefix + i for i in inputs]
+    prefixed_outputs = [prefix + o for o in outputs]
+    if rule == "makepkg":
+        build_list.append((prefixed_outputs, rule, inputs))
+    elif rule == "phony":
+        build_list.append((outputs, rule, prefixed_inputs))
+    else:
+        raise("Impossible rule '" + rule + "'")
 
 
 def main():
     """This script should be run inside a container."""
-    global builds_len, ninja, dependency_frequencies
 
-    parser = ArgumentParser()
-    parser.add_argument("-v", "--verbose",
-                        dest="verbose", action="store_true")
-    parser.add_argument("-t", "--statistics",
-                        dest="statistics", action="store_true")
-    parser.add_argument("-d", "--shared-directory",
-                        dest="shared_directory", action="store")
+    parser = get_argparser()
     args = parser.parse_args()
 
-    dependency_frequencies = Manager().dict()
+    name_data_file = join(args.shared_directory,
+            "get_base_package_names", "latest", "names.json")
+    with open(name_data_file) as f:
+        name_data = load(f)
 
-    with OutputDirectory(args) as out_dir:
-        with open(out_dir + "/build.ninja", "w") as log:
-            ninja = Writer(log, 72)
+    with open("/build/provides.json") as f:
+        provides = load(f)
 
-            ninja.rule("makepkg", "cd /var/abs/${in} && makepkg")
-            ninja.rule("phony", "# phony ${out}")
-
-            log.flush()
-
-            builds = glob("/var/abs/*/*")
-            builds = [b for b in builds if not excluded(b)]
-            builds_len = str(len(builds))
-
-            with Pool(cpu_count()) as p:
-                p.map(ninja_builds_for, builds)
-            print("", file=stderr)
-
-            if args.statistics:
-                print_statistics(out_dir)
+    builds = glob("/var/abs/*/*")
+    builds = [b for b in builds if not excluded(b)]
 
 
-# Globals, referenced from spawned processes. Remember to initialize
-# these things in main!
-counter = Value("i", 0)
-number_of_packages = Value("i", 0)
-lock = Lock()
-builds_len = ""
-ninja = None
-dependency_frequencies = None
+    # Build a list of ninja builds across multiple processes for speed.
+    man = Manager()
+    global_builds = man.list()
+    global_deps = man.list()
+
+    ninja_curry = partial(ninja_builds_for, name_data=name_data,
+                          args=args, global_builds=global_builds,
+                          global_deps=global_deps, provides=provides)
+
+    with Pool(cpu_count()) as p:
+        p.map(ninja_curry, builds)
+
+    ninja  = Writer(stdout, 72)
+
+    for outs, rule, ins in global_builds:
+        ninja.build(outs, rule, ins)
+
+    ninja.rule("makepkg", "./package_build_wrapper.py"
+         + " --shared-directory " + args.shared_directory
+         + " --sources-directory " + args.sources_directory
+         + " --output-directory " + args.output_directory
+         + " --target-package ${in}"
+         + " ${out}"
+         + " && report_gen/single_package_report.py"
+         + " --toolchain " + args.toolchain
+         + " --package ${in}"
+    )
+
+    stdout.flush()
+
+    for dep in global_deps:
+        print(dep, file=stderr)
+    stderr.flush()
 
 
 if __name__ == "__main__":

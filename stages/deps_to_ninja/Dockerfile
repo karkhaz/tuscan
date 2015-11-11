@@ -1,4 +1,3 @@
-# vim: set syntax=dockerfile:
 # Copyright 2015 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,21 +12,19 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Arch Linux container for building all dependencies of all Arch Linux
+# packages.
+#
+# USAGE:
+#   docker run container_name
 
-
-FROM base/arch:latest
+FROM karkhaz/arch-tuscan:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
 
-# Make sure everything is up to date
-RUN pacman-key --refresh-keys
-RUN pacman -Syyu --needed --noconfirm
-RUN pacman-db-upgrade
+COPY deps_to_ninja.py /build/deps_to_ninja.py
+COPY ninja_syntax.py /build/ninja_syntax.py
+COPY utilities.py /build/utilities.py
+COPY provides.json /build/provides.json
 
-# Install needed software
-RUN pacman -Syu --needed --noconfirm base-devel
-RUN pacman -Syu --needed --noconfirm base
-RUN pacman -Syu --needed --noconfirm python
-
-COPY . /test
-
-CMD ["/usr/bin/true"]
+ENTRYPOINT ["/usr/bin/python", "-u", "/build/deps_to_ninja.py"]
