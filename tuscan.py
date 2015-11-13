@@ -20,6 +20,7 @@ from datetime import datetime
 from ninja_syntax import Writer
 from os import getcwd, listdir
 from os.path import dirname, isfile, join
+from re import sub
 from subprocess import call
 from sys import stdout, stderr
 from yaml import load
@@ -46,7 +47,8 @@ def create_build_file(args, ninja):
     stages.write_build_recipies()
 
     # The top-level build rule
-    ninja.build("build", "phony", touch("run", "deps_to_ninja", args))
+    ninja.build("build", "phony", touch("run", "custom_repository",
+                                        args))
 
 
 class DataContainers(object):
@@ -72,6 +74,9 @@ class DataContainers(object):
             exit(1)
 
         self.containers = containers
+        for cont in containers:
+            cont["name"] = sub("__TOOLCHAIN__", args.toolchain,
+                               cont["name"])
         self.data_container_sanity_checks()
 
 
@@ -185,7 +190,7 @@ class Stages(object):
 
             for cont in data_containers_needed_by(sta,
                             self.data_containers):
-                if cont["switch"]:
+                if "switch" in cont:
                     docker += (" " + cont["switch"] +
                                " " + cont["mountpoint"])
 
@@ -195,6 +200,13 @@ class Stages(object):
                 docker += " 2>" + sta["run"]["stderr"]
 
             commands.append(docker)
+
+            if "post_exit" in sta["run"]:
+                cmd = sta["run"]["post_exit"]
+                cmd = sub("__TOUCH_DIR__", self.args.touch_dir, cmd)
+                cmd = sub("\$", "$$", cmd)
+                commands.append(cmd.strip())
+
             commands.append("touch ${out}")
 
             command = " && ".join(commands)
@@ -279,6 +291,12 @@ class Stages(object):
 
             if not "data_containers" in sta["run"]["dependencies"]:
                 sta["run"]["dependencies"]["data_containers"] = []
+
+            tmp = []
+            for cont in sta["run"]["dependencies"]["data_containers"]:
+                tmp.append(sub("__TOOLCHAIN__", self.args.toolchain,
+                           cont))
+            sta["run"]["dependencies"]["data_containers"] = tmp
 
             if not "stages" in sta["run"]["dependencies"]:
                 sta["run"]["dependencies"]["stages"] = []
