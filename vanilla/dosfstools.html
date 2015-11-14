@@ -1,0 +1,100 @@
+        <html><head></head><body>
+        <h1>Report for dosfstools on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:25</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dosfstools
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2129 packages in cache
+Found permanent source directory in /sources/dosfstools
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dosfstools 3.0.28-1 (Sat Nov 14 06:04:48 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o fatlabel.o src/fatlabel.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o boot.o src/boot.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o check.o src/check.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o common.o src/common.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o fat.o src/fat.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o file.o src/file.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o io.o src/io.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o lfn.o src/lfn.c
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o charconv.o src/charconv.c
+cc   fatlabel.o boot.o check.o common.o fat.o file.o io.o lfn.o charconv.o   -o fatlabel
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o fsck.fat.o src/fsck.fat.c
+cc   fsck.fat.o boot.o check.o common.o fat.o file.o io.o lfn.o charconv.o   -o fsck.fat
+cc -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o mkfs.fat.o src/mkfs.fat.c
+cc   mkfs.fat.o   -o mkfs.fat
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d -m 0755 /tmp/dosfstools/pkg/dosfstools//usr/bin
+install -m 0755 fatlabel fsck.fat mkfs.fat /tmp/dosfstools/pkg/dosfstools//usr/bin
+install -d -m 0755 /tmp/dosfstools/pkg/dosfstools//usr/share/doc/dosfstools
+install -p -m 0644 ChangeLog doc/* /tmp/dosfstools/pkg/dosfstools//usr/share/doc/dosfstools
+for MANPAGE in manpages/en/*; \
+do \
+	SECTION="8"; \
+	mkdir -p /tmp/dosfstools/pkg/dosfstools//usr/share/man/man${SECTION}/; \
+	install -m 0644 ${MANPAGE} /tmp/dosfstools/pkg/dosfstools//usr/share/man/man${SECTION}/$(basename ${MANPAGE}); \
+done
+for LANGUAGE in de; \
+do \
+	for MANPAGE in manpages/${LANGUAGE}/*; \
+	do \
+		SECTION="8"; \
+		mkdir -p /tmp/dosfstools/pkg/dosfstools//usr/share/man/${LANGUAGE}/man${SECTION}/; \
+		install -m 0644 ${MANPAGE} /tmp/dosfstools/pkg/dosfstools//usr/share/man/${LANGUAGE}/man${SECTION}/$(basename ${MANPAGE} .${LANGUAGE}.${SECTION}).${SECTION}; \
+	done; \
+done
+if [ -e /tmp/dosfstools/pkg/dosfstools//usr/bin/fatlabel ]; \
+then \
+	ln -sf fatlabel /tmp/dosfstools/pkg/dosfstools//usr/bin/dosfslabel; \
+	if [ -e /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/fatlabel.8 ]; \
+	then \
+		ln -sf fatlabel.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/dosfslabel.8; \
+	fi; \
+fi
+if [ -e /tmp/dosfstools/pkg/dosfstools//usr/bin/fsck.fat ]; \
+then \
+	ln -sf fsck.fat /tmp/dosfstools/pkg/dosfstools//usr/bin/dosfsck; \
+	ln -sf fsck.fat /tmp/dosfstools/pkg/dosfstools//usr/bin/fsck.msdos; \
+	ln -sf fsck.fat /tmp/dosfstools/pkg/dosfstools//usr/bin/fsck.vfat; \
+	if [ -e /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/fsck.fat.8 ]; \
+	then \
+		ln -sf fsck.fat.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/dosfsck.8; \
+		ln -sf fsck.fat.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/fsck.msdos.8; \
+		ln -sf fsck.fat.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/fsck.vfat.8; \
+	fi; \
+fi
+if [ -e /tmp/dosfstools/pkg/dosfstools//usr/bin/mkfs.fat ]; \
+then \
+	ln -sf mkfs.fat /tmp/dosfstools/pkg/dosfstools//usr/bin/mkdosfs; \
+	ln -sf mkfs.fat /tmp/dosfstools/pkg/dosfstools//usr/bin/mkfs.msdos; \
+	ln -sf mkfs.fat /tmp/dosfstools/pkg/dosfstools//usr/bin/mkfs.vfat; \
+	if [ -e /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/mkfs.fat.8 ]; \
+	then \
+		ln -sf mkfs.fat.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/mkdosfs.8; \
+		ln -sf mkfs.fat.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/mkfs.msdos.8; \
+		ln -sf mkfs.fat.8 /tmp/dosfstools/pkg/dosfstools//usr/share/man/man8/mkfs.vfat.8; \
+	fi; \
+fi
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "dosfstools"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: dosfstools 3.0.28-1 (Sat Nov 14 06:04:53 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,1243 @@
+        <html><head></head><body>
+        <h1>Report for gpsd on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:03:08</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data gpsd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2737 packages in cache
+Found permanent source directory in /sources/gpsd
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: gpsd 3.15-3 (Sat Nov 14 07:54:51 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) sqlite-3.9.2-1  bluez-libs-5.36-1  desktop-file-utils-0.22-1  python2-2.7.10-2
+
+Total Installed Size:  76.20 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing bluez-libs...
+installing desktop-file-utils...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) docbook-xml-4.5-6  libxml2-2.9.2-2  libxslt-1.1.28-3  docbook-xsl-1.78.1-1  hardening-wrapper-10-1  scons-2.4.0-1
+
+Total Installed Size:  30.44 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing scons...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml [installed]
+installing libxslt...
+installing docbook-xml...
+installing docbook-xsl...
+installing hardening-wrapper...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+scons: Reading SConscript files ...
+Checking if compiler accepts -Wextra ...yes
+Checking if compiler accepts -Wall ...yes
+Checking if compiler accepts -Wno-uninitialized ...yes
+Checking if compiler accepts -Wno-missing-field-initializers ...yes
+Checking if compiler accepts -Wcast-align ...yes
+Checking if compiler accepts -Wmissing-declarations ...yes
+Checking if compiler accepts -Wstrict-prototypes ...yes
+Checking if compiler accepts -Wpointer-arith ...yes
+Checking if compiler accepts -Wreturn-type ...yes
+Checking if compiler accepts -pthread ...yes
+Checking whether the C++ compiler works... yes
+Checking for ncurses... yes
+Checking for libusb-1.0... yes
+Checking for C library librt... yes
+Checking for dbus-1... yes
+Checking for bluez... yes
+Checking for C type in_port_t... yes
+Checking whether SUN_LEN is declared... yes
+Checking for C header file linux/can.h... yes
+You have kernel CANbus available.
+Checking if compiler is C11 ...yes
+Checking if compiler supplies __STDC_NO_ATOMICS__ ...no
+Checking for C header file stdatomic.h... yes
+Checking if compiler supplies __ORDER_BIG_ENDIAN__ ...yes
+Checking if compiler supplies __ORDER_LITTLE_ENDIAN__ ...yes
+Checking if compiler supplies __BYTE_ORDER__ ...yes
+Your compiler has built-in endianness support.
+Checking for C function daemon()... yes
+Checking for C function strlcpy()... no
+Checking for C function strlcat()... no
+Checking for C function clock_gettime()... yes
+Checking for C library libbluetooth... yes
+Checking for C library libdbus-1... yes
+Checking for C header file sys/timepps.h... no
+Checking if sys/ioctl.h supplies TIOCMIWAIT ...yes
+Checking that xsltproc can make man pages... yes
+Checking for QtNetwork... no
+Altered configuration variables:
+qt = False (default True): build QT bindings
+gpsd_group = uucp (default dialout): privilege revocation group
+prefix = /usr (default /usr/local): installation directory prefix
+sbindir = /usr/bin (default sbin): system binaries directory
+Part of the website build requires asciidoc, not installed.
+scons: done reading SConscript files.
+scons: Building targets ...
+substituter(["jsongen.py"], ["jsongen.py.in"])
+chmod -w jsongen.py
+chmod +x jsongen.py
+rm -f ais_json.i && /usr/bin/python2 jsongen.py --ais --target=parser > ais_json.i && chmod a-w ais_json.i
+Creating 'gpsd_config.h'
+gcc -o ais_json.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ais_json.c
+gcc -o bits.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include bits.c
+gcc -o clock_gettime.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include clock_gettime.c
+gcc -o daemon.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include daemon.c
+gcc -o gpsutils.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpsutils.c
+gcc -o gpsdclient.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpsdclient.c
+substituter(["maskaudit.py"], ["maskaudit.py.in"])
+chmod -w maskaudit.py
+chmod +x maskaudit.py
+Creating 'gpsd.h'
+rm -f gps_maskdump.c && /usr/bin/python2 maskaudit.py -c . > gps_maskdump.c && chmod a-w gps_maskdump.c
+gcc -o gps_maskdump.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gps_maskdump.c
+gcc -o hex.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include hex.c
+gcc -o json.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include json.c
+gcc -o libgps_core.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_core.c
+gcc -o libgps_dbus.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_dbus.c
+gcc -o libgps_json.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_json.c
+gcc -o libgps_shm.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_shm.c
+gcc -o libgps_sock.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_sock.c
+gcc -o netlib.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include netlib.c
+gcc -o ntpshmread.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ntpshmread.c
+gcc -o ntpshmwrite.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ntpshmwrite.c
+gcc -o rtcm2_json.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include rtcm2_json.c
+gcc -o rtcm3_json.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include rtcm3_json.c
+gcc -o shared_json.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include shared_json.c
+gcc -o strl.os -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include strl.c
+g++ -o libgpsmm.os -c -Wmissing-declarations -O2 -pthread -fPIC -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgpsmm.cpp
+g++ -o libgps.so.22.0.0 -pthread -shared -Wl,-Bsymbolic -Wl,-soname=libgps.so.22 ais_json.os bits.os clock_gettime.os daemon.os gpsutils.os gpsdclient.os gps_maskdump.os hex.os json.os libgps_core.os libgps_dbus.os libgps_json.os libgps_shm.os libgps_sock.os netlib.os ntpshmread.os ntpshmwrite.os rtcm2_json.os rtcm3_json.os shared_json.os strl.os libgpsmm.os -L. -lrt -ldbus-1 -lbluetooth -ldbus-1 -lrt
+gcc -o bsd_base64.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 bsd_base64.c
+gcc -o crc24q.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 crc24q.c
+Creating 'revision.h'
+gcc -o gpsd_json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 gpsd_json.c
+gcc -o geoid.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 geoid.c
+gcc -o isgps.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 isgps.c
+gcc -o libgpsd_core.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 libgpsd_core.c
+gcc -o matrix.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 matrix.c
+gcc -o net_dgpsip.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 net_dgpsip.c
+gcc -o net_gnss_dispatch.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 net_gnss_dispatch.c
+gcc -o net_ntrip.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 net_ntrip.c
+gcc -o ppsthread.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 ppsthread.c
+rm -f packet_names.h && sed -e '/^ *\([A-Z][A-Z0-9_]*\),/s// "\1",/' < packet_states.h > packet_names.h && chmod a-w packet_names.h
+gcc -o packet.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 packet.c
+gcc -o pseudonmea.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 pseudonmea.c
+gcc -o pseudoais.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 pseudoais.c
+gcc -o serial.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 serial.c
+gcc -o subframe.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 subframe.c
+timebase_h(["timebase.h"], ["leapseconds.cache"])
+gcc -o timebase.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 timebase.c
+gcc -o timespec_str.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 timespec_str.c
+gcc -o drivers.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 drivers.c
+gcc -o driver_ais.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_ais.c
+gcc -o driver_evermore.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_evermore.c
+gcc -o driver_garmin.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_garmin.c
+gcc -o driver_garmin_txt.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_garmin_txt.c
+gcc -o driver_geostar.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_geostar.c
+gcc -o driver_italk.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_italk.c
+gcc -o driver_navcom.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_navcom.c
+gcc -o driver_nmea0183.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_nmea0183.c
+gcc -o driver_nmea2000.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_nmea2000.c
+gcc -o driver_oncore.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_oncore.c
+gcc -o driver_rtcm2.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_rtcm2.c
+gcc -o driver_rtcm3.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_rtcm3.c
+gcc -o driver_sirf.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_sirf.c
+gcc -o driver_superstar2.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_superstar2.c
+gcc -o driver_tsip.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_tsip.c
+gcc -o driver_ubx.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_ubx.c
+gcc -o driver_zodiac.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 driver_zodiac.c
+ar rc libgpsd.a bsd_base64.o crc24q.o gpsd_json.o geoid.o isgps.o libgpsd_core.o matrix.o net_dgpsip.o net_gnss_dispatch.o net_ntrip.o ppsthread.o packet.o pseudonmea.o pseudoais.o serial.o subframe.o timebase.o timespec_str.o drivers.o driver_ais.o driver_evermore.o driver_garmin.o driver_garmin_txt.o driver_geostar.o driver_italk.o driver_navcom.o driver_nmea0183.o driver_nmea2000.o driver_oncore.o driver_rtcm2.o driver_rtcm3.o driver_sirf.o driver_superstar2.o driver_tsip.o driver_ubx.o driver_zodiac.o
+ranlib libgpsd.a
+gcc -o gpsd.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 gpsd.c
+gcc -o timehint.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 timehint.c
+gcc -o shmexport.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 shmexport.c
+gcc -o dbusexport.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 dbusexport.c
+gcc -o sd_socket.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 sd_socket.c
+gcc -o ais_json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ais_json.c
+gcc -o bits.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include bits.c
+gcc -o clock_gettime.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include clock_gettime.c
+gcc -o daemon.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include daemon.c
+gcc -o gpsutils.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpsutils.c
+gcc -o gpsdclient.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpsdclient.c
+gcc -o gps_maskdump.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gps_maskdump.c
+gcc -o hex.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include hex.c
+gcc -o json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include json.c
+gcc -o libgps_core.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_core.c
+gcc -o libgps_dbus.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_dbus.c
+gcc -o libgps_json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_json.c
+gcc -o libgps_shm.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_shm.c
+gcc -o libgps_sock.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgps_sock.c
+gcc -o netlib.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include netlib.c
+gcc -o ntpshmread.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ntpshmread.c
+gcc -o ntpshmwrite.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ntpshmwrite.c
+gcc -o rtcm2_json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include rtcm2_json.c
+gcc -o rtcm3_json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include rtcm3_json.c
+gcc -o shared_json.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include shared_json.c
+gcc -o strl.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include strl.c
+g++ -o libgpsmm.o -c -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include libgpsmm.cpp
+os.chdir('.')
+ar rc libgps_static.a ais_json.o bits.o clock_gettime.o daemon.o gpsutils.o gpsdclient.o gps_maskdump.o hex.o json.o libgps_core.o libgps_dbus.o libgps_json.o libgps_shm.o libgps_sock.o netlib.o ntpshmread.o ntpshmwrite.o rtcm2_json.o rtcm3_json.o shared_json.o strl.o libgpsmm.o
+os.chdir('/tmp/gpsd/src/gpsd-3.15')
+os.chdir('.')
+ranlib libgps_static.a
+os.chdir('/tmp/gpsd/src/gpsd-3.15')
+gcc -o gpsd -pthread gpsd.o timehint.o shmexport.o dbusexport.o sd_socket.o -L. -lgpsd -lgps_static -lusb-1.0 -lbluetooth -lm -lrt -ldbus-1
+gcc -o gpsdecode.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 gpsdecode.c
+gcc -o gpsdecode -pthread gpsdecode.o -L. -lgpsd -lgps_static -lusb-1.0 -lbluetooth -lm -lrt -ldbus-1
+gcc -o gpsctl.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 gpsctl.c
+gcc -o gpsctl -pthread gpsctl.o -L. -lgpsd -lgps_static -lusb-1.0 -lbluetooth -lm -lrt -ldbus-1
+gcc -o gpsdctl.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpsdctl.c
+gcc -o gpsdctl -pthread gpsdctl.o -L. -lgps_static -lm -lrt -ldbus-1
+gcc -o gpspipe.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpspipe.c
+gcc -o gpspipe -pthread gpspipe.o -L. -lgps_static -lm -lrt -ldbus-1
+gcc -o gps2udp.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gps2udp.c
+gcc -o gps2udp -pthread gps2udp.o -L. -lgps_static -lm -lrt -ldbus-1
+gcc -o gpxlogger.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include gpxlogger.c
+gcc -o gpxlogger -pthread gpxlogger.o -L. -lgps_static -lm -lrt -ldbus-1
+gcc -o lcdgps.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include lcdgps.c
+gcc -o lcdgps -pthread lcdgps.o -L. -lgps_static -lm -lrt -ldbus-1
+gcc -o ntpshmmon.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include ntpshmmon.c
+gcc -o ntpshmmon -pthread ntpshmmon.o -L. -lgps_static -lm -lrt -ldbus-1
+gcc -o cgps.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include cgps.c
+gcc -o cgps -pthread cgps.o -L. -lgps_static -lm -lrt -ldbus-1 -lncursesw
+gcc -o gpsmon.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 gpsmon.c
+gcc -o monitor_italk.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_italk.c
+gcc -o monitor_nmea0183.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_nmea0183.c
+gcc -o monitor_oncore.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_oncore.c
+gcc -o monitor_sirf.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_sirf.c
+gcc -o monitor_superstar2.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_superstar2.c
+gcc -o monitor_tnt.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_tnt.c
+gcc -o monitor_ubx.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_ubx.c
+gcc -o monitor_garmin.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -D_GNU_SOURCE -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/libusb-1.0 monitor_garmin.c
+gcc -o gpsmon -pthread gpsmon.o monitor_italk.o monitor_nmea0183.o monitor_oncore.o monitor_sirf.o monitor_superstar2.o monitor_tnt.o monitor_ubx.o monitor_garmin.o -L. -lgpsd -lgps_static -lusb-1.0 -lbluetooth -lm -lrt -ldbus-1 -lncursesw
+gcc -pthread -o gpsclient-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 gpsclient.c
+gcc -pthread -o geoid-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 geoid.c
+gcc -pthread -o gpsdclient-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 gpsdclient.c
+gcc -pthread -o strl-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 strl.c
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -o gps/clienthelpers.so gpsclient-py_2_7_10_final_0.so geoid-py_2_7_10_final_0.so gpsdclient-py_2_7_10_final_0.so strl-py_2_7_10_final_0.so -L. -lrt -ldbus-1 -lbluetooth -ldbus-1
+gcc -pthread -o gpspacket-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 gpspacket.c
+gcc -pthread -o packet-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 packet.c
+gcc -pthread -o isgps-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 isgps.c
+gcc -pthread -o driver_rtcm2-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 driver_rtcm2.c
+gcc -pthread -o hex-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 hex.c
+gcc -pthread -o crc24q-py_2_7_10_final_0.so -c -fno-strict-aliasing -Wmissing-declarations -O2 -pthread -fPIC -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -I/usr/include/python2.7 crc24q.c
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -o gps/packet.so gpspacket-py_2_7_10_final_0.so packet-py_2_7_10_final_0.so isgps-py_2_7_10_final_0.so driver_rtcm2-py_2_7_10_final_0.so strl-py_2_7_10_final_0.so hex-py_2_7_10_final_0.so crc24q-py_2_7_10_final_0.so -L. -lrt -ldbus-1 -lbluetooth -ldbus-1
+Creating 'gps-3.15.egg-info'
+substituter(["gpsd.php"], ["gpsd.php.in"])
+chmod -w gpsd.php
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsctl.xml > gpsctl.1
+Note: Writing gpsctl.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsmon.xml > gpsmon.1
+Note: Writing gpsmon.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl libgpsmm.xml > libQgpsmm.3
+Note: Writing libgpsmm.3
+Note: Writing libQgpsmm.3 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsd.xml > gpsd.8
+Note: Writing gpsd.8
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl libgpsmm.xml > libgpsmm.3
+Note: Writing libgpsmm.3
+Note: Writing libQgpsmm.3 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsdctl.xml > gpsdctl.8
+Note: Writing gpsdctl.8
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpspipe.xml > gpspipe.1
+Note: Writing gpspipe.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps2udp.xml > gps2udp.1
+Note: Writing gps2udp.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsd_json.xml > gpsd_json.5
+Note: Writing gpsd_json.5
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl srec.xml > srec.5
+Note: Writing srec.5
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl libgps.xml > libgps.3
+Note: Writing libgps.3
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps.xml > lcdgps.1
+Note: Writing gps.1
+Note: Writing xgps.1 (soelim stub)
+Note: Writing xgpsspeed.1 (soelim stub)
+Note: Writing cgps.1 (soelim stub)
+Note: Writing lcdgps.1 (soelim stub)
+Note: Writing gegps.1 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsinit.xml > gpsinit.8
+Note: Writing gpsinit.8
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps.xml > gps.1
+Note: Writing gps.1
+Note: Writing xgps.1 (soelim stub)
+Note: Writing xgpsspeed.1 (soelim stub)
+Note: Writing cgps.1 (soelim stub)
+Note: Writing lcdgps.1 (soelim stub)
+Note: Writing gegps.1 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps.xml > cgps.1
+Note: Writing gps.1
+Note: Writing xgps.1 (soelim stub)
+Note: Writing xgpsspeed.1 (soelim stub)
+Note: Writing cgps.1 (soelim stub)
+Note: Writing lcdgps.1 (soelim stub)
+Note: Writing gegps.1 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsdecode.xml > gpsdecode.1
+Note: Writing gpsdecode.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl ntpshmmon.xml > ntpshmmon.1
+Note: Writing ntpshmmon.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps.xml > xgpsspeed.1
+Note: Writing gps.1
+Note: Writing xgps.1 (soelim stub)
+Note: Writing xgpsspeed.1 (soelim stub)
+Note: Writing cgps.1 (soelim stub)
+Note: Writing lcdgps.1 (soelim stub)
+Note: Writing gegps.1 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps.xml > xgps.1
+Note: Writing gps.1
+Note: Writing xgps.1 (soelim stub)
+Note: Writing xgpsspeed.1 (soelim stub)
+Note: Writing cgps.1 (soelim stub)
+Note: Writing lcdgps.1 (soelim stub)
+Note: Writing gegps.1 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gps.xml > gegps.1
+Note: Writing gps.1
+Note: Writing xgps.1 (soelim stub)
+Note: Writing xgpsspeed.1 (soelim stub)
+Note: Writing cgps.1 (soelim stub)
+Note: Writing lcdgps.1 (soelim stub)
+Note: Writing gegps.1 (soelim stub)
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpscat.xml > gpscat.1
+Note: Writing gpscat.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsfake.xml > gpsfake.1
+Note: Writing gpsfake.1
+xsltproc --nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl gpsprof.xml > gpsprof.1
+Note: Writing gpsprof.1
+substituter(["libgps.pc"], ["libgps.pc.in"])
+chmod -w libgps.pc
+substituter(["libgpsd.pc"], ["libgpsd.pc.in"])
+chmod -w libgpsd.pc
+substituter(["gpsd.rules"], ["gpsd.rules.in"])
+chmod -w gpsd.rules
+scons: done building targets.
+scons: Reading SConscript files ...
+Checking if compiler accepts -Wextra ...(cached) yes
+Checking if compiler accepts -Wall ...(cached) yes
+Checking if compiler accepts -Wno-uninitialized ...(cached) yes
+Checking if compiler accepts -Wno-missing-field-initializers ...(cached) yes
+Checking if compiler accepts -Wcast-align ...(cached) yes
+Checking if compiler accepts -Wmissing-declarations ...(cached) yes
+Checking if compiler accepts -Wstrict-prototypes ...(cached) yes
+Checking if compiler accepts -Wpointer-arith ...(cached) yes
+Checking if compiler accepts -Wreturn-type ...(cached) yes
+Checking if compiler accepts -pthread ...(cached) yes
+Checking whether the C++ compiler works... (cached) yes
+Checking for ncurses... (cached) yes
+Checking for libusb-1.0... (cached) yes
+Checking for C library librt... (cached) yes
+Checking for dbus-1... (cached) yes
+Checking for bluez... (cached) yes
+Checking for C type in_port_t... (cached) yes
+Checking whether SUN_LEN is declared... (cached) yes
+Checking for C header file linux/can.h... (cached) yes
+You have kernel CANbus available.
+Checking if compiler is C11 ...(cached) yes
+Checking if compiler supplies __STDC_NO_ATOMICS__ ...(cached) no
+Checking for C header file stdatomic.h... (cached) yes
+Checking if compiler supplies __ORDER_BIG_ENDIAN__ ...(cached) yes
+Checking if compiler supplies __ORDER_LITTLE_ENDIAN__ ...(cached) yes
+Checking if compiler supplies __BYTE_ORDER__ ...(cached) yes
+Your compiler has built-in endianness support.
+Checking for C function daemon()... (cached) yes
+Checking for C function strlcpy()... (cached) no
+Checking for C function strlcat()... (cached) no
+Checking for C function clock_gettime()... (cached) yes
+Checking for C library libbluetooth... (cached) yes
+Checking for C library libdbus-1... (cached) yes
+Checking for C header file sys/timepps.h... (cached) no
+Checking if sys/ioctl.h supplies TIOCMIWAIT ...(cached) yes
+Checking that xsltproc can make man pages... (cached) yes
+Checking for QtNetwork... (cached) no
+Altered configuration variables:
+qt = False (default True): build QT bindings
+gpsd_group = uucp (default dialout): privilege revocation group
+prefix = /usr (default /usr/local): installation directory prefix
+sbindir = /usr/bin (default sbin): system binaries directory
+Part of the website build requires asciidoc, not installed.
+scons: done reading SConscript files.
+scons: Building targets ...
+g++ -o libgps.so.22.0.0 -pthread -shared -Wl,-Bsymbolic -Wl,-soname=libgps.so.22 ais_json.os bits.os clock_gettime.os daemon.os gpsutils.os gpsdclient.os gps_maskdump.os hex.os json.os libgps_core.os libgps_dbus.os libgps_json.os libgps_shm.os libgps_sock.os netlib.os ntpshmread.os ntpshmwrite.os rtcm2_json.os rtcm3_json.os shared_json.os strl.os libgpsmm.os -L. -lrt -ldbus-1 -lbluetooth -ldbus-1 -lrt
+timebase_h(["timebase.h"], ["leapseconds.cache"])
+scons: done building targets.
+==> Entering fakeroot environment...
+==> Starting package()...
+scons: Reading SConscript files ...
+Checking if compiler accepts -Wextra ...(cached) yes
+Checking if compiler accepts -Wall ...(cached) yes
+Checking if compiler accepts -Wno-uninitialized ...(cached) yes
+Checking if compiler accepts -Wno-missing-field-initializers ...(cached) yes
+Checking if compiler accepts -Wcast-align ...(cached) yes
+Checking if compiler accepts -Wmissing-declarations ...(cached) yes
+Checking if compiler accepts -Wstrict-prototypes ...(cached) yes
+Checking if compiler accepts -Wpointer-arith ...(cached) yes
+Checking if compiler accepts -Wreturn-type ...(cached) yes
+Checking if compiler accepts -pthread ...(cached) yes
+Checking whether the C++ compiler works... (cached) yes
+Checking for ncurses... (cached) yes
+Checking for libusb-1.0... (cached) yes
+Checking for C library librt... (cached) yes
+Checking for dbus-1... (cached) yes
+Checking for bluez... (cached) yes
+Checking for C type in_port_t... (cached) yes
+Checking whether SUN_LEN is declared... (cached) yes
+Checking for C header file linux/can.h... (cached) yes
+You have kernel CANbus available.
+Checking if compiler is C11 ...(cached) yes
+Checking if compiler supplies __STDC_NO_ATOMICS__ ...(cached) no
+Checking for C header file stdatomic.h... (cached) yes
+Checking if compiler supplies __ORDER_BIG_ENDIAN__ ...(cached) yes
+Checking if compiler supplies __ORDER_LITTLE_ENDIAN__ ...(cached) yes
+Checking if compiler supplies __BYTE_ORDER__ ...(cached) yes
+Your compiler has built-in endianness support.
+Checking for C function daemon()... (cached) yes
+Checking for C function strlcpy()... (cached) no
+Checking for C function strlcat()... (cached) no
+Checking for C function clock_gettime()... (cached) yes
+Checking for C library libbluetooth... (cached) yes
+Checking for C library libdbus-1... (cached) yes
+Checking for C header file sys/timepps.h... (cached) no
+Checking if sys/ioctl.h supplies TIOCMIWAIT ...(cached) yes
+Checking that xsltproc can make man pages... (cached) yes
+Checking for QtNetwork... (cached) no
+Altered configuration variables:
+qt = False (default True): build QT bindings
+gpsd_group = uucp (default dialout): privilege revocation group
+prefix = /usr (default /usr/local): installation directory prefix
+sbindir = /usr/bin (default sbin): system binaries directory
+Part of the website build requires asciidoc, not installed.
+scons: done reading SConscript files.
+scons: Building targets ...
+timebase_h(["timebase.h"], ["leapseconds.cache"])
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpsd" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsd"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpsd
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpsdctl" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsdctl"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpsdctl
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpsdecode" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsdecode"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpsdecode
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpsctl" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsctl"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpsctl
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpspipe" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpspipe"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpspipe
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gps2udp" as "/tmp/gpsd/pkg/gpsd/usr/bin/gps2udp"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gps2udp
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpxlogger" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpxlogger"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpxlogger
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "lcdgps" as "/tmp/gpsd/pkg/gpsd/usr/bin/lcdgps"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/lcdgps
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "ntpshmmon" as "/tmp/gpsd/pkg/gpsd/usr/bin/ntpshmmon"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/ntpshmmon
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "cgps" as "/tmp/gpsd/pkg/gpsd/usr/bin/cgps"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/cgps
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "gpsmon" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsmon"
+strip /tmp/gpsd/pkg/gpsd/usr/bin/gpsmon
+g++ -o libgps.so.22.0.0 -pthread -shared -Wl,-Bsymbolic -Wl,-soname=libgps.so.22 ais_json.os bits.os clock_gettime.os daemon.os gpsutils.os gpsdclient.os gps_maskdump.os hex.os json.os libgps_core.os libgps_dbus.os libgps_json.os libgps_shm.os libgps_sock.os netlib.os ntpshmread.os ntpshmwrite.os rtcm2_json.os rtcm3_json.os shared_json.os strl.os libgpsmm.os -L. -lrt -ldbus-1 -lbluetooth -ldbus-1 -lrt
+rm -f /tmp/gpsd/pkg/gpsd/usr/lib/libgps.*
+Install file: "libgps.so.22.0.0" as "/tmp/gpsd/pkg/gpsd/usr/lib/libgps.so.22.0.0"
+strip /tmp/gpsd/pkg/gpsd/usr/lib/libgps.so.22.0.0
+Install file: "gpsctl.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpsctl.1"
+Install file: "gpsmon.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpsmon.1"
+Install file: "libQgpsmm.3" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man3/libQgpsmm.3"
+Install file: "gpsd.8" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man8/gpsd.8"
+Install file: "libgpsmm.3" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man3/libgpsmm.3"
+Install file: "gpsdctl.8" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man8/gpsdctl.8"
+Install file: "gpspipe.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpspipe.1"
+Install file: "gps2udp.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gps2udp.1"
+Install file: "gpsd_json.5" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man5/gpsd_json.5"
+Install file: "srec.5" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man5/srec.5"
+Install file: "libgps.3" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man3/libgps.3"
+Install file: "lcdgps.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/lcdgps.1"
+Install file: "gpsinit.8" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man8/gpsinit.8"
+Install file: "gps.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gps.1"
+Install file: "cgps.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/cgps.1"
+Install file: "gpsdecode.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpsdecode.1"
+Install file: "ntpshmmon.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/ntpshmmon.1"
+Install file: "xgpsspeed.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/xgpsspeed.1"
+Install file: "xgps.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/xgps.1"
+Install file: "gegps.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gegps.1"
+Install file: "gpscat.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpscat.1"
+Install file: "gpsfake.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpsfake.1"
+Install file: "gpsprof.1" as "/tmp/gpsd/pkg/gpsd/usr/share/man/man1/gpsprof.1"
+Install file: "gps/clienthelpers.so" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/clienthelpers.so"
+strip /tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/clienthelpers.so
+Install file: "gps/packet.so" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/packet.so"
+strip /tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/packet.so
+Install file: "gps/__init__.py" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/__init__.py"
+Install file: "gps/client.py" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/client.py"
+Install file: "gps/fake.py" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/fake.py"
+Install file: "gps/gps.py" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/gps.py"
+Install file: "gps/misc.py" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps/misc.py"
+Install file: "gpscat" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpscat"
+Install file: "gpsfake" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsfake"
+Install file: "gpsprof" as "/tmp/gpsd/pkg/gpsd/usr/bin/gpsprof"
+Install file: "xgps" as "/tmp/gpsd/pkg/gpsd/usr/bin/xgps"
+Install file: "xgpsspeed" as "/tmp/gpsd/pkg/gpsd/usr/bin/xgpsspeed"
+Install file: "gegps" as "/tmp/gpsd/pkg/gpsd/usr/bin/gegps"
+Install file: "gps-3.15.egg-info" as "/tmp/gpsd/pkg/gpsd/usr/lib/python2.7/site-packages/gps-3.15.egg-info"
+Install file: "libgps.pc" as "/tmp/gpsd/pkg/gpsd/usr/lib/pkgconfig/libgps.pc"
+Install file: "libgpsd.pc" as "/tmp/gpsd/pkg/gpsd/usr/lib/pkgconfig/libgpsd.pc"
+Install file: "libgpsmm.h" as "/tmp/gpsd/pkg/gpsd/usr/include/libgpsmm.h"
+Install file: "gps.h" as "/tmp/gpsd/pkg/gpsd/usr/include/gps.h"
+scons: done building targets.
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "gpsd"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: gpsd 3.15-3 (Sat Nov 14 07:57:55 UTC 2015)
+===> Printing config.logs
+found log at /tmp/gpsd/src/gpsd-3.15/config.log
+____
+File /tmp/gpsd/src/gpsd-3.15/config.log
+file /tmp/gpsd/src/gpsd-3.15/SConstruct,line 496:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking if compiler accepts -Wextra ...
+scons: Configure: ".sconf_temp/conftest_0.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_0.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_0.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_0.o -c -Wmissing-prototypes -Wextra -Wmissing-declarations -O2 .sconf_temp/conftest_0.c
+  |
+scons: Configure: ".sconf_temp/conftest_0" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_0 .sconf_temp/conftest_0.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wall ...
+scons: Configure: ".sconf_temp/conftest_1.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_1.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_1.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1.o -c -Wmissing-prototypes -Wextra -Wall -Wmissing-declarations -O2 .sconf_temp/conftest_1.c
+  |
+scons: Configure: ".sconf_temp/conftest_1" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1 .sconf_temp/conftest_1.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wno-uninitialized ...
+scons: Configure: ".sconf_temp/conftest_2.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_2.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_2.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_2.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wmissing-declarations -O2 .sconf_temp/conftest_2.c
+  |
+scons: Configure: ".sconf_temp/conftest_2" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_2 .sconf_temp/conftest_2.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wno-missing-field-initializers ...
+scons: Configure: ".sconf_temp/conftest_3.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_3.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_3.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_3.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wmissing-declarations -O2 .sconf_temp/conftest_3.c
+  |
+scons: Configure: ".sconf_temp/conftest_3" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_3 .sconf_temp/conftest_3.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wcast-align ...
+scons: Configure: ".sconf_temp/conftest_4.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_4.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_4.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_4.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -O2 .sconf_temp/conftest_4.c
+  |
+scons: Configure: ".sconf_temp/conftest_4" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_4 .sconf_temp/conftest_4.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wmissing-declarations ...
+scons: Configure: ".sconf_temp/conftest_5.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_5.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_5.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_5.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wmissing-declarations -O2 .sconf_temp/conftest_5.c
+  |
+scons: Configure: ".sconf_temp/conftest_5" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_5 .sconf_temp/conftest_5.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wstrict-prototypes ...
+scons: Configure: ".sconf_temp/conftest_6.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_6.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_6.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_6.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wmissing-declarations -O2 .sconf_temp/conftest_6.c
+  |
+scons: Configure: ".sconf_temp/conftest_6" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_6 .sconf_temp/conftest_6.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wpointer-arith ...
+scons: Configure: ".sconf_temp/conftest_7.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_7.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_7.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_7.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wmissing-declarations -O2 .sconf_temp/conftest_7.c
+  |
+scons: Configure: ".sconf_temp/conftest_7" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_7 .sconf_temp/conftest_7.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wreturn-type ...
+scons: Configure: ".sconf_temp/conftest_8.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_8.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_8.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_8.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -Wmissing-declarations -O2 .sconf_temp/conftest_8.c
+  |
+scons: Configure: ".sconf_temp/conftest_8" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_8 .sconf_temp/conftest_8.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -pthread ...
+scons: Configure: ".sconf_temp/conftest_9.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_9.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_9.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_9.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 .sconf_temp/conftest_9.c
+  |
+scons: Configure: ".sconf_temp/conftest_9" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_9 .sconf_temp/conftest_9.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking whether the C++ compiler works... 
+scons: Configure: ".sconf_temp/conftest_10.cpp" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_10.cpp <-
+  |  |
+  |  |int main()
+  |  |{
+  |  |    return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_10.o" is up to date.
+scons: Configure: The original builder output was:
+  |g++ -o .sconf_temp/conftest_10.o -c -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_10.cpp
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for ncurses... 
+scons: Configure: ".sconf_temp/conftest_11" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'ncurses'
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for libusb-1.0... 
+scons: Configure: ".sconf_temp/conftest_12" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'libusb-1.0'
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C library librt... 
+scons: Configure: ".sconf_temp/conftest_13.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_13.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_13.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_13.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_13.c
+  |
+scons: Configure: ".sconf_temp/conftest_13" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_13 -pthread .sconf_temp/conftest_13.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for dbus-1... 
+scons: Configure: ".sconf_temp/conftest_14" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'dbus-1'
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for bluez... 
+scons: Configure: ".sconf_temp/conftest_15" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'bluez'
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C type in_port_t... 
+scons: Configure: ".sconf_temp/conftest_16.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_16.c <-
+  |  |
+  |  |
+  |  |#include <netinet/in.h>
+  |  |
+  |  |int main() {
+  |  |  if ((in_port_t *) 0)
+  |  |    return 0;
+  |  |  if (sizeof (in_port_t))
+  |  |    return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_16.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_16.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_16.c
+  |
+scons: Configure: ".sconf_temp/conftest_16" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_16 -pthread .sconf_temp/conftest_16.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking whether SUN_LEN is declared... 
+scons: Configure: ".sconf_temp/conftest_17.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_17.c <-
+  |  |#include <sys/un.h>
+  |  |int main()
+  |  |{
+  |  |#ifndef SUN_LEN
+  |  |    (void) SUN_LEN;
+  |  |#endif
+  |  |    ;
+  |  |    return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_17.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_17.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_17.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file linux/can.h... 
+scons: Configure: ".sconf_temp/conftest_18.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_18.c <-
+  |  |#include <bits/sockaddr.h>
+  |  |
+  |  |#include <linux/can.h>
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_18.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_18.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_18.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler is C11 ...
+scons: Configure: ".sconf_temp/conftest_19.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_19.c <-
+  |  |
+  |  |	#if (__STDC_VERSION__ < 201112L)
+  |  |        #error Not C11
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_19.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_19.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_19.c
+  |
+scons: Configure: ".sconf_temp/conftest_19" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_19 -pthread .sconf_temp/conftest_19.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __STDC_NO_ATOMICS__ ...
+scons: Configure: ".sconf_temp/conftest_20.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_20.c <-
+  |  |
+  |  |        #ifndef __STDC_NO_ATOMICS__
+  |  |        #error __STDC_NO_ATOMICS__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: Building ".sconf_temp/conftest_20.o" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_20.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_20.c
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C header file stdatomic.h... 
+scons: Configure: ".sconf_temp/conftest_21.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_21.c <-
+  |  |
+  |  |#include <stdatomic.h>
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_21.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_21.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_21.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __ORDER_BIG_ENDIAN__ ...
+scons: Configure: ".sconf_temp/conftest_22.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_22.c <-
+  |  |
+  |  |        #ifndef __ORDER_BIG_ENDIAN__
+  |  |        #error __ORDER_BIG_ENDIAN__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_22.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_22.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_22.c
+  |
+scons: Configure: ".sconf_temp/conftest_22" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_22 -pthread .sconf_temp/conftest_22.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __ORDER_LITTLE_ENDIAN__ ...
+scons: Configure: ".sconf_temp/conftest_23.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_23.c <-
+  |  |
+  |  |        #ifndef __ORDER_LITTLE_ENDIAN__
+  |  |        #error __ORDER_LITTLE_ENDIAN__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_23.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_23.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_23.c
+  |
+scons: Configure: ".sconf_temp/conftest_23" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_23 -pthread .sconf_temp/conftest_23.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __BYTE_ORDER__ ...
+scons: Configure: ".sconf_temp/conftest_24.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_24.c <-
+  |  |
+  |  |        #ifndef __BYTE_ORDER__
+  |  |        #error __BYTE_ORDER__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_24.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_24.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_24.c
+  |
+scons: Configure: ".sconf_temp/conftest_24" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_24 -pthread .sconf_temp/conftest_24.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function daemon()... 
+scons: Configure: ".sconf_temp/conftest_25.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_25.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char daemon();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_daemon) || defined (__stub___daemon)
+  |  |  fail fail fail
+  |  |#else
+  |  |  daemon();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_25.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_25.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_25.c
+  |
+scons: Configure: ".sconf_temp/conftest_25" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_25 -pthread .sconf_temp/conftest_25.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function strlcpy()... 
+scons: Configure: ".sconf_temp/conftest_26.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_26.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char strlcpy();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_strlcpy) || defined (__stub___strlcpy)
+  |  |  fail fail fail
+  |  |#else
+  |  |  strlcpy();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_26.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_26.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_26.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_26" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_26 -pthread .sconf_temp/conftest_26.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C function strlcat()... 
+scons: Configure: ".sconf_temp/conftest_27.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_27.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char strlcat();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_strlcat) || defined (__stub___strlcat)
+  |  |  fail fail fail
+  |  |#else
+  |  |  strlcat();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_27.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_27.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_27.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_27" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_27 -pthread .sconf_temp/conftest_27.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C function clock_gettime()... 
+scons: Configure: ".sconf_temp/conftest_28.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_28.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char clock_gettime();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_clock_gettime) || defined (__stub___clock_gettime)
+  |  |  fail fail fail
+  |  |#else
+  |  |  clock_gettime();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_28.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_28.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_28.c
+  |
+scons: Configure: ".sconf_temp/conftest_28" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_28 -pthread .sconf_temp/conftest_28.o -L. -lrt -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C library libbluetooth... 
+scons: Configure: ".sconf_temp/conftest_29.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_29.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_29.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_29.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_29.c
+  |
+scons: Configure: ".sconf_temp/conftest_29" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_29 -pthread .sconf_temp/conftest_29.o -L. -lrt -ldbus-1 -lbluetooth
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C library libdbus-1... 
+scons: Configure: ".sconf_temp/conftest_30.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_30.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_30.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_30.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_30.c
+  |
+scons: Configure: ".sconf_temp/conftest_30" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_30 -pthread .sconf_temp/conftest_30.o -L. -lrt -ldbus-1 -lbluetooth -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file sys/timepps.h... 
+scons: Configure: ".sconf_temp/conftest_31.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_31.c <-
+  |  |#include <sys/types.h>
+  |  |#include <sys/time.h>
+  |  |
+  |  |#include <sys/timepps.h>
+  |  |
+  |  |
+  |
+scons: Configure: Building ".sconf_temp/conftest_31.o" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_31.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_31.c
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking if sys/ioctl.h supplies TIOCMIWAIT ...
+scons: Configure: ".sconf_temp/conftest_32.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_32.c <-
+  |  |
+  |  |        #include <sys/ioctl.h>
+  |  |        #ifndef TIOCMIWAIT
+  |  |        #error TIOCMIWAIT is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_32.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_32.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include .sconf_temp/conftest_32.c
+  |
+scons: Configure: ".sconf_temp/conftest_32" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_32 -pthread .sconf_temp/conftest_32.o -L. -lrt -ldbus-1 -lbluetooth -ldbus-1
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking that xsltproc can make man pages... 
+scons: Configure: ".sconf_temp/conftest_33" is up to date.
+scons: Configure: The original builder output was:
+  |xsltproc --nonet --noout 'http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl' xmltest.xml
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for QtNetwork... 
+scons: Configure: Building ".sconf_temp/conftest_34" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'QtNetwork'
+  |
+scons: Configure: (cached) no
+
+
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

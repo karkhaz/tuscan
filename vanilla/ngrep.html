@@ -1,0 +1,467 @@
+        <html><head></head><body>
+        <h1>Report for ngrep on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:22</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data ngrep
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1436 packages in cache
+Found permanent source directory in /sources/ngrep
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ngrep 1.45-10 (Sat Nov 14 05:17:52 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libnl-3.2.26-1  libpcap-1.7.4-1
+
+Total Installed Size:  2.06 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+installing libpcap...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file ngrep.c
+Hunk #1 succeeded at 699 (offset -12 lines).
+Hunk #2 succeeded at 721 (offset -12 lines).
+Hunk #3 succeeded at 760 (offset -12 lines).
+patching file configure.in
+patching file Makefile.in
+patching file ngrep.c
+aclocal: warning: autoconf input should be named 'configure.ac', not 'configure.in'
+
+Configuring System ...
+
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+
+Configuring Perl-Compatible Regular Expression (PCRE) library ...
+
+
+Configuring Network Grep (ngrep) ...
+
+checking for a broken redhat glibc udphdr declaration... yes
+checking for a complete set of pcap headers... found /usr/include/pcap
+checking for BPF include path... pcap/bpf.h
+checking for DLT_LINUX_SLL in bpf.h... yes
+checking for DLT_LOOP in bpf.h... yes
+checking for DLT_IEEE802_11 in bpf.h... yes
+checking for DLT_IEEE802_11_RADIO in bpf.h... yes
+checking for DLT_RAW in bpf.h... yes
+checking for pcap_open_live in -lpcap... yes
+checking for pcap_restart in -lpcap... yes
+
+CONFIG: support for broken redhat glibc udphdr enabled
+CONFIG: ipv6 support enabled
+CONFIG: privilege dropping enabled, using "nobody"
+CONFIG: using PCRE regex library
+
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+gcc -g -O2 -DLINUX -DHAVE_CONFIG_H  -D_BSD_SOURCE=1 -D__FAVOR_BSD=1  -I. -I/usr/include/pcap  -g -c ngrep.c
+In file included from /usr/include/ctype.h:25:0,
+                 from /usr/include/getopt.h:33,
+                 from ngrep.c:36:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+In file included from ngrep.c:86:0:
+ngrep.c: In function 'main':
+config.h:54:27: warning: implicit declaration of function 'pcap_restart' [-Wimplicit-function-declaration]
+ #define PCAP_RESTART_FUNC pcap_restart
+                           ^
+ngrep.c:394:13: note: in expansion of macro 'PCAP_RESTART_FUNC'
+             PCAP_RESTART_FUNC();
+             ^
+gcc -g -O2 -DLINUX -DHAVE_CONFIG_H  -D_BSD_SOURCE=1 -D__FAVOR_BSD=1  -L/usr/include/lib -s -o ngrep ngrep.o   -lpcap -lpcre  
+==> Entering fakeroot environment...
+==> Starting package()...
+./install-sh -c -m 0755 ngrep  /tmp/ngrep/pkg/ngrep//usr/bin/ngrep
+./install-sh -c -m 0644 ngrep.8 /tmp/ngrep/pkg/ngrep//usr/share/man/man8/ngrep.8
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "ngrep"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: ngrep 1.45-10 (Sat Nov 14 05:18:02 UTC 2015)
+===> Printing config.logs
+found log at /tmp/ngrep/src/ngrep-1.45/config.log
+____
+File /tmp/ngrep/src/ngrep-1.45/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --with-pcap-includes=/usr/include/pcap --enable-ipv6 --enable-pcre
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 82b54619fd3e
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1943: checking build system type
+configure:1957: result: x86_64-unknown-linux-gnu
+configure:1977: checking host system type
+configure:1990: result: x86_64-unknown-linux-gnu
+configure:2010: checking target system type
+configure:2023: result: x86_64-unknown-linux-gnu
+configure:2058: checking for x86_64-unknown-linux-gcc
+configure:2088: result: no
+configure:2098: checking for gcc
+configure:2114: found /usr/bin/gcc
+configure:2125: result: gcc
+configure:2354: checking for C compiler version
+configure:2363: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2374: $? = 0
+configure:2363: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2374: $? = 0
+configure:2363: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2374: $? = 1
+configure:2363: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2374: $? = 1
+configure:2394: checking whether the C compiler works
+configure:2416: gcc    conftest.c  >&5
+configure:2420: $? = 0
+configure:2468: result: yes
+configure:2471: checking for C compiler default output file name
+configure:2473: result: a.out
+configure:2479: checking for suffix of executables
+configure:2486: gcc -o conftest    conftest.c  >&5
+configure:2490: $? = 0
+configure:2512: result: 
+configure:2534: checking whether we are cross compiling
+configure:2542: gcc -o conftest    conftest.c  >&5
+configure:2546: $? = 0
+configure:2553: ./conftest
+configure:2557: $? = 0
+configure:2572: result: no
+configure:2577: checking for suffix of object files
+configure:2599: gcc -c   conftest.c >&5
+configure:2603: $? = 0
+configure:2624: result: o
+configure:2628: checking whether we are using the GNU C compiler
+configure:2647: gcc -c   conftest.c >&5
+configure:2647: $? = 0
+configure:2656: result: yes
+configure:2665: checking whether gcc accepts -g
+configure:2685: gcc -c -g  conftest.c >&5
+configure:2685: $? = 0
+configure:2726: result: yes
+configure:2743: checking for gcc option to accept ISO C89
+configure:2806: gcc  -c -g -O2  conftest.c >&5
+configure:2806: $? = 0
+configure:2819: result: none needed
+configure:2845: checking how to run the C preprocessor
+configure:2876: gcc -E  conftest.c
+configure:2876: $? = 0
+configure:2890: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2890: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2915: result: gcc -E
+configure:2935: gcc -E  conftest.c
+configure:2935: $? = 0
+configure:2949: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2949: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2978: checking for grep that handles long lines and -e
+configure:3036: result: /usr/bin/grep
+configure:3041: checking for egrep
+configure:3103: result: /usr/bin/grep -E
+configure:3108: checking for ANSI C header files
+configure:3128: gcc -c -g -O2  conftest.c >&5
+configure:3128: $? = 0
+configure:3201: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3201: $? = 0
+configure:3201: ./conftest
+configure:3201: $? = 0
+configure:3212: result: yes
+configure:3452: checking for a broken redhat glibc udphdr declaration
+configure:3480: gcc -c -g -O2  conftest.c >&5
+In file included from /usr/include/netinet/udp.h:50:0,
+                 from conftest.c:21:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:3480: $? = 0
+configure:3663: checking for a complete set of pcap headers
+configure:3712: checking for BPF include path
+configure:3719: checking for DLT_LINUX_SLL in bpf.h
+configure:3741: checking for DLT_LOOP in bpf.h
+configure:3763: checking for DLT_IEEE802_11 in bpf.h
+configure:3785: checking for DLT_IEEE802_11_RADIO in bpf.h
+configure:3807: checking for DLT_RAW in bpf.h
+configure:3891: checking for pcap_open_live in -lpcap
+configure:3916: gcc -o conftest -g -O2   conftest.c -lpcap   >&5
+configure:3916: $? = 0
+configure:3925: result: yes
+configure:3942: checking for pcap_restart in -lpcap
+configure:3967: gcc -o conftest -g -O2   conftest.c -lpcap  -lpcap  >&5
+configure:3967: $? = 0
+configure:3976: result: yes
+configure:4237: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 82b54619fd3e
+
+config.status:823: creating Makefile
+config.status:823: creating config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_build=x86_64-unknown-linux-gnu
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_stdc=yes
+ac_cv_host=x86_64-unknown-linux-gnu
+ac_cv_lib_pcap_pcap_open_live=yes
+ac_cv_lib_pcap_pcap_restart=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/bin/grep -E'
+ac_cv_path_GREP=/usr/bin/grep
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_target=x86_64-unknown-linux-gnu
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS='-g -O2'
+CPP='gcc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/bin/grep -E'
+EXEEXT=''
+EXTRA_DEFINES=' -D_BSD_SOURCE=1 -D__FAVOR_BSD=1'
+EXTRA_INCLUDES=''
+EXTRA_LIBS='-lpcre'
+GREP='/usr/bin/grep'
+LDFLAGS=''
+LIBOBJS=''
+LIBS='-lpcap '
+LTLIBOBJS=''
+OBJEXT='o'
+OS='LINUX'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PCAP_INCLUDE='-I/usr/include/pcap'
+PCAP_LINK='-L/usr/include/lib'
+REGEX_DIR=''
+REGEX_OBJS=''
+SHELL='/bin/sh'
+STRIPFLAG='-s'
+ac_ct_CC='gcc'
+ac_prefix_program=''
+bindir='${exec_prefix}/bin'
+build='x86_64-unknown-linux-gnu'
+build_alias=''
+build_cpu='x86_64'
+build_os='linux-gnu'
+build_vendor='unknown'
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host='x86_64-unknown-linux-gnu'
+host_alias='x86_64-unknown-linux'
+host_cpu='x86_64'
+host_os='linux-gnu'
+host_vendor='unknown'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target='x86_64-unknown-linux-gnu'
+target_alias=''
+target_cpu='x86_64'
+target_os='linux-gnu'
+target_vendor='unknown'
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define STDC_HEADERS 1
+#define USE_PCAP_RESTART 1
+#define USE_PCRE 1
+#define USE_IPv6 1
+#define USE_DROPPRIVS 1
+#define DROPPRIVS_USER "nobody"
+#define HAVE_DUMB_UDPHDR 1
+#define HAVE_DLT_RAW 1
+#define HAVE_DLT_IEEE802_11 1
+#define HAVE_DLT_IEEE802_11_RADIO 1
+#define HAVE_DLT_LOOP 1
+#define HAVE_DLT_LINUX_SLL 1
+#define HAVE_LIBPCAP 1
+#define PCAP_RESTART_FUNC pcap_restart
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

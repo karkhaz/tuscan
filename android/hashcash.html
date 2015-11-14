@@ -1,0 +1,55 @@
+        <html><head></head><body>
+        <h1>Report for hashcash on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hashcash
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1485 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hashcash 1.22-4 (Fri Nov 13 23:35:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading hashcash-1.22.tgz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting hashcash-1.22.tgz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/hashcash
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hashcash 1.22-4 (Fri Nov 13 23:35:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make generic "CFLAGS= -DOPENSSL" "LDFLAGS= -lcrypto"
+make[1]: Entering directory '/tmp/hashcash/src/hashcash-1.22'
+make "CFLAGS=-DOPENSSL -DREGEXP_POSIX -O3 " build
+make[2]: Entering directory '/tmp/hashcash/src/hashcash-1.22'
+arm-linux-androideabi-gcc -DOPENSSL -DREGEXP_POSIX -O3    -c -o hashcash.o hashcash.c
+arm-linux-androideabi-gcc -DOPENSSL -DREGEXP_POSIX -O3    -c -o getopt.o getopt.c
+hashcash.c:39:25: fatal error: openssl/sha.h: No such file or directory
+ #include <openssl/sha.h>
+                         ^
+compilation terminated.
+<builtin>: recipe for target 'hashcash.o' failed
+make[2]: *** [hashcash.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[2]: Leaving directory '/tmp/hashcash/src/hashcash-1.22'
+Makefile:65: recipe for target 'generic' failed
+make[1]: *** [generic] Error 2
+make[1]: Leaving directory '/tmp/hashcash/src/hashcash-1.22'
+Makefile:106: recipe for target 'generic-openssl' failed
+make: *** [generic-openssl] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

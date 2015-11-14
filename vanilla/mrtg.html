@@ -1,0 +1,882 @@
+        <html><head></head><body>
+        <h1>Report for mrtg on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:56</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mrtg
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1436 packages in cache
+Found permanent source directory in /sources/mrtg
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mrtg 2.17.4-2 (Sat Nov 14 05:17:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+warning: dependency cycle detected:
+warning: harfbuzz will be installed before its freetype2 dependency
+
+Packages (22) fontconfig-2.11.1-2  freetype2-2.6.1-1  graphite-1:1.3.3-1  harfbuzz-1.0.6-2  kbproto-1.0.7-1  libice-1.0.9-1  libjpeg-turbo-1.4.2-1  libpng-1.6.18-1  libsm-1.2.2-2  libtiff-4.0.6-1  libvpx-1.5.0-2  libx11-1.6.3-1  libxau-1.0.8-2  libxcb-1.11.1-1  libxdmcp-1.1.2-1  libxext-1.3.3-1  libxpm-3.5.11-1  libxt-1.1.5-1  xcb-proto-1.11-2  xextproto-7.3.0-1  xproto-7.0.28-1  gd-2.1.1-3
+
+Total Installed Size:  35.24 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libpng...
+installing graphite...
+installing harfbuzz...
+Optional dependencies for harfbuzz
+    cairo: hb-view program
+installing freetype2...
+installing fontconfig...
+
+  Fontconfig configuration is done via /etc/fonts/conf.avail and conf.d.
+  Read /etc/fonts/conf.d/README for more information.
+
+  Configuration via /etc/fonts/local.conf is still possible,
+  but is no longer recommended for options available in conf.avail.
+
+  Main systemwide configuration should be done by symlinks
+  (especially for autohinting, sub-pixel and lcdfilter):
+
+  cd /etc/fonts/conf.d
+  ln -s ../conf.avail/XX-foo.conf
+
+  Check also https://wiki.archlinux.org/index.php/Font_Configuration
+  and https://wiki.archlinux.org/index.php/Fonts.
+
+updating font cache... done.
+installing libvpx...
+installing xproto...
+installing libice...
+installing libsm...
+installing xcb-proto...
+installing libxdmcp...
+installing libxau...
+installing libxcb...
+installing kbproto...
+installing libx11...
+installing libxt...
+installing xextproto...
+installing libxext...
+installing libxpm...
+installing libjpeg-turbo...
+installing libtiff...
+Optional dependencies for libtiff
+    freeglut: for using tiffgt
+installing gd...
+Optional dependencies for gd
+    perl: bdftogd script [installed]
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: if you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking whether make sets $(MAKE)... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for perl... /usr/bin/perl
+checking for groff... /usr/bin/groff
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for inttypes.h... (cached) yes
+checking for unsigned long long... yes
+checking for long long... yes
+checking for strtoll... yes
+checking for printf long long format specifier... %lld
+checking for pow in -lm... yes
+checking for gdImageGif in -lgd... yes
+checking for gdImagePng in -lgd... yes
+checking for gdImagePng_jpg in -lgd... no
+checking for gdImagePng_jpg_ft in -lgd... no
+checking gd.h usability... yes
+checking gd.h presence... yes
+checking for gd.h... yes
+checking the weather... (cached) it's fine
+checking if we can use GCC-specific compiler options... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status: creating config.h
+ordering CD from http://tobi.oetiker.ch/wish .... just kidding ;-)
+
+----------------------------------------------------------------
+Config is DONE!
+
+Type 'make' to compile the software
+
+       ... that wishlist mentioned above does really exist. So if
+you feel like showing your appreciation for MRTG, this is the
+place to go. I just love CDs and DVDs
+
+                            -- Tobi Oetiker <tobi@oetiker.ch>
+----------------------------------------------------------------
+gcc  -g -O2 -Wall -Wpointer-arith -Wcast-align -Wmissing-declarations -Wnested-externs -Winline -W -DHAVE_CONFIG_H -c ./src/rateup.c -o bin/rateup.o
+./src/rateup.c: In function 'image':
+./src/rateup.c:330:7: warning: variable 'i_outp' set but not used [-Wunused-but-set-variable]
+   int i_outp, i_outpg;
+       ^
+./src/rateup.c:329:70: warning: variable 'i_outm' set but not used [-Wunused-but-set-variable]
+   int i_light, i_dark, i_blank, i_major, i_in, i_out, i_grid, i_inm, i_outm;
+                                                                      ^
+./src/rateup.c:329:48: warning: variable 'i_out' set but not used [-Wunused-but-set-variable]
+   int i_light, i_dark, i_blank, i_major, i_in, i_out, i_grid, i_inm, i_outm;
+                                                ^
+./src/rateup.c: In function 'update':
+./src/rateup.c:239:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (avc != steptime) {\
+               ^
+./src/rateup.c:1590:4: note: in expansion of macro 'NEXT'
+    NEXT ((unsigned long) (now - plannow));
+    ^
+./src/rateup.c:239:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (avc != steptime) {\
+               ^
+./src/rateup.c:1627:4: note: in expansion of macro 'NEXT'
+    NEXT ((unsigned long) (now - plannow));
+    ^
+./src/rateup.c:239:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (avc != steptime) {\
+               ^
+./src/rateup.c:1664:4: note: in expansion of macro 'NEXT'
+    NEXT ((unsigned long) (now - plannow));
+    ^
+./src/rateup.c:239:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (avc != steptime) {\
+               ^
+./src/rateup.c:1701:4: note: in expansion of macro 'NEXT'
+    NEXT ((unsigned long) (now - plannow));
+    ^
+gcc bin/rateup.o -o bin/rateup   -lgd -lpng -lz  -lm
+/usr/bin/perl -0777 -p -i~ -e "s'^#!\s*/\S*perl'#! /usr/bin/perl'" ./bin/cfgmaker ./bin/indexmaker ./bin/mrtg
+/usr/bin/perl -0777 -p -i~ -e 's@GRAPHFMT="...";@GRAPHFMT="png";@' ./bin/mrtg ./bin/indexmaker
+==> Entering fakeroot environment...
+==> Starting package()...
+/usr/bin/perl -0777 -p -i~ -e "s'^#!\s*/\S*perl'#! /usr/bin/perl'" ./bin/cfgmaker ./bin/indexmaker ./bin/mrtg
+/usr/bin/perl -0777 -p -i~ -e 's@GRAPHFMT="...";@GRAPHFMT="png";@' ./bin/mrtg ./bin/indexmaker
+/bin/sh ./mkinstalldirs /tmp/mrtg/pkg/mrtg/usr/bin
+mkdir /tmp/mrtg/pkg/mrtg/usr
+mkdir /tmp/mrtg/pkg/mrtg/usr/bin
+for x in ./bin/mrtg ./bin/cfgmaker ./bin/indexmaker ./bin/mrtg-traffic-sum; do \
+  /usr/bin/install -c -m 755 $x /tmp/mrtg/pkg/mrtg/usr/bin; done
+for x in bin/rateup; do \
+  /usr/bin/install -c -m 755 $x /tmp/mrtg/pkg/mrtg/usr/bin; done
+/bin/sh ./mkinstalldirs /tmp/mrtg/pkg/mrtg/usr/lib/mrtg2/Pod
+mkdir /tmp/mrtg/pkg/mrtg/usr/lib
+mkdir /tmp/mrtg/pkg/mrtg/usr/lib/mrtg2
+mkdir /tmp/mrtg/pkg/mrtg/usr/lib/mrtg2/Pod
+for x in ./lib/mrtg2/*.pm; do \
+  /usr/bin/install -c -m 644 $x /tmp/mrtg/pkg/mrtg/usr/lib/mrtg2; done
+for x in ./lib/mrtg2/Pod/*.pm; do \
+  /usr/bin/install -c -m 644 $x /tmp/mrtg/pkg/mrtg/usr/lib/mrtg2/Pod; done
+/bin/sh ./mkinstalldirs /tmp/mrtg/pkg/mrtg/usr/share/mrtg2/icons
+mkdir /tmp/mrtg/pkg/mrtg/usr/share
+mkdir /tmp/mrtg/pkg/mrtg/usr/share/mrtg2
+mkdir /tmp/mrtg/pkg/mrtg/usr/share/mrtg2/icons
+for x in ./images/*.gif ./images/*.png; do \
+  /usr/bin/install -c -m 644 $x /tmp/mrtg/pkg/mrtg/usr/share/mrtg2/icons; done
+/bin/sh ./mkinstalldirs /tmp/mrtg/pkg/mrtg/usr/share/doc/mrtg2
+mkdir /tmp/mrtg/pkg/mrtg/usr/share/doc
+mkdir /tmp/mrtg/pkg/mrtg/usr/share/doc/mrtg2
+(cd .; for x in COPYING COPYRIGHT README CHANGES THANKS doc/*.pod doc/*.txt doc/*.png; do \
+  /usr/bin/install -c -m 644 $x /tmp/mrtg/pkg/mrtg/usr/share/doc/mrtg2; done)
+/bin/sh ./mkinstalldirs /tmp/mrtg/pkg/mrtg/usr/share/man/man1
+mkdir /tmp/mrtg/pkg/mrtg/usr/share/man
+mkdir /tmp/mrtg/pkg/mrtg/usr/share/man/man1
+for x in ./doc/*.1; do \
+  /usr/bin/install -c -m 644 $x /tmp/mrtg/pkg/mrtg/usr/share/man/man1; done
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "mrtg"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: mrtg 2.17.4-2 (Sat Nov 14 05:18:34 UTC 2015)
+===> Printing config.logs
+found log at /tmp/mrtg/src/mrtg-2.17.4/config.log
+____
+File /tmp/mrtg/src/mrtg-2.17.4/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.67.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 0962d2c73dff
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2147: checking for x86_64-unknown-linux-gcc
+configure:2177: result: no
+configure:2187: checking for gcc
+configure:2203: found /usr/bin/gcc
+configure:2214: result: gcc
+configure:2443: checking for C compiler version
+configure:2452: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2463: $? = 0
+configure:2452: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2463: $? = 0
+configure:2452: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2463: $? = 1
+configure:2452: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2463: $? = 1
+configure:2483: checking whether the C compiler works
+configure:2505: gcc    conftest.c  >&5
+configure:2509: $? = 0
+configure:2557: result: yes
+configure:2560: checking for C compiler default output file name
+configure:2562: result: a.out
+configure:2568: checking for suffix of executables
+configure:2575: gcc -o conftest    conftest.c  >&5
+configure:2579: $? = 0
+configure:2601: result: 
+configure:2623: checking whether we are cross compiling
+configure:2631: gcc -o conftest    conftest.c  >&5
+configure:2635: $? = 0
+configure:2642: ./conftest
+configure:2646: $? = 0
+configure:2661: result: no
+configure:2666: checking for suffix of object files
+configure:2688: gcc -c   conftest.c >&5
+configure:2692: $? = 0
+configure:2713: result: o
+configure:2717: checking whether we are using the GNU C compiler
+configure:2736: gcc -c   conftest.c >&5
+configure:2736: $? = 0
+configure:2745: result: yes
+configure:2754: checking whether gcc accepts -g
+configure:2774: gcc -c -g  conftest.c >&5
+configure:2774: $? = 0
+configure:2815: result: yes
+configure:2832: checking for gcc option to accept ISO C89
+configure:2896: gcc  -c -g -O2  conftest.c >&5
+configure:2896: $? = 0
+configure:2909: result: none needed
+configure:2936: checking how to run the C preprocessor
+configure:2967: gcc -E  conftest.c
+configure:2967: $? = 0
+configure:2981: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2981: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3006: result: gcc -E
+configure:3026: gcc -E  conftest.c
+configure:3026: $? = 0
+configure:3040: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3040: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3068: checking whether make sets $(MAKE)
+configure:3090: result: yes
+configure:3142: checking for a BSD-compatible install
+configure:3210: result: /usr/bin/install -c
+configure:3223: checking for perl
+configure:3242: found /usr/bin/perl
+configure:3255: result: /usr/bin/perl
+configure:3275: checking for groff
+configure:3293: found /usr/bin/groff
+configure:3305: result: /usr/bin/groff
+configure:3319: checking for grep that handles long lines and -e
+configure:3377: result: /usr/bin/grep
+configure:3382: checking for egrep
+configure:3444: result: /usr/bin/grep -E
+configure:3449: checking for ANSI C header files
+configure:3469: gcc -c -g -O2  conftest.c >&5
+configure:3469: $? = 0
+configure:3542: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3542: $? = 0
+configure:3542: ./conftest
+configure:3542: $? = 0
+configure:3553: result: yes
+configure:3566: checking for sys/types.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for sys/stat.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for stdlib.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for string.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for memory.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for strings.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for inttypes.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for stdint.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3566: checking for unistd.h
+configure:3566: gcc -c -g -O2  conftest.c >&5
+configure:3566: $? = 0
+configure:3566: result: yes
+configure:3580: checking for inttypes.h
+configure:3580: result: yes
+configure:3590: checking for unsigned long long
+configure:3590: gcc -c -g -O2  conftest.c >&5
+configure:3590: $? = 0
+configure:3590: gcc -c -g -O2  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:56:33: error: expected expression before ')' token
+ if (sizeof ((unsigned long long)))
+                                 ^
+configure:3590: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_INTTYPES_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((unsigned long long)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:3590: result: yes
+configure:3595: checking for long long
+configure:3595: gcc -c -g -O2  conftest.c >&5
+configure:3595: $? = 0
+configure:3595: gcc -c -g -O2  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:56:24: error: expected expression before ')' token
+ if (sizeof ((long long)))
+                        ^
+configure:3595: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_INTTYPES_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((long long)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:3595: result: yes
+configure:3602: checking for strtoll
+configure:3602: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3602: $? = 0
+configure:3602: result: yes
+configure:3613: checking for printf long long format specifier
+configure:3639: gcc -o conftest -g -O2   conftest.c  >&5
+conftest.c: In function 'main':
+conftest.c:28:17: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+                 exit (b!=a);
+                 ^
+conftest.c:28:17: warning: incompatible implicit declaration of built-in function 'exit'
+conftest.c:28:17: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:3639: $? = 0
+configure:3639: ./conftest
+configure:3639: $? = 0
+configure:3651: result: %lld
+configure:3666: checking for pow in -lm
+configure:3691: gcc -o conftest -g -O2   conftest.c -lm   >&5
+conftest.c:30:6: warning: conflicting types for built-in function 'pow'
+ char pow ();
+      ^
+configure:3691: $? = 0
+configure:3700: result: yes
+configure:3783: checking for gdImageGif in -lgd
+configure:3808: gcc -o conftest -g -O2   conftest.c -lgd -lgd -lm  -lm >&5
+configure:3808: $? = 0
+configure:3817: result: yes
+configure:3829: checking for gdImagePng in -lgd
+configure:3854: gcc -o conftest -g -O2   conftest.c -lgd -lgd -lpng -lz -lm  -lm >&5
+configure:3854: $? = 0
+configure:3863: result: yes
+configure:3875: checking for gdImagePng_jpg in -lgd
+configure:3900: gcc -o conftest -g -O2   conftest.c -lgd -lgd -lpng -lz -ljpeg -lm  -lm >&5
+/tmp/ccihCExy.o: In function `main':
+/tmp/mrtg/src/mrtg-2.17.4/conftest.c:34: undefined reference to `gdImagePng_jpg'
+collect2: error: ld returned 1 exit status
+configure:3900: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STRTOLL 1
+| #define LLD "%lld"
+| #define LLD_FORMAT "lld"
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char gdImagePng_jpg ();
+| int
+| main ()
+| {
+| return gdImagePng_jpg ();
+|   ;
+|   return 0;
+| }
+configure:3909: result: no
+configure:3921: checking for gdImagePng_jpg_ft in -lgd
+configure:3946: gcc -o conftest -g -O2   conftest.c -lgd -lgd -lpng -lz -ljpeg -lfreetype -lm  -lm >&5
+/tmp/ccOZ1bWw.o: In function `main':
+/tmp/mrtg/src/mrtg-2.17.4/conftest.c:34: undefined reference to `gdImagePng_jpg_ft'
+collect2: error: ld returned 1 exit status
+configure:3946: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STRTOLL 1
+| #define LLD "%lld"
+| #define LLD_FORMAT "lld"
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char gdImagePng_jpg_ft ();
+| int
+| main ()
+| {
+| return gdImagePng_jpg_ft ();
+|   ;
+|   return 0;
+| }
+configure:3955: result: no
+configure:3977: checking gd.h usability
+configure:3977: gcc -c -g -O2  conftest.c >&5
+configure:3977: $? = 0
+configure:3977: result: yes
+configure:3977: checking gd.h presence
+configure:3977: gcc -E  conftest.c
+configure:3977: $? = 0
+configure:3977: result: yes
+configure:3977: checking for gd.h
+configure:3977: result: yes
+configure:4018: checking the weather
+configure:4020: result: (cached) it's fine
+configure:4026: checking if we can use GCC-specific compiler options
+configure:4042: gcc -c -g -O2 -Wall -Wpointer-arith -Wcast-align -Wmissing-declarations -Wnested-externs -Winline -W  conftest.c >&5
+configure:4042: $? = 0
+configure:4051: result: yes
+configure:4171: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.67.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 0962d2c73dff
+
+config.status:820: creating Makefile
+config.status:923: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status:820: creating config.h
+configure:5355: result:  just kidding ;-)
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_strtoll=yes
+ac_cv_header_gd_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_gd_gdImageGif=yes
+ac_cv_lib_gd_gdImagePng=yes
+ac_cv_lib_gd_gdImagePng_jpg=no
+ac_cv_lib_gd_gdImagePng_jpg_ft=no
+ac_cv_lib_m_pow=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/bin/grep -E'
+ac_cv_path_GREP=/usr/bin/grep
+ac_cv_path_NROFF=/usr/bin/groff
+ac_cv_path_PERL=/usr/bin/perl
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+ac_cv_type_long_long=yes
+ac_cv_type_unsigned_long_long=yes
+mr_cv_long_long_format=lld
+mr_cv_long_long_format_specifier=%lld
+rd_cv_gcc_opt=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS='-g -O2 -Wall -Wpointer-arith -Wcast-align -Wmissing-declarations -Wnested-externs -Winline -W'
+CPP='gcc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/bin/grep -E'
+EXEEXT=''
+GDFORM_EXT='png'
+GREP='/usr/bin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+LDFLAGS=''
+LIBOBJS=''
+LIBS='-lgd -lpng -lz  -lm'
+LTLIBOBJS=''
+NROFF='/usr/bin/groff'
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PERL='/usr/bin/perl'
+RRD_PERL=''
+SET_LD_RUN_PATH=''
+SET_MAKE=''
+SHELL='/bin/sh'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STRTOLL 1
+#define LLD "%lld"
+#define LLD_FORMAT "lld"
+
+configure: exit 0
+
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 0962d2c73dff492d8a3741cc2896a2719b0a4194e21818426ca207749a2df309: rename /usr/local/google/home/khazem/docker/aufs/mnt/0962d2c73dff492d8a3741cc2896a2719b0a4194e21818426ca207749a2df309 /usr/local/google/home/khazem/docker/aufs/mnt/0962d2c73dff492d8a3741cc2896a2719b0a4194e21818426ca207749a2df309-removing: device or resource busy></pre></code>
+        </body></html>

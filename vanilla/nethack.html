@@ -1,0 +1,417 @@
+        <html><head></head><body>
+        <h1>Report for nethack on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:56</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data nethack
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2058 packages in cache
+Found permanent source directory in /sources/nethack
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: nethack 3.4.3-9 (Sat Nov 14 05:55:32 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Copying Makefiles.
+( cd src ; make )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+touch ../src/config.h-t
+cc -O -I../include -c monst.c
+cc -O -I../include -c objects.c
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+cc -O -I../include   -c -o makedefs.o makedefs.c
+cc  -o makedefs makedefs.o ../src/monst.o ../src/objects.o
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+./makedefs -p
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+./makedefs -o
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+touch ../src/hack.h-t
+cc -O -I../include   -c -o allmain.o allmain.c
+cc -O -I../include   -c -o alloc.o alloc.c
+cc -O -I../include   -c -o apply.o apply.c
+cc -O -I../include   -c -o artifact.o artifact.c
+cc -O -I../include   -c -o attrib.o attrib.c
+cc -O -I../include   -c -o ball.o ball.c
+cc -O -I../include   -c -o bones.o bones.c
+cc -O -I../include   -c -o botl.o botl.c
+cc -O -I../include   -c -o cmd.o cmd.c
+cc -O -I../include   -c -o dbridge.o dbridge.c
+cc -O -I../include   -c -o decl.o decl.c
+cc -O -I../include   -c -o detect.o detect.c
+cc -O -I../include   -c -o dig.o dig.c
+cc -O -I../include   -c -o display.o display.c
+cc -O -I../include   -c -o dlb.o dlb.c
+cc -O -I../include   -c -o do.o do.c
+cc -O -I../include   -c -o do_name.o do_name.c
+cc -O -I../include   -c -o do_wear.o do_wear.c
+cc -O -I../include   -c -o dog.o dog.c
+cc -O -I../include   -c -o dogmove.o dogmove.c
+cc -O -I../include   -c -o dokick.o dokick.c
+cc -O -I../include   -c -o dothrow.o dothrow.c
+cc -O -I../include   -c -o drawing.o drawing.c
+cc -O -I../include   -c -o dungeon.o dungeon.c
+cc -O -I../include   -c -o eat.o eat.c
+cc -O -I../include   -c -o end.o end.c
+cc -O -I../include   -c -o engrave.o engrave.c
+cc -O -I../include   -c -o exper.o exper.c
+cc -O -I../include   -c -o explode.o explode.c
+cc -O -I../include   -c -o extralev.o extralev.c
+cc -O -I../include   -c -o files.o files.c
+cc -O -I../include   -c -o fountain.o fountain.c
+cc -O -I../include   -c -o hack.o hack.c
+cc -O -I../include   -c -o hacklib.o hacklib.c
+cc -O -I../include   -c -o invent.o invent.c
+cc -O -I../include   -c -o light.o light.c
+light.c: In function 'del_light_source':
+light.c:101:30: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     case LS_OBJECT: tmp_id = (genericptr_t)(((struct obj *)id)->o_id);
+                              ^
+light.c:103:31: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     case LS_MONSTER: tmp_id = (genericptr_t)(((struct monst *)id)->m_id);
+                               ^
+light.c: In function 'relink_light_sources':
+light.c:311:30: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (!lookup_id_mapping((unsigned)ls->id, &nid))
+                              ^
+light.c:314:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       nid = (unsigned) ls->id;
+             ^
+light.c: In function 'write_ls':
+light.c:392:12: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   ls->id = (genericptr_t)otmp->o_id;
+            ^
+light.c:399:12: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   ls->id = (genericptr_t)mtmp->m_id;
+            ^
+cc -O -I../include   -c -o lock.o lock.c
+cc -O -I../include   -c -o mail.o mail.c
+cc -O -I../include   -c -o makemon.o makemon.c
+cc -O -I../include   -c -o mapglyph.o mapglyph.c
+cc -O -I../include   -c -o mcastu.o mcastu.c
+cc -O -I../include   -c -o mhitm.o mhitm.c
+cc -O -I../include   -c -o mhitu.o mhitu.c
+cc -O -I../include   -c -o minion.o minion.c
+cc -O -I../include   -c -o mklev.o mklev.c
+cc -O -I../include   -c -o mkmap.o mkmap.c
+cc -O -I../include   -c -o mkmaze.o mkmaze.c
+cc -O -I../include   -c -o mkobj.o mkobj.c
+cc -O -I../include   -c -o mkroom.o mkroom.c
+cc -O -I../include   -c -o mon.o mon.c
+cc -O -I../include   -c -o mondata.o mondata.c
+cc -O -I../include   -c -o monmove.o monmove.c
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+./makedefs -m
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+cc -O -I../include   -c -o monstr.o monstr.c
+cc -O -I../include   -c -o mplayer.o mplayer.c
+cc -O -I../include   -c -o mthrowu.o mthrowu.c
+cc -O -I../include   -c -o muse.o muse.c
+cc -O -I../include   -c -o music.o music.c
+cc -O -I../include   -c -o o_init.o o_init.c
+cc -O -I../include   -c -o objnam.o objnam.c
+cc -O -I../include   -c -o options.o options.c
+cc -O -I../include   -c -o pager.o pager.c
+cc -O -I../include   -c -o pickup.o pickup.c
+cc -O -I../include   -c -o pline.o pline.c
+cc -O -I../include   -c -o polyself.o polyself.c
+cc -O -I../include   -c -o potion.o potion.c
+cc -O -I../include   -c -o pray.o pray.c
+cc -O -I../include   -c -o priest.o priest.c
+cc -O -I../include   -c -o quest.o quest.c
+cc -O -I../include   -c -o questpgr.o questpgr.c
+cc -O -I../include   -c -o read.o read.c
+cc -O -I../include   -c -o rect.o rect.c
+cc -O -I../include   -c -o region.o region.c
+region.c: In function 'expire_gas_cloud':
+region.c:884:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     damage = (int) reg->arg;
+              ^
+region.c:889:13: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  reg->arg = (genericptr_t) damage;
+             ^
+region.c: In function 'inside_gas_cloud':
+region.c:906:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     dam = (int) reg->arg;
+           ^
+region.c: In function 'create_gas_cloud':
+region.c:978:18: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     cloud->arg = (genericptr_t) damage;
+                  ^
+cc -O -I../include   -c -o restore.o restore.c
+cc -O -I../include   -c -o rip.o rip.c
+cc -O -I../include   -c -o rnd.o rnd.c
+cc -O -I../include   -c -o role.o role.c
+cc -O -I../include   -c -o rumors.o rumors.c
+cc -O -I../include   -c -o save.o save.c
+cc -O -I../include   -c -o shk.o shk.c
+cc -O -I../include   -c -o shknam.o shknam.c
+cc -O -I../include   -c -o sit.o sit.c
+cc -O -I../include   -c -o sounds.o sounds.c
+cc -O -I../include   -c -o sp_lev.o sp_lev.c
+cc -O -I../include   -c -o spell.o spell.c
+cc -O -I../include   -c -o steal.o steal.c
+cc -O -I../include   -c -o steed.o steed.c
+cc -O -I../include   -c -o teleport.o teleport.c
+cc -O -I../include   -c -o timeout.o timeout.c
+timeout.c: In function 'write_timer':
+timeout.c:1627:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   timer->arg = (genericptr_t)((struct obj *)timer->arg)->o_id;
+                ^
+timeout.c:1641:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   timer->arg = (genericptr_t)((struct monst *)timer->arg)->m_id;
+                ^
+timeout.c: In function 'relink_timers':
+timeout.c:1839:30: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (!lookup_id_mapping((unsigned)curr->arg, &nid))
+                              ^
+timeout.c:1842:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       nid = (unsigned) curr->arg;
+             ^
+cc -O -I../include   -c -o topten.o topten.c
+cc -O -I../include   -c -o track.o track.c
+cc -O -I../include   -c -o trap.o trap.c
+cc -O -I../include   -c -o u_init.o u_init.c
+cc -O -I../include   -c -o uhitm.o uhitm.c
+cc -O -I../include   -c -o vault.o vault.c
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+./makedefs -z
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+cc -O -I../include   -c -o vision.o vision.c
+cc -O -I../include   -c -o vis_tab.o vis_tab.c
+cc -O -I../include   -c -o weapon.o weapon.c
+cc -O -I../include   -c -o were.o were.c
+cc -O -I../include   -c -o wield.o wield.c
+cc -O -I../include   -c -o windows.o windows.c
+cc -O -I../include   -c -o wizard.o wizard.c
+cc -O -I../include   -c -o worm.o worm.c
+cc -O -I../include   -c -o worn.o worn.c
+cc -O -I../include   -c -o write.o write.c
+cc -O -I../include   -c -o zap.o zap.c
+cc -O -I../include -c ../sys/share/ioctl.c
+cc -O -I../include -c ../sys/unix/unixmain.c
+cc -O -I../include -c ../sys/share/unixtty.c
+cc -O -I../include -c ../sys/unix/unixunix.c
+cc -O -I../include -c ../sys/unix/unixres.c
+cc -O -I../include -c ../win/tty/getline.c
+cc -O -I../include -c ../win/tty/termcap.c
+cc -O -I../include -c ../win/tty/topl.c
+cc -O -I../include -c ../win/tty/wintty.c
+../util/makedefs -v
+cc -O -I../include   -c -o version.o version.c
+Loading ...
+cc  -o nethack monst.o objects.o allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o botl.o cmd.o dbridge.o decl.o detect.o dig.o display.o dlb.o do.o do_name.o do_wear.o dog.o dogmove.o dokick.o dothrow.o drawing.o dungeon.o eat.o end.o engrave.o exper.o explode.o extralev.o files.o fountain.o hack.o hacklib.o invent.o light.o lock.o mail.o makemon.o mapglyph.o mcastu.o mhitm.o mhitu.o minion.o mklev.o mkmap.o mkmaze.o mkobj.o mkroom.o mon.o mondata.o monmove.o monstr.o mplayer.o mthrowu.o muse.o music.o o_init.o objnam.o options.o pager.o pickup.o pline.o polyself.o potion.o pray.o priest.o quest.o questpgr.o read.o rect.o region.o restore.o rip.o rnd.o role.o rumors.o save.o shk.o shknam.o sit.o sounds.o sp_lev.o spell.o steal.o steed.o teleport.o timeout.o topten.o track.o trap.o u_init.o uhitm.o vault.o vision.o vis_tab.o weapon.o were.o wield.o windows.o wizard.o worm.o worn.o write.o zap.o  ioctl.o unixmain.o unixtty.o unixunix.o unixres.o getline.o termcap.o topl.o wintty.o version.o -lncurses 
+nethack is up to date.
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+( cd src ; make )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+make[1]: 'nethack' is up to date.
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+( cd util ; make recover )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+cc -O -I../include   -c -o recover.o recover.c
+cc  -o recover recover.o 
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+( cd dat ; make data )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/makedefs -d
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd dat ; make oracles )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/makedefs -h
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd dat ; make options )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+make[1]: 'options' is up to date.
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd dat ; make quest.dat )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/makedefs -q
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd dat ; make rumors )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/makedefs -r
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd util ; make dgn_comp )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+yacc  -d dgn_comp.y
+mv y.tab.c dgn_yacc.c
+mv y.tab.h ../include/dgn_comp.h
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+cc -O -I../include   -c -o dgn_yacc.o dgn_yacc.c
+lex  dgn_comp.l
+mv lex.yy.c dgn_lex.c
+cc -c -O -I../include dgn_lex.c
+cc -O -I../include   -c -o dgn_main.o dgn_main.c
+cc -O -I../include   -c -o panic.o panic.c
+cc  -o dgn_comp dgn_yacc.o dgn_lex.o dgn_main.o ../src/alloc.o panic.o 
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+( cd dat ; make dungeon )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/makedefs -e
+../util/dgn_comp dungeon.pdf
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd util ; make lev_comp )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+yacc  -d lev_comp.y
+mv y.tab.c lev_yacc.c
+mv y.tab.h ../include/lev_comp.h
+cc -O -I../include   -c -o lev_yacc.o lev_yacc.c
+lex  lev_comp.l
+mv lex.yy.c lev_lex.c
+cc -c -O -I../include lev_lex.c
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+cc -O -I../include   -c -o lev_main.o lev_main.c
+cc  -o lev_comp lev_yacc.o lev_lex.o lev_main.o ../src/alloc.o panic.o ../src/drawing.o ../src/decl.o ../src/monst.o ../src/objects.o 
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+( cd dat ; make spec_levs )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/lev_comp bigroom.des
+../util/lev_comp castle.des
+../util/lev_comp endgame.des
+../util/lev_comp gehennom.des
+../util/lev_comp knox.des
+../util/lev_comp medusa.des
+../util/lev_comp mines.des
+../util/lev_comp oracle.des
+../util/lev_comp sokoban.des
+../util/lev_comp tower.des
+../util/lev_comp yendor.des
+touch spec_levs
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+( cd dat ; make quest_levs )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+../util/lev_comp Arch.des
+../util/lev_comp Barb.des
+../util/lev_comp Caveman.des
+../util/lev_comp Healer.des
+../util/lev_comp Knight.des
+../util/lev_comp Monk.des
+../util/lev_comp Priest.des
+../util/lev_comp Ranger.des
+../util/lev_comp Rogue.des
+../util/lev_comp Samurai.des
+../util/lev_comp Tourist.des
+../util/lev_comp Valkyrie.des
+../util/lev_comp Wizard.des
+touch quest_levs
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+mkdir -p /tmp/nethack/pkg/nethack/usr/bin
+rm -rf /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack
+mkdir -p /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack/save
+rmdir ./-p
+rmdir: failed to remove './-p': No such file or directory
+Makefile:236: recipe for target 'install' failed
+make: [install] Error 1 (ignored)
+chown root /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack/save
+chgrp games /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack/save
+chmod 0775 /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack /tmp/nethack/pkg/nethack/var/games/nethack/save
+( make dofiles )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3'
+target=`sed -n					\
+	-e '/librarian/{' 			\
+	-e	's/.*/dlb/p' 			\
+	-e	'q' 				\
+	-e '}' 					\
+  	-e '$s/.*/nodlb/p' < dat/options` ;	\
+make dofiles-${target-nodlb}
+make[2]: Entering directory '/tmp/nethack/src/nethack-3.4.3'
+( cd src ; make )
+make[3]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+make[3]: 'nethack' is up to date.
+make[3]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+( cd dat ; make options )
+make[3]: Entering directory '/tmp/nethack/src/nethack-3.4.3/dat'
+make[3]: 'options' is up to date.
+make[3]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/dat'
+    color, data file compression, data librarian, debug mode, Elbereth,
+make[3]: Entering directory '/tmp/nethack/src/nethack-3.4.3'
+( cd util ; make dlb )
+make[4]: Entering directory '/tmp/nethack/src/nethack-3.4.3/util'
+make[5]: Entering directory '/tmp/nethack/src/nethack-3.4.3/src'
+make[5]: '../include/date.h' is up to date.
+make[5]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/src'
+cc -O -I../include -c dlb_main.c
+cc  -o dlb dlb_main.o ../src/dlb.o ../src/alloc.o panic.o 
+make[4]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/util'
+( cd dat ; ../util/dlb cf nhdat help hh cmdhelp history opthelp wizhelp dungeon asmodeus.lev baalz.lev bigrm-?.lev castle.lev fakewiz?.lev juiblex.lev knox.lev medusa-?.lev minend-?.lev minefill.lev minetn-?.lev oracle.lev orcus.lev sanctum.lev soko?-?.lev tower?.lev valley.lev wizard?.lev astral.lev air.lev earth.lev fire.lev water.lev ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev data oracles options quest.dat rumors )
+make[3]: Leaving directory '/tmp/nethack/src/nethack-3.4.3'
+( cd dat ; cp nhdat  license /tmp/nethack/pkg/nethack/var/games/nethack )
+( cd /tmp/nethack/pkg/nethack/var/games/nethack ; chown root nhdat  license ; \
+		chgrp games nhdat  license ; \
+		chmod 0664 nhdat  license )
+make[2]: Leaving directory '/tmp/nethack/src/nethack-3.4.3'
+cp src/nethack /tmp/nethack/pkg/nethack/var/games/nethack
+cp util/recover /tmp/nethack/pkg/nethack/var/games/nethack
+rm -f /tmp/nethack/pkg/nethack/usr/bin/nethack
+sed -e 's;/usr/games/lib/nethackdir;/tmp/nethack/pkg/nethack/var/games/nethack;' \
+	-e 's;HACKDIR/nethack;HACKDIR/nethack;' \
+	< sys/unix/nethack.sh \
+	> /tmp/nethack/pkg/nethack/usr/bin/nethack
+( cd /tmp/nethack/pkg/nethack/var/games/nethack ; chown root nethack recover ; \
+		chgrp games nethack recover )
+chmod 02755 /tmp/nethack/pkg/nethack/var/games/nethack/nethack
+chmod 0755 /tmp/nethack/pkg/nethack/var/games/nethack/recover
+chown root /tmp/nethack/pkg/nethack/usr/bin/nethack
+chgrp games /tmp/nethack/pkg/nethack/usr/bin/nethack
+chmod 0755 /tmp/nethack/pkg/nethack/usr/bin/nethack
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3'
+touch /tmp/nethack/pkg/nethack/var/games/nethack/perm /tmp/nethack/pkg/nethack/var/games/nethack/record /tmp/nethack/pkg/nethack/var/games/nethack/logfile
+( cd /tmp/nethack/pkg/nethack/var/games/nethack ; chown root perm record logfile ; \
+		chgrp games perm record logfile ; \
+		chmod 0664 perm record logfile )
+You may also want to reinstall the man pages via the doc Makefile.
+( cd doc ; make manpages )
+make[1]: Entering directory '/tmp/nethack/src/nethack-3.4.3/doc'
+cp nethack.6 /sources/nethack/pkg/nethack/usr/share/man/man6/nethack.6
+cp: cannot create regular file '/sources/nethack/pkg/nethack/usr/share/man/man6/nethack.6': No such file or directory
+Makefile:61: recipe for target 'manpages' failed
+make[1]: [manpages] Error 1 (ignored)
+cp lev_comp.6 /sources/nethack/pkg/nethack/usr/share/man/man6/lev_comp.6
+cp: cannot create regular file '/sources/nethack/pkg/nethack/usr/share/man/man6/lev_comp.6': No such file or directory
+Makefile:61: recipe for target 'manpages' failed
+make[1]: [manpages] Error 1 (ignored)
+cp dgn_comp.6 /sources/nethack/pkg/nethack/usr/share/man/man6/dgn_comp.6
+cp: cannot create regular file '/sources/nethack/pkg/nethack/usr/share/man/man6/dgn_comp.6': No such file or directory
+Makefile:61: recipe for target 'manpages' failed
+make[1]: [manpages] Error 1 (ignored)
+cp recover.6 /sources/nethack/pkg/nethack/usr/share/man/man6/recover.6
+cp: cannot create regular file '/sources/nethack/pkg/nethack/usr/share/man/man6/recover.6': No such file or directory
+Makefile:61: recipe for target 'manpages' failed
+make[1]: [manpages] Error 1 (ignored)
+cp dlb.6 /sources/nethack/pkg/nethack/usr/share/man/man6/dlb.6
+cp: cannot create regular file '/sources/nethack/pkg/nethack/usr/share/man/man6/dlb.6': No such file or directory
+Makefile:61: recipe for target 'manpages' failed
+make[1]: [manpages] Error 1 (ignored)
+make[1]: Leaving directory '/tmp/nethack/src/nethack-3.4.3/doc'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "nethack"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: nethack 3.4.3-9 (Sat Nov 14 05:56:41 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

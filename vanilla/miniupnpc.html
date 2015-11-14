@@ -1,0 +1,75 @@
+        <html><head></head><body>
+        <h1>Report for miniupnpc on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data miniupnpc
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1997 packages in cache
+Found permanent source directory in /sources/miniupnpc
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: miniupnpc 1.9.20151008-1 (Sat Nov 14 05:48:30 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+/bin/sh updateminiupnpcstrings.sh
+which: no lsb_release in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)
+Detected OS [Linux] version [3.13.0-66-generic]
+MiniUPnPc version [1.9]
+setting OS_STRING macro value to Linux/3.13.0-66-generic in miniupnpcstrings.h.
+setting MINIUPNPC_VERSION_STRING macro value to 1.9 in miniupnpcstrings.h.
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o miniwget.o miniwget.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o minixml.o minixml.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o igd_desc_parse.o igd_desc_parse.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o minisoap.o minisoap.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o miniupnpc.o miniupnpc.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o upnpreplyparse.o upnpreplyparse.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o upnpcommands.o upnpcommands.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o upnperrors.o upnperrors.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o connecthostport.o connecthostport.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o portlistingparse.o portlistingparse.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o receivedata.o receivedata.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o upnpdev.o upnpdev.c
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o minissdpc.o minissdpc.c
+ar crs libminiupnpc.a miniwget.o minixml.o igd_desc_parse.o minisoap.o miniupnpc.o upnpreplyparse.o upnpcommands.o upnperrors.o connecthostport.o portlistingparse.o receivedata.o upnpdev.o minissdpc.o
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o upnpc.o upnpc.c
+cc  -o upnpc-static upnpc.o libminiupnpc.a
+cc -fPIC -O -Wall -W -Wstrict-prototypes -fno-common -DMINIUPNPC_SET_SOCKET_TIMEOUT -DMINIUPNPC_GET_SRC_ADDR -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600   -c -o listdevices.o listdevices.c
+cc  -o listdevices listdevices.o libminiupnpc.a
+cc -shared  -Wl,-soname,libminiupnpc.so.15 -o libminiupnpc.so miniwget.o minixml.o igd_desc_parse.o minisoap.o miniupnpc.o upnpreplyparse.o upnpcommands.o upnperrors.o connecthostport.o portlistingparse.o receivedata.o upnpdev.o minissdpc.o
+cc  -o upnpc-shared upnpc.o libminiupnpc.so
+==> Entering fakeroot environment...
+==> Starting package()...
+cp miniupnpc.h miniupnpc.h.bak
+sed 's/\(.*MINIUPNPC_API_VERSION\s\+\)[0-9]\+/\115/' < miniupnpc.h.bak > miniupnpc.h
+install -d /tmp/miniupnpc/pkg/miniupnpc//usr/include/miniupnpc
+install -m 644 miniupnpc.h miniwget.h upnpcommands.h igd_desc_parse.h upnpreplyparse.h upnperrors.h miniupnpctypes.h portlistingparse.h upnpdev.h miniupnpc_declspec.h /tmp/miniupnpc/pkg/miniupnpc//usr/include/miniupnpc
+install -d /tmp/miniupnpc/pkg/miniupnpc//usr/lib
+install -m 644 libminiupnpc.a /tmp/miniupnpc/pkg/miniupnpc//usr/lib
+install -m 644 libminiupnpc.so /tmp/miniupnpc/pkg/miniupnpc//usr/lib/libminiupnpc.so.15
+ln -fs libminiupnpc.so.15 /tmp/miniupnpc/pkg/miniupnpc//usr/lib/libminiupnpc.so
+install -d /tmp/miniupnpc/pkg/miniupnpc//usr/bin
+install -m 755 upnpc-shared /tmp/miniupnpc/pkg/miniupnpc//usr/bin/upnpc
+install -m 755 external-ip.sh /tmp/miniupnpc/pkg/miniupnpc//usr/bin/external-ip
+install -d /tmp/miniupnpc/pkg/miniupnpc//usr/share/man/man3
+install -m 644 man3/miniupnpc.3 /tmp/miniupnpc/pkg/miniupnpc//usr/share/man/man3/miniupnpc.3
+gzip -f /tmp/miniupnpc/pkg/miniupnpc//usr/share/man/man3/miniupnpc.3
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "miniupnpc"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: miniupnpc 1.9.20151008-1 (Sat Nov 14 05:48:36 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,196 @@
+        <html><head></head><body>
+        <h1>Report for hping on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:39</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hping
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1399 packages in cache
+Found permanent source directory in /sources/hping
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hping 3.0.0-3 (Sat Nov 14 05:15:37 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libnl-3.2.26-1  libpcap-1.7.4-1
+
+Total Installed Size:  2.06 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+installing libpcap...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file bytesex.h
+build byteorder.c...
+create byteorder.h...
+./configure: line 81: -: command not found
+==> WARNING: no Tcl header files found!
+--------------------------------------
+system type: LINUX
+
+LIBPCAP      : PCAP=-lpcap
+PCAP_INCLUDE : 
+MANPATH      : /usr/share/man
+USE_TCL      : 
+TCL_VER      : 
+TCL_INC      : 
+LIBTCL       : 
+TCLSH        : 
+
+(to modify try configure --help)
+--------------------------------------
+creating Makefile...
+creating dependences...
+now you can try `make'
+gcc -c -O2 -Wall    -g  main.c
+gcc -c -O2 -Wall    -g  getifname.c
+getifname.c: In function 'get_output_if':
+getifname.c:343:58: warning: pointer targets in passing argument 3 of 'getsockname' differ in signedness [-Wpointer-sign]
+  if (getsockname(sock_rt, (struct sockaddr *)&iface_out, &len) == -1 ) {
+                                                          ^
+In file included from getifname.c:14:0:
+/usr/include/sys/socket.h:127:12: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'int *'
+ extern int getsockname (int __fd, __SOCKADDR_ARG __addr,
+            ^
+gcc -c -O2 -Wall    -g  getlhs.c
+gcc -c -O2 -Wall    -g  parseoptions.c
+gcc -c -O2 -Wall    -g  datafiller.c
+gcc -c -O2 -Wall    -g  datahandler.c
+gcc -c -O2 -Wall    -g  gethostname.c
+gcc -c -O2 -Wall    -g  binding.c
+gcc -c -O2 -Wall    -g  getusec.c
+gcc -c -O2 -Wall    -g  opensockraw.c
+gcc -c -O2 -Wall    -g  logicmp.c
+gcc -c -O2 -Wall    -g  waitpacket.c
+waitpacket.c: In function 'wait_packet':
+waitpacket.c:533:16: warning: 'tstamp' may be used uninitialized in this function [-Wmaybe-uninitialized]
+    sec = tstamp/hz; /* Get the uptime in seconds */
+                ^
+waitpacket.c:469:8: note: 'tstamp' was declared here
+  __u32 tstamp, echo;
+        ^
+gcc -c -O2 -Wall    -g  resolve.c
+gcc -c -O2 -Wall    -g  sendip.c
+gcc -c -O2 -Wall    -g  sendicmp.c
+gcc -c -O2 -Wall    -g  sendudp.c
+gcc -c -O2 -Wall    -g  sendtcp.c
+gcc -c -O2 -Wall    -g  cksum.c
+gcc -c -O2 -Wall    -g  statistics.c
+gcc -c -O2 -Wall    -g  usage.c
+gcc -c -O2 -Wall    -g  version.c
+gcc -c -O2 -Wall    -g  antigetopt.c
+gcc -c -O2 -Wall    -g  sockopt.c
+gcc -c -O2 -Wall    -g  listen.c
+gcc -c -O2 -Wall    -g  sendhcmp.c
+gcc -c -O2 -Wall    -g  memstr.c
+gcc -c -O2 -Wall    -g  rtt.c
+gcc -c -O2 -Wall    -g  relid.c
+gcc -c -O2 -Wall    -g  sendip_handler.c
+gcc -c -O2 -Wall    -g  libpcap_stuff.c
+libpcap_stuff.c: In function 'open_pcap':
+libpcap_stuff.c:26:6: warning: variable 'on' set but not used [-Wunused-but-set-variable]
+  int on;
+      ^
+libpcap_stuff.c: In function 'pcap_recv':
+libpcap_stuff.c:61:19: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+                 p = (unsigned char*) pcap_next(pcapfp, &hdr);
+                   ^
+gcc -c -O2 -Wall    -g  memlockall.c
+gcc -c -O2 -Wall    -g  memunlockall.c
+gcc -c -O2 -Wall    -g  memlock.c
+gcc -c -O2 -Wall    -g  memunlock.c
+gcc -c -O2 -Wall    -g  ip_opt_build.c
+ip_opt_build.c: In function 'ip_opt_build':
+ip_opt_build.c:28:29: warning: argument to 'sizeof' in 'memset' call is the same expression as the destination; did you mean to provide an explicit length? [-Wsizeof-pointer-memaccess]
+     memset(ip_opt, 1, sizeof(ip_opt));
+                             ^
+gcc -c -O2 -Wall    -g  display_ipopt.c
+gcc -c -O2 -Wall    -g  sendrawip.c
+gcc -c -O2 -Wall    -g  signal.c
+gcc -c -O2 -Wall    -g  send.c
+gcc -c -O2 -Wall    -g  strlcpy.c
+gcc -c -O2 -Wall    -g  arsglue.c
+gcc -c -O2 -Wall    -g  random.c
+gcc -c -O2 -Wall    -g  scan.c
+scan.c: In function 'receiver':
+scan.c:458:6: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+    p = packet+linkhdr_size+iphdrlen;
+      ^
+gcc -c -O2 -Wall    -g  hstring.c
+gcc -c -O2 -Wall    -g  script.c
+gcc -c -O2 -Wall    -g  interface.c
+gcc -c -O2 -Wall    -g  adbuf.c
+adbuf.c: In function 'adbuf_addchar':
+adbuf.c:130:22: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+   unsigned char *p = b->buf + adbuf_used(b);
+                      ^
+gcc -c -O2 -Wall    -g  hex.c
+gcc -c -O2 -Wall    -g  apdutils.c
+gcc -c -O2 -Wall    -g  sbignum.c
+gcc -c -O2 -Wall    -g  sbignum-tables.c
+gcc -c -O2 -Wall    -g  ars.c
+In file included from ars.c:15:0:
+ars.c: In function 'ars_multi_cksum':
+ars.c:485:46: warning: comparison with string literal results in unspecified behavior [-Waddress]
+   assert("else reached in ars_multi_cksum()" == "");
+                                              ^
+ars.c: In function 'ars_bsd_fix':
+ars.c:909:20: warning: variable 'ip' set but not used [-Wunused-but-set-variable]
+  struct ars_iphdr *ip;
+                    ^
+gcc -c -O2 -Wall    -g  apd.c
+apd.c: In function 'ars_decode_hex':
+apd.c:823:9: warning: pointer targets in return differ in signedness [-Wpointer-sign]
+  return saved;
+         ^
+apd.c: In function 'ars_decode_string':
+apd.c:852:9: warning: pointer targets in return differ in signedness [-Wpointer-sign]
+  return saved;
+         ^
+apd.c: In function 'ars_d_set_data':
+apd.c:889:7: warning: variable 'err' set but not used [-Wunused-but-set-variable]
+   int err, blen;
+       ^
+gcc -c -O2 -Wall    -g  split.c
+gcc -c -O2 -Wall    -g  rapd.c
+gcc -o hping3 -O2 -Wall    -g main.o getifname.o getlhs.o parseoptions.o datafiller.o datahandler.o gethostname.o binding.o getusec.o opensockraw.o logicmp.o waitpacket.o resolve.o sendip.o sendicmp.o sendudp.o sendtcp.o cksum.o statistics.o usage.o version.o antigetopt.o sockopt.o listen.o sendhcmp.o memstr.o rtt.o relid.o sendip_handler.o libpcap_stuff.o memlockall.o memunlockall.o memlock.o memunlock.o ip_opt_build.o display_ipopt.o sendrawip.o signal.o send.o strlcpy.o arsglue.o random.o scan.o hstring.o script.o interface.o adbuf.o hex.o apdutils.o sbignum.o sbignum-tables.o ars.o apd.o split.o rapd.o -L/usr/local/lib -lpcap  
+
+./hping3 -v
+hping version 3.0.0-alpha-1 ($Id: release.h,v 1.4 2004/04/09 23:38:56 antirez Exp $)
+NO TCL scripting support compiled in
+use `make strip' to strip hping3 binary
+use `make install' to install hping3
+==> Entering fakeroot environment...
+==> Starting package()...
+patching file Makefile
+cp -f hping3 /tmp/hping/pkg/hping/usr/bin/
+chmod 755 /tmp/hping/pkg/hping/usr/bin/hping3
+ln -s hping3 /tmp/hping/pkg/hping/usr/bin/hping
+ln -s hping3 /tmp/hping/pkg/hping/usr/bin/hping2
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "hping"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: hping 3.0.0-3 (Sat Nov 14 05:16:05 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

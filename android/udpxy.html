@@ -1,0 +1,73 @@
+        <html><head></head><body>
+        <h1>Report for udpxy on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:38</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data udpxy
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2041 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: udpxy 1.0.23.9-1 (Fri Nov 13 23:55:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading udpxy.1.0.23-9-prod.tar.gz...
+  -> Found udpxy.service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting udpxy.1.0.23-9-prod.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/udpxy
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: udpxy 1.0.23.9-1 (Fri Nov 13 23:55:08 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc -O2  -DUDPXREC_MOD -MM udpxy.c sloop.c rparse.c util.c prbuf.c ifaddr.c ctx.c mkpg.c rtp.c uopt.c dpkt.c netop.c extrn.c main.c udpxrec.c > udpxy.dep
+
+Making a [release] version (use 'debug' target as an alternative)
+
+make[1]: Entering directory '/tmp/udpxy/src/udpxy-1.0.23-9'
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c udpxy.c -o udpxy.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c sloop.c -o sloop.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c rparse.c -o rparse.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c util.c -o util.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c prbuf.c -o prbuf.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c ifaddr.c -o ifaddr.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c ctx.c -o ctx.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c mkpg.c -o mkpg.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c rtp.c -o rtp.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c uopt.c -o uopt.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c dpkt.c -o dpkt.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c netop.c -o netop.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c extrn.c -o extrn.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c main.c -o main.o
+gcc -O2   -DUDPXREC_MOD -DNDEBUG -DTRACE_MODULE -c udpxrec.c -o udpxrec.o
+gcc -O2   -DNDEBUG -DTRACE_MODULE -o udpxy udpxy.o sloop.o rparse.o util.o prbuf.o ifaddr.o ctx.o mkpg.o rtp.o uopt.o dpkt.o netop.o extrn.o main.o udpxrec.o
+-rwxr-xr-x 1 tuscan tuscan 91624 Nov 13 23:55 udpxy
+ln -s udpxy udpxrec
+make[1]: Leaving directory '/tmp/udpxy/src/udpxy-1.0.23-9'
+==> Entering fakeroot environment...
+==> Starting package()...
+-rwxr-xr-x 1 root root 91624 Nov 13 23:55 /tmp/udpxy/pkg/udpxy/usr/bin/udpxy
+-rwxr-xr-x 1 root root 91624 Nov 13 23:55 /tmp/udpxy/pkg/udpxy/usr/bin/udpxrec
+Installation of udpxy is complete
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "udpxy"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: udpxy 1.0.23.9-1 (Fri Nov 13 23:55:10 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

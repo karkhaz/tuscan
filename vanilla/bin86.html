@@ -1,0 +1,184 @@
+        <html><head></head><body>
+        <h1>Report for bin86 on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:41</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data bin86
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1517 packages in cache
+Found permanent source directory in /sources/bin86
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: bin86 0.16.21-1 (Sat Nov 14 05:24:42 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+set -e ; for d in ld as; do \
+  (cd $d && make "LIBS=" "CFLAGS=-O2 -D_POSIX_SOURCE" "LDFLAGS=" "BINDIR=/usr/bin" "LIBDIR=/usr/lib" "CC=cc" all;); \
+ done
+make[1]: Entering directory '/tmp/bin86/src/bin86-0.16.21/ld'
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c dumps.c -o dumps.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c io.c -o io.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c ld.c -o ld.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c readobj.c -o readobj.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c table.c -o table.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c typeconv.c -o typeconv.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c linksyms.c -o linksyms.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c mkar.c -o mkar.o
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c writex86.c -o writex86.o
+writex86.c: In function 'write_elks':
+writex86.c:59:31: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define offsetof(struc, mem) ((int) &((struc *) 0)->mem)
+                               ^
+writex86.c:448:26: note: in expansion of macro 'offsetof'
+  seekout((unsigned long) offsetof(struct exec, a_syms));
+                          ^
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT  -c writebin.c
+cc -O2 -D_POSIX_SOURCE -DREL_OUTPUT -c writeemu.c -o writeemu.o
+In file included from writeemu.c:20:0:
+writebin.c: In function 'write_dosemu':
+writebin.c:69:31: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define offsetof(struc, mem) ((int) &((struc *) 0)->mem)
+                               ^
+writebin.c:560:26: note: in expansion of macro 'offsetof'
+  seekout((unsigned long) offsetof(struct exec, a_syms));
+                          ^
+writebin.c:69:31: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define offsetof(struc, mem) ((int) &((struc *) 0)->mem)
+                               ^
+writebin.c:565:26: note: in expansion of macro 'offsetof'
+  if( FILEHEADERLENGTH >= offsetof(struct exec, a_trsize)+8)
+                          ^
+writebin.c:69:31: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define offsetof(struc, mem) ((int) &((struc *) 0)->mem)
+                               ^
+writebin.c:567:27: note: in expansion of macro 'offsetof'
+   seekout((unsigned long) offsetof(struct exec, a_trsize));
+                           ^
+writebin.c:69:31: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define offsetof(struc, mem) ((int) &((struc *) 0)->mem)
+                               ^
+writebin.c:571:27: note: in expansion of macro 'offsetof'
+   seekout((unsigned long) offsetof(struct exec, a_drsize));
+                           ^
+cc  dumps.o io.o ld.o readobj.o table.o typeconv.o linksyms.o mkar.o writex86.o writebin.o writeemu.o -o ld86
+cc -O2 -D_POSIX_SOURCE    objchop.c   -o objchop
+objchop.c:22:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(argc, argv)
+ ^
+objchop.c: In function 'main':
+objchop.c:27:20: warning: implicit declaration of function 'fatal' [-Wimplicit-function-declaration]
+    if( argc != 5 ) fatal("Usage: objchop a.out text.bin data.bin sizes.asm");
+                    ^
+objchop.c:41:4: warning: implicit declaration of function 'write_file' [-Wimplicit-function-declaration]
+    write_file(argv[2], header.a_text);
+    ^
+objchop.c: At top level:
+objchop.c:59:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ write_file(fname, bsize)
+ ^
+objchop.c:84:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ fatal(str)
+ ^
+cc -O2 -D_POSIX_SOURCE    catimage.c   -o catimage
+catimage.c:42:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(argc, argv)
+ ^
+catimage.c: In function 'main':
+catimage.c:50:7: warning: implicit declaration of function 'fatal' [-Wimplicit-function-declaration]
+       fatal("Usage: catimage mem.bin boot.out [a1.out] ... [a9.out]");
+       ^
+catimage.c:52:4: warning: implicit declaration of function 'open_obj' [-Wimplicit-function-declaration]
+    open_obj(argv[2]);
+    ^
+catimage.c:57:4: warning: implicit declaration of function 'read_symtable' [-Wimplicit-function-declaration]
+    read_symtable();
+    ^
+catimage.c:72:10: warning: implicit declaration of function 'copy_segment' [-Wimplicit-function-declaration]
+          copy_segment(image_offset, A_TEXTPOS(header), header.a_text);
+          ^
+catimage.c:84:7: warning: implicit declaration of function 'patch_bin' [-Wimplicit-function-declaration]
+       patch_bin(text_offt[image_id], (unsigned)(text_off>>4));
+       ^
+catimage.c: At top level:
+catimage.c:103:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ open_obj(fname)
+ ^
+catimage.c:120:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ copy_segment(out_offset, in_offset, length)
+ ^
+catimage.c:146:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ patch_bin(file_off, value)
+ ^
+catimage.c:166:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ read_symtable()
+ ^
+catimage.c: In function 'read_symtable':
+catimage.c:186:11: warning: implicit declaration of function 'memcmp' [-Wimplicit-function-declaration]
+       if( memcmp(item.n_name, "__seg", 5) != 0 || item.n_name[6] != '_' )
+           ^
+catimage.c: At top level:
+catimage.c:237:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ fatal(str)
+ ^
+cc -O2 -D_POSIX_SOURCE    objdump86.c   -o objdump86
+make[1]: Leaving directory '/tmp/bin86/src/bin86-0.16.21/ld'
+make[1]: Entering directory '/tmp/bin86/src/bin86-0.16.21/as'
+cc -O2 -D_POSIX_SOURCE -c as.c
+cc -O2 -D_POSIX_SOURCE -c assemble.c
+cc -O2 -D_POSIX_SOURCE -c errors.c
+cc -O2 -D_POSIX_SOURCE -c express.c
+cc -O2 -D_POSIX_SOURCE -c genbin.c
+cc -O2 -D_POSIX_SOURCE -c genlist.c
+cc -O2 -D_POSIX_SOURCE -c genobj.c
+cc -O2 -D_POSIX_SOURCE -c gensym.c
+cc -O2 -D_POSIX_SOURCE -c keywords.c
+cc -O2 -D_POSIX_SOURCE -c macro.c
+cc -O2 -D_POSIX_SOURCE -c mops.c
+cc -O2 -D_POSIX_SOURCE -c pops.c
+cc -O2 -D_POSIX_SOURCE -c readsrc.c
+cc -O2 -D_POSIX_SOURCE -c scan.c
+cc -O2 -D_POSIX_SOURCE -c table.c
+cc -O2 -D_POSIX_SOURCE -c typeconv.c
+cc -O2 -D_POSIX_SOURCE -c alloc.c
+cc  as.o assemble.o errors.o express.o genbin.o genlist.o genobj.o gensym.o keywords.o macro.o mops.o pops.o readsrc.o scan.o table.o typeconv.o alloc.o -o as86
+sed -e "s:%%LIBDIR%%:/usr/lib:" -e "s:%%BINDIR%%:/usr/bin:" \
+	< as86_encap.sh > tmp
+chmod +x as86_encap
+make[1]: Leaving directory '/tmp/bin86/src/bin86-0.16.21/as'
+==> Entering fakeroot environment...
+==> Starting package()...
+set -e ; for d in ld as; do \
+  (cd $d && make "LIBS=" "CFLAGS=-O2 -D_POSIX_SOURCE" "LDFLAGS=" "BINDIR=/tmp/bin86/pkg/bin86/usr/bin" "LIBDIR=/tmp/bin86/pkg/bin86/usr/lib" "CC=cc" all;); \
+ done
+make[1]: Entering directory '/tmp/bin86/src/bin86-0.16.21/ld'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/bin86/src/bin86-0.16.21/ld'
+make[1]: Entering directory '/tmp/bin86/src/bin86-0.16.21/as'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/bin86/src/bin86-0.16.21/as'
+install -m 755 -s as/as86       /tmp/bin86/pkg/bin86/usr/bin/as86
+install -m 755 -s ld/ld86       /tmp/bin86/pkg/bin86/usr/bin/ld86
+install -m 755 -s ld/objdump86  /tmp/bin86/pkg/bin86/usr/bin/objdump86
+install -m 644     man/*.1       /tmp/bin86/pkg/bin86/usr/share/man/man1
+ln -sf                  objdump86 /tmp/bin86/pkg/bin86/usr/bin/nm86
+ln -sf                  objdump86 /tmp/bin86/pkg/bin86/usr/bin/size86
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "bin86"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: bin86 0.16.21-1 (Sat Nov 14 05:24:53 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 1c49491dbba96b4ff774d06a8cf7d952499741180c04c305a978548fe055c455: rename /usr/local/google/home/khazem/docker/aufs/mnt/1c49491dbba96b4ff774d06a8cf7d952499741180c04c305a978548fe055c455 /usr/local/google/home/khazem/docker/aufs/mnt/1c49491dbba96b4ff774d06a8cf7d952499741180c04c305a978548fe055c455-removing: device or resource busy></pre></code>
+        </body></html>

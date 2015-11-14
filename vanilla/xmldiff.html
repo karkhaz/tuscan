@@ -1,0 +1,202 @@
+        <html><head></head><body>
+        <h1>Report for xmldiff on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:22</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data xmldiff
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1382 packages in cache
+Found permanent source directory in /sources/xmldiff
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: xmldiff 0.6.10-3 (Sat Nov 14 05:15:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) libxml2-2.9.2-2  sqlite-3.9.2-1  jade-1.2.1-9  libxslt-1.1.28-3  python2-2.7.10-2
+
+Total Installed Size:  91.45 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml [installed]
+installing libxslt...
+installing jade...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/xmldiff
+copying ./misc.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./format.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./__pkginfo__.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./objects.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./__init__.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./fmes.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./mydifflib.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./parser.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./input.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./main.py -> build/lib.linux-x86_64-2.7/xmldiff
+copying ./ezs.py -> build/lib.linux-x86_64-2.7/xmldiff
+package init file './test/__init__.py' not found (or not a regular file)
+creating build/lib.linux-x86_64-2.7/xmldiff/test
+copying ./test/runtests.py -> build/lib.linux-x86_64-2.7/xmldiff/test
+copying ./test/unittest_options.py -> build/lib.linux-x86_64-2.7/xmldiff/test
+copying ./test/unittest_difflib.py -> build/lib.linux-x86_64-2.7/xmldiff/test
+copying ./test/regrtest.py -> build/lib.linux-x86_64-2.7/xmldiff/test
+copying ./test/unittest_parser.py -> build/lib.linux-x86_64-2.7/xmldiff/test
+package init file './test/__init__.py' not found (or not a regular file)
+running build_ext
+building 'xmldiff.maplookup' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/extensions
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I/usr/include/python2.7 -c extensions/maplookup.c -o build/temp.linux-x86_64-2.7/extensions/maplookup.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/extensions/maplookup.o -L/usr/lib -lpython2.7 -o build/lib.linux-x86_64-2.7/xmldiff/maplookup.so
+running build_scripts
+creating build/scripts-2.7
+copying and adjusting bin/xmldiff -> build/scripts-2.7
+copying bin/xmlrev -> build/scripts-2.7
+changing mode of build/scripts-2.7/xmldiff from 644 to 755
+==> Entering fakeroot environment...
+==> Starting package()...
+running install
+running build
+running build_py
+package init file './test/__init__.py' not found (or not a regular file)
+package init file './test/__init__.py' not found (or not a regular file)
+running build_ext
+running build_scripts
+running install_lib
+creating /tmp/xmldiff/pkg/xmldiff/usr
+creating /tmp/xmldiff/pkg/xmldiff/usr/lib
+creating /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7
+creating /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages
+creating /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/misc.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/maplookup.so -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+creating /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test
+copying build/lib.linux-x86_64-2.7/xmldiff/test/runtests.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test
+copying build/lib.linux-x86_64-2.7/xmldiff/test/unittest_options.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test
+copying build/lib.linux-x86_64-2.7/xmldiff/test/unittest_difflib.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test
+copying build/lib.linux-x86_64-2.7/xmldiff/test/regrtest.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test
+copying build/lib.linux-x86_64-2.7/xmldiff/test/unittest_parser.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test
+copying build/lib.linux-x86_64-2.7/xmldiff/format.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/__pkginfo__.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/objects.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/__init__.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/fmes.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/mydifflib.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/parser.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/input.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/main.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+copying build/lib.linux-x86_64-2.7/xmldiff/ezs.py -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/misc.py to misc.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/runtests.py to runtests.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/unittest_options.py to unittest_options.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/unittest_difflib.py to unittest_difflib.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/regrtest.py to regrtest.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/unittest_parser.py to unittest_parser.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/format.py to format.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/__pkginfo__.py to __pkginfo__.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/objects.py to objects.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/__init__.py to __init__.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/fmes.py to fmes.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/mydifflib.py to mydifflib.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/parser.py to parser.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/input.py to input.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/main.py to main.pyc
+byte-compiling /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/ezs.py to ezs.pyc
+writing byte-compilation script '/tmp/tmpvYvGh6.py'
+/usr/bin/python2 -O /tmp/tmpvYvGh6.py
+removing /tmp/tmpvYvGh6.py
+test/data/test04_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test04_--xupdate_result
+test/data/test07_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test07_result
+test/data/test04_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test04_result
+test/data/test06_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test06_--xupdate_result
+test/data/test02_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test02_2.xml
+test/data/test03_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test03_result
+test/data/test06_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test06_1.xml
+test/data/test00_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test00_--xupdate_result
+test/data/test00_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test00_2.xml
+test/data/test03_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test03_1.xml
+test/data/test05_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test05_2.xml
+test/data/test05_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test05_result
+test/data/test02_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test02_1.xml
+test/data/test08_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test08_2.xml
+test/data/test01_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test01_2.xml
+test/data/test07_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test07_2.xml
+test/data/test02_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test02_result
+test/data/test07_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test07_--xupdate_result
+test/data/test02_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test02_--xupdate_result
+test/data/test05_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test05_--xupdate_result
+test/data/dir1 -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/dir1
+test/data/test01_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test01_1.xml
+test/data/test00_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test00_1.xml
+test/data/test06_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test06_result
+test/data/test08_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test08_result
+test/data/test03_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test03_2.xml
+test/data/test06_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test06_2.xml
+test/data/test04_2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test04_2.xml
+test/data/dir2 -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/dir2
+test/data/test07_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test07_1.xml
+test/data/test00_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test00_result
+test/data/test08_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test08_--xupdate_result
+test/data/test01_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test01_--xupdate_result
+test/data/test01_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test01_result
+test/data/test05_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test05_1.xml
+test/data/test04_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test04_1.xml
+test/data/test08_1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test08_1.xml
+test/data/test03_--xupdate_result -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/test03_--xupdate_result
+test/data/dir1/onlyindir1.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/dir1/onlyindir1.xml
+test/data/dir1/inbothdir.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/dir1/inbothdir.xml
+test/data/dir2/onlyindir2.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/dir2/onlyindir2.xml
+test/data/dir2/inbothdir.xml -> /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff/test/data/dir2/inbothdir.xml
+running install_scripts
+creating /tmp/xmldiff/pkg/xmldiff/usr/bin
+copying build/scripts-2.7/xmldiff -> /tmp/xmldiff/pkg/xmldiff/usr/bin
+copying build/scripts-2.7/xmlrev -> /tmp/xmldiff/pkg/xmldiff/usr/bin
+changing mode of /tmp/xmldiff/pkg/xmldiff/usr/bin/xmldiff to 755
+changing mode of /tmp/xmldiff/pkg/xmldiff/usr/bin/xmlrev to 755
+running install_data
+creating /tmp/xmldiff/pkg/xmldiff/usr/share
+creating /tmp/xmldiff/pkg/xmldiff/usr/share/sgml
+creating /tmp/xmldiff/pkg/xmldiff/usr/share/sgml/stylesheet
+creating /tmp/xmldiff/pkg/xmldiff/usr/share/sgml/stylesheet/xmldiff
+copying xsl/docbook_rev.xsl -> /tmp/xmldiff/pkg/xmldiff/usr/share/sgml/stylesheet/xmldiff
+copying xsl/xmlrev.xslt -> /tmp/xmldiff/pkg/xmldiff/usr/share/sgml/stylesheet/xmldiff
+running install_egg_info
+Writing /tmp/xmldiff/pkg/xmldiff/usr/lib/python2.7/site-packages/xmldiff-0.6.10-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "xmldiff"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: xmldiff 0.6.10-3 (Sat Nov 14 05:15:12 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

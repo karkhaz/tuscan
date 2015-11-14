@@ -1,0 +1,226 @@
+        <html><head></head><body>
+        <h1>Report for procstatd on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:42</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data procstatd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1924 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: procstatd 1.4.2-9 (Fri Nov 13 23:49:45 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading procstatd.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting procstatd.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/procstatd
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: procstatd 1.4.2-9 (Fri Nov 13 23:49:46 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc -c -O3 procstatd.c -o procstatd.o
+gcc -c -O3 parsecl.c -o parsecl.o
+procstatd.c: In function 'main':
+procstatd.c:80:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+      input_fd = (int) stdin;
+                 ^
+procstatd.c:81:18: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+      output_fd = (int) stdout;
+                  ^
+procstatd.c:82:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+      error_fd = (int) stderr;
+                 ^
+procstatd.c: In function 'handlemessages':
+procstatd.c:294:8: warning: implicit declaration of function 'readline' [-Wimplicit-function-declaration]
+    n = readline(client_fd,inbuf,BUFLEN);
+        ^
+gcc -c -O3 parse.c -o parse.o
+parse.c: In function 'parse':
+parse.c:50:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  delim[6] = (char) NULL;        /* terminator */
+             ^
+gcc -c -O3 statlist.c -o statlist.o
+gcc -c -O3 senddata.c -o senddata.o
+statlist.c: In function 'init_statlist':
+statlist.c:60:2: warning: implicit declaration of function 'init_identity' [-Wimplicit-function-declaration]
+  init_identity();
+  ^
+statlist.c:62:2: warning: implicit declaration of function 'init_proc_version' [-Wimplicit-function-declaration]
+  init_proc_version();
+  ^
+statlist.c:64:2: warning: implicit declaration of function 'init_proc_stat' [-Wimplicit-function-declaration]
+  init_proc_stat();
+  ^
+statlist.c:66:2: warning: implicit declaration of function 'init_proc_loadavg' [-Wimplicit-function-declaration]
+  init_proc_loadavg();
+  ^
+statlist.c:68:2: warning: implicit declaration of function 'init_proc_meminfo' [-Wimplicit-function-declaration]
+  init_proc_meminfo();
+  ^
+statlist.c:70:2: warning: implicit declaration of function 'init_proc_net_dev' [-Wimplicit-function-declaration]
+  init_proc_net_dev();
+  ^
+statlist.c:72:2: warning: implicit declaration of function 'init_proc_lm78' [-Wimplicit-function-declaration]
+  init_proc_lm78();
+  ^
+statlist.c:78:4: warning: implicit declaration of function 'init_proc_sensors' [-Wimplicit-function-declaration]
+    init_proc_sensors();
+    ^
+statlist.c:81:2: warning: implicit declaration of function 'init_proc_uptime' [-Wimplicit-function-declaration]
+  init_proc_uptime();
+  ^
+statlist.c:83:2: warning: implicit declaration of function 'init_time' [-Wimplicit-function-declaration]
+  init_time();
+  ^
+statlist.c:85:2: warning: implicit declaration of function 'init_users' [-Wimplicit-function-declaration]
+  init_users();
+  ^
+statlist.c:88:2: warning: implicit declaration of function 'init_ipcstuff' [-Wimplicit-function-declaration]
+  init_ipcstuff();
+  ^
+statlist.c:91:2: warning: implicit declaration of function 'init_filestuff' [-Wimplicit-function-declaration]
+  init_filestuff();
+  ^
+statlist.c: In function 'get_statlist':
+statlist.c:125:2: warning: implicit declaration of function 'get_proc_stat' [-Wimplicit-function-declaration]
+  get_proc_stat();
+  ^
+statlist.c:127:2: warning: implicit declaration of function 'get_proc_loadavg' [-Wimplicit-function-declaration]
+  get_proc_loadavg();
+  ^
+statlist.c:129:2: warning: implicit declaration of function 'get_proc_meminfo' [-Wimplicit-function-declaration]
+  get_proc_meminfo();
+  ^
+statlist.c:131:2: warning: implicit declaration of function 'get_proc_net_dev' [-Wimplicit-function-declaration]
+  get_proc_net_dev();
+  ^
+statlist.c:134:4: warning: implicit declaration of function 'get_proc_lm78' [-Wimplicit-function-declaration]
+    get_proc_lm78();
+    ^
+statlist.c:138:4: warning: implicit declaration of function 'get_proc_sensors' [-Wimplicit-function-declaration]
+    get_proc_sensors();
+    ^
+statlist.c:141:2: warning: implicit declaration of function 'get_proc_uptime' [-Wimplicit-function-declaration]
+  get_proc_uptime();
+  ^
+statlist.c:143:2: warning: implicit declaration of function 'get_time' [-Wimplicit-function-declaration]
+  get_time();
+  ^
+statlist.c:145:2: warning: implicit declaration of function 'get_users' [-Wimplicit-function-declaration]
+  get_users();
+  ^
+statlist.c:148:2: warning: implicit declaration of function 'get_ipcstuff' [-Wimplicit-function-declaration]
+  get_ipcstuff();
+  ^
+statlist.c:151:2: warning: implicit declaration of function 'get_filestuff' [-Wimplicit-function-declaration]
+  get_filestuff();
+  ^
+statlist.c: In function 'eval_statlist':
+statlist.c:171:2: warning: implicit declaration of function 'eval_proc_stat' [-Wimplicit-function-declaration]
+  eval_proc_stat();
+  ^
+statlist.c:173:2: warning: implicit declaration of function 'eval_proc_loadavg' [-Wimplicit-function-declaration]
+  eval_proc_loadavg();
+  ^
+statlist.c:175:2: warning: implicit declaration of function 'eval_proc_meminfo' [-Wimplicit-function-declaration]
+  eval_proc_meminfo();
+  ^
+statlist.c:177:2: warning: implicit declaration of function 'eval_proc_net_dev' [-Wimplicit-function-declaration]
+  eval_proc_net_dev();
+  ^
+statlist.c:180:4: warning: implicit declaration of function 'eval_proc_lm78' [-Wimplicit-function-declaration]
+    eval_proc_lm78();
+    ^
+statlist.c:183:4: warning: implicit declaration of function 'eval_proc_sensors' [-Wimplicit-function-declaration]
+    eval_proc_sensors();
+    ^
+statlist.c:186:2: warning: implicit declaration of function 'eval_proc_uptime' [-Wimplicit-function-declaration]
+  eval_proc_uptime();
+  ^
+statlist.c:188:2: warning: implicit declaration of function 'eval_time' [-Wimplicit-function-declaration]
+  eval_time();
+  ^
+statlist.c:190:2: warning: implicit declaration of function 'eval_users' [-Wimplicit-function-declaration]
+  eval_users();
+  ^
+statlist.c:193:2: warning: implicit declaration of function 'eval_ipcstuff' [-Wimplicit-function-declaration]
+  eval_ipcstuff();
+  ^
+statlist.c:196:2: warning: implicit declaration of function 'eval_filestuff' [-Wimplicit-function-declaration]
+  eval_filestuff();
+  ^
+senddata.c: In function 'send_statlist':
+senddata.c:51:2: warning: implicit declaration of function 'sendline' [-Wimplicit-function-declaration]
+  sendline(client_fd,outbuf,buflen);
+  ^
+gcc -c -O3 procutils.c -o procutils.o
+gcc -c -O3 proc_stat.c -o proc_stat.o
+procutils.c: In function 'send_error':
+procutils.c:27:2: warning: implicit declaration of function 'sendline' [-Wimplicit-function-declaration]
+  sendline(client_fd,outbuf,buflen);
+  ^
+procutils.c: In function 'sigchld_handler':
+procutils.c:118:3: warning: implicit declaration of function 'wait' [-Wimplicit-function-declaration]
+   wait(&status);
+   ^
+gcc -c -O3 proc_loadavg.c -o proc_loadavg.o
+gcc -c -O3 proc_meminfo.c -o proc_meminfo.o
+gcc -c -O3 proc_net_dev.c -o proc_net_dev.o
+gcc -c -O3 proc_sensors.c -o proc_sensors.o
+gcc -c -O3 proc_lm78.c -o proc_lm78.o
+gcc -c -O3 proc_uptime.c -o proc_uptime.o
+gcc -c -O3 proc_version.c -o proc_version.o
+proc_version.c: In function 'init_proc_version':
+proc_version.c:71:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  delim[6] = (char) NULL;        /* terminator */
+             ^
+gcc -c -O3 time.c -o time.o
+gcc -c -O3 users.c -o users.o
+gcc -c -O3 identity.c -o identity.o
+gcc -c -O3 ipcstuff.c -o ipcstuff.o
+gcc -c -O3 filestuff.c -o filestuff.o
+gcc -c -O3 jobslist.c -o jobslist.o
+gcc -c -O3 quiklist.c -o quiklist.o
+jobslist.c: In function 'get_and_send_jobslist':
+jobslist.c:133:2: warning: implicit declaration of function 'sendline' [-Wimplicit-function-declaration]
+  sendline( client_fd, outbuf, buflen );
+  ^
+quiklist.c: In function 'get_and_send_quiklist':
+quiklist.c:63:2: warning: implicit declaration of function 'sendline' [-Wimplicit-function-declaration]
+  sendline( client_fd, outbuf, i );
+  ^
+gcc procstatd.o parsecl.o parse.o statlist.o senddata.o procutils.o proc_stat.o proc_loadavg.o proc_meminfo.o proc_net_dev.o proc_sensors.o proc_lm78.o proc_uptime.o proc_version.o time.o users.o identity.o ipcstuff.o filestuff.o jobslist.o quiklist.o -o procstatd 
+==> Entering fakeroot environment...
+==> Starting package()...
+(strip procstatd;\
+install -d /tmp/procstatd/pkg/procstatd/usr/bin; \
+install -d /tmp/procstatd/pkg/procstatd/usr/man/man8; \
+install -m 755 procstatd /tmp/procstatd/pkg/procstatd/usr/bin; \
+install -m 644 procstatd.8 /tmp/procstatd/pkg/procstatd/usr/man/man8; \
+        echo; \
+        echo)
+
+
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "procstatd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: procstatd 1.4.2-9 (Fri Nov 13 23:49:50 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

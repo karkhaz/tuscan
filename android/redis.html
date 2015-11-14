@@ -1,0 +1,477 @@
+        <html><head></head><body>
+        <h1>Report for redis on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:36</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data redis
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1679 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: redis 3.0.5-1 (Fri Nov 13 23:44:19 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) jemalloc-4.0.4-1
+
+Total Installed Size:  1.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing jemalloc...
+Optional dependencies for jemalloc
+    perl: for jeprof [installed]
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading redis-3.0.5.tar.gz...
+  -> Found redis.service
+  -> Found redis.logrotate
+  -> Found redis.conf-sane-defaults.patch
+  -> Found redis-2.8.11-use-system-jemalloc.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting redis-3.0.5.tar.gz with bsdtar
+==> Starting prepare()...
+patching file redis.conf
+Hunk #1 succeeded at 66 (offset 5 lines).
+Hunk #2 succeeded at 92 (offset 5 lines).
+Hunk #3 succeeded at 189 with fuzz 2 (offset 5 lines).
+patching file src/Makefile
+Hunk #1 succeeded at 90 (offset 6 lines).
+==> Sources are ready.
+Copied source directory to /sources/redis
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: redis 3.0.5-1 (Fri Nov 13 23:44:23 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make: Entering directory '/tmp/redis/src/redis-3.0.5'
+cd src && make all
+make[1]: Entering directory '/tmp/redis/src/redis-3.0.5/src'
+rm -rf redis-server redis-sentinel redis-cli redis-benchmark redis-check-dump redis-check-aof *.o *.gcda *.gcno *.gcov redis.info lcov-html
+(cd ../deps && make distclean)
+make[2]: Entering directory '/tmp/redis/src/redis-3.0.5/deps'
+(cd hiredis && make clean) > /dev/null || true
+(cd linenoise && make clean) > /dev/null || true
+(cd lua && make clean) > /dev/null || true
+(cd jemalloc && [ -f Makefile ] && make distclean) > /dev/null || true
+(rm -f .make-*)
+make[2]: Leaving directory '/tmp/redis/src/redis-3.0.5/deps'
+(rm -f .make-*)
+echo STD=-std=c99 -pedantic >> .make-settings
+echo WARN=-Wall -W >> .make-settings
+echo OPT=-O2 >> .make-settings
+echo MALLOC=jemalloc >> .make-settings
+echo CFLAGS= >> .make-settings
+echo LDFLAGS= >> .make-settings
+echo REDIS_CFLAGS= >> .make-settings
+echo REDIS_LDFLAGS= >> .make-settings
+echo PREV_FINAL_CFLAGS=-std=c99 -pedantic -Wall -W -O2 -g -ggdb   -I../deps/hiredis -I../deps/linenoise -I../deps/lua/src -DUSE_JEMALLOC -DJEMALLOC_NO_DEMANGLE -I/usr/include/jemalloc >> .make-settings
+echo PREV_FINAL_LDFLAGS=  -g -ggdb -rdynamic >> .make-settings
+(cd ../deps && make hiredis linenoise lua jemalloc)
+make[2]: Entering directory '/tmp/redis/src/redis-3.0.5/deps'
+(cd hiredis && make clean) > /dev/null || true
+(cd linenoise && make clean) > /dev/null || true
+(cd lua && make clean) > /dev/null || true
+(cd jemalloc && [ -f Makefile ] && make distclean) > /dev/null || true
+(rm -f .make-*)
+(echo "" > .make-cflags)
+(echo "" > .make-ldflags)
+[32;1mMAKE[0m [37;1mhiredis[0m
+[32;1mMAKE[0m [37;1mlinenoise[0m
+cd hiredis && make static
+cd linenoise && make
+make[3]: Entering directory '/tmp/redis/src/redis-3.0.5/deps/hiredis'
+make[3]: Entering directory '/tmp/redis/src/redis-3.0.5/deps/linenoise'
+arm-linux-androideabi-gcc  -Wall -Os -g  -c linenoise.c
+arm-linux-androideabi-gcc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  net.c
+arm-linux-androideabi-gcc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  hiredis.c
+make[3]: Leaving directory '/tmp/redis/src/redis-3.0.5/deps/linenoise'
+arm-linux-androideabi-gcc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  sds.c
+arm-linux-androideabi-gcc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  async.c
+[32;1mMAKE[0m [37;1mlua[0m
+cd lua/src && make all CFLAGS="-O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL " MYLDFLAGS="" AR="ar rcu"
+make[3]: Entering directory '/tmp/redis/src/redis-3.0.5/deps/lua/src'
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lapi.o lapi.c
+ar rcs libhiredis.a net.o hiredis.o sds.o async.o
+make[3]: Leaving directory '/tmp/redis/src/redis-3.0.5/deps/hiredis'
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lcode.o lcode.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ldebug.o ldebug.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ldo.o ldo.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ldump.o ldump.c
+ldo.c: In function 'f_parser':
+ldo.c:496:7: warning: unused variable 'c' [-Wunused-variable]
+   int c = luaZ_lookahead(p->z);
+       ^
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lfunc.o lfunc.c
+[32;1mMAKE[0m [37;1mjemalloc[0m
+cd jemalloc && ./configure --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS="-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops " LDFLAGS=""
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lgc.o lgc.c
+checking for xsltproc... false
+checking for gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o llex.o llex.c
+
+checking whether we are cross compiling... configure: error: in `/tmp/redis/src/redis-3.0.5/deps/jemalloc':
+configure: error: cannot run C compiled programs.
+If you meant to cross compile, use `--host'.
+See `config.log' for more details
+Makefile:79: recipe for target 'jemalloc' failed
+make[2]: *** [jemalloc] Error 1
+make[2]: *** Waiting for unfinished jobs....
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lmem.o lmem.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lobject.o lobject.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lopcodes.o lopcodes.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lparser.o lparser.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lstate.o lstate.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lstring.o lstring.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ltable.o ltable.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ltm.o ltm.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lundump.o lundump.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lvm.o lvm.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lzio.o lzio.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o strbuf.o strbuf.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o fpconv.o fpconv.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lauxlib.o lauxlib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lbaselib.o lbaselib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ldblib.o ldblib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o liolib.o liolib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lmathlib.o lmathlib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o loslib.o loslib.c
+In file included from lua.h:16:0,
+                 from loslib.c:17:
+loslib.c: In function 'os_tmpname':
+luaconf.h:657:39: warning: call to 'tmpnam' declared with attribute warning: tmpnam possibly used unsafely; consider using mkstemp [enabled by default]
+ #define lua_tmpnam(b,e)  { e = (tmpnam(b) == NULL); }
+                                       ^
+loslib.c:60:3: note: in expansion of macro 'lua_tmpnam'
+   lua_tmpnam(buff, err);
+   ^
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o ltablib.o ltablib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lstrlib.o lstrlib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o loadlib.o loadlib.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o linit.o linit.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lua_cjson.o lua_cjson.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lua_struct.o lua_struct.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lua_cmsgpack.o lua_cmsgpack.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lua_bit.o lua_bit.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o lua.o lua.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o luac.o luac.c
+arm-linux-androideabi-gcc -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL    -c -o print.o print.c
+ar rcu liblua.a lapi.o lcode.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o strbuf.o fpconv.o lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o lstrlib.o loadlib.o linit.o lua_cjson.o lua_struct.o lua_cmsgpack.o lua_bit.o	# DLL needs all object files
+ar: `u' modifier ignored since `D' is the default (see `U')
+ranlib liblua.a
+arm-linux-androideabi-gcc -o lua  lua.o liblua.a -lm 
+arm-linux-androideabi-gcc -o luac  luac.o print.o liblua.a -lm 
+make[3]: Leaving directory '/tmp/redis/src/redis-3.0.5/deps/lua/src'
+make[2]: Leaving directory '/tmp/redis/src/redis-3.0.5/deps'
+Makefile:142: recipe for target 'persist-settings' failed
+make[1]: [persist-settings] Error 2 (ignored)
+    [34mCC[0m [33mae.o[0m
+    [34mCC[0m [33madlist.o[0m
+In file included from adlist.c:34:0:
+zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory
+ #include <jemalloc/jemalloc.h>
+                               ^
+compilation terminated.
+Makefile:197: recipe for target 'adlist.o' failed
+make[1]: *** [adlist.o] Error 1
+make[1]: *** Waiting for unfinished jobs....
+In file included from ae.c:44:0:
+zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory
+ #include <jemalloc/jemalloc.h>
+                               ^
+compilation terminated.
+Makefile:197: recipe for target 'ae.o' failed
+make[1]: *** [ae.o] Error 1
+make[1]: Leaving directory '/tmp/redis/src/redis-3.0.5/src'
+Makefile:6: recipe for target 'all' failed
+make: *** [all] Error 2
+make: Leaving directory '/tmp/redis/src/redis-3.0.5'
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/redis/src/redis-3.0.5/deps/jemalloc/config.log
+____
+File /tmp/redis/src/redis-3.0.5/deps/jemalloc/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS=-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops  LDFLAGS=
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = d1d4aebb34c9
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2523: checking for xsltproc
+configure:2554: result: false
+configure:2635: checking for gcc
+configure:2662: result: arm-linux-androideabi-gcc
+configure:2891: checking for C compiler version
+configure:2900: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2911: $? = 0
+configure:2900: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2911: $? = 0
+configure:2900: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2911: $? = 1
+configure:2900: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2911: $? = 1
+configure:2931: checking whether the C compiler works
+configure:2953: arm-linux-androideabi-gcc -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5
+configure:2957: $? = 0
+configure:3005: result: yes
+configure:3008: checking for C compiler default output file name
+configure:3010: result: a.out
+configure:3016: checking for suffix of executables
+configure:3023: arm-linux-androideabi-gcc -o conftest -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5
+configure:3027: $? = 0
+configure:3049: result: 
+configure:3071: checking whether we are cross compiling
+configure:3079: arm-linux-androideabi-gcc -o conftest -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5
+configure:3083: $? = 0
+configure:3090: ./conftest
+./configure: line 3092: ./conftest: cannot execute binary file: Exec format error
+configure:3094: $? = 126
+configure:3101: error: in `/tmp/redis/src/redis-3.0.5/deps/jemalloc':
+configure:3103: error: cannot run C compiled programs.
+If you meant to cross compile, use `--host'.
+See `config.log' for more details
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value='-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=
+ac_cv_env_host_alias_value=
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_path_XSLTPROC=false
+ac_cv_prog_ac_ct_CC=arm-linux-androideabi-gcc
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+AR=''
+ARFLAGS=''
+AROUT=''
+AUTOCONF=''
+BINDIR='/usr/local/bin'
+CC='arm-linux-androideabi-gcc'
+CC_MM=''
+CFLAGS='-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '
+CPP=''
+CPPFLAGS=''
+CTARGET=''
+DATADIR='/usr/local/share'
+DEFS=''
+DSO_LDFLAGS=''
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP=''
+EXEEXT=''
+EXTRA_LDFLAGS=''
+GREP=''
+INCLUDEDIR='/usr/local/include'
+INSTALL_DATA=''
+INSTALL_PROGRAM=''
+INSTALL_SCRIPT=''
+LD=''
+LDFLAGS=''
+LDTARGET=''
+LD_PRELOAD_VAR=''
+LIBDIR='/usr/local/lib'
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MANDIR='/usr/local/share/man'
+MKLIB=''
+OBJEXT=''
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PIC_CFLAGS=''
+PREFIX='/usr/local'
+RANLIB=''
+RPATH=''
+RPATH_EXTRA=''
+SHELL='/bin/sh'
+SOREV=''
+XSLROOT=''
+XSLTPROC='false'
+a=''
+abi=''
+abs_objroot='/tmp/redis/src/redis-3.0.5/deps/jemalloc/'
+abs_srcroot='/tmp/redis/src/redis-3.0.5/deps/jemalloc/'
+ac_ct_CC='arm-linux-androideabi-gcc'
+bindir='${exec_prefix}/bin'
+build=''
+build_alias=''
+build_cpu=''
+build_os=''
+build_vendor=''
+cfghdrs_in=''
+cfghdrs_out=''
+cfgoutputs_in=''
+cfgoutputs_out=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+enable_autogen=''
+enable_code_coverage=''
+enable_debug=''
+enable_dss=''
+enable_experimental=''
+enable_fill=''
+enable_lazy_lock=''
+enable_mremap=''
+enable_munmap=''
+enable_prof=''
+enable_stats=''
+enable_tcache=''
+enable_tls=''
+enable_utrace=''
+enable_valgrind=''
+enable_xmalloc=''
+enable_zone_allocator=''
+exe=''
+exec_prefix='/usr/local'
+host=''
+host_alias=''
+host_cpu=''
+host_os=''
+host_vendor=''
+htmldir='${docdir}'
+importlib=''
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_suffix=''
+je_=''
+jemalloc_version=''
+jemalloc_version_bugfix=''
+jemalloc_version_gid=''
+jemalloc_version_major=''
+jemalloc_version_minor=''
+jemalloc_version_nrev=''
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+libprefix=''
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+o=''
+objroot=''
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr/local'
+private_namespace=''
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+rev='1'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+so=''
+srcroot=''
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+
+configure: exit 1
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

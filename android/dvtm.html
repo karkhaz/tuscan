@@ -1,0 +1,59 @@
+        <html><head></head><body>
+        <h1>Report for dvtm on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:17</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dvtm
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1927 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dvtm 0.14-2 (Fri Nov 13 23:49:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading dvtm-0.14.tar.gz...
+  -> Found config.h
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting dvtm-0.14.tar.gz with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/dvtm
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dvtm 0.14-2 (Fri Nov 13 23:50:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cleaning
+dvtm build options:
+cleaning
+CFLAGS   =  -std=c99 -I. -DVERSION="0.14" -DNDEBUG -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D_XOPEN_SOURCE_EXTENDED
+CC dvtm.c
+LDFLAGS  =  -lc -lutil -lncursesw
+CC       = arm-linux-androideabi-gcc
+CC vt.c
+vt.c:24:22: fatal error: langinfo.h: No such file or directory
+ #include <langinfo.h>
+                      ^
+compilation terminated.
+Makefile:18: recipe for target 'vt.o' failed
+make: *** [vt.o] Error 1
+make: *** Waiting for unfinished jobs....
+dvtm.c:24:20: fatal error: curses.h: No such file or directory
+ #include <curses.h>
+                    ^
+compilation terminated.
+Makefile:18: recipe for target 'dvtm.o' failed
+make: *** [dvtm.o] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

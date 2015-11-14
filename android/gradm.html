@@ -1,0 +1,126 @@
+        <html><head></head><body>
+        <h1>Report for gradm on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:48</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data gradm
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 957 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: gradm 3.1.201507191652-1 (Fri Nov 13 23:19:16 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading gradm-3.1-201507191652.tar.gz...
+  -> Downloading gradm-3.1-201507191652.tar.gz.sig...
+  -> Found learn_config
+  -> Found policy
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting gradm-3.1-201507191652.tar.gz with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/gradm
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: gradm 3.1.201507191652-1 (Fri Nov 13 23:19:18 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+/usr/bin/bison -b gradm -p gradm -d ./gradm.y
+/usr/bin/flex -Cfa -B -8 -Pgradm ./gradm.l
+/usr/bin/bison -b learn_pass1 -p learn_pass1 -d ./gradm_learn_pass1.y
+/usr/bin/bison -b learn_pass2 -p learn_pass2 -d ./gradm_learn_pass2.y
+/usr/bin/bison -b fulllearn_pass1 -p fulllearn_pass1 -d ./gradm_fulllearn_pass1.y
+/usr/bin/bison -b fulllearn_pass2 -p fulllearn_pass2 -d ./gradm_fulllearn_pass2.y
+/usr/bin/bison -b fulllearn_pass3 -p fulllearn_pass3 -d ./gradm_fulllearn_pass3.y
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_misc.o gradm_misc.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_parse.o gradm_parse.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_arg.o gradm_arg.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_pw.o gradm_pw.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_opt.o gradm_opt.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_cap.o gradm_cap.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_sha256.o gradm_sha256.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_adm.o gradm_adm.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_analyze.o gradm_analyze.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_res.o gradm_res.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_human.o gradm_human.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_learn.o gradm_learn.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_net.o gradm_net.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_nest.o gradm_nest.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_pax.o gradm_pax.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_sym.o gradm_sym.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_newlearn.o gradm_newlearn.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_fulllearn.o gradm_fulllearn.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_lib.o gradm_lib.c
+gradm_lib.c: In function 'add_to_string_array':
+gradm_lib.c:123:3: warning: to be safe all intermediate pointers in cast from 'char **' to 'const char **' must be 'const' qualified [-Wcast-qual]
+  *(const char **)(*array + size) = str;
+   ^
+/usr/bin/flex -Cfa -B -8 -Pfulllearn_pass1 ./gradm_fulllearn_pass1.l
+/usr/bin/flex -Cfa -B -8 -Pfulllearn_pass2 ./gradm_fulllearn_pass2.l
+/usr/bin/flex -Cfa -B -8 -Pfulllearn_pass3 ./gradm_fulllearn_pass3.l
+/usr/bin/flex -Cfa -B -8 -Plearn_pass1 ./gradm_learn_pass1.l
+/usr/bin/flex -Cfa -B -8 -Plearn_pass2 ./gradm_learn_pass2.l
+/usr/bin/bison -b grlearn_config -p grlearn_config -d ./grlearn_config.y
+/usr/bin/flex -Cfa -B -8 -Pgrlearn_config ./grlearn_config.l
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_globals.o gradm_globals.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm_replace.o gradm_replace.c
+/usr/bin/bison -b grlearn2_config -p grlearn2_config -d ./grlearn2_config.y
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o gradm.tab.o gradm.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.gradm.o lex.gradm.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o learn_pass1.tab.o learn_pass1.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o learn_pass2.tab.o learn_pass2.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o fulllearn_pass1.tab.o fulllearn_pass1.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o fulllearn_pass2.tab.o fulllearn_pass2.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o fulllearn_pass3.tab.o fulllearn_pass3.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.fulllearn_pass1.o lex.fulllearn_pass1.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.fulllearn_pass2.o lex.fulllearn_pass2.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.fulllearn_pass3.o lex.fulllearn_pass3.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.learn_pass1.o lex.learn_pass1.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.learn_pass2.o lex.learn_pass2.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o grlearn_config.tab.o grlearn_config.tab.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.grlearn_config.o lex.grlearn_config.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE -DIS_GRLEARN -o grlearn grlearn.c gradm_lib.c gradm_globals.c grlearn2_config.tab.c lex.grlearn_config.c  -pie
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE -o gradm gradm.tab.o lex.gradm.o learn_pass1.tab.o learn_pass2.tab.o fulllearn_pass1.tab.o fulllearn_pass2.tab.o fulllearn_pass3.tab.o gradm_misc.o gradm_parse.o gradm_arg.o gradm_pw.o gradm_opt.o gradm_cap.o gradm_sha256.o gradm_adm.o gradm_analyze.o gradm_res.o gradm_human.o gradm_learn.o gradm_net.o gradm_nest.o gradm_pax.o gradm_sym.o gradm_newlearn.o gradm_fulllearn.o gradm_lib.o lex.fulllearn_pass1.o lex.fulllearn_pass2.o lex.fulllearn_pass3.o lex.learn_pass1.o lex.learn_pass2.o grlearn_config.tab.o lex.grlearn_config.o gradm_globals.o gradm_replace.o  -pie
+gradm_lib.c: In function 'add_to_string_array':
+gradm_lib.c:123:3: warning: to be safe all intermediate pointers in cast from 'char **' to 'const char **' must be 'const' qualified [-Wcast-qual]
+  *(const char **)(*array + size) = str;
+   ^
+==> Entering fakeroot environment...
+==> Starting package()...
+/usr/bin/bison -b gradm -p gradm -d ./gradm.y
+/usr/bin/bison -b learn_pass1 -p learn_pass1 -d ./gradm_learn_pass1.y
+/usr/bin/bison -b learn_pass2 -p learn_pass2 -d ./gradm_learn_pass2.y
+/usr/bin/bison -b fulllearn_pass1 -p fulllearn_pass1 -d ./gradm_fulllearn_pass1.y
+/usr/bin/bison -b fulllearn_pass2 -p fulllearn_pass2 -d ./gradm_fulllearn_pass2.y
+/usr/bin/bison -b fulllearn_pass3 -p fulllearn_pass3 -d ./gradm_fulllearn_pass3.y
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.fulllearn_pass1.o lex.fulllearn_pass1.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.fulllearn_pass3.o lex.fulllearn_pass3.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.learn_pass1.o lex.learn_pass1.c
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE   -c -o lex.learn_pass2.o lex.learn_pass2.c
+/usr/bin/bison -b grlearn_config -p grlearn_config -d ./grlearn_config.y
+/usr/bin/bison -b grlearn2_config -p grlearn2_config -d ./grlearn2_config.y
+/usr/bin/gcc  -O2 -fPIE -Wcast-qual -DGRSEC_DIR=\"/etc/grsec\" -D_LARGEFILE64_SOURCE -o gradm gradm.tab.o lex.gradm.o learn_pass1.tab.o learn_pass2.tab.o fulllearn_pass1.tab.o fulllearn_pass2.tab.o fulllearn_pass3.tab.o gradm_misc.o gradm_parse.o gradm_arg.o gradm_pw.o gradm_opt.o gradm_cap.o gradm_sha256.o gradm_adm.o gradm_analyze.o gradm_res.o gradm_human.o gradm_learn.o gradm_net.o gradm_nest.o gradm_pax.o gradm_sym.o gradm_newlearn.o gradm_fulllearn.o gradm_lib.o lex.fulllearn_pass1.o lex.fulllearn_pass2.o lex.fulllearn_pass3.o lex.learn_pass1.o lex.learn_pass2.o grlearn_config.tab.o lex.grlearn_config.o gradm_globals.o gradm_replace.o  -pie
+Installing gradm...
+Installing gradm_pam...
+Installing grlearn...
+Installing gradm manpage...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "gradm"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: gradm 3.1.201507191652-1 (Fri Nov 13 23:19:30 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

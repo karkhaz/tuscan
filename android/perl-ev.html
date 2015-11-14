@@ -1,0 +1,334 @@
+        <html><head></head><body>
+        <h1>Report for perl-ev on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:45</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-ev
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2326 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-ev 4.21-1 (Sat Nov 14 00:19:09 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) perl-common-sense-3.74-1
+
+Total Installed Size:  0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-common-sense...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) perl-anyevent-4:7.11-1  perl-async-interrupt-1.21-2  perl-ev-4.21-1  perl-guard-1.023-2  perl-canary-stability-2006-2
+
+Total Download Size:   0.00 MiB
+Total Installed Size:  1.17 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading perl-canary-stability-2006-2-any.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-ev...
+installing perl-guard...
+installing perl-async-interrupt...
+installing perl-anyevent...
+Optional dependencies for perl-anyevent
+    perl-net-ssleay: TLS/SSL connections with AnyEvent::Handle
+    perl-json-xs: send or receive JSON with AnyEvent::Handle
+installing perl-canary-stability...
+==> Retrieving sources...
+  -> Downloading EV-4.21.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting EV-4.21.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-ev
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-ev 4.21-1 (Sat Nov 14 00:19:17 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+
+***
+*** The stability canary says: (nothing, it was driven away by harsh weather)
+***
+*** It seems you are running perl version 5.022000, likely the "official" or
+*** "standard" version. While there is nothing wrong with doing that,
+*** standard perl versions 5.022 and up are not supported by EV.
+*** While this might be fatal, it might also be all right - if you run into
+*** problems, you might want to downgrade your perl or switch to the
+*** stability branch.
+***
+*** If everything works fine, you can ignore this message.
+***
+*** Stability canary mini-FAQ:
+***
+*** Do I need to do anything?
+***    With luck, no. While some distributions are known to fail
+***    already, most should probably work. This message is here
+***    to alert you that your perl is not supported by EV,
+***    and if things go wrong, you either need to downgrade, or
+***    sidegrade to the stability variant of your perl version,
+***    or simply live with the consequences.
+***
+*** What is this canary thing?
+***    It's purpose is to check support status of EV with
+***    respect to your perl version.
+***
+*** What is this "stability branch"?
+***    It's a branch or fork of the official perl, by schmorp, to
+***    improve stability and compatibility with existing modules.
+***
+*** How can I skip this prompt on automated installs?
+***    Set PERL_CANARY_STABILITY_NOPROMPT=1 in your environment.
+***    More info is in the Canary::Stability manpage.
+***
+*** Long version of this FAQ: http://stableperl.schmorp.de/faq.html
+*** Stability Branch homepage: http://stableperl.schmorp.de/
+***
+
+Continue anyways?  [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Welcome to EV configuration. If you are in a hurry, just press return here
+and hope for the best. The defaults should usually do.
+
+Skip further questions and use defaults (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+POSIX optionally offers support for a monotonic clock source. EV
+can take advantage of this clock source to detect time jumps more
+reliably. Unfortunately, some systems are bound to be broken, so you can
+disable this here: you can completely disable the detection and use of
+the monotonic clock by answering 'n' here. Support for this clock type
+will otherwise be autodetected at both compile- and runtime. (this setting
+currently affects the use of nanosleep over select as well).
+
+Enable optional support for CLOCK_MONOTONIC (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+POSIX optionally offers support for a (potentially) high-resolution
+realtime clock interface. In a good implementation, using it is faster
+than the normal method of using gettimeofday. Unfortunately, this option
+is also bound to be broken on some systems, and current EV versions do not
+actually call gettimeofday very often, so it defaults to no.
+
+Prefer clock_gettime (CLOCK_REALTIME) over gettimeofday (y/n)? [n] n
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+EV can use various backends with various portability issues. The select
+backend is the most portable and makes for a good fallback, but it can be
+limited to a low number of file descriptors and/or might not compile. If
+you have problems with compiling ev_select.c, you might try to play around
+with disabling it here, or forcing it to use the fd_set provided by your
+OS, via the next question. I highly recommend keeping it in.
+
+Enable select backend (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+The select backend can operate in two modes. One uses the system-provided
+fd_set and is usually limited to 1024 file descriptors (64 on windows),
+the other requires your header files to define NFDBITS and declare a
+suitable fd_mask type. If you run into problems compiling ev_select.c, you
+can try forcing the use of the system fd_set here.
+
+Force use of system fd_set for select backend (y/n)? [n] n
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+The second very portable backend is poll(2). It does not exist on windows
+and various versions of Mac OS X (and on the other versions it simply
+doesn't work), but works basically everywhere else. It is recommended to use
+the default here unless you run into compile problems in ev_poll.c.
+
+Enable poll backend (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Select and poll make it hard to write efficient servers, especially if the
+number of active connections is much lower than the watched ones. GNU/Linux
+systems have a more scalable method called "epoll", which EV can use. For
+this to work, both your kernel and glibc have to support epoll, but if you
+can compile it, the detection will be done at runtime, and EV will safely
+fall back to using select when epoll isn't available. If unsure, accept
+the default.
+
+Enable epoll backend (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Similarly to the epoll backend above, EV can take advantage of kqueue on
+many BSD systems. Support for kqueue will be detected at runtime, with a
+safe fallback to other methods when it cannot be used.
+
+Note that kqueue is broken on most operating systems, so by default it
+won't be used on many platforms, but you can still create your own event
+loop with kqueue backend if you ask specifically for it.
+
+Here is what we know:
+
+NetBSD:  partially working in at least 3.1 and later. Yeah! :)
+FreeBSD: broken on at least 6.2-STABLE, spotty in later versions,
+         sockets *likely* work, ptys definitely don't.
+OpenBSD: reports indicate that it likely doesn't work
+         (similar problems as on FreeBSD).
+OS X:    completely, utterly broken on at least <= 10.6.
+
+Enable kqueue backend (y/n)? [n] n
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Similarly to the kqueue backend above, EV can take advantage of the
+solaris 10 event port interface. Support for event ports will be detected
+at runtime, with a safe fallback to other methods when it cannot be used.
+
+Enable event port backend (y/n)? [n] n
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+EV needs the functions pthread_atfork and clock_gettime. On most systems
+you need some special libraries for this (such as -lrt and -lpthread). You
+can specify additional libraries to provide these calls (and any other
+required by EV) now, or accept the default.
+
+On GNU/Linux systems, EV uses the LSB 3.1 __register_atfork function
+to avoid the dependency on libpthread, and directly uses the clock_gettime
+syscall to avoid a dependency on librt.
+
+Extra libraries for pthread_atfork and clock_gettime? [ ]  
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+A backend of a different kind is the Linux inotify(7) interface, which can
+be used to speed up (and reduce resource consumption) of stat watchers. If
+you have the include file and libc support for it, it is usually a good
+idea to enable it, as kernel availability is detected at runtime.
+
+Enable inotify support (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Another useful bit of functionality is the Linux eventfd, which is useful
+for faster signal handling (don't care) and intra-thread communications
+(more relevant). Kernel support for this will be probed at runtime, but
+your libc must contain the necessary wrapper. Glibc 2.7 and later should
+have this wrapper.
+
+Enable linux eventfd support (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Another sometimes useful bit of functionality is the Linux signalfd, which
+is useful for faster signal handling (don't care). Kernel support for
+this will be probed at runtime, but your libc must contain the necessary
+wrapper. Glibc 2.7 and later should have this wrapper.
+
+Enable linux signalfd support (y/n)? [y] y
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Very rarely, people want to tweak EV even more, e.g. to exclude
+or include certain watcher types or backends. This can be done by adding
+extra -D options here, or via the EV_EXTRA_DEFS environment variable.
+
+For example, if you run into compile problems because of missing memory
+fences (or you just want extra performance), you can tell EV to not support
+smp and threads via -DEV_NO_THREADS.
+
+Normal persons just press enter.
+
+Any extra -D options? [] 
+
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for EV
+Writing MYMETA.yml and MYMETA.json
+Running Mkbootstrap for EV ()
+chmod 644 "EV.bs"
+cp EV/MakeMaker.pm blib/lib/EV/MakeMaker.pm
+cp EV.pm blib/lib/EV.pm
+cp EV/EVAPI.h blib/lib/EV/EVAPI.h
+cp libev/ev.h blib/lib/EV/ev.h
+cp libev/ev.pod blib/lib/EV/libev.pod
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  EV.xs > EV.xsc && mv EV.xsc EV.c
+cc -c  -Ilibev -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"4.21\" -DXS_VERSION=\"4.21\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"  -DEV_USE_REALTIME=0 -DEV_USE_SELECT=1 -DEV_USE_POLL=1 -DEV_USE_EPOLL=1 -DEV_USE_KQUEUE=0 -DEV_USE_PORT=0 -DEV_USE_INOTIFY=1 -DEV_USE_EVENTFD=1 -DEV_USE_SIGNALFD=1  EV.c
+rm -f blib/arch/auto/EV/EV.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong EV.o  -o blib/arch/auto/EV/EV.so 	\
+     	\
+
+chmod 755 blib/arch/auto/EV/EV.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- EV.bs blib/arch/auto/EV/EV.bs 644
+Manifying 3 pod documents
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for EV ()
+chmod 644 "EV.bs"
+Manifying 3 pod documents
+Appending installation info to /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/auto/EV/EV.so
+Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV.pm
+Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/ev.h
+Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/libev.pod
+Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm
+Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/EVAPI.h
+Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV::MakeMaker.3pm
+Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV::libev.3pm
+Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-ev"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-ev 4.21-1 (Sat Nov 14 00:19:22 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

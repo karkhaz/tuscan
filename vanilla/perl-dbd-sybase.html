@@ -1,0 +1,138 @@
+        <html><head></head><body>
+        <h1>Report for perl-dbd-sybase on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:27</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-dbd-sybase
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1665 packages in cache
+Found permanent source directory in /sources/perl-dbd-sybase
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-dbd-sybase 1.15-4 (Sat Nov 14 05:34:27 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) unixodbc-2.3.4-1  freetds-0.95.21-1  perl-dbi-1.634-1
+
+Total Download Size:    1.99 MiB
+Total Installed Size:  22.18 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading freetds-0.95.21-1-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-dbi...
+installing unixodbc...
+installing freetds...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Unknown Client Library version - assuming FreeTDS.
+
+By default DBD::Sybase 1.05 and later use the 'CHAINED' mode (where available)
+when 'AutoCommit' is turned off. Versions 1.04 and older instead managed
+the transactions explicitly with a 'BEGIN TRAN' before the first DML
+statement. Using the 'CHAINED' mode is preferable as it is the way that
+Sybase implements AutoCommit handling for both its ODBC and JDBC drivers.
+
+Use 'CHAINED' mode by default (Y/N) [Y]: 
+Running in threaded mode - looking for _r libraries...
+
+***NOTE***
+There is an incompatibility between perl (5.8.x or later) built in threaded 
+mode and Sybase's threaded libraries, which means that signals delivered to 
+the perl process result in a segment violation.
+
+I suggest building DBD::Sybase with the normal libraries in this case to get
+reasonable behavior for signal handling.
+
+Use the threaded (lib..._r) libraries [N]: 
+OK - I'll use the normal libs
+
+Running in 64bit mode - looking for '64' libraries...
+BLK api available - found: blkid
+The DBD::Sybase module need access to a Sybase server to run the tests.
+To clear an entry please enter 'undef'
+Sybase server to use (default: SYBASE): User ID to log in to Sybase (default: sa): Password (default: undef): Sybase database to use on SYBASE (default: undef): 
+* Writing login information, including password, to file PWD.
+
+Checking if your kit is complete...
+Looks good
+Warning (mostly harmless): No library found for -lcs
+Warning (mostly harmless): No library found for -lsybtcl
+Warning (mostly harmless): No library found for -lcomn
+Warning (mostly harmless): No library found for -lintl
+Warning (mostly harmless): No library found for -lblk
+Using DBI 1.634 (for perl 5.022000 on x86_64-linux-thread-multi) installed in /usr/lib/perl5/vendor_perl/auto/DBI/
+Generating a Unix-style Makefile
+Writing Makefile for DBD::Sybase
+Writing MYMETA.yml and MYMETA.json
+cp dbd-sybase.pod blib/lib/DBD/dbd-sybase.pod
+cp Sybase.pm blib/lib/DBD/Sybase.pm
+Running Mkbootstrap for DBD::Sybase ()
+chmod 644 "Sybase.bs"
+"/usr/bin/perl" -p -e "s/~DRIVER~/Sybase/g" /usr/lib/perl5/vendor_perl/auto/DBI/Driver.xst > Sybase.xsi
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap"  Sybase.xs > Sybase.xsc && mv Sybase.xsc Sybase.c
+cc -c  -I/usr/include -DSYB_LP64 -I/usr/lib/perl5/vendor_perl/auto/DBI -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"1.15\" -DXS_VERSION=\"1.15\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Sybase.c
+In file included from /usr/lib/perl5/core_perl/CORE/perl.h:5541:0,
+                 from /usr/lib/perl5/vendor_perl/auto/DBI/DBIXS.h:23,
+                 from Sybase.h:16,
+                 from Sybase.xs:14:
+Sybase.xs: In function 'XS_DBD__Sybase__db_ping':
+Sybase.xs:83:32: warning: implicit declaration of function 'syb_ping' [-Wimplicit-function-declaration]
+     ST(0) = sv_2mortal(newSViv(syb_ping(dbh, imp_dbh)));
+                                ^
+/usr/lib/perl5/core_perl/CORE/embed.h:583:46: note: in definition of macro 'sv_2mortal'
+ #define sv_2mortal(a)  Perl_sv_2mortal(aTHX_ a)
+                                              ^
+Sybase.xs:83:24: note: in expansion of macro 'newSViv'
+     ST(0) = sv_2mortal(newSViv(syb_ping(dbh, imp_dbh)));
+                        ^
+Sybase.xs: In function 'XS_DBD__Sybase__st_cancel':
+Sybase.xs:95:13: warning: implicit declaration of function 'syb_st_cancel' [-Wimplicit-function-declaration]
+     ST(0) = syb_st_cancel(sth, imp_sth) ? &PL_sv_yes : &PL_sv_no;
+             ^
+cc -c  -I/usr/include -DSYB_LP64 -I/usr/lib/perl5/vendor_perl/auto/DBI -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"1.15\" -DXS_VERSION=\"1.15\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   dbdimp.c
+rm -f blib/arch/auto/DBD/Sybase/Sybase.so
+LD_RUN_PATH="/usr/lib" cc  -L/usr/lib -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Sybase.o dbdimp.o  -o blib/arch/auto/DBD/Sybase/Sybase.so 	\
+   -L/usr/lib -lct -ldl -lm  	\
+
+chmod 755 blib/arch/auto/DBD/Sybase/Sybase.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Sybase.bs blib/arch/auto/DBD/Sybase/Sybase.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for DBD::Sybase ()
+chmod 644 "Sybase.bs"
+Manifying 1 pod document
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-dbd-sybase/pkg/perl-dbd-sybase/usr/lib/perl5/vendor_perl/auto/DBD/Sybase/Sybase.so
+Installing /tmp/perl-dbd-sybase/pkg/perl-dbd-sybase/usr/lib/perl5/vendor_perl/DBD/Sybase.pm
+Installing /tmp/perl-dbd-sybase/pkg/perl-dbd-sybase/usr/lib/perl5/vendor_perl/DBD/dbd-sybase.pod
+Installing /tmp/perl-dbd-sybase/pkg/perl-dbd-sybase/usr/share/man/man3/DBD::Sybase.3
+Appending installation info to /tmp/perl-dbd-sybase/pkg/perl-dbd-sybase/usr/lib/perl5/core_perl/perllocal.pod
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-dbd-sybase"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-dbd-sybase 1.15-4 (Sat Nov 14 05:34:45 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

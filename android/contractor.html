@@ -1,0 +1,239 @@
+        <html><head></head><body>
+        <h1>Report for contractor on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:02:46</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data contractor
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2979 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: contractor 0.3.1-1 (Sat Nov 14 01:41:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libgee-0.18.0-1
+
+Total Installed Size:  1.41 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libgee...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (8) jsoncpp-1.6.5-1  libxml2-2.9.2-2  python2-2.7.10-2  shared-mime-info-1.5-1  sqlite-3.9.2-1  bzr-2.6.0-1  cmake-3.3.2-3  vala-0.30.0-1
+
+Total Installed Size:  167.24 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing bzr...
+Optional dependencies for bzr
+    python2-paramiko: for sftp support
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml [installed]
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+installing vala...
+==> Retrieving sources...
+  -> Downloading contractor-0.3.1.tar.gz...
+  -> Branching lp:~elementary-os/contractor/elementary-contracts ...
+You have not informed bzr of your Launchpad ID, and you must do this to
+write to Launchpad or access private data.  See "bzr help launchpad-login".
+Branched 7 revisions.
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting contractor-0.3.1.tar.gz with bsdtar
+  -> Creating working copy of elementary-contracts bzr repo...
+==> Sources are ready.
+Copied source directory to /sources/contractor
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: contractor 0.3.1-1 (Sat Nov 14 01:42:11 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Vala: /usr/sbin/valac  
+-- checking for a minimum Vala version of 0.16.0
+--   found Vala, version 0.30.0
+-- Found PkgConfig: /usr/sbin/pkg-config (found version "0.29") 
+-- checking for modules 'gee-0.8;glib-2.0;gio-2.0;gio-unix-2.0'
+--   found gee-0.8, version 0.18.0
+--   found glib-2.0, version 2.46.1
+--   found gio-2.0, version 2.46.1
+--   found gio-unix-2.0, version 2.46.1
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/contractor/src/contractor-0.3.1/build
+[  5%] Generating main.c;Application.c;Contract.c;GenericContract.c;ContractFile.c;ContractKeyFile.c;MimeTypeManager.c;ContractMatcher.c;ContractSource.c;DBusService.c;ContractDirectory.c;FileService.c;FileEnumerator.c;ContractSorter.c;Translations.c;String.c
+warning: --save-temps has no effect when -C or --ccode is set
+Compilation succeeded - 1 warning(s)
+Scanning dependencies of target contractor
+[ 11%] Building C object src/CMakeFiles/contractor.dir/Application.c.o
+[ 16%] Building C object src/CMakeFiles/contractor.dir/main.c.o
+/tmp/contractor/src/contractor-0.3.1/src/Application.vala: In function 'contractor_application_init_service':
+/tmp/contractor/src/contractor-0.3.1/src/Application.vala:36:2: warning: passing argument 3 of 'g_cclosure_new' from incompatible pointer type [enabled by default]
+         Bus.own_name (BusType.SESSION, DBUS_NAME, BusNameOwnerFlags.NONE,
+  ^
+In file included from /usr/include/glib-2.0/gobject/gobject.h:27:0,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
+                 from /usr/include/glib-2.0/glib-object.h:23,
+                 from /tmp/contractor/src/contractor-0.3.1/build/src/Application.c:22:
+/usr/include/glib-2.0/gobject/gclosure.h:224:11: note: expected 'GClosureNotify' but argument is of type 'void (*)(void *)'
+ GClosure* g_cclosure_new   (GCallback callback_func,
+           ^
+/tmp/contractor/src/contractor-0.3.1/src/Application.vala:36:2: warning: passing argument 3 of 'g_cclosure_new' from incompatible pointer type [enabled by default]
+         Bus.own_name (BusType.SESSION, DBUS_NAME, BusNameOwnerFlags.NONE,
+  ^
+In file included from /usr/include/glib-2.0/gobject/gobject.h:27:0,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
+                 from /usr/include/glib-2.0/glib-object.h:23,
+                 from /tmp/contractor/src/contractor-0.3.1/build/src/Application.c:22:
+/usr/include/glib-2.0/gobject/gclosure.h:224:11: note: expected 'GClosureNotify' but argument is of type 'void (*)(void *)'
+ GClosure* g_cclosure_new   (GCallback callback_func,
+           ^
+/tmp/contractor/src/contractor-0.3.1/src/Application.vala:36:2: warning: passing argument 3 of 'g_cclosure_new' from incompatible pointer type [enabled by default]
+         Bus.own_name (BusType.SESSION, DBUS_NAME, BusNameOwnerFlags.NONE,
+  ^
+In file included from /usr/include/glib-2.0/gobject/gobject.h:27:0,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
+                 from /usr/include/glib-2.0/glib-object.h:23,
+                 from /tmp/contractor/src/contractor-0.3.1/build/src/Application.c:22:
+/usr/include/glib-2.0/gobject/gclosure.h:224:11: note: expected 'GClosureNotify' but argument is of type 'void (*)(void *)'
+ GClosure* g_cclosure_new   (GCallback callback_func,
+           ^
+[ 22%] Building C object src/CMakeFiles/contractor.dir/Contract.c.o
+[ 27%] Building C object src/CMakeFiles/contractor.dir/GenericContract.c.o
+[ 33%] Building C object src/CMakeFiles/contractor.dir/ContractFile.c.o
+/tmp/contractor/src/contractor-0.3.1/src/ContractFile.vala: In function 'contractor_contract_file_get_contents':
+/tmp/contractor/src/contractor-0.3.1/src/ContractFile.vala:34:2: warning: passing argument 3 of 'g_file_load_contents' from incompatible pointer type [enabled by default]
+         if (file.load_contents (null, out file_data, null))
+  ^
+In file included from /usr/include/glib-2.0/gio/gio.h:65:0,
+                 from /tmp/contractor/src/contractor-0.3.1/build/src/ContractFile.c:23:
+/usr/include/glib-2.0/gio/gfile.h:1182:10: note: expected 'char **' but argument is of type 'guint8 **'
+ gboolean g_file_load_contents                (GFile                  *file,
+          ^
+[ 38%] Building C object src/CMakeFiles/contractor.dir/ContractKeyFile.c.o
+[ 44%] Building C object src/CMakeFiles/contractor.dir/MimeTypeManager.c.o
+[ 50%] Building C object src/CMakeFiles/contractor.dir/ContractMatcher.c.o
+[ 55%] Building C object src/CMakeFiles/contractor.dir/ContractSource.c.o
+[ 61%] Building C object src/CMakeFiles/contractor.dir/DBusService.c.o
+[ 66%] Building C object src/CMakeFiles/contractor.dir/ContractDirectory.c.o
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala: In function 'contractor_contract_directory_on_change_event':
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:23:2: warning: 'g_simple_async_result_new' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:51): Use 'g_task_new' instead [-Wdeprecated-declarations]
+ public class Contractor.ContractDirectory : Object {
+  ^
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:23:2: warning: 'g_simple_async_result_set_op_res_gpointer' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:75) [-Wdeprecated-declarations]
+ public class Contractor.ContractDirectory : Object {
+  ^
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala: In function 'contractor_contract_directory_on_change_event_finish':
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:23:2: warning: 'g_simple_async_result_get_op_res_gpointer' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:79) [-Wdeprecated-declarations]
+ public class Contractor.ContractDirectory : Object {
+  ^
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala: In function 'contractor_contract_directory_on_change_event_co':
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:54:4: warning: 'g_simple_async_result_complete_in_idle' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:106) [-Wdeprecated-declarations]
+             return;
+    ^
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:54:4: warning: 'g_simple_async_result_complete' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:104) [-Wdeprecated-declarations]
+             return;
+    ^
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:52:3: warning: 'g_simple_async_result_complete_in_idle' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:106) [-Wdeprecated-declarations]
+     private async void on_change_event (File file, File? other_file, FileMonitorEvent event) {
+   ^
+/tmp/contractor/src/contractor-0.3.1/src/ContractDirectory.vala:52:3: warning: 'g_simple_async_result_complete' is deprecated (declared at /usr/include/glib-2.0/gio/gsimpleasyncresult.h:104) [-Wdeprecated-declarations]
+     private async void on_change_event (File file, File? other_file, FileMonitorEvent event) {
+   ^
+[ 72%] Building C object src/CMakeFiles/contractor.dir/FileService.c.o
+[ 77%] Building C object src/CMakeFiles/contractor.dir/FileEnumerator.c.o
+/tmp/contractor/src/contractor-0.3.1/src/FileService.vala: In function 'contractor_file_service_set_up_directories':
+/tmp/contractor/src/contractor-0.3.1/src/FileService.vala:58:18: warning: assignment from incompatible pointer type [enabled by default]
+             foreach (string data_dir in Environment.get_system_data_dirs ())
+                  ^
+/tmp/contractor/src/contractor-0.3.1/src/FileEnumerator.vala: In function 'contractor_contract_file_enumerator_class_init':
+/tmp/contractor/src/contractor-0.3.1/src/FileEnumerator.vala:29:2: warning: passing argument 2 of '_vala_g_strjoinv' from incompatible pointer type [enabled by default]
+         attributes = string.joinv (",", QUERY_ATTRIBUTES);
+  ^
+FileEnumerator.c:330:15: note: expected 'gchar **' but argument is of type 'const gchar **'
+ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int str_array_length1) {
+               ^
+[ 83%] Building C object src/CMakeFiles/contractor.dir/ContractSorter.c.o
+[ 88%] Building C object src/CMakeFiles/contractor.dir/Translations.c.o
+/tmp/contractor/src/contractor-0.3.1/src/ContractSorter.vala: In function 'contractor_contract_sorter_compare_func':
+/tmp/contractor/src/contractor-0.3.1/src/ContractSorter.vala:26:9: warning: assignment from incompatible pointer type [enabled by default]
+         return strcmp (a.name.collate_key (), b.name.collate_key ());
+         ^
+In file included from /tmp/contractor/src/contractor-0.3.1/build/src/Translations.c:27:0:
+/usr/include/glib-2.0/glib/gi18n-lib.h:23:21: fatal error: libintl.h: No such file or directory
+ #include <libintl.h>
+                     ^
+compilation terminated.
+[ 94%] Building C object src/CMakeFiles/contractor.dir/String.c.o
+src/CMakeFiles/contractor.dir/build.make:466: recipe for target 'src/CMakeFiles/contractor.dir/Translations.c.o' failed
+make[2]: *** [src/CMakeFiles/contractor.dir/Translations.c.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/usr/share/vala-0.30/vapi/glib-2.0.vapi: In function 'string_strip':
+/usr/share/vala-0.30/vapi/glib-2.0.vapi:1117:2: warning: passing argument 1 of 'g_strchug' discards 'const' qualifier from pointer target type [enabled by default]
+   result._strip ();
+  ^
+In file included from /usr/include/glib-2.0/glib.h:79:0,
+                 from /tmp/contractor/src/contractor-0.3.1/build/src/String.c:21:
+/usr/include/glib-2.0/glib/gstrfuncs.h:175:23: note: expected 'gchar *' but argument is of type 'const gchar *'
+ gchar*                g_strchug        (gchar        *string);
+                       ^
+/tmp/contractor/src/contractor-0.3.1/src/String.vala: In function 'contractor_string_clean_array':
+/tmp/contractor/src/contractor-0.3.1/src/String.vala:53:10: warning: assignment from incompatible pointer type [enabled by default]
+         return container.to_array ();
+          ^
+CMakeFiles/Makefile2:117: recipe for target 'src/CMakeFiles/contractor.dir/all' failed
+make[1]: *** [src/CMakeFiles/contractor.dir/all] Error 2
+Makefile:149: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

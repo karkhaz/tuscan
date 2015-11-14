@@ -1,0 +1,246 @@
+        <html><head></head><body>
+        <h1>Report for hostapd on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:29</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hostapd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1367 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hostapd 2.5-1 (Fri Nov 13 23:30:10 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libnl-3.2.26-1
+
+Total Installed Size:  1.60 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading hostapd-2.5.tar.gz...
+  -> Found config
+  -> Found hostapd.service
+  -> Found hostapd-2.3-noscan.patch
+  -> Found openvswitch.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting hostapd-2.5.tar.gz with bsdtar
+==> Starting prepare()...
+patching file hostapd/config_file.c
+Hunk #1 succeeded at 2795 (offset 156 lines).
+patching file src/ap/ap_config.h
+Hunk #1 succeeded at 626 with fuzz 1 (offset 50 lines).
+patching file src/ap/hw_features.c
+Hunk #1 succeeded at 472 (offset -218 lines).
+patching file src/ap/ieee802_11_ht.c
+Hunk #1 succeeded at 221 (offset 1 line).
+Hunk #2 succeeded at 348 (offset 28 lines).
+patching file src/drivers/drivers.mak
+Hunk #1 succeeded at 147 (offset 2 lines).
+patching file src/drivers/drivers.mk
+patching file src/drivers/linux_ioctl.c
+Hunk #6 succeeded at 319 with fuzz 1 (offset 23 lines).
+==> Sources are ready.
+Copied source directory to /sources/hostapd
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hostapd 2.5-1 (Fri Nov 13 23:30:16 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+  CC  main.c
+  CC  config_file.c
+  CC  ../src/ap/wpa_auth_glue.c
+  CC  ../src/ap/hostapd.c
+  CC  ../src/ap/drv_callbacks.c
+  CC  ../src/ap/ap_drv_ops.c
+  CC  ../src/ap/utils.c
+  CC  ../src/ap/authsrv.c
+  CC  ../src/ap/ap_config.c
+  CC  ../src/ap/ieee802_1x.c
+  CC  ../src/ap/eap_user_db.c
+  CC  ../src/ap/ieee802_11_auth.c
+  CC  ../src/ap/sta_info.c
+  CC  ../src/ap/wpa_auth.c
+  CC  ../src/ap/tkip_countermeasures.c
+  CC  ../src/ap/ap_mlme.c
+  CC  ../src/ap/wpa_auth_ie.c
+  CC  ../src/ap/preauth_auth.c
+  CC  ../src/ap/pmksa_cache_auth.c
+  CC  ../src/ap/ieee802_11_shared.c
+  CC  ../src/ap/bss_load.c
+  CC  ../src/ap/beacon.c
+  CC  ../src/drivers/drivers.c
+  CC  ../src/utils/eloop.c
+  CC  ../src/utils/wpa_debug.c
+  CC  ../src/utils/common.c
+  CC  ../src/utils/wpabuf.c
+  CC  ../src/utils/os_unix.c
+  CC  ../src/utils/ip_addr.c
+  CC  ../src/common/ieee802_11_common.c
+  CC  ../src/common/wpa_common.c
+  CC  ../src/common/hw_features_common.c
+  CC  ../src/eapol_auth/eapol_auth_dump.c
+  CC  ../src/eapol_auth/eapol_auth_sm.c
+  CC  ../src/radius/radius.c
+  CC  ../src/radius/radius_client.c
+  CC  ../src/radius/radius_das.c
+  CC  ../src/ap/accounting.c
+  CC  ../src/ap/vlan_init.c
+  CC  ctrl_iface.c
+  CC  ../src/ap/ctrl_iface_ap.c
+  CC  ../src/ap/iapp.c
+  CC  ../src/ap/peerkey_auth.c
+In file included from ../src/drivers/linux_wext.h:35:0,
+                 from ../src/drivers/driver_hostap.c:12:
+/tmp/toolchain/sysroot/usr/include/linux/wireless.h:451:12: error: 'IFNAMSIZ' undeclared here (not in a function)
+  char name[IFNAMSIZ];
+            ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:48:0: warning: "NLMSG_ALIGNTO" redefined [enabled by default]
+ #define NLMSG_ALIGNTO 4
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:86:0: note: this is the location of the previous definition
+ #define NLMSG_ALIGNTO 4U
+ ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:49:0: warning: "NLMSG_ALIGN" redefined [enabled by default]
+ #define NLMSG_ALIGN(len) (((len) + NLMSG_ALIGNTO - 1) & ~(NLMSG_ALIGNTO - 1))
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:87:0: note: this is the location of the previous definition
+ #define NLMSG_ALIGN(len) ( ((len)+NLMSG_ALIGNTO-1) & ~(NLMSG_ALIGNTO-1) )
+ ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:51:0: warning: "NLMSG_LENGTH" redefined [enabled by default]
+ #define NLMSG_LENGTH(len) ((len) + NLMSG_ALIGN(sizeof(struct nlmsghdr)))
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:90:0: note: this is the location of the previous definition
+ #define NLMSG_LENGTH(len) ((len) + NLMSG_HDRLEN)
+ ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:53:0: warning: "NLMSG_DATA" redefined [enabled by default]
+ #define NLMSG_DATA(nlh) ((void*) (((char*) nlh) + NLMSG_LENGTH(0)))
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:92:0: note: this is the location of the previous definition
+ #define NLMSG_DATA(nlh) ((void*)(((char*)nlh) + NLMSG_LENGTH(0)))
+ ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:54:0: warning: "NLMSG_NEXT" redefined [enabled by default]
+ #define NLMSG_NEXT(nlh,len) ((len) -= NLMSG_ALIGN((nlh)->nlmsg_len), \
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:94:0: note: this is the location of the previous definition
+ #define NLMSG_NEXT(nlh,len) ((len) -= NLMSG_ALIGN((nlh)->nlmsg_len),   (struct nlmsghdr*)(((char*)(nlh)) + NLMSG_ALIGN((nlh)->nlmsg_len)))
+ ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:57:0: warning: "NLMSG_OK" redefined [enabled by default]
+ #define NLMSG_OK(nlh,len) ((len) >= (int) sizeof(struct nlmsghdr) && \
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:95:0: note: this is the location of the previous definition
+ #define NLMSG_OK(nlh,len) ((len) >= (int)sizeof(struct nlmsghdr) &&   (nlh)->nlmsg_len >= sizeof(struct nlmsghdr) &&   (nlh)->nlmsg_len <= (len))
+ ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:76:8: error: redefinition of 'struct sockaddr_nl'
+ struct sockaddr_nl
+        ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:54:8: note: originally defined here
+ struct sockaddr_nl {
+        ^
+In file included from ../src/drivers/driver_hostap.c:23:0:
+../src/drivers/priv_netlink.h:84:8: error: redefinition of 'struct nlmsghdr'
+ struct nlmsghdr
+        ^
+In file included from /tmp/toolchain/sysroot/usr/include/linux/if_link.h:22:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/netdevice.h:25,
+                 from /tmp/toolchain/sysroot/usr/include/linux/if_arp.h:21,
+                 from /tmp/toolchain/sysroot/usr/include/net/if_arp.h:2,
+                 from ../src/drivers/driver_hostap.c:20:
+/tmp/toolchain/sysroot/usr/include/linux/netlink.h:61:8: note: originally defined here
+ struct nlmsghdr {
+        ^
+../src/drivers/driver_hostap.c: In function 'hostap_init_sockets':
+../src/drivers/driver_hostap.c:218:15: error: storage size of 'ifr' isn't known
+  struct ifreq ifr;
+               ^
+../src/drivers/driver_hostap.c: In function 'hostap_set_iface_flags':
+../src/drivers/driver_hostap.c:347:15: error: storage size of 'ifr' isn't known
+  struct ifreq ifr;
+               ^
+../src/drivers/driver_hostap.c: In function 'hostapd_ioctl':
+../src/drivers/driver_hostap.c:376:16: error: 'struct iwreq' has no member named 'ifr_name'
+  os_strlcpy(iwr.ifr_name, drv->iface, IFNAMSIZ);
+                ^
+../src/drivers/driver_hostap.c: In function 'hostap_ioctl_prism2param':
+../src/drivers/driver_hostap.c:490:16: error: 'struct iwreq' has no member named 'ifr_name'
+  os_strlcpy(iwr.ifr_name, drv->iface, IFNAMSIZ);
+                ^
+../src/drivers/driver_hostap.c: In function 'hostap_set_ssid':
+../src/drivers/driver_hostap.c:548:16: error: 'struct iwreq' has no member named 'ifr_name'
+  os_strlcpy(iwr.ifr_name, drv->iface, IFNAMSIZ);
+                ^
+../src/drivers/driver_hostap.c: In function 'hostap_get_we_version':
+../src/drivers/driver_hostap.c:911:16: error: 'struct iwreq' has no member named 'ifr_name'
+  os_strlcpy(iwr.ifr_name, drv->iface, IFNAMSIZ);
+                ^
+../src/drivers/driver_hostap.c: In function 'hostap_set_freq':
+../src/drivers/driver_hostap.c:1058:16: error: 'struct iwreq' has no member named 'ifr_name'
+  os_strlcpy(iwr.ifr_name, drv->iface, IFNAMSIZ);
+                ^
+Makefile:958: recipe for target '../src/drivers/driver_hostap.o' failed
+make: *** [../src/drivers/driver_hostap.o] Error 1
+make: *** Waiting for unfinished jobs....
+  CC  ../src/drivers/driver_wired.c
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

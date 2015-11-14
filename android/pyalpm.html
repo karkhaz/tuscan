@@ -1,0 +1,69 @@
+        <html><head></head><body>
+        <h1>Report for pyalpm on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:43</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data pyalpm
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2857 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pyalpm 0.7-3 (Sat Nov 14 01:17:10 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading pyalpm-0.7.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting pyalpm-0.7.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/pyalpm
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pyalpm 0.7-3 (Sat Nov 14 01:17:11 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_deptest.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_query.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/__init__.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_database.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/config.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/pkginfo.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_upgrade.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_version.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_remove.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/action_sync.py -> build/lib.linux-x86_64-2.7/pycman
+copying pycman/transaction.py -> build/lib.linux-x86_64-2.7/pycman
+running build_ext
+building 'pyalpm' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/src
+arm-linux-androideabi-gcc -DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes -Wno-format -fPIC -I/tmp/toolchain/include/python2.7 -c src/pyalpm.c -o build/temp.linux-x86_64-2.7/src/pyalpm.o -Wall -Wextra -Wconversion -Wno-unused-parameter -Wno-unused-function -Wdeclaration-after-statement -ansi -D_FILE_OFFSET_BITS=64 -DVERSION="0.7"
+In file included from /tmp/toolchain/include/python2.7/Python.h:58:0,
+                 from src/pyalpm.h:21,
+                 from src/pyalpm.c:21:
+/tmp/toolchain/include/python2.7/pyport.h:1029:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+  ^
+In file included from src/pyalpm.c:21:0:
+src/pyalpm.h:23:18: fatal error: alpm.h: No such file or directory
+ #include <alpm.h>
+                  ^
+compilation terminated.
+error: command 'arm-linux-androideabi-gcc' failed with exit status 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

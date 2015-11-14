@@ -1,0 +1,90 @@
+        <html><head></head><body>
+        <h1>Report for lua on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data lua
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 903 packages in cache
+Found permanent source directory in /sources/lua
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: lua 5.3.1-1 (Sat Nov 14 04:51:54 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cd src && make linux V=5.3 R=5.3.1
+make[1]: Entering directory '/tmp/lua/src/lua-5.3.1/src'
+make all SYSCFLAGS="-DLUA_USE_LINUX" SYSLIBS="-Wl,-E -ldl -lreadline"
+make[2]: Entering directory '/tmp/lua/src/lua-5.3.1/src'
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lapi.o lapi.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lcode.o lcode.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lctype.o lctype.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ldebug.o ldebug.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ldo.o ldo.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ldump.o ldump.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lfunc.o lfunc.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lgc.o lgc.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o llex.o llex.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lmem.o lmem.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lobject.o lobject.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lopcodes.o lopcodes.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lparser.o lparser.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lstate.o lstate.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lstring.o lstring.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ltable.o ltable.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ltm.o ltm.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lundump.o lundump.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lvm.o lvm.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lzio.o lzio.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lauxlib.o lauxlib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lbaselib.o lbaselib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lbitlib.o lbitlib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lcorolib.o lcorolib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ldblib.o ldblib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o liolib.o liolib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lmathlib.o lmathlib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o loslib.o loslib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lstrlib.o lstrlib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o ltablib.o ltablib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lutf8lib.o lutf8lib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o loadlib.o loadlib.c
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o linit.o linit.c
+ar rcu liblua.a lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o lmathlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o loadlib.o linit.o 
+ar: `u' modifier ignored since `D' is the default (see `U')
+ranlib liblua.a
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o lua.o lua.c
+gcc -std=gnu99 -o lua   lua.o liblua.a -lm -Wl,-E -ldl -lreadline 
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1   -c -o luac.o luac.c
+gcc -std=gnu99 -o luac   luac.o liblua.a -lm -Wl,-E -ldl -lreadline 
+gcc -std=gnu99 -shared -ldl -Wl,-soname,liblua.so.5.3 -o liblua.so.5.3.1 lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o lmathlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o loadlib.o linit.o -lm 
+ln -sf liblua.so.5.3.1 liblua.so.5.3
+ln -sf liblua.so.5.3.1 liblua.so
+make[2]: Leaving directory '/tmp/lua/src/lua-5.3.1/src'
+make[1]: Leaving directory '/tmp/lua/src/lua-5.3.1/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+cd src && mkdir -p /tmp/lua/pkg/lua/usr/bin /tmp/lua/pkg/lua/usr/include /tmp/lua/pkg/lua/usr/lib /tmp/lua/pkg/lua/usr/share/man/man1 /tmp/lua/pkg/lua/usr/share/lua/5.3 /tmp/lua/pkg/lua/usr/lib/lua/5.3
+cd src && install -p -m 0755 lua luac /tmp/lua/pkg/lua/usr/bin
+cd src && cp -d lua.h luaconf.h lualib.h lauxlib.h lua.hpp /tmp/lua/pkg/lua/usr/include
+cd src && cp -d liblua.a liblua.so liblua.so.5.3 liblua.so.5.3.1 /tmp/lua/pkg/lua/usr/lib
+cd doc && cp -d lua.1 luac.1 /tmp/lua/pkg/lua/usr/share/man/man1
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "lua"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: lua 5.3.1-1 (Sat Nov 14 04:52:11 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,68 @@
+        <html><head></head><body>
+        <h1>Report for hexer on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hexer
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 986 packages in cache
+Found permanent source directory in /sources/hexer
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hexer 0.1.8-4 (Sat Nov 14 04:54:52 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o buffer.o buffer.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o tio.o tio.c
+tio.c: In function 'tio_set_colors':
+tio.c:1779:1: warning: type of 'fg' defaults to 'int' [-Wimplicit-int]
+ tio_set_colors(fg, bg)
+ ^
+tio.c:1779:1: warning: type of 'bg' defaults to 'int' [-Wimplicit-int]
+tio.c: In function 'tio_raw_readwait':
+tio.c:2177:1: warning: type of 'tmout' defaults to 'int' [-Wimplicit-int]
+ tio_raw_readwait(tmout)
+ ^
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o edit.o edit.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o main.o main.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o hexer.o hexer.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o readline.o readline.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o regex.o regex.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o port.o port.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o exh.o exh.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o set.o set.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o map.o map.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o signal.o signal.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o util.o util.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o commands.o commands.c
+cc -DHEXER_VERSION=\"0.1.8\" -O  -o bin2c bin2c.c
+./bin2c -n helptext -o helptext.c help.txt
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o helptext.o helptext.c
+cc -O -DHEXER_VERSION=\"0.1.8\"  -c -o calc.o calc.c
+cc  -o hexer buffer.o tio.o edit.o main.o hexer.o readline.o regex.o port.o exh.o set.o map.o signal.o util.o commands.o helptext.o calc.o  -lcurses -lm
+==> Entering fakeroot environment...
+==> Starting package()...
+mkdir -p /tmp/hexer/pkg/hexer/usr/bin /tmp/hexer/pkg/hexer/usr/share/man/man1
+install -s hexer /tmp/hexer/pkg/hexer/usr/bin
+install -m 644 hexer.1 /tmp/hexer/pkg/hexer/usr/share/man/man1
+[ ! -f myc ] || install -s myc /tmp/hexer/pkg/hexer/usr/bin
+[ ! -f myc ] || install -m 644 myc.1 /tmp/hexer/pkg/hexer/usr/share/man/man1
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "hexer"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: hexer 0.1.8-4 (Sat Nov 14 04:54:57 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

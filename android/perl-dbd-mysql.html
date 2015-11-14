@@ -1,0 +1,140 @@
+        <html><head></head><body>
+        <h1>Report for perl-dbd-mysql on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:53</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-dbd-mysql
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2886 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-dbd-mysql 4.032-1 (Sat Nov 14 01:22:22 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libmariadbclient-10.0.22-1  perl-dbi-1.634-1
+
+Total Installed Size:  20.92 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libmariadbclient...
+installing perl-dbi...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading DBD-mysql-4.032.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting DBD-mysql-4.032.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-dbd-mysql
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-dbd-mysql 4.032-1 (Sat Nov 14 01:22:27 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+
+
+PLEASE NOTE:
+
+For 'make test' to run properly, you must ensure that the
+database user 'tuscan' can connect to your MySQL server
+and has the proper privileges that these tests require such
+as 'drop table', 'create table', 'drop procedure', 'create procedure'
+as well as others.
+
+mysql> grant all privileges on test.* to 'tuscan'@'localhost' identified by 's3kr1t';
+
+You can also optionally set the user to run 'make test' with:
+
+perl Makefile.PL --testuser=username
+
+Warning: prerequisite Test::Deep 0 not found.
+I will use the following settings for compiling and testing:
+
+  cflags        (mysql_config ) = -I/usr/include/mysql -I/usr/include/mysql/..
+  embedded      (guessed      ) = 
+  ldflags       (mysql_config ) = 
+  libs          (mysql_config ) = -L/usr/lib -lmysqlclient -lpthread -lz -lm -lssl -lcrypto -ldl
+  mysql_config  (guessed      ) = mysql_config
+  nocatchstderr (default      ) = 0
+  nofoundrows   (default      ) = 0
+  ssl           (guessed      ) = 1
+  testdb        (default      ) = test
+  testhost      (default      ) = 
+  testpassword  (default      ) = 
+  testport      (default      ) = 
+  testsocket    (User's choice) = /tmp/socket.mysql
+  testuser      (guessed      ) = tuscan
+
+To change these settings, see 'perl Makefile.PL --help' and
+'perldoc DBD::mysql::INSTALL'.
+
+Checking if your kit is complete...
+Looks good
+Using DBI 1.634 (for perl 5.022000 on x86_64-linux-thread-multi) installed in /usr/lib/perl5/vendor_perl/auto/DBI/
+Generating a Unix-style Makefile
+Writing Makefile for DBD::mysql
+Writing MYMETA.yml and MYMETA.json
+Running Mkbootstrap for DBD::mysql ()
+chmod 644 "mysql.bs"
+cc -c  -I/usr/lib/perl5/vendor_perl/auto/DBI -I/usr/include/mysql -I/usr/include/mysql/.. -DDBD_MYSQL_WITH_SSL -DDBD_MYSQL_INSERT_ID_IS_GOOD -g  -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"4.032\" -DXS_VERSION=\"4.032\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   dbdimp.c
+cp README.pod blib/lib/DBD/README.pod
+cp lib/DBD/mysql/GetInfo.pm blib/lib/DBD/mysql/GetInfo.pm
+cp lib/DBD/mysql.pm blib/lib/DBD/mysql.pm
+cp lib/DBD/mysql/INSTALL.pod blib/lib/DBD/mysql/INSTALL.pod
+cp lib/Bundle/DBD/mysql.pm blib/lib/Bundle/DBD/mysql.pm
+"/usr/bin/perl" -p -e "s/~DRIVER~/mysql/g" /usr/lib/perl5/vendor_perl/auto/DBI/Driver.xst > mysql.xsi
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap"  mysql.xs > mysql.xsc && mv mysql.xsc mysql.c
+Warning: duplicate function definition 'do' detected in mysql.xs, line 242
+Warning: duplicate function definition 'rows' detected in mysql.xs, line 754
+cc -c  -I/usr/lib/perl5/vendor_perl/auto/DBI -I/usr/include/mysql -I/usr/include/mysql/.. -DDBD_MYSQL_WITH_SSL -DDBD_MYSQL_INSERT_ID_IS_GOOD -g  -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"4.032\" -DXS_VERSION=\"4.032\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   mysql.c
+rm -f blib/arch/auto/DBD/mysql/mysql.so
+LD_RUN_PATH="/usr/lib" "/usr/bin/perl" myld cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong dbdimp.o mysql.o  -o blib/arch/auto/DBD/mysql/mysql.so 	\
+   -L/usr/lib -lmysqlclient -lpthread -lz -lm -lssl -lcrypto -ldl  	\
+
+chmod 755 blib/arch/auto/DBD/mysql/mysql.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- mysql.bs blib/arch/auto/DBD/mysql/mysql.bs 644
+Manifying 4 pod documents
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for DBD::mysql ()
+chmod 644 "mysql.bs"
+Manifying 4 pod documents
+Appending installation info to /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/vendor_perl/auto/DBD/mysql/mysql.so
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/vendor_perl/DBD/README.pod
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/vendor_perl/DBD/mysql.pm
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/vendor_perl/DBD/mysql/INSTALL.pod
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/vendor_perl/DBD/mysql/GetInfo.pm
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/lib/perl5/vendor_perl/Bundle/DBD/mysql.pm
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/share/man/man3/DBD::mysql::INSTALL.3pm
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/share/man/man3/DBD::README.3pm
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/share/man/man3/Bundle::DBD::mysql.3pm
+Installing /tmp/perl-dbd-mysql/pkg/perl-dbd-mysql/usr/share/man/man3/DBD::mysql.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-dbd-mysql"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-dbd-mysql 4.032-1 (Sat Nov 14 01:22:34 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

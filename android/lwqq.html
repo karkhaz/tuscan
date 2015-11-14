@@ -1,0 +1,156 @@
+        <html><head></head><body>
+        <h1>Report for lwqq on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:01:02</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data lwqq
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2045 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: lwqq 0.6.1-1 (Fri Nov 13 23:55:35 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) nspr-4.10.10-1  js17-17.0.0-1  libev-4.20-1  sqlite-3.9.2-1
+
+Total Installed Size:  14.54 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libev...
+installing nspr...
+installing js17...
+installing sqlite...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) jsoncpp-1.6.5-1  libxml2-2.9.2-2  perl-error-0.17024-1  shared-mime-info-1.5-1  cmake-3.3.2-3  git-2.6.2-1
+
+Total Installed Size:  65.99 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Cloning lwqq git repo...
+Cloning into bare repository '/sources/lwqq/lwqq'...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of lwqq git repo...
+Cloning into 'lwqq'...
+done.
+Switched to a new branch 'makepkg'
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/lwqq
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: lwqq 0.6.1-1 (Fri Nov 13 23:55:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Could NOT find Sphinx (missing:  Sphinx-build_EXECUTABLE Sphinx-apidoc_EXECUTABLE) 
+-- Found PkgConfig: /usr/sbin/pkg-config (found version "0.29") 
+-- checking for module 'libcurl'
+--   found libcurl, version 7.45.0
+-- checking for module 'sqlite3'
+--   found sqlite3, version 3.9.2
+-- checking for module 'zlib'
+--   found zlib, version 1.2.8
+-- checking for module 'mozjs-17.0'
+--   found mozjs-17.0, version 17.0.4esrpre
+-- Found libev: /usr/lib/libev.so
+-- Looking for strtok_r
+-- Looking for strtok_r - found
+================lwqq flags=====================
+-- With Libev (Option)     : ON
+-- With Mozjs (Option)     : On
+-- Build Document (Option) : OFF
+===============================================
+NOTE!! add 'export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH' to ~/.xprofile when need load library from desktop application such as pidgin
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/lwqq/src/lwqq
+Scanning dependencies of target lwqq
+Scanning dependencies of target lwqq-static
+[  5%] Building C object lib/CMakeFiles/lwqq-static.dir/url.c.o
+[  5%] Building C object lib/CMakeFiles/lwqq.dir/url.c.o
+/tmp/lwqq/src/lwqq/lib/url.c:15:19: fatal error: iconv.h: No such file or directory
+ #include <iconv.h>
+                   ^
+compilation terminated.
+lib/CMakeFiles/lwqq-static.dir/build.make:62: recipe for target 'lib/CMakeFiles/lwqq-static.dir/url.c.o' failed
+make[2]: *** [lib/CMakeFiles/lwqq-static.dir/url.c.o] Error 1
+CMakeFiles/Makefile2:124: recipe for target 'lib/CMakeFiles/lwqq-static.dir/all' failed
+make[1]: *** [lib/CMakeFiles/lwqq-static.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+/tmp/lwqq/src/lwqq/lib/url.c:15:19: fatal error: iconv.h: No such file or directory
+ #include <iconv.h>
+                   ^
+compilation terminated.
+lib/CMakeFiles/lwqq.dir/build.make:62: recipe for target 'lib/CMakeFiles/lwqq.dir/url.c.o' failed
+make[2]: *** [lib/CMakeFiles/lwqq.dir/url.c.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+[  8%] Building C object lib/CMakeFiles/lwqq.dir/logger.c.o
+CMakeFiles/Makefile2:87: recipe for target 'lib/CMakeFiles/lwqq.dir/all' failed
+make[1]: *** [lib/CMakeFiles/lwqq.dir/all] Error 2
+Makefile:149: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

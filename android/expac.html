@@ -1,0 +1,56 @@
+        <html><head></head><body>
+        <h1>Report for expac on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:13</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data expac
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2932 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: expac 4-3 (Sat Nov 14 01:30:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading expac-4.tar.gz...
+  -> Downloading expac-4.tar.gz.sig...
+  -> Found 0001-fix-target-processing.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting expac-4.tar.gz with bsdtar
+==> Starting prepare()...
+patching file expac.c
+==> Sources are ready.
+Copied source directory to /sources/expac
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: expac 4-3 (Sat Nov 14 01:30:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-gcc -std=c11 -g -pedantic -Wall -Wextra -Wno-missing-field-initializers  -DVERSION=\"4\" -D_GNU_SOURCE    expac.c conf.c conf.h util.h  -lalpm -o expac
+pod2man --section=1 --center="expac manual" --name="EXPAC" --release="expac 4" README.pod expac.1
+/bin/sh: pod2man: command not found
+Makefile:24: recipe for target 'expac.1' failed
+make: *** [expac.1] Error 127
+make: *** Waiting for unfinished jobs....
+expac.c:27:18: fatal error: alpm.h: No such file or directory
+ #include <alpm.h>
+                  ^
+compilation terminated.
+conf.c:3:18: fatal error: glob.h: No such file or directory
+ #include <glob.h>
+                  ^
+compilation terminated.
+<builtin>: recipe for target 'expac' failed
+make: *** [expac] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

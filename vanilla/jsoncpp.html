@@ -1,0 +1,164 @@
+        <html><head></head><body>
+        <h1>Report for jsoncpp on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:44</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data jsoncpp
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 698 packages in cache
+Found permanent source directory in /sources/jsoncpp
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: jsoncpp 1.6.5-1 (Sat Nov 14 04:46:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.83 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 5.2.0
+-- The CXX compiler identification is GNU 5.2.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- JsonCpp Version: 1.6.5
+-- Found PythonInterp: /usr/bin/python (found suitable version "3.5", minimum required is "2.6") 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/jsoncpp/src/jsoncpp-1.6.5
+Scanning dependencies of target jsoncpp_lib
+[ 11%] Building CXX object src/lib_json/CMakeFiles/jsoncpp_lib.dir/json_reader.cpp.o
+[ 22%] Building CXX object src/lib_json/CMakeFiles/jsoncpp_lib.dir/json_value.cpp.o
+[ 33%] Building CXX object src/lib_json/CMakeFiles/jsoncpp_lib.dir/json_writer.cpp.o
+[ 44%] Linking CXX shared library libjsoncpp.so
+[ 44%] Built target jsoncpp_lib
+Scanning dependencies of target jsontestrunner_exe
+[ 55%] Building CXX object src/jsontestrunner/CMakeFiles/jsontestrunner_exe.dir/main.cpp.o
+[ 66%] Linking CXX executable jsontestrunner_exe
+[ 66%] Built target jsontestrunner_exe
+Scanning dependencies of target jsoncpp_test
+[ 77%] Building CXX object src/test_lib_json/CMakeFiles/jsoncpp_test.dir/jsontest.cpp.o
+[ 88%] Building CXX object src/test_lib_json/CMakeFiles/jsoncpp_test.dir/main.cpp.o
+[100%] Linking CXX executable jsoncpp_test
+Testing ValueTest/checkNormalizeFloatingPointStr: OK
+Testing ValueTest/memberCount: OK
+Testing ValueTest/objects: OK
+Testing ValueTest/arrays: OK
+Testing ValueTest/arrayIssue252: OK
+Testing ValueTest/null: OK
+Testing ValueTest/strings: OK
+Testing ValueTest/bools: OK
+Testing ValueTest/integers: OK
+Testing ValueTest/nonIntegers: OK
+Testing ValueTest/compareNull: OK
+Testing ValueTest/compareInt: OK
+Testing ValueTest/compareUInt: OK
+Testing ValueTest/compareDouble: OK
+Testing ValueTest/compareString: OK
+Testing ValueTest/compareBoolean: OK
+Testing ValueTest/compareArray: OK
+Testing ValueTest/compareObject: OK
+Testing ValueTest/compareType: OK
+Testing ValueTest/offsetAccessors: OK
+Testing ValueTest/typeChecksThrowExceptions: OK
+Testing ValueTest/StaticString: OK
+Testing ValueTest/CommentBefore: OK
+Testing ValueTest/zeroes: OK
+Testing ValueTest/zeroesInKeys: OK
+Testing WriterTest/dropNullPlaceholders: OK
+Testing StreamWriterTest/dropNullPlaceholders: OK
+Testing StreamWriterTest/writeZeroes: OK
+Testing ReaderTest/parseWithNoErrors: OK
+Testing ReaderTest/parseWithNoErrorsTestingOffsets: OK
+Testing ReaderTest/parseWithOneError: OK
+Testing ReaderTest/parseChineseWithOneError: OK
+Testing ReaderTest/parseWithDetailError: OK
+Testing CharReaderTest/parseWithNoErrors: OK
+Testing CharReaderTest/parseWithNoErrorsTestingOffsets: OK
+Testing CharReaderTest/parseWithOneError: OK
+Testing CharReaderTest/parseChineseWithOneError: OK
+Testing CharReaderTest/parseWithDetailError: OK
+Testing CharReaderTest/parseWithStackLimit: OK
+Testing CharReaderStrictModeTest/dupKeys: OK
+Testing CharReaderFailIfExtraTest/issue164: OK
+Testing CharReaderFailIfExtraTest/issue107: OK
+Testing CharReaderFailIfExtraTest/commentAfterObject: OK
+Testing CharReaderFailIfExtraTest/commentAfterArray: OK
+Testing CharReaderFailIfExtraTest/commentAfterBool: OK
+Testing CharReaderAllowDropNullTest/issue178: OK
+Testing CharReaderAllowSingleQuotesTest/issue182: OK
+Testing CharReaderAllowZeroesTest/issue176: OK
+Testing BuilderTest/settings: OK
+Testing IteratorTest/distance: OK
+Testing IteratorTest/names: OK
+Testing IteratorTest/indexes: OK
+All 52 tests passed
+[100%] Built target jsoncpp_test
+==> Entering fakeroot environment...
+==> Starting package()...
+[ 44%] Built target jsoncpp_lib
+[ 66%] Built target jsontestrunner_exe
+[100%] Built target jsoncpp_test
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/lib/pkgconfig/jsoncpp.pc
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/lib/libjsoncpp.so.1.6.5
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/lib/libjsoncpp.so.1
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/lib/libjsoncpp.so
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/features.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/json.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/forwards.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/config.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/value.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/version.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/autolink.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/assertions.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/writer.h
+-- Installing: /tmp/jsoncpp/pkg/jsoncpp/usr/include/json/reader.h
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "jsoncpp"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: jsoncpp 1.6.5-1 (Sat Nov 14 04:47:29 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,197 @@
+        <html><head></head><body>
+        <h1>Report for python-systemd on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-systemd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 3004 packages in cache
+Found permanent source directory in /sources/python-systemd
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-systemd 230-2 (Sat Nov 14 09:44:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) perl-error-0.17024-1  sqlite-3.9.2-1  git-2.6.2-1  python2-2.7.10-2
+
+Total Installed Size:  101.91 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts [installed]
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+sed -n -r 's/,//g; s/#define (SD_MESSAGE_[A-Z0-9_]+)\s.*/add_id(m, "\1", \1) JOINER/p' </usr/include//systemd/sd-messages.h >systemd/id128-constants.h
+/usr/bin/python3 setup.py build
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-3.5
+creating build/lib.linux-x86_64-3.5/systemd
+copying systemd/__init__.py -> build/lib.linux-x86_64-3.5/systemd
+copying systemd/journal.py -> build/lib.linux-x86_64-3.5/systemd
+copying systemd/daemon.py -> build/lib.linux-x86_64-3.5/systemd
+running build_ext
+building 'systemd/_journal' extension
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/systemd
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/_journal.c -o build/temp.linux-x86_64-3.5/systemd/_journal.o
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/pyutil.c -o build/temp.linux-x86_64-3.5/systemd/pyutil.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/systemd/_journal.o build/temp.linux-x86_64-3.5/systemd/pyutil.o -L/usr/lib -lsystemd -lpython3.5m -o build/lib.linux-x86_64-3.5/systemd/_journal.cpython-35m-x86_64-linux-gnu.so
+building 'systemd/_reader' extension
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/_reader.c -o build/temp.linux-x86_64-3.5/systemd/_reader.o
+systemd/_reader.c: In function 'Reader_next':
+systemd/_reader.c:362:16: warning: 'r' may be used uninitialized in this function [-Wmaybe-uninitialized]
+         return PyBool_FromLong(r);
+                ^
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/pyutil.c -o build/temp.linux-x86_64-3.5/systemd/pyutil.o
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/strv.c -o build/temp.linux-x86_64-3.5/systemd/strv.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/systemd/_reader.o build/temp.linux-x86_64-3.5/systemd/pyutil.o build/temp.linux-x86_64-3.5/systemd/strv.o -L/usr/lib -lsystemd -lpython3.5m -o build/lib.linux-x86_64-3.5/systemd/_reader.cpython-35m-x86_64-linux-gnu.so
+building 'systemd/_daemon' extension
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/_daemon.c -o build/temp.linux-x86_64-3.5/systemd/_daemon.o
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/pyutil.c -o build/temp.linux-x86_64-3.5/systemd/pyutil.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/systemd/_daemon.o build/temp.linux-x86_64-3.5/systemd/pyutil.o -L/usr/lib -lsystemd -lpython3.5m -o build/lib.linux-x86_64-3.5/systemd/_daemon.cpython-35m-x86_64-linux-gnu.so
+building 'systemd/id128' extension
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/id128.c -o build/temp.linux-x86_64-3.5/systemd/id128.o
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/pyutil.c -o build/temp.linux-x86_64-3.5/systemd/pyutil.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/systemd/id128.o build/temp.linux-x86_64-3.5/systemd/pyutil.o -L/usr/lib -lsystemd -lpython3.5m -o build/lib.linux-x86_64-3.5/systemd/id128.cpython-35m-x86_64-linux-gnu.so
+building 'systemd/login' extension
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/login.c -o build/temp.linux-x86_64-3.5/systemd/login.o
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/pyutil.c -o build/temp.linux-x86_64-3.5/systemd/pyutil.o
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python3.5m -c systemd/strv.c -o build/temp.linux-x86_64-3.5/systemd/strv.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/systemd/login.o build/temp.linux-x86_64-3.5/systemd/pyutil.o build/temp.linux-x86_64-3.5/systemd/strv.o -L/usr/lib -lsystemd -lpython3.5m -o build/lib.linux-x86_64-3.5/systemd/login.cpython-35m-x86_64-linux-gnu.so
+sed -n -r 's/,//g; s/#define (SD_MESSAGE_[A-Z0-9_]+)\s.*/add_id(m, "\1", \1) JOINER/p' </usr/include//systemd/sd-messages.h >systemd/id128-constants.h
+/usr/bin/python2 setup.py build
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/systemd
+copying systemd/__init__.py -> build/lib.linux-x86_64-2.7/systemd
+copying systemd/journal.py -> build/lib.linux-x86_64-2.7/systemd
+copying systemd/daemon.py -> build/lib.linux-x86_64-2.7/systemd
+running build_ext
+building 'systemd/_journal' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/systemd
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/_journal.c -o build/temp.linux-x86_64-2.7/systemd/_journal.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/pyutil.c -o build/temp.linux-x86_64-2.7/systemd/pyutil.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/systemd/_journal.o build/temp.linux-x86_64-2.7/systemd/pyutil.o -L/usr/lib -lsystemd -lpython2.7 -o build/lib.linux-x86_64-2.7/systemd/_journal.so
+building 'systemd/_reader' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/_reader.c -o build/temp.linux-x86_64-2.7/systemd/_reader.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/pyutil.c -o build/temp.linux-x86_64-2.7/systemd/pyutil.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/strv.c -o build/temp.linux-x86_64-2.7/systemd/strv.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/systemd/_reader.o build/temp.linux-x86_64-2.7/systemd/pyutil.o build/temp.linux-x86_64-2.7/systemd/strv.o -L/usr/lib -lsystemd -lpython2.7 -o build/lib.linux-x86_64-2.7/systemd/_reader.so
+building 'systemd/_daemon' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/_daemon.c -o build/temp.linux-x86_64-2.7/systemd/_daemon.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/pyutil.c -o build/temp.linux-x86_64-2.7/systemd/pyutil.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/systemd/_daemon.o build/temp.linux-x86_64-2.7/systemd/pyutil.o -L/usr/lib -lsystemd -lpython2.7 -o build/lib.linux-x86_64-2.7/systemd/_daemon.so
+building 'systemd/id128' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/id128.c -o build/temp.linux-x86_64-2.7/systemd/id128.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/pyutil.c -o build/temp.linux-x86_64-2.7/systemd/pyutil.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/systemd/id128.o build/temp.linux-x86_64-2.7/systemd/pyutil.o -L/usr/lib -lsystemd -lpython2.7 -o build/lib.linux-x86_64-2.7/systemd/id128.so
+building 'systemd/login' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/login.c -o build/temp.linux-x86_64-2.7/systemd/login.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/pyutil.c -o build/temp.linux-x86_64-2.7/systemd/pyutil.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPACKAGE_VERSION="230" -DLIBSYSTEMD_VERSION=227 -I/usr/include/python2.7 -c systemd/strv.c -o build/temp.linux-x86_64-2.7/systemd/strv.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/systemd/login.o build/temp.linux-x86_64-2.7/systemd/pyutil.o build/temp.linux-x86_64-2.7/systemd/strv.o -L/usr/lib -lsystemd -lpython2.7 -o build/lib.linux-x86_64-2.7/systemd/login.so
+==> Entering fakeroot environment...
+==> Starting package_python-systemd()...
+running install
+running install_lib
+creating /tmp/python-systemd/pkg/python-systemd/usr
+creating /tmp/python-systemd/pkg/python-systemd/usr/lib
+creating /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5
+creating /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages
+creating /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/_reader.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/_daemon.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/journal.py -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/_journal.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/__init__.py -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/daemon.py -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/login.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+copying build/lib.linux-x86_64-3.5/systemd/id128.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd
+byte-compiling /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd/journal.py to journal.cpython-35.pyc
+byte-compiling /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd/__init__.py to __init__.cpython-35.pyc
+byte-compiling /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/systemd/daemon.py to daemon.cpython-35.pyc
+writing byte-compilation script '/tmp/tmpjnwr5kw6.py'
+/usr/bin/python3 -O /tmp/tmpjnwr5kw6.py
+removing /tmp/tmpjnwr5kw6.py
+running install_egg_info
+Writing /tmp/python-systemd/pkg/python-systemd/usr/lib/python3.5/site-packages/python_systemd-230-py3.5.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-systemd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python2-systemd()...
+running install
+running install_lib
+creating /tmp/python-systemd/pkg/python2-systemd/usr
+creating /tmp/python-systemd/pkg/python2-systemd/usr/lib
+creating /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7
+creating /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages
+creating /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/_reader.so -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/journal.py -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/_daemon.so -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/__init__.py -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/daemon.py -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/_journal.so -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/id128.so -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+copying build/lib.linux-x86_64-2.7/systemd/login.so -> /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd
+byte-compiling /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd/journal.py to journal.pyc
+byte-compiling /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd/__init__.py to __init__.pyc
+byte-compiling /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/systemd/daemon.py to daemon.pyc
+writing byte-compilation script '/tmp/tmp5rYhva.py'
+/usr/bin/python2 -O /tmp/tmp5rYhva.py
+removing /tmp/tmp5rYhva.py
+running install_egg_info
+Writing /tmp/python-systemd/pkg/python2-systemd/usr/lib/python2.7/site-packages/python_systemd-230-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-systemd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-systemd 230-2 (Sat Nov 14 09:45:07 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 2ed9d3d931c78610450ba1f5bab7b830e3f2a3ac6cb03a7b5f07b3c6fb149e62: rename /usr/local/google/home/khazem/docker/aufs/diff/2ed9d3d931c78610450ba1f5bab7b830e3f2a3ac6cb03a7b5f07b3c6fb149e62 /usr/local/google/home/khazem/docker/aufs/diff/2ed9d3d931c78610450ba1f5bab7b830e3f2a3ac6cb03a7b5f07b3c6fb149e62-removing: device or resource busy></pre></code>
+        </body></html>

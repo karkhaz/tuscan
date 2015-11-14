@@ -1,0 +1,439 @@
+        <html><head></head><body>
+        <h1>Report for obexfs on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data obexfs
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1543 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: obexfs 0.12-4 (Fri Nov 13 23:39:09 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) bluez-libs-5.36-1  openobex-1.7.1-1  fuse-2.9.4-1  obexftp-0.24-5
+
+Total Download Size:   0.09 MiB
+Total Installed Size:  1.38 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading obexftp-0.24-5-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing fuse...
+installing bluez-libs...
+installing openobex...
+installing obexftp...
+Optional dependencies for obexftp
+    ruby: ruby bindings
+    tk: TCL/Tk bindings
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading obexfs-0.12.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting obexfs-0.12.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/obexfs
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: obexfs 0.12-4 (Fri Nov 13 23:39:15 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+/tmp/obexfs/src/obexfs-0.12/missing: Unknown `--run' option
+Try `/tmp/obexfs/src/obexfs-0.12/missing --help' for more information
+configure: WARNING: `missing' script is too old or missing
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... yes
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking for x86_64-unknown-linux-ranlib... no
+checking for ranlib... ranlib
+configure: WARNING: In the future, Autoconf will not detect cross-tools
+whose name does not start with the host triplet.  If you think this
+configuration is useful to you, please write to autoconf@gnu.org.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for x86_64-unknown-linux-pkg-config... no
+checking for pkg-config... /usr/sbin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for FUSE... yes
+checking for OBEXFTP... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating fuse/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/obexfs/src/obexfs-0.12'
+Making all in fuse
+make[2]: Entering directory '/tmp/obexfs/src/obexfs-0.12/fuse'
+if arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I. -I..    -Wall -W -Wmissing-declarations -Wmissing-prototypes -O2 -D_FILE_OFFSET_BITS=64 -I/usr/include/fuse -I/usr/include/obexftp -I/usr/include/multicobex -I/usr/include/bfb  -MT obexfs.o -MD -MP -MF ".deps/obexfs.Tpo" -c -o obexfs.o obexfs.c; \
+then mv -f ".deps/obexfs.Tpo" ".deps/obexfs.Po"; else rm -f ".deps/obexfs.Tpo"; exit 1; fi
+if arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I. -I..    -Wall -W -Wmissing-declarations -Wmissing-prototypes -O2 -D_FILE_OFFSET_BITS=64 -I/usr/include/fuse -I/usr/include/obexftp -I/usr/include/multicobex -I/usr/include/bfb  -MT obexautofs.o -MD -MP -MF ".deps/obexautofs.Tpo" -c -o obexautofs.o obexautofs.c; \
+then mv -f ".deps/obexautofs.Tpo" ".deps/obexautofs.Po"; else rm -f ".deps/obexautofs.Tpo"; exit 1; fi
+obexfs.c:44:29: fatal error: obexftp/obexftp.h: No such file or directory
+ #include <obexftp/obexftp.h>
+                             ^
+compilation terminated.
+Makefile:232: recipe for target 'obexfs.o' failed
+make[2]: *** [obexfs.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+obexautofs.c:49:29: fatal error: obexftp/obexftp.h: No such file or directory
+ #include <obexftp/obexftp.h>
+                             ^
+compilation terminated.
+Makefile:232: recipe for target 'obexautofs.o' failed
+make[2]: *** [obexautofs.o] Error 1
+make[2]: Leaving directory '/tmp/obexfs/src/obexfs-0.12/fuse'
+Makefile:217: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/tmp/obexfs/src/obexfs-0.12'
+Makefile:155: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/obexfs/src/obexfs-0.12/config.log
+____
+File /tmp/obexfs/src/obexfs-0.12/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by ObexFS configure 0.12, which was
+generated by GNU Autoconf 2.61.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = e84d926e80c1
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1748: checking for a BSD-compatible install
+configure:1804: result: /usr/bin/install -c
+configure:1815: checking whether build environment is sane
+configure:1858: result: yes
+configure:1882: WARNING: `missing' script is too old or missing
+configure:1923: checking for gawk
+configure:1939: found /usr/sbin/gawk
+configure:1950: result: gawk
+configure:1961: checking whether make sets $(MAKE)
+configure:1982: result: yes
+configure:2058: checking for x86_64-unknown-linux-strip
+configure:2088: result: no
+configure:2098: checking for strip
+configure:2114: found /usr/sbin/strip
+configure:2125: result: strip
+configure:2177: checking for x86_64-unknown-linux-gcc
+configure:2204: result: arm-linux-androideabi-gcc
+configure:2482: checking for C compiler version
+configure:2489: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2492: $? = 0
+configure:2499: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2502: $? = 0
+configure:2509: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2512: $? = 1
+configure:2535: checking for C compiler default output file name
+configure:2562: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2565: $? = 0
+configure:2603: result: a.out
+configure:2620: checking whether the C compiler works
+configure:2630: ./a.out
+./configure: line 2631: ./a.out: cannot execute binary file: Exec format error
+configure:2633: $? = 126
+configure:2650: result: yes
+configure:2657: checking whether we are cross compiling
+configure:2659: result: yes
+configure:2662: checking for suffix of executables
+configure:2669: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2672: $? = 0
+configure:2696: result: 
+configure:2702: checking for suffix of object files
+configure:2728: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2731: $? = 0
+configure:2754: result: o
+configure:2758: checking whether we are using the GNU C compiler
+configure:2787: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2793: $? = 0
+configure:2810: result: yes
+configure:2815: checking whether arm-linux-androideabi-gcc accepts -g
+configure:2845: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:2851: $? = 0
+configure:2950: result: yes
+configure:2967: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3041: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3047: $? = 0
+configure:3070: result: none needed
+configure:3099: checking for style of include used by make
+configure:3127: result: GNU
+configure:3155: checking dependency style of arm-linux-androideabi-gcc
+configure:3245: result: gcc3
+configure:3265: checking for x86_64-unknown-linux-ranlib
+configure:3295: result: no
+configure:3305: checking for ranlib
+configure:3321: found /usr/sbin/ranlib
+configure:3332: result: ranlib
+configure:3346: WARNING: In the future, Autoconf will not detect cross-tools
+whose name does not start with the host triplet.  If you think this
+configuration is useful to you, please write to autoconf@gnu.org.
+configure:3371: checking for a BSD-compatible install
+configure:3427: result: /usr/bin/install -c
+configure:3445: checking for x86_64-unknown-linux-pkg-config
+configure:3478: result: no
+configure:3488: checking for pkg-config
+configure:3506: found /usr/sbin/pkg-config
+configure:3518: result: /usr/sbin/pkg-config
+configure:3547: checking pkg-config is at least version 0.9.0
+configure:3550: result: yes
+configure:3561: checking for FUSE
+configure:3569: $PKG_CONFIG --exists --print-errors "fuse"
+configure:3572: $? = 0
+configure:3587: $PKG_CONFIG --exists --print-errors "fuse"
+configure:3590: $? = 0
+configure:3666: result: yes
+configure:3673: checking for OBEXFTP
+configure:3778: result: yes
+configure:3899: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by ObexFS config.status 0.12, which was
+generated by GNU Autoconf 2.61.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on e84d926e80c1
+
+config.status:637: creating Makefile
+config.status:637: creating fuse/Makefile
+config.status:637: creating config.h
+config.status:893: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_FUSE_CFLAGS_set=
+ac_cv_env_FUSE_CFLAGS_value=
+ac_cv_env_FUSE_LIBS_set=
+ac_cv_env_FUSE_LIBS_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_OBEXFTP_CFLAGS_set=set
+ac_cv_env_OBEXFTP_CFLAGS_value='-I/usr/include/obexftp -I/usr/include/multicobex -I/usr/include/bfb'
+ac_cv_env_OBEXFTP_LIBS_set=set
+ac_cv_env_OBEXFTP_LIBS_value='-lobexftp -lmulticobex -lbfb -lopenobex -lbluetooth'
+ac_cv_env_PKG_CONFIG_set=
+ac_cv_env_PKG_CONFIG_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_objext=o
+ac_cv_path_ac_pt_PKG_CONFIG=/usr/sbin/pkg-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_ac_ct_RANLIB=ranlib
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+pkg_cv_FUSE_CFLAGS='-D_FILE_OFFSET_BITS=64 -I/usr/include/fuse'
+pkg_cv_FUSE_LIBS='-lfuse -pthread'
+pkg_cv_OBEXFTP_CFLAGS='-I/usr/include/obexftp -I/usr/include/multicobex -I/usr/include/bfb'
+pkg_cv_OBEXFTP_LIBS='-lobexftp -lmulticobex -lbfb -lopenobex -lbluetooth'
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='aclocal-1.9'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='tar'
+AUTOCONF='autoconf'
+AUTOHEADER='autoheader'
+AUTOMAKE='automake-1.9'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=''
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+FUSE_CFLAGS='-D_FILE_OFFSET_BITS=64 -I/usr/include/fuse'
+FUSE_LIBS='-lfuse -pthread'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='${SHELL} $(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKEINFO='makeinfo'
+OBEXFTP_CFLAGS='-I/usr/include/obexftp -I/usr/include/multicobex -I/usr/include/bfb'
+OBEXFTP_LIBS='-lobexftp -lmulticobex -lbfb -lopenobex -lbluetooth'
+OBJEXT='o'
+PACKAGE='obexfs'
+PACKAGE_BUGREPORT='zany@triq.net'
+PACKAGE_NAME='ObexFS'
+PACKAGE_STRING='ObexFS 0.12'
+PACKAGE_TARNAME='obexfs'
+PACKAGE_VERSION='0.12'
+PATH_SEPARATOR=':'
+PKG_CONFIG='/usr/sbin/pkg-config'
+RANLIB='ranlib'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='0.12'
+ac_ct_CC=''
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__leading_dot='.'
+am__quote=''
+am__tar='${AMTAR} chof - "$$tardir"'
+am__untar='${AMTAR} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='/tmp/obexfs/src/obexfs-0.12/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='mkdir -p --'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define PACKAGE_NAME "ObexFS"
+#define PACKAGE_TARNAME "obexfs"
+#define PACKAGE_VERSION "0.12"
+#define PACKAGE_STRING "ObexFS 0.12"
+#define PACKAGE_BUGREPORT "zany@triq.net"
+#define PACKAGE "obexfs"
+#define VERSION "0.12"
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

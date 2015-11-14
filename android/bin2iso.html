@@ -1,0 +1,195 @@
+        <html><head></head><body>
+        <h1>Report for bin2iso on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data bin2iso
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2083 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: bin2iso 1.9b-4 (Fri Nov 13 23:58:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading bin2iso19b_linux.c...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+==> Sources are ready.
+Copied source directory to /sources/bin2iso
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: bin2iso 1.9b-4 (Fri Nov 13 23:58:06 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Entering fakeroot environment...
+==> Starting package()...
+bin2iso19b_linux.c:114:1: warning: return type defaults to 'int' [-Wreturn-type]
+ buffered_fread(unsigned char *array, unsigned int size) {
+ ^
+bin2iso19b_linux.c: In function 'buffered_fread':
+bin2iso19b_linux.c:128:30: warning: statement with no effect [-Wunused-value]
+          while(i++ < size) { array[i] == 0; }/* zero fill the rest */
+                              ^
+bin2iso19b_linux.c: In function 'getTrackinfo':
+bin2iso19b_linux.c:240:7: warning: pointer targets in passing argument 1 of 'strncpy' differ in signedness [-Wpointer-sign]
+       strncpy(track->num, &Line[8], 2); track->num[2] = '\0';
+       ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:77:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strncpy(char* __restrict, const char* __restrict, size_t);
+               ^
+bin2iso19b_linux.c:252:4: warning: pointer targets in passing argument 1 of 'strcpy' differ in signedness [-Wpointer-sign]
+    strcpy(track->name, sBinFilename);
+    ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:57:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcpy(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:254:4: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+    strcat(track->name, "-");
+    ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:58:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcat(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:255:4: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+    strcat(track->name, track->num);
+    ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:58:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcat(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:255:4: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+    strcat(track->name, track->num);
+    ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:58:15: note: expected 'const char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcat(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:262:7: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+       strcat(track->name, ".iso");
+       ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:58:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcat(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:264:7: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+       strcat(track->name, ".wav");
+       ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:58:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcat(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:266:7: warning: format '%d' expects argument of type 'int', but argument 2 has type 'unsigned char *' [-Wformat=]
+       printf("Track %d Unsupported mode\n", track->num);
+       ^
+bin2iso19b_linux.c:282:46: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+          min = ((Line[13]-'0')<<4) | Line[14]-'0';
+                                              ^
+bin2iso19b_linux.c:283:46: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+          sec = ((Line[16]-'0')<<4) | Line[17]-'0';
+                                              ^
+bin2iso19b_linux.c:284:48: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+          block = ((Line[19]-'0')<<4) | Line[20]-'0';
+                                                ^
+bin2iso19b_linux.c: In function 'dotrack':
+bin2iso19b_linux.c:329:4: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+    if(startidx != 0) printf("\nNote: PreGap = %d frames\n", startidx-preidx);
+    ^
+bin2iso19b_linux.c:334:7: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
+       printf("Creating %s (%06d,%06d) ", sOutFilename, startidx, endidx-1);
+       ^
+bin2iso19b_linux.c:334:7: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long int' [-Wformat=]
+bin2iso19b_linux.c:336:7: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+       printf("Converting (%06d,%06d) ", startidx, endidx-1);
+       ^
+bin2iso19b_linux.c:336:7: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
+bin2iso19b_linux.c:415:10: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+          if (startidx%PROG_INTERVAL == 0) { printf("\b\b\b\b\b\b%06d", startidx); }
+          ^
+bin2iso19b_linux.c:422:10: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+          if (startidx%PROG_INTERVAL == 0) { printf("\b\b\b\b\b\b%06d", startidx); }
+          ^
+bin2iso19b_linux.c:496:10: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+          if (startidx%PROG_INTERVAL == 0) { printf("\b\b\b\b\b\b%06d", startidx); }
+          ^
+bin2iso19b_linux.c: In function 'checkGaps':
+bin2iso19b_linux.c:604:8: warning: unused variable 'c' [-Wunused-variable]
+    int c = 0;
+        ^
+bin2iso19b_linux.c: In function 'main':
+bin2iso19b_linux.c:696:7: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'int' [-Wformat=]
+       printf("   -nob         - Doesn't use overburn data past %ld sectors.    \n", CD74_MAX_SECTORS);
+       ^
+bin2iso19b_linux.c:792:10: warning: too many arguments for format [-Wformat-extra-args]
+          printf ("Error: Filename not found on first line of cuefile.\n", argv[1]);
+          ^
+bin2iso19b_linux.c:882:13: warning: pointer targets in passing argument 1 of 'strcpy' differ in signedness [-Wpointer-sign]
+             strcpy(tracks[i].name, "obdatatemp.bin");
+             ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:57:15: note: expected 'char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcpy(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:934:10: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+          );
+          ^
+bin2iso19b_linux.c:943:10: warning: pointer targets in passing argument 2 of 'rename' differ in signedness [-Wpointer-sign]
+          if( 0 != rename(sBinFilename, tracks[0].name) ) {
+          ^
+In file included from bin2iso19b_linux.c:1:0:
+/tmp/toolchain/sysroot/usr/include/stdio.h:285:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int rename(const char*, const char*);
+            ^
+bin2iso19b_linux.c:961:13: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(sOutFilename, trackA.name);
+             ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:58:15: note: expected 'const char * __restrict__' but argument is of type 'unsigned char *'
+ extern char*  strcat(char* __restrict, const char* __restrict);
+               ^
+bin2iso19b_linux.c:963:10: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+          if ( ((doOneTrack == 1) && strcmp(trackA.num, sTrack)==0) || (doOneTrack == 0) ) {
+          ^
+In file included from bin2iso19b_linux.c:2:0:
+/tmp/toolchain/sysroot/usr/include/string.h:55:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int    strcmp(const char *, const char *) __purefunc;
+               ^
+bin2iso19b_linux.c:982:16: warning: implicit declaration of function 'ftruncate' [-Wimplicit-function-declaration]
+                if( -1 == ftruncate(fileno(fdBinFile), trackA.offset1) ) {
+                ^
+bin2iso19b_linux.c:989:16: warning: pointer targets in passing argument 2 of 'rename' differ in signedness [-Wpointer-sign]
+                if( 0 != rename(sBinFilename, trackA.name) ) {
+                ^
+In file included from bin2iso19b_linux.c:1:0:
+/tmp/toolchain/sysroot/usr/include/stdio.h:285:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int rename(const char*, const char*);
+            ^
+bin2iso19b_linux.c:999:16: warning: pointer targets in passing argument 1 of 'fopen' differ in signedness [-Wpointer-sign]
+                fdBinFile = fopen(trackA.name, "rb+"); // gets closed in doTrack...
+                ^
+In file included from bin2iso19b_linux.c:1:0:
+/tmp/toolchain/sysroot/usr/include/stdio.h:227:7: note: expected 'const char * __restrict__' but argument is of type 'unsigned char *'
+ FILE *fopen(const char * __restrict , const char * __restrict);
+       ^
+bin2iso19b_linux.c:648:22: warning: unused variable 'count' [-Wunused-variable]
+    unsigned long int count = 0;
+                      ^
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "bin2iso"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: bin2iso 1.9b-4 (Fri Nov 13 23:58:06 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

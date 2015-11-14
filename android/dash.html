@@ -1,0 +1,1830 @@
+        <html><head></head><body>
+        <h1>Report for dash on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dash
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2136 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dash 0.5.8-1 (Sat Nov 14 00:03:30 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading dash-0.5.8.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting dash-0.5.8.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/dash
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dash 0.5.8-1 (Sat Nov 14 00:03:31 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking for bison... bison -y
+checking for build system compiler... cc
+checking for __attribute__((__alias__()))... yes
+checking alloca.h usability... yes
+checking alloca.h presence... yes
+checking for alloca.h... yes
+checking paths.h usability... yes
+checking paths.h presence... yes
+checking for paths.h... yes
+checking whether _PATH_BSHELL is declared... yes
+checking whether _PATH_DEVNULL is declared... yes
+checking whether _PATH_TTY is declared... yes
+checking whether isblank is declared... yes
+checking size of intmax_t... 8
+checking size of long long int... 8
+checking whether PRIdMAX is declared... yes
+checking for bsearch... yes
+checking for faccessat... yes
+checking for getpwnam... yes
+checking for getrlimit... yes
+checking for isalpha... yes
+checking for killpg... yes
+checking for mempcpy... no
+checking for sigsetmask... yes
+checking for stpcpy... yes
+checking for strchrnul... no
+checking for strsignal... yes
+checking for strtod... yes
+checking for strtoimax... yes
+checking for strtoumax... yes
+checking for sysconf... yes
+checking for signal... yes
+checking for stat64... yes
+checking for open64... yes
+checking for history_init in -ledit... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/dash/src/dash-0.5.8'
+Making all in src
+make[2]: Entering directory '/tmp/dash/src/dash-0.5.8/src'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -E -x c -o builtins.def builtins.def.in
+cc -I. -I.. -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -g -O2 -Wall    -o mknodes mknodes.c
+sh mktokens
+sh mktokens
+sh mkbuiltins builtins.def
+cc -I. -I.. -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -g -O2 -Wall    -o mksyntax mksyntax.c
+./mknodes nodetypes nodes.c.pat
+./mksyntax
+make  all-am
+make[3]: Entering directory '/tmp/dash/src/dash-0.5.8/src'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT alias.o -MD -MP -MF .deps/alias.Tpo -c -o alias.o alias.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT arith_yacc.o -MD -MP -MF .deps/arith_yacc.Tpo -c -o arith_yacc.o arith_yacc.c
+mv -f .deps/alias.Tpo .deps/alias.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT arith_yylex.o -MD -MP -MF .deps/arith_yylex.Tpo -c -o arith_yylex.o arith_yylex.c
+mv -f .deps/arith_yacc.Tpo .deps/arith_yacc.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT cd.o -MD -MP -MF .deps/cd.Tpo -c -o cd.o cd.c
+In file included from arith_yylex.c:44:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/arith_yylex.Tpo .deps/arith_yylex.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT error.o -MD -MP -MF .deps/error.Tpo -c -o error.o error.c
+mv -f .deps/cd.Tpo .deps/cd.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT eval.o -MD -MP -MF .deps/eval.Tpo -c -o eval.o eval.c
+In file included from error.c:54:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/error.Tpo .deps/error.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT exec.o -MD -MP -MF .deps/exec.Tpo -c -o exec.o exec.c
+In file included from exec.c:72:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/eval.Tpo .deps/eval.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT expand.o -MD -MP -MF .deps/expand.Tpo -c -o expand.o expand.c
+mv -f .deps/exec.Tpo .deps/exec.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT histedit.o -MD -MP -MF .deps/histedit.Tpo -c -o histedit.o histedit.c
+In file included from expand.c:74:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/histedit.Tpo .deps/histedit.Po
+mv -f .deps/expand.Tpo .deps/expand.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT input.o -MD -MP -MF .deps/input.Tpo -c -o input.o input.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT jobs.o -MD -MP -MF .deps/jobs.Tpo -c -o jobs.o jobs.c
+In file included from jobs.c:70:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+jobs.c: In function 'waitproc':
+jobs.c:1139:3: warning: implicit declaration of function 'wait3' [-Wimplicit-function-declaration]
+   err = wait3(status, flags, NULL);
+   ^
+mv -f .deps/input.Tpo .deps/input.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT mail.o -MD -MP -MF .deps/mail.Tpo -c -o mail.o mail.c
+mv -f .deps/jobs.Tpo .deps/jobs.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/mail.Tpo .deps/mail.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT memalloc.o -MD -MP -MF .deps/memalloc.Tpo -c -o memalloc.o memalloc.c
+In file included from memalloc.c:44:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/main.Tpo .deps/main.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT miscbltin.o -MD -MP -MF .deps/miscbltin.Tpo -c -o miscbltin.o miscbltin.c
+mv -f .deps/memalloc.Tpo .deps/memalloc.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT mystring.o -MD -MP -MF .deps/mystring.Tpo -c -o mystring.o mystring.c
+In file included from mystring.c:57:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/mystring.Tpo .deps/mystring.Po
+mv -f .deps/miscbltin.Tpo .deps/miscbltin.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT options.o -MD -MP -MF .deps/options.Tpo -c -o options.o options.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT parser.o -MD -MP -MF .deps/parser.Tpo -c -o parser.o parser.c
+In file included from parser.c:57:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/parser.Tpo .deps/parser.Po
+mv -f .deps/options.Tpo .deps/options.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT redir.o -MD -MP -MF .deps/redir.Tpo -c -o redir.o redir.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT show.o -MD -MP -MF .deps/show.Tpo -c -o show.o show.c
+mv -f .deps/show.Tpo .deps/show.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT trap.o -MD -MP -MF .deps/trap.Tpo -c -o trap.o trap.c
+mv -f .deps/redir.Tpo .deps/redir.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT output.o -MD -MP -MF .deps/output.Tpo -c -o output.o output.c
+mv -f .deps/trap.Tpo .deps/trap.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT printf.o -MD -MP -MF .deps/printf.Tpo -c -o printf.o `test -f 'bltin/printf.c' || echo './'`bltin/printf.c
+In file included from output.c:65:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+In file included from bltin/printf.c:60:0:
+./system.h: In function 'sigclearmask':
+./system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+mv -f .deps/output.Tpo .deps/output.Po
+mv -f .deps/printf.Tpo .deps/printf.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT system.o -MD -MP -MF .deps/system.Tpo -c -o system.o system.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -include ../config.h -DBSD=1 -DSHELL -DIFS_BROKEN  -Wall  -MT test.o -MD -MP -MF .deps/test.Tpo -c -o test.o `test -f 'bltin/test.c' || echo './'`bltin/test.c
+In file included from system.c:62:0:
+system.h: In function 'sigclearmask':
+system.h:40:2: warning: implicit declaration of function 'sigsetmask' [-Wimplicit-function-declaration]
+  sigsetmask(0);
+  ^
+bltin/test.c: In function 'test_file_access':
+bltin/test.c:494:42: error: 'AT_EACCESS' undeclared (first use in this function)
+  return !faccessat(AT_FDCWD, path, mode, AT_EACCESS);
+                                          ^
+bltin/test.c:494:42: note: each undeclared identifier is reported only once for each function it appears in
+bltin/test.c:495:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+mv -f .deps/system.Tpo .deps/system.Po
+Makefile:399: recipe for target 'test.o' failed
+make[3]: *** [test.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+make[3]: Leaving directory '/tmp/dash/src/dash-0.5.8/src'
+Makefile:258: recipe for target 'all' failed
+make[2]: *** [all] Error 2
+make[2]: Leaving directory '/tmp/dash/src/dash-0.5.8/src'
+Makefile:279: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/tmp/dash/src/dash-0.5.8'
+Makefile:219: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/dash/src/dash-0.5.8/config.log
+____
+File /tmp/dash/src/dash-0.5.8/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by dash configure 0.5.8, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --bindir=/usr/bin --mandir=/usr/share/man --exec-prefix= --with-libedit
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = f39f9b62c7d3
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2426: checking for a BSD-compatible install
+configure:2494: result: /usr/bin/install -c
+configure:2505: checking whether build environment is sane
+configure:2555: result: yes
+configure:2604: checking for x86_64-unknown-linux-strip
+configure:2634: result: no
+configure:2644: checking for strip
+configure:2660: found /usr/sbin/strip
+configure:2671: result: strip
+configure:2696: checking for a thread-safe mkdir -p
+configure:2735: result: /usr/sbin/mkdir -p
+configure:2748: checking for gawk
+configure:2764: found /usr/sbin/gawk
+configure:2775: result: gawk
+configure:2786: checking whether make sets $(MAKE)
+configure:2808: result: yes
+configure:2901: checking for x86_64-unknown-linux-gcc
+configure:2928: result: arm-linux-androideabi-gcc
+configure:3197: checking for C compiler version
+configure:3206: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3217: $? = 0
+configure:3206: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:3217: $? = 0
+configure:3206: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3217: $? = 1
+configure:3206: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3217: $? = 1
+configure:3237: checking whether the C compiler works
+configure:3259: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:3263: $? = 0
+configure:3311: result: yes
+configure:3314: checking for C compiler default output file name
+configure:3316: result: a.out
+configure:3322: checking for suffix of executables
+configure:3329: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3333: $? = 0
+configure:3355: result: 
+configure:3377: checking whether we are cross compiling
+configure:3385: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3389: $? = 0
+configure:3396: ./conftest
+./configure: line 3398: ./conftest: cannot execute binary file: Exec format error
+configure:3400: $? = 126
+configure:3415: result: yes
+configure:3420: checking for suffix of object files
+configure:3442: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3446: $? = 0
+configure:3467: result: o
+configure:3471: checking whether we are using the GNU C compiler
+configure:3490: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3490: $? = 0
+configure:3499: result: yes
+configure:3508: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3528: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3528: $? = 0
+configure:3569: result: yes
+configure:3586: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3649: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3649: $? = 0
+configure:3662: result: none needed
+configure:3693: checking for style of include used by make
+configure:3721: result: GNU
+configure:3747: checking dependency style of arm-linux-androideabi-gcc
+configure:3858: result: gcc3
+configure:3879: checking how to run the C preprocessor
+configure:3910: arm-linux-androideabi-gcc -E  conftest.c
+configure:3910: $? = 0
+configure:3924: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3924: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3949: result: arm-linux-androideabi-gcc -E
+configure:3969: arm-linux-androideabi-gcc -E  conftest.c
+configure:3969: $? = 0
+configure:3983: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3983: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4012: checking for grep that handles long lines and -e
+configure:4070: result: /usr/sbin/grep
+configure:4075: checking for egrep
+configure:4137: result: /usr/sbin/grep -E
+configure:4142: checking for ANSI C header files
+configure:4162: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4162: $? = 0
+configure:4246: result: yes
+configure:4259: checking for sys/types.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for sys/stat.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for stdlib.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for string.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for memory.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for strings.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for inttypes.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for stdint.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4259: checking for unistd.h
+configure:4259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4259: $? = 0
+configure:4259: result: yes
+configure:4272: checking minix/config.h usability
+configure:4272: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:54:26: fatal error: minix/config.h: No such file or directory
+ #include <minix/config.h>
+                          ^
+compilation terminated.
+configure:4272: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <minix/config.h>
+configure:4272: result: no
+configure:4272: checking minix/config.h presence
+configure:4272: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:21:26: fatal error: minix/config.h: No such file or directory
+ #include <minix/config.h>
+                          ^
+compilation terminated.
+configure:4272: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <minix/config.h>
+configure:4272: result: no
+configure:4272: checking for minix/config.h
+configure:4272: result: no
+configure:4293: checking whether it is safe to define __EXTENSIONS__
+configure:4311: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4311: $? = 0
+configure:4318: result: yes
+configure:4337: checking for bison
+configure:4353: found /usr/sbin/bison
+configure:4364: result: bison -y
+configure:4377: checking for build system compiler
+configure:4384: result: cc
+configure:4388: checking for __attribute__((__alias__()))
+configure:4403: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4403: $? = 0
+configure:4408: result: yes
+configure:4440: checking alloca.h usability
+configure:4440: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4440: $? = 0
+configure:4440: result: yes
+configure:4440: checking alloca.h presence
+configure:4440: arm-linux-androideabi-gcc -E  conftest.c
+configure:4440: $? = 0
+configure:4440: result: yes
+configure:4440: checking for alloca.h
+configure:4440: result: yes
+configure:4440: checking paths.h usability
+configure:4440: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4440: $? = 0
+configure:4440: result: yes
+configure:4440: checking paths.h presence
+configure:4440: arm-linux-androideabi-gcc -E  conftest.c
+configure:4440: $? = 0
+configure:4440: result: yes
+configure:4440: checking for paths.h
+configure:4440: result: yes
+configure:4451: checking whether _PATH_BSHELL is declared
+configure:4451: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4451: $? = 0
+configure:4451: result: yes
+configure:4467: checking whether _PATH_DEVNULL is declared
+configure:4467: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4467: $? = 0
+configure:4467: result: yes
+configure:4483: checking whether _PATH_TTY is declared
+configure:4483: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4483: $? = 0
+configure:4483: result: yes
+configure:4500: checking whether isblank is declared
+configure:4500: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4500: $? = 0
+configure:4500: result: yes
+configure:4517: checking size of intmax_t
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4522: $? = 0
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:66:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 0)];
+            ^
+configure:4522: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 0)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:66:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 1)];
+            ^
+configure:4522: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 1)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:66:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 3)];
+            ^
+configure:4522: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 3)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:66:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 7)];
+            ^
+configure:4522: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (intmax_t))) <= 7)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4522: $? = 0
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4522: $? = 0
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4522: $? = 0
+configure:4522: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4522: $? = 0
+configure:4536: result: 8
+configure:4550: checking size of long long int
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4555: $? = 0
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:67:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 0)];
+            ^
+configure:4555: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 0)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:67:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 1)];
+            ^
+configure:4555: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 1)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:67:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 3)];
+            ^
+configure:4555: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 3)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:67:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 7)];
+            ^
+configure:4555: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (long long int))) <= 7)];
+| test_array [0] = 0;
+| return test_array [0];
+| 
+|   ;
+|   return 0;
+| }
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4555: $? = 0
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4555: $? = 0
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4555: $? = 0
+configure:4555: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4555: $? = 0
+configure:4569: result: 8
+configure:4586: checking whether PRIdMAX is declared
+configure:4586: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4586: $? = 0
+configure:4586: result: yes
+configure:4607: checking for bsearch
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for faccessat
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for getpwnam
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for getrlimit
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for isalpha
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:59:6: warning: conflicting types for built-in function 'isalpha' [enabled by default]
+ char isalpha ();
+      ^
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for killpg
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for mempcpy
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:61:6: warning: conflicting types for built-in function 'mempcpy' [enabled by default]
+ char mempcpy ();
+      ^
+/tmp/ccW0Ie5a.o:conftest.c:function main: error: undefined reference to 'mempcpy'
+collect2: error: ld returned 1 exit status
+configure:4607: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| #define SIZEOF_LONG_LONG_INT 8
+| #define HAVE_BSEARCH 1
+| #define HAVE_FACCESSAT 1
+| #define HAVE_GETPWNAM 1
+| #define HAVE_GETRLIMIT 1
+| #define HAVE_ISALPHA 1
+| #define HAVE_KILLPG 1
+| /* end confdefs.h.  */
+| /* Define mempcpy to an innocuous variant, in case <limits.h> declares mempcpy.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define mempcpy innocuous_mempcpy
+| 
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char mempcpy (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+| 
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+| 
+| #undef mempcpy
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char mempcpy ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_mempcpy || defined __stub___mempcpy
+| choke me
+| #endif
+| 
+| int
+| main ()
+| {
+| return mempcpy ();
+|   ;
+|   return 0;
+| }
+configure:4607: result: no
+configure:4607: checking for sigsetmask
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for stpcpy
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:62:6: warning: conflicting types for built-in function 'stpcpy' [enabled by default]
+ char stpcpy ();
+      ^
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for strchrnul
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+/tmp/cc6x2a1z.o:conftest.c:function main: error: undefined reference to 'strchrnul'
+collect2: error: ld returned 1 exit status
+configure:4607: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| #define SIZEOF_LONG_LONG_INT 8
+| #define HAVE_BSEARCH 1
+| #define HAVE_FACCESSAT 1
+| #define HAVE_GETPWNAM 1
+| #define HAVE_GETRLIMIT 1
+| #define HAVE_ISALPHA 1
+| #define HAVE_KILLPG 1
+| #define HAVE_SIGSETMASK 1
+| #define HAVE_STPCPY 1
+| /* end confdefs.h.  */
+| /* Define strchrnul to an innocuous variant, in case <limits.h> declares strchrnul.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define strchrnul innocuous_strchrnul
+| 
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char strchrnul (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+| 
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+| 
+| #undef strchrnul
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char strchrnul ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_strchrnul || defined __stub___strchrnul
+| choke me
+| #endif
+| 
+| int
+| main ()
+| {
+| return strchrnul ();
+|   ;
+|   return 0;
+| }
+configure:4607: result: no
+configure:4607: checking for strsignal
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for strtod
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for strtoimax
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for strtoumax
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4607: checking for sysconf
+configure:4607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4607: $? = 0
+configure:4607: result: yes
+configure:4646: checking for signal
+configure:4646: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4646: $? = 0
+configure:4646: result: yes
+configure:4661: checking for stat64
+configure:4661: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4661: $? = 0
+configure:4661: result: yes
+configure:4679: checking for open64
+configure:4679: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4679: $? = 0
+configure:4679: result: yes
+configure:4699: checking for history_init in -ledit
+configure:4724: arm-linux-androideabi-gcc -o conftest    conftest.c -ledit   >&5
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -ledit
+/tmp/ccZsd0Tk.o:conftest.c:function main: error: undefined reference to 'history_init'
+collect2: error: ld returned 1 exit status
+configure:4724: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "dash"
+| #define PACKAGE_TARNAME "dash"
+| #define PACKAGE_VERSION "0.5.8"
+| #define PACKAGE_STRING "dash 0.5.8"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "dash"
+| #define VERSION "0.5.8"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define HAVE_ALIAS_ATTRIBUTE 1
+| #define HAVE_ALLOCA_H 1
+| #define HAVE_PATHS_H 1
+| #define HAVE_DECL_ISBLANK 1
+| #define SIZEOF_INTMAX_T 8
+| #define SIZEOF_LONG_LONG_INT 8
+| #define HAVE_BSEARCH 1
+| #define HAVE_FACCESSAT 1
+| #define HAVE_GETPWNAM 1
+| #define HAVE_GETRLIMIT 1
+| #define HAVE_ISALPHA 1
+| #define HAVE_KILLPG 1
+| #define HAVE_SIGSETMASK 1
+| #define HAVE_STPCPY 1
+| #define HAVE_STRSIGNAL 1
+| #define HAVE_STRTOD 1
+| #define HAVE_STRTOIMAX 1
+| #define HAVE_STRTOUMAX 1
+| #define HAVE_SYSCONF 1
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char history_init ();
+| int
+| main ()
+| {
+| return history_init ();
+|   ;
+|   return 0;
+| }
+configure:4733: result: no
+configure:4897: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by dash config.status 0.5.8, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on f39f9b62c7d3
+
+config.status:878: creating Makefile
+config.status:878: creating src/Makefile
+config.status:878: creating config.h
+config.status:1107: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_YACC_set=
+ac_cv_env_YACC_value=
+ac_cv_env_YFLAGS_set=
+ac_cv_env_YFLAGS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_bsearch=yes
+ac_cv_func_faccessat=yes
+ac_cv_func_getpwnam=yes
+ac_cv_func_getrlimit=yes
+ac_cv_func_isalpha=yes
+ac_cv_func_killpg=yes
+ac_cv_func_mempcpy=no
+ac_cv_func_open64=yes
+ac_cv_func_signal=yes
+ac_cv_func_sigsetmask=yes
+ac_cv_func_stat64=yes
+ac_cv_func_stpcpy=yes
+ac_cv_func_strchrnul=no
+ac_cv_func_strsignal=yes
+ac_cv_func_strtod=yes
+ac_cv_func_strtoimax=yes
+ac_cv_func_strtoumax=yes
+ac_cv_func_sysconf=yes
+ac_cv_have_decl_PRIdMAX=yes
+ac_cv_have_decl__PATH_BSHELL=yes
+ac_cv_have_decl__PATH_DEVNULL=yes
+ac_cv_have_decl__PATH_TTY=yes
+ac_cv_have_decl_isblank=yes
+ac_cv_header_alloca_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_minix_config_h=no
+ac_cv_header_paths_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_edit_history_init=no
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_CPP='arm-linux-androideabi-gcc -E'
+ac_cv_prog_YACC='bison -y'
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+ac_cv_safe_to_define___extensions__=yes
+ac_cv_sizeof_intmax_t=8
+ac_cv_sizeof_long_long_int=8
+am_cv_CC_dependencies_compiler_type=gcc3
+dash_cv_have_attribute_alias=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/dash/src/dash-0.5.8/missing --run aclocal-1.11'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AUTOCONF='${SHELL} /tmp/dash/src/dash-0.5.8/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/dash/src/dash-0.5.8/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/dash/src/dash-0.5.8/missing --run automake-1.11'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CC_FOR_BUILD='cc'
+CFLAGS=''
+CPP='arm-linux-androideabi-gcc -E'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/dash/src/dash-0.5.8/missing --run makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='dash'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='dash'
+PACKAGE_STRING='dash 0.5.8'
+PACKAGE_TARNAME='dash'
+PACKAGE_URL=''
+PACKAGE_VERSION='0.5.8'
+PATH_SEPARATOR=':'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='0.5.8'
+YACC='bison -y'
+YFLAGS=''
+ac_ct_CC=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='/usr/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix=''
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/dash/src/dash-0.5.8/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='/usr/share/man'
+mkdir_p='/usr/sbin/mkdir -p'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "dash"
+#define PACKAGE_TARNAME "dash"
+#define PACKAGE_VERSION "0.5.8"
+#define PACKAGE_STRING "dash 0.5.8"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "dash"
+#define VERSION "0.5.8"
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define __EXTENSIONS__ 1
+#define _ALL_SOURCE 1
+#define _GNU_SOURCE 1
+#define _POSIX_PTHREAD_SEMANTICS 1
+#define _TANDEM_SOURCE 1
+#define HAVE_ALIAS_ATTRIBUTE 1
+#define HAVE_ALLOCA_H 1
+#define HAVE_PATHS_H 1
+#define HAVE_DECL_ISBLANK 1
+#define SIZEOF_INTMAX_T 8
+#define SIZEOF_LONG_LONG_INT 8
+#define HAVE_BSEARCH 1
+#define HAVE_FACCESSAT 1
+#define HAVE_GETPWNAM 1
+#define HAVE_GETRLIMIT 1
+#define HAVE_ISALPHA 1
+#define HAVE_KILLPG 1
+#define HAVE_SIGSETMASK 1
+#define HAVE_STPCPY 1
+#define HAVE_STRSIGNAL 1
+#define HAVE_STRTOD 1
+#define HAVE_STRTOIMAX 1
+#define HAVE_STRTOUMAX 1
+#define HAVE_SYSCONF 1
+#define SMALL 1
+#define WITH_LINENO 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

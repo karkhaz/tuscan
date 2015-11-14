@@ -1,0 +1,541 @@
+        <html><head></head><body>
+        <h1>Report for bridge-utils on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:19</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data bridge-utils
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2139 packages in cache
+Found permanent source directory in /sources/bridge-utils
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: bridge-utils 1.5-2 (Sat Nov 14 06:06:36 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+aclocal: warning: autoconf input should be named 'configure.ac', not 'configure.in'
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for x86_64-unknown-linux-ranlib... no
+checking for ranlib... ranlib
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for an ANSI C-conforming const... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for gethostname... yes
+checking for socket... yes
+checking for strdup... yes
+checking for uname... yes
+checking for if_nametoindex... yes
+checking for if_indextoname... yes
+configure: creating ./config.status
+config.status: creating doc/Makefile
+config.status: WARNING:  'doc/Makefile.in' seems to ignore the --datarootdir setting
+config.status: creating libbridge/Makefile
+config.status: creating brctl/Makefile
+config.status: WARNING:  'brctl/Makefile.in' seems to ignore the --datarootdir setting
+config.status: creating Makefile
+config.status: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status: creating bridge-utils.spec
+config.status: creating libbridge/config.h
+for x in libbridge brctl doc; do make  -C $x ; done
+make[1]: Entering directory '/tmp/bridge-utils/src/bridge-utils-1.5/libbridge'
+gcc -Wall -g -I/usr/src/linux/include  -c libbridge_devif.c
+gcc -Wall -g -I/usr/src/linux/include  -c libbridge_if.c
+gcc -Wall -g -I/usr/src/linux/include  -c libbridge_init.c
+gcc -Wall -g -I/usr/src/linux/include  -c libbridge_misc.c
+ar rcs libbridge.a libbridge_devif.o libbridge_if.o libbridge_init.o libbridge_misc.o
+ranlib libbridge.a
+make[1]: Leaving directory '/tmp/bridge-utils/src/bridge-utils-1.5/libbridge'
+make[1]: Entering directory '/tmp/bridge-utils/src/bridge-utils-1.5/brctl'
+gcc -Wall -g -O2 -I../libbridge -I/usr/src/linux/include  -c brctl.c 
+gcc -Wall -g -O2 -I../libbridge -I/usr/src/linux/include  -c brctl_cmd.c 
+gcc -Wall -g -O2 -I../libbridge -I/usr/src/linux/include  -c brctl_disp.c 
+gcc  brctl.o brctl_cmd.o brctl_disp.o -L ../libbridge -lbridge  -o brctl
+make[1]: Leaving directory '/tmp/bridge-utils/src/bridge-utils-1.5/brctl'
+make[1]: Entering directory '/tmp/bridge-utils/src/bridge-utils-1.5/doc'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/bridge-utils/src/bridge-utils-1.5/doc'
+==> Entering fakeroot environment...
+==> Starting package()...
+for x in libbridge brctl doc; do make  -C $x install; done
+make[1]: Entering directory '/tmp/bridge-utils/src/bridge-utils-1.5/libbridge'
+make[1]: Nothing to be done for 'install'.
+make[1]: Leaving directory '/tmp/bridge-utils/src/bridge-utils-1.5/libbridge'
+make[1]: Entering directory '/tmp/bridge-utils/src/bridge-utils-1.5/brctl'
+mkdir -p /tmp/bridge-utils/pkg/bridge-utils/usr/bin
+/usr/bin/install -c -m 755 brctl  /tmp/bridge-utils/pkg/bridge-utils/usr/bin
+make[1]: Leaving directory '/tmp/bridge-utils/src/bridge-utils-1.5/brctl'
+make[1]: Entering directory '/tmp/bridge-utils/src/bridge-utils-1.5/doc'
+mkdir -p /tmp/bridge-utils/pkg/bridge-utils/usr/share/man/man8
+/usr/bin/install -c -m 644 brctl.8 /tmp/bridge-utils/pkg/bridge-utils/usr/share/man/man8
+make[1]: Leaving directory '/tmp/bridge-utils/src/bridge-utils-1.5/doc'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "bridge-utils"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: bridge-utils 1.5-2 (Sat Nov 14 06:06:50 UTC 2015)
+===> Printing config.logs
+found log at /tmp/bridge-utils/src/bridge-utils-1.5/config.log
+____
+File /tmp/bridge-utils/src/bridge-utils-1.5/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by bridge-utils configure 1.5, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = aadc6dbb3788
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2109: checking for x86_64-unknown-linux-gcc
+configure:2139: result: no
+configure:2149: checking for gcc
+configure:2165: found /usr/sbin/gcc
+configure:2176: result: gcc
+configure:2405: checking for C compiler version
+configure:2414: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2425: $? = 0
+configure:2414: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2425: $? = 0
+configure:2414: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2425: $? = 1
+configure:2414: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2425: $? = 1
+configure:2445: checking whether the C compiler works
+configure:2467: gcc    conftest.c  >&5
+configure:2471: $? = 0
+configure:2519: result: yes
+configure:2522: checking for C compiler default output file name
+configure:2524: result: a.out
+configure:2530: checking for suffix of executables
+configure:2537: gcc -o conftest    conftest.c  >&5
+configure:2541: $? = 0
+configure:2563: result: 
+configure:2585: checking whether we are cross compiling
+configure:2593: gcc -o conftest    conftest.c  >&5
+configure:2597: $? = 0
+configure:2604: ./conftest
+configure:2608: $? = 0
+configure:2623: result: no
+configure:2628: checking for suffix of object files
+configure:2650: gcc -c   conftest.c >&5
+configure:2654: $? = 0
+configure:2675: result: o
+configure:2679: checking whether we are using the GNU C compiler
+configure:2698: gcc -c   conftest.c >&5
+configure:2698: $? = 0
+configure:2707: result: yes
+configure:2716: checking whether gcc accepts -g
+configure:2736: gcc -c -g  conftest.c >&5
+configure:2736: $? = 0
+configure:2777: result: yes
+configure:2794: checking for gcc option to accept ISO C89
+configure:2857: gcc  -c -g -O2  conftest.c >&5
+configure:2857: $? = 0
+configure:2870: result: none needed
+configure:2933: checking for a BSD-compatible install
+configure:3001: result: /usr/bin/install -c
+configure:3015: checking for x86_64-unknown-linux-ranlib
+configure:3045: result: no
+configure:3055: checking for ranlib
+configure:3071: found /usr/sbin/ranlib
+configure:3082: result: ranlib
+configure:3111: checking how to run the C preprocessor
+configure:3142: gcc -E  conftest.c
+configure:3142: $? = 0
+configure:3156: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3156: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "bridge-utils"
+| #define PACKAGE_TARNAME "bridge-utils"
+| #define PACKAGE_VERSION "1.5"
+| #define PACKAGE_STRING "bridge-utils 1.5"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3181: result: gcc -E
+configure:3201: gcc -E  conftest.c
+configure:3201: $? = 0
+configure:3215: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3215: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "bridge-utils"
+| #define PACKAGE_TARNAME "bridge-utils"
+| #define PACKAGE_VERSION "1.5"
+| #define PACKAGE_STRING "bridge-utils 1.5"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3244: checking for grep that handles long lines and -e
+configure:3302: result: /usr/sbin/grep
+configure:3307: checking for egrep
+configure:3369: result: /usr/sbin/grep -E
+configure:3374: checking for ANSI C header files
+configure:3394: gcc -c -g -O2  conftest.c >&5
+configure:3394: $? = 0
+configure:3467: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3467: $? = 0
+configure:3467: ./conftest
+configure:3467: $? = 0
+configure:3478: result: yes
+configure:3491: checking for sys/types.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for sys/stat.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for stdlib.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for string.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for memory.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for strings.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for inttypes.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for stdint.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3491: checking for unistd.h
+configure:3491: gcc -c -g -O2  conftest.c >&5
+configure:3491: $? = 0
+configure:3491: result: yes
+configure:3506: checking sys/ioctl.h usability
+configure:3506: gcc -c -g -O2  conftest.c >&5
+configure:3506: $? = 0
+configure:3506: result: yes
+configure:3506: checking sys/ioctl.h presence
+configure:3506: gcc -E  conftest.c
+configure:3506: $? = 0
+configure:3506: result: yes
+configure:3506: checking for sys/ioctl.h
+configure:3506: result: yes
+configure:3506: checking sys/time.h usability
+configure:3506: gcc -c -g -O2  conftest.c >&5
+configure:3506: $? = 0
+configure:3506: result: yes
+configure:3506: checking sys/time.h presence
+configure:3506: gcc -E  conftest.c
+configure:3506: $? = 0
+configure:3506: result: yes
+configure:3506: checking for sys/time.h
+configure:3506: result: yes
+configure:3517: checking for an ANSI C-conforming const
+configure:3583: gcc -c -g -O2  conftest.c >&5
+configure:3583: $? = 0
+configure:3590: result: yes
+configure:3598: checking whether time.h and sys/time.h may both be included
+configure:3618: gcc -c -g -O2  conftest.c >&5
+configure:3618: $? = 0
+configure:3625: result: yes
+configure:3637: checking for gethostname
+configure:3637: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3637: $? = 0
+configure:3637: result: yes
+configure:3637: checking for socket
+configure:3637: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3637: $? = 0
+configure:3637: result: yes
+configure:3637: checking for strdup
+configure:3637: gcc -o conftest -g -O2   conftest.c  >&5
+conftest.c:47:6: warning: conflicting types for built-in function 'strdup'
+ char strdup ();
+      ^
+configure:3637: $? = 0
+configure:3637: result: yes
+configure:3637: checking for uname
+configure:3637: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3637: $? = 0
+configure:3637: result: yes
+configure:3649: checking for if_nametoindex
+configure:3649: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3649: $? = 0
+configure:3649: result: yes
+configure:3649: checking for if_indextoname
+configure:3649: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3649: $? = 0
+configure:3649: result: yes
+configure:3777: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by bridge-utils config.status 1.5, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on aadc6dbb3788
+
+config.status:816: creating doc/Makefile
+config.status:919: WARNING:  'doc/Makefile.in' seems to ignore the --datarootdir setting
+config.status:816: creating libbridge/Makefile
+config.status:816: creating brctl/Makefile
+config.status:919: WARNING:  'brctl/Makefile.in' seems to ignore the --datarootdir setting
+config.status:816: creating Makefile
+config.status:919: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status:816: creating bridge-utils.spec
+config.status:816: creating libbridge/config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_gethostname=yes
+ac_cv_func_if_indextoname=yes
+ac_cv_func_if_nametoindex=yes
+ac_cv_func_socket=yes
+ac_cv_func_strdup=yes
+ac_cv_func_uname=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_ioctl_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_time_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_time=yes
+ac_cv_header_unistd_h=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_RANLIB=ranlib
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS='-g -O2'
+CPP='gcc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+KERNEL_HEADERS='/usr/src/linux/include'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='bridge-utils'
+PACKAGE_STRING='bridge-utils 1.5'
+PACKAGE_TARNAME='bridge-utils'
+PACKAGE_URL=''
+PACKAGE_VERSION='1.5'
+PATH_SEPARATOR=':'
+RANLIB='ranlib'
+SHELL='/bin/sh'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='/usr/bin'
+sharedstatedir='${prefix}/com'
+sysconfdir='/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "bridge-utils"
+#define PACKAGE_TARNAME "bridge-utils"
+#define PACKAGE_VERSION "1.5"
+#define PACKAGE_STRING "bridge-utils 1.5"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_SYS_IOCTL_H 1
+#define HAVE_SYS_TIME_H 1
+#define TIME_WITH_SYS_TIME 1
+#define HAVE_GETHOSTNAME 1
+#define HAVE_SOCKET 1
+#define HAVE_STRDUP 1
+#define HAVE_UNAME 1
+#define HAVE_IF_NAMETOINDEX 1
+#define HAVE_IF_INDEXTONAME 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

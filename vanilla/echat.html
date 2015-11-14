@@ -1,0 +1,72 @@
+        <html><head></head><body>
+        <h1>Report for echat on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:36</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data echat
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1100 packages in cache
+Found permanent source directory in /sources/echat
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: echat 0.04beta1-5 (Sat Nov 14 05:00:39 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Making echat 0.04beta1
+LIBS = -lcurses
+CFLAGS = -Wall -g -O2
+DEFINES = -DFREEBSD -DCHARSET
+Compiling chat_chnl.c
+Compiling chat_cmnd.c
+chat_cmnd.c: In function 'cmnd_help':
+chat_cmnd.c:211:29: warning: too many arguments for format [-Wformat-extra-args]
+     snprintf(buf, STR_SIZE, "%s %s %s(%s) %s(%s) %s %s(%s) %s(%s) %s ",
+                             ^
+chat_cmnd.c:211:29: warning: too many arguments for format [-Wformat-extra-args]
+Compiling chat_conf.c
+Compiling chat_cset.c
+Compiling chat_parm.c
+Compiling chat_syst.c
+Compiling chat_user.c
+Compiling curs_strn.c
+Compiling curs_term.c
+Compiling echat.c
+Compiling pckt_addr.c
+Compiling pckt_comm.c
+Compiling pckt_pmke.c
+Compiling pckt_pprs.c
+Compiling pckt_vmke.c
+Compiling pckt_vprs.c
+Compiling sock_tcp.c
+Compiling sock_udp.c
+sock_udp.c: In function 'sock_recv':
+sock_udp.c:224:98: warning: pointer targets in passing argument 6 of 'recvfrom' differ in signedness [-Wpointer-sign]
+         if ((status->packet_len = recvfrom(sfdcl, packet, MSG_SIZE, 0, (struct sockaddr *) sacl, &s)) < 0) {
+                                                                                                  ^
+In file included from /usr/include/netinet/in.h:23:0,
+                 from sock_udp.c:10:
+/usr/include/sys/socket.h:174:16: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'int *'
+ extern ssize_t recvfrom (int __fd, void *__restrict __buf, size_t __n,
+                ^
+Linking echat
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "echat"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: echat 0.04beta1-5 (Sat Nov 14 05:00:44 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

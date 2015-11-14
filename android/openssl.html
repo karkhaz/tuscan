@@ -1,0 +1,393 @@
+        <html><head></head><body>
+        <h1>Report for openssl on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:29</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data openssl
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2143 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: openssl 1.0.2.d-1 (Sat Nov 14 00:03:50 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading openssl-1.0.2d.tar.gz...
+  -> Downloading openssl-1.0.2d.tar.gz.asc...
+  -> Found no-rpath.patch
+  -> Found ca-dir.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting openssl-1.0.2d.tar.gz with bsdtar
+==> Starting prepare()...
+patching file Makefile.shared
+patching file apps/CA.pl.in
+patching file apps/CA.sh
+patching file apps/openssl.cnf
+==> Sources are ready.
+Copied source directory to /sources/openssl
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: openssl 1.0.2.d-1 (Sat Nov 14 00:03:55 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Configuring for linux-x86_64
+    no-gmp          [default]  OPENSSL_NO_GMP (skip dir)
+    no-jpake        [experimental] OPENSSL_NO_JPAKE (skip dir)
+    no-krb5         [krb5-flavor not specified] OPENSSL_NO_KRB5
+    no-libunbound   [experimental] OPENSSL_NO_LIBUNBOUND (skip dir)
+    no-md2          [default]  OPENSSL_NO_MD2 (skip dir)
+    no-rc5          [default]  OPENSSL_NO_RC5 (skip dir)
+    no-rfc3779      [default]  OPENSSL_NO_RFC3779 (skip dir)
+    no-sctp         [default]  OPENSSL_NO_SCTP (skip dir)
+    no-ssl-trace    [default]  OPENSSL_NO_SSL_TRACE (skip dir)
+    no-store        [experimental] OPENSSL_NO_STORE (skip dir)
+    no-unit-test    [default]  OPENSSL_NO_UNIT_TEST (skip dir)
+    no-zlib-dynamic [default] 
+IsMK1MF=0
+CC            =arm-linux-androideabi-gcc
+CFLAG         =-fPIC -DOPENSSL_PIC -DZLIB -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -Wa,--noexecstack    -m64 -DL_ENDIAN -O3 -Wall -DOPENSSL_IA32_SSE2 -DOPENSSL_BN_ASM_MONT -DOPENSSL_BN_ASM_MONT5 -DOPENSSL_BN_ASM_GF2m -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DMD5_ASM -DAES_ASM -DVPAES_ASM -DBSAES_ASM -DWHIRLPOOL_ASM -DGHASH_ASM -DECP_NISTZ256_ASM
+EX_LIBS       =-ldl -lz
+CPUID_OBJ     =x86_64cpuid.o
+BN_ASM        =x86_64-gcc.o x86_64-mont.o x86_64-mont5.o x86_64-gf2m.o rsaz_exp.o rsaz-x86_64.o rsaz-avx2.o
+EC_ASM        =ecp_nistz256.o ecp_nistz256-x86_64.o
+DES_ENC       =des_enc.o fcrypt_b.o
+AES_ENC       =aes-x86_64.o vpaes-x86_64.o bsaes-x86_64.o aesni-x86_64.o aesni-sha1-x86_64.o aesni-sha256-x86_64.o aesni-mb-x86_64.o
+BF_ENC        =bf_enc.o
+CAST_ENC      =c_enc.o
+RC4_ENC       =rc4-x86_64.o rc4-md5-x86_64.o
+RC5_ENC       =rc5_enc.o
+MD5_OBJ_ASM   =md5-x86_64.o
+SHA1_OBJ_ASM  =sha1-x86_64.o sha256-x86_64.o sha512-x86_64.o sha1-mb-x86_64.o sha256-mb-x86_64.o
+RMD160_OBJ_ASM=
+CMLL_ENC      =cmll-x86_64.o cmll_misc.o
+MODES_OBJ     =ghash-x86_64.o aesni-gcm-x86_64.o
+ENGINES_OBJ   =
+PROCESSOR     =
+RANLIB        =/usr/sbin/ranlib
+ARFLAGS       =
+PERL          =/usr/sbin/perl
+SIXTY_FOUR_BIT_LONG mode
+DES_UNROLL used
+DES_INT used
+RC4_CHUNK is unsigned long
+e_os2.h => include/openssl/e_os2.h
+making links in crypto...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto'
+crypto.h => ../include/openssl/crypto.h
+opensslv.h => ../include/openssl/opensslv.h
+opensslconf.h => ../include/openssl/opensslconf.h
+ebcdic.h => ../include/openssl/ebcdic.h
+symhacks.h => ../include/openssl/symhacks.h
+ossl_typ.h => ../include/openssl/ossl_typ.h
+constant_time_test.c => ../test/constant_time_test.c
+making links in crypto/objects...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/objects'
+objects.h => ../../include/openssl/objects.h
+obj_mac.h => ../../include/openssl/obj_mac.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/objects'
+making links in crypto/md4...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/md4'
+md4.h => ../../include/openssl/md4.h
+md4test.c => ../../test/md4test.c
+md4.c => ../../apps/md4.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/md4'
+making links in crypto/md5...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/md5'
+md5.h => ../../include/openssl/md5.h
+md5test.c => ../../test/md5test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/md5'
+making links in crypto/sha...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/sha'
+sha.h => ../../include/openssl/sha.h
+shatest.c => ../../test/shatest.c
+sha1test.c => ../../test/sha1test.c
+sha256t.c => ../../test/sha256t.c
+sha512t.c => ../../test/sha512t.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/sha'
+making links in crypto/mdc2...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/mdc2'
+mdc2.h => ../../include/openssl/mdc2.h
+mdc2test.c => ../../test/mdc2test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/mdc2'
+making links in crypto/hmac...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/hmac'
+hmac.h => ../../include/openssl/hmac.h
+hmactest.c => ../../test/hmactest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/hmac'
+making links in crypto/ripemd...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ripemd'
+ripemd.h => ../../include/openssl/ripemd.h
+rmdtest.c => ../../test/rmdtest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ripemd'
+making links in crypto/whrlpool...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/whrlpool'
+whrlpool.h => ../../include/openssl/whrlpool.h
+wp_test.c => ../../test/wp_test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/whrlpool'
+making links in crypto/des...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/des'
+des.h => ../../include/openssl/des.h
+des_old.h => ../../include/openssl/des_old.h
+destest.c => ../../test/destest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/des'
+making links in crypto/aes...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/aes'
+aes.h => ../../include/openssl/aes.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/aes'
+making links in crypto/rc2...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rc2'
+rc2.h => ../../include/openssl/rc2.h
+rc2test.c => ../../test/rc2test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rc2'
+making links in crypto/rc4...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rc4'
+rc4.h => ../../include/openssl/rc4.h
+rc4test.c => ../../test/rc4test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rc4'
+making links in crypto/idea...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/idea'
+idea.h => ../../include/openssl/idea.h
+ideatest.c => ../../test/ideatest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/idea'
+making links in crypto/bf...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/bf'
+blowfish.h => ../../include/openssl/blowfish.h
+bftest.c => ../../test/bftest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/bf'
+making links in crypto/cast...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/cast'
+cast.h => ../../include/openssl/cast.h
+casttest.c => ../../test/casttest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/cast'
+making links in crypto/camellia...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/camellia'
+camellia.h => ../../include/openssl/camellia.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/camellia'
+making links in crypto/seed...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/seed'
+seed.h => ../../include/openssl/seed.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/seed'
+making links in crypto/modes...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/modes'
+modes.h => ../../include/openssl/modes.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/modes'
+making links in crypto/bn...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/bn'
+bn.h => ../../include/openssl/bn.h
+bntest.c => ../../test/bntest.c
+exptest.c => ../../test/exptest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/bn'
+making links in crypto/ec...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ec'
+ec.h => ../../include/openssl/ec.h
+ectest.c => ../../test/ectest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ec'
+making links in crypto/rsa...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rsa'
+rsa.h => ../../include/openssl/rsa.h
+rsa_test.c => ../../test/rsa_test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rsa'
+making links in crypto/dsa...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/dsa'
+dsa.h => ../../include/openssl/dsa.h
+dsatest.c => ../../test/dsatest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/dsa'
+making links in crypto/ecdsa...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ecdsa'
+ecdsa.h => ../../include/openssl/ecdsa.h
+ecdsatest.c => ../../test/ecdsatest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ecdsa'
+making links in crypto/dh...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/dh'
+dh.h => ../../include/openssl/dh.h
+dhtest.c => ../../test/dhtest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/dh'
+making links in crypto/ecdh...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ecdh'
+ecdh.h => ../../include/openssl/ecdh.h
+ecdhtest.c => ../../test/ecdhtest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ecdh'
+making links in crypto/dso...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/dso'
+dso.h => ../../include/openssl/dso.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/dso'
+making links in crypto/engine...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/engine'
+engine.h => ../../include/openssl/engine.h
+enginetest.c => ../../test/enginetest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/engine'
+making links in crypto/buffer...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/buffer'
+buffer.h => ../../include/openssl/buffer.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/buffer'
+making links in crypto/bio...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/bio'
+bio.h => ../../include/openssl/bio.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/bio'
+making links in crypto/stack...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/stack'
+stack.h => ../../include/openssl/stack.h
+safestack.h => ../../include/openssl/safestack.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/stack'
+making links in crypto/lhash...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/lhash'
+lhash.h => ../../include/openssl/lhash.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/lhash'
+making links in crypto/rand...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rand'
+rand.h => ../../include/openssl/rand.h
+randtest.c => ../../test/randtest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/rand'
+making links in crypto/err...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/err'
+err.h => ../../include/openssl/err.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/err'
+making links in crypto/evp...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/evp'
+evp.h => ../../include/openssl/evp.h
+evp_test.c => ../../test/evp_test.c
+evp_extra_test.c => ../../test/evp_extra_test.c
+evptests.txt -> ../../test/evptests.txt
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/evp'
+making links in crypto/asn1...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/asn1'
+asn1.h => ../../include/openssl/asn1.h
+asn1_mac.h => ../../include/openssl/asn1_mac.h
+asn1t.h => ../../include/openssl/asn1t.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/asn1'
+making links in crypto/pem...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pem'
+pem.h => ../../include/openssl/pem.h
+pem2.h => ../../include/openssl/pem2.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pem'
+making links in crypto/x509...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/x509'
+x509.h => ../../include/openssl/x509.h
+x509_vfy.h => ../../include/openssl/x509_vfy.h
+verify_extra_test.c => ../../test/verify_extra_test.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/x509'
+making links in crypto/x509v3...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/x509v3'
+x509v3.h => ../../include/openssl/x509v3.h
+v3nametest.c => ../../test/v3nametest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/x509v3'
+making links in crypto/conf...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/conf'
+conf.h => ../../include/openssl/conf.h
+conf_api.h => ../../include/openssl/conf_api.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/conf'
+making links in crypto/txt_db...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/txt_db'
+txt_db.h => ../../include/openssl/txt_db.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/txt_db'
+making links in crypto/pkcs7...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pkcs7'
+pkcs7.h => ../../include/openssl/pkcs7.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pkcs7'
+making links in crypto/pkcs12...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pkcs12'
+pkcs12.h => ../../include/openssl/pkcs12.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pkcs12'
+making links in crypto/comp...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/comp'
+comp.h => ../../include/openssl/comp.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/comp'
+making links in crypto/ocsp...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ocsp'
+ocsp.h => ../../include/openssl/ocsp.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ocsp'
+making links in crypto/ui...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ui'
+ui.h => ../../include/openssl/ui.h
+ui_compat.h => ../../include/openssl/ui_compat.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ui'
+making links in crypto/krb5...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/krb5'
+krb5_asn.h => ../../include/openssl/krb5_asn.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/krb5'
+making links in crypto/cms...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/cms'
+cms.h => ../../include/openssl/cms.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/cms'
+making links in crypto/pqueue...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pqueue'
+pqueue.h => ../../include/openssl/pqueue.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/pqueue'
+making links in crypto/ts...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ts'
+ts.h => ../../include/openssl/ts.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/ts'
+making links in crypto/srp...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/srp'
+srp.h => ../../include/openssl/srp.h
+srptest.c => ../../test/srptest.c
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/srp'
+making links in crypto/cmac...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto/cmac'
+cmac.h => ../../include/openssl/cmac.h
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto/cmac'
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto'
+making links in ssl...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/ssl'
+ssl.h => ../include/openssl/ssl.h
+ssl2.h => ../include/openssl/ssl2.h
+ssl3.h => ../include/openssl/ssl3.h
+ssl23.h => ../include/openssl/ssl23.h
+tls1.h => ../include/openssl/tls1.h
+dtls1.h => ../include/openssl/dtls1.h
+kssl.h => ../include/openssl/kssl.h
+srtp.h => ../include/openssl/srtp.h
+ssltest.c => ../test/ssltest.c
+heartbeat_test.c => ../test/heartbeat_test.c
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/ssl'
+making links in engines...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/engines'
+making links in engines/ccgost...
+make[2]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/engines/ccgost'
+make[2]: Nothing to be done for 'links'.
+make[2]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/engines/ccgost'
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/engines'
+making links in apps...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/apps'
+make[1]: Nothing to be done for 'links'.
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/apps'
+making links in test...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/test'
+make[1]: Nothing to be done for 'links'.
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/test'
+making links in tools...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/tools'
+make[1]: Nothing to be done for 'links'.
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/tools'
+generating dummy tests (if needed)...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/test'
+make[1]: Nothing to be done for 'generate'.
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/test'
+
+Since you've disabled or enabled at least one algorithm, you need to do
+the following before building:
+
+	make depend
+
+Configured for linux-x86_64.
+making depend in crypto...
+make[1]: Entering directory '/tmp/openssl/src/openssl-1.0.2d/crypto'
+../util/domd: line 30: makedepend: command not found
+mv: cannot stat 'Makefile.new': No such file or directory
+Makefile:136: recipe for target 'local_depend' failed
+make[1]: *** [local_depend] Error 127
+make[1]: Leaving directory '/tmp/openssl/src/openssl-1.0.2d/crypto'
+Makefile:470: recipe for target 'depend' failed
+make: *** [depend] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

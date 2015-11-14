@@ -1,0 +1,59 @@
+        <html><head></head><body>
+        <h1>Report for libfaketime on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:24</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data libfaketime
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1662 packages in cache
+Found permanent source directory in /sources/libfaketime
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libfaketime 0.9.6-1 (Sat Nov 14 05:34:00 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make  -C src all
+make[1]: Entering directory '/tmp/libfaketime/src/libfaketime-0.9.6/src'
+cc -o libfaketime.o -c -std=gnu99 -Wall -Wextra -Werror -DFAKE_STAT -DFAKE_SLEEP -DFAKE_TIMERS -DFAKE_INTERNAL_CALLS -fPIC -DPREFIX='"'/usr'"' -DLIBDIRNAME='"'/lib/faketime'"'  libfaketime.c
+cc -o libfaketime.so.1 -Wl,-soname,libfaketime.so.1 -Wl,--version-script=libfaketime.map -lpthread -shared libfaketime.o -ldl -lm -lrt
+cc -o libfaketimeMT.o -c -std=gnu99 -Wall -Wextra -Werror -DFAKE_STAT -DFAKE_SLEEP -DFAKE_TIMERS -DFAKE_INTERNAL_CALLS -fPIC -DPREFIX='"'/usr'"' -DLIBDIRNAME='"'/lib/faketime'"'  libfaketime.c
+cc -o libfaketimeMT.so.1 -Wl,-soname,libfaketimeMT.so.1 -Wl,--version-script=libfaketime.map -lpthread -shared libfaketimeMT.o -ldl -lm -lrt
+cc -o faketime -std=gnu99 -Wall -Wextra -Werror -DFAKE_STAT -DFAKE_SLEEP -DFAKE_TIMERS -DFAKE_INTERNAL_CALLS -fPIC -DPREFIX='"'/usr'"' -DLIBDIRNAME='"'/lib/faketime'"'  faketime.c -Wl,--version-script=libfaketime.map -lpthread -lrt
+make[1]: Leaving directory '/tmp/libfaketime/src/libfaketime-0.9.6/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+make  -C src install
+make[1]: Entering directory '/tmp/libfaketime/src/libfaketime-0.9.6/src'
+
+Copying the faketime libraries to /tmp/libfaketime/pkg/libfaketime/usr/lib/faketime and the faketime wrapper script to /tmp/libfaketime/pkg/libfaketime/usr/bin ...
+install -dm0755 "/tmp/libfaketime/pkg/libfaketime/usr/lib/faketime/"
+install -m0644 libfaketime.so.1 libfaketimeMT.so.1 "/tmp/libfaketime/pkg/libfaketime/usr/lib/faketime/"
+install -Dm0755 faketime "/tmp/libfaketime/pkg/libfaketime/usr/bin/faketime"
+make[1]: Leaving directory '/tmp/libfaketime/src/libfaketime-0.9.6/src'
+make  -C man install
+make[1]: Entering directory '/tmp/libfaketime/src/libfaketime-0.9.6/man'
+install -Dm0644 faketime.1 "/tmp/libfaketime/pkg/libfaketime/usr/share/man/man1/faketime.1"
+gzip -f "/tmp/libfaketime/pkg/libfaketime/usr/share/man/man1/faketime.1"
+make[1]: Leaving directory '/tmp/libfaketime/src/libfaketime-0.9.6/man'
+install -dm0755 "/tmp/libfaketime/pkg/libfaketime/usr/share/doc/faketime/"
+install -m0644 README "/tmp/libfaketime/pkg/libfaketime/usr/share/doc/faketime/README"
+install -m0644 NEWS "/tmp/libfaketime/pkg/libfaketime/usr/share/doc/faketime/NEWS"
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "libfaketime"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: libfaketime 0.9.6-1 (Sat Nov 14 05:34:03 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,263 @@
+        <html><head></head><body>
+        <h1>Report for nedit on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:05</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data nedit
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2650 packages in cache
+Found permanent source directory in /sources/nedit
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: nedit 1:5.6a-1 (Sat Nov 14 07:38:31 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+warning: dependency cycle detected:
+warning: harfbuzz will be installed before its freetype2 dependency
+
+Packages (19) freetype2-2.6.1-1  graphite-1:1.3.3-1  harfbuzz-1.0.6-2  kbproto-1.0.7-1  libice-1.0.9-1  libpng-1.6.18-1  libsm-1.2.2-2  libx11-1.6.3-1  libxau-1.0.8-2  libxcb-1.11.1-1  libxdmcp-1.1.2-1  libxext-1.3.3-1  libxp-1.0.3-1  libxt-1.1.5-1  printproto-1.0.5-3  xcb-proto-1.11-2  xextproto-7.3.0-1  xproto-7.0.28-1  lesstif-0.95.2-6
+
+Total Installed Size:  29.80 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libpng...
+installing graphite...
+installing harfbuzz...
+Optional dependencies for harfbuzz
+    cairo: hb-view program
+installing freetype2...
+installing xproto...
+installing libice...
+installing libsm...
+installing xcb-proto...
+installing libxdmcp...
+installing libxau...
+installing libxcb...
+installing kbproto...
+installing libx11...
+installing libxt...
+installing xextproto...
+installing libxext...
+installing printproto...
+installing libxp...
+installing lesstif...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+(cd util; \
+    make -f Makefile.linux verify_config && \
+    make -f Makefile.linux libNUtil.a)
+make[1]: Entering directory '/tmp/nedit/src/nedit-5.6/util'
+cc -DBUILD_UNTESTED_NEDIT   -c -o motif.o motif.c
+cc -DBUILD_UNTESTED_NEDIT -o check_lin_tif check_lin_tif.c motif.c
+./check_lin_tif
+ERROR:  Untested Motif Version:
+	@(#)GNU/LessTif Version 2.1 Release 0.95.2
+You are attempting to build NEdit with a version of Motif that
+has not been verified to work well with NEdit.  This could be fine,
+but it could also lead to crashes and instability.  Historically, 
+older versions of Motif have quite often been more stable
+than newer versions when used with NEdit, so don't assume newer
+is better.
+
+========================== WARNING ===========================
+You have chosen to build NEdit with an untested version of Motif.
+Please report your success or failure with this version to:
+	develop@nedit.org
+
+HIT ENTER TO CONTINUE
+make[1]: Leaving directory '/tmp/nedit/src/nedit-5.6/util'
+make[1]: Entering directory '/tmp/nedit/src/nedit-5.6/util'
+cc -DBUILD_UNTESTED_NEDIT   -c -o DialogF.o DialogF.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o getfiles.o getfiles.c
+cc -c -DBUILD_UNTESTED_NEDIT  printUtils.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o misc.o misc.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o fileUtils.o fileUtils.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o prefFile.o prefFile.c
+prefFile.c: In function 'stringToPref':
+prefFile.c:356:29: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  if ((int)strlen(string) >= (int)rsrcDescrip->arg)
+                             ^
+prefFile.c:358:42: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  strncpy(rsrcDescrip->valueAddr, string, (int)rsrcDescrip->arg);
+                                          ^
+cc -DBUILD_UNTESTED_NEDIT   -c -o fontsel.o fontsel.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o managedList.o managedList.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o utils.o utils.c
+cc -DBUILD_UNTESTED_NEDIT   -c -o clearcase.o clearcase.c
+ar -urs libNUtil.a DialogF.o getfiles.o printUtils.o misc.o fileUtils.o prefFile.o fontsel.o managedList.o utils.o clearcase.o motif.o
+ar: `u' modifier ignored since `D' is the default (see `U')
+ar: creating libNUtil.a
+make[1]: Leaving directory '/tmp/nedit/src/nedit-5.6/util'
+(cd Xlt;    make -f Makefile.linux libXlt.a)
+make[1]: Entering directory '/tmp/nedit/src/nedit-5.6/Xlt'
+cc -c -I../Xlt -DBUILD_UNTESTED_NEDIT -o BubbleButton.o BubbleButton.c
+cc -c -I../Xlt -DBUILD_UNTESTED_NEDIT -o SlideC.o SlideC.c
+SlideC.c:119:58: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ /* NULL                             Cardinal          */ (Cardinal)NULL,
+                                                          ^
+SlideC.c:123:58: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ /* NULL                             Boolean           */ (Boolean)NULL,
+                                                          ^
+SlideC.c:124:58: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ /* NULL                             XtEnum            */ (XtEnum)NULL,
+                                                          ^
+SlideC.c:125:37: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ /* NULL        Boolean           */ (Boolean)NULL,
+                                     ^
+SlideC.c:126:58: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ /* NULL                             Boolean           */ (Boolean)NULL,
+                                                          ^
+ar -urs libXlt.a BubbleButton.o SlideC.o 
+ar: `u' modifier ignored since `D' is the default (see `U')
+ar: creating libXlt.a
+make[1]: Leaving directory '/tmp/nedit/src/nedit-5.6/Xlt'
+(cd Microline/XmL;    make -f Makefile.linux libXmL.a)
+make[1]: Entering directory '/tmp/nedit/src/nedit-5.6/Microline/XmL'
+cc -c -I.. -DBUILD_UNTESTED_NEDIT -o Folder.o Folder.c
+cc -c -I.. -DBUILD_UNTESTED_NEDIT -o XmL.o XmL.c
+ar -urs libXmL.a Folder.o XmL.o 
+ar: `u' modifier ignored since `D' is the default (see `U')
+ar: creating libXmL.a
+make[1]: Leaving directory '/tmp/nedit/src/nedit-5.6/Microline/XmL'
+(cd source; make -f Makefile.linux nedit nc)
+make[1]: Entering directory '/tmp/nedit/src/nedit-5.6/source'
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o nedit.o nedit.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o file.o file.c
+file.c: In function 'setFormatCB':
+file.c:1917:30: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+         *(int*) clientData = (int) userData;
+                              ^
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o menu.o menu.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o window.o window.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o selection.o selection.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o search.o search.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o undo.o undo.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o shift.o shift.c
+cc -DBUILD_UNTESTED_NEDIT  -c help.c -o help.o
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o preferences.o preferences.c
+preferences.c: In function 'SetLanguageMode':
+preferences.c:2298:43: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+          XmToggleButtonSetState(items[n], (int)userData == mode, False);
+                                           ^
+preferences.c: In function 'updateLanguageModeSubmenu':
+preferences.c:5150:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+      XmNuserData, (void *)i,
+                   ^
+preferences.c: In function 'setLangModeCB':
+preferences.c:5171:33: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if (window->languageMode == (int)mode)
+                                 ^
+preferences.c:5178:19: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     params[0] = (((int)mode) == PLAIN_LANGUAGE_MODE) ? "" : LanguageModes[(int)mode]->name;
+                   ^
+preferences.c:5178:75: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     params[0] = (((int)mode) == PLAIN_LANGUAGE_MODE) ? "" : LanguageModes[(int)mode]->name;
+                                                                           ^
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o tags.o tags.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o userCmds.o userCmds.c
+userCmds.c: In function 'dimSelDepItemsInMenu':
+userCmds.c:1119:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   index = (int)userData - 10;
+           ^
+userCmds.c: In function 'createUserMenuItem':
+userCmds.c:1931:23: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+          XmNuserData, (XtPointer)(index+10), NULL);
+                       ^
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o shell.o shell.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o regularExp.o regularExp.c
+regularExp.c: In function 'makeDelimiterTable':
+regularExp.c:4160:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+    table [(int) NULL] = 1; /* These       */
+           ^
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o macro.o macro.c
+macro.c: In function 'dialogMS':
+macro.c:2927:24: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+           XmNuserData, (XtPointer)(i+1), NULL);
+                        ^
+macro.c: In function 'dialogBtnCB':
+macro.c:2968:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  retVal.val.n = (int)userData;
+                 ^
+macro.c: In function 'stringDialogMS':
+macro.c:3104:24: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+           XmNuserData, (XtPointer)(i+1), NULL);
+                        ^
+macro.c: In function 'stringDialogBtnCB':
+macro.c:3158:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  btnNum = (int)userData;
+           ^
+macro.c: In function 'listDialogMS':
+macro.c:3683:28: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+               XmNuserData, (XtPointer)(i+1), NULL);
+                            ^
+macro.c: In function 'listDialogBtnCB':
+macro.c:3763:16: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       btnNum = (int)userData;
+                ^
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o text.o text.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o textSel.o textSel.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o textDisp.o textDisp.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o textBuf.o textBuf.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o textDrag.o textDrag.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o server.o server.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o highlight.o highlight.c
+highlight.c: In function 'GetHighlightInfo':
+highlight.c:515:12: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     return (void*)pattern->userStyleIndex;    
+            ^
+cc -DBUILD_UNTESTED_NEDIT  -c highlightData.c -o highlightData.o
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o interpret.o interpret.c
+NOTE:  Don't worry about 'command not found' errors here
+       unless you have changed the parse.y file.
+bison -o parse.c parse.y || ( yacc parse.y && mv y.tab.c parse.c ) || \
+	cp parse_noyacc.c parse.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o parse.o parse.c
+cc -DBUILD_UNTESTED_NEDIT  -c smartIndent.c -o smartIndent.o
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o regexConvert.o regexConvert.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o rbTree.o rbTree.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o windowTitle.o windowTitle.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o calltips.o calltips.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o server_common.o server_common.c
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o rangeset.o rangeset.c
+cc -DBUILD_UNTESTED_NEDIT -c linkdate.c
+cc -DBUILD_UNTESTED_NEDIT nedit.o file.o menu.o window.o selection.o search.o undo.o shift.o help.o preferences.o tags.o userCmds.o shell.o regularExp.o macro.o text.o textSel.o textDisp.o textBuf.o textDrag.o server.o highlight.o highlightData.o interpret.o parse.o smartIndent.o regexConvert.o rbTree.o windowTitle.o calltips.o server_common.o rangeset.o linkdate.o ../Microline/XmL/libXmL.a \
+ ../Xlt/libXlt.a ../util/libNUtil.a -L/usr/X11R6/lib -lXm -lXt -lX11 -lm -o nedit
+file.o: In function `PrintString':
+file.c:(.text+0x2aac): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+cc -c -I../Microline -I../Xlt -DBUILD_UNTESTED_NEDIT -o nc.o nc.c
+cc -DBUILD_UNTESTED_NEDIT nc.o server_common.o ../util/libNUtil.a -L/usr/X11R6/lib -lXm -lXt -lX11 -lm -o nc
+make[1]: Leaving directory '/tmp/nedit/src/nedit-5.6/source'
+(cd doc; make all)
+make[1]: Entering directory '/tmp/nedit/src/nedit-5.6/doc'
+Creating NEdit help code 5.6
+Creating NEdit plain text documenation...
+Creating NEdit HTML documentation...
+Creating NEdit HTML website documentation...
+make[1]: Leaving directory '/tmp/nedit/src/nedit-5.6/doc'
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "nedit"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: nedit 1:5.6a-1 (Sat Nov 14 07:39:24 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

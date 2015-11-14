@@ -1,0 +1,100 @@
+        <html><head></head><body>
+        <h1>Report for iotop on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:31</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data iotop
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2102 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: iotop 0.6-4 (Fri Nov 13 23:59:46 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading iotop-0.6.tar.bz2...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting iotop-0.6.tar.bz2 with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/iotop
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: iotop 0.6-4 (Fri Nov 13 23:59:47 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Entering fakeroot environment...
+==> Starting package()...
+running install
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/iotop
+copying iotop/version.py -> build/lib/iotop
+copying iotop/vmstat.py -> build/lib/iotop
+copying iotop/netlink.py -> build/lib/iotop
+copying iotop/__init__.py -> build/lib/iotop
+copying iotop/genetlink.py -> build/lib/iotop
+copying iotop/data.py -> build/lib/iotop
+copying iotop/ui.py -> build/lib/iotop
+copying iotop/ioprio.py -> build/lib/iotop
+running build_scripts
+creating build/scripts-2.7
+copying and adjusting sbin/iotop -> build/scripts-2.7
+changing mode of build/scripts-2.7/iotop from 644 to 755
+running install_lib
+creating /tmp/iotop/pkg/iotop/usr
+creating /tmp/iotop/pkg/iotop/usr/lib
+creating /tmp/iotop/pkg/iotop/usr/lib/python2.7
+creating /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages
+creating /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/version.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/vmstat.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/netlink.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/__init__.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/genetlink.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/data.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/ui.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+copying build/lib/iotop/ioprio.py -> /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/version.py to version.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/vmstat.py to vmstat.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/netlink.py to netlink.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/__init__.py to __init__.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/genetlink.py to genetlink.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/data.py to data.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/ui.py to ui.pyc
+byte-compiling /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop/ioprio.py to ioprio.pyc
+writing byte-compilation script '/tmp/tmpLYhdgt.py'
+/tmp/toolchain/bin/python -O /tmp/tmpLYhdgt.py
+removing /tmp/tmpLYhdgt.py
+running install_scripts
+creating /tmp/iotop/pkg/iotop/usr/bin
+copying build/scripts-2.7/iotop -> /tmp/iotop/pkg/iotop/usr/bin
+changing mode of /tmp/iotop/pkg/iotop/usr/bin/iotop to 755
+running install_data
+creating /tmp/iotop/pkg/iotop/usr/share
+creating /tmp/iotop/pkg/iotop/usr/share/man
+creating /tmp/iotop/pkg/iotop/usr/share/man/man8
+copying iotop.8 -> /tmp/iotop/pkg/iotop/usr/share/man/man8
+running install_egg_info
+Writing /tmp/iotop/pkg/iotop/usr/lib/python2.7/site-packages/iotop-0.6-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "iotop"...
+  -> Generating .PKGINFO file...
+  -> Adding changelog file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: iotop 0.6-4 (Fri Nov 13 23:59:48 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

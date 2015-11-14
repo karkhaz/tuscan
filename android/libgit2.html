@@ -1,0 +1,139 @@
+        <html><head></head><body>
+        <h1>Report for libgit2 on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:59</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data libgit2
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2827 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libgit2 1:0.23.2-1 (Sat Nov 14 01:11:22 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.83 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading libgit2-0.23.2.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting libgit2-0.23.2.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/libgit2
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libgit2 1:0.23.2-1 (Sat Nov 14 01:11:46 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found PkgConfig: /usr/sbin/pkg-config (found version "0.29") 
+-- checking for module 'libcurl'
+--   found libcurl, version 7.45.0
+-- Found OpenSSL: /usr/lib/libssl.so;/usr/lib/libcrypto.so (found version "1.0.2d") 
+-- Could NOT find HTTP_Parser (missing:  HTTP_PARSER_INCLUDE_DIR HTTP_PARSER_LIBRARY) 
+-- http-parser was not found or is too old; using bundled 3rd-party sources.
+-- Found ZLIB: /usr/lib/libz.so (found version "1.2.8") 
+-- checking for module 'libssh2'
+--   found libssh2, version 1.6.0
+-- Looking for libssh2_userauth_publickey_frommemory in ssh2
+-- Looking for libssh2_userauth_publickey_frommemory in ssh2 - not found
+-- Performing Test IS_FVISIBILITY=HIDDEN_SUPPORTED
+-- Performing Test IS_FVISIBILITY=HIDDEN_SUPPORTED - Success
+-- Performing Test IS_WDOCUMENTATION_SUPPORTED
+-- Performing Test IS_WDOCUMENTATION_SUPPORTED - Failed
+-- Performing Test IS_WNO-MISSING-FIELD-INITIALIZERS_SUPPORTED
+-- Performing Test IS_WNO-MISSING-FIELD-INITIALIZERS_SUPPORTED - Success
+-- Performing Test IS_WSTRICT-ALIASING=2_SUPPORTED
+-- Performing Test IS_WSTRICT-ALIASING=2_SUPPORTED - Success
+-- Performing Test IS_WSTRICT-PROTOTYPES_SUPPORTED
+-- Performing Test IS_WSTRICT-PROTOTYPES_SUPPORTED - Success
+-- Performing Test IS_WDECLARATION-AFTER-STATEMENT_SUPPORTED
+-- Performing Test IS_WDECLARATION-AFTER-STATEMENT_SUPPORTED - Success
+-- Performing Test IS_WNO-UNUSED-CONST-VARIABLE_SUPPORTED
+-- Performing Test IS_WNO-UNUSED-CONST-VARIABLE_SUPPORTED - Failed
+-- Performing Test IS_WNO-UNUSED-FUNCTION_SUPPORTED
+-- Performing Test IS_WNO-UNUSED-FUNCTION_SUPPORTED - Success
+-- Looking for include file pthread.h
+-- Looking for include file pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - found
+-- Found Threads: TRUE  
+-- Looking for clock_gettime in rt
+-- Looking for clock_gettime in rt - not found
+-- Found PythonInterp: /tmp/toolchain/bin/python (found version "2.7.5") 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/libgit2/src/libgit2-0.23.2
+[  0%] Generating tests/clar.suite
+Scanning dependencies of target git2
+[  0%] Building C object CMakeFiles/git2.dir/src/reset.c.o
+Written `clar.suite` (1997 tests in 294 suites)
+[  0%] Building C object CMakeFiles/git2.dir/src/fileops.c.o
+In file included from /tmp/libgit2/src/libgit2-0.23.2/src/hash.h:22:0,
+                 from /tmp/libgit2/src/libgit2-0.23.2/src/global.h:12,
+                 from /tmp/libgit2/src/libgit2-0.23.2/src/fileops.c:9:
+/tmp/libgit2/src/libgit2-0.23.2/src/hash/hash_openssl.h:13:25: fatal error: openssl/sha.h: No such file or directory
+ #include <openssl/sha.h>
+                         ^
+compilation terminated.
+CMakeFiles/git2.dir/build.make:86: recipe for target 'CMakeFiles/git2.dir/src/fileops.c.o' failed
+make[2]: *** [CMakeFiles/git2.dir/src/fileops.c.o] Error 1
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/git2.dir/all' failed
+make[1]: *** [CMakeFiles/git2.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+Scanning dependencies of target libgit2_clar
+[  1%] Building C object CMakeFiles/libgit2_clar.dir/src/fileops.c.o
+[  1%] Building C object CMakeFiles/libgit2_clar.dir/src/reset.c.o
+In file included from /tmp/libgit2/src/libgit2-0.23.2/src/hash.h:22:0,
+                 from /tmp/libgit2/src/libgit2-0.23.2/src/global.h:12,
+                 from /tmp/libgit2/src/libgit2-0.23.2/src/fileops.c:9:
+/tmp/libgit2/src/libgit2-0.23.2/src/hash/hash_openssl.h:13:25: fatal error: openssl/sha.h: No such file or directory
+ #include <openssl/sha.h>
+                         ^
+compilation terminated.
+CMakeFiles/libgit2_clar.dir/build.make:427: recipe for target 'CMakeFiles/libgit2_clar.dir/src/fileops.c.o' failed
+make[2]: *** [CMakeFiles/libgit2_clar.dir/src/fileops.c.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+CMakeFiles/Makefile2:104: recipe for target 'CMakeFiles/libgit2_clar.dir/all' failed
+make[1]: *** [CMakeFiles/libgit2_clar.dir/all] Error 2
+Makefile:138: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem abcf7815a8c81c785b8565462146c03f1822bd01e5a6321a0caf92b425106b1f: rename /usr/local/google/home/khazem/docker/aufs/mnt/abcf7815a8c81c785b8565462146c03f1822bd01e5a6321a0caf92b425106b1f /usr/local/google/home/khazem/docker/aufs/mnt/abcf7815a8c81c785b8565462146c03f1822bd01e5a6321a0caf92b425106b1f-removing: device or resource busy></pre></code>
+        </body></html>

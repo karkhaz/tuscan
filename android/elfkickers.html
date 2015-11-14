@@ -1,0 +1,148 @@
+        <html><head></head><body>
+        <h1>Report for elfkickers on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:31</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data elfkickers
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 667 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: elfkickers 3.0a-1 (Fri Nov 13 23:13:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading ELFkickers-3.0a.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting ELFkickers-3.0a.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/elfkickers
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: elfkickers 3.0a-1 (Fri Nov 13 23:13:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a'
+make -Celfls elfls
+cp elfls/elfls.1 doc/elfls.1
+make -Cobjres objres
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/elfls'
+make -C ../elfrw libelfrw.a
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/objres'
+make -C ../elfrw libelfrw.a
+make[2]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/elfrw'
+gcc -Wall -Wextra -O3   -c -o elfrw.o elfrw.c
+make[2]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/elfrw'
+gcc -Wall -Wextra -O3   -c -o elfrw.o elfrw.c
+gcc -Wall -Wextra -O3   -c -o elfrw_dyn.o elfrw_dyn.c
+gcc -Wall -Wextra -O3   -c -o elfrw_dyn.o elfrw_dyn.c
+gcc -Wall -Wextra -O3   -c -o elfrw_ehdr.o elfrw_ehdr.c
+gcc -Wall -Wextra -O3   -c -o elfrw_ehdr.o elfrw_ehdr.c
+gcc -Wall -Wextra -O3   -c -o elfrw_phdr.o elfrw_phdr.c
+gcc -Wall -Wextra -O3   -c -o elfrw_phdr.o elfrw_phdr.c
+gcc -Wall -Wextra -O3   -c -o elfrw_rel.o elfrw_rel.c
+gcc -Wall -Wextra -O3   -c -o elfrw_rel.o elfrw_rel.c
+gcc -Wall -Wextra -O3   -c -o elfrw_shdr.o elfrw_shdr.c
+gcc -Wall -Wextra -O3   -c -o elfrw_shdr.o elfrw_shdr.c
+gcc -Wall -Wextra -O3   -c -o elfrw_sym.o elfrw_sym.c
+gcc -Wall -Wextra -O3   -c -o elfrw_sym.o elfrw_sym.c
+gcc -Wall -Wextra -O3   -c -o elfrw_ver.o elfrw_ver.c
+ar crs libelfrw.a elfrw.o elfrw_dyn.o elfrw_ehdr.o elfrw_phdr.o elfrw_rel.o elfrw_shdr.o elfrw_sym.o elfrw_ver.o
+make[2]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/elfrw'
+gcc -Wall -Wextra -I../elfrw    elfls.c ../elfrw/libelfrw.a   -o elfls
+gcc -Wall -Wextra -O3   -c -o elfrw_ver.o elfrw_ver.c
+ar crs libelfrw.a elfrw.o elfrw_dyn.o elfrw_ehdr.o elfrw_phdr.o elfrw_rel.o elfrw_shdr.o elfrw_sym.o elfrw_ver.o
+make[2]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/elfrw'
+gcc -Wall -Wextra -I../elfrw    objres.c ../elfrw/libelfrw.a   -o objres
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/elfls'
+cp elfls/elfls bin/elfls
+cp objres/objres.1 doc/objres.1
+make -Crebind rebind
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/rebind'
+gcc -Wall -Wextra -I../elfrw    rebind.c ../elfrw/libelfrw.a   -o rebind
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/objres'
+cp objres/objres bin/objres
+cp rebind/rebind.1 doc/rebind.1
+make -Csstrip sstrip
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/sstrip'
+gcc -Wall -Wextra -I../elfrw    sstrip.c ../elfrw/libelfrw.a   -o sstrip
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/rebind'
+cp rebind/rebind bin/rebind
+cp sstrip/sstrip.1 doc/sstrip.1
+make -Celftoc elftoc
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/elftoc'
+gcc -Wall -Wextra   -c -o elftoc.o elftoc.c
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/sstrip'
+cp sstrip/sstrip bin/sstrip
+cp elftoc/elftoc.1 doc/elftoc.1
+gcc -Wall -Wextra   -c -o gen.o gen.c
+gcc -Wall -Wextra   -c -o mknames.o mknames.c
+gcc -Wall -Wextra   -c -o address.o address.c
+make -Cebfc ebfc
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/ebfc'
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o ebfc.o ebfc.c
+gcc -Wall -Wextra   -c -o readelf.o readelf.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o brainfuck.o brainfuck.c
+gcc -Wall -Wextra   -c -o shdrtab.o shdrtab.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o elfparts.o elfparts.c
+gcc -Wall -Wextra   -c -o phdrtab.o phdrtab.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o ehdr.o ehdr.c
+gcc -Wall -Wextra   -c -o dynamic.o dynamic.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o phdrtab.o phdrtab.c
+gcc -Wall -Wextra   -c -o pieces.o pieces.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o shdrtab.o shdrtab.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o progbits.o progbits.c
+gcc -Wall -Wextra   -c -o outbase.o outbase.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o strtab.o strtab.c
+gcc -Wall -Wextra   -c -o outitems.o outitems.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o symtab.o symtab.c
+gcc -Wall -Wextra   -c -o outelf64.o outelf64.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o hash.o hash.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o rel.o rel.c
+gcc -Wall -Wextra   -c -o outelf32.o outelf32.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o got.o got.c
+gcc -Wall -Wextra -Wno-missing-field-initializers   -c -o dynamic.o dynamic.c
+gcc -Wall -Wextra   -c -o out.o out.c
+ar crs libelfparts.a elfparts.o ehdr.o phdrtab.o shdrtab.o progbits.o strtab.o symtab.o hash.o rel.o got.o dynamic.o
+gcc   ebfc.o brainfuck.o libelfparts.a   -o ebfc
+gcc -Wall -Wextra  mknames.o   -o mknames
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/ebfc'
+cp ebfc/ebfc bin/ebfc
+cp ebfc/ebfc.1 doc/ebfc.1
+make -Cinfect infect
+echo '#include <elf.h>' | gcc -E -dM -xc /dev/stdin | ./mknames elfnames.c
+make[1]: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a/infect'
+gcc -Wall -Wextra    infect.c   -o infect
+gcc -Wall -Wextra   -c -o names.o names.c
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/infect'
+cp infect/infect bin/infect
+cp infect/infect.1 doc/infect.1
+gcc -Wall -Wextra  elftoc.o gen.o names.o address.o readelf.o shdrtab.o phdrtab.o dynamic.o pieces.o outbase.o outitems.o outelf64.o outelf32.o out.o   -o elftoc
+make[1]: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a/elftoc'
+cp elftoc/elftoc bin/elftoc
+make: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a'
+==> Entering fakeroot environment...
+==> Starting package()...
+make: Entering directory '/tmp/elfkickers/src/ELFkickers-3.0a'
+cp bin/* /tmp/elfkickers/pkg/elfkickers/usr/bin/.
+cp doc/* /tmp/elfkickers/pkg/elfkickers/usr/share/man/man1/.
+make: Leaving directory '/tmp/elfkickers/src/ELFkickers-3.0a'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "elfkickers"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: elfkickers 3.0a-1 (Fri Nov 13 23:13:05 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

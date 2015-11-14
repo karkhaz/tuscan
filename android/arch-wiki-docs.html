@@ -1,0 +1,32 @@
+        <html><head></head><body>
+        <h1>Report for arch-wiki-docs on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 1</p>
+        <p>Time to run: 01:39:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data arch-wiki-docs
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2961 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+Traceback (most recent call last):
+  File "/build/make_package.py", line 215, in <module>
+    main()
+  File "/build/make_package.py", line 210, in main
+    sanity_checks(args)
+  File "/build/make_package.py", line 170, in sanity_checks
+    args.sources_directory)):
+  File "/build/make_package.py", line 99, in get_package_source_dir
+    universal_newlines=True)
+  File "/usr/lib/python3.5/subprocess.py", line 698, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.5/subprocess.py", line 1055, in communicate
+    stdout = self.stdout.read()
+  File "/usr/lib/python3.5/encodings/ascii.py", line 26, in decode
+    return codecs.ascii_decode(input, self.errors)[0]
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc4 in position 2399: ordinal not in range(128)></pre></code>
+        </body></html>

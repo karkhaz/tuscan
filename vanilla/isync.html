@@ -1,0 +1,893 @@
+        <html><head></head><body>
+        <h1>Report for isync on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:54</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data isync
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1488 packages in cache
+Found permanent source directory in /sources/isync
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: isync 1.2.0-1 (Sat Nov 14 05:22:13 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether to enable maintainer-specific portions of Makefiles... yes
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking whether strftime supports %z... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking sys/poll.h usability... yes
+checking sys/poll.h presence... yes
+checking for sys/poll.h... yes
+checking sys/select.h usability... yes
+checking sys/select.h presence... yes
+checking for sys/select.h... yes
+checking for vasprintf... yes
+checking for strnlen... yes
+checking for memrchr... yes
+checking for timegm... yes
+checking for socket in -lsocket... no
+checking for inet_ntoa in -lnsl... yes
+checking for getaddrinfo... yes
+checking for inet_ntop... yes
+checking for pkg-config... /usr/sbin/pkg-config
+checking OpenSSL presence with pkg-config... found
+checking openssl/ssl.h usability... yes
+checking openssl/ssl.h presence... yes
+checking for openssl/ssl.h... yes
+checking for sasl_client_init in -lsasl2... yes
+checking sasl/sasl.h usability... yes
+checking sasl/sasl.h presence... yes
+checking for sasl/sasl.h... yes
+checking for Berkley DB >= 4.2... yes
+checking for deflate in -lz... yes
+checking zlib.h usability... yes
+checking zlib.h presence... yes
+checking for zlib.h... yes
+checking for getopt_long... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/compat/Makefile
+config.status: creating isync.spec
+config.status: creating autodefs.h
+config.status: executing depfiles commands
+
+Using SSL
+Using SASL
+Using zlib
+
+make  all-recursive
+make[1]: Entering directory '/tmp/isync/src/isync-1.2.0'
+Making all in src
+make[2]: Entering directory '/tmp/isync/src/isync-1.2.0/src'
+Making all in compat
+make[3]: Entering directory '/tmp/isync/src/isync-1.2.0/src/compat'
+gcc -DHAVE_CONFIG_H -I. -I../..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/main.Tpo .deps/main.Po
+gcc -DHAVE_CONFIG_H -I. -I../..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT config.o -MD -MP -MF .deps/config.Tpo -c -o config.o config.c
+mv -f .deps/config.Tpo .deps/config.Po
+gcc -DHAVE_CONFIG_H -I. -I../..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT convert.o -MD -MP -MF .deps/convert.Tpo -c -o convert.o convert.c
+mv -f .deps/convert.Tpo .deps/convert.Po
+gcc -DHAVE_CONFIG_H -I. -I../..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT util.o -MD -MP -MF .deps/util.Tpo -c -o util.o util.c
+mv -f .deps/util.Tpo .deps/util.Po
+gcc  -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings   -o isync main.o config.o convert.o util.o -ldb 
+make[3]: Leaving directory '/tmp/isync/src/isync-1.2.0/src/compat'
+make[3]: Entering directory '/tmp/isync/src/isync-1.2.0/src'
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/main.Tpo .deps/main.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT sync.o -MD -MP -MF .deps/sync.Tpo -c -o sync.o sync.c
+mv -f .deps/sync.Tpo .deps/sync.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT config.o -MD -MP -MF .deps/config.Tpo -c -o config.o config.c
+mv -f .deps/config.Tpo .deps/config.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT util.o -MD -MP -MF .deps/util.Tpo -c -o util.o util.c
+util.c: In function 'map_name':
+util.c:467:26: warning: 'outl' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  int i, l, ll, num, inl, outl;
+                          ^
+mv -f .deps/util.Tpo .deps/util.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT socket.o -MD -MP -MF .deps/socket.Tpo -c -o socket.o socket.c
+mv -f .deps/socket.Tpo .deps/socket.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT driver.o -MD -MP -MF .deps/driver.Tpo -c -o driver.o driver.c
+mv -f .deps/driver.Tpo .deps/driver.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT drv_imap.o -MD -MP -MF .deps/drv_imap.Tpo -c -o drv_imap.o drv_imap.c
+mv -f .deps/drv_imap.Tpo .deps/drv_imap.Po
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT drv_maildir.o -MD -MP -MF .deps/drv_maildir.Tpo -c -o drv_maildir.o drv_maildir.c
+mv -f .deps/drv_maildir.Tpo .deps/drv_maildir.Po
+gcc  -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings   -o mbsync main.o sync.o config.o util.o socket.o driver.o drv_imap.o drv_maildir.o -ldb -lssl -lcrypto -lnsl -lsasl2 -lz 
+gcc -DHAVE_CONFIG_H -I. -I..   -D_GNU_SOURCE    -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings -MT mdconvert.o -MD -MP -MF .deps/mdconvert.Tpo -c -o mdconvert.o mdconvert.c
+mv -f .deps/mdconvert.Tpo .deps/mdconvert.Po
+gcc  -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings   -o mdconvert mdconvert.o -ldb 
+make[3]: Leaving directory '/tmp/isync/src/isync-1.2.0/src'
+make[2]: Leaving directory '/tmp/isync/src/isync-1.2.0/src'
+make[2]: Entering directory '/tmp/isync/src/isync-1.2.0'
+make[2]: Leaving directory '/tmp/isync/src/isync-1.2.0'
+make[1]: Leaving directory '/tmp/isync/src/isync-1.2.0'
+==> Entering fakeroot environment...
+==> Starting package()...
+Making install in src
+make[1]: Entering directory '/tmp/isync/src/isync-1.2.0/src'
+Making install in compat
+make[2]: Entering directory '/tmp/isync/src/isync-1.2.0/src/compat'
+make[3]: Entering directory '/tmp/isync/src/isync-1.2.0/src/compat'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/bin'
+  /usr/bin/install -c isync '/tmp/isync/pkg/isync/usr/bin'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/share/doc/isync/examples'
+ /usr/bin/install -c -m 644 isyncrc.sample '/tmp/isync/pkg/isync/usr/share/doc/isync/examples'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/share/man/man1'
+ /usr/bin/install -c -m 644 isync.1 '/tmp/isync/pkg/isync/usr/share/man/man1'
+make[3]: Leaving directory '/tmp/isync/src/isync-1.2.0/src/compat'
+make[2]: Leaving directory '/tmp/isync/src/isync-1.2.0/src/compat'
+make[2]: Entering directory '/tmp/isync/src/isync-1.2.0/src'
+make[3]: Entering directory '/tmp/isync/src/isync-1.2.0/src'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/bin'
+  /usr/bin/install -c mbsync mdconvert '/tmp/isync/pkg/isync/usr/bin'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/share/doc/isync/examples'
+ /usr/bin/install -c -m 644 mbsyncrc.sample '/tmp/isync/pkg/isync/usr/share/doc/isync/examples'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/share/man/man1'
+ /usr/bin/install -c -m 644 mbsync.1 mdconvert.1 '/tmp/isync/pkg/isync/usr/share/man/man1'
+make[3]: Leaving directory '/tmp/isync/src/isync-1.2.0/src'
+make[2]: Leaving directory '/tmp/isync/src/isync-1.2.0/src'
+make[1]: Leaving directory '/tmp/isync/src/isync-1.2.0/src'
+make[1]: Entering directory '/tmp/isync/src/isync-1.2.0'
+make[2]: Entering directory '/tmp/isync/src/isync-1.2.0'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/bin'
+ /usr/bin/install -c get-cert '/tmp/isync/pkg/isync/usr/bin'
+ /usr/sbin/mkdir -p '/tmp/isync/pkg/isync/usr/share/doc/isync'
+ /usr/bin/install -c -m 644 README TODO NEWS ChangeLog AUTHORS '/tmp/isync/pkg/isync/usr/share/doc/isync'
+make[2]: Leaving directory '/tmp/isync/src/isync-1.2.0'
+make[1]: Leaving directory '/tmp/isync/src/isync-1.2.0'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "isync"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: isync 1.2.0-1 (Sat Nov 14 05:22:42 UTC 2015)
+===> Printing config.logs
+found log at /tmp/isync/src/isync-1.2.0/config.log
+____
+File /tmp/isync/src/isync-1.2.0/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by isync configure 1.2.0, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 7e35d70a606c
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2205: checking for a BSD-compatible install
+configure:2273: result: /usr/bin/install -c
+configure:2284: checking whether build environment is sane
+configure:2339: result: yes
+configure:2398: checking for x86_64-unknown-linux-strip
+configure:2428: result: no
+configure:2438: checking for strip
+configure:2454: found /usr/sbin/strip
+configure:2465: result: strip
+configure:2490: checking for a thread-safe mkdir -p
+configure:2529: result: /usr/sbin/mkdir -p
+configure:2536: checking for gawk
+configure:2552: found /usr/sbin/gawk
+configure:2563: result: gawk
+configure:2574: checking whether make sets $(MAKE)
+configure:2596: result: yes
+configure:2625: checking whether make supports nested variables
+configure:2642: result: yes
+configure:2769: checking whether to enable maintainer-specific portions of Makefiles
+configure:2778: result: yes
+configure:2800: checking for x86_64-unknown-linux-gcc
+configure:2830: result: no
+configure:2840: checking for gcc
+configure:2856: found /usr/sbin/gcc
+configure:2867: result: gcc
+configure:3096: checking for C compiler version
+configure:3105: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3116: $? = 0
+configure:3105: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:3116: $? = 0
+configure:3105: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:3116: $? = 1
+configure:3105: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:3116: $? = 1
+configure:3136: checking whether the C compiler works
+configure:3158: gcc    conftest.c  >&5
+configure:3162: $? = 0
+configure:3210: result: yes
+configure:3213: checking for C compiler default output file name
+configure:3215: result: a.out
+configure:3221: checking for suffix of executables
+configure:3228: gcc -o conftest    conftest.c  >&5
+configure:3232: $? = 0
+configure:3254: result: 
+configure:3276: checking whether we are cross compiling
+configure:3284: gcc -o conftest    conftest.c  >&5
+configure:3288: $? = 0
+configure:3295: ./conftest
+configure:3299: $? = 0
+configure:3314: result: no
+configure:3319: checking for suffix of object files
+configure:3341: gcc -c   conftest.c >&5
+configure:3345: $? = 0
+configure:3366: result: o
+configure:3370: checking whether we are using the GNU C compiler
+configure:3389: gcc -c   conftest.c >&5
+configure:3389: $? = 0
+configure:3398: result: yes
+configure:3407: checking whether gcc accepts -g
+configure:3427: gcc -c -g  conftest.c >&5
+configure:3427: $? = 0
+configure:3468: result: yes
+configure:3485: checking for gcc option to accept ISO C89
+configure:3548: gcc  -c -g -O2  conftest.c >&5
+configure:3548: $? = 0
+configure:3561: result: none needed
+configure:3586: checking whether gcc understands -c and -o together
+configure:3608: gcc -c conftest.c -o conftest2.o
+configure:3611: $? = 0
+configure:3608: gcc -c conftest.c -o conftest2.o
+configure:3611: $? = 0
+configure:3623: result: yes
+configure:3651: checking for style of include used by make
+configure:3679: result: GNU
+configure:3705: checking dependency style of gcc
+configure:3816: result: gcc3
+configure:3838: checking whether strftime supports %z
+configure:3860: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c  >&5
+conftest.c: In function 'main':
+conftest.c:18:32: warning: ISO C90 does not support the '%z' gnu_strftime format [-Wformat=]
+     strftime(buf, sizeof(buf), "%z", localtime(&t));
+                                ^
+configure:3860: $? = 0
+configure:3860: ./conftest
+configure:3860: $? = 0
+configure:3870: result: yes
+configure:3881: checking how to run the C preprocessor
+configure:3912: gcc -E  -D_GNU_SOURCE conftest.c
+configure:3912: $? = 0
+configure:3926: gcc -E  -D_GNU_SOURCE conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3926: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "isync"
+| #define PACKAGE_TARNAME "isync"
+| #define PACKAGE_VERSION "1.2.0"
+| #define PACKAGE_STRING "isync 1.2.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "isync"
+| #define VERSION "1.2.0"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3951: result: gcc -E
+configure:3971: gcc -E  -D_GNU_SOURCE conftest.c
+configure:3971: $? = 0
+configure:3985: gcc -E  -D_GNU_SOURCE conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3985: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "isync"
+| #define PACKAGE_TARNAME "isync"
+| #define PACKAGE_VERSION "1.2.0"
+| #define PACKAGE_STRING "isync 1.2.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "isync"
+| #define VERSION "1.2.0"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4014: checking for grep that handles long lines and -e
+configure:4072: result: /usr/sbin/grep
+configure:4077: checking for egrep
+configure:4139: result: /usr/sbin/grep -E
+configure:4144: checking for ANSI C header files
+configure:4164: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+conftest.c:17:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4164: $? = 0
+configure:4237: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c  >&5
+conftest.c:23:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4237: $? = 0
+configure:4237: ./conftest
+configure:4237: $? = 0
+configure:4248: result: yes
+configure:4261: checking for sys/types.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for sys/stat.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for stdlib.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for string.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for memory.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for strings.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for inttypes.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for stdint.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4261: checking for unistd.h
+configure:4261: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4261: $? = 0
+configure:4261: result: yes
+configure:4276: checking sys/poll.h usability
+configure:4276: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4276: $? = 0
+configure:4276: result: yes
+configure:4276: checking sys/poll.h presence
+configure:4276: gcc -E  -D_GNU_SOURCE conftest.c
+configure:4276: $? = 0
+configure:4276: result: yes
+configure:4276: checking for sys/poll.h
+configure:4276: result: yes
+configure:4276: checking sys/select.h usability
+configure:4276: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE conftest.c >&5
+configure:4276: $? = 0
+configure:4276: result: yes
+configure:4276: checking sys/select.h presence
+configure:4276: gcc -E  -D_GNU_SOURCE conftest.c
+configure:4276: $? = 0
+configure:4276: result: yes
+configure:4276: checking for sys/select.h
+configure:4276: result: yes
+configure:4289: checking for vasprintf
+configure:4289: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c  >&5
+conftest.c:46:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char vasprintf ();
+ ^
+conftest.c:55:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4289: $? = 0
+configure:4289: result: yes
+configure:4289: checking for strnlen
+configure:4289: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c  >&5
+conftest.c:47:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char strnlen ();
+ ^
+conftest.c:56:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4289: $? = 0
+configure:4289: result: yes
+configure:4289: checking for memrchr
+configure:4289: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c  >&5
+conftest.c:48:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char memrchr ();
+ ^
+conftest.c:57:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4289: $? = 0
+configure:4289: result: yes
+configure:4289: checking for timegm
+configure:4289: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c  >&5
+conftest.c:49:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char timegm ();
+ ^
+conftest.c:58:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4289: $? = 0
+configure:4289: result: yes
+configure:4299: checking for socket in -lsocket
+configure:4324: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c -lsocket   >&5
+conftest.c:34:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char socket ();
+ ^
+conftest.c:36:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+/usr/sbin/ld: cannot find -lsocket
+collect2: error: ld returned 1 exit status
+configure:4324: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "isync"
+| #define PACKAGE_TARNAME "isync"
+| #define PACKAGE_VERSION "1.2.0"
+| #define PACKAGE_STRING "isync 1.2.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "isync"
+| #define VERSION "1.2.0"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_POLL_H 1
+| #define HAVE_SYS_SELECT_H 1
+| #define HAVE_VASPRINTF 1
+| #define HAVE_STRNLEN 1
+| #define HAVE_MEMRCHR 1
+| #define HAVE_TIMEGM 1
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char socket ();
+| int
+| main ()
+| {
+| return socket ();
+|   ;
+|   return 0;
+| }
+configure:4333: result: no
+configure:4339: checking for inet_ntoa in -lnsl
+configure:4364: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c -lnsl   >&5
+conftest.c:34:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char inet_ntoa ();
+ ^
+conftest.c:36:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4364: $? = 0
+configure:4373: result: yes
+configure:4387: checking for getaddrinfo
+configure:4387: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE   -lnsl conftest.c  >&5
+conftest.c:50:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char getaddrinfo ();
+ ^
+conftest.c:59:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4387: $? = 0
+configure:4387: result: yes
+configure:4387: checking for inet_ntop
+configure:4387: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE   -lnsl conftest.c  >&5
+conftest.c:51:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char inet_ntop ();
+ ^
+conftest.c:60:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4387: $? = 0
+configure:4387: result: yes
+configure:4417: checking for pkg-config
+configure:4436: found /usr/sbin/pkg-config
+configure:4449: result: /usr/sbin/pkg-config
+configure:4458: checking OpenSSL presence with pkg-config
+configure:4465: result: found
+configure:4606: checking openssl/ssl.h usability
+configure:4606: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE  conftest.c >&5
+configure:4606: $? = 0
+configure:4606: result: yes
+configure:4606: checking openssl/ssl.h presence
+configure:4606: gcc -E  -D_GNU_SOURCE  conftest.c
+configure:4606: $? = 0
+configure:4606: result: yes
+configure:4606: checking for openssl/ssl.h
+configure:4606: result: yes
+configure:4649: checking for sasl_client_init in -lsasl2
+configure:4674: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE     conftest.c -lsasl2   >&5
+conftest.c:38:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char sasl_client_init ();
+ ^
+conftest.c:40:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4674: $? = 0
+configure:4683: result: yes
+configure:4694: checking sasl/sasl.h usability
+configure:4694: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE   conftest.c >&5
+configure:4694: $? = 0
+configure:4694: result: yes
+configure:4694: checking sasl/sasl.h presence
+configure:4694: gcc -E  -D_GNU_SOURCE   conftest.c
+configure:4694: $? = 0
+configure:4694: result: yes
+configure:4694: checking for sasl/sasl.h
+configure:4694: result: yes
+configure:4718: checking for Berkley DB >= 4.2
+configure:4737: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE      conftest.c  >&5
+conftest.c:34:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+conftest.c: In function 'main':
+conftest.c:37:12: warning: 'db' is used uninitialized in this function [-Wuninitialized]
+          db->truncate(db, 0, 0, 0);
+            ^
+configure:4737: $? = 0
+configure:4743: result: yes
+configure:4750: checking for deflate in -lz
+configure:4775: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE      conftest.c -lz   >&5
+conftest.c:39:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char deflate ();
+ ^
+conftest.c:41:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4775: $? = 0
+configure:4784: result: yes
+configure:4787: checking zlib.h usability
+configure:4787: gcc -c -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE   conftest.c >&5
+configure:4787: $? = 0
+configure:4787: result: yes
+configure:4787: checking zlib.h presence
+configure:4787: gcc -E  -D_GNU_SOURCE   conftest.c
+configure:4787: $? = 0
+configure:4787: result: yes
+configure:4787: checking for zlib.h
+configure:4787: result: yes
+configure:4811: checking for getopt_long
+configure:4811: gcc -o conftest -g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings  -D_GNU_SOURCE      conftest.c  >&5
+conftest.c:56:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ char getopt_long ();
+ ^
+conftest.c:65:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+configure:4811: $? = 0
+configure:4811: result: yes
+configure:4941: checking that generated files are newer than configure
+configure:4947: result: done
+configure:4978: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by isync config.status 1.2.0, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 7e35d70a606c
+
+config.status:878: creating Makefile
+config.status:878: creating src/Makefile
+config.status:878: creating src/compat/Makefile
+config.status:878: creating isync.spec
+config.status:878: creating autodefs.h
+config.status:1107: executing depfiles commands
+configure:6298: result: 
+configure:6301: result: Using SSL
+configure:6308: result: Using SASL
+configure:6315: result: Using zlib
+configure:6321: result: 
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_berkdb4=yes
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_getaddrinfo=yes
+ac_cv_func_getopt_long=yes
+ac_cv_func_inet_ntop=yes
+ac_cv_func_memrchr=yes
+ac_cv_func_strnlen=yes
+ac_cv_func_timegm=yes
+ac_cv_func_vasprintf=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_openssl_ssl_h=yes
+ac_cv_header_sasl_sasl_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_poll_h=yes
+ac_cv_header_sys_select_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_header_zlib_h=yes
+ac_cv_lib_nsl_inet_ntoa=yes
+ac_cv_lib_sasl2_sasl_client_init=yes
+ac_cv_lib_socket_socket=no
+ac_cv_lib_z_deflate=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_PKGCONFIG=/usr/sbin/pkg-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_make_support_nested_variables=yes
+am_cv_prog_cc_c_o=yes
+ob_cv_strftime_z=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/isync/src/isync-1.2.0/missing aclocal-1.14'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AM_BACKSLASH='\'
+AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
+AM_DEFAULT_VERBOSITY='1'
+AM_V='$(V)'
+AUTOCONF='${SHELL} /tmp/isync/src/isync-1.2.0/missing autoconf'
+AUTOHEADER='${SHELL} /tmp/isync/src/isync-1.2.0/missing autoheader'
+AUTOMAKE='${SHELL} /tmp/isync/src/isync-1.2.0/missing automake-1.14'
+AWK='gawk'
+CC='gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS='-g -O2 -pipe -W -Wall -Wshadow -Wstrict-prototypes -ansi -pedantic -Wno-overlength-strings'
+CPP='gcc -E'
+CPPFLAGS=' -D_GNU_SOURCE  '
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS='  '
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAINT=''
+MAINTAINER_MODE_FALSE='#'
+MAINTAINER_MODE_TRUE=''
+MAKEINFO='${SHELL} /tmp/isync/src/isync-1.2.0/missing makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='isync'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='isync'
+PACKAGE_STRING='isync 1.2.0'
+PACKAGE_TARNAME='isync'
+PACKAGE_URL=''
+PACKAGE_VERSION='1.2.0'
+PATH_SEPARATOR=':'
+PKGCONFIG='/usr/sbin/pkg-config'
+SASL_LIBS='-lsasl2'
+SET_MAKE=''
+SHELL='/bin/sh'
+SOCK_LIBS=' -lnsl'
+SSL_LIBS='-lssl -lcrypto'
+STRIP='strip'
+VERSION='1.2.0'
+Z_LIBS='-lz'
+ac_ct_CC='gcc'
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/isync/src/isync-1.2.0/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='$(MKDIR_P)'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+with_compat_FALSE='#'
+with_compat_TRUE=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "isync"
+#define PACKAGE_TARNAME "isync"
+#define PACKAGE_VERSION "1.2.0"
+#define PACKAGE_STRING "isync 1.2.0"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "isync"
+#define VERSION "1.2.0"
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_SYS_POLL_H 1
+#define HAVE_SYS_SELECT_H 1
+#define HAVE_VASPRINTF 1
+#define HAVE_STRNLEN 1
+#define HAVE_MEMRCHR 1
+#define HAVE_TIMEGM 1
+#define HAVE_GETADDRINFO 1
+#define HAVE_INET_NTOP 1
+#define HAVE_IPV6 1
+#define HAVE_LIBSSL 1
+#define HAVE_LIBSASL 1
+#define HAVE_LIBZ 1
+#define HAVE_GETOPT_LONG 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

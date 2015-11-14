@@ -1,0 +1,303 @@
+        <html><head></head><body>
+        <h1>Report for sysdig on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:03:46</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data sysdig
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2139 packages in cache
+Found permanent source directory in /sources/sysdig
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sysdig 0.3.0-1 (Sat Nov 14 06:06:35 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) dkms-2.2.0.3+git151023-1  jsoncpp-1.6.5-1  luajit-2.0.4-1
+
+Total Installed Size:  1.58 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing dkms...
+Optional dependencies for dkms
+    linux-headers: build modules against Arch kernel
+    linux-lts-headers: build modules against LTS Arch kernel
+installing jsoncpp...
+installing luajit...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.52 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 5.2.0
+-- The CXX compiler identification is GNU 5.2.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found LuaJIT: include: /usr/include/luajit-2.0, lib: /usr/lib64/libluajit-5.1.so
+-- Found jsoncpp: include: /usr/include, lib: /usr/lib64/libjsoncpp.so
+-- Found zlib: include: /usr/include, lib: /usr/lib64/libz.so
+-- Looking for wsyncup in /usr/lib64/libcurses.so
+-- Looking for wsyncup in /usr/lib64/libcurses.so - found
+-- Looking for cbreak in /usr/lib64/libncurses.so
+-- Looking for cbreak in /usr/lib64/libncurses.so - found
+-- Found Curses: /usr/lib64/libncurses.so  
+-- Found ncurses: include: /usr/include, lib: /usr/lib64/libncurses.so;/usr/lib64/libform.so
+-- Configuring done
+CMake Warning (dev) at userspace/libscap/CMakeLists.txt:17 (add_dependencies):
+  Policy CMP0046 is not set: Error on non-existent dependency in
+  add_dependencies.  Run "cmake --help-policy CMP0046" for policy details.
+  Use the cmake_policy command to set the policy and suppress this warning.
+
+  The dependency target "zlib" of target "scap" does not exist.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at userspace/libsinsp/CMakeLists.txt:45 (add_dependencies):
+  Policy CMP0046 is not set: Error on non-existent dependency in
+  add_dependencies.  Run "cmake --help-policy CMP0046" for policy details.
+  Use the cmake_policy command to set the policy and suppress this warning.
+
+  The dependency target "luajit" of target "sinsp" does not exist.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Generating done
+-- Build files have been written to: /tmp/sysdig/src/sysdig-0.3.0/build
+Scanning dependencies of target configure_driver
+[  0%] Built target configure_driver
+Scanning dependencies of target scap
+[  2%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap.c.o
+[  4%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_event.c.o
+[  6%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_fds.c.o
+[  8%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_iflist.c.o
+[ 10%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_savefile.c.o
+[ 12%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_procs.c.o
+[ 14%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_userlist.c.o
+[ 16%] Building C object userspace/libscap/CMakeFiles/scap.dir/flags_table.c.o
+[ 18%] Building C object userspace/libscap/CMakeFiles/scap.dir/dynamic_params_table.c.o
+[ 20%] Building C object userspace/libscap/CMakeFiles/scap.dir/event_table.c.o
+[ 22%] Building C object userspace/libscap/CMakeFiles/scap.dir/syscall_info_table.c.o
+[ 24%] Linking C static library libscap.a
+[ 24%] Built target scap
+Scanning dependencies of target sinsp
+[ 26%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/chisel.cpp.o
+In file included from /tmp/sysdig/src/sysdig-0.3.0/userspace/libsinsp/sinsp.h:76:0,
+                 from /tmp/sysdig/src/sysdig-0.3.0/userspace/libsinsp/chisel.cpp:31:
+/tmp/sysdig/src/sysdig-0.3.0/userspace/libsinsp/viewinfo.h: In static member function 'static void sinsp_chisel::parse_view_hotkey(lua_State*, chisel_desc*, void*)':
+/tmp/sysdig/src/sysdig-0.3.0/userspace/libsinsp/viewinfo.h:87:14: warning: 'key' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   m_key = key;
+              ^
+/tmp/sysdig/src/sysdig-0.3.0/userspace/libsinsp/chisel.cpp:562:7: note: 'key' was declared here
+  char key;
+       ^
+[ 28%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/chisel_api.cpp.o
+[ 30%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/container.cpp.o
+[ 32%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/ctext.cpp.o
+[ 34%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/cyclewriter.cpp.o
+[ 36%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/cursescomponents.cpp.o
+[ 38%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/cursestable.cpp.o
+[ 40%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/cursesui.cpp.o
+[ 42%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/event.cpp.o
+[ 44%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/eventformatter.cpp.o
+[ 46%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/dumper.cpp.o
+[ 48%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/fdinfo.cpp.o
+[ 51%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/filter.cpp.o
+[ 53%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/filterchecks.cpp.o
+[ 55%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/ifinfo.cpp.o
+[ 57%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/memmem.cpp.o
+[ 59%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/internal_metrics.cpp.o
+[ 61%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/logger.cpp.o
+[ 63%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/parsers.cpp.o
+[ 65%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/protodecoder.cpp.o
+[ 67%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/threadinfo.cpp.o
+[ 69%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/sinsp.cpp.o
+[ 71%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/stats.cpp.o
+[ 73%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/table.cpp.o
+[ 75%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/utils.cpp.o
+[ 77%] Building CXX object userspace/libsinsp/CMakeFiles/sinsp.dir/viewinfo.cpp.o
+[ 79%] Linking CXX static library libsinsp.a
+[ 79%] Built target sinsp
+Scanning dependencies of target csysdig
+[ 81%] Building CXX object userspace/sysdig/CMakeFiles/csysdig.dir/fields_info.cpp.o
+[ 83%] Building CXX object userspace/sysdig/CMakeFiles/csysdig.dir/csysdig.cpp.o
+[ 85%] Linking CXX executable csysdig
+[ 85%] Built target csysdig
+Scanning dependencies of target sysdig
+[ 87%] Building CXX object userspace/sysdig/CMakeFiles/sysdig.dir/fields_info.cpp.o
+[ 89%] Building CXX object userspace/sysdig/CMakeFiles/sysdig.dir/sysdig.cpp.o
+[ 91%] Linking CXX executable sysdig
+[ 91%] Built target sysdig
+Scanning dependencies of target scap-open
+[ 93%] Building C object userspace/libscap/examples/01-open/CMakeFiles/scap-open.dir/test.c.o
+[ 95%] Linking C executable scap-open
+[ 95%] Built target scap-open
+Scanning dependencies of target scap-validatebuffer
+[ 97%] Building C object userspace/libscap/examples/02-validatebuffer/CMakeFiles/scap-validatebuffer.dir/test.c.o
+[100%] Linking C executable scap-validatebuffer
+[100%] Built target scap-validatebuffer
+==> Entering fakeroot environment...
+==> Starting package()...
+[  0%] Built target configure_driver
+[ 24%] Built target scap
+[ 79%] Built target sinsp
+[ 85%] Built target csysdig
+[ 91%] Built target sysdig
+[ 95%] Built target scap-open
+[100%] Built target scap-validatebuffer
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/Makefile
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/dkms.conf
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/dynamic_params_table.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/driver_config.h
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/event_table.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/flags_table.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/main.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm.h
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_events.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_events.h
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_events_public.h
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_fillers.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_ringbuffer.h
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_syscall.h
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/syscall_table.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_cputime.c
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/src/sysdig-0.3.0/ppm_compat_unistd_32.h
+-- Installing: /tmp/sysdig/pkg/sysdig/etc/bash_completion.d/sysdig
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/zsh/vendor-completions/_sysdig
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/zsh/site-functions/_sysdig
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/bin/sysdig-probe-loader
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/bin/sysdig
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/bin/csysdig
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/bottlenecks.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topcontainers_file.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/fdcount_by.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/stdin.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_syscall_procs.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topports_server.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/proc_exec_time.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/iobytes_file.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topcontainers_cpu.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spy_file.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_backlog.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/fdtime_by.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_procs.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/subsecoffset.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_errors.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_procs_cpu.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_page_faults.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/httptop.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_directories.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/stderr.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/fileslower.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_file_opens.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topprocs_cpu.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/lscontainers.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/httplog.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_files.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_syscalls.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_cpus.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/netlower.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spy_logs.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_procs_fd_usage.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topprocs_net.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topcontainers_net.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/ps.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_procs_errors.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/dkjson.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_incoming_connections.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_threads.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/shellshock_detect.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topscalls.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_io_by_type.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spy_syslog.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/iobytes.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spy_ip.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/http.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/around.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topfiles_bytes.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spectrogram.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_spy_users.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_containers_errors.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/scallslower.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spy_users.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topfiles_errors.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_spy_syslog.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topprocs_errors.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/iobytes_net.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/common.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/lsof.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topscalls_time.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topcontainers_error.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/echo_fds.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/spy_port.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/stdout.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/table_generator.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topprocs_file.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topconns.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/netstat.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/COPYING
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/fdbytes_by.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/memcachelog.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/topfiles_time.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_sports.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_containers.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/ansiterminal.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/v_connections.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/sysdig/chisels/list_login_shells.lua
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/man/man8/sysdig.8
+-- Installing: /tmp/sysdig/pkg/sysdig/usr/share/man/man8/csysdig.8
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "sysdig"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: sysdig 0.3.0-1 (Sat Nov 14 06:10:13 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

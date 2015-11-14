@@ -1,0 +1,122 @@
+        <html><head></head><body>
+        <h1>Report for python-gmpy2 on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:45</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-gmpy2
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2141 packages in cache
+Found permanent source directory in /sources/python-gmpy2
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-gmpy2 2.0.7-2 (Sat Nov 14 06:06:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) sqlite-3.9.2-1  python2-2.7.10-2
+
+Total Installed Size:  75.75 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+==> WARNING: Using existing $srcdir/ tree
+==> Entering fakeroot environment...
+==> Starting package_python2-gmpy2()...
+running install
+running build
+running build_ext
+building 'gmpy2' extension
+creating build
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/src
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DWITHMPFR -DWITHMPC -I/usr/include/python2.7 -c src/gmpy2.c -o build/temp.linux-x86_64-2.7/src/gmpy2.o
+creating build/lib.linux-x86_64-2.7
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/src/gmpy2.o -L/usr/lib -lgmp -lmpfr -lmpc -lpython2.7 -o build/lib.linux-x86_64-2.7/gmpy2.so
+running install_lib
+creating /tmp/python-gmpy2/pkg/python2-gmpy2/usr
+creating /tmp/python-gmpy2/pkg/python2-gmpy2/usr/lib
+creating /tmp/python-gmpy2/pkg/python2-gmpy2/usr/lib/python2.7
+creating /tmp/python-gmpy2/pkg/python2-gmpy2/usr/lib/python2.7/site-packages
+copying build/lib.linux-x86_64-2.7/gmpy2.so -> /tmp/python-gmpy2/pkg/python2-gmpy2/usr/lib/python2.7/site-packages
+running install_egg_info
+Writing /tmp/python-gmpy2/pkg/python2-gmpy2/usr/lib/python2.7/site-packages/gmpy2-2.0.7-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-gmpy2"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python-gmpy2()...
+running install
+running build
+running build_ext
+building 'gmpy2' extension
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/src
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DWITHMPFR -DWITHMPC -I/usr/include/python3.5m -c src/gmpy2.c -o build/temp.linux-x86_64-3.5/src/gmpy2.o
+In file included from src/gmpy2.c:500:0:
+src/mpz_pylong.c: In function 'mpn_pythonhash':
+src/mpz_pylong.c:225:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (bit_pos <= 8*sizeof(mp_limb_t))
+                   ^
+In file included from src/gmpy2.c:508:0:
+src/gmpy_convert.c: In function 'Pympc_From_PyStr':
+src/gmpy_convert.c:2526:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (strlen(cp) != len) {
+                    ^
+In file included from src/gmpy2.c:532:0:
+src/gmpy_mpmath.c: In function 'Pympz_mpmath_normalize':
+src/gmpy_mpmath.c:160:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                     if (mpz_sizeinbase(lower->z, 2) == shift) {
+                                                     ^
+src/gmpy_mpmath.c:162:52: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                         if (mpz_scan1(lower->z, 0) == shift-1) {
+                                                    ^
+src/gmpy_mpmath.c: In function 'Pympz_mpmath_create':
+src/gmpy_mpmath.c:314:52: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                     if (mpz_sizeinbase(lower->z, 2)==shift) {
+                                                    ^
+src/gmpy_mpmath.c:316:51: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                         if (mpz_scan1(lower->z, 0)==shift-1) {
+                                                   ^
+creating build/lib.linux-x86_64-3.5
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/src/gmpy2.o -L/usr/lib -lgmp -lmpfr -lmpc -lpython3.5m -o build/lib.linux-x86_64-3.5/gmpy2.cpython-35m-x86_64-linux-gnu.so
+running install_lib
+creating /tmp/python-gmpy2/pkg/python-gmpy2/usr
+creating /tmp/python-gmpy2/pkg/python-gmpy2/usr/lib
+creating /tmp/python-gmpy2/pkg/python-gmpy2/usr/lib/python3.5
+creating /tmp/python-gmpy2/pkg/python-gmpy2/usr/lib/python3.5/site-packages
+copying build/lib.linux-x86_64-3.5/gmpy2.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-gmpy2/pkg/python-gmpy2/usr/lib/python3.5/site-packages
+running install_egg_info
+Writing /tmp/python-gmpy2/pkg/python-gmpy2/usr/lib/python3.5/site-packages/gmpy2-2.0.7-py3.5.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-gmpy2"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-gmpy2 2.0.7-2 (Sat Nov 14 06:07:38 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

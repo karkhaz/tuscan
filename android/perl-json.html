@@ -1,0 +1,107 @@
+        <html><head></head><body>
+        <h1>Report for perl-json on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:25</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-json
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1826 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-json 2.90-1 (Fri Nov 13 23:47:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading JSON-2.90.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting JSON-2.90.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-json
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-json 2.90-1 (Fri Nov 13 23:47:06 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Welcome to JSON (v.2.90)
+=============================
+
+
+ *************************** CAUTION **************************************
+ *                                                                        *
+ * INCOMPATIBLE CHANGE (JSON::XS version 2.90)                            *
+ *                                                                        *
+ * JSON.pm had patched JSON::XS::Boolean and JSON::PP::Boolean internally *
+ * on loading time for making these modules inherit JSON::Boolean.        *
+ * But since JSON::XS v3.0 it use Types::Serialiser as boolean class.     *
+ * Then now JSON.pm breaks boolean classe overload features and           *
+ * -support_by_pp if JSON::XS v3.0 or later is installed.                 *
+ *                                                                        *
+ * JSON::true and JSON::false returned JSON::Boolean objects.             *
+ * For workaround, they return JSON::PP::Boolean objects in this version. *
+ *                                                                        *
+ *     isa_ok(JSON::true, 'JSON::PP::Boolean');                           *
+ *                                                                        *
+ * And it discards a feature:                                             *
+ *                                                                        *
+ *     ok(JSON::true eq 'true');                                          *
+ *                                                                        *
+ * In other word, JSON::PP::Boolean overload numeric only.                *
+ *                                                                        *
+ *     ok( JSON::true == 1 );                                             *
+ *                                                                        *
+ **************************************************************************
+
+
+ ************************** CAUTION **************************
+ * This is 'JSON version 2' and there are many differences   *
+ * to version 1.xx                                           *
+ * Please check your applications useing old version.        *
+ *   See to 'INCOMPATIBLE CHANGES TO OLD VERSION' and 'TIPS' *
+ *************************************************************
+
+
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for JSON
+Writing MYMETA.yml and MYMETA.json
+cp lib/JSON/backportPP/Compat5005.pm blib/lib/JSON/backportPP/Compat5005.pm
+cp lib/JSON/backportPP/Boolean.pm blib/lib/JSON/backportPP/Boolean.pm
+cp lib/JSON.pm blib/lib/JSON.pm
+cp lib/JSON/backportPP/Compat5006.pm blib/lib/JSON/backportPP/Compat5006.pm
+cp lib/JSON/backportPP.pm blib/lib/JSON/backportPP.pm
+Manifying 5 pod documents
+==> Entering fakeroot environment...
+==> Starting package()...
+Manifying 5 pod documents
+Appending installation info to /tmp/perl-json/pkg/perl-json/usr/lib/perl5/core_perl/perllocal.pod
+Installing /tmp/perl-json/pkg/perl-json/usr/share/perl5/vendor_perl/JSON.pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/perl5/vendor_perl/JSON/backportPP.pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/perl5/vendor_perl/JSON/backportPP/Compat5006.pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/perl5/vendor_perl/JSON/backportPP/Boolean.pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/perl5/vendor_perl/JSON/backportPP/Compat5005.pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/man/man3/JSON.3pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/man/man3/JSON::backportPP.3pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/man/man3/JSON::backportPP::Boolean.3pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/man/man3/JSON::backportPP::Compat5006.3pm
+Installing /tmp/perl-json/pkg/perl-json/usr/share/man/man3/JSON::backportPP::Compat5005.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-json"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-json 2.90-1 (Fri Nov 13 23:47:08 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,146 @@
+        <html><head></head><body>
+        <h1>Report for wildmidi on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:43</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data wildmidi
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2245 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: wildmidi 0.3.8-1 (Sat Nov 14 00:13:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) alsa-lib-1.0.29-1
+
+Total Installed Size:  1.69 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing alsa-lib...
+Optional dependencies for alsa-lib
+    python2: for python smixer plugin
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.83 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading wildmidi-0.3.8.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting wildmidi-0.3.8.tar.gz with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/wildmidi
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: wildmidi 0.3.8-1 (Sat Nov 14 00:13:14 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Setting build type to 'Debug' as none was specified.
+-- Build Type: Debug
+-- Performing Test HAVE_VISIBILITY_DEFAULT
+-- Performing Test HAVE_VISIBILITY_DEFAULT - Success
+-- Performing Test HAVE_VISIBILITY_HIDDEN
+-- Performing Test HAVE_VISIBILITY_HIDDEN - Success
+-- Performing Test HAVE___BUILTIN_EXPECT
+-- Performing Test HAVE___BUILTIN_EXPECT - Success
+-- Performing Test HAVE_C_INLINE
+-- Performing Test HAVE_C_INLINE - Success
+-- Performing Test HAVE_C___INLINE__
+-- Performing Test HAVE_C___INLINE__ - Success
+-- Performing Test HAVE_C___INLINE
+-- Performing Test HAVE_C___INLINE - Success
+-- Check if the system is big endian
+-- Searching 16 bit integer
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Using unsigned short
+-- Check if the system is big endian - little endian
+-- Found ALSA: /usr/lib/libasound.so (found version "1.0.29") 
+-- Could NOT find OpenAL (missing:  OPENAL_LIBRARY OPENAL_INCLUDE_DIR) 
+-- Looking for OSS...
+-- Looking for include file sys/soundcard.h
+-- Looking for include file sys/soundcard.h - not found
+-- Looking for include file machine/soundcard.h
+-- Looking for include file machine/soundcard.h - not found
+-- Looking for include file soundcard.h
+-- Looking for include file soundcard.h - not found
+-- Could not find OSS.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/wildmidi/src/build
+Scanning dependencies of target libwildmidi_dynamic
+[ 10%] Building C object src/CMakeFiles/libwildmidi_dynamic.dir/file_io.c.o
+[ 20%] Building C object src/CMakeFiles/libwildmidi_dynamic.dir/wm_error.c.o
+[ 30%] Building C object src/CMakeFiles/libwildmidi_dynamic.dir/lock.c.o
+[ 40%] Building C object src/CMakeFiles/libwildmidi_dynamic.dir/wildmidi_lib.c.o
+[ 50%] Building C object src/CMakeFiles/libwildmidi_dynamic.dir/reverb.c.o
+[ 60%] Building C object src/CMakeFiles/libwildmidi_dynamic.dir/gus_pat.c.o
+[ 70%] Linking C shared library ../libWildMidi.so
+[ 70%] Built target libwildmidi_dynamic
+Scanning dependencies of target wildmidi
+[ 80%] Building C object src/CMakeFiles/wildmidi.dir/wm_tty.c.o
+[ 90%] Building C object src/CMakeFiles/wildmidi.dir/wildmidi.c.o
+/tmp/wildmidi/src/wildmidi-wildmidi-0.3.8/src/wildmidi.c:77:30: fatal error: alsa/asoundlib.h: No such file or directory
+ #  include <alsa/asoundlib.h>
+                              ^
+compilation terminated.
+src/CMakeFiles/wildmidi.dir/build.make:86: recipe for target 'src/CMakeFiles/wildmidi.dir/wildmidi.c.o' failed
+make[2]: *** [src/CMakeFiles/wildmidi.dir/wildmidi.c.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+CMakeFiles/Makefile2:124: recipe for target 'src/CMakeFiles/wildmidi.dir/all' failed
+make[1]: *** [src/CMakeFiles/wildmidi.dir/all] Error 2
+Makefile:127: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

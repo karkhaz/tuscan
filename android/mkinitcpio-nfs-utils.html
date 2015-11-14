@@ -1,0 +1,80 @@
+        <html><head></head><body>
+        <h1>Report for mkinitcpio-nfs-utils on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:19</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mkinitcpio-nfs-utils
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2224 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mkinitcpio-nfs-utils 0.3-5 (Sat Nov 14 00:12:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading mkinitcpio-nfs-utils-0.3.tar.xz...
+  -> Found nfsmount-fix-wrong-umount-path.patch
+  -> Found initcpio-install-net
+  -> Found initcpio-hook-net
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting mkinitcpio-nfs-utils-0.3.tar.xz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/mkinitcpio-nfs-utils
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mkinitcpio-nfs-utils 0.3-5 (Sat Nov 14 00:12:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file nfsmount/mount.c
+make -C ipconfig
+make -C nfsmount
+make[1]: Entering directory '/tmp/mkinitcpio-nfs-utils/src/mkinitcpio-nfs-utils-0.3/ipconfig'
+arm-linux-androideabi-gcc -c bootp_proto.c -D_GNU_SOURCE -Wall -Os -fno-strict-aliasing
+make[1]: Entering directory '/tmp/mkinitcpio-nfs-utils/src/mkinitcpio-nfs-utils-0.3/nfsmount'
+arm-linux-androideabi-gcc -c dummypmap.c -D_GNU_SOURCE -Wall -Os
+dummypmap.c: In function 'dummy_portmap':
+dummypmap.c:207:13: warning: array subscript is below array bounds [-Warray-bounds]
+   } else if (!(vrf = get_auth(cred)) ||
+             ^
+arm-linux-androideabi-gcc -c dhcp_proto.c -D_GNU_SOURCE -Wall -Os -fno-strict-aliasing
+arm-linux-androideabi-gcc -c main.c -D_GNU_SOURCE -Wall -Os
+arm-linux-androideabi-gcc -c main.c -D_GNU_SOURCE -Wall -Os -fno-strict-aliasing
+arm-linux-androideabi-gcc -c mount.c -D_GNU_SOURCE -Wall -Os
+main.c: In function 'configure_device':
+main.c:93:4: warning: implicit declaration of function 'sethostname' [-Wimplicit-function-declaration]
+    sethostname(dev->hostname, strlen(dev->hostname)))
+    ^
+arm-linux-androideabi-gcc -c portmap.c -D_GNU_SOURCE -Wall -Os
+arm-linux-androideabi-gcc -c sunrpc.c -D_GNU_SOURCE -Wall -Os
+sunrpc.c: In function 'tcp_client':
+sunrpc.c:169:24: warning: argument to 'sizeof' in 'memset' call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
+  memset(clnt, 0, sizeof(clnt));
+                        ^
+sunrpc.c: In function 'udp_client':
+sunrpc.c:214:24: warning: argument to 'sizeof' in 'memset' call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
+  memset(clnt, 0, sizeof(clnt));
+                        ^
+arm-linux-androideabi-gcc -c netdev.c -D_GNU_SOURCE -Wall -Os -fno-strict-aliasing
+arm-linux-androideabi-gcc -D_GNU_SOURCE -Wall -Os -o nfsmount dummypmap.o main.o mount.o portmap.o sunrpc.o
+make[1]: Leaving directory '/tmp/mkinitcpio-nfs-utils/src/mkinitcpio-nfs-utils-0.3/nfsmount'
+arm-linux-androideabi-gcc -c packet.c -D_GNU_SOURCE -Wall -Os -fno-strict-aliasing
+arm-linux-androideabi-gcc -D_GNU_SOURCE -Wall -Os -fno-strict-aliasing -o ipconfig bootp_proto.o dhcp_proto.o main.o netdev.o packet.o
+main.o:main.c:function complete_device: error: undefined reference to 'sethostname'
+collect2: error: ld returned 1 exit status
+Makefile:20: recipe for target 'ipconfig' failed
+make[1]: *** [ipconfig] Error 1
+make[1]: Leaving directory '/tmp/mkinitcpio-nfs-utils/src/mkinitcpio-nfs-utils-0.3/ipconfig'
+Makefile:15: recipe for target 'ipconfig' failed
+make: *** [ipconfig] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

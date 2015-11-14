@@ -1,0 +1,204 @@
+        <html><head></head><body>
+        <h1>Report for ldc on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:02:49</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data ldc
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2979 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ldc 1:0.16.0-1 (Sat Nov 14 01:41:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libconfig-1.5-1
+
+Total Installed Size:  0.19 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libconfig...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (9) jsoncpp-1.6.5-1  libedit-20150325_3.1-2  libxml2-2.9.2-2  llvm-libs-3.7.0-5  perl-error-0.17024-1  shared-mime-info-1.5-1  cmake-3.3.2-3  git-2.6.2-1  llvm-3.7.0-5
+
+Total Installed Size:  214.03 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+installing libedit...
+installing llvm-libs...
+installing llvm...
+==> Retrieving sources...
+  -> Cloning ldc git repo...
+Cloning into bare repository '/sources/ldc/ldc'...
+  -> Found ldc2.conf
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of ldc git repo...
+Cloning into 'ldc'...
+done.
+Switched to a new branch 'makepkg'
+==> Sources are ready.
+Copied source directory to /sources/ldc
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ldc 1:0.16.0-1 (Sat Nov 14 01:41:45 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Submodule 'druntime' (git://github.com/ldc-developers/druntime.git) registered for path 'runtime/druntime'
+Submodule 'phobos' (git://github.com/ldc-developers/phobos.git) registered for path 'runtime/phobos'
+Submodule 'tests/d2/dmd-testsuite' (git://github.com/ldc-developers/dmd-testsuite.git) registered for path 'tests/d2/dmd-testsuite'
+Cloning into 'runtime/druntime'...
+Submodule path 'runtime/druntime': checked out '75af54112b7bc56bc2efeeb6ae2469f48d671b72'
+Cloning into 'runtime/phobos'...
+Submodule path 'runtime/phobos': checked out 'b1453f1295f501cb8e0879a63b839b4cbd0a89b0'
+Cloning into 'tests/d2/dmd-testsuite'...
+Submodule path 'tests/d2/dmd-testsuite': checked out '0295906ce86035a42f0cbda67be522fb77f616ec'
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found LLVM: /usr (found suitable version "3.7.0", minimum required is "3.1") 
+-- Found LibConfig: /usr/include  
+-- The ASM compiler identification is GNU
+-- Found assembler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- LDC version identifier: 0.16.0
+-- Check if the system is big endian
+-- Searching 16 bit integer
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Using unsigned short
+-- Check if the system is big endian - little endian
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Looking for setupterm in tinfo
+-- Looking for setupterm in tinfo - not found
+-- Looking for setupterm in terminfo
+-- Looking for setupterm in terminfo - not found
+-- Looking for setupterm in curses
+-- Looking for setupterm in curses - not found
+-- Looking for setupterm in ncurses
+-- Looking for setupterm in ncurses - not found
+-- Looking for setupterm in ncursesw
+-- Looking for setupterm in ncursesw - not found
+-- Using path for Intrinsics.td: /usr/include
+-- Looking for _SC_ARG_MAX
+-- Looking for _SC_ARG_MAX - found
+-- Check size of void*
+-- Check size of void* - done
+CMake Warning (dev) at runtime/CMakeLists.txt:788 (get_property):
+  Policy CMP0026 is not set: Disallow use of the LOCATION target property.
+  Run "cmake --help-policy CMP0026" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  The LOCATION property should not be read from target "ldmd2".  Use the
+  target name directly with add_custom_command, or use the generator
+  expression $<TARGET_FILE>, as appropriate.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at runtime/CMakeLists.txt:789 (get_property):
+  Policy CMP0026 is not set: Disallow use of the LOCATION target property.
+  Run "cmake --help-policy CMP0026" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  The LOCATION property should not be read from target "druntime-ldc".  Use
+  the target name directly with add_custom_command, or use the generator
+  expression $<TARGET_FILE>, as appropriate.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/ldc/src/ldc/build
+Scanning dependencies of target idgen
+Scanning dependencies of target impcnvgen
+[  0%] Building CXX object CMakeFiles/impcnvgen.dir/dmd2/impcnvgen.c.o
+arm-linux-androideabi-g++: error: unrecognized argument in option '-march=x86-64'
+arm-linux-androideabi-g++: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+arm-linux-androideabi-g++: error: unrecognized argument in option '-mtune=generic'
+arm-linux-androideabi-g++: note: valid arguments to '-mtune=' are: arm1020e arm1020t arm1022e arm1026ej-s arm10e arm10tdmi arm1136j-s arm1136jf-s arm1156t2-s arm1156t2f-s arm1176jz-s arm1176jzf-s arm2 arm250 arm3 arm6 arm60 arm600 arm610 arm620 arm7 arm70 arm700 arm700i arm710 arm7100 arm710c arm710t arm720 arm720t arm740t arm7500 arm7500fe arm7d arm7di arm7dm arm7dmi arm7m arm7tdmi arm7tdmi-s arm8 arm810 arm9 arm920 arm920t arm922t arm926ej-s arm940t arm946e-s arm966e-s arm968e-s arm9e arm9tdmi cortex-a15 cortex-a5 cortex-a7 cortex-a8 cortex-a9 cortex-m0 cortex-m0plus cortex-m1 cortex-m3 cortex-m4 cortex-r4 cortex-r4f cortex-r5 ep9312 fa526 fa606te fa626 fa626te fa726te fmp626 generic-armv7-a iwmmxt iwmmxt2 marvell-pj4 mpcore mpcorenovfp native strongarm strongarm110 strongarm1100 strongarm1110 xscale
+[  0%] Building CXX object CMakeFiles/idgen.dir/dmd2/idgen.c.o
+arm-linux-androideabi-g++: error: unrecognized argument in option '-march=x86-64'
+arm-linux-androideabi-g++: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+arm-linux-androideabi-g++: error: unrecognized argument in option '-mtune=generic'
+arm-linux-androideabi-g++: note: valid arguments to '-mtune=' are: arm1020e arm1020t arm1022e arm1026ej-s arm10e arm10tdmi arm1136j-s arm1136jf-s arm1156t2-s arm1156t2f-s arm1176jz-s arm1176jzf-s arm2 arm250 arm3 arm6 arm60 arm600 arm610 arm620 arm7 arm70 arm700 arm700i arm710 arm7100 arm710c arm710t arm720 arm720t arm740t arm7500 arm7500fe arm7d arm7di arm7dm arm7dmi arm7m arm7tdmi arm7tdmi-s arm8 arm810 arm9 arm920 arm920t arm922t arm926ej-s arm940t arm946e-s arm966e-s arm968e-s arm9e arm9tdmi cortex-a15 cortex-a5 cortex-a7 cortex-a8 cortex-a9 cortex-m0 cortex-m0plus cortex-m1 cortex-m3 cortex-m4 cortex-r4 cortex-r4f cortex-r5 ep9312 fa526 fa606te fa626 fa626te fa726te fmp626 generic-armv7-a iwmmxt iwmmxt2 marvell-pj4 mpcore mpcorenovfp native strongarm strongarm110 strongarm1100 strongarm1110 xscale
+arm-linux-androideabi-g++: error: unrecognized command line option '-fstack-protector-strong'
+CMakeFiles/idgen.dir/build.make:62: recipe for target 'CMakeFiles/idgen.dir/dmd2/idgen.c.o' failed
+make[2]: *** [CMakeFiles/idgen.dir/dmd2/idgen.c.o] Error 1
+CMakeFiles/Makefile2:142: recipe for target 'CMakeFiles/idgen.dir/all' failed
+make[1]: *** [CMakeFiles/idgen.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+arm-linux-androideabi-g++: error: unrecognized command line option '-fstack-protector-strong'
+CMakeFiles/impcnvgen.dir/build.make:62: recipe for target 'CMakeFiles/impcnvgen.dir/dmd2/impcnvgen.c.o' failed
+make[2]: *** [CMakeFiles/impcnvgen.dir/dmd2/impcnvgen.c.o] Error 1
+CMakeFiles/Makefile2:179: recipe for target 'CMakeFiles/impcnvgen.dir/all' failed
+make[1]: *** [CMakeFiles/impcnvgen.dir/all] Error 2
+Makefile:160: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

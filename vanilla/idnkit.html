@@ -1,0 +1,513 @@
+        <html><head></head><body>
+        <h1>Report for idnkit on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:52</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data idnkit
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2241 packages in cache
+Found permanent source directory in /sources/idnkit
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: idnkit 1.0-3 (Sat Nov 14 06:25:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+creating cache ./config.cache
+checking host system type... x86_64-unknown-linux-gnu
+checking for gcc... gcc
+checking whether the C compiler (gcc  ) works... yes
+checking whether the C compiler (gcc  ) is a cross-compiler... no
+checking whether we are using GNU C... yes
+checking whether gcc accepts -g... yes
+checking for a BSD compatible install... /usr/bin/install -c
+checking build system type... x86_64-unknown-linux-gnu
+checking for ranlib... ranlib
+checking for ld used by GCC... /usr/sbin/ld
+checking if the linker (/usr/sbin/ld) is GNU ld... yes
+checking for BSD-compatible nm... /usr/sbin/nm -B
+checking whether ln -s works... yes
+updating cache ./config.cache
+loading cache ./config.cache within ltconfig
+checking for object suffix... o
+checking for executable suffix... no
+checking for gcc option to produce PIC... -fPIC
+checking if gcc PIC flag -fPIC works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.lo... yes
+checking if gcc supports -fno-rtti -fno-exceptions ... no
+checking if gcc static flag -static works... -static
+checking if the linker (/usr/sbin/ld) is GNU ld... yes
+checking whether the linker (/usr/sbin/ld) supports shared libraries... yes
+checking command to parse /usr/sbin/nm -B output... ok
+checking how to hardcode library paths into programs... immediate
+checking for /usr/sbin/ld option to reload object files... -r
+checking dynamic linker characteristics... Linux ld.so
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking for objdir... .libs
+creating libtool
+updating cache ./config.cache
+loading cache ./config.cache
+checking for perl... /usr/sbin/perl
+checking how to run the C preprocessor... gcc -E
+checking for unistd.h... yes
+checking for locale.h... yes
+checking for langinfo.h... yes
+checking for pwd.h... yes
+checking for iconv.h... yes
+checking for uid_t in sys/types.h... yes
+checking for ANSI C header files... yes
+checking for BOOL... no
+checking for vsnprintf... yes
+checking for setvbuf... yes
+checking for setlocale... yes
+checking for nl_langinfo... yes
+checking for memmove... yes
+checking for bcopy... yes
+checking for setenv... yes
+checking for unsetenv... yes
+checking for libc shared object... /lib/libc.so
+checking for iconv... yes
+checking for codeset name UTF-8... yes
+updating cache ./config.cache
+creating ./config.status
+creating Makefile
+creating include/Makefile
+creating include/idn/Makefile
+creating include/mdn/Makefile
+creating lib/Makefile
+creating man/Makefile
+creating tools/Makefile
+creating tools/idnconv/Makefile
+creating tools/runidn/Makefile
+creating tools/runidn/runidn
+creating map/Makefile
+creating lib/tests/Makefile
+creating include/config.h
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/include'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/include/idn'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/include/idn'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/include/mdn'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/include/mdn'
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/include'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/lib'
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c aliaslist.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c aliaslist.c  -fPIC -DPIC -o aliaslist.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c api.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c api.c  -fPIC -DPIC -o api.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c checker.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c checker.c  -fPIC -DPIC -o checker.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c converter.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c converter.c  -fPIC -DPIC -o converter.lo
+converter.c: In function 'converter_iconv_convfromucs4':
+converter.c:957:20: warning: passing argument 2 of 'iconv' from incompatible pointer type [-Wincompatible-pointer-types]
+  (void)iconv(ictx, (const char **)NULL, &inleft, &outbuf, &outleft);
+                    ^
+In file included from converter.c:57:0:
+/usr/include/iconv.h:42:15: note: expected 'char ** restrict' but argument is of type 'const char **'
+ extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
+               ^
+converter.c:962:19: warning: passing argument 2 of 'iconv' from incompatible pointer type [-Wincompatible-pointer-types]
+  sz = iconv(ictx, (const char **)&inbuf, &inleft, &to, &outleft);
+                   ^
+In file included from converter.c:57:0:
+/usr/include/iconv.h:42:15: note: expected 'char ** restrict' but argument is of type 'const char **'
+ extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
+               ^
+converter.c:989:19: warning: passing argument 2 of 'iconv' from incompatible pointer type [-Wincompatible-pointer-types]
+  sz = iconv(ictx, (const char **)NULL, &inleft, &to, &outleft);
+                   ^
+In file included from converter.c:57:0:
+/usr/include/iconv.h:42:15: note: expected 'char ** restrict' but argument is of type 'const char **'
+ extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
+               ^
+converter.c: In function 'converter_iconv_convtoucs4':
+converter.c:1047:20: warning: passing argument 2 of 'iconv' from incompatible pointer type [-Wincompatible-pointer-types]
+  (void)iconv(ictx, (const char **)NULL, &inleft, &outbuf, &outleft);
+                    ^
+In file included from converter.c:57:0:
+/usr/include/iconv.h:42:15: note: expected 'char ** restrict' but argument is of type 'const char **'
+ extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
+               ^
+converter.c:1053:19: warning: passing argument 2 of 'iconv' from incompatible pointer type [-Wincompatible-pointer-types]
+  sz = iconv(ictx, (const char **)&from_ptr, &inleft, &outbuf, &outleft);
+                   ^
+In file included from converter.c:57:0:
+/usr/include/iconv.h:42:15: note: expected 'char ** restrict' but argument is of type 'const char **'
+ extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
+               ^
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c debug.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c debug.c  -fPIC -DPIC -o debug.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c delimitermap.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c delimitermap.c  -fPIC -DPIC -o delimitermap.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c filechecker.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c filechecker.c  -fPIC -DPIC -o filechecker.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c filemapper.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c filemapper.c  -fPIC -DPIC -o filemapper.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c localencoding.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c localencoding.c  -fPIC -DPIC -o localencoding.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c log.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c log.c  -fPIC -DPIC -o log.lo
+log.c:70:13: warning: conflicting types for built-in function 'log'
+ static void log(int level, const char *fmt, va_list args);
+             ^
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c mapper.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c mapper.c  -fPIC -DPIC -o mapper.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c mapselector.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c mapselector.c  -fPIC -DPIC -o mapselector.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c nameprep.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c nameprep.c  -fPIC -DPIC -o nameprep.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c normalizer.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c normalizer.c  -fPIC -DPIC -o normalizer.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c punycode.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c punycode.c  -fPIC -DPIC -o punycode.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c race.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c race.c  -fPIC -DPIC -o race.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c res.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c res.c  -fPIC -DPIC -o res.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c resconf.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c resconf.c  -fPIC -DPIC -o resconf.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c result.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c result.c  -fPIC -DPIC -o result.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c strhash.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c strhash.c  -fPIC -DPIC -o strhash.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c ucs4.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c ucs4.c  -fPIC -DPIC -o ucs4.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c ucsmap.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c ucsmap.c  -fPIC -DPIC -o ucsmap.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c ucsset.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c ucsset.c  -fPIC -DPIC -o ucsset.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c unicode.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c unicode.c  -fPIC -DPIC -o unicode.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c unormalize.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c unormalize.c  -fPIC -DPIC -o unormalize.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c utf8.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c utf8.c  -fPIC -DPIC -o utf8.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c util.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c util.c  -fPIC -DPIC -o util.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -c version.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -c version.c  -fPIC -DPIC -o version.lo
+/bin/sh ../libtool --mode=link ld  -o libidnkit.la \
+    -version-info 1:2:0 \
+    -rpath /usr/lib aliaslist.lo api.lo checker.lo converter.lo debug.lo delimitermap.lo filechecker.lo filemapper.lo localencoding.lo log.lo mapper.lo mapselector.lo nameprep.lo normalizer.lo punycode.lo race.lo res.lo resconf.lo result.lo strhash.lo ucs4.lo ucsmap.lo ucsset.lo unicode.lo unormalize.lo utf8.lo util.lo version.lo
+mkdir .libs
+(cd . && ln -s aliaslist.lo aliaslist.o)
+(cd . && ln -s api.lo api.o)
+(cd . && ln -s checker.lo checker.o)
+(cd . && ln -s converter.lo converter.o)
+(cd . && ln -s debug.lo debug.o)
+(cd . && ln -s delimitermap.lo delimitermap.o)
+(cd . && ln -s filechecker.lo filechecker.o)
+(cd . && ln -s filemapper.lo filemapper.o)
+(cd . && ln -s localencoding.lo localencoding.o)
+(cd . && ln -s log.lo log.o)
+(cd . && ln -s mapper.lo mapper.o)
+(cd . && ln -s mapselector.lo mapselector.o)
+(cd . && ln -s nameprep.lo nameprep.o)
+(cd . && ln -s normalizer.lo normalizer.o)
+(cd . && ln -s punycode.lo punycode.o)
+(cd . && ln -s race.lo race.o)
+(cd . && ln -s res.lo res.o)
+(cd . && ln -s resconf.lo resconf.o)
+(cd . && ln -s result.lo result.o)
+(cd . && ln -s strhash.lo strhash.o)
+(cd . && ln -s ucs4.lo ucs4.o)
+(cd . && ln -s ucsmap.lo ucsmap.o)
+(cd . && ln -s ucsset.lo ucsset.o)
+(cd . && ln -s unicode.lo unicode.o)
+(cd . && ln -s unormalize.lo unormalize.o)
+(cd . && ln -s utf8.lo utf8.o)
+(cd . && ln -s util.lo util.o)
+(cd . && ln -s version.lo version.o)
+gcc -shared  aliaslist.lo api.lo checker.lo converter.lo debug.lo delimitermap.lo filechecker.lo filemapper.lo localencoding.lo log.lo mapper.lo mapselector.lo nameprep.lo normalizer.lo punycode.lo race.lo res.lo resconf.lo result.lo strhash.lo ucs4.lo ucsmap.lo ucsset.lo unicode.lo unormalize.lo utf8.lo util.lo version.lo  -lc  -Wl,-soname -Wl,libidnkit.so.1 -o .libs/libidnkit.so.1.0.2
+(cd .libs && rm -f libidnkit.so.1 && ln -s libidnkit.so.1.0.2 libidnkit.so.1)
+(cd .libs && rm -f libidnkit.so && ln -s libidnkit.so.1.0.2 libidnkit.so)
+creating libidnkit.la
+(cd .libs && rm -f libidnkit.la && ln -s ../libidnkit.la libidnkit.la)
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -DWITHOUT_ICONV -o apilite.lo \
+	-c ./api.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -DWITHOUT_ICONV -c ./api.c  -fPIC -DPIC -o apilite.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -DWITHOUT_ICONV -o converterlite.lo \
+	-c ./converter.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -DWITHOUT_ICONV -c ./converter.c  -fPIC -DPIC -o converterlite.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -DWITHOUT_ICONV -o reslite.lo \
+    -c ./res.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -DWITHOUT_ICONV -c ./res.c  -fPIC -DPIC -o reslite.lo
+/bin/sh ../libtool --mode=compile gcc  -I./../include -I../include  -DIDN_RESCONF_DIR="\"/etc\""  -g -O2 -DWITHOUT_ICONV -o resconflite.lo \
+    -c ./resconf.c
+gcc -I./../include -I../include -DIDN_RESCONF_DIR=\"/etc\" -g -O2 -DWITHOUT_ICONV -c ./resconf.c  -fPIC -DPIC -o resconflite.lo
+/bin/sh ../libtool --mode=link ld  -o libidnkitlite.la \
+    -version-info 1:2:0 \
+    -rpath /usr/lib apilite.lo converterlite.lo reslite.lo resconflite.lo aliaslist.lo checker.lo debug.lo delimitermap.lo filechecker.lo filemapper.lo log.lo mapper.lo mapselector.lo nameprep.lo normalizer.lo punycode.lo race.lo result.lo strhash.lo ucsmap.lo ucsset.lo unicode.lo unormalize.lo ucs4.lo utf8.lo util.lo version.lo
+rm -fr .libs/libidnkitlite.la .libs/libidnkitlite.* .libs/libidnkitlite.*
+(cd . && ln -s apilite.lo apilite.o)
+(cd . && ln -s converterlite.lo converterlite.o)
+(cd . && ln -s reslite.lo reslite.o)
+(cd . && ln -s resconflite.lo resconflite.o)
+gcc -shared  apilite.lo converterlite.lo reslite.lo resconflite.lo aliaslist.lo checker.lo debug.lo delimitermap.lo filechecker.lo filemapper.lo log.lo mapper.lo mapselector.lo nameprep.lo normalizer.lo punycode.lo race.lo result.lo strhash.lo ucsmap.lo ucsset.lo unicode.lo unormalize.lo ucs4.lo utf8.lo util.lo version.lo  -lc  -Wl,-soname -Wl,libidnkitlite.so.1 -o .libs/libidnkitlite.so.1.0.2
+(cd .libs && rm -f libidnkitlite.so.1 && ln -s libidnkitlite.so.1.0.2 libidnkitlite.so.1)
+(cd .libs && rm -f libidnkitlite.so && ln -s libidnkitlite.so.1.0.2 libidnkitlite.so)
+creating libidnkitlite.la
+(cd .libs && rm -f libidnkitlite.la && ln -s ../libidnkitlite.la libidnkitlite.la)
+sed -e 's%[@]mapdir[@]%/usr/share/idnkit%' \
+    < ./idn.conf.sample.in > idn.conf.sample
+/bin/sh ./aliaslist.sh x86_64-unknown-linux-gnu UTF-8 > idnalias.conf.sample
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/lib/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/lib/tests'
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/lib'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/man'
+sed 's%[@]sysconfdir[@]%/etc%' < ./libidnkit.3.in > libidnkitlite.3
+sed 's%[@]sysconfdir[@]%/etc%' < ./idn.conf.5.in > idn.conf.5
+sed 's%[@]sysconfdir[@]%/etc%' < ./idn.conf.5.in > idnrc.5
+sed 's%[@]sysconfdir[@]%/etc%' < ./idn.conf.5.in > idnalias.conf.5
+sed 's%[@]sysconfdir[@]%/etc%' < ./libidnkit.3.in > libidnkit.3
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/man'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/tools'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/tools/idnconv'
+gcc -I. -I./../../include -I../../include    -g -O2   -c -o idnconv.o idnconv.c
+gcc -I. -I./../../include -I../../include    -g -O2   -c -o util.o util.c
+gcc -I. -I./../../include -I../../include    -g -O2   -c -o selectiveencode.o selectiveencode.c
+/bin/sh ../../libtool --mode=link gcc  -o idnconv \
+	idnconv.o util.o selectiveencode.o ../../lib/libidnkit.la 
+mkdir .libs
+gcc -o .libs/idnconv idnconv.o util.o selectiveencode.o ../../lib/.libs/libidnkit.so
+creating idnconv
+sed -e 's%[@]bindir[@]%/usr/bin%' ./idnslookup.in > idnslookup
+chmod 0755 idnslookup
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/tools/idnconv'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/tools/runidn'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/tools/runidn'
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/tools'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/map'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/map'
+==> Entering fakeroot environment...
+==> Starting package()...
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/include'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/include/idn'
+../../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/include/idn
+mkdir /tmp/idnkit/pkg/idnkit/usr
+mkdir /tmp/idnkit/pkg/idnkit/usr/include
+mkdir /tmp/idnkit/pkg/idnkit/usr/include/idn
+for hdr in api.h assert.h checker.h converter.h debug.h delimitermap.h export.h filechecker.h filemapper.h localencoding.h log.h logmacro.h mapper.h mapselector.h nameprep.h normalizer.h punycode.h race.h res.h resconf.h result.h strhash.h ucsmap.h ucsset.h unicode.h unormalize.h ucs4.h utf8.h util.h version.h; do \
+    /usr/bin/install -c -m 644 ./$hdr /tmp/idnkit/pkg/idnkit/usr/include/idn/$hdr; \
+done
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/include/idn'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/include/mdn'
+make[2]: Nothing to be done for 'install'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/include/mdn'
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/include'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/lib'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/lib/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/lib/tests'
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/lib
+mkdir /tmp/idnkit/pkg/idnkit/usr/lib
+/bin/sh ../libtool /usr/bin/install -c -m 644 libidnkitlite.la \
+    /tmp/idnkit/pkg/idnkit/usr/lib/libidnkitlite.la
+/usr/bin/install -c -m 644 .libs/libidnkitlite.so.1.0.2 /tmp/idnkit/pkg/idnkit/usr/lib/libidnkitlite.so.1.0.2
+(cd /tmp/idnkit/pkg/idnkit/usr/lib && rm -f libidnkitlite.so.1 && ln -s libidnkitlite.so.1.0.2 libidnkitlite.so.1)
+(cd /tmp/idnkit/pkg/idnkit/usr/lib && rm -f libidnkitlite.so && ln -s libidnkitlite.so.1.0.2 libidnkitlite.so)
+/usr/bin/install -c -m 644 .libs/libidnkitlite.lai /tmp/idnkit/pkg/idnkit/usr/lib/libidnkitlite.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+[ -f /tmp/idnkit/pkg/idnkit/usr/lib/libidnkitlite.a ] \
+    && ranlib /tmp/idnkit/pkg/idnkit/usr/lib/libidnkitlite.a
+Makefile:243: recipe for target 'install-common' failed
+make[1]: [install-common] Error 1 (ignored)
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/etc
+mkdir /tmp/idnkit/pkg/idnkit/etc
+/usr/bin/install -c -m 644 idn.conf.sample \
+    /tmp/idnkit/pkg/idnkit/etc/idn.conf.sample
+/usr/bin/install -c -m 644 idnalias.conf.sample \
+    /tmp/idnkit/pkg/idnkit/etc/idnalias.conf.sample
+** installing default idn.conf
+** installing default idnalias.conf
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/lib
+/bin/sh ../libtool /usr/bin/install -c -m 644 libidnkit.la \
+    /tmp/idnkit/pkg/idnkit/usr/lib/libidnkit.la
+/usr/bin/install -c -m 644 .libs/libidnkit.so.1.0.2 /tmp/idnkit/pkg/idnkit/usr/lib/libidnkit.so.1.0.2
+(cd /tmp/idnkit/pkg/idnkit/usr/lib && rm -f libidnkit.so.1 && ln -s libidnkit.so.1.0.2 libidnkit.so.1)
+(cd /tmp/idnkit/pkg/idnkit/usr/lib && rm -f libidnkit.so && ln -s libidnkit.so.1.0.2 libidnkit.so)
+/usr/bin/install -c -m 644 .libs/libidnkit.lai /tmp/idnkit/pkg/idnkit/usr/lib/libidnkit.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+[ -f /tmp/idnkit/pkg/idnkit/usr/lib/libidnkit.a ] \
+    && ranlib /tmp/idnkit/pkg/idnkit/usr/lib/libidnkit.a
+Makefile:264: recipe for target 'install-nolite' failed
+make[1]: [install-nolite] Error 1 (ignored)
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/lib/tests'
+make[2]: Nothing to be done for 'install'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/lib/tests'
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/lib'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/man'
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/share/man/man3
+mkdir /tmp/idnkit/pkg/idnkit/usr/share
+mkdir /tmp/idnkit/pkg/idnkit/usr/share/man
+mkdir /tmp/idnkit/pkg/idnkit/usr/share/man/man3
+/usr/bin/install -c -m 644 libidnkitlite.3 /tmp/idnkit/pkg/idnkit/usr/share/man/man3/libidnkitlite.3
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/share/man/man5
+mkdir /tmp/idnkit/pkg/idnkit/usr/share/man/man5
+/usr/bin/install -c -m 644 idn.conf.5 /tmp/idnkit/pkg/idnkit/usr/share/man/man5/idn.conf.5
+/usr/bin/install -c -m 644 idnrc.5 /tmp/idnkit/pkg/idnkit/usr/share/man/man5/idnrc.5
+/usr/bin/install -c -m 644 idnalias.conf.5 /tmp/idnkit/pkg/idnkit/usr/share/man/man5/idnalias.conf.5
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/share/man/man3
+/usr/bin/install -c -m 644 libidnkit.3 /tmp/idnkit/pkg/idnkit/usr/share/man/man3/libidnkit.3
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/man'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/tools'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/tools/idnconv'
+../../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/bin
+mkdir /tmp/idnkit/pkg/idnkit/usr/bin
+/bin/sh ../../libtool --mode=install /usr/bin/install -c idnconv \
+    /tmp/idnkit/pkg/idnkit/usr/bin/idnconv
+libtool: install: warning: `../../lib/libidnkit.la' has not been installed in `/usr/lib'
+/usr/bin/install -c .libs/idnconv /tmp/idnkit/pkg/idnkit/usr/bin/idnconv
+../../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/share/man/man1
+mkdir /tmp/idnkit/pkg/idnkit/usr/share/man/man1
+/usr/bin/install -c -m 644 ./idnconv.1 /tmp/idnkit/pkg/idnkit/usr/share/man/man1/idnconv.1
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/tools/idnconv'
+make[2]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/tools/runidn'
+make[2]: Nothing to be done for 'install'.
+make[2]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/tools/runidn'
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/tools'
+make[1]: Entering directory '/tmp/idnkit/src/idnkit-1.0-src/map'
+../mkinstalldirs /tmp/idnkit/pkg/idnkit/usr/share/idnkit
+mkdir /tmp/idnkit/pkg/idnkit/usr/share/idnkit
+for map in jp.map; do \
+    /usr/bin/install -c -m 644 ./$map /tmp/idnkit/pkg/idnkit/usr/share/idnkit/$map; \
+done
+make[1]: Leaving directory '/tmp/idnkit/src/idnkit-1.0-src/map'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "idnkit"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: idnkit 1.0-3 (Sat Nov 14 06:26:26 UTC 2015)
+===> Printing config.logs
+found log at /tmp/idnkit/src/idnkit-1.0-src/config.log
+____
+File /tmp/idnkit/src/idnkit-1.0-src/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:582: checking host system type
+configure:959: checking for gcc
+configure:1072: checking whether the C compiler (gcc  ) works
+configure:1088: gcc -o conftest    conftest.c  1>&5
+configure:1085:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(){return(0);}
+ ^
+configure:1114: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:1119: checking whether we are using GNU C
+configure:1128: gcc -E conftest.c
+configure:1147: checking whether gcc accepts -g
+configure:1190: checking for a BSD compatible install
+configure:1312: checking build system type
+configure:1332: checking for ranlib
+configure:1371: checking for ld used by GCC
+configure:1433: checking if the linker (/usr/sbin/ld) is GNU ld
+GNU ld (GNU Binutils) 2.25.1
+configure:1449: checking for BSD-compatible nm
+configure:1485: checking whether ln -s works
+ltconfig:603: checking for object suffix
+ltconfig:604: gcc -c -g -O2  conftest.c 1>&5
+ltconfig:629: checking for executable suffix
+ltconfig:630: gcc -o conftest -g -O2   conftest.c  1>&5
+conftest.c:1:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main () { return 0; }
+ ^
+ltconfig:776: checking if gcc PIC flag -fPIC works
+ltconfig:777: gcc -c -g -O2 -fPIC -DPIC  conftest.c 1>&5
+ltconfig:829: checking if gcc supports -c -o file.o
+ltconfig:830: gcc -c -g -O2 -o out/conftest2.o  conftest.c 1>&5
+ltconfig:862: checking if gcc supports -c -o file.lo
+ltconfig:863: gcc -c -g -O2 -c -o conftest.lo  conftest.c 1>&5
+ltconfig:914: checking if gcc supports -fno-rtti -fno-exceptions
+ltconfig:915: gcc -c -g -O2 -fno-rtti -fno-exceptions -c conftest.c  conftest.c 1>&5
+ltconfig:958: checking if gcc static flag -static works
+ltconfig:959: gcc -o conftest -g -O2   -static conftest.c  1>&5
+conftest.c:1:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(){return(0);}
+ ^
+GNU ld (GNU Binutils) 2.25.1
+ltconfig:1653: checking if global_symbol_pipe works
+ltconfig:1654: gcc -c -g -O2  conftest.c 1>&5
+conftest.c:9:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(){nm_test_var='a';nm_test_func();return(0);}
+ ^
+ltconfig:1657: eval "/usr/sbin/nm -B conftest.o | sed -n -e 's/^.*[ 	]\([ABCDGISTW]\)[ 	][ 	]*\(\)\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2\3 \3/p' > conftest.nm"
+ltconfig:1709: gcc -o conftest -g -O2 -fno-builtin   conftest.c conftstm.o 1>&5
+configure:1675: checking for perl
+configure:1713: checking how to run the C preprocessor
+configure:1734: gcc -E  -O2 conftest.c >/dev/null 2>conftest.out
+configure:1796: checking for unistd.h
+configure:1806: gcc -E  -O2 conftest.c >/dev/null 2>conftest.out
+configure:1796: checking for locale.h
+configure:1806: gcc -E  -O2 conftest.c >/dev/null 2>conftest.out
+configure:1796: checking for langinfo.h
+configure:1806: gcc -E  -O2 conftest.c >/dev/null 2>conftest.out
+configure:1796: checking for pwd.h
+configure:1806: gcc -E  -O2 conftest.c >/dev/null 2>conftest.out
+configure:1880: checking for iconv.h
+configure:1890: gcc -E   -O2 conftest.c >/dev/null 2>conftest.out
+configure:1916: checking for uid_t in sys/types.h
+configure:1950: checking for ANSI C header files
+configure:1963: gcc -E  -O2 conftest.c >/dev/null 2>conftest.out
+configure:2030: gcc -o conftest -g -O2   conftest.c  1>&5
+configure: In function 'main':
+configure:2025:67: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+ if (XOR (islower (i), ISLOWER (i)) || toupper (i) != TOUPPER (i)) exit(2);
+                                                                   ^
+configure:2025:67: warning: incompatible implicit declaration of built-in function 'exit'
+configure:2025:67: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2026:1: warning: incompatible implicit declaration of built-in function 'exit'
+ exit (0); }
+ ^
+configure:2026:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2054: checking for BOOL
+configure:2236: checking for vsnprintf
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2248:6: warning: conflicting types for built-in function 'vsnprintf'
+ char $ac_func();
+      ^
+configure:2236: checking for setvbuf
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2236: checking for setlocale
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2236: checking for nl_langinfo
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2236: checking for memmove
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2248:6: warning: conflicting types for built-in function 'memmove'
+ char $ac_func();
+      ^
+configure:2236: checking for bcopy
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2248:6: warning: conflicting types for built-in function 'bcopy'
+ char $ac_func();
+      ^
+configure:2236: checking for setenv
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2236: checking for unsetenv
+configure:2264: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2938: checking for libc shared object
+configure:3017: checking for iconv
+configure:3035: gcc -o conftest -g -O2    conftest.c   1>&5
+configure:3055: checking for codeset name UTF-8
+configure:3092: gcc -o conftest -g -O2    conftest.c   1>&5
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

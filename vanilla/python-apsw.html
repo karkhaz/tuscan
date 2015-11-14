@@ -1,0 +1,122 @@
+        <html><head></head><body>
+        <h1>Report for python-apsw on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:03</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-apsw
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2085 packages in cache
+Found permanent source directory in /sources/python-apsw
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-apsw 3.8.11.1-2 (Sat Nov 14 05:58:23 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) sqlite-3.9.2-1  python2-2.7.10-2
+
+Total Installed Size:  75.75 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+running build
+running build_ext
+SQLite: Using system sqlite include/libraries
+building 'apsw' extension
+creating build
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/src
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DEXPERIMENTAL=1 -DNDEBUG=1 -DAPSW_FORK_CHECKER=1 -Isrc -I/usr/include/python3.5m -c src/apsw.c -o build/temp.linux-x86_64-3.5/src/apsw.o
+In file included from src/apsw.c:155:0:
+src/vfs.c: In function 'apswvfs_xOpen':
+src/vfs.c:555:63: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+       if(!f->base || !f->base->pMethods  || !f->base->pMethods==1 || !f->base->pMethods->xShmMap)
+                                                               ^
+creating build/lib.linux-x86_64-3.5
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/src/apsw.o -L/usr/lib -lsqlite3 -lpython3.5m -o build/lib.linux-x86_64-3.5/apsw.cpython-35m-x86_64-linux-gnu.so
+running build
+running build_ext
+SQLite: Using system sqlite include/libraries
+building 'apsw' extension
+creating build
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/src
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DEXPERIMENTAL=1 -DNDEBUG=1 -DAPSW_FORK_CHECKER=1 -Isrc -I/usr/include/python2.7 -c src/apsw.c -o build/temp.linux-x86_64-2.7/src/apsw.o
+In file included from /usr/include/python2.7/Python.h:8:0,
+                 from src/apsw.c:73:
+/usr/include/python2.7/pyconfig.h:1188:0: warning: "_POSIX_C_SOURCE" redefined
+ #define _POSIX_C_SOURCE 200112L
+ ^
+In file included from /usr/include/assert.h:35:0,
+                 from src/apsw.c:66:
+/usr/include/features.h:225:0: note: this is the location of the previous definition
+ # define _POSIX_C_SOURCE 200809L
+ ^
+creating build/lib.linux-x86_64-2.7
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/src/apsw.o -L/usr/lib -lsqlite3 -lpython2.7 -o build/lib.linux-x86_64-2.7/apsw.so
+==> Entering fakeroot environment...
+==> Starting package_python-apsw()...
+running install
+running build
+running build_ext
+SQLite: Using system sqlite include/libraries
+running install_lib
+creating /tmp/python-apsw/pkg/python-apsw/usr
+creating /tmp/python-apsw/pkg/python-apsw/usr/lib
+creating /tmp/python-apsw/pkg/python-apsw/usr/lib/python3.5
+creating /tmp/python-apsw/pkg/python-apsw/usr/lib/python3.5/site-packages
+copying build/lib.linux-x86_64-3.5/apsw.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-apsw/pkg/python-apsw/usr/lib/python3.5/site-packages
+running install_egg_info
+Writing /tmp/python-apsw/pkg/python-apsw/usr/lib/python3.5/site-packages/apsw-3.8.11.1_r1-py3.5.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-apsw"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python2-apsw()...
+running install
+running build
+running build_ext
+SQLite: Using system sqlite include/libraries
+running install_lib
+creating /tmp/python-apsw/pkg/python2-apsw/usr
+creating /tmp/python-apsw/pkg/python2-apsw/usr/lib
+creating /tmp/python-apsw/pkg/python2-apsw/usr/lib/python2.7
+creating /tmp/python-apsw/pkg/python2-apsw/usr/lib/python2.7/site-packages
+copying build/lib.linux-x86_64-2.7/apsw.so -> /tmp/python-apsw/pkg/python2-apsw/usr/lib/python2.7/site-packages
+running install_egg_info
+Writing /tmp/python-apsw/pkg/python2-apsw/usr/lib/python2.7/site-packages/apsw-3.8.11.1_r1-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-apsw"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-apsw 3.8.11.1-2 (Sat Nov 14 05:58:41 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

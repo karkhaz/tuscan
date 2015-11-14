@@ -1,0 +1,76 @@
+        <html><head></head><body>
+        <h1>Report for perl-term-readline-gnu on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:17</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-term-readline-gnu
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 746 packages in cache
+Found permanent source directory in /sources/perl-term-readline-gnu
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-term-readline-gnu 1.28-1 (Sat Nov 14 04:47:50 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file Makefile.PL
+Hunk #1 succeeded at 79 (offset 21 lines).
+Found `/usr/lib/libncurses.so'.
+cc  -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_STRING_H rlver.c -o rlver   -Wl,-O1,--sort-common,--as-needed,-z,relro -fstack-protector-strong -L/usr/local/lib -lreadline -lncurses
+<<<It seems that you have the GNU Readline Library version 6.3.>>>
+cc  -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_STRING_H -DTRG_READLINE_VERSION=0x0603  rlmalloc.c -o rlmalloc   -Wl,-O1,--sort-common,--as-needed,-z,relro -fstack-protector-strong -L/usr/local/lib -lreadline -lncurses
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Term::ReadLine::Gnu
+Writing MYMETA.yml and MYMETA.json
+cp Gnu/XS.pm blib/lib/Term/ReadLine/Gnu/XS.pm
+AutoSplitting blib/lib/Term/ReadLine/Gnu/XS.pm (blib/lib/auto/Term/ReadLine/Gnu/XS)
+cp Gnu.pm blib/lib/Term/ReadLine/Gnu.pm
+Running Mkbootstrap for Term::ReadLine::Gnu ()
+chmod 644 "Gnu.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  Gnu.xs > Gnu.xsc && mv Gnu.xsc Gnu.c
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"1.28\" -DXS_VERSION=\"1.28\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"  -DHAVE_STRING_H -DTRG_READLINE_VERSION=0x0603 Gnu.c
+rm -f blib/arch/auto/Term/ReadLine/Gnu/Gnu.so
+LD_RUN_PATH="/usr/lib" cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Gnu.o  -o blib/arch/auto/Term/ReadLine/Gnu/Gnu.so 	\
+   -lreadline -lncurses  	\
+
+chmod 755 blib/arch/auto/Term/ReadLine/Gnu/Gnu.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Gnu.bs blib/arch/auto/Term/ReadLine/Gnu/Gnu.bs 644
+cp eg/perlsh blib/script/perlsh
+"/usr/bin/perl" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/perlsh
+Manifying 1 pod document
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Term::ReadLine::Gnu ()
+chmod 644 "Gnu.bs"
+Manifying 1 pod document
+Manifying 1 pod document
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/lib/perl5/vendor_perl/auto/Term/ReadLine/Gnu/Gnu.so
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/lib/perl5/vendor_perl/auto/Term/ReadLine/Gnu/XS/autosplit.ix
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/lib/perl5/vendor_perl/Term/ReadLine/Gnu.pm
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/lib/perl5/vendor_perl/Term/ReadLine/Gnu/XS.pm
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/share/man/man1/perlsh.1p
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/share/man/man3/Term::ReadLine::Gnu.3pm
+Installing /tmp/perl-term-readline-gnu/pkg/perl-term-readline-gnu/usr/bin/vendor_perl/perlsh
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-term-readline-gnu"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-term-readline-gnu 1.28-1 (Sat Nov 14 04:47:56 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

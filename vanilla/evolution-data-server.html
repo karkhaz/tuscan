@@ -1,0 +1,31 @@
+        <html><head></head><body>
+        <h1>Report for evolution-data-server on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 1</p>
+        <p>Time to run: 00:23:22</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data evolution-data-server
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2977 packages in cache
+Found permanent source directory in /sources/evolution-data-server
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+Traceback (most recent call last):
+  File "/build/make_package.py", line 215, in <module>
+    main()
+  File "/build/make_package.py", line 212, in main
+    result = copy_and_build(args)
+  File "/build/make_package.py", line 147, in copy_and_build
+    universal_newlines=True)
+  File "/usr/lib/python3.5/subprocess.py", line 698, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.5/subprocess.py", line 1055, in communicate
+    stdout = self.stdout.read()
+  File "/usr/lib/python3.5/encodings/ascii.py", line 26, in decode
+    return codecs.ascii_decode(input, self.errors)[0]
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 225096: ordinal not in range(128)></pre></code>
+        </body></html>

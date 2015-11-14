@@ -1,0 +1,67 @@
+        <html><head></head><body>
+        <h1>Report for hashcash on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hashcash
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1457 packages in cache
+Found permanent source directory in /sources/hashcash
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hashcash 1.22-4 (Sat Nov 14 05:19:56 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make generic "CFLAGS= -DOPENSSL" "LDFLAGS= -lcrypto"
+make[1]: Entering directory '/tmp/hashcash/src/hashcash-1.22'
+make "CFLAGS=-DOPENSSL -DREGEXP_POSIX -O3 " build
+make[2]: Entering directory '/tmp/hashcash/src/hashcash-1.22'
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o hashcash.o hashcash.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o getopt.o getopt.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o libhc.o libhc.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o libsha1.o libsha1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o utct.o utct.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o sdb.o sdb.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o lock.o lock.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o sstring.o sstring.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o random.o random.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o libfastmint.o libfastmint.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_mmx_standard_1.o fastmint_mmx_standard_1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_mmx_compact_1.o fastmint_mmx_compact_1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_ansi_compact_1.o fastmint_ansi_compact_1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_ansi_standard_1.o fastmint_ansi_standard_1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_ansi_compact_2.o fastmint_ansi_compact_2.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_ansi_standard_2.o fastmint_ansi_standard_2.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_altivec_standard_1.o fastmint_altivec_standard_1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_altivec_standard_2.o fastmint_altivec_standard_2.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_altivec_compact_2.o fastmint_altivec_compact_2.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_ansi_ultracompact_1.o fastmint_ansi_ultracompact_1.c
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o fastmint_library.o fastmint_library.c
+rm -f libhashcash.a
+ar rcs libhashcash.a libhc.o libsha1.o utct.o sdb.o lock.o sstring.o random.o libfastmint.o fastmint_mmx_standard_1.o fastmint_mmx_compact_1.o fastmint_ansi_compact_1.o fastmint_ansi_standard_1.o fastmint_ansi_compact_2.o fastmint_ansi_standard_2.o fastmint_altivec_standard_1.o fastmint_altivec_standard_2.o fastmint_altivec_compact_2.o fastmint_ansi_ultracompact_1.o fastmint_library.o
+cc hashcash.o getopt.o libhashcash.a -o hashcash -lcrypto
+cc -DOPENSSL -DREGEXP_POSIX -O3    -c -o sha1.o sha1.c
+cc sha1.o libsha1.o -o sha1 -lcrypto
+make[2]: Leaving directory '/tmp/hashcash/src/hashcash-1.22'
+make[1]: Leaving directory '/tmp/hashcash/src/hashcash-1.22'
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "hashcash"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: hashcash 1.22-4 (Sat Nov 14 05:20:07 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

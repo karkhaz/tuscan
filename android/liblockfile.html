@@ -1,0 +1,124 @@
+        <html><head></head><body>
+        <h1>Report for liblockfile on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data liblockfile
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1122 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: liblockfile 1.09_6-1 (Fri Nov 13 23:24:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading liblockfile_1.09.orig.tar.gz...
+  -> Downloading liblockfile_1.09-6.debian.tar.bz2...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting liblockfile_1.09.orig.tar.gz with bsdtar
+  -> Extracting liblockfile_1.09-6.debian.tar.bz2 with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/liblockfile
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: liblockfile 1.09_6-1 (Fri Nov 13 23:24:04 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file Makefile.in
+patching file Makefile.in
+patching file lockfile.c
+creating cache ./config.cache
+checking for gcc... arm-linux-androideabi-gcc
+checking whether the C compiler (arm-linux-androideabi-gcc  ) works... yes
+checking whether the C compiler (arm-linux-androideabi-gcc  ) is a cross-compiler... yes
+checking whether we are using GNU C... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking build shared libs... yes
+checking build libnfslock... no
+checking for ldconfig... /usr/bin/true
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for ANSI C header files... yes
+checking for getopt.h... yes
+checking for paths.h... yes
+checking for sys/param.h... yes
+checking for utime... yes
+checking for utimes... yes
+updating cache ./config.cache
+creating ./config.status
+creating ./Makefile
+creating ./maillock.h
+creating autoconf.h
+arm-linux-androideabi-gcc -Wall -D_GNU_SOURCE -fPIC -D_REENTRANT -I. -DLIB -DLOCKPROG=\"/usr/bin/dotlockfile\" \
+		-c lockfile.c
+arm-linux-androideabi-gcc -Wall -D_GNU_SOURCE -fPIC -D_REENTRANT -I.   -c -o dotlockfile.o dotlockfile.c
+arm-linux-androideabi-gcc -Wall -D_GNU_SOURCE -fPIC -D_REENTRANT -I. -c lockfile.c -o xlockfile.o
+ar rv liblockfile.a lockfile.o
+ar: creating liblockfile.a
+a - lockfile.o
+arm-linux-androideabi-gcc  -fPIC -shared -Wl,-soname,liblockfile.so.1 \
+		-o liblockfile.so lockfile.o -lc
+arm-linux-androideabi-gcc  -o dotlockfile dotlockfile.o xlockfile.o
+==> Entering fakeroot environment...
+==> Starting package()...
+install -m 644 lockfile.h maillock.h /tmp/liblockfile/pkg/liblockfile/usr/include
+if [ "" != "" ]; then\
+	  install -g  -m 2755 dotlockfile /tmp/liblockfile/pkg/liblockfile/usr/bin;\
+	else \
+	  install -g root -m 755 dotlockfile /tmp/liblockfile/pkg/liblockfile/usr/bin; \
+	fi
+install -m 644 *.1 /tmp/liblockfile/pkg/liblockfile/usr/share/man/man1
+install -m 644 *.3 /tmp/liblockfile/pkg/liblockfile/usr/share/man/man3
+install -m 755 liblockfile.so \
+		/tmp/liblockfile/pkg/liblockfile/usr/lib/liblockfile.so.1.0
+ln -s liblockfile.so.1.0 /tmp/liblockfile/pkg/liblockfile/usr/lib/liblockfile.so
+if test "" = ""; then /usr/bin/true; fi
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "liblockfile"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: liblockfile 1.09_6-1 (Fri Nov 13 23:24:06 UTC 2015)
+===> Printing config.logs
+found log at /tmp/liblockfile/src/liblockfile-1.09/config.log
+____
+File /tmp/liblockfile/src/liblockfile-1.09/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:536: checking for gcc
+configure:649: checking whether the C compiler (arm-linux-androideabi-gcc  ) works
+configure:665: arm-linux-androideabi-gcc -o conftest    conftest.c  1>&5
+configure:691: checking whether the C compiler (arm-linux-androideabi-gcc  ) is a cross-compiler
+configure:696: checking whether we are using GNU C
+configure:705: arm-linux-androideabi-gcc -E conftest.c
+configure:724: checking whether arm-linux-androideabi-gcc accepts -g
+configure:764: checking build shared libs
+configure:789: checking build libnfslock
+configure:837: checking for ldconfig
+configure:871: checking how to run the C preprocessor
+configure:892: arm-linux-androideabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:951: checking for ANSI C header files
+configure:964: arm-linux-androideabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1063: checking for getopt.h
+configure:1073: arm-linux-androideabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1063: checking for paths.h
+configure:1073: arm-linux-androideabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1063: checking for sys/param.h
+configure:1073: arm-linux-androideabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1106: checking for utime
+configure:1134: arm-linux-androideabi-gcc -o conftest  -Wall -D_GNU_SOURCE -fPIC -D_REENTRANT   conftest.c  1>&5
+configure:1106: checking for utimes
+configure:1134: arm-linux-androideabi-gcc -o conftest  -Wall -D_GNU_SOURCE -fPIC -D_REENTRANT   conftest.c  1>&5
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

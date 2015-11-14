@@ -1,0 +1,91 @@
+        <html><head></head><body>
+        <h1>Report for unp on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data unp
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1204 packages in cache
+Found permanent source directory in /sources/unp
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: unp 2.0~pre7+nmu1-2 (Sat Nov 14 05:04:45 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+msgmerge -U cs.po messages.pot
+...................... done.
+msgfmt cs.po -o cs.mo
+msgfmt --statistics cs.po
+21 translated messages.
+msgmerge -U de.po messages.pot
+..... done.
+msgfmt de.po -o de.mo
+msgfmt --statistics de.po
+21 translated messages.
+msgmerge -U fr.po messages.pot
+......... done.
+msgfmt fr.po -o fr.mo
+msgfmt --statistics fr.po
+21 translated messages.
+msgmerge -U it.po messages.pot
+.... done.
+msgfmt it.po -o it.mo
+msgfmt --statistics it.po
+21 translated messages.
+msgmerge -U pt.po messages.pot
+.............. done.
+msgfmt pt.po -o pt.mo
+msgfmt --statistics pt.po
+21 translated messages.
+==> Entering fakeroot environment...
+==> Starting package()...
+msgmerge -U cs.po messages.pot
+...................... done.
+msgfmt cs.po -o cs.mo
+msgfmt --statistics cs.po
+21 translated messages.
+msgmerge -U de.po messages.pot
+.................... done.
+msgfmt de.po -o de.mo
+msgfmt --statistics de.po
+21 translated messages.
+msgmerge -U fr.po messages.pot
+...................... done.
+msgfmt fr.po -o fr.mo
+msgfmt --statistics fr.po
+21 translated messages.
+msgmerge -U it.po messages.pot
+.... done.
+msgfmt it.po -o it.mo
+msgfmt --statistics it.po
+21 translated messages.
+msgmerge -U pt.po messages.pot
+...................... done.
+msgfmt pt.po -o pt.mo
+msgfmt --statistics pt.po
+21 translated messages.
+for mo in cs.mo de.mo fr.mo it.mo pt.mo; do \
+	lang=$(basename $mo .mo); \
+  dir=/usr/share/locale/$lang/LC_MESSAGES; \
+  install -d /tmp/unp/pkg/unp$dir; \
+  install -m 644 $lang.mo /tmp/unp/pkg/unp$dir/unp.mo; \
+done
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "unp"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: unp 2.0~pre7+nmu1-2 (Sat Nov 14 05:04:48 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

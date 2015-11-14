@@ -1,0 +1,244 @@
+        <html><head></head><body>
+        <h1>Report for mdk3 on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:12</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mdk3
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1209 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mdk3 v6-6 (Fri Nov 13 23:26:02 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading mdk3-v6.tar.bz2...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting mdk3-v6.tar.bz2 with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/mdk3
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mdk3 v6-6 (Fri Nov 13 23:26:04 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make: Entering directory '/tmp/mdk3/src/mdk3-v6/osdep'
+Building for Linux
+make[1]: Entering directory '/tmp/mdk3/src/mdk3-v6/osdep'
+gcc  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..    -c -o osdep.o osdep.c
+gcc  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..    -c -o common.o common.c
+gcc  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..    -c -o network.o network.c
+gcc  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..    -c -o linux.o linux.c
+gcc  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..    -c -o linux_tap.o linux_tap.c
+gcc  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..  -D_FILE_OFFSET_BITS=64 -D_REVISION=mdk3-v6  -fPIC -I..    -c -o radiotap/radiotap-parser.o radiotap/radiotap-parser.c
+ar cru libosdep.a  osdep.o common.o network.o linux.o linux_tap.o radiotap/radiotap-parser.o common.o
+ar: `u' modifier ignored since `D' is the default (see `U')
+ranlib libosdep.a 
+touch .os.Linux
+make[1]: Leaving directory '/tmp/mdk3/src/mdk3-v6/osdep'
+make: Leaving directory '/tmp/mdk3/src/mdk3-v6/osdep'
+make -C osdep
+arm-linux-androideabi-gcc -Wall -Wextra -lpthread mdk3.c osdep/libosdep.a -o mdk3 -Losdep -losdep
+make[1]: Entering directory '/tmp/mdk3/src/mdk3-v6/osdep'
+Building for Linux
+make[2]: Entering directory '/tmp/mdk3/src/mdk3-v6/osdep'
+make[2]: '.os.Linux' is up to date.
+make[2]: Leaving directory '/tmp/mdk3/src/mdk3-v6/osdep'
+make[1]: Leaving directory '/tmp/mdk3/src/mdk3-v6/osdep'
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:245:0: warning: "__be64_to_cpu" redefined [enabled by default]
+    #define __be64_to_cpu(x) ___my_swab64(x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:60:0: note: this is the location of the previous definition
+ #define __be64_to_cpu(x) __swab64((__force __u64)(__be64)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:246:0: warning: "__be32_to_cpu" redefined [enabled by default]
+    #define __be32_to_cpu(x) ___my_swab32(x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:62:0: note: this is the location of the previous definition
+ #define __be32_to_cpu(x) __swab32((__force __u32)(__be32)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:247:0: warning: "__be16_to_cpu" redefined [enabled by default]
+    #define __be16_to_cpu(x) ___my_swab16(x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:65:0: note: this is the location of the previous definition
+ #define __be16_to_cpu(x) __swab16((__force __u16)(__be16)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:248:0: warning: "__cpu_to_be64" redefined [enabled by default]
+    #define __cpu_to_be64(x) ___my_swab64(x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:59:0: note: this is the location of the previous definition
+ #define __cpu_to_be64(x) ((__force __be64)__swab64((x)))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:249:0: warning: "__cpu_to_be32" redefined [enabled by default]
+    #define __cpu_to_be32(x) ___my_swab32(x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:61:0: note: this is the location of the previous definition
+ #define __cpu_to_be32(x) ((__force __be32)__swab32((x)))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:250:0: warning: "__cpu_to_be16" redefined [enabled by default]
+    #define __cpu_to_be16(x) ___my_swab16(x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:64:0: note: this is the location of the previous definition
+ #define __cpu_to_be16(x) ((__force __be16)__swab16((x)))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:251:0: warning: "__le64_to_cpu" redefined [enabled by default]
+    #define __le64_to_cpu(x) (x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:52:0: note: this is the location of the previous definition
+ #define __le64_to_cpu(x) ((__force __u64)(__le64)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:252:0: warning: "__le32_to_cpu" redefined [enabled by default]
+    #define __le32_to_cpu(x) (x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:55:0: note: this is the location of the previous definition
+ #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:253:0: warning: "__le16_to_cpu" redefined [enabled by default]
+    #define __le16_to_cpu(x) (x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:57:0: note: this is the location of the previous definition
+ #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:254:0: warning: "__cpu_to_le64" redefined [enabled by default]
+    #define __cpu_to_le64(x) (x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:51:0: note: this is the location of the previous definition
+ #define __cpu_to_le64(x) ((__force __le64)(__u64)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:255:0: warning: "__cpu_to_le32" redefined [enabled by default]
+    #define __cpu_to_le32(x) (x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:54:0: note: this is the location of the previous definition
+ #define __cpu_to_le32(x) ((__force __le32)(__u32)(x))
+ ^
+In file included from osdep/osdep.h:14:0,
+                 from mdk3.c:38:
+osdep/byteorder.h:256:0: warning: "__cpu_to_le16" redefined [enabled by default]
+    #define __cpu_to_le16(x) (x)
+ ^
+In file included from /tmp/toolchain/sysroot/usr/include/asm/byteorder.h:21:0,
+                 from /tmp/toolchain/sysroot/usr/include/linux/in.h:259,
+                 from /tmp/toolchain/sysroot/usr/include/netinet/in.h:36,
+                 from osdep/osdep.h:11,
+                 from mdk3.c:38:
+/tmp/toolchain/sysroot/usr/include/linux/byteorder/little_endian.h:56:0: note: this is the location of the previous definition
+ #define __cpu_to_le16(x) ((__force __le16)(__u16)(x))
+ ^
+mdk3.c: In function 'ssid_brute_sniffer':
+mdk3.c:1512:9: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+     int len=0;
+         ^
+mdk3.c: In function 'mac_bruteforce_sniffer':
+mdk3.c:1926:9: warning: variable 'plen' set but not used [-Wunused-but-set-variable]
+     int plen = 0;
+         ^
+mdk3.c: In function 'eapol_machine':
+mdk3.c:2560:17: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+   int co, flag, len;
+                 ^
+mdk3.c: In function 'check_probe':
+mdk3.c:3153:9: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+     int len = 0;
+         ^
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lpthread
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: osdep/libosdep.a(osdep.o): incompatible target
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: warning: skipping incompatible osdep/libosdep.a while searching for osdep
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -losdep
+/tmp/ccoVnkC7.o:mdk3.c:function send_packet: error: undefined reference to 'wi_write'
+/tmp/ccoVnkC7.o:mdk3.c:function read_packet: error: undefined reference to 'wi_read'
+/tmp/ccoVnkC7.o:mdk3.c:function set_channel: error: undefined reference to 'wi_set_channel'
+/tmp/ccoVnkC7.o:mdk3.c:function main: error: undefined reference to 'wi_open'
+/tmp/ccoVnkC7.o:mdk3.c:function main: error: undefined reference to 'wi_fd'
+collect2: error: ld returned 1 exit status
+Makefile:22: recipe for target 'mdk3' failed
+make: *** [mdk3] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

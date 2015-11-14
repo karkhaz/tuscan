@@ -1,0 +1,687 @@
+        <html><head></head><body>
+        <h1>Report for igmpproxy on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:19</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data igmpproxy
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1910 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: igmpproxy 0.1-3 (Fri Nov 13 23:48:50 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading igmpproxy-0.1.tar.gz...
+  -> Found igmpproxy.service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting igmpproxy-0.1.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/igmpproxy
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: igmpproxy 0.1-3 (Fri Nov 13 23:48:51 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for style of include used by make... GNU
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... yes
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking for arm-linux-androideabi-gcc option to accept ISO C99... -std=gnu99
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for struct sockaddr.sa_len... no
+checking for struct sockaddr_in.sin_len... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating doc/Makefile
+config.status: creating src/Makefile
+config.status: creating doc/igmpproxy.8
+config.status: creating doc/igmpproxy.conf.5
+config.status: creating config.h
+config.status: linking src/os-linux.h to src/os.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/igmpproxy/src/igmpproxy-0.1'
+Making all in doc
+make[2]: Entering directory '/tmp/igmpproxy/src/igmpproxy-0.1/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/igmpproxy/src/igmpproxy-0.1/doc'
+Making all in src
+make[2]: Entering directory '/tmp/igmpproxy/src/igmpproxy-0.1/src'
+arm-linux-androideabi-gcc -std=gnu99 -DHAVE_CONFIG_H -I. -I..      -MT callout.o -MD -MP -MF .deps/callout.Tpo -c -o callout.o callout.c
+arm-linux-androideabi-gcc -std=gnu99 -DHAVE_CONFIG_H -I. -I..      -MT config.o -MD -MP -MF .deps/config.Tpo -c -o config.o config.c
+In file included from igmpproxy.h:58:0,
+                 from callout.c:35:
+os.h:5:26: fatal error: netinet/igmp.h: No such file or directory
+ #include <netinet/igmp.h>
+                          ^
+compilation terminated.
+Makefile:279: recipe for target 'callout.o' failed
+make[2]: *** [callout.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+In file included from igmpproxy.h:58:0,
+                 from config.c:38:
+os.h:5:26: fatal error: netinet/igmp.h: No such file or directory
+ #include <netinet/igmp.h>
+                          ^
+compilation terminated.
+Makefile:279: recipe for target 'config.o' failed
+make[2]: *** [config.o] Error 1
+make[2]: Leaving directory '/tmp/igmpproxy/src/igmpproxy-0.1/src'
+Makefile:305: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/tmp/igmpproxy/src/igmpproxy-0.1'
+Makefile:223: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/igmpproxy/src/igmpproxy-0.1/config.log
+____
+File /tmp/igmpproxy/src/igmpproxy-0.1/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by igmpproxy configure 0.1, which was
+generated by GNU Autoconf 2.63.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 544e7ae78b1f
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1839: checking for a BSD-compatible install
+configure:1907: result: /usr/bin/install -c
+configure:1918: checking whether build environment is sane
+configure:1978: result: yes
+configure:2027: checking for x86_64-unknown-linux-strip
+configure:2057: result: no
+configure:2067: checking for strip
+configure:2083: found /usr/sbin/strip
+configure:2094: result: strip
+configure:2119: checking for a thread-safe mkdir -p
+configure:2158: result: /usr/sbin/mkdir -p
+configure:2171: checking for gawk
+configure:2187: found /usr/sbin/gawk
+configure:2198: result: gawk
+configure:2209: checking whether make sets $(MAKE)
+configure:2231: result: yes
+configure:2328: checking for style of include used by make
+configure:2356: result: GNU
+configure:2386: checking for x86_64-unknown-linux-gcc
+configure:2413: result: arm-linux-androideabi-gcc
+configure:2685: checking for C compiler version
+configure:2693: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2697: $? = 0
+configure:2704: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2708: $? = 0
+configure:2715: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2719: $? = 1
+configure:2742: checking for C compiler default output file name
+configure:2764: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2768: $? = 0
+configure:2806: result: a.out
+configure:2825: checking whether the C compiler works
+configure:2835: ./a.out
+./configure: line 2837: ./a.out: cannot execute binary file: Exec format error
+configure:2839: $? = 126
+configure:2858: result: yes
+configure:2865: checking whether we are cross compiling
+configure:2867: result: yes
+configure:2870: checking for suffix of executables
+configure:2877: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2881: $? = 0
+configure:2907: result: 
+configure:2913: checking for suffix of object files
+configure:2939: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2943: $? = 0
+configure:2968: result: o
+configure:2972: checking whether we are using the GNU C compiler
+configure:3001: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3008: $? = 0
+configure:3025: result: yes
+configure:3034: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3064: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3071: $? = 0
+configure:3172: result: yes
+configure:3189: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3263: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3270: $? = 0
+configure:3293: result: none needed
+configure:3313: checking dependency style of arm-linux-androideabi-gcc
+configure:3423: result: gcc3
+configure:3438: checking for arm-linux-androideabi-gcc option to accept ISO C99
+configure:3597: arm-linux-androideabi-gcc  -c   conftest.c >&5
+conftest.c:60:29: error: expected ';', ',' or ')' before 'text'
+ test_restrict (ccp restrict text)
+                             ^
+conftest.c: In function 'main':
+conftest.c:114:18: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'newvar'
+   char *restrict newvar = "Another string";
+                  ^
+conftest.c:114:18: error: 'newvar' undeclared (first use in this function)
+conftest.c:114:18: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:124:3: error: 'for' loop initial declarations are only allowed in C99 mode
+   for (int i = 0; i < ia->datasize; ++i)
+   ^
+conftest.c:124:3: note: use option -std=c99 or -std=gnu99 to compile your code
+configure:3604: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "igmpproxy"
+| #define PACKAGE_TARNAME "igmpproxy"
+| #define PACKAGE_VERSION "0.1"
+| #define PACKAGE_STRING "igmpproxy 0.1"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE "igmpproxy"
+| #define VERSION "0.1"
+| /* end confdefs.h.  */
+| #include <stdarg.h>
+| #include <stdbool.h>
+| #include <stdlib.h>
+| #include <wchar.h>
+| #include <stdio.h>
+| 
+| // Check varargs macros.  These examples are taken from C99 6.10.3.5.
+| #define debug(...) fprintf (stderr, __VA_ARGS__)
+| #define showlist(...) puts (#__VA_ARGS__)
+| #define report(test,...) ((test) ? puts (#test) : printf (__VA_ARGS__))
+| static void
+| test_varargs_macros (void)
+| {
+|   int x = 1234;
+|   int y = 5678;
+|   debug ("Flag");
+|   debug ("X = %d\n", x);
+|   showlist (The first, second, and third items.);
+|   report (x>y, "x is %d but y is %d", x, y);
+| }
+| 
+| // Check long long types.
+| #define BIG64 18446744073709551615ull
+| #define BIG32 4294967295ul
+| #define BIG_OK (BIG64 / BIG32 == 4294967297ull && BIG64 % BIG32 == 0)
+| #if !BIG_OK
+|   your preprocessor is broken;
+| #endif
+| #if BIG_OK
+| #else
+|   your preprocessor is broken;
+| #endif
+| static long long int bignum = -9223372036854775807LL;
+| static unsigned long long int ubignum = BIG64;
+| 
+| struct incomplete_array
+| {
+|   int datasize;
+|   double data[];
+| };
+| 
+| struct named_init {
+|   int number;
+|   const wchar_t *name;
+|   double average;
+| };
+| 
+| typedef const char *ccp;
+| 
+| static inline int
+| test_restrict (ccp restrict text)
+| {
+|   // See if C++-style comments work.
+|   // Iterate through items via the restricted pointer.
+|   // Also check for declarations in for loops.
+|   for (unsigned int i = 0; *(text+i) != '\0'; ++i)
+|     continue;
+|   return 0;
+| }
+| 
+| // Check varargs and va_copy.
+| static void
+| test_varargs (const char *format, ...)
+| {
+|   va_list args;
+|   va_start (args, format);
+|   va_list args_copy;
+|   va_copy (args_copy, args);
+| 
+|   const char *str;
+|   int number;
+|   float fnumber;
+| 
+|   while (*format)
+|     {
+|       switch (*format++)
+| 	{
+| 	case 's': // string
+| 	  str = va_arg (args_copy, const char *);
+| 	  break;
+| 	case 'd': // int
+| 	  number = va_arg (args_copy, int);
+| 	  break;
+| 	case 'f': // float
+| 	  fnumber = va_arg (args_copy, double);
+| 	  break;
+| 	default:
+| 	  break;
+| 	}
+|     }
+|   va_end (args_copy);
+|   va_end (args);
+| }
+| 
+| int
+| main ()
+| {
+| 
+|   // Check bool.
+|   _Bool success = false;
+| 
+|   // Check restrict.
+|   if (test_restrict ("String literal") == 0)
+|     success = true;
+|   char *restrict newvar = "Another string";
+| 
+|   // Check varargs.
+|   test_varargs ("s, d' f .", "string", 65, 34.234);
+|   test_varargs_macros ();
+| 
+|   // Check flexible array members.
+|   struct incomplete_array *ia =
+|     malloc (sizeof (struct incomplete_array) + (sizeof (double) * 10));
+|   ia->datasize = 10;
+|   for (int i = 0; i < ia->datasize; ++i)
+|     ia->data[i] = i * 1.234;
+| 
+|   // Check named initializers.
+|   struct named_init ni = {
+|     .number = 34,
+|     .name = L"Test wide string",
+|     .average = 543.34343,
+|   };
+| 
+|   ni.number = 58;
+| 
+|   int dynamic_array[ni.number];
+|   dynamic_array[ni.number - 1] = 543;
+| 
+|   // work around unused variable warnings
+|   return (!success || bignum == 0LL || ubignum == 0uLL || newvar[0] == 'x'
+| 	  || dynamic_array[ni.number - 1] != 543);
+| 
+|   ;
+|   return 0;
+| }
+configure:3597: arm-linux-androideabi-gcc -std=gnu99 -c   conftest.c >&5
+configure:3604: $? = 0
+configure:3634: result: -std=gnu99
+configure:3647: checking build system type
+configure:3665: result: x86_64-unknown-linux-gnu
+configure:3687: checking host system type
+configure:3702: result: x86_64-unknown-linux-gnu
+configure:3738: checking for struct sockaddr.sa_len
+configure:3770: arm-linux-androideabi-gcc -std=gnu99 -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:19:12: error: 'struct sockaddr' has no member named 'sa_len'
+ if (ac_aggr.sa_len)
+            ^
+configure:3777: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "igmpproxy"
+| #define PACKAGE_TARNAME "igmpproxy"
+| #define PACKAGE_VERSION "0.1"
+| #define PACKAGE_STRING "igmpproxy 0.1"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE "igmpproxy"
+| #define VERSION "0.1"
+| /* end confdefs.h.  */
+| 
+| #include <sys/types.h>
+| #include <sys/socket.h>
+| 
+| 
+| int
+| main ()
+| {
+| static struct sockaddr ac_aggr;
+| if (ac_aggr.sa_len)
+| return 0;
+|   ;
+|   return 0;
+| }
+configure:3814: arm-linux-androideabi-gcc -std=gnu99 -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:19:19: error: 'struct sockaddr' has no member named 'sa_len'
+ if (sizeof ac_aggr.sa_len)
+                   ^
+configure:3821: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "igmpproxy"
+| #define PACKAGE_TARNAME "igmpproxy"
+| #define PACKAGE_VERSION "0.1"
+| #define PACKAGE_STRING "igmpproxy 0.1"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE "igmpproxy"
+| #define VERSION "0.1"
+| /* end confdefs.h.  */
+| 
+| #include <sys/types.h>
+| #include <sys/socket.h>
+| 
+| 
+| int
+| main ()
+| {
+| static struct sockaddr ac_aggr;
+| if (sizeof ac_aggr.sa_len)
+| return 0;
+|   ;
+|   return 0;
+| }
+configure:3839: result: no
+configure:3850: checking for struct sockaddr_in.sin_len
+configure:3882: arm-linux-androideabi-gcc -std=gnu99 -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:19:12: error: 'struct sockaddr_in' has no member named 'sin_len'
+ if (ac_aggr.sin_len)
+            ^
+configure:3889: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "igmpproxy"
+| #define PACKAGE_TARNAME "igmpproxy"
+| #define PACKAGE_VERSION "0.1"
+| #define PACKAGE_STRING "igmpproxy 0.1"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE "igmpproxy"
+| #define VERSION "0.1"
+| /* end confdefs.h.  */
+| 
+| #include <sys/types.h>
+| #include <netinet/in.h>
+| 
+| 
+| int
+| main ()
+| {
+| static struct sockaddr_in ac_aggr;
+| if (ac_aggr.sin_len)
+| return 0;
+|   ;
+|   return 0;
+| }
+configure:3926: arm-linux-androideabi-gcc -std=gnu99 -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:19:19: error: 'struct sockaddr_in' has no member named 'sin_len'
+ if (sizeof ac_aggr.sin_len)
+                   ^
+configure:3933: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "igmpproxy"
+| #define PACKAGE_TARNAME "igmpproxy"
+| #define PACKAGE_VERSION "0.1"
+| #define PACKAGE_STRING "igmpproxy 0.1"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE "igmpproxy"
+| #define VERSION "0.1"
+| /* end confdefs.h.  */
+| 
+| #include <sys/types.h>
+| #include <netinet/in.h>
+| 
+| 
+| int
+| main ()
+| {
+| static struct sockaddr_in ac_aggr;
+| if (sizeof ac_aggr.sin_len)
+| return 0;
+|   ;
+|   return 0;
+| }
+configure:3951: result: no
+configure:4089: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by igmpproxy config.status 0.1, which was
+generated by GNU Autoconf 2.63.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 544e7ae78b1f
+
+config.status:776: creating Makefile
+config.status:776: creating doc/Makefile
+config.status:776: creating src/Makefile
+config.status:776: creating doc/igmpproxy.8
+config.status:776: creating doc/igmpproxy.conf.5
+config.status:776: creating config.h
+config.status:1062: linking src/os-linux.h to src/os.h
+config.status:1085: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_build=x86_64-unknown-linux-gnu
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_host=x86_64-unknown-linux-gnu
+ac_cv_member_struct_sockaddr_in_sin_len=no
+ac_cv_member_struct_sockaddr_sa_len=no
+ac_cv_objext=o
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_c99=-std=gnu99
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/missing --run aclocal-1.11'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/missing --run tar'
+AUTOCONF='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/missing --run automake-1.11'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc -std=gnu99'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=''
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/missing --run makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='igmpproxy'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='igmpproxy'
+PACKAGE_STRING='igmpproxy 0.1'
+PACKAGE_TARNAME='igmpproxy'
+PACKAGE_VERSION='0.1'
+PATH_SEPARATOR=':'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='0.1'
+ac_ct_CC=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__quote=''
+am__tar='${AMTAR} chof - "$$tardir"'
+am__untar='${AMTAR} xf -'
+bindir='${exec_prefix}/bin'
+build='x86_64-unknown-linux-gnu'
+build_alias=''
+build_cpu='x86_64'
+build_os='linux-gnu'
+build_vendor='unknown'
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host='x86_64-unknown-linux-gnu'
+host_alias='x86_64-unknown-linux'
+host_cpu='x86_64'
+host_os='linux-gnu'
+host_vendor='unknown'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/igmpproxy/src/igmpproxy-0.1/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='/usr/sbin/mkdir -p'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='/usr/bin'
+sharedstatedir='${prefix}/com'
+sysconfdir='/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define PACKAGE_NAME "igmpproxy"
+#define PACKAGE_TARNAME "igmpproxy"
+#define PACKAGE_VERSION "0.1"
+#define PACKAGE_STRING "igmpproxy 0.1"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE "igmpproxy"
+#define VERSION "0.1"
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

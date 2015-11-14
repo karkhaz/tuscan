@@ -1,0 +1,97 @@
+        <html><head></head><body>
+        <h1>Report for perl-mail-transport-dbx on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:52</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-mail-transport-dbx
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2067 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-mail-transport-dbx 0.07-11 (Fri Nov 13 23:57:23 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading Mail-Transport-Dbx-0.07.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting Mail-Transport-Dbx-0.07.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-mail-transport-dbx
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-mail-transport-dbx 0.07-11 (Fri Nov 13 23:57:24 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Mail::Transport::Dbx::libdbx
+Writing MYMETA.yml and MYMETA.json
+Generating a Unix-style Makefile
+Writing Makefile for Mail::Transport::Dbx
+Writing MYMETA.yml and MYMETA.json
+cd libdbx && make "CCFLAGS=-D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64" "CC=cc" "OPTIMIZE=-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4"
+make[1]: Entering directory '/tmp/perl-mail-transport-dbx/src/Mail-Transport-Dbx-0.07/libdbx'
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"\" -DXS_VERSION=\"\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"  -DDBX_LITTLE_ENDIAN libdbx.c
+cp Dbx.pm blib/lib/Mail/Transport/Dbx.pm
+AutoSplitting blib/lib/Mail/Transport/Dbx.pm (blib/lib/auto/Mail/Transport/Dbx)
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"\" -DXS_VERSION=\"\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"  -DDBX_LITTLE_ENDIAN timeconv.c
+Running Mkbootstrap for Mail::Transport::Dbx ()
+chmod 644 "Dbx.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  Dbx.xs > Dbx.xsc && mv Dbx.xsc Dbx.c
+ar cr libdbx.a libdbx.o timeconv.o
+: libdbx.a
+make[1]: Leaving directory '/tmp/perl-mail-transport-dbx/src/Mail-Transport-Dbx-0.07/libdbx'
+make[1]: Entering directory '/tmp/perl-mail-transport-dbx/src/Mail-Transport-Dbx-0.07/libdbx'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/perl-mail-transport-dbx/src/Mail-Transport-Dbx-0.07/libdbx'
+cc -c  -I. -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.07\" -DXS_VERSION=\"0.07\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Dbx.c
+In file included from Dbx.xs:5:0:
+ppport.h:227:0: warning: "PERL_UNUSED_DECL" redefined
+ #  define PERL_UNUSED_DECL
+ ^
+In file included from Dbx.xs:2:0:
+/usr/lib/perl5/core_perl/CORE/perl.h:313:0: note: this is the location of the previous definition
+ #    define PERL_UNUSED_DECL __attribute__unused__
+ ^
+rm -f blib/arch/auto/Mail/Transport/Dbx/Dbx.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Dbx.o  -o blib/arch/auto/Mail/Transport/Dbx/Dbx.so libdbx/libdbx.a	\
+     	\
+
+chmod 755 blib/arch/auto/Mail/Transport/Dbx/Dbx.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Dbx.bs blib/arch/auto/Mail/Transport/Dbx/Dbx.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Mail::Transport::Dbx ()
+make[1]: Entering directory '/tmp/perl-mail-transport-dbx/src/Mail-Transport-Dbx-0.07/libdbx'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/perl-mail-transport-dbx/src/Mail-Transport-Dbx-0.07/libdbx'
+chmod 644 "Dbx.bs"
+Manifying 1 pod document
+Appending installation info to /tmp/perl-mail-transport-dbx/pkg/perl-mail-transport-dbx/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-mail-transport-dbx/pkg/perl-mail-transport-dbx/usr/lib/perl5/vendor_perl/auto/Mail/Transport/Dbx/Dbx.so
+Installing /tmp/perl-mail-transport-dbx/pkg/perl-mail-transport-dbx/usr/lib/perl5/vendor_perl/auto/Mail/Transport/Dbx/autosplit.ix
+Installing /tmp/perl-mail-transport-dbx/pkg/perl-mail-transport-dbx/usr/lib/perl5/vendor_perl/Mail/Transport/Dbx.pm
+Installing /tmp/perl-mail-transport-dbx/pkg/perl-mail-transport-dbx/usr/share/man/man3/Mail::Transport::Dbx.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-mail-transport-dbx"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-mail-transport-dbx 0.07-11 (Fri Nov 13 23:57:27 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

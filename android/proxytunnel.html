@@ -1,0 +1,49 @@
+        <html><head></head><body>
+        <h1>Report for proxytunnel on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:30</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data proxytunnel
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2266 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: proxytunnel 1.9.0-4 (Sat Nov 14 00:15:33 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading proxytunnel-1.9.0.tgz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting proxytunnel-1.9.0.tgz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/proxytunnel
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: proxytunnel 1.9.0-4 (Sat Nov 14 00:15:34 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-gcc  -DREV=0 -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=2 -DSO_REUSEPORT -c -o proxytunnel.o proxytunnel.c
+arm-linux-androideabi-gcc  -DREV=0 -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=2 -DSO_REUSEPORT -c -o base64.o base64.c
+arm-linux-androideabi-gcc  -DREV=0 -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=2 -DSO_REUSEPORT -c -o strlcpy.o strlcpy.c
+In file included from proxytunnel.h:23:0,
+                 from proxytunnel.c:38:
+ptstream.h:23:28: fatal error: openssl/crypto.h: No such file or directory
+ #include <openssl/crypto.h>
+                            ^
+compilation terminated.
+Makefile:83: recipe for target 'proxytunnel.o' failed
+make: *** [proxytunnel.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** wait: No child processes.  Stop.
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

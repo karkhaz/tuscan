@@ -1,0 +1,173 @@
+        <html><head></head><body>
+        <h1>Report for badvpn on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:51</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data badvpn
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1045 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: badvpn 1.999.130-1 (Fri Nov 13 23:21:24 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) nspr-4.10.10-1  sqlite-3.9.2-1  nss-3.20.1-1
+
+Total Installed Size:  11.34 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing nspr...
+installing sqlite...
+installing nss...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.83 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading 1.999.130.tar.gz...
+  -> Found badvpn-ncd.service
+  -> Found badvpn-ncd.conf.d
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting 1.999.130.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/badvpn
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: badvpn 1.999.130-1 (Fri Nov 13 23:21:38 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found PkgConfig: /usr/sbin/pkg-config (found version "0.29") 
+-- checking for module 'openssl'
+--   found openssl, version 1.0.2d
+-- Found OpenSSL:   ssl;crypto
+-- checking for module 'nspr'
+--   found nspr, version 4.10.10
+-- Found NSPR: /usr/include/nspr  plds4;plc4;nspr4
+-- checking for module 'nss'
+--   found nss, version 3.20.1
+-- Found NSS: /usr/include/nss;/usr/include/nspr  ssl3;smime3;nss3;nssutil3;plds4;plc4;nspr4
+-- Check if the system is big endian
+-- Searching 16 bit integer
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Using unsigned short
+-- Check if the system is big endian - little endian
+-- Check size of int
+-- Check size of int - done
+-- Check size of size_t
+-- Check size of size_t - done
+-- Looking for include file sys/signalfd.h
+-- Looking for include file sys/signalfd.h - found
+-- Looking for include file sys/epoll.h
+-- Looking for include file sys/epoll.h - found
+-- Looking for include file linux/rfkill.h
+-- Looking for include file linux/rfkill.h - found
+-- Looking for include file linux/input.h
+-- Looking for include file linux/input.h - found
+-- Looking for include file sys/inotify.h
+-- Looking for include file sys/inotify.h - found
+-- Looking for include file crypto/cryptodev.h
+-- Looking for include file crypto/cryptodev.h - not found
+-- Looking for include file syslog.h
+-- Looking for include file syslog.h - found
+-- Generating linux_input_names.h from /tmp/toolchain/sysroot/usr/include/linux/input.h
+-- Building components:
+--     examples yes
+--     tests yes
+--     server yes
+--     client yes
+--     flooder yes
+--     tun2socks yes
+--     udpgw yes
+--     ncd yes
+--     tunctl yes
+--     dostest no
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/badvpn/src/badvpn-1.999.130
+Scanning dependencies of target stringmap
+Scanning dependencies of target base
+[  1%] Building C object stringmap/CMakeFiles/stringmap.dir/BStringMap.c.o
+[  2%] Building C object base/CMakeFiles/base.dir/DebugObject.c.o
+[  2%] Building C object base/CMakeFiles/base.dir/BLog.c.o
+[  2%] Linking C static library libbadvpn-stringmap.a
+[  2%] Building C object base/CMakeFiles/base.dir/BPending.c.o
+[  2%] Built target stringmap
+[  3%] Building C object base/CMakeFiles/base.dir/BLog_syslog.c.o
+[  3%] Linking C static library libbadvpn-base.a
+Scanning dependencies of target badvpn-tunctl
+[  3%] Building C object tunctl/CMakeFiles/badvpn-tunctl.dir/tunctl.c.o
+[  3%] Built target base
+Scanning dependencies of target cavl_test
+[  4%] Building C object examples/CMakeFiles/cavl_test.dir/cavl_test.c.o
+[  4%] Linking C executable badvpn-tunctl
+[  4%] Linking C executable cavl_test
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lrt
+CMakeFiles/badvpn-tunctl.dir/tunctl.c.o:tunctl.c:function main: error: undefined reference to 'getgrnam_r'
+collect2: error: ld returned 1 exit status
+tunctl/CMakeFiles/badvpn-tunctl.dir/build.make:94: recipe for target 'tunctl/badvpn-tunctl' failed
+make[2]: *** [tunctl/badvpn-tunctl] Error 1
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lrt
+CMakeFiles/Makefile2:1156: recipe for target 'tunctl/CMakeFiles/badvpn-tunctl.dir/all' failed
+make[1]: *** [tunctl/CMakeFiles/badvpn-tunctl.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+collect2: error: ld returned 1 exit status
+examples/CMakeFiles/cavl_test.dir/build.make:94: recipe for target 'examples/cavl_test' failed
+make[2]: *** [examples/cavl_test] Error 1
+CMakeFiles/Makefile2:1497: recipe for target 'examples/CMakeFiles/cavl_test.dir/all' failed
+make[1]: *** [examples/CMakeFiles/cavl_test.dir/all] Error 2
+Makefile:127: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

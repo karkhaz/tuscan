@@ -1,0 +1,1547 @@
+        <html><head></head><body>
+        <h1>Report for sparsehash on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:52</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data sparsehash
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 852 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sparsehash 2.0.2-2 (Fri Nov 13 23:16:30 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading sparsehash-2.0.2.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting sparsehash-2.0.2.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/sparsehash
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sparsehash 2.0.2-2 (Fri Nov 13 23:16:31 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: if you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether arm-linux-androideabi-g++ accepts -g... yes
+checking for style of include used by make... GNU
+checking dependency style of arm-linux-androideabi-g++... gcc3
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for memcpy... yes
+checking for memmove... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for uint16_t... yes
+checking for u_int16_t... yes
+checking for __uint16... no
+checking for long long... yes
+checking sys/resource.h usability... yes
+checking sys/resource.h presence... yes
+checking for sys/resource.h... yes
+checking for unistd.h... (cached) yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking sys/utsname.h usability... yes
+checking sys/utsname.h presence... yes
+checking for sys/utsname.h... yes
+checking how to run the C++ preprocessor... arm-linux-androideabi-g++ -E
+checking google/malloc_extension.h usability... no
+checking google/malloc_extension.h presence... no
+checking for google/malloc_extension.h... no
+checking whether the compiler implements namespaces... yes
+checking the location of hash_map... <tr1/unordered_map>
+checking how to include hash_fun directly... <tr1/functional>
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/config.h
+config.status: executing depfiles commands
+[ -d src/sparsehash/internal ] || mkdir -p src/sparsehash/internal
+echo "/*" > src/sparsehash/internal/_sparsehash_config
+echo " * NOTE: This file is for internal use only." >> src/sparsehash/internal/_sparsehash_config
+echo " *       Do not use these #defines in your own program!" >> src/sparsehash/internal/_sparsehash_config
+echo " */" >> src/sparsehash/internal/_sparsehash_config
+gawk '{prevline=currline; currline=$0;} \
+        /^#/ {in_second_file = 1;} \
+        !in_second_file {if (currline !~ /^ *$/) {inc[currline]=0}}; \
+       	in_second_file { for (i in inc) { \
+       	                   if (index(currline, i) != 0) { \
+       	                      print "\n"prevline"\n"currline; \
+       	                      delete inc[i]; \
+       	                   } \
+       	                 } }' \
+./src/config.h.include ./src/config.h \
+>> src/sparsehash/internal/_sparsehash_config
+mv -f src/sparsehash/internal/_sparsehash_config src/sparsehash/internal/sparseconfig.h
+make  all-am
+make[1]: Entering directory '/tmp/sparsehash/src/sparsehash-2.0.2'
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT template_util_unittest.o -MD -MP -MF .deps/template_util_unittest.Tpo -c -o template_util_unittest.o `test -f 'src/template_util_unittest.cc' || echo './'`src/template_util_unittest.cc
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT type_traits_unittest.o -MD -MP -MF .deps/type_traits_unittest.Tpo -c -o type_traits_unittest.o `test -f 'src/type_traits_unittest.cc' || echo './'`src/type_traits_unittest.cc
+mv -f .deps/template_util_unittest.Tpo .deps/template_util_unittest.Po
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT libc_allocator_with_realloc_test.o -MD -MP -MF .deps/libc_allocator_with_realloc_test.Tpo -c -o libc_allocator_with_realloc_test.o `test -f 'src/libc_allocator_with_realloc_test.cc' || echo './'`src/libc_allocator_with_realloc_test.cc
+mv -f .deps/type_traits_unittest.Tpo .deps/type_traits_unittest.Po
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT sparsetable_unittest.o -MD -MP -MF .deps/sparsetable_unittest.Tpo -c -o sparsetable_unittest.o `test -f 'src/sparsetable_unittest.cc' || echo './'`src/sparsetable_unittest.cc
+In file included from ./src/sparsehash/sparsetable:246:0,
+                 from src/sparsetable_unittest.cc:47:
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::read_bigendian_number(INPUT*, IntType*, size_t)':
+./src/sparsehash/internal/hashtable-common.h:167:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::write_bigendian_number(OUTPUT*, IntType, size_t)':
+./src/sparsehash/internal/hashtable-common.h:180:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+mv -f .deps/libc_allocator_with_realloc_test.Tpo .deps/libc_allocator_with_realloc_test.Po
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT hashtable_test.o -MD -MP -MF .deps/hashtable_test.Tpo -c -o hashtable_test.o `test -f 'src/hashtable_test.cc' || echo './'`src/hashtable_test.cc
+In file included from ./src/sparsehash/sparsetable:246:0,
+                 from src/hashtable_test.cc:62:
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::read_bigendian_number(INPUT*, IntType*, size_t)':
+./src/sparsehash/internal/hashtable-common.h:167:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::write_bigendian_number(OUTPUT*, IntType, size_t)':
+./src/sparsehash/internal/hashtable-common.h:180:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+src/hashtable_test.cc: In member function 'void {anonymous}::TEST_onetype_HashtableIntTest_Typedefs<TypeParam>::Run()':
+src/hashtable_test.cc:589:41: warning: typedef 'r' locally defined but not used [-Wunused-local-typedefs]
+   typedef typename TypeParam::reference r;
+                                         ^
+src/hashtable_test.cc:590:47: warning: typedef 'cf' locally defined but not used [-Wunused-local-typedefs]
+   typedef typename TypeParam::const_reference cf;
+                                               ^
+mv -f .deps/sparsetable_unittest.Tpo .deps/sparsetable_unittest.Po
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT simple_test.o -MD -MP -MF .deps/simple_test.Tpo -c -o simple_test.o `test -f 'src/simple_test.cc' || echo './'`src/simple_test.cc
+In file included from ./src/sparsehash/internal/sparsehashtable.h:105:0,
+                 from ./src/sparsehash/sparse_hash_set:97,
+                 from src/simple_test.cc:40:
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::read_bigendian_number(INPUT*, IntType*, size_t)':
+./src/sparsehash/internal/hashtable-common.h:167:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::write_bigendian_number(OUTPUT*, IntType, size_t)':
+./src/sparsehash/internal/hashtable-common.h:180:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+mv -f .deps/simple_test.Tpo .deps/simple_test.Po
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT simple_compat_test.o -MD -MP -MF .deps/simple_compat_test.Tpo -c -o simple_compat_test.o `test -f 'src/simple_compat_test.cc' || echo './'`src/simple_compat_test.cc
+In file included from ./src/sparsehash/internal/sparsehashtable.h:105:0,
+                 from ./src/sparsehash/sparse_hash_set:97,
+                 from ./src/google/sparse_hash_set:34,
+                 from src/simple_compat_test.cc:40:
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::read_bigendian_number(INPUT*, IntType*, size_t)':
+./src/sparsehash/internal/hashtable-common.h:167:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::write_bigendian_number(OUTPUT*, IntType, size_t)':
+./src/sparsehash/internal/hashtable-common.h:180:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+mv -f .deps/simple_compat_test.Tpo .deps/simple_compat_test.Po
+arm-linux-androideabi-g++ -DHAVE_CONFIG_H -I. -I./src  -I./src  -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow  -MT time_hash_map-time_hash_map.o -MD -MP -MF .deps/time_hash_map-time_hash_map.Tpo -c -o time_hash_map-time_hash_map.o `test -f 'src/time_hash_map.cc' || echo './'`src/time_hash_map.cc
+In file included from ./src/sparsehash/internal/densehashtable.h:100:0,
+                 from ./src/sparsehash/dense_hash_map:104,
+                 from src/time_hash_map.cc:86:
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::read_bigendian_number(INPUT*, IntType*, size_t)':
+./src/sparsehash/internal/hashtable-common.h:167:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+./src/sparsehash/internal/hashtable-common.h: In function 'bool google::sparsehash_internal::write_bigendian_number(OUTPUT*, IntType, size_t)':
+./src/sparsehash/internal/hashtable-common.h:180:29: warning: typedef 'serializing_int_requires_an_unsigned_type' locally defined but not used [-Wunused-local-typedefs]
+                             serializing_int_requires_an_unsigned_type);
+                             ^
+./src/sparsehash/internal/hashtable-common.h:54:49: note: in definition of macro 'SPARSEHASH_COMPILE_ASSERT'
+   typedef SparsehashCompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+                                                 ^
+mv -f .deps/time_hash_map-time_hash_map.Tpo .deps/time_hash_map-time_hash_map.Po
+echo 'prefix=/usr' > "libsparsehash.pc".tmp
+echo 'exec_prefix='`echo '/usr' | sed 's@^/usr@${prefix}@'` >> "libsparsehash.pc".tmp
+echo 'libdir='`echo '/usr/lib' | sed 's@^/usr@${exec_prefix}@'` >> "libsparsehash.pc".tmp
+echo 'includedir='`echo '/usr/include' | sed 's@^/usr@${prefix}@'` >> "libsparsehash.pc".tmp
+echo '' >> "libsparsehash.pc".tmp
+echo 'Name: sparsehash' >> "libsparsehash.pc".tmp
+echo 'Version: 2.0.2' >> "libsparsehash.pc".tmp
+grep '^Summary:' ./packages/rpm/rpm.spec | sed s/^Summary:/Description:/ | head -n1 >> "libsparsehash.pc".tmp
+grep '^URL: ' ./packages/rpm/rpm.spec >> "libsparsehash.pc".tmp
+echo 'Requires:' >> "libsparsehash.pc".tmp
+echo 'Libs:' >> "libsparsehash.pc".tmp
+echo 'Cflags: -I${includedir}' >> "libsparsehash.pc".tmp
+mv -f "libsparsehash.pc".tmp "libsparsehash.pc"
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o template_util_unittest template_util_unittest.o   
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o type_traits_unittest type_traits_unittest.o    
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o libc_allocator_with_realloc_test libc_allocator_with_realloc_test.o   
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o sparsetable_unittest sparsetable_unittest.o    
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o simple_test simple_test.o    
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o simple_compat_test simple_compat_test.o      
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o time_hash_map time_hash_map-time_hash_map.o     
+mv -f .deps/hashtable_test.Tpo .deps/hashtable_test.Po
+arm-linux-androideabi-g++ -Wall -W -Wwrite-strings -Woverloaded-virtual -Wshadow    -o hashtable_test hashtable_test.o     
+make[1]: Leaving directory '/tmp/sparsehash/src/sparsehash-2.0.2'
+==> Entering fakeroot environment...
+==> Starting package()...
+make  install-am
+make[1]: Entering directory '/tmp/sparsehash/src/sparsehash-2.0.2'
+make[2]: Entering directory '/tmp/sparsehash/src/sparsehash-2.0.2'
+test -z "/usr/lib" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/lib"
+test -z "/usr/share/doc/sparsehash-2.0.2" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/share/doc/sparsehash-2.0.2"
+test -z "/usr/include/google" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/include/google"
+ /usr/bin/install -c -m 644 AUTHORS COPYING ChangeLog INSTALL NEWS README README_windows.txt TODO doc/dense_hash_map.html doc/dense_hash_set.html doc/sparse_hash_map.html doc/sparse_hash_set.html doc/sparsetable.html doc/implementation.html doc/performance.html doc/index.html doc/designstyle.css '/tmp/sparsehash/pkg/sparsehash//usr/share/doc/sparsehash-2.0.2'
+ /usr/bin/install -c -m 644 src/google/dense_hash_map src/google/dense_hash_set src/google/sparse_hash_map src/google/sparse_hash_set src/google/sparsetable src/google/template_util.h src/google/type_traits.h '/tmp/sparsehash/pkg/sparsehash//usr/include/google'
+test -z "/usr/include/google/sparsehash" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/include/google/sparsehash"
+test -z "/usr/include/sparsehash/internal" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/include/sparsehash/internal"
+ /usr/bin/install -c -m 644 src/sparsehash/internal/densehashtable.h src/sparsehash/internal/sparsehashtable.h src/sparsehash/internal/hashtable-common.h src/sparsehash/internal/libc_allocator_with_realloc.h '/tmp/sparsehash/pkg/sparsehash//usr/include/sparsehash/internal'
+ /usr/bin/install -c -m 644 src/google/sparsehash/densehashtable.h src/google/sparsehash/sparsehashtable.h src/google/sparsehash/hashtable-common.h src/google/sparsehash/libc_allocator_with_realloc.h '/tmp/sparsehash/pkg/sparsehash//usr/include/google/sparsehash'
+test -z "/usr/lib/pkgconfig" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/lib/pkgconfig"
+test -z "/usr/include/sparsehash" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/include/sparsehash"
+ /usr/bin/install -c -m 644 src/sparsehash/dense_hash_map src/sparsehash/dense_hash_set src/sparsehash/sparse_hash_map src/sparsehash/sparse_hash_set src/sparsehash/sparsetable src/sparsehash/template_util.h src/sparsehash/type_traits.h '/tmp/sparsehash/pkg/sparsehash//usr/include/sparsehash'
+ /usr/bin/install -c -m 644 libsparsehash.pc '/tmp/sparsehash/pkg/sparsehash//usr/lib/pkgconfig'
+test -z "/usr/include/sparsehash/internal" || /usr/sbin/mkdir -p "/tmp/sparsehash/pkg/sparsehash//usr/include/sparsehash/internal"
+ /usr/bin/install -c -m 644 src/sparsehash/internal/sparseconfig.h '/tmp/sparsehash/pkg/sparsehash//usr/include/sparsehash/internal'
+make[2]: Leaving directory '/tmp/sparsehash/src/sparsehash-2.0.2'
+make[1]: Leaving directory '/tmp/sparsehash/src/sparsehash-2.0.2'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "sparsehash"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: sparsehash 2.0.2-2 (Fri Nov 13 23:17:02 UTC 2015)
+===> Printing config.logs
+found log at /tmp/sparsehash/src/sparsehash-2.0.2/config.log
+____
+File /tmp/sparsehash/src/sparsehash-2.0.2/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by sparsehash configure 2.0.2, which was
+generated by GNU Autoconf 2.68.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = b520ca66d80f
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2422: checking for a BSD-compatible install
+configure:2490: result: /usr/bin/install -c
+configure:2501: checking whether build environment is sane
+configure:2551: result: yes
+configure:2600: checking for x86_64-unknown-linux-strip
+configure:2630: result: no
+configure:2640: checking for strip
+configure:2656: found /usr/sbin/strip
+configure:2667: result: strip
+configure:2692: checking for a thread-safe mkdir -p
+configure:2731: result: /usr/sbin/mkdir -p
+configure:2744: checking for gawk
+configure:2760: found /usr/sbin/gawk
+configure:2771: result: gawk
+configure:2782: checking whether make sets $(MAKE)
+configure:2804: result: yes
+configure:3000: checking for C++ compiler version
+configure:3009: arm-linux-androideabi-g++ --version >&5
+arm-linux-androideabi-g++ (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3020: $? = 0
+configure:3009: arm-linux-androideabi-g++ -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-g++
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:3020: $? = 0
+configure:3009: arm-linux-androideabi-g++ -V >&5
+arm-linux-androideabi-g++: error: unrecognized command line option '-V'
+arm-linux-androideabi-g++: fatal error: no input files
+compilation terminated.
+configure:3020: $? = 1
+configure:3009: arm-linux-androideabi-g++ -qversion >&5
+arm-linux-androideabi-g++: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-g++: fatal error: no input files
+compilation terminated.
+configure:3020: $? = 1
+configure:3040: checking whether the C++ compiler works
+configure:3062: arm-linux-androideabi-g++    conftest.cpp  >&5
+configure:3066: $? = 0
+configure:3114: result: yes
+configure:3117: checking for C++ compiler default output file name
+configure:3119: result: a.out
+configure:3125: checking for suffix of executables
+configure:3132: arm-linux-androideabi-g++ -o conftest    conftest.cpp  >&5
+configure:3136: $? = 0
+configure:3158: result: 
+configure:3180: checking whether we are cross compiling
+configure:3188: arm-linux-androideabi-g++ -o conftest    conftest.cpp  >&5
+configure:3192: $? = 0
+configure:3199: ./conftest
+./configure: line 3201: ./conftest: cannot execute binary file: Exec format error
+configure:3203: $? = 126
+configure:3218: result: yes
+configure:3223: checking for suffix of object files
+configure:3245: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:3249: $? = 0
+configure:3270: result: o
+configure:3274: checking whether we are using the GNU C++ compiler
+configure:3293: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:3293: $? = 0
+configure:3302: result: yes
+configure:3311: checking whether arm-linux-androideabi-g++ accepts -g
+configure:3331: arm-linux-androideabi-g++ -c -g  conftest.cpp >&5
+configure:3331: $? = 0
+configure:3372: result: yes
+configure:3406: checking for style of include used by make
+configure:3434: result: GNU
+configure:3459: checking dependency style of arm-linux-androideabi-g++
+configure:3569: result: gcc3
+configure:3592: checking for x86_64-unknown-linux-gcc
+configure:3619: result: arm-linux-androideabi-gcc
+configure:3888: checking for C compiler version
+configure:3897: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3908: $? = 0
+configure:3897: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:3908: $? = 0
+configure:3897: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3908: $? = 1
+configure:3897: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3908: $? = 1
+configure:3912: checking whether we are using the GNU C compiler
+configure:3931: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3931: $? = 0
+configure:3940: result: yes
+configure:3949: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3969: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3969: $? = 0
+configure:4010: result: yes
+configure:4027: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:4091: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:4091: $? = 0
+configure:4104: result: none needed
+configure:4126: checking dependency style of arm-linux-androideabi-gcc
+configure:4236: result: gcc3
+configure:4256: checking how to run the C preprocessor
+configure:4287: arm-linux-androideabi-gcc -E  conftest.c
+configure:4287: $? = 0
+configure:4301: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:4301: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4326: result: arm-linux-androideabi-gcc -E
+configure:4346: arm-linux-androideabi-gcc -E  conftest.c
+configure:4346: $? = 0
+configure:4360: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:4360: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4400: checking for grep that handles long lines and -e
+configure:4458: result: /usr/sbin/grep
+configure:4463: checking for egrep
+configure:4525: result: /usr/sbin/grep -E
+configure:4530: checking for ANSI C header files
+configure:4550: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4550: $? = 0
+configure:4634: result: yes
+configure:4645: checking for memcpy
+configure:4645: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:35:6: warning: conflicting types for built-in function 'memcpy' [enabled by default]
+ char memcpy ();
+      ^
+configure:4645: $? = 0
+configure:4645: result: yes
+configure:4645: checking for memmove
+configure:4645: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:36:6: warning: conflicting types for built-in function 'memmove' [enabled by default]
+ char memmove ();
+      ^
+configure:4645: $? = 0
+configure:4645: result: yes
+configure:4659: checking for sys/types.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for sys/stat.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for stdlib.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for string.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for memory.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for strings.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for inttypes.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for stdint.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4659: checking for unistd.h
+configure:4659: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4659: $? = 0
+configure:4659: result: yes
+configure:4671: checking for uint16_t
+configure:4671: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4671: $? = 0
+configure:4671: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:59:23: error: expected expression before ')' token
+ if (sizeof ((uint16_t)))
+                       ^
+configure:4671: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((uint16_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:4671: result: yes
+configure:4681: checking for u_int16_t
+configure:4681: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4681: $? = 0
+configure:4681: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:60:24: error: expected expression before ')' token
+ if (sizeof ((u_int16_t)))
+                        ^
+configure:4681: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((u_int16_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:4681: result: yes
+configure:4691: checking for __uint16
+configure:4691: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:61:13: error: '__uint16' undeclared (first use in this function)
+ if (sizeof (__uint16))
+             ^
+conftest.c:61:13: note: each undeclared identifier is reported only once for each function it appears in
+configure:4691: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof (__uint16))
+| 	 return 0;
+|   ;
+|   return 0;
+| }
+configure:4691: result: no
+configure:4701: checking for long long
+configure:4701: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4701: $? = 0
+configure:4701: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:61:24: error: expected expression before ')' token
+ if (sizeof ((long long)))
+                        ^
+configure:4701: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((long long)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:4701: result: yes
+configure:4716: checking sys/resource.h usability
+configure:4716: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4716: $? = 0
+configure:4716: result: yes
+configure:4716: checking sys/resource.h presence
+configure:4716: arm-linux-androideabi-gcc -E  conftest.c
+configure:4716: $? = 0
+configure:4716: result: yes
+configure:4716: checking for sys/resource.h
+configure:4716: result: yes
+configure:4716: checking for unistd.h
+configure:4716: result: yes
+configure:4716: checking sys/time.h usability
+configure:4716: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4716: $? = 0
+configure:4716: result: yes
+configure:4716: checking sys/time.h presence
+configure:4716: arm-linux-androideabi-gcc -E  conftest.c
+configure:4716: $? = 0
+configure:4716: result: yes
+configure:4716: checking for sys/time.h
+configure:4716: result: yes
+configure:4716: checking sys/utsname.h usability
+configure:4716: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4716: $? = 0
+configure:4716: result: yes
+configure:4716: checking sys/utsname.h presence
+configure:4716: arm-linux-androideabi-gcc -E  conftest.c
+configure:4716: $? = 0
+configure:4716: result: yes
+configure:4716: checking for sys/utsname.h
+configure:4716: result: yes
+configure:4742: checking how to run the C++ preprocessor
+configure:4769: arm-linux-androideabi-g++ -E  conftest.cpp
+configure:4769: $? = 0
+configure:4783: arm-linux-androideabi-g++ -E  conftest.cpp
+conftest.cpp:30:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:4783: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4808: result: arm-linux-androideabi-g++ -E
+configure:4828: arm-linux-androideabi-g++ -E  conftest.cpp
+configure:4828: $? = 0
+configure:4842: arm-linux-androideabi-g++ -E  conftest.cpp
+conftest.cpp:30:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:4842: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4873: checking google/malloc_extension.h usability
+configure:4873: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+conftest.cpp:63:37: fatal error: google/malloc_extension.h: No such file or directory
+ #include <google/malloc_extension.h>
+                                     ^
+compilation terminated.
+configure:4873: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <google/malloc_extension.h>
+configure:4873: result: no
+configure:4873: checking google/malloc_extension.h presence
+configure:4873: arm-linux-androideabi-g++ -E  conftest.cpp
+conftest.cpp:30:37: fatal error: google/malloc_extension.h: No such file or directory
+ #include <google/malloc_extension.h>
+                                     ^
+compilation terminated.
+configure:4873: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| /* end confdefs.h.  */
+| #include <google/malloc_extension.h>
+configure:4873: result: no
+configure:4873: checking for google/malloc_extension.h
+configure:4873: result: no
+configure:5561: checking whether the compiler implements namespaces
+configure:5585: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:5585: $? = 0
+configure:5598: result: yes
+configure:5606: checking the location of hash_map
+configure:5632: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:5632: $? = 0
+configure:5654: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+In file included from /tmp/toolchain/include/c++/4.8/unordered_map:35:0,
+                 from conftest.cpp:31:
+/tmp/toolchain/include/c++/4.8/bits/c++0x_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2011 standard. This support is currently experimental, and must be enabled with the -std=c++11 or -std=gnu++11 compiler options.
+ #error This file requires compiler and library support for the \
+  ^
+conftest.cpp: In function 'int main()':
+conftest.cpp:35:7: error: 'unordered_map' in namespace 'std' does not name a type
+ const std::unordered_map<int, int> t;
+       ^
+conftest.cpp:36:33: error: 't' was not declared in this scope
+                          return t.find(5) == t.end();
+                                 ^
+configure:5654: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| #define HAVE_NAMESPACES 1
+| /* end confdefs.h.  */
+| #include <unordered_map>
+| int
+| main ()
+| {
+| const std::unordered_map<int, int> t;
+|                          return t.find(5) == t.end();
+|   ;
+|   return 0;
+| }
+configure:5654: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+In file included from /tmp/toolchain/include/c++/4.8/unordered_map:35:0,
+                 from conftest.cpp:31:
+/tmp/toolchain/include/c++/4.8/bits/c++0x_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2011 standard. This support is currently experimental, and must be enabled with the -std=c++11 or -std=gnu++11 compiler options.
+ #error This file requires compiler and library support for the \
+  ^
+conftest.cpp: In function 'int main()':
+conftest.cpp:35:7: error: 'tr1' in namespace 'std' does not name a type
+ const std::tr1::unordered_map<int, int> t;
+       ^
+conftest.cpp:36:33: error: 't' was not declared in this scope
+                          return t.find(5) == t.end();
+                                 ^
+configure:5654: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| #define HAVE_NAMESPACES 1
+| /* end confdefs.h.  */
+| #include <unordered_map>
+| int
+| main ()
+| {
+| const std::tr1::unordered_map<int, int> t;
+|                          return t.find(5) == t.end();
+|   ;
+|   return 0;
+| }
+configure:5654: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+conftest.cpp: In function 'int main()':
+conftest.cpp:35:7: error: 'unordered_map' in namespace 'std' does not name a type
+ const std::unordered_map<int, int> t;
+       ^
+conftest.cpp:36:33: error: 't' was not declared in this scope
+                          return t.find(5) == t.end();
+                                 ^
+configure:5654: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| #define HAVE_NAMESPACES 1
+| /* end confdefs.h.  */
+| #include <tr1/unordered_map>
+| int
+| main ()
+| {
+| const std::unordered_map<int, int> t;
+|                          return t.find(5) == t.end();
+|   ;
+|   return 0;
+| }
+configure:5654: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:5654: $? = 0
+configure:5715: result: <tr1/unordered_map>
+configure:5725: checking how to include hash_fun directly
+configure:5751: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+conftest.cpp: In function 'int main()':
+conftest.cpp:41:14: error: 'std::tr1' has not been declared
+ int x = std::tr1::hash<int>()(5)
+              ^
+conftest.cpp:41:24: error: expected primary-expression before 'int'
+ int x = std::tr1::hash<int>()(5)
+                        ^
+configure:5751: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sparsehash"
+| #define PACKAGE_TARNAME "sparsehash"
+| #define PACKAGE_VERSION "2.0.2"
+| #define PACKAGE_STRING "sparsehash 2.0.2"
+| #define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "sparsehash"
+| #define VERSION "2.0.2"
+| #define STDC_HEADERS 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UINT16_T 1
+| #define HAVE_U_INT16_T 1
+| #define HAVE_LONG_LONG 1
+| #define HAVE_SYS_RESOURCE_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| #define HAVE_NAMESPACES 1
+| #define HAVE_HASH_MAP 1
+| #define HAVE_HASH_SET 1
+| #define HASH_MAP_H <tr1/unordered_map>
+| #define HASH_SET_H <tr1/unordered_set>
+| #define HASH_NAMESPACE std::tr1
+| #define HAVE_UNORDERED_MAP 1
+| /* end confdefs.h.  */
+| #include <functional>
+| int
+| main ()
+| {
+| int x = std::tr1::hash<int>()(5)
+|   ;
+|   return 0;
+| }
+configure:5751: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:5751: $? = 0
+configure:5773: result: <tr1/functional>
+configure:5973: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by sparsehash config.status 2.0.2, which was
+generated by GNU Autoconf 2.68.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on b520ca66d80f
+
+config.status:905: creating Makefile
+config.status:905: creating src/config.h
+config.status:1134: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_cxx_compiler_gnu=yes
+ac_cv_cxx_hash_map='<tr1/unordered_map>'
+ac_cv_cxx_hash_namespace=std::tr1
+ac_cv_cxx_hash_set='<tr1/unordered_set>'
+ac_cv_cxx_have_unordered_map=yes
+ac_cv_cxx_namespaces=yes
+ac_cv_cxx_stl_hash_fun='<tr1/functional>'
+ac_cv_env_CCC_set=
+ac_cv_env_CCC_value=
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_CXXCPP_set=
+ac_cv_env_CXXCPP_value=
+ac_cv_env_CXXFLAGS_set=set
+ac_cv_env_CXXFLAGS_value=
+ac_cv_env_CXX_set=set
+ac_cv_env_CXX_value=arm-linux-androideabi-g++
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_memcpy=yes
+ac_cv_func_memmove=yes
+ac_cv_header_google_malloc_extension_h=no
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_resource_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_time_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_sys_utsname_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_CPP='arm-linux-androideabi-gcc -E'
+ac_cv_prog_CXXCPP='arm-linux-androideabi-g++ -E'
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cxx_g=yes
+ac_cv_prog_make_make_set=yes
+ac_cv_type___uint16=no
+ac_cv_type_long_long=yes
+ac_cv_type_u_int16_t=yes
+ac_cv_type_uint16_t=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_CXX_dependencies_compiler_type=gcc3
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/missing --run aclocal-1.11'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/missing --run tar'
+AUTOCONF='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/missing --run automake-1.11'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=''
+CPP='arm-linux-androideabi-gcc -E'
+CPPFLAGS=''
+CXX='arm-linux-androideabi-g++'
+CXXCPP='arm-linux-androideabi-g++ -E'
+CXXDEPMODE='depmode=gcc3'
+CXXFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GCC_FALSE='#'
+GCC_TRUE=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/missing --run makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='sparsehash'
+PACKAGE_BUGREPORT='google-sparsehash@googlegroups.com'
+PACKAGE_NAME='sparsehash'
+PACKAGE_STRING='sparsehash 2.0.2'
+PACKAGE_TARNAME='sparsehash'
+PACKAGE_URL=''
+PACKAGE_VERSION='2.0.2'
+PATH_SEPARATOR=':'
+PTHREAD_CC=''
+PTHREAD_CFLAGS=''
+PTHREAD_LIBS=''
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='2.0.2'
+ac_ct_CC=''
+ac_ct_CXX=''
+acx_pthread_config=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__fastdepCXX_FALSE='#'
+am__fastdepCXX_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__quote=''
+am__tar='${AMTAR} chof - "$$tardir"'
+am__untar='${AMTAR} xf -'
+bindir='${exec_prefix}/bin'
+build=''
+build_alias=''
+build_cpu=''
+build_os=''
+build_vendor=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host='x86_64-unknown-linux'
+host_alias='x86_64-unknown-linux'
+host_cpu=''
+host_os=''
+host_vendor=''
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/sparsehash/src/sparsehash-2.0.2/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='/usr/sbin/mkdir -p'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+tcmalloc_flags=''
+tcmalloc_libs=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "sparsehash"
+#define PACKAGE_TARNAME "sparsehash"
+#define PACKAGE_VERSION "2.0.2"
+#define PACKAGE_STRING "sparsehash 2.0.2"
+#define PACKAGE_BUGREPORT "google-sparsehash@googlegroups.com"
+#define PACKAGE_URL ""
+#define PACKAGE "sparsehash"
+#define VERSION "2.0.2"
+#define STDC_HEADERS 1
+#define HAVE_MEMCPY 1
+#define HAVE_MEMMOVE 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_UINT16_T 1
+#define HAVE_U_INT16_T 1
+#define HAVE_LONG_LONG 1
+#define HAVE_SYS_RESOURCE_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_SYS_TIME_H 1
+#define HAVE_SYS_UTSNAME_H 1
+#define HAVE_NAMESPACES 1
+#define HAVE_HASH_MAP 1
+#define HAVE_HASH_SET 1
+#define HASH_MAP_H <tr1/unordered_map>
+#define HASH_SET_H <tr1/unordered_set>
+#define HASH_NAMESPACE std::tr1
+#define HAVE_UNORDERED_MAP 1
+#define HASH_FUN_H <tr1/functional>
+#define HASH_NAMESPACE std::tr1
+#define GOOGLE_NAMESPACE ::google
+#define _START_GOOGLE_NAMESPACE_ namespace google {
+#define _END_GOOGLE_NAMESPACE_ }
+#define SPARSEHASH_HASH_NO_NAMESPACE hash
+#define SPARSEHASH_HASH HASH_NAMESPACE::hash
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

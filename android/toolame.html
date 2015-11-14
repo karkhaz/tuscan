@@ -1,0 +1,51 @@
+        <html><head></head><body>
+        <h1>Report for toolame on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data toolame
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 852 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: toolame 02l-10 (Fri Nov 13 23:16:30 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading toolame-02l.tgz...
+  -> Found toolame-02l.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting toolame-02l.tgz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/toolame
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: toolame 02l-10 (Fri Nov 13 23:16:34 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file Makefile
+patching file audio_read.c
+patching file fft.c
+arm-linux-androideabi-gcc -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c common.c -o common.o
+arm-linux-androideabi-gcc -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c encode.c -o encode.o
+arm-linux-androideabi-gcc: error: unrecognized argument in option '-march=x86-64'
+arm-linux-androideabi-gcc: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+arm-linux-androideabi-gcc: error: unrecognized argument in option '-march=x86-64'
+arm-linux-androideabi-gcc: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+Makefile:72: recipe for target 'encode.o' failed
+make: *** [encode.o] Error 1
+make: *** Waiting for unfinished jobs....
+Makefile:72: recipe for target 'common.o' failed
+make: *** [common.o] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

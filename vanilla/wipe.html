@@ -1,0 +1,425 @@
+        <html><head></head><body>
+        <h1>Report for wipe on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:34</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data wipe
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2108 packages in cache
+Found permanent source directory in /sources/wipe
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: wipe 2.3.1-3 (Sat Nov 14 06:02:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+creating cache ./config.cache
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking build system type... x86_64-unknown-linux-gnu
+checking for gcc... gcc
+checking whether the C compiler (gcc  ) works... yes
+checking whether the C compiler (gcc  ) is a cross-compiler... no
+checking whether we are using GNU C... yes
+checking whether gcc accepts -g... yes
+checking for POSIXized ISC... no
+checking how to run the C preprocessor... gcc -E
+checking whether gcc needs -traditional... no
+checking for a BSD compatible install... /usr/bin/install -c
+checking whether the C compiler accepts -pipe... yes
+checking whether the C compiler accepts -g... yes
+checking whether the C compiler accepts -O0... yes
+checking whether the C compiler accepts -O2... yes
+checking whether the C compiler accepts -ansi... yes
+checking whether the C compiler accepts -pedantic... yes
+checking whether the C compiler accepts -Wall... yes
+checking whether the C compiler accepts -Werror... yes
+checking for dirent.h that defines DIR... yes
+checking for opendir in -ldir... no
+checking for ANSI C header files... yes
+checking for unistd.h... yes
+checking for stdint.h... yes
+checking for fcntl.h... yes
+checking for memory.h... yes
+checking for linux/fs.h... yes
+checking for sys/mount.h... yes
+checking for sys/disklabel.h... no
+checking for sys/ioctl.h... yes
+checking for sys/file.h... yes
+checking for sys/stat.h... yes
+checking for sys/time.h... yes
+checking for sys/types.h... yes
+checking for getopt.h... yes
+checking for errno.h... yes
+checking for termio.h... yes
+checking for termios.h... yes
+checking for linux/mtio.h... yes
+checking for working const... yes
+checking for inline... __inline__
+checking for off_t... yes
+checking for size_t... yes
+checking whether stat file-mode macros are broken... no
+checking for unistd.h... (cached) yes
+checking for getpagesize... yes
+checking for working mmap... yes
+checking for getopt... yes
+checking for strnlen... yes
+checking for bzero... yes
+checking for memset... yes
+checking for memcpy... yes
+checking for realloc... yes
+checking for fchmod... yes
+checking for ioctl... yes
+checking for fcntl... yes
+checking for lockf... yes
+checking for flock... yes
+checking for fsync... yes
+checking for fdatasync... yes
+checking for unlink... yes
+checking for rmdir... yes
+checking for remove... yes
+checking for rename... yes
+checking for dirfd... yes
+updating cache ./config.cache
+creating ./config.status
+creating Makefile
+creating config.h
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o main.o main.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o wipe.o wipe.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o rand.o rand.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o dir.o dir.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o file.o file.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o blkdev.o blkdev.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o lock.o lock.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o text.o text.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o str.o str.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o percent.o percent.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o prompt.o prompt.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o io.o io.c
+gcc -pipe -O2   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I. -DLINUX    -c -o mt.o mt.c
+gcc  *.o -o wipe
+==> Entering fakeroot environment...
+==> Starting package()...
+/usr/bin/install -c -m 0755 -d /tmp/wipe/pkg/wipe/usr/bin
+/usr/bin/install -c -m 0755 -s ./wipe /tmp/wipe/pkg/wipe/usr/bin
+/usr/bin/install -c -d /tmp/wipe/pkg/wipe/usr/share/man/man1
+/usr/bin/install -c -o root -m 0644 wipe.1 /tmp/wipe/pkg/wipe/usr/share/man/man1/
+rm -rf /tmp/wipe/pkg/wipe/usr/share/doc/wipe*
+/usr/bin/install -c -d /tmp/wipe/pkg/wipe/usr/share/doc/wipe
+for file in 'LICENSE copyright CHANGES README TODO INSTALL TESTING'; do \
+	/usr/bin/install -c -o root -m 0644 $file /tmp/wipe/pkg/wipe/usr/share/doc/wipe/; \
+done
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "wipe"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: wipe 2.3.1-3 (Sat Nov 14 06:02:11 UTC 2015)
+===> Printing config.logs
+found log at /tmp/wipe/src/wipe-2.3.1/config.log
+____
+File /tmp/wipe/src/wipe-2.3.1/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:600: checking host system type
+configure:621: checking target system type
+configure:639: checking build system type
+configure:668: checking for gcc
+configure:781: checking whether the C compiler (gcc  ) works
+configure:797: gcc -o conftest    conftest.c  1>&5
+configure:794:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(){return(0);}
+ ^
+configure:823: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:828: checking whether we are using GNU C
+configure:837: gcc -E conftest.c
+configure:856: checking whether gcc accepts -g
+configure:888: checking for POSIXized ISC
+configure:909: checking how to run the C preprocessor
+configure:930: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:990: checking whether gcc needs -traditional
+configure:1047: checking for a BSD compatible install
+configure:1101: checking whether the C compiler accepts -pipe
+configure:1111: gcc -c -pipe  conftest.c 1>&5
+configure:1123: checking whether the C compiler accepts -g
+configure:1133: gcc -c -g  conftest.c 1>&5
+configure:1145: checking whether the C compiler accepts -O0
+configure:1155: gcc -c -O0  conftest.c 1>&5
+configure:1167: checking whether the C compiler accepts -O2
+configure:1177: gcc -c -O2  conftest.c 1>&5
+configure:1189: checking whether the C compiler accepts -ansi
+configure:1199: gcc -c -ansi  conftest.c 1>&5
+configure:1211: checking whether the C compiler accepts -pedantic
+configure:1221: gcc -c -pedantic  conftest.c 1>&5
+configure:1233: checking whether the C compiler accepts -Wall
+configure:1243: gcc -c -Wall  conftest.c 1>&5
+configure:1255: checking whether the C compiler accepts -Werror
+configure:1265: gcc -c -Werror  conftest.c 1>&5
+configure:1322: checking for dirent.h that defines DIR
+configure:1335: gcc -c  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES  conftest.c 1>&5
+In file included from /usr/include/sys/types.h:25:0,
+                 from configure:1328:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:1360: checking for opendir in -ldir
+configure:1379: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c -ldir   1>&5
+/usr/sbin/ld: cannot find -ldir
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 1368 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char opendir();
+
+int main() {
+opendir()
+; return 0; }
+configure:1443: checking for ANSI C header files
+configure:1456: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1523: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/ctype.h:25:0,
+                 from configure:1513:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure: In function 'main':
+configure:1518:67: warning: incompatible implicit declaration of built-in function 'exit'
+ if (XOR (islower (i), ISLOWER (i)) || toupper (i) != TOUPPER (i)) exit(2);
+                                                                   ^
+configure:1518:67: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:1550: checking for unistd.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for stdint.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for fcntl.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for memory.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for linux/fs.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for sys/mount.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for sys/disklabel.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1556:27: fatal error: sys/disklabel.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1555 "configure"
+#include "confdefs.h"
+#include <sys/disklabel.h>
+configure:1550: checking for sys/ioctl.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for sys/file.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for sys/stat.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for sys/time.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for sys/types.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for getopt.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for errno.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for termio.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for termios.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1550: checking for linux/mtio.h
+configure:1560: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1588: checking for working const
+configure:1642: gcc -c  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES  conftest.c 1>&5
+configure:1663: checking for inline
+configure:1677: gcc -c  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES  conftest.c 1>&5
+configure:1673:3: error: unknown type name 'inline'
+ } $ac_kw foo() {
+   ^
+configure: failed program was:
+#line 1670 "configure"
+#include "confdefs.h"
+
+int main() {
+} inline foo() {
+; return 0; }
+configure:1677: gcc -c  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES  conftest.c 1>&5
+configure:1703: checking for off_t
+configure:1736: checking for size_t
+configure:1769: checking whether stat file-mode macros are broken
+configure:1830: checking for unistd.h
+configure:1869: checking for getpagesize
+configure:1897: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:1877:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:1922: checking for working mmap
+configure:2070: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/sys/types.h:25:0,
+                 from configure:1953:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2001:7: warning: conflicting types for built-in function 'malloc'
+ char *malloc();
+       ^
+configure: In function 'main':
+configure:2018:3: warning: incompatible implicit declaration of built-in function 'exit'
+   exit(1);
+   ^
+configure:2018:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2040:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  data2 += (pagesize - ((int) data2 & (pagesize - 1))) & (pagesize - 1);
+                        ^
+configure:2095: checking for getopt
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for strnlen
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for bzero
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for memset
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2107:6: warning: conflicting types for built-in function 'memset'
+ char $ac_func();
+      ^
+configure:2095: checking for memcpy
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2107:6: warning: conflicting types for built-in function 'memcpy'
+ char $ac_func();
+      ^
+configure:2095: checking for realloc
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2107:6: warning: conflicting types for built-in function 'realloc'
+ char $ac_func();
+      ^
+configure:2095: checking for fchmod
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for ioctl
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for fcntl
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for lockf
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for flock
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for fsync
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for fdatasync
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for unlink
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for rmdir
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for remove
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for rename
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+configure:2095: checking for dirfd
+configure:2123: gcc -o conftest  -ansi -pedantic -D__USE_BSD -D_BSD_SOURCE -D__USE_POSIX -D_POSIX_SOURCE -D_POSIX_MAPPED_FILES   conftest.c  1>&5
+In file included from /usr/include/assert.h:35:0,
+                 from configure:2103:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem bc6dd2d27f5a4e6bbd9b385410aa1c5e33313cc93d06c947cafccfb4c16e6b13: rename /usr/local/google/home/khazem/docker/aufs/mnt/bc6dd2d27f5a4e6bbd9b385410aa1c5e33313cc93d06c947cafccfb4c16e6b13 /usr/local/google/home/khazem/docker/aufs/mnt/bc6dd2d27f5a4e6bbd9b385410aa1c5e33313cc93d06c947cafccfb4c16e6b13-removing: device or resource busy></pre></code>
+        </body></html>

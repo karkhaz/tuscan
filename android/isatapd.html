@@ -1,0 +1,751 @@
+        <html><head></head><body>
+        <h1>Report for isatapd on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:51</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data isatapd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2057 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: isatapd 0.9.7-4 (Fri Nov 13 23:56:09 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading isatapd-0.9.7.tar.gz...
+  -> Found isatapd@.service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting isatapd-0.9.7.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/isatapd
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: isatapd 0.9.7-4 (Fri Nov 13 23:56:11 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for style of include used by make... GNU
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking net/if.h usability... yes
+checking net/if.h presence... yes
+checking for net/if.h... yes
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking netinet/ip.h usability... yes
+checking netinet/ip.h presence... yes
+checking for netinet/ip.h... yes
+checking netinet/icmp6.h usability... yes
+checking netinet/icmp6.h presence... yes
+checking for netinet/icmp6.h... yes
+checking linux/socket.h usability... yes
+checking linux/socket.h presence... yes
+checking for linux/socket.h... yes
+checking sys/utsname.h usability... yes
+checking sys/utsname.h presence... yes
+checking for sys/utsname.h... yes
+checking getopt.h usability... yes
+checking getopt.h presence... yes
+checking for getopt.h... yes
+checking for pid_t... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible malloc... no
+checking for ioctl... yes
+checking for getopt_long... yes
+checking for syslog... yes
+checking for fcntl... yes
+checking if 1=2... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating man/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/isatapd/src/isatapd-0.9.7'
+Making all in .
+make[2]: Entering directory '/tmp/isatapd/src/isatapd-0.9.7'
+make[2]: Leaving directory '/tmp/isatapd/src/isatapd-0.9.7'
+Making all in src
+make[2]: Entering directory '/tmp/isatapd/src/isatapd-0.9.7/src'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..    -Wall  -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..    -Wall  -MT isatap.o -MD -MP -MF .deps/isatap.Tpo -c -o isatap.o isatap.c
+isatap.c: In function 'new_internal_pdr':
+isatap.c:70:14: warning: implicit declaration of function 'rpl_malloc' [-Wimplicit-function-declaration]
+  n = (struct PRLENTRY*)malloc(sizeof(struct PRLENTRY));
+              ^
+main.c: In function 'add_router_to_name_list':
+main.c:134:14: warning: implicit declaration of function 'rpl_malloc' [-Wimplicit-function-declaration]
+  n = (struct ROUTER_NAME*)malloc(sizeof(struct ROUTER_NAME));
+              ^
+mv -f .deps/isatap.Tpo .deps/isatap.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..    -Wall  -MT tunnel.o -MD -MP -MF .deps/tunnel.Tpo -c -o tunnel.o tunnel.c
+mv -f .deps/main.Tpo .deps/main.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..    -Wall  -MT rdisc.o -MD -MP -MF .deps/rdisc.Tpo -c -o rdisc.o rdisc.c
+mv -f .deps/rdisc.Tpo .deps/rdisc.Po
+mv -f .deps/tunnel.Tpo .deps/tunnel.Po
+arm-linux-androideabi-gcc -Wall    -o isatapd main.o isatap.o tunnel.o rdisc.o  
+main.o:main.c:function add_router_to_name_list: error: undefined reference to 'rpl_malloc'
+isatap.o:isatap.c:function new_internal_pdr: error: undefined reference to 'rpl_malloc'
+collect2: error: ld returned 1 exit status
+Makefile:255: recipe for target 'isatapd' failed
+make[2]: *** [isatapd] Error 1
+make[2]: Leaving directory '/tmp/isatapd/src/isatapd-0.9.7/src'
+Makefile:279: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/tmp/isatapd/src/isatapd-0.9.7'
+Makefile:219: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/isatapd/src/isatapd-0.9.7/config.log
+____
+File /tmp/isatapd/src/isatapd-0.9.7/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sbindir=/usr/bin
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 48fce0ffd06e
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2224: checking for a BSD-compatible install
+configure:2292: result: /usr/bin/install -c
+configure:2303: checking whether build environment is sane
+configure:2353: result: yes
+configure:2402: checking for x86_64-unknown-linux-strip
+configure:2432: result: no
+configure:2442: checking for strip
+configure:2458: found /usr/sbin/strip
+configure:2469: result: strip
+configure:2494: checking for a thread-safe mkdir -p
+configure:2533: result: /usr/sbin/mkdir -p
+configure:2546: checking for gawk
+configure:2562: found /usr/sbin/gawk
+configure:2573: result: gawk
+configure:2584: checking whether make sets $(MAKE)
+configure:2606: result: yes
+configure:2704: checking for style of include used by make
+configure:2732: result: GNU
+configure:2763: checking for x86_64-unknown-linux-gcc
+configure:2790: result: arm-linux-androideabi-gcc
+configure:3059: checking for C compiler version
+configure:3068: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3079: $? = 0
+configure:3068: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:3079: $? = 0
+configure:3068: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3079: $? = 1
+configure:3068: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3079: $? = 1
+configure:3099: checking whether the C compiler works
+configure:3121: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:3125: $? = 0
+configure:3173: result: yes
+configure:3176: checking for C compiler default output file name
+configure:3178: result: a.out
+configure:3184: checking for suffix of executables
+configure:3191: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3195: $? = 0
+configure:3217: result: 
+configure:3239: checking whether we are cross compiling
+configure:3247: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3251: $? = 0
+configure:3258: ./conftest
+./configure: line 3260: ./conftest: cannot execute binary file: Exec format error
+configure:3262: $? = 126
+configure:3277: result: yes
+configure:3282: checking for suffix of object files
+configure:3304: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3308: $? = 0
+configure:3329: result: o
+configure:3333: checking whether we are using the GNU C compiler
+configure:3352: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3352: $? = 0
+configure:3361: result: yes
+configure:3370: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3390: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3390: $? = 0
+configure:3431: result: yes
+configure:3448: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3511: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3511: $? = 0
+configure:3524: result: none needed
+configure:3546: checking dependency style of arm-linux-androideabi-gcc
+configure:3657: result: gcc3
+configure:3678: checking how to run the C preprocessor
+configure:3709: arm-linux-androideabi-gcc -E  conftest.c
+configure:3709: $? = 0
+configure:3723: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3723: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "isatapd"
+| #define VERSION "0.9.7"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3748: result: arm-linux-androideabi-gcc -E
+configure:3768: arm-linux-androideabi-gcc -E  conftest.c
+configure:3768: $? = 0
+configure:3782: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3782: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "isatapd"
+| #define VERSION "0.9.7"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3811: checking for grep that handles long lines and -e
+configure:3869: result: /usr/sbin/grep
+configure:3874: checking for egrep
+configure:3936: result: /usr/sbin/grep -E
+configure:3941: checking for ANSI C header files
+configure:3961: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3961: $? = 0
+configure:4045: result: yes
+configure:4059: checking for sys/types.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for sys/stat.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for stdlib.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for string.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for memory.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for strings.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for inttypes.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for stdint.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4059: checking for unistd.h
+configure:4059: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4059: $? = 0
+configure:4059: result: yes
+configure:4074: checking net/if.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking net/if.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for net/if.h
+configure:4074: result: yes
+configure:4074: checking netdb.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking netdb.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for netdb.h
+configure:4074: result: yes
+configure:4074: checking arpa/inet.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking arpa/inet.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for arpa/inet.h
+configure:4074: result: yes
+configure:4074: checking netinet/ip.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking netinet/ip.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for netinet/ip.h
+configure:4074: result: yes
+configure:4074: checking netinet/icmp6.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking netinet/icmp6.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for netinet/icmp6.h
+configure:4074: result: yes
+configure:4074: checking linux/socket.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking linux/socket.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for linux/socket.h
+configure:4074: result: yes
+configure:4074: checking sys/utsname.h usability
+configure:4074: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking sys/utsname.h presence
+configure:4074: arm-linux-androideabi-gcc -E  conftest.c
+configure:4074: $? = 0
+configure:4074: result: yes
+configure:4074: checking for sys/utsname.h
+configure:4074: result: yes
+configure:4086: checking getopt.h usability
+configure:4086: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4086: $? = 0
+configure:4086: result: yes
+configure:4086: checking getopt.h presence
+configure:4086: arm-linux-androideabi-gcc -E  conftest.c
+configure:4086: $? = 0
+configure:4086: result: yes
+configure:4086: checking for getopt.h
+configure:4086: result: yes
+configure:4097: checking for pid_t
+configure:4097: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4097: $? = 0
+configure:4097: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:65:20: error: expected expression before ')' token
+ if (sizeof ((pid_t)))
+                    ^
+configure:4097: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "isatapd"
+| #define VERSION "0.9.7"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_NET_IF_H 1
+| #define HAVE_NETDB_H 1
+| #define HAVE_ARPA_INET_H 1
+| #define HAVE_NETINET_IP_H 1
+| #define HAVE_NETINET_ICMP6_H 1
+| #define HAVE_LINUX_SOCKET_H 1
+| #define HAVE_SYS_UTSNAME_H 1
+| #define HAVE_GETOPT_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((pid_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:4097: result: yes
+configure:4110: checking for stdlib.h
+configure:4110: result: yes
+configure:4120: checking for GNU libc compatible malloc
+configure:4154: result: no
+configure:4179: checking for ioctl
+configure:4179: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4179: $? = 0
+configure:4179: result: yes
+configure:4179: checking for getopt_long
+configure:4179: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4179: $? = 0
+configure:4179: result: yes
+configure:4179: checking for syslog
+configure:4179: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4179: $? = 0
+configure:4179: result: yes
+configure:4179: checking for fcntl
+configure:4179: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4179: $? = 0
+configure:4179: result: yes
+configure:4189: checking if 1=2
+configure:4191: result: no
+configure:4326: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 48fce0ffd06e
+
+config.status:865: creating Makefile
+config.status:865: creating src/Makefile
+config.status:865: creating man/Makefile
+config.status:865: creating config.h
+config.status:1094: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_fcntl=yes
+ac_cv_func_getopt_long=yes
+ac_cv_func_ioctl=yes
+ac_cv_func_malloc_0_nonnull=no
+ac_cv_func_syslog=yes
+ac_cv_header_arpa_inet_h=yes
+ac_cv_header_getopt_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_linux_socket_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_net_if_h=yes
+ac_cv_header_netdb_h=yes
+ac_cv_header_netinet_icmp6_h=yes
+ac_cv_header_netinet_ip_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_sys_utsname_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_CPP='arm-linux-androideabi-gcc -E'
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+ac_cv_type_pid_t=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/isatapd/src/isatapd-0.9.7/missing --run aclocal-1.11'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AUTOCONF='${SHELL} /tmp/isatapd/src/isatapd-0.9.7/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/isatapd/src/isatapd-0.9.7/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/isatapd/src/isatapd-0.9.7/missing --run automake-1.11'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=''
+CPP='arm-linux-androideabi-gcc -E'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=' ${LIBOBJDIR}malloc$U.o'
+LIBS=''
+LTLIBOBJS=' ${LIBOBJDIR}malloc$U.lo'
+MAKEINFO='${SHELL} /tmp/isatapd/src/isatapd-0.9.7/missing --run makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='isatapd'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='0.9.7'
+ac_ct_CC=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/isatapd/src/isatapd-0.9.7/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='/usr/sbin/mkdir -p'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='/usr/bin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "isatapd"
+#define VERSION "0.9.7"
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_NET_IF_H 1
+#define HAVE_NETDB_H 1
+#define HAVE_ARPA_INET_H 1
+#define HAVE_NETINET_IP_H 1
+#define HAVE_NETINET_ICMP6_H 1
+#define HAVE_LINUX_SOCKET_H 1
+#define HAVE_SYS_UTSNAME_H 1
+#define HAVE_GETOPT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_MALLOC 0
+#define malloc rpl_malloc
+#define HAVE_IOCTL 1
+#define HAVE_GETOPT_LONG 1
+#define HAVE_SYSLOG 1
+#define HAVE_FCNTL 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

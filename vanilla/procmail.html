@@ -1,0 +1,293 @@
+        <html><head></head><body>
+        <h1>Report for procmail on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:06</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data procmail
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2672 packages in cache
+Found permanent source directory in /sources/procmail
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: procmail 3.22-7 (Sat Nov 14 07:44:47 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+:: There are 3 providers available for smtp-server:
+:: Repository extra
+   1) postfix
+:: Repository community
+   2) exim  3) opensmtpd
+
+Enter a number (default=1): 
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) icu-56.1-1  libmariadbclient-10.0.22-1  postgresql-libs-9.4.5-1  sqlite-3.9.2-1  tinycdb-0.78-2  postfix-3.0.3-2
+
+Total Installed Size:  66.82 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing icu...
+installing libmariadbclient...
+installing postgresql-libs...
+installing sqlite...
+installing tinycdb...
+installing postfix...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file src/fields.c
+patching file src/formail.c
+patching file src/formisc.c
+patching file src/formisc.h
+/bin/sh ./initmake /bin/sh "/bin/sh" "/bin/rm -f" "mv -f" "ln" \
+ "-lm -ldir -lx -lsocket -lnet -linet -lnsl_s -lnsl_i -lnsl -lsun -lgen -lsockdns -ldl" \
+ "/lib /usr/lib /usr/local/lib" \
+ /dev/null "make" o \
+ "cc" " " "-s  " "procmail lockfile formail mailstat" \
+ "procmail formail lockfile" \
+ "procmailrc procmailsc procmailex" "src man" \
+ "/usr/bin" \
+ "strip"
+cc seems to work fine, using that as the C-compiler
+	...scanning for 13 libraries...
+Added LDFLAGS= -lm -lnsl -ldl -lc
+cd src; make ../autoconf.h
+make[1]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+/bin/sh ./autoconf /bin/sh "/bin/rm -f" "mv -f" /dev/null \
+ "grep -F" "make" o "/tmp ." \
+ "/usr/bin" ../autoconf.h
+Using the following directories for the LOCKINGTESTs:
+  /tmp . 
+Initiating fcntl()/kernel-locking-support tests
+
+Proceeding with kernel-locking-support tests in the background
+Testing for const
+Testing for volatile
+Testing for prototypes
+Testing for enum
+Checking for POSIX and ANSI/ISO system include files
+Checking for network/comsat/biff support
+Testing for void*, size_t, off_t, pid_t, time_t, mode_t, uid_t & gid_t
+Checking realloc implementation
+Testing for WIFEXITED(), WIFSTOPPED(), WEXITSTATUS() & WSIGTERM()
+Testing for various struct passwd members
+Testing for memmove, strchr, strpbrk, strcspn, strtol, strstr,
+	rename, setrgid, setegid, pow, opendir, mkdir, waitpid, fsync,
+	ftruncate, strtod, strncasecmp, strerror, strlcat,
+	memset, bzero, and _exit
+Determining the maximum number of 16 byte arguments execv() takes
+Benchmarking your system's strstr() implementation
+Waiting for the kernel-locking tests to finish...
+Every two digits a file is locked.  First digit: which file, second digit:
+which program, XX indicates a lock conflict or failure
+
+Starting test 4 on /tmp/_locktest
+ 15 07 16 17 16 00 06 15 13 05 13 02 17 05 12 07 15 07 02 14 05 05 17 10 07 12 07 16 10 06 12 06 13 10 14 00 15 00 11 16 01 15 11 14 01 10 13 11 16 12 10 13 14 12 13 02 14 03 11 13
+Starting test 4 on ./_locktest
+ 07 07 17 17 07 17 07 17 07 06 06 16 16 06 16 06 16 06 04 14 04 14 04 14 14 14 02 12 12 02 12 02 02 03 13 13 03 13 03 03 05 15 05 15 05 15 15 15 10 10 00 10 10 10 00 00 10 11 11 01 11 11 11 01 01 11
+Starting test 6 on /tmp/_locktest
+ 00 01 10 05 00 06 15 13 16 03 11 06 15 03 12 05 06 14 01 12 15 03 06 17 04 15 02 14 07 06 14 01 17 04 11 02 14 07 13 02 14 12 13 02 14 01 12 04 13 07 16 07 12 07 10 15 00
+Starting test 6 on ./_locktest
+ 00 07 10 17 00 10 10 17 15 05 14 03 07 16 01 06 10 04 17 02 14 07 04 13 15 13 05 14 15 16 11 10 12 02 02 12 02 02 02 12 04 14 04 14 05 15 05 15 06 06 16 06 16 06 01 01 11 01 01
+Starting test 7 on /tmp/_locktest
+ 17 17 16 16 15 15 14 14 03 13 13 03 13 03 13 03 13 02 12 12 02 12 02 12 02 12 04 14 14 04 04 04 04 05 15 15 05 05 05 05 06 06 16 06 16 06 16 07 07 17 07 17 07 17 01 01 11 11 11 11 11 11 01 00 00 10 10 10 10 10 10 00
+Starting test 7 on ./_locktest
+ 17 10 05 16 04 15 03 14 14 02 02 12 02 12 02 12 02 12 13 13 13 03 13 13 03 03 05 05 05 15 05 05 15 04 14 14 04 04 06 06 06 16 06 06 16 01 01 11 01 11 01 11 01 11 00 10 10 10 00 00 10 00
+
+
+Collecting results from kernel-locking tests
+=============================autoconf.h===================================
+/* This file was automagically generated by autoconf */
+
+/* 2 moves in 64 steps of size 16384 when reallocing */
+#define NOpw_passwd
+#define NOpw_class
+#define NOpw_gecos
+#define NOstrlcat
+#define NOsetrgid
+#define GOT_bin_test
+#define MAX_argc 163838 /* soft limit */
+/* Your system's strstr() is 12.86 times FASTER than my C-routine */
+#define UDP_protocolno 17
+#define BIFF_serviceport "512"
+#define IP_localhost {127,0,0,1}
+#define setrgid_RUNTIME_CHECK
+#define MAILSPOOLDIR "/var/spool/mail/"
+#define SENDMAIL "/usr/sbin/sendmail"
+#define CF_no_procmail_yet
+#define buggy_SENDMAIL
+#define defPATH "PATH=$HOME/bin:/bin:/usr/local/bin"
+#define defSPATH "PATH=/bin:/usr/local/bin"
+#define PM_VERSION "3.22"
+/*locktype: 4, countlocks: 0, timeout 0, watchdog 8, /tmp/_locktest*/
+/*locktype: 4, countlocks: 0, timeout 0, watchdog 8, ./_locktest*/
+/*locktype: 6, countlocks: 0, timeout 0, watchdog 8, /tmp/_locktest*/
+/*locktype: 6, countlocks: 0, timeout 0, watchdog 8, ./_locktest*/
+/*locktype: 7, countlocks: 0, timeout 0, watchdog 8, /tmp/_locktest*/
+/*locktype: 7, countlocks: 0, timeout 0, watchdog 8, ./_locktest*/
+/* Hotwire LOCKINGTEST=111 */
+/* Procmail will lock via: dotlocking, fcntl(), lockf(), flock() */
+#define USElockf
+#define USEflock
+/* autoconf completed */
+==========================================================================
+make[1]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+echo Housekeeping file >config.check
+cd src; make ../new/procmail ../new/lockfile ../new/formail ../new/mailstat
+make[1]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+cc -c   procmail.c
+cc -c   cstdio.c
+cc -c   common.c
+cc -c   exopen.c
+cc -c   goodies.c
+cc -c   locking.c
+cc -c   mailfold.c
+mailfold.c: In function 'readmail':
+mailfold.c:374:6: warning: type of 'rhead' defaults to 'int' [-Wimplicit-int]
+ void readmail(rhead,tobesent)const long tobesent;
+      ^
+cc -c   foldinfo.c
+foldinfo.c: In function 'rnmbogus':
+foldinfo.c:60:12: warning: implicit declaration of function 'ultoan' [-Wimplicit-function-declaration]
+   *p++='.';ultoan((unsigned long)stbuf->st_ino,p);   /* i-node numbered */
+            ^
+cc -c   misc.c
+cc -c   pipes.c
+cc -c   regexp.c
+cc -c   robust.c
+cc -c   sublib.c
+cc -c   acommon.c
+cc -c   mcommon.c
+cc -c   lastdirsep.c
+cc -c -DPROCMAIL   authenticate.c
+cc -c   lmtp.c
+cc -c   memblk.c
+cc -c   variables.c
+cc -c   from.c
+cc -c   comsat.c
+cc   procmail.o cstdio.o common.o exopen.o goodies.o locking.o mailfold.o foldinfo.o misc.o pipes.o regexp.o robust.o sublib.o acommon.o mcommon.o lastdirsep.o authenticate.o lmtp.o memblk.o variables.o from.o comsat.o -o procmail -s   -lm -lnsl -ldl -lc
+ln ../src/procmail ../new/procmail
+cc -c   lockfile.c
+cc   lockfile.o exopen.o sublib.o acommon.o mcommon.o authenticate.o lastdirsep.o -o lockfile -s   -lm -lnsl -ldl -lc
+ln ../src/lockfile ../new/lockfile
+cc -c   formail.c
+cc -c   fields.c
+cc -c   formisc.c
+cc -c   ecommon.c
+cc   formail.o common.o fields.o formisc.o sublib.o ecommon.o acommon.o -o formail -s   -lm -lnsl -ldl -lc
+ln ../src/formail ../new/formail
+cp ../examples/mailstat mailstat
+ln ../src/mailstat ../new/mailstat
+make[1]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+cd man; make ../new/procmail.1 ../new/formail.1 ../new/lockfile.1 ../new/procmailrc.5 ../new/procmailsc.5 ../new/procmailex.5
+make[1]: Entering directory '/tmp/procmail/src/procmail-3.22/man'
+make[2]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+make[2]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+/bin/sh ./mansed /bin/sh procmail.man procmail.1 "/bin/rm -f" /dev/null
+ln ../man/procmail.1 ../new/procmail.1
+/bin/sh ./mansed /bin/sh formail.man formail.1 "/bin/rm -f" /dev/null
+ln ../man/formail.1 ../new/formail.1
+/bin/sh ./mansed /bin/sh lockfile.man lockfile.1 "/bin/rm -f" /dev/null
+ln ../man/lockfile.1 ../new/lockfile.1
+/bin/sh ./mansed /bin/sh procmailrc.man procmailrc.5 "/bin/rm -f" /dev/null
+ln ../man/procmailrc.5 ../new/procmailrc.5
+/bin/sh ./mansed /bin/sh procmailsc.man procmailsc.5 "/bin/rm -f" /dev/null
+ln ../man/procmailsc.5 ../new/procmailsc.5
+/bin/sh ./mansed /bin/sh procmailex.man procmailex.5 "/bin/rm -f" /dev/null
+ln ../man/procmailex.5 ../new/procmailex.5
+make[1]: Leaving directory '/tmp/procmail/src/procmail-3.22/man'
+make[1]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+make[1]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+===============================================================================
+If you are a system administrator you should consider integrating procmail
+into the mail-delivery system -- for advanced functionality, speed AND
+SECURITY --.  For more information about this topic you should look in the
+examples/advanced file.
+
+Also, HIGHLY RECOMMENDED (type 'make install-suid' to execute it):
+
+chown root /usr/bin/procmail
+chmod 4755 /usr/bin/procmail
+===============================================================================
+If you would like to inspect the results before running make install:
+All installable files can be found in the new/ subdirectory.
+==> Entering fakeroot environment...
+==> Starting package()...
+make[1]: Entering directory '/tmp/procmail/src/procmail-3.22'
+cd man; make ../new/procmail.1 ../new/formail.1 ../new/lockfile.1 ../new/procmailrc.5 ../new/procmailsc.5 ../new/procmailex.5
+make[2]: Entering directory '/tmp/procmail/src/procmail-3.22/man'
+make[3]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+make[3]: '../man/man.sed' is up to date.
+make[3]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+make[2]: '../new/formail.1' is up to date.
+make[2]: '../new/lockfile.1' is up to date.
+make[2]: '../new/procmailrc.5' is up to date.
+make[2]: '../new/procmailsc.5' is up to date.
+make[2]: '../new/procmailex.5' is up to date.
+make[2]: Leaving directory '/tmp/procmail/src/procmail-3.22/man'
+new/mkinstalldirs /tmp/procmail/pkg/procmail/usr
+mkdir /tmp/procmail/pkg/procmail/usr
+echo Housekeeping file >install.man
+cd src; make ../new/procmail ../new/lockfile ../new/formail ../new/mailstat
+make[2]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+make[2]: '../new/procmail' is up to date.
+make[2]: '../new/lockfile' is up to date.
+make[2]: '../new/formail' is up to date.
+make[2]: '../new/mailstat' is up to date.
+make[2]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+cp new/procmail new/lockfile new/formail new/mailstat /tmp/procmail/pkg/procmail/usr/bin
+echo Housekeeping file >install.bin
+make[1]: Leaving directory '/tmp/procmail/src/procmail-3.22'
+
+Installed in /tmp/procmail/pkg/procmail/usr/bin
+-rwxr-xr-x 1 root root 40120 Nov 14 07:45 formail
+-rwxr-xr-x 1 root root 19384 Nov 14 07:45 lockfile
+-rwxr-xr-x 1 root root  5859 Nov 14 07:45 mailstat
+-rwxr-xr-x 1 root root 93984 Nov 14 07:45 procmail
+Installed in /tmp/procmail/pkg/procmail/usr/share/man/man1
+-rw-r--r-- 1 root root 15334 Nov 14 07:45 formail.1
+-rw-r--r-- 1 root root  6897 Nov 14 07:45 lockfile.1
+-rw-r--r-- 1 root root 27967 Nov 14 07:45 procmail.1
+Installed in /tmp/procmail/pkg/procmail/usr/share/man/man5
+-rw-r--r-- 1 root root 16858 Nov 14 07:45 procmailex.5
+-rw-r--r-- 1 root root 31340 Nov 14 07:45 procmailrc.5
+-rw-r--r-- 1 root root  8074 Nov 14 07:45 procmailsc.5
+make[1]: Entering directory '/tmp/procmail/src/procmail-3.22'
+make[2]: Entering directory '/tmp/procmail/src/procmail-3.22/src'
+make[2]: 'recommend' is up to date.
+make[2]: Leaving directory '/tmp/procmail/src/procmail-3.22/src'
+===============================================================================
+If you are a system administrator you should consider integrating procmail
+into the mail-delivery system -- for advanced functionality, speed AND
+SECURITY --.  For more information about this topic you should look in the
+examples/advanced file.
+
+Also, HIGHLY RECOMMENDED (type 'make install-suid' to execute it):
+
+chown root /tmp/procmail/pkg/procmail/usr/bin/procmail
+chmod 4755 /tmp/procmail/pkg/procmail/usr/bin/procmail
+===============================================================================
+make[1]: Leaving directory '/tmp/procmail/src/procmail-3.22'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "procmail"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: procmail 3.22-7 (Sat Nov 14 07:45:40 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

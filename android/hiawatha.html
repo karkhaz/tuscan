@@ -1,0 +1,174 @@
+        <html><head></head><body>
+        <h1>Report for hiawatha on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:33</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hiawatha
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 484 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hiawatha 9.15-2 (Fri Nov 13 23:10:35 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) libxml2-2.9.2-2  libxslt-1.1.28-3  mbedtls-2.1.2-1
+
+Total Installed Size:  13.52 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing libxslt...
+installing mbedtls...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) jsoncpp-1.6.5-1  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Download Size:    4.58 MiB
+Total Installed Size:  31.42 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading cmake.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading hiawatha-9.15.tar.gz...
+  -> Found hiawatha.conf.sample
+  -> Found hiawatha.service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting hiawatha-9.15.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/hiawatha
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hiawatha 9.15-2 (Fri Nov 13 23:10:50 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found LibXml2: /usr/lib/libxml2.so (found version "2.9.2") 
+-- Found LibXslt: /usr/lib/libxslt.so (found version "1.1.28") 
+-- Found ZLIB: /usr/lib/libz.so (found version "1.2.8") 
+-- Looking for crypt.h
+-- Looking for crypt.h - not found
+-- Looking for arpa/inet.h
+-- Looking for arpa/inet.h - found
+-- Looking for include files sys/types.h, netinet/in.h
+-- Looking for include files sys/types.h, netinet/in.h - found
+-- Looking for include files sys/types.h, netinet/tcp.h
+-- Looking for include files sys/types.h, netinet/tcp.h - found
+-- Looking for rpcsvc/crypt.h
+-- Looking for rpcsvc/crypt.h - not found
+-- Looking for setenv
+-- Looking for setenv - found
+-- Looking for unsetenv
+-- Looking for unsetenv - found
+-- Looking for clearenv
+-- Looking for clearenv - found
+-- Looking for strcasecmp
+-- Looking for strcasecmp - found
+-- Looking for strncasecmp
+-- Looking for strncasecmp - found
+-- Looking for strnstr
+-- Looking for strnstr - not found
+-- Looking for strcasestr
+-- Looking for strcasestr - found
+-- Looking for strncasestr
+-- Looking for strncasestr - not found
+-- Looking for crypt_r in crypt
+-- Looking for crypt_r in crypt - not found
+-- Looking for crypt in crypt
+-- Looking for crypt in crypt - not found
+-- Looking for gzdopen in z
+-- Looking for gzdopen in z - found
+-- Looking for SO_ACCEPTFILTER
+-- Looking for SO_ACCEPTFILTER - not found
+CMake Warning at CMakeLists.txt:106 (message):
+  Make sure the mbed TLS shared library has been built with the
+  MBEDTLS_THREADING_PTHREAD and MBEDTLS_THREADING_C flags set.  Otherwise, it
+  may crash the Hiawatha webserver.
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/hiawatha/src/hiawatha-9.15/build
+Scanning dependencies of target cgi-wrapper
+[  1%] Building C object CMakeFiles/cgi-wrapper.dir/src/alternative.c.o
+Scanning dependencies of target hiawatha
+[  3%] Building C object CMakeFiles/hiawatha.dir/src/alternative.c.o
+[  5%] Building C object CMakeFiles/cgi-wrapper.dir/src/cgi-wrapper.c.o
+[  7%] Building C object CMakeFiles/hiawatha.dir/src/cache.c.o
+In file included from /tmp/hiawatha/src/hiawatha-9.15/src/session.h:17:0,
+                 from /tmp/hiawatha/src/hiawatha-9.15/src/cache.c:27:
+/tmp/hiawatha/src/hiawatha-9.15/src/tls.h:21:25: fatal error: mbedtls/ssl.h: No such file or directory
+ #include "mbedtls/ssl.h"
+                         ^
+compilation terminated.
+CMakeFiles/hiawatha.dir/build.make:86: recipe for target 'CMakeFiles/hiawatha.dir/src/cache.c.o' failed
+make[2]: *** [CMakeFiles/hiawatha.dir/src/cache.c.o] Error 1
+CMakeFiles/Makefile2:104: recipe for target 'CMakeFiles/hiawatha.dir/all' failed
+make[1]: *** [CMakeFiles/hiawatha.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[  9%] Building C object CMakeFiles/cgi-wrapper.dir/src/memdbg.c.o
+[ 10%] Building C object CMakeFiles/cgi-wrapper.dir/src/libfs.c.o
+[ 12%] Building C object CMakeFiles/cgi-wrapper.dir/src/libstr.c.o
+/tmp/hiawatha/src/hiawatha-9.15/src/libfs.c: In function 'if_modified_since':
+/tmp/hiawatha/src/hiawatha-9.15/src/libfs.c:421:2: warning: pointer targets in passing argument 1 of 'gmtime_r' differ in signedness [-Wpointer-sign]
+  } else if (gmtime_r(&(status.st_mtime), &date) == NULL) {
+  ^
+In file included from /tmp/hiawatha/src/hiawatha-9.15/src/libfs.c:19:0:
+/tmp/toolchain/sysroot/usr/include/time.h:75:19: note: expected 'const time_t *' but argument is of type 'long unsigned int *'
+ extern struct tm* gmtime_r(const time_t*, struct tm*) __LIBC_ABI_PUBLIC__;
+                   ^
+[ 14%] Building C object CMakeFiles/cgi-wrapper.dir/src/userconfig.c.o
+[ 16%] Linking C executable cgi-wrapper
+/tmp/hiawatha/src/hiawatha-9.15/src/userconfig.c:145: error: undefined reference to 'getgrent'
+/tmp/hiawatha/src/hiawatha-9.15/src/userconfig.c:145: error: undefined reference to 'getgrent'
+/tmp/hiawatha/src/hiawatha-9.15/src/userconfig.c:163: error: undefined reference to 'endgrent'
+/tmp/hiawatha/src/hiawatha-9.15/src/userconfig.c:154: error: undefined reference to 'endgrent'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cgi-wrapper.dir/build.make:224: recipe for target 'cgi-wrapper' failed
+make[2]: *** [cgi-wrapper] Error 1
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/cgi-wrapper.dir/all' failed
+make[1]: *** [CMakeFiles/cgi-wrapper.dir/all] Error 2
+Makefile:149: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

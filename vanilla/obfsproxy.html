@@ -1,0 +1,290 @@
+        <html><head></head><body>
+        <h1>Report for obfsproxy on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data obfsproxy
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2140 packages in cache
+Found permanent source directory in /sources/obfsproxy
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: obfsproxy 0.2.13-1 (Sat Nov 14 06:06:42 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (10) libyaml-0.1.6-1  python2-2.7.10-2  python2-packaging-15.3-2  python2-zope-interface-4.1.3-1  sqlite-3.9.2-1  python2-crypto-2.6.1-3  python2-pyptlib-0.0.6-1  python2-setuptools-1:18.5-1  python2-twisted-15.4.0-2  python2-yaml-3.11-3
+
+Total Download Size:     0.02 MiB
+Total Installed Size:  120.41 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading python2-pyptlib-0.0.6-1-any.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools [pending]
+    python2-pip
+installing python2-crypto...
+installing python2-pyptlib...
+installing python2-zope-interface...
+installing python2-twisted...
+Optional dependencies for python2-twisted
+    python2-pyopenssl
+    python2-service-identity: for TLS client hostname verification
+    python2-soappy: for twisted.web.soap
+    python2-pyasn1: for using conch
+    pygtk: for using manhole
+    tk: for using tkconch
+installing libyaml...
+installing python2-yaml...
+==> Note that even though this package uses libyaml library,
+==> slower pure python implementation is used by default.
+==> See http://pyyaml.org/wiki/PyYAMLDocumentation
+installing python2-packaging...
+installing python2-setuptools...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Entering fakeroot environment...
+==> Starting package()...
+running install
+running build
+got version from file obfsproxy/_version.py {'version': '0.2.13', 'full': '01a5d50179af4adf28195ce6a926c735eede6b06'}
+running build_py
+creating build
+creating build/lib
+creating build/lib/obfsproxy
+copying obfsproxy/_version.py -> build/lib/obfsproxy
+copying obfsproxy/__init__.py -> build/lib/obfsproxy
+copying obfsproxy/pyobfsproxy.py -> build/lib/obfsproxy
+creating build/lib/obfsproxy/test
+copying obfsproxy/test/test_socks.py -> build/lib/obfsproxy/test
+copying obfsproxy/test/test_buffer.py -> build/lib/obfsproxy/test
+copying obfsproxy/test/test_aes.py -> build/lib/obfsproxy/test
+copying obfsproxy/test/test_obfs3_dh.py -> build/lib/obfsproxy/test
+copying obfsproxy/test/__init__.py -> build/lib/obfsproxy/test
+copying obfsproxy/test/tester.py -> build/lib/obfsproxy/test
+copying obfsproxy/test/test_socks5.py -> build/lib/obfsproxy/test
+creating build/lib/obfsproxy/transports
+copying obfsproxy/transports/obfs2.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/obfs3_dh.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/b64.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/obfs3.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/dummy.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/__init__.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/base.py -> build/lib/obfsproxy/transports
+copying obfsproxy/transports/transports.py -> build/lib/obfsproxy/transports
+creating build/lib/obfsproxy/network
+copying obfsproxy/network/socks5.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/extended_orport.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/buffer.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/launch_transport.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/__init__.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/network.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/http.py -> build/lib/obfsproxy/network
+copying obfsproxy/network/socks.py -> build/lib/obfsproxy/network
+creating build/lib/obfsproxy/managed
+copying obfsproxy/managed/server.py -> build/lib/obfsproxy/managed
+copying obfsproxy/managed/__init__.py -> build/lib/obfsproxy/managed
+copying obfsproxy/managed/client.py -> build/lib/obfsproxy/managed
+creating build/lib/obfsproxy/common
+copying obfsproxy/common/rand.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/heartbeat.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/modexp.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/hmac_sha256.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/argparser.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/__init__.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/serialize.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/aes.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/log.py -> build/lib/obfsproxy/common
+copying obfsproxy/common/transport_config.py -> build/lib/obfsproxy/common
+creating build/lib/obfsproxy/test/transports
+copying obfsproxy/test/transports/test_scramblesuit.py -> build/lib/obfsproxy/test/transports
+copying obfsproxy/test/transports/test_obfs3_dh.py -> build/lib/obfsproxy/test/transports
+copying obfsproxy/test/transports/__init__.py -> build/lib/obfsproxy/test/transports
+copying obfsproxy/test/transports/test_b64.py -> build/lib/obfsproxy/test/transports
+creating build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/scramblesuit.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/ticket.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/util.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/state.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/mycrypto.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/replay.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/__init__.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/const.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/fifobuf.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/message.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/uniformdh.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/packetmorpher.py -> build/lib/obfsproxy/transports/scramblesuit
+copying obfsproxy/transports/scramblesuit/probdist.py -> build/lib/obfsproxy/transports/scramblesuit
+UPDATING build/lib/obfsproxy/_version.py
+running install_lib
+creating /tmp/obfsproxy/pkg/obfsproxy/usr
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports
+copying build/lib/obfsproxy/test/transports/test_scramblesuit.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports
+copying build/lib/obfsproxy/test/transports/test_obfs3_dh.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports
+copying build/lib/obfsproxy/test/transports/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports
+copying build/lib/obfsproxy/test/transports/test_b64.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports
+copying build/lib/obfsproxy/test/test_socks.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+copying build/lib/obfsproxy/test/test_buffer.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+copying build/lib/obfsproxy/test/test_aes.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+copying build/lib/obfsproxy/test/test_obfs3_dh.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+copying build/lib/obfsproxy/test/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+copying build/lib/obfsproxy/test/tester.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+copying build/lib/obfsproxy/test/test_socks5.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/obfs2.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/obfs3_dh.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/b64.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/obfs3.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/dummy.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+copying build/lib/obfsproxy/transports/base.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/scramblesuit.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/ticket.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/util.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/state.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/mycrypto.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/replay.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/const.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/fifobuf.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/message.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/uniformdh.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/packetmorpher.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/scramblesuit/probdist.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit
+copying build/lib/obfsproxy/transports/transports.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/socks5.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/extended_orport.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/buffer.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/launch_transport.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/network.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/http.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/network/socks.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network
+copying build/lib/obfsproxy/_version.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy
+copying build/lib/obfsproxy/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed
+copying build/lib/obfsproxy/managed/server.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed
+copying build/lib/obfsproxy/managed/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed
+copying build/lib/obfsproxy/managed/client.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed
+creating /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/rand.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/heartbeat.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/modexp.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/hmac_sha256.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/argparser.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/__init__.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/serialize.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/aes.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/log.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/common/transport_config.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common
+copying build/lib/obfsproxy/pyobfsproxy.py -> /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports/test_scramblesuit.py to test_scramblesuit.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports/test_obfs3_dh.py to test_obfs3_dh.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/transports/test_b64.py to test_b64.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/test_socks.py to test_socks.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/test_buffer.py to test_buffer.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/test_aes.py to test_aes.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/test_obfs3_dh.py to test_obfs3_dh.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/tester.py to tester.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/test/test_socks5.py to test_socks5.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/obfs2.py to obfs2.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/obfs3_dh.py to obfs3_dh.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/b64.py to b64.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/obfs3.py to obfs3.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/dummy.py to dummy.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/base.py to base.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/scramblesuit.py to scramblesuit.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/ticket.py to ticket.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/util.py to util.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/state.py to state.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/mycrypto.py to mycrypto.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/replay.py to replay.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/const.py to const.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/fifobuf.py to fifobuf.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/message.py to message.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/uniformdh.py to uniformdh.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/packetmorpher.py to packetmorpher.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/scramblesuit/probdist.py to probdist.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/transports/transports.py to transports.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/socks5.py to socks5.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/extended_orport.py to extended_orport.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/buffer.py to buffer.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/launch_transport.py to launch_transport.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/network.py to network.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/http.py to http.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/network/socks.py to socks.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/_version.py to _version.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed/server.py to server.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/managed/client.py to client.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/rand.py to rand.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/heartbeat.py to heartbeat.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/modexp.py to modexp.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/hmac_sha256.py to hmac_sha256.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/argparser.py to argparser.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/__init__.py to __init__.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/serialize.py to serialize.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/aes.py to aes.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/log.py to log.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/common/transport_config.py to transport_config.pyc
+byte-compiling /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy/pyobfsproxy.py to pyobfsproxy.pyc
+writing byte-compilation script '/tmp/tmpVl4g7o.py'
+/usr/bin/python2 -O /tmp/tmpVl4g7o.py
+removing /tmp/tmpVl4g7o.py
+running install_egg_info
+running egg_info
+creating obfsproxy.egg-info
+writing requirements to obfsproxy.egg-info/requires.txt
+writing obfsproxy.egg-info/PKG-INFO
+writing top-level names to obfsproxy.egg-info/top_level.txt
+writing dependency_links to obfsproxy.egg-info/dependency_links.txt
+writing entry points to obfsproxy.egg-info/entry_points.txt
+writing manifest file 'obfsproxy.egg-info/SOURCES.txt'
+reading manifest file 'obfsproxy.egg-info/SOURCES.txt'
+writing manifest file 'obfsproxy.egg-info/SOURCES.txt'
+Copying obfsproxy.egg-info to /tmp/obfsproxy/pkg/obfsproxy/usr/lib/python2.7/site-packages/obfsproxy-0.2.13-py2.7.egg-info
+running install_scripts
+Installing obfsproxy script to /tmp/obfsproxy/pkg/obfsproxy/usr/bin
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "obfsproxy"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: obfsproxy 0.2.13-1 (Sat Nov 14 06:06:56 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 6a3c089b9597c72f728ce3062de704529efcb168e7d4a33d3ca4c63d251e2c44: rename /usr/local/google/home/khazem/docker/aufs/diff/6a3c089b9597c72f728ce3062de704529efcb168e7d4a33d3ca4c63d251e2c44 /usr/local/google/home/khazem/docker/aufs/diff/6a3c089b9597c72f728ce3062de704529efcb168e7d4a33d3ca4c63d251e2c44-removing: device or resource busy></pre></code>
+        </body></html>

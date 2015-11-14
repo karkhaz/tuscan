@@ -1,0 +1,1486 @@
+        <html><head></head><body>
+        <h1>Report for speedtouch on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:29</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data speedtouch
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2500 packages in cache
+Found permanent source directory in /sources/speedtouch
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: speedtouch 1.3.1-5 (Sat Nov 14 07:08:26 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file src/modem.h
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking whether make sets $(MAKE)... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking stdio.h usability... yes
+checking stdio.h presence... yes
+checking for stdio.h... yes
+checking for unistd.h... (cached) yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking time.h usability... yes
+checking time.h presence... yes
+checking for time.h... yes
+checking signal.h usability... yes
+checking signal.h presence... yes
+checking for signal.h... yes
+checking for stdlib.h... (cached) yes
+checking termios.h usability... yes
+checking termios.h presence... yes
+checking for termios.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking stdarg.h usability... yes
+checking stdarg.h presence... yes
+checking for stdarg.h... yes
+checking for string.h... (cached) yes
+checking sys/resource.h usability... yes
+checking sys/resource.h presence... yes
+checking for sys/resource.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking for sys/types.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking syslog.h usability... yes
+checking syslog.h presence... yes
+checking for syslog.h... yes
+checking for pid_t... yes
+checking for size_t... yes
+checking for an ANSI C-conforming const... yes
+checking return type of signal handlers... void
+checking for alarm... yes
+checking for gettimeofday... yes
+checking for memmove... yes
+checking for memset... yes
+checking for mkfifo... yes
+checking for select... yes
+checking for strdup... yes
+checking for strerror... yes
+checking for pthread_create in -lpthread... yes
+checking for rpm... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating VERSION
+config.status: creating src/Makefile
+config.status: creating hotplug/Makefile
+config.status: creating doc-linux/Makefile
+config.status: creating doc-bsd/Makefile
+config.status: creating speedtouch.spec
+cd src && make 
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/src'
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -DVERSION="\"1.3.1\"" -c firmware.c
+firmware.c: In function 'check_firmware':
+firmware.c:86:15: warning: variable 'addr' set but not used [-Wunused-but-set-variable]
+  unsigned int addr;
+               ^
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -DVERSION="\"1.3.1\"" -D_REENTRANT -D_THREAD_SAFE -o pusb.o -c pusb-linux.c
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -DUSE_SYSLOG -DVERSION="\"1.3.1\"" -c modem_run.c
+modem_run.c: In function 'get_reference':
+modem_run.c:788:46: warning: pointer targets in passing argument 6 of 'pusb_control_msg' differ in signedness [-Wpointer-sign]
+  n = pusb_control_msg(fdusb,0xc0,0x26,0xf7,0,buf,sizeof(buf),CTRL_TIMEOUT);
+                                              ^
+In file included from modem_run.c:55:0:
+pusb.h:38:5: note: expected 'unsigned char *' but argument is of type 'char *'
+ int pusb_control_msg(pusb_device_t dev,
+     ^
+modem_run.c: In function 'report':
+modem_run.c:1222:9: warning: pointer targets in passing argument 1 of 'dump' differ in signedness [-Wpointer-sign]
+    dump(buffer, length);
+         ^
+modem_run.c:125:13: note: expected 'unsigned char *' but argument is of type 'char *'
+ static void dump(unsigned char *buf, int len);
+             ^
+modem_run.c: In function 'dump':
+modem_run.c:1283:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "%02x ", buf[j]);
+            ^
+In file included from modem_run.c:37:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+modem_run.c:1292:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "   ");
+            ^
+In file included from modem_run.c:37:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+modem_run.c:1301:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "%c", give_char(buf[j]));
+            ^
+In file included from modem_run.c:37:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+modem_run.c: In function 'report':
+modem_run.c:1153:6: warning: assuming signed overflow does not occur when assuming that (X + c) >= X is always true [-Wstrict-overflow]
+ void report( int minlevel, unsigned int flags, const char *format, ...)
+      ^
+modem_run.c:1153:6: warning: assuming signed overflow does not occur when assuming that (X + c) >= X is always true [-Wstrict-overflow]
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -D_REENTRANT -D_THREAD_SAFE -DVERSION="\"1.3.1\"" -c crc.c
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -DVERSION="\"1.3.1\"" -c smallsem.c
+gcc -O2   -c -o mutex.o mutex.c
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 firmware.o pusb.o modem_run.o crc.o smallsem.o mutex.o  -o modem_run
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -DUSE_SYSLOG -DVERSION="\"1.3.1\"" -c pppoa2.c
+pppoa2.c: In function 'dump':
+pppoa2.c:659:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "%02x ", buf[j]);
+            ^
+In file included from pppoa2.c:34:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+pppoa2.c:668:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "   ");
+            ^
+In file included from pppoa2.c:34:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+pppoa2.c:677:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "%c", give_char(buf[j]));
+            ^
+In file included from pppoa2.c:34:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+pppoa2.c: In function 'report':
+pppoa2.c:759:9: warning: pointer targets in passing argument 1 of 'dump' differ in signedness [-Wpointer-sign]
+    dump(buffer, length);
+         ^
+pppoa2.c:636:13: note: expected 'unsigned char *' but argument is of type 'char *'
+ static void dump(unsigned char *buf, int len)
+             ^
+pppoa2.c:703:6: warning: assuming signed overflow does not occur when assuming that (X + c) >= X is always true [-Wstrict-overflow]
+ void report( int minlevel, unsigned int flags, const char *format, ...)
+      ^
+pppoa2.c:703:6: warning: assuming signed overflow does not occur when assuming that (X + c) >= X is always true [-Wstrict-overflow]
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -D_REENTRANT -D_THREAD_SAFE -DVERSION="\"1.3.1\"" -c atm.c
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 pusb.o pppoa2.o crc.o atm.o smallsem.o  -o pppoa2
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 -DUSE_SYSLOG -D_REENTRANT -D_THREAD_SAFE -DVERSION="\"1.3.1\"" -c pppoa3.c
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c: In function 'read_named_pipe_thread':
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+pppoa3.c:1071:14: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+pppoa3.c:1071:14: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+pppoa3.c:1071:14: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+pppoa3.c:1071:14: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1071:14: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness [-Wpointer-sign]
+   if(strncmp(command, "verbose", 7) == 0) {
+              ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:143:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+            ^
+pppoa3.c:1075:17: warning: pointer targets in passing argument 1 of 'atoi' differ in signedness [-Wpointer-sign]
+    level = atoi(arg);
+                 ^
+In file included from /usr/include/features.h:365:0,
+                 from /usr/include/stdio.h:27,
+                 from pppoa3.c:36:
+/usr/include/stdlib.h:278:1: note: expected 'const char *' but argument is of type 'unsigned char *'
+ __NTH (atoi (const char *__nptr))
+ ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+pppoa3.c:1086:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+pppoa3.c:1086:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+pppoa3.c:1086:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+pppoa3.c:1086:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1086:19: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "iopolicy", 8) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:143:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+            ^
+pppoa3.c:1093:23: warning: pointer targets in passing argument 1 of 'atoi' differ in signedness [-Wpointer-sign]
+    desired_pol = atoi(arg);
+                       ^
+In file included from /usr/include/features.h:365:0,
+                 from /usr/include/stdio.h:27,
+                 from pppoa3.c:36:
+/usr/include/stdlib.h:278:1: note: expected 'const char *' but argument is of type 'unsigned char *'
+ __NTH (atoi (const char *__nptr))
+ ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+pppoa3.c:1125:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+pppoa3.c:1125:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+pppoa3.c:1125:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+pppoa3.c:1125:19: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1125:19: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness [-Wpointer-sign]
+   else if(strncmp(command, "kill", 4) == 0) {
+                   ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:143:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+            ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+pppoa3.c:1127:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+pppoa3.c:1127:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+pppoa3.c:1127:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+pppoa3.c:1127:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1127:15: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pipe", 4) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:143:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+            ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+pppoa3.c:1132:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern size_t strlen (const char *__s)
+               ^
+In file included from /usr/include/string.h:630:0,
+                 from pppoa3.c:38:
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+pppoa3.c:1132:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+pppoa3.c:1132:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of '__builtin_strcmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+pppoa3.c:1132:15: note: expected 'const char *' but argument is of type 'unsigned char *'
+pppoa3.c:1132:15: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness [-Wpointer-sign]
+    if(strncmp(arg, "pppoa", 5) == 0) {
+               ^
+In file included from pppoa3.c:38:0:
+/usr/include/string.h:143:12: note: expected 'const char *' but argument is of type 'unsigned char *'
+ extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+            ^
+pppoa3.c: In function 'report':
+pppoa3.c:1748:9: warning: pointer targets in passing argument 1 of 'dump' differ in signedness [-Wpointer-sign]
+    dump(buffer, length);
+         ^
+pppoa3.c:147:13: note: expected 'unsigned char *' but argument is of type 'char *'
+ static void dump(unsigned char *buf, int len);
+             ^
+pppoa3.c: In function 'dump':
+pppoa3.c:2007:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "%02x ", buf[j]);
+            ^
+In file included from pppoa3.c:36:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+pppoa3.c:2016:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(ptr, "   ");
+            ^
+In file included from pppoa3.c:36:0:
+/usr/include/stdio.h:364:12: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ extern int sprintf (char *__restrict __s,
+            ^
+pppoa3.c: In function 'report':
+pppoa3.c:1653:6: warning: assuming signed overflow does not occur when assuming that (X + c) >= X is always true [-Wstrict-overflow]
+ void report( int minlevel, unsigned int flags, const char *format, ...)
+      ^
+pppoa3.c:1653:6: warning: assuming signed overflow does not occur when assuming that (X + c) >= X is always true [-Wstrict-overflow]
+gcc -Wall -I. -I/usr/include -I/usr/include -O2 pusb.o pppoa3.o crc.o atm.o -pthread  -o pppoa3
+rm -f speedtouch-setup speedtouch-setup.tmp
+sed -e 's,\@bindir\@,/usr/bin,g' -e 's,\@sbindir\@,/usr/bin,g' -e 's,\@sysconfdir\@,/etc,g' < speedtouch-setup.in > speedtouch-setup.tmp
+chmod a+x speedtouch-setup.tmp
+mv speedtouch-setup.tmp speedtouch-setup
+rm -f speedtouch-start speedtouch-start.tmp
+sed -e 's,\@bindir\@,/usr/bin,g' -e 's,\@sbindir\@,/usr/bin,g' -e 's,\@sysconfdir\@,/etc,g' < speedtouch-start.in > speedtouch-start.tmp
+chmod a+x speedtouch-start.tmp
+mv speedtouch-start.tmp speedtouch-start
+rm -f speedtouch-stop speedtouch-stop.tmp
+sed -e 's,\@bindir\@,/usr/bin,g' -e 's,\@sbindir\@,/usr/bin,g' -e 's,\@sysconfdir\@,/etc,g' < speedtouch-stop.in > speedtouch-stop.tmp
+chmod a+x speedtouch-stop.tmp
+mv speedtouch-stop.tmp speedtouch-stop
+cp modem_run pppoa2 pppoa3 speedtouch-setup speedtouch-start speedtouch-stop "/tmp/speedtouch/src/speedtouch-1.3.1/bin"
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/src'
+cd hotplug && make
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/hotplug'
+rm -f speedtouch speedtouch.tmp
+sed -e 's,\@bindir\@,/usr/bin,g' -e 's,\@sbindir\@,/usr/bin,g' < speedtouch.in > speedtouch.tmp
+chmod a+x speedtouch.tmp
+mv speedtouch.tmp speedtouch
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/hotplug'
+-------------------------------------------------------------
+Driver for the SpeedTouch USB and SpeedTouch 330 is compiled
+
+To install it, type as root:
+
+make install
+-------------------------------------------------------------
+==> Entering fakeroot environment...
+==> Starting package()...
+cd src && make 
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/src'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/src'
+cd hotplug && make
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/hotplug'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/hotplug'
+-------------------------------------------------------------
+Driver for the SpeedTouch USB and SpeedTouch 330 is compiled
+
+To install it, type as root:
+
+make install
+-------------------------------------------------------------
+Installing the Speedtouch USB driver ...
+test -d "/tmp/speedtouch/pkg/speedtouch/usr/bin" || /usr/bin/install -c -c -d "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+make modem_run pppoa2 pppoa3
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1'
+Installing the modem_run program ...
+/usr/bin/install -c -m 0755 -o root bin/modem_run "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+Installing the pppoa2 ppp pty slave ...
+/usr/bin/install -c -m 0755 -o root bin/pppoa2  "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+Installing the pppoa3 ppp pty slave ...
+/usr/bin/install -c -m 0755 -o root bin/pppoa3  "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1'
+Installing man pages ...
+cd "/tmp/speedtouch/src/speedtouch-1.3.1/doc-linux" && make install
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/doc-linux'
+/usr/bin/install -c -m 0644 -o root man/speedtouch-setup.1 "/tmp/speedtouch/pkg/speedtouch/usr/share/man/man1"
+/usr/bin/install -c -m 0644 -o root man/speedtouch-start.1 "/tmp/speedtouch/pkg/speedtouch/usr/share/man/man1"
+/usr/bin/install -c -m 0644 -o root man/speedtouch-stop.1  "/tmp/speedtouch/pkg/speedtouch/usr/share/man/man1"
+/usr/bin/install -c -m 0644 -o root man/modem_run.8 "/tmp/speedtouch/pkg/speedtouch/usr/share/man/man8"
+/usr/bin/install -c -m 0644 -o root man/pppoa2.8    "/tmp/speedtouch/pkg/speedtouch/usr/share/man/man8"
+/usr/bin/install -c -m 0644 -o root man/pppoa3.8    "/tmp/speedtouch/pkg/speedtouch/usr/share/man/man8"
+/usr/bin/install -c -m 0644 -o root adsl.ppp-peersample "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root speedtouch.sh       "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root speedtouch.conf     "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root FAQ                 "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root BUGS                "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root HDLC_BUG            "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root results.txt         "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root pppoax-doc-en.txt   "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root pppoax-doc-fr.txt   "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch"
+/usr/bin/install -c -m 0644 -o root howto/SpeedTouch-HOWTO-en.html "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch/howto"
+/usr/bin/install -c -m 0644 -o root howto/SpeedTouch-HOWTO-fr.html "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch/howto"
+/usr/bin/install -c -m 0644 -o root howto/SpeedTouch-HOWTO-de.html "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch/howto"
+/usr/bin/install -c -m 0644 -o root howto/SpeedTouch-HOWTO-it.html "/tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch/howto"
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/doc-linux'
+Installing the boot block for speedtouch usb rev [1|2|3] ...
+test -d "/tmp/speedtouch/pkg/speedtouch/usr/share/speedtouch" || /usr/bin/install -c -c -d "/tmp/speedtouch/pkg/speedtouch/usr/share/speedtouch"
+/usr/bin/install -c -m 0644 -o root src/boot.v123.bin "/tmp/speedtouch/pkg/speedtouch/usr/share/speedtouch"
+cd hotplug && make install
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/hotplug'
+if [ -d /etc/hotplug ]; then \
+	/usr/bin/install -c                        -d "/tmp/speedtouch/pkg/speedtouch/etc/hotplug/usb/"   ;\
+  /usr/bin/install -c -m 755 speedtouch         "/tmp/speedtouch/pkg/speedtouch/etc/hotplug/usb/"   ;\
+	/usr/bin/install -c -m 644 speedtouch.usermap "/tmp/speedtouch/pkg/speedtouch/etc/hotplug/usb/"   ;\
+fi
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/hotplug'
+cd src && make install
+make[1]: Entering directory '/tmp/speedtouch/src/speedtouch-1.3.1/src'
+/usr/bin/install -c -d "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+/usr/bin/install -c -m 0755 speedtouch-setup "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+/usr/bin/install -c -m 0755 speedtouch-start "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+/usr/bin/install -c -m 0755 speedtouch-stop  "/tmp/speedtouch/pkg/speedtouch/usr/bin"
+/usr/bin/install -c -d "/tmp/speedtouch/pkg/speedtouch/etc/speedtouch"
+make[1]: Leaving directory '/tmp/speedtouch/src/speedtouch-1.3.1/src'
+
+-------------------------------------------------------------
+Driver for the SpeedTouch USB and SpeedTouch 330 is installed
+
+The binaries (modem_run and pppoax) have been installed in :
+          * /tmp/speedtouch/pkg/speedtouch/usr/bin
+
+You will find the documentation and example script files in : 
+          * /tmp/speedtouch/pkg/speedtouch/usr/share/doc/speedtouch
+
+You can start configuring your modem by running
+/tmp/speedtouch/pkg/speedtouch/usr/bin/speedtouch-setup
+
+-------------------------------------------------------------
+
+NB : Read the documentation carefully to use this driver correctly
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "speedtouch"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: speedtouch 1.3.1-5 (Sat Nov 14 07:08:46 UTC 2015)
+===> Printing config.logs
+found log at /tmp/speedtouch/src/speedtouch-1.3.1/config.log
+____
+File /tmp/speedtouch/src/speedtouch-1.3.1/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by speedtouch configure 1.3.1, which was
+generated by GNU Autoconf 2.59.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --mandir=/usr/share/man
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 54a018aa6167
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+hostinfo               = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1352: checking build system type
+configure:1370: result: x86_64-unknown-linux-gnu
+configure:1378: checking host system type
+configure:1392: result: x86_64-unknown-linux-gnu
+configure:1409: checking for x86_64-unknown-linux-gcc
+configure:1438: result: no
+configure:1447: checking for gcc
+configure:1463: found /usr/sbin/gcc
+configure:1473: result: gcc
+configure:1717: checking for C compiler version
+configure:1720: gcc --version </dev/null >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:1723: $? = 0
+configure:1725: gcc -v </dev/null >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:1728: $? = 0
+configure:1730: gcc -V </dev/null >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:1733: $? = 1
+configure:1756: checking for C compiler default output file name
+configure:1759: gcc    conftest.c  >&5
+configure:1762: $? = 0
+configure:1808: result: a.out
+configure:1813: checking whether the C compiler works
+configure:1819: ./a.out
+configure:1822: $? = 0
+configure:1839: result: yes
+configure:1846: checking whether we are cross compiling
+configure:1848: result: no
+configure:1851: checking for suffix of executables
+configure:1853: gcc -o conftest    conftest.c  >&5
+configure:1856: $? = 0
+configure:1881: result: 
+configure:1887: checking for suffix of object files
+configure:1908: gcc -c   conftest.c >&5
+configure:1911: $? = 0
+configure:1933: result: o
+configure:1937: checking whether we are using the GNU C compiler
+configure:1961: gcc -c   conftest.c >&5
+configure:1967: $? = 0
+configure:1971: test -z 
+			 || test ! -s conftest.err
+configure:1974: $? = 0
+configure:1977: test -s conftest.o
+configure:1980: $? = 0
+configure:1993: result: yes
+configure:1999: checking whether gcc accepts -g
+configure:2020: gcc -c -g  conftest.c >&5
+configure:2026: $? = 0
+configure:2030: test -z 
+			 || test ! -s conftest.err
+configure:2033: $? = 0
+configure:2036: test -s conftest.o
+configure:2039: $? = 0
+configure:2050: result: yes
+configure:2067: checking for gcc option to accept ANSI C
+configure:2137: gcc  -c -g -O2  conftest.c >&5
+configure:2143: $? = 0
+configure:2147: test -z 
+			 || test ! -s conftest.err
+configure:2150: $? = 0
+configure:2153: test -s conftest.o
+configure:2156: $? = 0
+configure:2174: result: none needed
+configure:2192: gcc -c -g -O2  conftest.c >&5
+conftest.c:2:3: error: unknown type name 'choke'
+   choke me
+   ^
+conftest.c:2:3: error: expected '=', ',', ';', 'asm' or '__attribute__' at end of input
+configure:2198: $? = 1
+configure: failed program was:
+| #ifndef __cplusplus
+|   choke me
+| #endif
+configure:2331: checking whether make sets $(MAKE)
+configure:2351: result: yes
+configure:2373: checking for a BSD-compatible install
+configure:2428: result: /usr/bin/install -c
+configure:2489: checking how to run the C preprocessor
+configure:2524: gcc -E  conftest.c
+configure:2530: $? = 0
+configure:2562: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2568: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME "speedtouch"
+| #define PACKAGE_TARNAME "speedtouch"
+| #define PACKAGE_VERSION "1.3.1"
+| #define PACKAGE_STRING "speedtouch 1.3.1"
+| #define PACKAGE_BUGREPORT "speedtouch@ml.free.fr"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2607: result: gcc -E
+configure:2631: gcc -E  conftest.c
+configure:2637: $? = 0
+configure:2669: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2675: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME "speedtouch"
+| #define PACKAGE_TARNAME "speedtouch"
+| #define PACKAGE_VERSION "1.3.1"
+| #define PACKAGE_STRING "speedtouch 1.3.1"
+| #define PACKAGE_BUGREPORT "speedtouch@ml.free.fr"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2719: checking for egrep
+configure:2729: result: grep -E
+configure:2734: checking for ANSI C header files
+configure:2759: gcc -c  -O2  conftest.c >&5
+configure:2765: $? = 0
+configure:2769: test -z 
+			 || test ! -s conftest.err
+configure:2772: $? = 0
+configure:2775: test -s conftest.o
+configure:2778: $? = 0
+configure:2867: gcc -o conftest  -O2   conftest.c  >&5
+conftest.c: In function 'main':
+conftest.c:26:7: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+       exit(2);
+       ^
+conftest.c:26:7: warning: incompatible implicit declaration of built-in function 'exit'
+conftest.c:26:7: note: include '<stdlib.h>' or provide a declaration of 'exit'
+conftest.c:27:3: warning: incompatible implicit declaration of built-in function 'exit'
+   exit (0);
+   ^
+conftest.c:27:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2870: $? = 0
+configure:2872: ./conftest
+configure:2875: $? = 0
+configure:2890: result: yes
+configure:2914: checking for sys/types.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for sys/stat.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for stdlib.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for string.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for memory.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for strings.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for inttypes.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for stdint.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:2914: checking for unistd.h
+configure:2930: gcc -c  -O2  conftest.c >&5
+configure:2936: $? = 0
+configure:2940: test -z 
+			 || test ! -s conftest.err
+configure:2943: $? = 0
+configure:2946: test -s conftest.o
+configure:2949: $? = 0
+configure:2960: result: yes
+configure:3023: checking stdio.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking stdio.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for stdio.h
+configure:3146: result: yes
+configure:3014: checking for unistd.h
+configure:3019: result: yes
+configure:3023: checking fcntl.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking fcntl.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for fcntl.h
+configure:3146: result: yes
+configure:3023: checking errno.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking errno.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for errno.h
+configure:3146: result: yes
+configure:3023: checking time.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking time.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for time.h
+configure:3146: result: yes
+configure:3023: checking signal.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking signal.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for signal.h
+configure:3146: result: yes
+configure:3014: checking for stdlib.h
+configure:3019: result: yes
+configure:3023: checking termios.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking termios.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for termios.h
+configure:3146: result: yes
+configure:3023: checking limits.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking limits.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for limits.h
+configure:3146: result: yes
+configure:3023: checking stdarg.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking stdarg.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for stdarg.h
+configure:3146: result: yes
+configure:3014: checking for string.h
+configure:3019: result: yes
+configure:3023: checking sys/resource.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking sys/resource.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for sys/resource.h
+configure:3146: result: yes
+configure:3023: checking sys/ioctl.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking sys/ioctl.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for sys/ioctl.h
+configure:3146: result: yes
+configure:3014: checking for sys/types.h
+configure:3019: result: yes
+configure:3014: checking for sys/stat.h
+configure:3019: result: yes
+configure:3023: checking sys/time.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking sys/time.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for sys/time.h
+configure:3146: result: yes
+configure:3023: checking sys/param.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking sys/param.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for sys/param.h
+configure:3146: result: yes
+configure:3023: checking sys/socket.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking sys/socket.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for sys/socket.h
+configure:3146: result: yes
+configure:3023: checking syslog.h usability
+configure:3035: gcc -c  -O2  conftest.c >&5
+configure:3041: $? = 0
+configure:3045: test -z 
+			 || test ! -s conftest.err
+configure:3048: $? = 0
+configure:3051: test -s conftest.o
+configure:3054: $? = 0
+configure:3064: result: yes
+configure:3068: checking syslog.h presence
+configure:3078: gcc -E  conftest.c
+configure:3084: $? = 0
+configure:3104: result: yes
+configure:3139: checking for syslog.h
+configure:3146: result: yes
+configure:3164: checking for pid_t
+configure:3188: gcc -c  -O2  conftest.c >&5
+configure:3194: $? = 0
+configure:3198: test -z 
+			 || test ! -s conftest.err
+configure:3201: $? = 0
+configure:3204: test -s conftest.o
+configure:3207: $? = 0
+configure:3218: result: yes
+configure:3230: checking for size_t
+configure:3254: gcc -c  -O2  conftest.c >&5
+configure:3260: $? = 0
+configure:3264: test -z 
+			 || test ! -s conftest.err
+configure:3267: $? = 0
+configure:3270: test -s conftest.o
+configure:3273: $? = 0
+configure:3284: result: yes
+configure:3296: checking for an ANSI C-conforming const
+configure:3363: gcc -c  -O2  conftest.c >&5
+configure:3369: $? = 0
+configure:3373: test -z 
+			 || test ! -s conftest.err
+configure:3376: $? = 0
+configure:3379: test -s conftest.o
+configure:3382: $? = 0
+configure:3393: result: yes
+configure:3403: checking return type of signal handlers
+configure:3434: gcc -c  -O2  conftest.c >&5
+configure:3440: $? = 0
+configure:3444: test -z 
+			 || test ! -s conftest.err
+configure:3447: $? = 0
+configure:3450: test -s conftest.o
+configure:3453: $? = 0
+configure:3464: result: void
+configure:3477: checking for alarm
+configure:3534: gcc -o conftest  -O2   conftest.c  >&5
+configure:3540: $? = 0
+configure:3544: test -z 
+			 || test ! -s conftest.err
+configure:3547: $? = 0
+configure:3550: test -s conftest
+configure:3553: $? = 0
+configure:3565: result: yes
+configure:3579: checking for gettimeofday
+configure:3636: gcc -o conftest  -O2   conftest.c  >&5
+configure:3642: $? = 0
+configure:3646: test -z 
+			 || test ! -s conftest.err
+configure:3649: $? = 0
+configure:3652: test -s conftest
+configure:3655: $? = 0
+configure:3667: result: yes
+configure:3681: checking for memmove
+configure:3738: gcc -o conftest  -O2   conftest.c  >&5
+conftest.c:65:6: warning: conflicting types for built-in function 'memmove'
+ char memmove ();
+      ^
+configure:3744: $? = 0
+configure:3748: test -z 
+			 || test ! -s conftest.err
+configure:3751: $? = 0
+configure:3754: test -s conftest
+configure:3757: $? = 0
+configure:3769: result: yes
+configure:3783: checking for memset
+configure:3840: gcc -o conftest  -O2   conftest.c  >&5
+conftest.c:66:6: warning: conflicting types for built-in function 'memset'
+ char memset ();
+      ^
+configure:3846: $? = 0
+configure:3850: test -z 
+			 || test ! -s conftest.err
+configure:3853: $? = 0
+configure:3856: test -s conftest
+configure:3859: $? = 0
+configure:3871: result: yes
+configure:3885: checking for mkfifo
+configure:3942: gcc -o conftest  -O2   conftest.c  >&5
+configure:3948: $? = 0
+configure:3952: test -z 
+			 || test ! -s conftest.err
+configure:3955: $? = 0
+configure:3958: test -s conftest
+configure:3961: $? = 0
+configure:3973: result: yes
+configure:3987: checking for select
+configure:4044: gcc -o conftest  -O2   conftest.c  >&5
+configure:4050: $? = 0
+configure:4054: test -z 
+			 || test ! -s conftest.err
+configure:4057: $? = 0
+configure:4060: test -s conftest
+configure:4063: $? = 0
+configure:4075: result: yes
+configure:4089: checking for strdup
+configure:4146: gcc -o conftest  -O2   conftest.c  >&5
+conftest.c:69:6: warning: conflicting types for built-in function 'strdup'
+ char strdup ();
+      ^
+configure:4152: $? = 0
+configure:4156: test -z 
+			 || test ! -s conftest.err
+configure:4159: $? = 0
+configure:4162: test -s conftest
+configure:4165: $? = 0
+configure:4177: result: yes
+configure:4191: checking for strerror
+configure:4248: gcc -o conftest  -O2   conftest.c  >&5
+configure:4254: $? = 0
+configure:4258: test -z 
+			 || test ! -s conftest.err
+configure:4261: $? = 0
+configure:4264: test -s conftest
+configure:4267: $? = 0
+configure:4279: result: yes
+configure:4628: checking for pthread_create in -lpthread
+configure:4658: gcc -o conftest  -O2   conftest.c -lpthread   >&5
+configure:4664: $? = 0
+configure:4668: test -z 
+			 || test ! -s conftest.err
+configure:4671: $? = 0
+configure:4674: test -s conftest
+configure:4677: $? = 0
+configure:4690: result: yes
+configure:4719: checking for rpm
+configure:4748: result: no
+configure:4895: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by speedtouch config.status 1.3.1, which was
+generated by GNU Autoconf 2.59.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 54a018aa6167
+
+config.status:670: creating Makefile
+config.status:670: creating VERSION
+config.status:670: creating src/Makefile
+config.status:670: creating hotplug/Makefile
+config.status:670: creating doc-linux/Makefile
+config.status:670: creating doc-bsd/Makefile
+config.status:670: creating speedtouch.spec
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_build=x86_64-unknown-linux-gnu
+ac_cv_build_alias=x86_64-unknown-linux-gnu
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_exeext=
+ac_cv_func_alarm=yes
+ac_cv_func_gettimeofday=yes
+ac_cv_func_memmove=yes
+ac_cv_func_memset=yes
+ac_cv_func_mkfifo=yes
+ac_cv_func_select=yes
+ac_cv_func_strdup=yes
+ac_cv_func_strerror=yes
+ac_cv_header_errno_h=yes
+ac_cv_header_fcntl_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_limits_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_signal_h=yes
+ac_cv_header_stdarg_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdio_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_ioctl_h=yes
+ac_cv_header_sys_param_h=yes
+ac_cv_header_sys_resource_h=yes
+ac_cv_header_sys_socket_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_time_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_syslog_h=yes
+ac_cv_header_termios_h=yes
+ac_cv_header_time_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_host=x86_64-unknown-linux-gnu
+ac_cv_host_alias=x86_64-unknown-linux
+ac_cv_lib_pthread_pthread_create=yes
+ac_cv_objext=o
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cc_stdc=
+ac_cv_prog_egrep='grep -E'
+ac_cv_prog_make_make_set=yes
+ac_cv_type_pid_t=yes
+ac_cv_type_signal=void
+ac_cv_type_size_t=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS=' -O2'
+CPP='gcc -E'
+CPPFLAGS=''
+CWARN='-Wall'
+DEFS='-DPACKAGE_NAME=\"speedtouch\" -DPACKAGE_TARNAME=\"speedtouch\" -DPACKAGE_VERSION=\"1.3.1\" -DPACKAGE_STRING=\"speedtouch\ 1.3.1\" -DPACKAGE_BUGREPORT=\"speedtouch@ml.free.fr\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDIO_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_ERRNO_H=1 -DHAVE_TIME_H=1 -DHAVE_SIGNAL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_TERMIOS_H=1 -DHAVE_LIMITS_H=1 -DHAVE_STDARG_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_RESOURCE_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYSLOG_H=1 -DRETSIGTYPE=void -DHAVE_ALARM=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMMOVE=1 -DHAVE_MEMSET=1 -DHAVE_MKFIFO=1 -DHAVE_SELECT=1 -DHAVE_STRDUP=1 -DHAVE_STRERROR=1 -DLINUX=1 '
+DOCDIR='doc-linux'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='grep -E'
+EXEEXT=''
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKE_INSTALL_SCRIPT=''
+OBJEXT='o'
+PACKAGE_BUGREPORT='speedtouch@ml.free.fr'
+PACKAGE_NAME='speedtouch'
+PACKAGE_STRING='speedtouch 1.3.1'
+PACKAGE_TARNAME='speedtouch'
+PACKAGE_VERSION='1.3.1'
+PATH_SEPARATOR=':'
+PUSB_SOURCE='pusb-linux.c'
+PWD='/tmp/speedtouch/src/speedtouch-1.3.1'
+RPM_ROOT=''
+SET_MAKE=''
+SHELL='/bin/sh'
+THREAD_LIBS='-pthread'
+USE_SYSLOG=''
+VERSION='1.3.1'
+ac_configure_args=''--host' 'x86_64-unknown-linux' '--prefix=/usr' '--sbindir=/usr/bin' '--sysconfdir=/etc' '--mandir=/usr/share/man' 'host_alias=x86_64-unknown-linux''
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build='x86_64-unknown-linux-gnu'
+build_alias=''
+build_cpu='x86_64'
+build_os='linux-gnu'
+build_vendor='unknown'
+datadir='${prefix}/share'
+exec_prefix='${prefix}'
+host='x86_64-unknown-linux-gnu'
+host_alias='x86_64-unknown-linux'
+host_cpu='x86_64'
+host_os='linux-gnu'
+host_vendor='unknown'
+includedir='${prefix}/include'
+infodir='${prefix}/info'
+installuser='root'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+link_opts=''
+localstatedir='${prefix}/var'
+mandir='/usr/share/man'
+oldincludedir='/usr/include'
+prefix='/usr'
+program_transform_name='s,x,x,'
+sbindir='/usr/bin'
+sharedstatedir='${prefix}/com'
+st_compile='modem_run pppoa2 pppoa3'
+sysconfdir='/etc'
+syslog_flags='-DUSE_SYSLOG'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define HAVE_ALARM 1
+#define HAVE_ERRNO_H 1
+#define HAVE_FCNTL_H 1
+#define HAVE_GETTIMEOFDAY 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_LIMITS_H 1
+#define HAVE_MEMMOVE 1
+#define HAVE_MEMORY_H 1
+#define HAVE_MEMSET 1
+#define HAVE_MKFIFO 1
+#define HAVE_SELECT 1
+#define HAVE_SIGNAL_H 1
+#define HAVE_STDARG_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_STDIO_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRDUP 1
+#define HAVE_STRERROR 1
+#define HAVE_STRINGS_H 1
+#define HAVE_STRING_H 1
+#define HAVE_STRING_H 1
+#define HAVE_SYSLOG_H 1
+#define HAVE_SYS_IOCTL_H 1
+#define HAVE_SYS_PARAM_H 1
+#define HAVE_SYS_RESOURCE_H 1
+#define HAVE_SYS_SOCKET_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TIME_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_TERMIOS_H 1
+#define HAVE_TIME_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_UNISTD_H 1
+#define LINUX 1
+#define PACKAGE_BUGREPORT "speedtouch@ml.free.fr"
+#define PACKAGE_NAME "speedtouch"
+#define PACKAGE_STRING "speedtouch 1.3.1"
+#define PACKAGE_TARNAME "speedtouch"
+#define PACKAGE_VERSION "1.3.1"
+#define RETSIGTYPE void
+#define STDC_HEADERS 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

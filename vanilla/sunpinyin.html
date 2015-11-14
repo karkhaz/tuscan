@@ -1,0 +1,950 @@
+        <html><head></head><body>
+        <h1>Report for sunpinyin on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:02:09</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data sunpinyin
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2543 packages in cache
+Found permanent source directory in /sources/sunpinyin
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sunpinyin 2.0.3.20150706-1 (Sat Nov 14 07:15:33 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) sqlite-3.9.2-1
+
+Total Installed Size:  5.28 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) perl-error-0.17024-1  perl-xml-parser-2.44-2  python2-2.7.10-2  git-2.6.2-1  intltool-0.51.0-1  scons-2.4.0-1
+
+Total Installed Size:  102.16 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts [pending]
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing scons...
+installing perl-xml-parser...
+installing intltool...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+scons: Reading SConscript files ...
+Checking for pkg-config... yes
+Checking for sqlite3... yes
+Checking for C header file assert.h... yes
+Checking for C function bind_textdomain_codeset()... yes
+Checking for C function dcgettext()... yes
+Checking for C function exp2()... no
+Checking for C header file fcntl.h... yes
+Checking for C header file getopt.h... yes
+Checking for C function getopt_long()... yes
+Checking for C function getpagesize()... yes
+Checking for C function get_opt()... no
+Checking for C header file iconv.h... yes
+Checking for C header file inttypes.h... yes
+Checking for C header file locale.h... yes
+Checking for C header file libintl.h... yes
+Checking for C header file limits.h... yes
+Checking for C header file locale.h... yes
+Checking for C function log2()... no
+Checking for C header file memory.h... yes
+Checking for C function memset()... yes
+Checking for C function mmap()... yes
+Checking for C function munmap()... yes
+Checking for C function setlocale()... yes
+Checking for C header file sys/mman.h... yes
+Checking for C header file sys/param.h... yes
+Checking for C header file sys/stat.h... yes
+Checking for C header file sys/types.h... yes
+Checking for C header file unistd.h... yes
+Checking for C header file wchar.h... yes
+scons: done reading SConscript files.
+scons: Building targets ...
+scons: Configure: creating config.h
+Creating 'doc/README'
+Creating 'doc/SLM-inst.mk'
+g++ -o src/portability.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/portability.cpp
+g++ -o src/slm/slm.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slm.cpp
+g++ -o src/lexicon/pytrie.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/lexicon/pytrie.cpp
+cd python && ./pinyin_info_gen.py > ../src/pinyin/pinyin_info.h
+g++ -o src/pinyin/pinyin_data.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/pinyin/pinyin_data.cpp
+cd python && ./quanpin_trie_gen.py > ../src/pinyin/quanpin_trie.h
+g++ -o src/pinyin/pinyin_seg.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/pinyin/pinyin_seg.cpp
+g++ -o src/pinyin/shuangpin_data.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/pinyin/shuangpin_data.cpp
+g++ -o src/pinyin/shuangpin_seg.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/pinyin/shuangpin_seg.cpp
+g++ -o src/pinyin/hunpin_seg.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/pinyin/hunpin_seg.cpp
+g++ -o src/ime-core/imi_context.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_context.cpp
+g++ -o src/ime-core/imi_data.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_data.cpp
+g++ -o src/ime-core/lattice_states.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/lattice_states.cpp
+g++ -o src/ime-core/imi_view.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_view.cpp
+g++ -o src/ime-core/imi_uiobjects.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_uiobjects.cpp
+g++ -o src/ime-core/imi_view_classic.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_view_classic.cpp
+g++ -o src/ime-core/imi_winHandler.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_winHandler.cpp
+g++ -o src/ime-core/ic_history.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/ic_history.cpp
+g++ -o src/ime-core/imi_funcobjs.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_funcobjs.cpp
+g++ -o src/ime-core/imi_options.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_options.cpp
+g++ -o src/ime-core/imi_option_event.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/imi_option_event.cpp
+g++ -o src/ime-core/userdict.os -c -pipe -fPIC -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/ime-core/userdict.cpp
+g++ -o libsunpinyin.so.3.0 -Wl,-soname=libsunpinyin.so.3 -shared src/portability.os src/slm/slm.os src/lexicon/pytrie.os src/pinyin/pinyin_data.os src/pinyin/pinyin_seg.os src/pinyin/shuangpin_data.os src/pinyin/shuangpin_seg.os src/pinyin/hunpin_seg.os src/ime-core/imi_context.os src/ime-core/imi_data.os src/ime-core/lattice_states.os src/ime-core/imi_view.os src/ime-core/imi_uiobjects.os src/ime-core/imi_view_classic.os src/ime-core/imi_winHandler.os src/ime-core/ic_history.os src/ime-core/imi_funcobjs.os src/ime-core/imi_options.os src/ime-core/imi_option_event.os src/ime-core/userdict.os -lsqlite3
+pod2man man/genpyt.pod man/genpyt.1
+pod2man man/getwordfreq.pod man/getwordfreq.1
+pod2man man/idngram_merge.pod man/idngram_merge.1
+pod2man man/ids2ngram.pod man/ids2ngram.1
+pod2man man/mmseg.pod man/mmseg.1
+pod2man man/slmbuild.pod man/slmbuild.1
+pod2man man/slminfo.pod man/slminfo.1
+pod2man man/slmpack.pod man/slmpack.1
+pod2man man/slmprune.pod man/slmprune.1
+pod2man man/slmseg.pod man/slmseg.1
+pod2man man/slmthread.pod man/slmthread.1
+pod2man man/tslmendian.pod man/tslmendian.1
+pod2man man/tslminfo.pod man/tslminfo.1
+g++ -o src/portability.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/portability.cpp
+g++ -o src/slm/slm.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slm.cpp
+g++ -o src/slm/tslmendian/writer.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/tslmendian/writer.cpp
+g++ -o src/lexicon/trie_writer.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/lexicon/trie_writer.cpp
+g++ -o src/lexicon/genpyt.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/lexicon/genpyt.cpp
+g++ -o src/lexicon/pytrie.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/lexicon/pytrie.cpp
+g++ -o src/lexicon/pytrie_gen.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/lexicon/pytrie_gen.cpp
+g++ -o src/pinyin/pinyin_data.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/pinyin/pinyin_data.cpp
+g++ -o src/genpyt src/portability.o src/slm/slm.o src/slm/tslmendian/writer.o src/lexicon/trie_writer.o src/lexicon/genpyt.o src/lexicon/pytrie.o src/lexicon/pytrie_gen.o src/pinyin/pinyin_data.o -lsqlite3
+g++ -o src/slm/getwordfreq/getwordfreq.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/getwordfreq/getwordfreq.cpp
+g++ -o src/getwordfreq src/portability.o src/slm/slm.o src/slm/getwordfreq/getwordfreq.o -lsqlite3
+g++ -o src/slm/ids2ngram/idngram_merge.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/ids2ngram/idngram_merge.cpp
+g++ -o src/idngram_merge src/portability.o src/slm/ids2ngram/idngram_merge.o -lsqlite3
+g++ -o src/slm/ids2ngram/ids2ngram.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/ids2ngram/ids2ngram.cpp
+g++ -o src/ids2ngram src/portability.o src/slm/ids2ngram/ids2ngram.o -lsqlite3
+g++ -o src/slm/sim_dict.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/sim_dict.cpp
+g++ -o src/slm/sim_sen.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/sim_sen.cpp
+g++ -o src/slm/mmseg/mmseg.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/mmseg/mmseg.cpp
+g++ -o src/mmseg src/portability.o src/slm/sim_dict.o src/slm/sim_sen.o src/slm/mmseg/mmseg.o -lsqlite3
+g++ -o src/slm/sim_slm.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/sim_slm.cpp
+g++ -o src/slm/slmbuild/sim_slmbuilder.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slmbuild/sim_slmbuilder.cpp
+g++ -o src/slm/slmbuild/slmbuild.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slmbuild/slmbuild.cpp
+g++ -o src/slm/slminfo/slminfo.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slminfo/slminfo.cpp
+g++ -o src/slm/slmpack/arpa_slm.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slmpack/arpa_slm.cpp
+g++ -o src/slm/slmpack/slmpack.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slmpack/slmpack.cpp
+g++ -o src/slm/slmprune/slmprune.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slmprune/slmprune.cpp
+g++ -o src/slm/slmseg/slmseg.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/slmseg/slmseg.cpp
+g++ -o src/slm/thread/ValueCompress.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/thread/ValueCompress.cpp
+g++ -o src/slm/thread/slmthread.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/thread/slmthread.cpp
+g++ -o src/slm/thread/test_vc.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/thread/test_vc.cpp
+g++ -o src/slm/tslmendian/slm_endian.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/tslmendian/slm_endian.cpp
+g++ -o src/slm/tslmendian/slm_file.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/tslmendian/slm_file.cpp
+g++ -o src/slm/tslminfo/tslminfo.o -c -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin src/slm/tslminfo/tslminfo.cpp
+g++ -o src/slmbuild src/portability.o src/slm/slmbuild/sim_slmbuilder.o src/slm/slmbuild/slmbuild.o -lsqlite3
+g++ -o src/slminfo src/portability.o src/slm/slminfo/slminfo.o -lsqlite3
+g++ -o src/slmpack src/portability.o src/slm/sim_slm.o src/slm/slmpack/slmpack.o src/slm/slmpack/arpa_slm.o -lsqlite3
+g++ -o src/slmprune src/portability.o src/slm/sim_slm.o src/slm/slmprune/slmprune.o -lsqlite3
+g++ -o src/slmseg src/portability.o src/slm/sim_dict.o src/slm/sim_sen.o src/slm/slm.o src/slm/slmseg/slmseg.o -lsqlite3
+g++ -o src/slmthread src/portability.o src/slm/sim_slm.o src/slm/thread/ValueCompress.o src/slm/thread/slmthread.o -lsqlite3
+Creating 'src/sunpinyin-dictgen.mk'
+Copy("src/sunpinyin-dictgen", "src/sunpinyin-dictgen.mk")
+Chmod("src/sunpinyin-dictgen", 0755)
+g++ -o src/testvc src/slm/thread/ValueCompress.o src/slm/thread/test_vc.o -lsqlite3
+g++ -o src/tslmendian src/slm/tslmendian/slm_file.o src/slm/tslmendian/slm_endian.o src/slm/tslmendian/writer.o -lsqlite3
+g++ -o src/tslminfo src/portability.o src/slm/slm.o src/slm/tslminfo/tslminfo.o -lsqlite3
+Creating 'sunpinyin-2.0.pc'
+scons: done building targets.
+==> Entering fakeroot environment...
+==> Starting package()...
+scons: Reading SConscript files ...
+Checking for pkg-config... (cached) yes
+Checking for sqlite3... (cached) yes
+Checking for C header file assert.h... (cached) yes
+Checking for C function bind_textdomain_codeset()... (cached) yes
+Checking for C function dcgettext()... (cached) yes
+Checking for C function exp2()... (cached) no
+Checking for C header file fcntl.h... (cached) yes
+Checking for C header file getopt.h... (cached) yes
+Checking for C function getopt_long()... (cached) yes
+Checking for C function getpagesize()... (cached) yes
+Checking for C function get_opt()... (cached) no
+Checking for C header file iconv.h... (cached) yes
+Checking for C header file inttypes.h... (cached) yes
+Checking for C header file locale.h... (cached) yes
+Checking for C header file libintl.h... (cached) yes
+Checking for C header file limits.h... (cached) yes
+Checking for C header file locale.h... (cached) yes
+Checking for C function log2()... (cached) no
+Checking for C header file memory.h... (cached) yes
+Checking for C function memset()... (cached) yes
+Checking for C function mmap()... (cached) yes
+Checking for C function munmap()... (cached) yes
+Checking for C function setlocale()... (cached) yes
+Checking for C header file sys/mman.h... (cached) yes
+Checking for C header file sys/param.h... (cached) yes
+Checking for C header file sys/stat.h... (cached) yes
+Checking for C header file sys/types.h... (cached) yes
+Checking for C header file unistd.h... (cached) yes
+Checking for C header file wchar.h... (cached) yes
+scons: done reading SConscript files.
+scons: Building targets ...
+Install file: "src/mmseg" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/mmseg"
+Install file: "src/slmseg" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/slmseg"
+Install file: "src/ids2ngram" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/ids2ngram"
+Install file: "src/idngram_merge" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/idngram_merge"
+Install file: "src/slmbuild" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/slmbuild"
+Install file: "src/slmprune" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/slmprune"
+Install file: "src/slminfo" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/slminfo"
+Install file: "src/slmthread" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/slmthread"
+Install file: "src/tslmendian" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/tslmendian"
+Install file: "src/tslminfo" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/tslminfo"
+Install file: "src/slmpack" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/slmpack"
+Install file: "src/genpyt" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/genpyt"
+Install file: "src/getwordfreq" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/getwordfreq"
+Install file: "src/sunpinyin-dictgen" as "/tmp/sunpinyin/pkg/sunpinyin/usr/bin/sunpinyin-dictgen"
+Install file: "man/mmseg.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/mmseg.1"
+Install file: "man/slmseg.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/slmseg.1"
+Install file: "man/ids2ngram.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/ids2ngram.1"
+Install file: "man/idngram_merge.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/idngram_merge.1"
+Install file: "man/slmbuild.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/slmbuild.1"
+Install file: "man/slmprune.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/slmprune.1"
+Install file: "man/slminfo.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/slminfo.1"
+Install file: "man/slmthread.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/slmthread.1"
+Install file: "man/tslmendian.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/tslmendian.1"
+Install file: "man/tslminfo.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/tslminfo.1"
+Install file: "man/slmpack.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/slmpack.1"
+Install file: "man/genpyt.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/genpyt.1"
+Install file: "man/getwordfreq.1" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/man/man1/getwordfreq.1"
+Install file: "doc/README" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/doc/sunpinyin/README"
+Install file: "doc/SLM-train.mk" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/doc/sunpinyin/SLM-train.mk"
+Install file: "doc/SLM-inst.mk" as "/tmp/sunpinyin/pkg/sunpinyin/usr/share/doc/sunpinyin/SLM-inst.mk"
+Install file: "src/slm/ids2ngram/idngram.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/ids2ngram/idngram.h"
+Install file: "src/slm/ids2ngram/idngram_merge.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/ids2ngram/idngram_merge.h"
+Install file: "src/slm/slm.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/slm.h"
+Install file: "src/slm/sim_dict.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/sim_dict.h"
+Install file: "src/slm/sim_sen.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/sim_sen.h"
+Install file: "src/slm/sim_slm.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/sim_slm.h"
+Install file: "src/slm/thread/ValueCompress.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/thread/ValueCompress.h"
+Install file: "src/slm/sim_fmerge.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/sim_fmerge.h"
+Install file: "src/slm/slmbuild/sim_slmbuilder.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/slmbuild/sim_slmbuilder.h"
+Install file: "src/slm/slmpack/arpa_slm.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/slmpack/arpa_slm.h"
+Install file: "src/slm/slmpack/common.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/slmpack/common.h"
+Install file: "src/slm/tslmendian/slm_file.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/tslmendian/slm_file.h"
+Install file: "src/slm/tslmendian/writer.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/slm/tslmendian/writer.h"
+Install file: "src/lexicon/pytrie_gen.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/lexicon/pytrie_gen.h"
+Install file: "src/lexicon/trie_writer.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/lexicon/trie_writer.h"
+Install file: "src/lexicon/pytrie.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/lexicon/pytrie.h"
+Install file: "src/ime-core/imi_view_classic.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_view_classic.h"
+Install file: "src/ime-core/imi_uiobjects.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_uiobjects.h"
+Install file: "src/ime-core/lattice_states.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/lattice_states.h"
+Install file: "src/ime-core/ic_history.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/ic_history.h"
+Install file: "src/ime-core/imi_funcobjs.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_funcobjs.h"
+Install file: "src/ime-core/imi_context.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_context.h"
+Install file: "src/ime-core/imi_winHandler.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_winHandler.h"
+Install file: "src/ime-core/imi_glibHandler.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_glibHandler.h"
+Install file: "src/ime-core/userdict.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/userdict.h"
+Install file: "src/ime-core/imi_option_event.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_option_event.h"
+Install file: "src/ime-core/imi_data.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_data.h"
+Install file: "src/ime-core/utils.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/utils.h"
+Install file: "src/ime-core/imi_keys.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_keys.h"
+Install file: "src/ime-core/imi_option_keys.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_option_keys.h"
+Install file: "src/ime-core/imi_options.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_options.h"
+Install file: "src/ime-core/imi_defines.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_defines.h"
+Install file: "src/ime-core/imi_view.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/ime-core/imi_view.h"
+Install file: "src/portability.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/portability.h"
+Install file: "src/pinyin/segmentor.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/segmentor.h"
+Install file: "src/pinyin/shuangpin_seg.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/shuangpin_seg.h"
+Install file: "src/pinyin/datrie.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/datrie.h"
+Install file: "src/pinyin/quanpin_trie.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/quanpin_trie.h"
+Install file: "src/pinyin/pinyin_seg.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/pinyin_seg.h"
+Install file: "src/pinyin/pinyin_data.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/pinyin_data.h"
+Install file: "src/pinyin/syllable.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/syllable.h"
+Install file: "src/pinyin/shuangpin_data.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/shuangpin_data.h"
+Install file: "src/pinyin/hunpin_seg.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/hunpin_seg.h"
+Install file: "src/pinyin/datrie_impl.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/pinyin/datrie_impl.h"
+Install file: "src/sunpinyin.h" as "/tmp/sunpinyin/pkg/sunpinyin/usr/include/sunpinyin-2.0/sunpinyin.h"
+Install file: "libsunpinyin.so.3.0" as "/tmp/sunpinyin/pkg/sunpinyin/usr/lib/libsunpinyin.so.3.0"
+cd /tmp/sunpinyin/pkg/sunpinyin/usr/lib && ln -s libsunpinyin.so.3.0 libsunpinyin.so.3
+cd /tmp/sunpinyin/pkg/sunpinyin/usr/lib && ln -s libsunpinyin.so.3.0 libsunpinyin.so
+Install file: "sunpinyin-2.0.pc" as "/tmp/sunpinyin/pkg/sunpinyin/usr/lib/pkgconfig/sunpinyin-2.0.pc"
+scons: done building targets.
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "sunpinyin"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: sunpinyin 2.0.3.20150706-1 (Sat Nov 14 07:17:35 UTC 2015)
+===> Printing config.logs
+found log at /tmp/sunpinyin/src/sunpinyin/config.log
+____
+File /tmp/sunpinyin/src/sunpinyin/config.log
+file /tmp/sunpinyin/src/sunpinyin/SConstruct,line 347:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking for pkg-config... 
+scons: Configure: ".sconf_temp/conftest_0" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --atleast-pkgconfig-version=0.12.0
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for sqlite3... 
+scons: Configure: ".sconf_temp/conftest_1" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'sqlite3'
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file assert.h... 
+scons: Configure: ".sconf_temp/conftest_2.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_2.c <-
+  |  |
+  |  |#include "assert.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_2.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_2.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_2.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function bind_textdomain_codeset()... 
+scons: Configure: ".sconf_temp/conftest_3.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_3.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char bind_textdomain_codeset();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_bind_textdomain_codeset) || defined (__stub___bind_textdomain_codeset)
+  |  |  fail fail fail
+  |  |#else
+  |  |  bind_textdomain_codeset();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_3.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_3.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_3.c
+  |
+scons: Configure: ".sconf_temp/conftest_3" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_3 .sconf_temp/conftest_3.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function dcgettext()... 
+scons: Configure: ".sconf_temp/conftest_4.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_4.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char dcgettext();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_dcgettext) || defined (__stub___dcgettext)
+  |  |  fail fail fail
+  |  |#else
+  |  |  dcgettext();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_4.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_4.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_4.c
+  |
+scons: Configure: ".sconf_temp/conftest_4" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_4 .sconf_temp/conftest_4.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function exp2()... 
+scons: Configure: ".sconf_temp/conftest_5.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_5.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char exp2();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_exp2) || defined (__stub___exp2)
+  |  |  fail fail fail
+  |  |#else
+  |  |  exp2();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_5.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_5.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_5.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_5" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_5 .sconf_temp/conftest_5.o
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C header file fcntl.h... 
+scons: Configure: ".sconf_temp/conftest_6.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_6.c <-
+  |  |
+  |  |#include "fcntl.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_6.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_6.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_6.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file getopt.h... 
+scons: Configure: ".sconf_temp/conftest_7.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_7.c <-
+  |  |
+  |  |#include "getopt.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_7.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_7.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_7.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function getopt_long()... 
+scons: Configure: ".sconf_temp/conftest_8.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_8.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char getopt_long();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_getopt_long) || defined (__stub___getopt_long)
+  |  |  fail fail fail
+  |  |#else
+  |  |  getopt_long();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_8.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_8.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_8.c
+  |
+scons: Configure: ".sconf_temp/conftest_8" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_8 .sconf_temp/conftest_8.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function getpagesize()... 
+scons: Configure: ".sconf_temp/conftest_9.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_9.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char getpagesize();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_getpagesize) || defined (__stub___getpagesize)
+  |  |  fail fail fail
+  |  |#else
+  |  |  getpagesize();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_9.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_9.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_9.c
+  |
+scons: Configure: ".sconf_temp/conftest_9" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_9 .sconf_temp/conftest_9.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function get_opt()... 
+scons: Configure: ".sconf_temp/conftest_10.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_10.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char get_opt();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_get_opt) || defined (__stub___get_opt)
+  |  |  fail fail fail
+  |  |#else
+  |  |  get_opt();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_10.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_10.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_10.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_10" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_10 .sconf_temp/conftest_10.o
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C header file iconv.h... 
+scons: Configure: ".sconf_temp/conftest_11.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_11.c <-
+  |  |
+  |  |#include "iconv.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_11.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_11.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_11.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file inttypes.h... 
+scons: Configure: ".sconf_temp/conftest_12.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_12.c <-
+  |  |
+  |  |#include "inttypes.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_12.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_12.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_12.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file locale.h... 
+scons: Configure: ".sconf_temp/conftest_13.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_13.c <-
+  |  |
+  |  |#include "locale.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_13.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_13.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_13.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file libintl.h... 
+scons: Configure: ".sconf_temp/conftest_14.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_14.c <-
+  |  |
+  |  |#include "libintl.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_14.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_14.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_14.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file limits.h... 
+scons: Configure: ".sconf_temp/conftest_15.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_15.c <-
+  |  |
+  |  |#include "limits.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_15.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_15.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_15.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file locale.h... 
+scons: Configure: ".sconf_temp/conftest_16.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_16.c <-
+  |  |
+  |  |#include "locale.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_16.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_16.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_16.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function log2()... 
+scons: Configure: ".sconf_temp/conftest_17.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_17.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char log2();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_log2) || defined (__stub___log2)
+  |  |  fail fail fail
+  |  |#else
+  |  |  log2();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_17.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_17.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_17.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_17" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_17 .sconf_temp/conftest_17.o
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C header file memory.h... 
+scons: Configure: ".sconf_temp/conftest_18.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_18.c <-
+  |  |
+  |  |#include "memory.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_18.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_18.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_18.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function memset()... 
+scons: Configure: ".sconf_temp/conftest_19.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_19.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char memset();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_memset) || defined (__stub___memset)
+  |  |  fail fail fail
+  |  |#else
+  |  |  memset();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_19.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_19.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_19.c
+  |
+scons: Configure: ".sconf_temp/conftest_19" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_19 .sconf_temp/conftest_19.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function mmap()... 
+scons: Configure: ".sconf_temp/conftest_20.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_20.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char mmap();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_mmap) || defined (__stub___mmap)
+  |  |  fail fail fail
+  |  |#else
+  |  |  mmap();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_20.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_20.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_20.c
+  |
+scons: Configure: ".sconf_temp/conftest_20" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_20 .sconf_temp/conftest_20.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function munmap()... 
+scons: Configure: ".sconf_temp/conftest_21.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_21.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char munmap();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_munmap) || defined (__stub___munmap)
+  |  |  fail fail fail
+  |  |#else
+  |  |  munmap();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_21.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_21.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_21.c
+  |
+scons: Configure: ".sconf_temp/conftest_21" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_21 .sconf_temp/conftest_21.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function setlocale()... 
+scons: Configure: ".sconf_temp/conftest_22.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_22.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char setlocale();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_setlocale) || defined (__stub___setlocale)
+  |  |  fail fail fail
+  |  |#else
+  |  |  setlocale();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_22.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_22.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_22.c
+  |
+scons: Configure: ".sconf_temp/conftest_22" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_22 .sconf_temp/conftest_22.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file sys/mman.h... 
+scons: Configure: ".sconf_temp/conftest_23.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_23.c <-
+  |  |
+  |  |#include "sys/mman.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_23.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_23.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_23.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file sys/param.h... 
+scons: Configure: ".sconf_temp/conftest_24.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_24.c <-
+  |  |
+  |  |#include "sys/param.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_24.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_24.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_24.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file sys/stat.h... 
+scons: Configure: ".sconf_temp/conftest_25.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_25.c <-
+  |  |
+  |  |#include "sys/stat.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_25.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_25.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_25.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file sys/types.h... 
+scons: Configure: ".sconf_temp/conftest_26.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_26.c <-
+  |  |
+  |  |#include "sys/types.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_26.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_26.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_26.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file unistd.h... 
+scons: Configure: ".sconf_temp/conftest_27.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_27.c <-
+  |  |
+  |  |#include "unistd.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_27.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_27.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_27.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file wchar.h... 
+scons: Configure: ".sconf_temp/conftest_28.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_28.c <-
+  |  |
+  |  |#include "wchar.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_28.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_28.o -c -g -Wall -pipe -DHAVE_CONFIG_H -DSUNPINYIN_DATA_DIR='"/usr/share/sunpinyin"' -I. -Isrc -Isrc/ime-core -Isrc/lexicon -Isrc/slm -Isrc/slm/slmbuild -Isrc/slm/slminfo -Isrc/slm/slmprune -Isrc/slm/slmpack -Isrc/slm/getwordfreq -Isrc/slm/tools -Isrc/slm/slmseg -Isrc/slm/tslminfo -Isrc/slm/thread -Isrc/slm/tslmendian -Isrc/slm/mmseg -Isrc/slm/ids2ngram -Isrc/pinyin .sconf_temp/conftest_28.c
+  |
+scons: Configure: (cached) yes
+
+
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

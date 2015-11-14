@@ -1,0 +1,727 @@
+        <html><head></head><body>
+        <h1>Report for quota-tools on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:48</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data quota-tools
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2141 packages in cache
+Found permanent source directory in /sources/quota-tools
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: quota-tools 1:4.02-1 (Sat Nov 14 06:06:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether compiler supports PIE... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking ext2fs/ext2fs.h usability... yes
+checking ext2fs/ext2fs.h presence... yes
+checking for ext2fs/ext2fs.h... yes
+checking for ext2_ino_t... found
+checking for com_err in -lcom_err... yes
+checking for ext2fs_initialize in -lext2fs... yes
+checking for library containing gethostbyname... none required
+checking for host_access in -lwrap... no
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotasync.c | \
+	sed 's/\(quotasync\)\.o[ :]*/\1.o .quotasync.d : /g' > .quotasync.d; \
+	[ -s .quotasync.d ] || rm -f .quotasync.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 svc_socket.c | \
+	sed 's/\(svc_socket\)\.o[ :]*/\1.o .svc_socket.d : /g' > .svc_socket.d; \
+	[ -s .svc_socket.d ] || rm -f .svc_socket.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 xqmstats.c | \
+	sed 's/\(xqmstats\)\.o[ :]*/\1.o .xqmstats.d : /g' > .xqmstats.d; \
+	[ -s .xqmstats.d ] || rm -f .xqmstats.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 warnquota.c | \
+	sed 's/\(warnquota\)\.o[ :]*/\1.o .warnquota.d : /g' > .warnquota.d; \
+	[ -s .warnquota.d ] || rm -f .warnquota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 setquota.c | \
+	sed 's/\(setquota\)\.o[ :]*/\1.o .setquota.d : /g' > .setquota.d; \
+	[ -s .setquota.d ] || rm -f .setquota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 rquota_svc.c | \
+	sed 's/\(rquota_svc\)\.o[ :]*/\1.o .rquota_svc.d : /g' > .rquota_svc.d; \
+	[ -s .rquota_svc.d ] || rm -f .rquota_svc.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 rquota_server.c | \
+	sed 's/\(rquota_server\)\.o[ :]*/\1.o .rquota_server.d : /g' > .rquota_server.d; \
+	[ -s .rquota_server.d ] || rm -f .rquota_server.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 rquota_client.c | \
+	sed 's/\(rquota_client\)\.o[ :]*/\1.o .rquota_client.d : /g' > .rquota_client.d; \
+	[ -s .rquota_client.d ] || rm -f .rquota_client.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 repquota.c | \
+	sed 's/\(repquota\)\.o[ :]*/\1.o .repquota.d : /g' > .repquota.d; \
+	[ -s .repquota.d ] || rm -f .repquota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotasys.c | \
+	sed 's/\(quotasys\)\.o[ :]*/\1.o .quotasys.d : /g' > .quotasys.d; \
+	[ -s .quotasys.d ] || rm -f .quotasys.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotastats.c | \
+	sed 's/\(quotastats\)\.o[ :]*/\1.o .quotastats.d : /g' > .quotastats.d; \
+	[ -s .quotastats.d ] || rm -f .quotastats.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaops.c | \
+	sed 's/\(quotaops\)\.o[ :]*/\1.o .quotaops.d : /g' > .quotaops.d; \
+	[ -s .quotaops.d ] || rm -f .quotaops.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaon_xfs.c | \
+	sed 's/\(quotaon_xfs\)\.o[ :]*/\1.o .quotaon_xfs.d : /g' > .quotaon_xfs.d; \
+	[ -s .quotaon_xfs.d ] || rm -f .quotaon_xfs.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaon.c | \
+	sed 's/\(quotaon\)\.o[ :]*/\1.o .quotaon.d : /g' > .quotaon.d; \
+	[ -s .quotaon.d ] || rm -f .quotaon.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_generic.c | \
+	sed 's/\(quotaio_generic\)\.o[ :]*/\1.o .quotaio_generic.d : /g' > .quotaio_generic.d; \
+	[ -s .quotaio_generic.d ] || rm -f .quotaio_generic.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_meta.c | \
+	sed 's/\(quotaio_meta\)\.o[ :]*/\1.o .quotaio_meta.d : /g' > .quotaio_meta.d; \
+	[ -s .quotaio_meta.d ] || rm -f .quotaio_meta.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_xfs.c | \
+	sed 's/\(quotaio_xfs\)\.o[ :]*/\1.o .quotaio_xfs.d : /g' > .quotaio_xfs.d; \
+	[ -s .quotaio_xfs.d ] || rm -f .quotaio_xfs.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_tree.c | \
+	sed 's/\(quotaio_tree\)\.o[ :]*/\1.o .quotaio_tree.d : /g' > .quotaio_tree.d; \
+	[ -s .quotaio_tree.d ] || rm -f .quotaio_tree.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_v2.c | \
+	sed 's/\(quotaio_v2\)\.o[ :]*/\1.o .quotaio_v2.d : /g' > .quotaio_v2.d; \
+	[ -s .quotaio_v2.d ] || rm -f .quotaio_v2.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_v1.c | \
+	sed 's/\(quotaio_v1\)\.o[ :]*/\1.o .quotaio_v1.d : /g' > .quotaio_v1.d; \
+	[ -s .quotaio_v1.d ] || rm -f .quotaio_v1.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio_rpc.c | \
+	sed 's/\(quotaio_rpc\)\.o[ :]*/\1.o .quotaio_rpc.d : /g' > .quotaio_rpc.d; \
+	[ -s .quotaio_rpc.d ] || rm -f .quotaio_rpc.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaio.c | \
+	sed 's/\(quotaio\)\.o[ :]*/\1.o .quotaio.d : /g' > .quotaio.d; \
+	[ -s .quotaio.d ] || rm -f .quotaio.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotacheck_v2.c | \
+	sed 's/\(quotacheck_v2\)\.o[ :]*/\1.o .quotacheck_v2.d : /g' > .quotacheck_v2.d; \
+	[ -s .quotacheck_v2.d ] || rm -f .quotacheck_v2.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotacheck_v1.c | \
+	sed 's/\(quotacheck_v1\)\.o[ :]*/\1.o .quotacheck_v1.d : /g' > .quotacheck_v1.d; \
+	[ -s .quotacheck_v1.d ] || rm -f .quotacheck_v1.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotacheck.c | \
+	sed 's/\(quotacheck\)\.o[ :]*/\1.o .quotacheck.d : /g' > .quotacheck.d; \
+	[ -s .quotacheck.d ] || rm -f .quotacheck.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quota.c | \
+	sed 's/\(quota\)\.o[ :]*/\1.o .quota.d : /g' > .quota.d; \
+	[ -s .quota.d ] || rm -f .quota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quot.c | \
+	sed 's/\(quot\)\.o[ :]*/\1.o .quot.d : /g' > .quot.d; \
+	[ -s .quot.d ] || rm -f .quot.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 pot.c | \
+	sed 's/\(pot\)\.o[ :]*/\1.o .pot.d : /g' > .pot.d; \
+	[ -s .pot.d ] || rm -f .pot.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 edquota.c | \
+	sed 's/\(edquota\)\.o[ :]*/\1.o .edquota.d : /g' > .edquota.d; \
+	[ -s .edquota.d ] || rm -f .edquota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 convertquota.c | \
+	sed 's/\(convertquota\)\.o[ :]*/\1.o .convertquota.d : /g' > .convertquota.d; \
+	[ -s .convertquota.d ] || rm -f .convertquota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 common.c | \
+	sed 's/\(common\)\.o[ :]*/\1.o .common.d : /g' > .common.d; \
+	[ -s .common.d ] || rm -f .common.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 bylabel.c | \
+	sed 's/\(bylabel\)\.o[ :]*/\1.o .bylabel.d : /g' > .bylabel.d; \
+	[ -s .bylabel.d ] || rm -f .bylabel.d
+rpcgen -h -o rquota.h rquota.x
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 setquota.c | \
+	sed 's/\(setquota\)\.o[ :]*/\1.o .setquota.d : /g' > .setquota.d; \
+	[ -s .setquota.d ] || rm -f .setquota.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 rquota_svc.c | \
+	sed 's/\(rquota_svc\)\.o[ :]*/\1.o .rquota_svc.d : /g' > .rquota_svc.d; \
+	[ -s .rquota_svc.d ] || rm -f .rquota_svc.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 rquota_server.c | \
+	sed 's/\(rquota_server\)\.o[ :]*/\1.o .rquota_server.d : /g' > .rquota_server.d; \
+	[ -s .rquota_server.d ] || rm -f .rquota_server.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 rquota_client.c | \
+	sed 's/\(rquota_client\)\.o[ :]*/\1.o .rquota_client.d : /g' > .rquota_client.d; \
+	[ -s .rquota_client.d ] || rm -f .rquota_client.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quotaops.c | \
+	sed 's/\(quotaops\)\.o[ :]*/\1.o .quotaops.d : /g' > .quotaops.d; \
+	[ -s .quotaops.d ] || rm -f .quotaops.d
+set -e; cc -MM -MG  -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 quota.c | \
+	sed 's/\(quota\)\.o[ :]*/\1.o .quota.d : /g' > .quota.d; \
+	[ -s .quota.d ] || rm -f .quota.d
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotacheck.o quotacheck.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotacheck_v1.o quotacheck_v1.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotacheck_v2.o quotacheck_v2.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaops.o quotaops.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o bylabel.o bylabel.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o common.o common.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotasys.o quotasys.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o pot.o pot.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio.o quotaio.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_v1.o quotaio_v1.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_v2.o quotaio_v2.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_tree.o quotaio_tree.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_rpc.o quotaio_rpc.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_xfs.o quotaio_xfs.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_meta.o quotaio_meta.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaio_generic.o quotaio_generic.c
+rpcgen -c -o rquota_xdr.c rquota.x
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -Wno-unused -c rquota_xdr.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o rquota_client.o rquota_client.c
+rpcgen -l -o rquota_clnt.c rquota.x
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o rquota_clnt.o rquota_clnt.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o quotacheck quotacheck.o quotacheck_v1.o quotacheck_v2.o quotaops.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o -lext2fs -lcom_err 
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaon.o quotaon.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotaon_xfs.o quotaon_xfs.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o quotaon quotaon.o quotaon_xfs.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quota.o quota.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o quota quota.o quotaops.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quot.o quot.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o quot quot.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o repquota.o repquota.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o repquota repquota.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o warnquota.o warnquota.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o warnquota warnquota.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o 
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotastats.o quotastats.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o quotastats quotastats.o common.o pot.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o xqmstats.o xqmstats.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o xqmstats xqmstats.o common.o pot.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o edquota.o edquota.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o edquota edquota.o quotaops.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o setquota.o setquota.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o setquota setquota.o quotaops.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o convertquota.o convertquota.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o convertquota convertquota.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o rquota_server.o rquota_server.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o rquota_svc.o rquota_svc.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o svc_socket.o svc_socket.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o rpc.rquotad rquota_server.o rquota_svc.o svc_socket.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o 
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64   -c -o quotasync.o quotasync.c
+cc -g -O2 -fPIE -D_GNU_SOURCE -Wall -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -pie -o quotasync quotasync.o bylabel.o common.o quotasys.o pot.o quotaio.o quotaio_v1.o quotaio_v2.o quotaio_tree.o quotaio_rpc.o quotaio_xfs.o quotaio_meta.o quotaio_generic.o rquota_xdr.o rquota_client.o rquota_clnt.o
+==> Entering fakeroot environment...
+==> Starting package()...
+for n in po/cs.po po/de.po po/fr.po po/pl.po; do \
+msgfmt -o po/`basename $n .po`.mo $n; \
+done
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/share/locale
+for n in po/cs.mo po/de.mo po/fr.mo po/pl.mo; do \
+l=`basename $n .mo`; \
+/usr/bin/install -c -m 755 -d /tmp/quota-tools/pkg/quota-tools/usr/share/locale/$l; \
+/usr/bin/install -c -m 755 -d /tmp/quota-tools/pkg/quota-tools/usr/share/locale/$l/LC_MESSAGES; \
+/usr/bin/install -c -m 644 $n /tmp/quota-tools/pkg/quota-tools/usr/share/locale/$l/LC_MESSAGES/quota.mo; \
+done
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/bin
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/bin
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/bin
+/usr/bin/install -c  -m 555 \
+quotacheck quotaon /tmp/quota-tools/pkg/quota-tools/usr/bin
+ln -sf quotaon /tmp/quota-tools/pkg/quota-tools/usr/bin/quotaoff
+/usr/bin/install -c  -m 555 \
+edquota repquota warnquota quotastats setquota quot xqmstats \
+convertquota /tmp/quota-tools/pkg/quota-tools/usr/bin
+mkdir -p /tmp/quota-tools/pkg/quota-tools/etc
+/usr/bin/install -c -m 644 warnquota.conf /tmp/quota-tools/pkg/quota-tools/etc
+/usr/bin/install -c -m 644 quotatab /tmp/quota-tools/pkg/quota-tools/etc
+/usr/bin/install -c -m 644 quotagrpadmins /tmp/quota-tools/pkg/quota-tools/etc
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/share/man/man1
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/share/man/man3
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/share/man/man5
+mkdir -p /tmp/quota-tools/pkg/quota-tools/usr/share/man/man8
+/usr/bin/install -c -m 755 -d /tmp/quota-tools/pkg/quota-tools/usr/include/rpcsvc
+/usr/bin/install -c -m 644 rquota.h rquota.x /tmp/quota-tools/pkg/quota-tools/usr/include/rpcsvc
+/usr/bin/install -c  -m 555 quota quotasync /tmp/quota-tools/pkg/quota-tools/usr/bin
+/usr/bin/install -c  -m 555 rpc.rquotad /tmp/quota-tools/pkg/quota-tools/usr/bin
+/usr/bin/install -c -m 444 *.1 /tmp/quota-tools/pkg/quota-tools/usr/share/man/man1
+/usr/bin/install -c -m 444 *.3 /tmp/quota-tools/pkg/quota-tools/usr/share/man/man3
+/usr/bin/install -c -m 444 *.5 /tmp/quota-tools/pkg/quota-tools/usr/share/man/man5
+/usr/bin/install -c -m 444 *.8 /tmp/quota-tools/pkg/quota-tools/usr/share/man/man8
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "quota-tools"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: quota-tools 1:4.02-1 (Sat Nov 14 06:07:31 UTC 2015)
+===> Printing config.logs
+found log at /tmp/quota-tools/src/quota-tools/config.log
+____
+File /tmp/quota-tools/src/quota-tools/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sysconfdir=/etc
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = f82ccf31a9a4
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2126: checking for x86_64-unknown-linux-gcc
+configure:2156: result: no
+configure:2166: checking for gcc
+configure:2182: found /usr/sbin/gcc
+configure:2193: result: gcc
+configure:2422: checking for C compiler version
+configure:2431: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2442: $? = 0
+configure:2431: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2442: $? = 0
+configure:2431: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2442: $? = 1
+configure:2431: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2442: $? = 1
+configure:2462: checking whether the C compiler works
+configure:2484: gcc    conftest.c  >&5
+configure:2488: $? = 0
+configure:2536: result: yes
+configure:2539: checking for C compiler default output file name
+configure:2541: result: a.out
+configure:2547: checking for suffix of executables
+configure:2554: gcc -o conftest    conftest.c  >&5
+configure:2558: $? = 0
+configure:2580: result: 
+configure:2602: checking whether we are cross compiling
+configure:2610: gcc -o conftest    conftest.c  >&5
+configure:2614: $? = 0
+configure:2621: ./conftest
+configure:2625: $? = 0
+configure:2640: result: no
+configure:2645: checking for suffix of object files
+configure:2667: gcc -c   conftest.c >&5
+configure:2671: $? = 0
+configure:2692: result: o
+configure:2696: checking whether we are using the GNU C compiler
+configure:2715: gcc -c   conftest.c >&5
+configure:2715: $? = 0
+configure:2724: result: yes
+configure:2733: checking whether gcc accepts -g
+configure:2753: gcc -c -g  conftest.c >&5
+configure:2753: $? = 0
+configure:2794: result: yes
+configure:2811: checking for gcc option to accept ISO C89
+configure:2874: gcc  -c -g -O2  conftest.c >&5
+configure:2874: $? = 0
+configure:2887: result: none needed
+configure:2913: checking how to run the C preprocessor
+configure:2944: gcc -E  conftest.c
+configure:2944: $? = 0
+configure:2958: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2958: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2983: result: gcc -E
+configure:3003: gcc -E  conftest.c
+configure:3003: $? = 0
+configure:3017: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3017: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3046: checking for grep that handles long lines and -e
+configure:3104: result: /usr/sbin/grep
+configure:3109: checking for egrep
+configure:3171: result: /usr/sbin/grep -E
+configure:3176: checking for ANSI C header files
+configure:3196: gcc -c -g -O2  conftest.c >&5
+configure:3196: $? = 0
+configure:3269: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3269: $? = 0
+configure:3269: ./conftest
+configure:3269: $? = 0
+configure:3280: result: yes
+configure:3331: checking for a BSD-compatible install
+configure:3399: result: /usr/bin/install -c
+configure:3419: checking whether compiler supports PIE
+configure:3436: gcc -o conftest -g -O2 -fPIE   -pie conftest.c  >&5
+configure:3436: $? = 0
+configure:3447: result: yes
+configure:3594: checking for sys/types.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for sys/stat.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for stdlib.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for string.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for memory.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for strings.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for inttypes.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for stdint.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3594: checking for unistd.h
+configure:3594: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3594: $? = 0
+configure:3594: result: yes
+configure:3606: checking ext2fs/ext2fs.h usability
+configure:3606: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:3606: $? = 0
+configure:3606: result: yes
+configure:3606: checking ext2fs/ext2fs.h presence
+configure:3606: gcc -E  conftest.c
+configure:3606: $? = 0
+configure:3606: result: yes
+configure:3606: checking for ext2fs/ext2fs.h
+configure:3606: result: yes
+configure:3616: checking for ext2_ino_t
+configure:3634: result: found
+configure:3650: checking for com_err in -lcom_err
+configure:3675: gcc -o conftest -g -O2 -fPIE   -pie conftest.c -lcom_err   >&5
+configure:3675: $? = 0
+configure:3684: result: yes
+configure:3690: checking for ext2fs_initialize in -lext2fs
+configure:3715: gcc -o conftest -g -O2 -fPIE   -pie conftest.c -lext2fs -lcom_err  >&5
+configure:3715: $? = 0
+configure:3724: result: yes
+configure:4078: checking for library containing gethostbyname
+configure:4109: gcc -o conftest -g -O2 -fPIE   -pie conftest.c  >&5
+configure:4109: $? = 0
+configure:4126: result: none required
+configure:4134: checking for host_access in -lwrap
+configure:4159: gcc -o conftest -g -O2 -fPIE   -pie conftest.c  -lwrap >&5
+conftest.c:27:19: fatal error: tcpd.h: No such file or directory
+compilation terminated.
+configure:4159: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_EXT2_INCLUDE 1
+| #define HAVE_EXT2_INO_T 1
+| #define EXT2_DIRECT 1
+| /* end confdefs.h.  */
+| 
+| 	#include <stdio.h>
+| 	#include <sys/types.h>
+| 	#include <sys/socket.h>
+| 	#include <netinet/in.h>
+| 	#include <tcpd.h>
+| 	struct request_info request;
+| 	int deny_severity, allow_severity;
+| int
+| main ()
+| {
+| hosts_access(&request);
+|   ;
+|   return 0;
+| }
+configure:4163: result: no
+configure:4191: checking for an ANSI C-conforming const
+configure:4257: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:4257: $? = 0
+configure:4264: result: yes
+configure:4272: checking for inline
+configure:4288: gcc -c -g -O2 -fPIE  conftest.c >&5
+configure:4288: $? = 0
+configure:4296: result: inline
+configure:4550: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on f82ccf31a9a4
+
+config.status:823: creating Makefile
+config.status:823: creating config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_c_inline=inline
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_DBUS_CFLAGS_set=
+ac_cv_env_DBUS_CFLAGS_value=
+ac_cv_env_DBUS_LIBS_set=
+ac_cv_env_DBUS_LIBS_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBNL3_CFLAGS_set=
+ac_cv_env_LIBNL3_CFLAGS_value=
+ac_cv_env_LIBNL3_LIBS_set=
+ac_cv_env_LIBNL3_LIBS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_PKG_CONFIG_set=
+ac_cv_env_PKG_CONFIG_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_ext2fs_ext2fs_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_com_err_com_err=yes
+ac_cv_lib_ext2fs_ext2fs_initialize=yes
+ac_cv_lib_wrap_main=no
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_search_gethostbyname='none required'
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS='-g -O2 -fPIE'
+CPP='gcc -E'
+CPPFLAGS=''
+DBUS_CFLAGS=''
+DBUS_LIBS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+EXT2LIBS='-lext2fs -lcom_err '
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTMO='inst_mo'
+LDAPLIBS=''
+LDFLAGS=' -pie'
+LIBMALLOC=''
+LIBNL3_CFLAGS=''
+LIBNL3_LIBS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+NETLINKLIBS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PKG_CONFIG=''
+QUOTA_NETLINK_PROG=''
+ROOTSBIN='$(prefix)/sbin'
+SHELL='/bin/sh'
+STRIP='-s'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_EXT2_INCLUDE 1
+#define HAVE_EXT2_INO_T 1
+#define EXT2_DIRECT 1
+#define RPC 1
+#define BSD_BEHAVIOUR 1
+#define USE_GETTEXT 1
+#define ALT_MTAB "/proc/mounts"
+#define COMPILE_OPTS " EXT2_DIRECT RPC BSD_BEHAVIOUR"
+#define PACKAGE_VERSION "4.03"
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

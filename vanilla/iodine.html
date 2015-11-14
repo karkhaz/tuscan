@@ -1,0 +1,87 @@
+        <html><head></head><body>
+        <h1>Report for iodine on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:26</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data iodine
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1473 packages in cache
+Found permanent source directory in /sources/iodine
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: iodine 0.7.0-3 (Sat Nov 14 05:20:38 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) net-tools-1.60.20130531git-1
+
+Total Installed Size:  0.49 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing net-tools...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make[1]: Entering directory '/tmp/iodine/src/iodine-0.7.0/src'
+OS is LINUX, arch is x86_64
+CC tun.c
+CC dns.c
+CC read.c
+CC encoding.c
+CC login.c
+CC base32.c
+CC base64.c
+Making base64u.c
+Making base64u.h
+CC base64u.c
+CC base128.c
+CC md5.c
+CC common.c
+CC iodine.c
+CC client.c
+CC util.c
+LD ../bin/iodine
+CC iodined.c
+CC user.c
+CC fw_query.c
+LD ../bin/iodined
+iodined.o: In function `main':
+/tmp/iodine/src/iodine-0.7.0/src/iodined.c:2535: warning: sd_listen_fds was moved to libsystemd. Do not use libsystemd-daemon.
+make[1]: Leaving directory '/tmp/iodine/src/iodine-0.7.0/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+make[1]: Entering directory '/tmp/iodine/src/iodine-0.7.0/src'
+OS is LINUX, arch is x86_64
+make[1]: Leaving directory '/tmp/iodine/src/iodine-0.7.0/src'
+mkdir -p /tmp/iodine/pkg/iodine/usr/bin
+install  bin/iodine /tmp/iodine/pkg/iodine/usr/bin/iodine
+chmod 755 /tmp/iodine/pkg/iodine/usr/bin/iodine
+install  bin/iodined /tmp/iodine/pkg/iodine/usr/bin/iodined
+chmod 755 /tmp/iodine/pkg/iodine/usr/bin/iodined
+mkdir -p /tmp/iodine/pkg/iodine/usr/share/man/man8
+install  man/iodine.8 /tmp/iodine/pkg/iodine/usr/share/man/man8/iodine.8
+chmod 644 /tmp/iodine/pkg/iodine/usr/share/man/man8/iodine.8
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "iodine"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: iodine 0.7.0-3 (Sat Nov 14 05:20:55 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

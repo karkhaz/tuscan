@@ -1,0 +1,462 @@
+        <html><head></head><body>
+        <h1>Report for scrot on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:49</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data scrot
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 645 packages in cache
+Found permanent source directory in /sources/scrot
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: scrot 0.8.13-1 (Sat Nov 14 04:46:14 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+warning: dependency cycle detected:
+warning: harfbuzz will be installed before its freetype2 dependency
+
+Packages (19) freetype2-2.6.1-1  giflib-5.1.1-1  graphite-1:1.3.3-1  harfbuzz-1.0.6-2  imlib2-1.4.7-1  kbproto-1.0.7-1  libid3tag-0.15.1b-8  libjpeg-turbo-1.4.2-1  libpng-1.6.18-1  libtiff-4.0.6-1  libx11-1.6.3-1  libxau-1.0.8-2  libxcb-1.11.1-1  libxdmcp-1.1.2-1  libxext-1.3.3-1  xcb-proto-1.11-2  xextproto-7.3.0-1  xproto-7.0.28-1  giblib-1.2.4-6
+
+Total Download Size:    0.02 MiB
+Total Installed Size:  28.26 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading giblib-1.2.4-6-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libjpeg-turbo...
+installing libtiff...
+Optional dependencies for libtiff
+    freeglut: for using tiffgt
+installing giflib...
+installing libpng...
+installing graphite...
+installing harfbuzz...
+Optional dependencies for harfbuzz
+    cairo: hb-view program
+installing freetype2...
+installing xcb-proto...
+installing xproto...
+installing libxdmcp...
+installing libxau...
+installing libxcb...
+installing kbproto...
+installing libx11...
+installing xextproto...
+installing libxext...
+installing libid3tag...
+installing imlib2...
+installing giblib...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking whether make sets $(MAKE)... yes
+checking for working aclocal-1.4... missing
+checking for working autoconf... found
+checking for working automake-1.4... missing
+checking for working autoheader... found
+checking for working makeinfo... found
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking for C compiler default output... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking for gcc option to accept ANSI C... none needed
+checking for an ANSI C-conforming const... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether make sets $(MAKE)... (cached) yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for giblib-config... /usr/bin/giblib-config
+checking for giblib - version >= 1.2.3... yes
+checking for getopt_long... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating scrot.spec
+config.status: creating src/Makefile
+config.status: creating src/config.h
+config.status: executing default-1 commands
+Making all in src
+make[1]: Entering directory '/tmp/scrot/src/scrot-0.8/src'
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O3 -Wall -I/usr/X11R6/include  -I/usr/include -I/usr/include -I. -DPREFIX=\""/usr"\" -I/usr/include/giblib    -g -O2 -c main.c
+main.c: In function 'scrot_get_geometry':
+main.c:383:48: warning: pointer targets in passing argument 4 of 'XGetGeometry' differ in signedness [-Wpointer-sign]
+     status = XGetGeometry(disp, target, &root, &x, &x, &d, &d, &d, &d);
+                                                ^
+In file included from scrot.h:29:0,
+                 from main.c:26:
+/usr/include/X11/Xlib.h:2620:15: note: expected 'int *' but argument is of type 'unsigned int *'
+ extern Status XGetGeometry(
+               ^
+main.c:383:52: warning: pointer targets in passing argument 5 of 'XGetGeometry' differ in signedness [-Wpointer-sign]
+     status = XGetGeometry(disp, target, &root, &x, &x, &d, &d, &d, &d);
+                                                    ^
+In file included from scrot.h:29:0,
+                 from main.c:26:
+/usr/include/X11/Xlib.h:2620:15: note: expected 'int *' but argument is of type 'unsigned int *'
+ extern Status XGetGeometry(
+               ^
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O3 -Wall -I/usr/X11R6/include  -I/usr/include -I/usr/include -I. -DPREFIX=\""/usr"\" -I/usr/include/giblib    -g -O2 -c getopt.c
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O3 -Wall -I/usr/X11R6/include  -I/usr/include -I/usr/include -I. -DPREFIX=\""/usr"\" -I/usr/include/giblib    -g -O2 -c getopt1.c
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O3 -Wall -I/usr/X11R6/include  -I/usr/include -I/usr/include -I. -DPREFIX=\""/usr"\" -I/usr/include/giblib    -g -O2 -c options.c
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O3 -Wall -I/usr/X11R6/include  -I/usr/include -I/usr/include -I. -DPREFIX=\""/usr"\" -I/usr/include/giblib    -g -O2 -c imlib.c
+gcc  -g -O2 -L/usr/X11R6/lib -o scrot  main.o getopt.o getopt1.o options.o imlib.o -lX11 -L/usr/lib -lgiblib -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/lib -lImlib2 -lfreetype -lz -lbz2 -L/usr/lib -lX11 -lXext -ldl -lm -lm
+make[1]: Leaving directory '/tmp/scrot/src/scrot-0.8/src'
+make[1]: Entering directory '/tmp/scrot/src/scrot-0.8'
+make[1]: Nothing to be done for 'all-am'.
+make[1]: Leaving directory '/tmp/scrot/src/scrot-0.8'
+==> Entering fakeroot environment...
+==> Starting package()...
+Making install in src
+make[1]: Entering directory '/tmp/scrot/src/scrot-0.8/src'
+make[2]: Entering directory '/tmp/scrot/src/scrot-0.8/src'
+/bin/sh ../mkinstalldirs /tmp/scrot/pkg/scrot/usr/bin
+mkdir /tmp/scrot/pkg/scrot/usr
+mkdir /tmp/scrot/pkg/scrot/usr/bin
+  /usr/bin/install -c  scrot /tmp/scrot/pkg/scrot/usr/bin/scrot
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/tmp/scrot/src/scrot-0.8/src'
+make[1]: Leaving directory '/tmp/scrot/src/scrot-0.8/src'
+make[1]: Entering directory '/tmp/scrot/src/scrot-0.8'
+make[2]: Entering directory '/tmp/scrot/src/scrot-0.8'
+make[2]: Nothing to be done for 'install-exec-am'.
+make  install-man1
+make[3]: Entering directory '/tmp/scrot/src/scrot-0.8'
+/bin/sh ./mkinstalldirs /tmp/scrot/pkg/scrot/usr/share/man/man1
+mkdir /tmp/scrot/pkg/scrot/usr/share
+mkdir /tmp/scrot/pkg/scrot/usr/share/man
+mkdir /tmp/scrot/pkg/scrot/usr/share/man/man1
+ /usr/bin/install -c -m 644 ./scrot.1 /tmp/scrot/pkg/scrot/usr/share/man/man1/scrot.1
+make[3]: Leaving directory '/tmp/scrot/src/scrot-0.8'
+/bin/sh ./mkinstalldirs /tmp/scrot/pkg/scrot/usr/share/doc/scrot
+mkdir /tmp/scrot/pkg/scrot/usr/share/doc
+mkdir /tmp/scrot/pkg/scrot/usr/share/doc/scrot
+ /usr/bin/install -c -m 644 ./README /tmp/scrot/pkg/scrot/usr/share/doc/scrot/README
+ /usr/bin/install -c -m 644 ./AUTHORS /tmp/scrot/pkg/scrot/usr/share/doc/scrot/AUTHORS
+ /usr/bin/install -c -m 644 ./ChangeLog /tmp/scrot/pkg/scrot/usr/share/doc/scrot/ChangeLog
+ /usr/bin/install -c -m 644 ./TODO /tmp/scrot/pkg/scrot/usr/share/doc/scrot/TODO
+make[2]: Leaving directory '/tmp/scrot/src/scrot-0.8'
+make[1]: Leaving directory '/tmp/scrot/src/scrot-0.8'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "scrot"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: scrot 0.8.13-1 (Sat Nov 14 04:46:39 UTC 2015)
+===> Printing config.logs
+found log at /tmp/scrot/src/scrot-0.8/config.log
+____
+File /tmp/scrot/src/scrot-0.8/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.57.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --mandir=/usr/share/man
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = ac7bab13adf2
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+hostinfo               = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1268: checking for a BSD-compatible install
+configure:1322: result: /usr/bin/install -c
+configure:1333: checking whether build environment is sane
+configure:1376: result: yes
+configure:1391: checking whether make sets $(MAKE)
+configure:1411: result: yes
+configure:1443: checking for working aclocal-1.4
+configure:1454: result: missing
+configure:1458: checking for working autoconf
+configure:1465: result: found
+configure:1473: checking for working automake-1.4
+configure:1484: result: missing
+configure:1488: checking for working autoheader
+configure:1495: result: found
+configure:1503: checking for working makeinfo
+configure:1510: result: found
+configure:1533: checking for x86_64-unknown-linux-gcc
+configure:1562: result: no
+configure:1571: checking for gcc
+configure:1587: found /usr/bin/gcc
+configure:1597: result: gcc
+configure:1841: checking for C compiler version
+configure:1844: gcc --version </dev/null >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:1847: $? = 0
+configure:1849: gcc -v </dev/null >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:1852: $? = 0
+configure:1854: gcc -V </dev/null >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:1857: $? = 1
+configure:1881: checking for C compiler default output
+configure:1884: gcc    conftest.c  >&5
+configure:1887: $? = 0
+configure:1933: result: a.out
+configure:1938: checking whether the C compiler works
+configure:1944: ./a.out
+configure:1947: $? = 0
+configure:1964: result: yes
+configure:1971: checking whether we are cross compiling
+configure:1973: result: no
+configure:1976: checking for suffix of executables
+configure:1978: gcc -o conftest    conftest.c  >&5
+configure:1981: $? = 0
+configure:2006: result: 
+configure:2012: checking for suffix of object files
+configure:2034: gcc -c   conftest.c >&5
+configure:2037: $? = 0
+configure:2059: result: o
+configure:2063: checking whether we are using the GNU C compiler
+configure:2088: gcc -c   conftest.c >&5
+configure:2091: $? = 0
+configure:2094: test -s conftest.o
+configure:2097: $? = 0
+configure:2110: result: yes
+configure:2116: checking whether gcc accepts -g
+configure:2138: gcc -c -g  conftest.c >&5
+configure:2141: $? = 0
+configure:2144: test -s conftest.o
+configure:2147: $? = 0
+configure:2158: result: yes
+configure:2175: checking for gcc option to accept ANSI C
+configure:2236: gcc  -c -g -O2  conftest.c >&5
+configure:2239: $? = 0
+configure:2242: test -s conftest.o
+configure:2245: $? = 0
+configure:2263: result: none needed
+configure:2281: gcc -c -g -O2  conftest.c >&5
+conftest.c:2:3: error: unknown type name 'choke'
+   choke me
+   ^
+conftest.c:2:3: error: expected '=', ',', ';', 'asm' or '__attribute__' at end of input
+configure:2284: $? = 1
+configure: failed program was:
+| #ifndef __cplusplus
+|   choke me
+| #endif
+configure:2397: checking for gcc option to accept ANSI C
+configure:2460: gcc  -c -g -O2  conftest.c >&5
+configure:2463: $? = 0
+configure:2466: test -s conftest.o
+configure:2469: $? = 0
+configure:2484: result: none needed
+configure:2495: checking for an ANSI C-conforming const
+configure:2563: gcc -c -g -O2  conftest.c >&5
+configure:2566: $? = 0
+configure:2569: test -s conftest.o
+configure:2572: $? = 0
+configure:2583: result: yes
+configure:2606: checking for a BSD-compatible install
+configure:2660: result: /usr/bin/install -c
+configure:2671: checking whether make sets $(MAKE)
+configure:2691: result: yes
+configure:2701: checking whether to enable maintainer-specific portions of Makefiles
+configure:2710: result: no
+configure:2758: checking for giblib-config
+configure:2776: found /usr/bin/giblib-config
+configure:2789: result: /usr/bin/giblib-config
+configure:2796: checking for giblib - version >= 1.2.3
+configure:2854: result: yes
+configure:2887: checking for getopt_long
+configure:2937: gcc -o conftest -g -O2   conftest.c  -lm >&5
+configure:2940: $? = 0
+configure:2943: test -s conftest
+configure:2946: $? = 0
+configure:2957: result: yes
+configure:3064: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.57.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on ac7bab13adf2
+
+config.status:642: creating Makefile
+config.status:642: creating scrot.spec
+config.status:642: creating src/Makefile
+config.status:746: creating src/config.h
+config.status:931: executing default-1 commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_exeext=
+ac_cv_func_getopt_long=yes
+ac_cv_objext=o
+ac_cv_path_GIBLIB_CONFIG=/usr/bin/giblib-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cc_stdc=
+ac_cv_prog_make_make_set=yes
+am_cv_prog_cc_stdc=
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='/tmp/scrot/src/scrot-0.8/missing aclocal-1.4'
+AUTOCONF='autoconf'
+AUTOHEADER='autoheader'
+AUTOMAKE='/tmp/scrot/src/scrot-0.8/missing automake-1.4'
+CC='gcc'
+CFLAGS='-g -O2'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+GIBLIB_CFLAGS='-I/usr/include/giblib'
+GIBLIB_CONFIG='/usr/bin/giblib-config'
+GIBLIB_LIBS='-L/usr/lib -lgiblib -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/lib -lImlib2 -lfreetype -lz -lbz2 -L/usr/lib -lX11 -lXext -ldl -lm'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+LDFLAGS=''
+LIBOBJS=''
+LIBOBJS=''
+LIBS=' -lm'
+LTLIBOBJS=''
+MAINT='#'
+MAINTAINER_MODE_FALSE=''
+MAINTAINER_MODE_TRUE='#'
+MAKEINFO='makeinfo'
+OBJEXT='o'
+PACKAGE='scrot'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+SET_MAKE=''
+SHELL='/bin/sh'
+VERSION='0.8'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${prefix}/share'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+includedir='${prefix}/include'
+infodir='${prefix}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localstatedir='${prefix}/var'
+mandir='/usr/share/man'
+oldincludedir='/usr/include'
+prefix='/usr'
+program_transform_name='s,x,x,'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define PACKAGE "scrot"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_NAME ""
+#define PACKAGE_STRING ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define VERSION "0.8"
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

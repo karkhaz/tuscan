@@ -1,0 +1,84 @@
+        <html><head></head><body>
+        <h1>Report for rev-plugins on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:12</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data rev-plugins
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 250 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rev-plugins 0.7.1-1 (Fri Nov 13 23:09:46 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) ladspa-1.13-5
+
+Total Download Size:   0.03 MiB
+Total Installed Size:  0.12 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading ladspa-1.13-5-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing ladspa...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading REV-plugins-0.7.1.tar.bz2...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting REV-plugins-0.7.1.tar.bz2 with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/rev-plugins
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rev-plugins 0.7.1-1 (Fri Nov 13 23:09:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-g++  -Wall -O2  -I. -fPIC -D_REENTRANT  -c -o reverbs.o reverbs.cc
+arm-linux-androideabi-g++  -Wall -O2  -I. -fPIC -D_REENTRANT  -c -o reverbs_if.o reverbs_if.cc
+arm-linux-androideabi-g++  -Wall -O2  -I. -fPIC -D_REENTRANT  -c -o zreverb.o zreverb.cc
+arm-linux-androideabi-g++  -Wall -O2  -I. -fPIC -D_REENTRANT  -c -o pareq.o pareq.cc
+g++ -shared  -o zita-reverbs.so  reverbs.o reverbs_if.o zreverb.o pareq.o
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+/usr/sbin/ld: reverbs.o: Relocations in generic ELF (EM: 40)
+reverbs.o: error adding symbols: File in wrong format
+collect2: error: ld returned 1 exit status
+Makefile:29: recipe for target 'zita-reverbs.so' failed
+make: *** [zita-reverbs.so] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

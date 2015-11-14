@@ -1,0 +1,154 @@
+        <html><head></head><body>
+        <h1>Report for chuck on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:02:37</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data chuck
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 985 packages in cache
+Found permanent source directory in /sources/chuck
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: chuck 1.3.5.1-1 (Sat Nov 14 04:54:52 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (9) alsa-lib-1.0.29-1  flac-1.3.1-1  libogg-1.3.2-1  libsamplerate-0.1.8-3  libvorbis-1.3.5-1  zita-alsa-pcmi-0.2.0-2  zita-resampler-1.3.0-3  jack-0.124.1-3  libsndfile-1.0.25-3
+
+Total Installed Size:  10.30 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing alsa-lib...
+Optional dependencies for alsa-lib
+    python2: for python smixer plugin
+installing libogg...
+installing flac...
+installing libvorbis...
+installing libsndfile...
+installing libsamplerate...
+installing zita-alsa-pcmi...
+installing zita-resampler...
+installing jack...
+Optional dependencies for jack
+    libffado: FireWire support
+    celt: NetJACK driver
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make: Entering directory '/tmp/chuck/src/chuck-1.3.5.1/src'
+bison -dv -b chuck chuck.y
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck.tab.c -o chuck.tab.o
+flex -ochuck.yy.c chuck.lex
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck.yy.c -o chuck.yy.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_math.c -o util_math.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_network.c -o util_network.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_raw.c -o util_raw.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_xforms.c -o util_xforms.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_absyn.cpp -o chuck_absyn.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_parse.cpp -o chuck_parse.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_errmsg.cpp -o chuck_errmsg.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_frame.cpp -o chuck_frame.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_symbol.cpp -o chuck_symbol.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_table.cpp -o chuck_table.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_utils.cpp -o chuck_utils.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_vm.cpp -o chuck_vm.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_instr.cpp -o chuck_instr.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_scan.cpp -o chuck_scan.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_type.cpp -o chuck_type.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_emit.cpp -o chuck_emit.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_compile.cpp -o chuck_compile.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_dl.cpp -o chuck_dl.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_oo.cpp -o chuck_oo.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_lang.cpp -o chuck_lang.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_ugen.cpp -o chuck_ugen.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_main.cpp -o chuck_main.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_otf.cpp -o chuck_otf.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_stats.cpp -o chuck_stats.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_bbq.cpp -o chuck_bbq.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_shell.cpp -o chuck_shell.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_console.cpp -o chuck_console.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_globals.cpp -o chuck_globals.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c chuck_io.cpp -o chuck_io.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c digiio_rtaudio.cpp -o digiio_rtaudio.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c hidio_sdl.cpp -o hidio_sdl.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c midiio_rtmidi.cpp -o midiio_rtmidi.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c RtAudio/RtAudio.cpp -o RtAudio/RtAudio.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c rtmidi.cpp -o rtmidi.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ugen_osc.cpp -o ugen_osc.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ugen_filter.cpp -o ugen_filter.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ugen_stk.cpp -o ugen_stk.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ugen_xxx.cpp -o ugen_xxx.o
+ugen_xxx.cpp: In constructor 'delayp_data::delayp_data()':
+ugen_xxx.cpp:2024:52: warning: iteration 2u invokes undefined behavior [-Waggressive-loop-optimizations]
+         for ( i = 0 ; i < 3 ; i++ ) { acoeff[i] = 0; bcoeff[i] = 0; }
+                                                    ^
+ugen_xxx.cpp:2024:25: note: containing loop
+         for ( i = 0 ; i < 3 ; i++ ) { acoeff[i] = 0; bcoeff[i] = 0; }
+                         ^
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ulib_machine.cpp -o ulib_machine.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ulib_math.cpp -o ulib_math.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ulib_std.cpp -o ulib_std.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ulib_opsc.cpp -o ulib_opsc.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c ulib_regex.cpp -o ulib_regex.o
+ulib_regex.cpp: In function 'void regex_replace(void*, Chuck_DL_Return*, Chuck_VM_Shred*, CK_DL_API)':
+ulib_regex.cpp:308:19: warning: converting to non-pointer type 'long int' from NULL [-Wconversion-null]
+     RETURN->v_int = NULL;
+                   ^
+ulib_regex.cpp: In function 'void regex_replaceAll(void*, Chuck_DL_Return*, Chuck_VM_Shred*, CK_DL_API)':
+ulib_regex.cpp:397:19: warning: converting to non-pointer type 'long int' from NULL [-Wconversion-null]
+     RETURN->v_int = NULL;
+                   ^
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_buffers.cpp -o util_buffers.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_console.cpp -o util_console.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_string.cpp -o util_string.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_thread.cpp -o util_thread.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_opsc.cpp -o util_opsc.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_serial.cpp -o util_serial.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c util_hid.cpp -o util_hid.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c uana_xform.cpp -o uana_xform.o
+g++ -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__  -c uana_extract.cpp -o uana_extract.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/address.c -o lo/address.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/blob.c -o lo/blob.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/bundle.c -o lo/bundle.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/message.c -o lo/message.o
+lo/message.c: In function 'lo_message_add_midi':
+lo/message.c:388:27: warning: 'sizeof' on array function parameter 'a' will return size of 'uint8_t * {aka unsigned char *}' [-Wsizeof-array-argument]
+     memcpy(nptr, a, sizeof(a));
+                           ^
+lo/message.c:380:47: note: declared here
+ int lo_message_add_midi(lo_message m, uint8_t a[4])
+                                               ^
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/method.c -o lo/method.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/pattern_match.c -o lo/pattern_match.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/send.c -o lo/send.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/server.c -o lo/server.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/server_thread.c -o lo/server_thread.o
+gcc -I. -Ilo -O3 -D__UNIX_JACK__ -D__PLATFORM_LINUX__ -O3 -fno-strict-aliasing -D__CK_SNDFILE_NATIVE__ -DHAVE_CONFIG_H -I.  -c lo/timetag.c -o lo/timetag.o
+g++ -o chuck chuck.tab.o chuck.yy.o util_math.o util_network.o util_raw.o util_xforms.o chuck_absyn.o chuck_parse.o chuck_errmsg.o chuck_frame.o chuck_symbol.o chuck_table.o chuck_utils.o chuck_vm.o chuck_instr.o chuck_scan.o chuck_type.o chuck_emit.o chuck_compile.o chuck_dl.o chuck_oo.o chuck_lang.o chuck_ugen.o chuck_main.o chuck_otf.o chuck_stats.o chuck_bbq.o chuck_shell.o chuck_console.o chuck_globals.o chuck_io.o digiio_rtaudio.o hidio_sdl.o midiio_rtmidi.o RtAudio/RtAudio.o rtmidi.o ugen_osc.o ugen_filter.o ugen_stk.o ugen_xxx.o ulib_machine.o ulib_math.o ulib_std.o ulib_opsc.o ulib_regex.o util_buffers.o util_console.o util_string.o util_thread.o util_opsc.o util_serial.o util_hid.o uana_xform.o uana_extract.o lo/address.o lo/blob.o lo/bundle.o lo/message.o lo/method.o lo/pattern_match.o lo/send.o lo/server.o lo/server_thread.o lo/timetag.o -lasound -ljack -lstdc++ -ldl -lm -lsndfile -lpthread 
+make: Leaving directory '/tmp/chuck/src/chuck-1.3.5.1/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "chuck"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: chuck 1.3.5.1-1 (Sat Nov 14 04:57:11 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

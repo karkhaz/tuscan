@@ -1,0 +1,864 @@
+        <html><head></head><body>
+        <h1>Report for hexedit on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:29</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hexedit
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 824 packages in cache
+Found permanent source directory in /sources/hexedit
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hexedit 1.2.13-3 (Sat Nov 14 04:49:43 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for initscr in -lcurses... ./configure: line 3086: ac_fn_c_try_link: command not found
+no
+checking for initscr in -lncurses... yes
+checking for use_default_colors... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking whether stat file-mode macros are broken... no
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking for unistd.h... (cached) yes
+checking libgen.h usability... yes
+checking libgen.h presence... yes
+checking for libgen.h... yes
+checking sys/mount.h usability... yes
+checking sys/mount.h presence... yes
+checking for sys/mount.h... yes
+checking for an ANSI C-conforming const... yes
+checking for size_t... yes
+checking for memcmp... yes
+checking for memmem... yes
+checking for memrmem... no
+checking for memrchr... yes
+checking for strdup... yes
+checking for strerror... yes
+checking for basename... yes
+checking whether dirname is declared... yes
+checking whether basename is declared... yes
+checking whether memrchr is declared... yes
+checking whether memmem is declared... yes
+checking whether memrmem is declared... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status: creating Makefile-build
+config.status: WARNING:  'Makefile-build.in' seems to ignore the --datarootdir setting
+config.status: creating config.h
+gcc -DHAVE_CONFIG_H -Wall  -c hexedit.c
+gcc -DHAVE_CONFIG_H -Wall  -c display.c
+display.c: In function 'get_number':
+display.c:274:38: warning: format '%llx' expects argument of type 'long long unsigned int *', but argument 3 has type 'off_t * {aka long int *}' [-Wformat=]
+     err = sscanf(tmp + strlen("0x"), "%llx", i);
+                                      ^
+display.c:276:23: warning: format '%lld' expects argument of type 'long long int *', but argument 3 has type 'off_t * {aka long int *}' [-Wformat=]
+     err = sscanf(tmp, "%lld", i);
+                       ^
+gcc -DHAVE_CONFIG_H -Wall  -c mark.c
+gcc -DHAVE_CONFIG_H -Wall  -c page.c
+gcc -DHAVE_CONFIG_H -Wall  -c file.c
+gcc -DHAVE_CONFIG_H -Wall  -c interact.c
+gcc -DHAVE_CONFIG_H -Wall  -c misc.c
+gcc -DHAVE_CONFIG_H -Wall  -c search.c
+gcc  -o hexedit hexedit.o display.o mark.o page.o file.o interact.o misc.o search.o -lncurses
+==> Entering fakeroot environment...
+==> Starting package()...
+/usr/bin/install -c -d -m 755 /tmp/hexedit/pkg/hexedit/usr/bin
+/usr/bin/install -c -s -m 755 hexedit /tmp/hexedit/pkg/hexedit/usr/bin
+/usr/bin/install -c -d -m 755 /tmp/hexedit/pkg/hexedit/usr/share/man/man1
+/usr/bin/install -c -m 644 hexedit.1 /tmp/hexedit/pkg/hexedit/usr/share/man/man1
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "hexedit"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: hexedit 1.2.13-3 (Sat Nov 14 04:49:50 UTC 2015)
+===> Printing config.logs
+found log at /tmp/hexedit/src/hexedit/config.log
+____
+File /tmp/hexedit/src/hexedit/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.68.  Invocation command line was
+
+  $ ./configure 
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 9fe62a74c093
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2196: checking for gcc
+configure:2212: found /usr/sbin/gcc
+configure:2223: result: gcc
+configure:2452: checking for C compiler version
+configure:2461: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2472: $? = 0
+configure:2461: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2472: $? = 0
+configure:2461: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2472: $? = 1
+configure:2461: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2472: $? = 1
+configure:2492: checking whether the C compiler works
+configure:2514: gcc  -Wall   conftest.c  >&5
+configure:2518: $? = 0
+configure:2566: result: yes
+configure:2569: checking for C compiler default output file name
+configure:2571: result: a.out
+configure:2577: checking for suffix of executables
+configure:2584: gcc -o conftest  -Wall   conftest.c  >&5
+configure:2588: $? = 0
+configure:2610: result: 
+configure:2632: checking whether we are cross compiling
+configure:2640: gcc -o conftest  -Wall   conftest.c  >&5
+configure:2644: $? = 0
+configure:2651: ./conftest
+configure:2655: $? = 0
+configure:2670: result: no
+configure:2675: checking for suffix of object files
+configure:2697: gcc -c  -Wall  conftest.c >&5
+configure:2701: $? = 0
+configure:2722: result: o
+configure:2726: checking whether we are using the GNU C compiler
+configure:2745: gcc -c  -Wall  conftest.c >&5
+configure:2745: $? = 0
+configure:2754: result: yes
+configure:2763: checking whether gcc accepts -g
+configure:2783: gcc -c -g  conftest.c >&5
+configure:2783: $? = 0
+configure:2824: result: yes
+configure:2841: checking for gcc option to accept ISO C89
+configure:2905: gcc  -c  -Wall  conftest.c >&5
+configure:2905: $? = 0
+configure:2918: result: none needed
+configure:2981: checking for a BSD-compatible install
+configure:3049: result: /usr/bin/install -c
+configure:3061: checking for initscr in -lcurses
+configure:3095: result: no
+configure:3100: checking for initscr in -lncurses
+configure:3172: gcc -o conftest  -Wall   conftest.c -lncurses   >&5
+configure:3172: $? = 0
+configure:3181: result: yes
+configure:3190: checking for use_default_colors
+configure:3190: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+configure:3190: $? = 0
+configure:3190: result: yes
+configure:3206: checking for special C compiler options needed for large files
+configure:3251: result: no
+configure:3257: checking for _FILE_OFFSET_BITS value needed for large files
+configure:3282: gcc -c  -Wall  conftest.c >&5
+configure:3282: $? = 0
+configure:3314: result: no
+configure:3403: checking how to run the C preprocessor
+configure:3434: gcc -E  conftest.c
+configure:3434: $? = 0
+configure:3448: gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3448: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define _GNU_SOURCE 1
+| #define HAVE_COLORS /**/
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3473: result: gcc -E
+configure:3493: gcc -E  conftest.c
+configure:3493: $? = 0
+configure:3507: gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3507: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define _GNU_SOURCE 1
+| #define HAVE_COLORS /**/
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3536: checking for grep that handles long lines and -e
+configure:3594: result: /usr/sbin/grep
+configure:3599: checking for egrep
+configure:3661: result: /usr/sbin/grep -E
+configure:3666: checking for ANSI C header files
+configure:3686: gcc -c  -Wall  conftest.c >&5
+configure:3686: $? = 0
+configure:3759: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+configure:3759: $? = 0
+configure:3759: ./conftest
+configure:3759: $? = 0
+configure:3770: result: yes
+configure:3778: checking whether stat file-mode macros are broken
+configure:3805: gcc -c  -Wall  conftest.c >&5
+configure:3805: $? = 0
+configure:3812: result: no
+configure:3820: checking for sys/wait.h that is POSIX.1 compatible
+configure:3846: gcc -c  -Wall  conftest.c >&5
+configure:3846: $? = 0
+configure:3853: result: yes
+configure:3866: checking for sys/types.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for sys/stat.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for stdlib.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for string.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for memory.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for strings.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for inttypes.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for stdint.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3866: checking for unistd.h
+configure:3866: gcc -c  -Wall  conftest.c >&5
+configure:3866: $? = 0
+configure:3866: result: yes
+configure:3881: checking fcntl.h usability
+configure:3881: gcc -c  -Wall  conftest.c >&5
+configure:3881: $? = 0
+configure:3881: result: yes
+configure:3881: checking fcntl.h presence
+configure:3881: gcc -E  conftest.c
+configure:3881: $? = 0
+configure:3881: result: yes
+configure:3881: checking for fcntl.h
+configure:3881: result: yes
+configure:3881: checking for unistd.h
+configure:3881: result: yes
+configure:3881: checking libgen.h usability
+configure:3881: gcc -c  -Wall  conftest.c >&5
+configure:3881: $? = 0
+configure:3881: result: yes
+configure:3881: checking libgen.h presence
+configure:3881: gcc -E  conftest.c
+configure:3881: $? = 0
+configure:3881: result: yes
+configure:3881: checking for libgen.h
+configure:3881: result: yes
+configure:3881: checking sys/mount.h usability
+configure:3881: gcc -c  -Wall  conftest.c >&5
+configure:3881: $? = 0
+configure:3881: result: yes
+configure:3881: checking sys/mount.h presence
+configure:3881: gcc -E  conftest.c
+configure:3881: $? = 0
+configure:3881: result: yes
+configure:3881: checking for sys/mount.h
+configure:3881: result: yes
+configure:3892: checking for an ANSI C-conforming const
+configure:3957: gcc -c  -Wall  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:55:7: warning: 't' is used uninitialized in this function [-Wuninitialized]
+     *t++ = 0;
+       ^
+conftest.c:71:23: warning: 'b' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     struct s *b; b->j = 5;
+                       ^
+configure:3957: $? = 0
+configure:3964: result: yes
+configure:3972: checking for size_t
+configure:3972: gcc -c  -Wall  conftest.c >&5
+configure:3972: $? = 0
+configure:3972: gcc -c  -Wall  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:62:21: error: expected expression before ')' token
+ if (sizeof ((size_t)))
+                     ^
+configure:3972: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define _GNU_SOURCE 1
+| #define HAVE_COLORS /**/
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_WAIT_H 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_FCNTL_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_LIBGEN_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((size_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:3972: result: yes
+configure:3987: checking for memcmp
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+conftest.c:49:6: warning: conflicting types for built-in function 'memcmp'
+ char memcmp ();
+      ^
+configure:3987: $? = 0
+configure:3987: result: yes
+configure:3987: checking for memmem
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+configure:3987: $? = 0
+configure:3987: result: yes
+configure:3987: checking for memrmem
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+/tmp/cclmcg3h.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `memrmem'
+collect2: error: ld returned 1 exit status
+configure:3987: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define _GNU_SOURCE 1
+| #define HAVE_COLORS /**/
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_WAIT_H 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_FCNTL_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_LIBGEN_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_MEMCMP 1
+| #define HAVE_MEMMEM 1
+| /* end confdefs.h.  */
+| /* Define memrmem to an innocuous variant, in case <limits.h> declares memrmem.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define memrmem innocuous_memrmem
+| 
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char memrmem (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+| 
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+| 
+| #undef memrmem
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char memrmem ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_memrmem || defined __stub___memrmem
+| choke me
+| #endif
+| 
+| int
+| main ()
+| {
+| return memrmem ();
+|   ;
+|   return 0;
+| }
+configure:3987: result: no
+configure:3987: checking for memrchr
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+configure:3987: $? = 0
+configure:3987: result: yes
+configure:3987: checking for strdup
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+conftest.c:52:6: warning: conflicting types for built-in function 'strdup'
+ char strdup ();
+      ^
+configure:3987: $? = 0
+configure:3987: result: yes
+configure:3987: checking for strerror
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+configure:3987: $? = 0
+configure:3987: result: yes
+configure:3987: checking for basename
+configure:3987: gcc -o conftest  -Wall   conftest.c  -lncurses >&5
+configure:3987: $? = 0
+configure:3987: result: yes
+configure:4042: checking whether dirname is declared
+configure:4042: gcc -c  -Wall  conftest.c >&5
+configure:4042: $? = 0
+configure:4042: result: yes
+configure:4057: checking whether basename is declared
+configure:4057: gcc -c  -Wall  conftest.c >&5
+configure:4057: $? = 0
+configure:4057: result: yes
+configure:4072: checking whether memrchr is declared
+configure:4072: gcc -c  -Wall  conftest.c >&5
+configure:4072: $? = 0
+configure:4072: result: yes
+configure:4087: checking whether memmem is declared
+configure:4087: gcc -c  -Wall  conftest.c >&5
+configure:4087: $? = 0
+configure:4087: result: yes
+configure:4102: checking whether memrmem is declared
+configure:4102: gcc -c  -Wall  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:81:10: error: 'memrmem' undeclared (first use in this function)
+   (void) memrmem;
+          ^
+conftest.c:81:10: note: each undeclared identifier is reported only once for each function it appears in
+configure:4102: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define _GNU_SOURCE 1
+| #define HAVE_COLORS /**/
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_WAIT_H 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_FCNTL_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_LIBGEN_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_MEMCMP 1
+| #define HAVE_MEMMEM 1
+| #define HAVE_MEMRCHR 1
+| #define HAVE_STRDUP 1
+| #define HAVE_STRERROR 1
+| #define HAVE_BASENAME 1
+| #define HAVE_DECL_DIRNAME 1
+| #define HAVE_DECL_BASENAME 1
+| #define HAVE_DECL_MEMRCHR 1
+| #define HAVE_DECL_MEMMEM 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #if HAVE_LIBGEN_H
+| #include <libgen.h>
+| #endif
+| 
+| 
+| int
+| main ()
+| {
+| #ifndef memrmem
+| #ifdef __cplusplus
+|   (void) memrmem;
+| #else
+|   (void) memrmem;
+| #endif
+| #endif
+| 
+|   ;
+|   return 0;
+| }
+configure:4102: result: no
+configure:4235: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.68.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 9fe62a74c093
+
+config.status:837: creating Makefile
+config.status:940: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status:837: creating Makefile-build
+config.status:940: WARNING:  'Makefile-build.in' seems to ignore the --datarootdir setting
+config.status:837: creating config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=' -Wall'
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=
+ac_cv_env_host_alias_value=
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_basename=yes
+ac_cv_func_memcmp=yes
+ac_cv_func_memmem=yes
+ac_cv_func_memrchr=yes
+ac_cv_func_memrmem=no
+ac_cv_func_strdup=yes
+ac_cv_func_strerror=yes
+ac_cv_func_use_default_colors=yes
+ac_cv_have_decl_basename=yes
+ac_cv_have_decl_dirname=yes
+ac_cv_have_decl_memmem=yes
+ac_cv_have_decl_memrchr=yes
+ac_cv_have_decl_memrmem=no
+ac_cv_header_fcntl_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_libgen_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stat_broken=no
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_mount_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_sys_wait_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_curses_initscr=no
+ac_cv_lib_ncurses_initscr=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_sys_file_offset_bits=no
+ac_cv_sys_largefile_CC=no
+ac_cv_type_size_t=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS=' -Wall'
+CPP='gcc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INCL='hexedit.h'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=' -lncurses'
+LTLIBOBJS=''
+OBJEXT='o'
+OTHER='COPYING Changes TODO install-sh configure config.h.in hexedit.1 hexedit-1.2.13.lsm Makefile.in configure.in Makefile-build.in'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PRODUCT='hexedit'
+SHELL='/bin/sh'
+SRCS='hexedit.c display.c mark.c page.c file.c interact.c misc.c search.c'
+VERSION='1.2.13'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias=''
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr/local'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define _GNU_SOURCE 1
+#define HAVE_COLORS /**/
+#define STDC_HEADERS 1
+#define HAVE_SYS_WAIT_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_FCNTL_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_LIBGEN_H 1
+#define HAVE_SYS_MOUNT_H 1
+#define HAVE_MEMCMP 1
+#define HAVE_MEMMEM 1
+#define HAVE_MEMRCHR 1
+#define HAVE_STRDUP 1
+#define HAVE_STRERROR 1
+#define HAVE_BASENAME 1
+#define HAVE_DECL_DIRNAME 1
+#define HAVE_DECL_BASENAME 1
+#define HAVE_DECL_MEMRCHR 1
+#define HAVE_DECL_MEMMEM 1
+#define HAVE_DECL_MEMRMEM 0
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

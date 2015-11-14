@@ -1,0 +1,106 @@
+        <html><head></head><body>
+        <h1>Report for pvoc on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:20</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data pvoc
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1731 packages in cache
+Found permanent source directory in /sources/pvoc
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pvoc 0.1.12-1 (Sat Nov 14 05:36:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (7) alsa-lib-1.0.29-1  flac-1.3.1-1  libogg-1.3.2-1  libvorbis-1.3.5-1  fftw-3.3.4-1  ladspa-1.13-5  libsndfile-1.0.25-3
+
+Total Installed Size:  11.48 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing ladspa...
+installing fftw...
+installing alsa-lib...
+Optional dependencies for alsa-lib
+    python2: for python smixer plugin
+installing libogg...
+installing flac...
+installing libvorbis...
+installing libsndfile...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+g++ -MM  pvoc.cc interface.cc Plugins.cc  stretch.cc > depend
+g++ -O6 -ffast-math -funroll-loops -Wall -fPIC -I/usr/local/include -DVERSION=\"0.1.12\" `pkg-config --cflags fftw3f` -I/usr/local/include -c interface.cc
+In file included from Plugins.h:33:0,
+                 from interface.cc:28:
+pvoc.h:49:65: warning: 'typedef' was ignored in this declaration
+ typedef enum pvocmode { PVPP_NOT_SET,PVPP_OFFLINE,PVPP_STREAMING};
+                                                                 ^
+pvoc.h:55:1: warning: 'typedef' was ignored in this declaration
+ };
+ ^
+g++ -O6 -ffast-math -funroll-loops -Wall -fPIC -I/usr/local/include -DVERSION=\"0.1.12\" `pkg-config --cflags fftw3f` -I/usr/local/include -c Plugins.cc
+In file included from Plugins.h:33:0,
+                 from Plugins.cc:40:
+pvoc.h:49:65: warning: 'typedef' was ignored in this declaration
+ typedef enum pvocmode { PVPP_NOT_SET,PVPP_OFFLINE,PVPP_STREAMING};
+                                                                 ^
+pvoc.h:55:1: warning: 'typedef' was ignored in this declaration
+ };
+ ^
+g++ -O6 -ffast-math -funroll-loops -Wall -fPIC -I/usr/local/include -DVERSION=\"0.1.12\" `pkg-config --cflags fftw3f` -I/usr/local/include -c pvoc.cc
+In file included from pvoc.cc:38:0:
+pvoc.h:49:65: warning: 'typedef' was ignored in this declaration
+ typedef enum pvocmode { PVPP_NOT_SET,PVPP_OFFLINE,PVPP_STREAMING};
+                                                                 ^
+pvoc.h:55:1: warning: 'typedef' was ignored in this declaration
+ };
+ ^
+g++ -nostartfiles -shared -o pvoc.so  interface.o Plugins.o  pvoc.o  `pkg-config --libs fftw3f` -Wl,-Bsymbolic 
+g++ -O6 -ffast-math -funroll-loops -Wall -fPIC -I/usr/local/include -DVERSION=\"0.1.12\" `pkg-config --cflags fftw3f` -I/usr/local/include -c stretch.cc
+In file included from stretch.cc:40:0:
+pvoc.h:49:65: warning: 'typedef' was ignored in this declaration
+ typedef enum pvocmode { PVPP_NOT_SET,PVPP_OFFLINE,PVPP_STREAMING};
+                                                                 ^
+pvoc.h:55:1: warning: 'typedef' was ignored in this declaration
+ };
+ ^
+g++ -o stretch stretch.o  pvoc.o  `pkg-config --libs sndfile` `pkg-config --libs fftw3f` -Wl,-Bsymbolic
+making tags
+==> Entering fakeroot environment...
+==> Starting package()...
+making tags
+strip pvoc.so
+strip stretch
+install -d /tmp/pvoc/pkg/pvoc/usr/lib/ladspa
+install -d /tmp/pvoc/pkg/pvoc/usr/bin
+install -d /tmp/pvoc/pkg/pvoc/usr/share/man/man1
+install -m 644 pvoc.so /tmp/pvoc/pkg/pvoc/usr/lib/ladspa
+install -m 755 stretch /tmp/pvoc/pkg/pvoc/usr/bin
+install -m 644 stretch.1 /tmp/pvoc/pkg/pvoc/usr/share/man/man1
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "pvoc"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: pvoc 0.1.12-1 (Sat Nov 14 05:36:16 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 467a6df5a0e9772718f21affbf70db4d3b499a6d3fb54e1e02280a8268166d66: rename /usr/local/google/home/khazem/docker/aufs/diff/467a6df5a0e9772718f21affbf70db4d3b499a6d3fb54e1e02280a8268166d66 /usr/local/google/home/khazem/docker/aufs/diff/467a6df5a0e9772718f21affbf70db4d3b499a6d3fb54e1e02280a8268166d66-removing: device or resource busy></pre></code>
+        </body></html>

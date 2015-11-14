@@ -1,0 +1,62 @@
+        <html><head></head><body>
+        <h1>Report for incron on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:30</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data incron
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1272 packages in cache
+Found permanent source directory in /sources/incron
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: incron 0.5.10-7 (Sat Nov 14 05:08:23 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+g++ -c  -O2 -g0 -pipe -Wall -o icd-main.o icd-main.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o incrontab.o incrontab.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o inotify-cxx.o inotify-cxx.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o usertable.o usertable.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o strtok.o strtok.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o appinst.o appinst.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o incroncfg.o incroncfg.cpp
+g++ -c  -O2 -g0 -pipe -Wall -o appargs.o appargs.cpp
+g++ -O2 -g0 -pipe -Wall  -o incrond icd-main.o incrontab.o inotify-cxx.o usertable.o strtok.o appinst.o incroncfg.o appargs.o
+g++ -c  -O2 -g0 -pipe -Wall -o ict-main.o ict-main.cpp
+g++ -O2 -g0 -pipe -Wall  -o incrontab ict-main.o incrontab.o inotify-cxx.o strtok.o incroncfg.o appargs.o
+==> Entering fakeroot environment...
+==> Starting package()...
+install -m 0755 -d /tmp/incron/pkg/incron/usr/share/man/man1
+install -m 0755 -d /tmp/incron/pkg/incron/usr/share/man/man5
+install -m 0755 -d /tmp/incron/pkg/incron/usr/share/man/man8
+install -m 0644 incrontab.1 /tmp/incron/pkg/incron/usr/share/man/man1
+install -m 0644 incrontab.5 /tmp/incron/pkg/incron/usr/share/man/man5
+install -m 0644 incrond.8 /tmp/incron/pkg/incron/usr/share/man/man8
+install -m 0644 incron.conf.5 /tmp/incron/pkg/incron/usr/share/man/man5
+install -m 0755 -d /tmp/incron/pkg/incron/usr/bin/
+install -m 0755 -d /tmp/incron/pkg/incron/usr/bin/
+install -m 0755 -d /tmp/incron/pkg/incron/usr/share/doc/incron-`cat VERSION`//
+install -m 04755 -o root incrontab /tmp/incron/pkg/incron/usr/bin/
+install -m 0755 incrond /tmp/incron/pkg/incron/usr/bin/
+install -m 0755 -o root -d /tmp/incron/pkg/incron/var/spool/incron
+install -m 0755 -o root -d /tmp/incron/pkg/incron/etc/incron.d
+install -m 0644 incron.conf.example /tmp/incron/pkg/incron/usr/share/doc/incron-`cat VERSION`//
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "incron"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: incron 0.5.10-7 (Sat Nov 14 05:08:30 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

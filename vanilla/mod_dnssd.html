@@ -1,0 +1,610 @@
+        <html><head></head><body>
+        <h1>Report for mod_dnssd on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:38</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mod_dnssd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2279 packages in cache
+Found permanent source directory in /sources/mod_dnssd
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mod_dnssd 0.6-6 (Sat Nov 14 06:29:00 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) apr-1.5.2-1  apr-util-1.5.4-1  libdaemon-0.14-3  apache-2.4.17-3  avahi-0.6.32rc-1
+
+Total Installed Size:  9.04 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libdaemon...
+installing avahi...
+Optional dependencies for avahi
+    gtk3: avahi-discover-standalone, bshell, bssh, bvnc
+    gtk2: gtk2 bindings
+    qt4: qt4 bindings
+    pygtk: avahi-bookmarks, avahi-discover
+    python2-twisted: avahi-bookmarks
+    mono: mono bindings
+    python2-dbus: avahi-discover
+    nss-mdns: NSS support for mDNS
+installing apr...
+installing apr-util...
+Optional dependencies for apr-util
+    gdbm: enable gdbm support [installed]
+    libldap: enable ldap support [installed]
+    unixodbc: enable odbc support
+    libmariadbclient: enable mysql/mariadb support
+    postgresql-libs: enable postgres support
+    db: enable berkley db support [installed]
+    sqlite: enable sqlite support
+    nss: enable nss crypto support
+    openssl: enable openssl crypto support [installed]
+installing apache...
+Optional dependencies for apache
+    lua: for mod_lua module
+    openssl: for mod_ssl module [installed]
+    libxml2: for mod_proxy_html, mod_xml2enc modules
+    nghttp2: for mod_http2 module
+    lynx: apachectl status
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... none
+checking how to run the C preprocessor... gcc -E
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether make sets $(MAKE)... (cached) yes
+checking whether gcc accepts -std=c99... yes
+checking whether gcc accepts -Wall... yes
+checking whether gcc accepts -W... yes
+checking whether gcc accepts -Wextra... yes
+checking whether gcc accepts -pedantic... yes
+checking whether gcc accepts -pipe... yes
+checking whether gcc accepts -Wformat... yes
+checking whether gcc accepts -Wold-style-definition... yes
+checking whether gcc accepts -Wdeclaration-after-statement... yes
+checking whether gcc accepts -Wfloat-equal... yes
+checking whether gcc accepts -Wmissing-declarations... yes
+checking whether gcc accepts -Wmissing-prototypes... yes
+checking whether gcc accepts -Wstrict-prototypes... yes
+checking whether gcc accepts -Wredundant-decls... yes
+checking whether gcc accepts -Wmissing-noreturn... yes
+checking whether gcc accepts -Wshadow... yes
+checking whether gcc accepts -Wendif-labels... yes
+checking whether gcc accepts -Wpointer-arith... yes
+checking whether gcc accepts -Wbad-function-cast... yes
+checking whether gcc accepts -Wcast-qual... yes
+checking whether gcc accepts -Wcast-align... yes
+checking whether gcc accepts -Wwrite-strings... yes
+checking whether gcc accepts -Winline... yes
+checking for x86_64-unknown-linux-pkg-config... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for APR... yes
+checking for apxs2... no
+checking for apxs... /usr/sbin/apxs
+checking for apache2ctl... no
+checking for apachectl... /usr/sbin/apachectl
+checking for Apache 2... yes
+checking for AVAHI... yes
+configure: creating ./config.status
+config.status: creating src/Makefile
+config.status: creating Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/README.html
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/mod_dnssd/src/mod_dnssd-0.6'
+Making all in src
+make[2]: Entering directory '/tmp/mod_dnssd/src/mod_dnssd-0.6/src'
+/usr/sbin/apxs -c -Wc,"-DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/apr-1 -g -O2 -std=c99 -Wall -W -Wextra -pedantic -pipe -Wformat -Wold-style-definition -Wdeclaration-after-statement -Wfloat-equal -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wredundant-decls -Wmissing-noreturn -Wshadow -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Winline" -D_REENTRANT -Wl,"-lapr-1 -luuid -lrt -lcrypt -lpthread -ldl " -lavahi-common -lavahi-client ./mod_dnssd.c
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/apr-1 -g -O2 -std=c99 -Wall -W -Wextra -pedantic -pipe -Wformat -Wold-style-definition -Wdeclaration-after-statement -Wfloat-equal -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wredundant-decls -Wmissing-noreturn -Wshadow -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Winline -D_REENTRANT  -c -o ./mod_dnssd.lo ./mod_dnssd.c && touch ./mod_dnssd.slo
+/usr/share/apr-1/build/libtool --silent --mode=link gcc -Wl,-O1,--sort-common,--as-needed,-z,relro   -o ./mod_dnssd.la -lapr-1 -luuid -lrt -lcrypt -lpthread -ldl   -lavahi-common -lavahi-client -rpath /usr/lib/httpd/modules -module -avoid-version    ./mod_dnssd.lo
+make[2]: Leaving directory '/tmp/mod_dnssd/src/mod_dnssd-0.6/src'
+Making all in doc
+make[2]: Entering directory '/tmp/mod_dnssd/src/mod_dnssd-0.6/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/mod_dnssd/src/mod_dnssd-0.6/doc'
+make[2]: Entering directory '/tmp/mod_dnssd/src/mod_dnssd-0.6'
+make[2]: Leaving directory '/tmp/mod_dnssd/src/mod_dnssd-0.6'
+make[1]: Leaving directory '/tmp/mod_dnssd/src/mod_dnssd-0.6'
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "mod_dnssd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: mod_dnssd 0.6-6 (Sat Nov 14 06:29:32 UTC 2015)
+===> Printing config.logs
+found log at /tmp/mod_dnssd/src/mod_dnssd-0.6/config.log
+____
+File /tmp/mod_dnssd/src/mod_dnssd-0.6/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by mod_dnssd configure 0.6, which was
+generated by GNU Autoconf 2.63.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --disable-lynx
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 3dc29a653b2a
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1867: checking for a BSD-compatible install
+configure:1935: result: /usr/bin/install -c
+configure:1946: checking whether build environment is sane
+configure:1989: result: yes
+configure:2014: checking for a thread-safe mkdir -p
+configure:2053: result: /usr/bin/mkdir -p
+configure:2066: checking for gawk
+configure:2082: found /usr/bin/gawk
+configure:2093: result: gawk
+configure:2104: checking whether make sets $(MAKE)
+configure:2126: result: yes
+configure:2206: checking for x86_64-unknown-linux-strip
+configure:2236: result: no
+configure:2246: checking for strip
+configure:2262: found /usr/bin/strip
+configure:2273: result: strip
+configure:2323: checking for x86_64-unknown-linux-gcc
+configure:2353: result: no
+configure:2363: checking for gcc
+configure:2379: found /usr/bin/gcc
+configure:2390: result: gcc
+configure:2622: checking for C compiler version
+configure:2630: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2634: $? = 0
+configure:2641: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2645: $? = 0
+configure:2652: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2656: $? = 1
+configure:2679: checking for C compiler default output file name
+configure:2701: gcc    conftest.c  >&5
+configure:2705: $? = 0
+configure:2743: result: a.out
+configure:2762: checking whether the C compiler works
+configure:2772: ./a.out
+configure:2776: $? = 0
+configure:2795: result: yes
+configure:2802: checking whether we are cross compiling
+configure:2804: result: no
+configure:2807: checking for suffix of executables
+configure:2814: gcc -o conftest    conftest.c  >&5
+configure:2818: $? = 0
+configure:2844: result: 
+configure:2850: checking for suffix of object files
+configure:2876: gcc -c   conftest.c >&5
+configure:2880: $? = 0
+configure:2905: result: o
+configure:2909: checking whether we are using the GNU C compiler
+configure:2938: gcc -c   conftest.c >&5
+configure:2945: $? = 0
+configure:2962: result: yes
+configure:2971: checking whether gcc accepts -g
+configure:3001: gcc -c -g  conftest.c >&5
+configure:3008: $? = 0
+configure:3109: result: yes
+configure:3126: checking for gcc option to accept ISO C89
+configure:3200: gcc  -c -g -O2  conftest.c >&5
+configure:3207: $? = 0
+configure:3230: result: none needed
+configure:3259: checking for style of include used by make
+configure:3287: result: GNU
+configure:3312: checking dependency style of gcc
+configure:3403: result: none
+configure:3423: checking how to run the C preprocessor
+configure:3463: gcc -E  conftest.c
+configure:3470: $? = 0
+configure:3501: gcc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3508: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "mod_dnssd"
+| #define PACKAGE_TARNAME "mod_dnssd"
+| #define PACKAGE_VERSION "0.6"
+| #define PACKAGE_STRING "mod_dnssd 0.6"
+| #define PACKAGE_BUGREPORT "mzzbqqaffq (at) 0pointer (dot) net"
+| #define PACKAGE "mod_dnssd"
+| #define VERSION "0.6"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3541: result: gcc -E
+configure:3570: gcc -E  conftest.c
+configure:3577: $? = 0
+configure:3608: gcc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3615: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "mod_dnssd"
+| #define PACKAGE_TARNAME "mod_dnssd"
+| #define PACKAGE_VERSION "0.6"
+| #define PACKAGE_STRING "mod_dnssd 0.6"
+| #define PACKAGE_BUGREPORT "mzzbqqaffq (at) 0pointer (dot) net"
+| #define PACKAGE "mod_dnssd"
+| #define VERSION "0.6"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3668: checking for a BSD-compatible install
+configure:3736: result: /usr/bin/install -c
+configure:3747: checking whether make sets $(MAKE)
+configure:3769: result: yes
+configure:3861: checking whether gcc accepts -std=c99
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wall
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -W
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wextra
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -pedantic
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -pipe
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wformat
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wold-style-definition
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wdeclaration-after-statement
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wfloat-equal
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wmissing-declarations
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wmissing-prototypes
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wstrict-prototypes
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wredundant-decls
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wmissing-noreturn
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wshadow
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wendif-labels
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wpointer-arith
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wbad-function-cast
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wcast-qual
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wcast-align
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Wwrite-strings
+configure:3865: result: yes
+configure:3861: checking whether gcc accepts -Winline
+configure:3865: result: yes
+configure:3880: checking for x86_64-unknown-linux-pkg-config
+configure:3913: result: no
+configure:3923: checking for pkg-config
+configure:3941: found /usr/bin/pkg-config
+configure:3953: result: /usr/bin/pkg-config
+configure:3978: checking pkg-config is at least version 0.9.0
+configure:3981: result: yes
+configure:3993: checking for APR
+configure:4000: $PKG_CONFIG --exists --print-errors " apr-1"
+configure:4003: $? = 0
+configure:4016: $PKG_CONFIG --exists --print-errors " apr-1"
+configure:4019: $? = 0
+configure:4096: result: yes
+configure:4158: checking for apxs2
+configure:4192: result: no
+configure:4158: checking for apxs
+configure:4177: found /usr/sbin/apxs
+configure:4189: result: /usr/sbin/apxs
+configure:4265: checking for apache2ctl
+configure:4299: result: no
+configure:4265: checking for apachectl
+configure:4284: found /usr/sbin/apachectl
+configure:4296: result: /usr/sbin/apachectl
+configure:4319: checking for Apache 2
+configure:4346: gcc -c -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/apr-1 -g -O2 -std=c99 -Wall -W -Wextra -pedantic -pipe -Wformat -Wold-style-definition -Wdeclaration-after-statement -Wfloat-equal -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wredundant-decls -Wmissing-noreturn -Wshadow -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Winline -I/usr/include/httpd  conftest.c >&5
+conftest.c:14:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+ main ()
+ ^
+conftest.c: In function 'main':
+conftest.c:14:1: warning: old-style function definition [-Wold-style-definition]
+In file included from conftest.c:11:0:
+conftest.c:17:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+         char *version = AP_SERVER_BASEREVISION;
+                         ^
+/usr/include/httpd/ap_release.h:64:34: note: in definition of macro 'APR_STRINGIFY_HELPER'
+ #define APR_STRINGIFY_HELPER(n) #n
+                                  ^
+/usr/include/httpd/ap_release.h:68:33: note: in expansion of macro 'APR_STRINGIFY'
+ #define AP_SERVER_MAJORVERSION  APR_STRINGIFY(AP_SERVER_MAJORVERSION_NUMBER)
+                                 ^
+/usr/include/httpd/ap_release.h:73:33: note: in expansion of macro 'AP_SERVER_MAJORVERSION'
+ #define AP_SERVER_MINORREVISION AP_SERVER_MAJORVERSION "." AP_SERVER_MINORVERSION
+                                 ^
+/usr/include/httpd/ap_release.h:74:33: note: in expansion of macro 'AP_SERVER_MINORREVISION'
+ #define AP_SERVER_BASEREVISION  AP_SERVER_MINORREVISION "." AP_SERVER_PATCHLEVEL
+                                 ^
+conftest.c:17:25: note: in expansion of macro 'AP_SERVER_BASEREVISION'
+         char *version = AP_SERVER_BASEREVISION;
+                         ^
+conftest.c:17:15: warning: unused variable 'version' [-Wunused-variable]
+         char *version = AP_SERVER_BASEREVISION;
+               ^
+configure:4353: $? = 0
+configure:4372: result: yes
+configure:4387: checking for AVAHI
+configure:4394: $PKG_CONFIG --exists --print-errors " avahi-client >= 0.6 "
+configure:4397: $? = 0
+configure:4410: $PKG_CONFIG --exists --print-errors " avahi-client >= 0.6 "
+configure:4413: $? = 0
+configure:4490: result: yes
+configure:4693: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by mod_dnssd config.status 0.6, which was
+generated by GNU Autoconf 2.63.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 3dc29a653b2a
+
+config.status:773: creating src/Makefile
+config.status:773: creating Makefile
+config.status:773: creating doc/Makefile
+config.status:773: creating doc/README.html
+config.status:773: creating config.h
+config.status:1047: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_APR_CFLAGS_set=
+ac_cv_env_APR_CFLAGS_value=
+ac_cv_env_APR_LIBS_set=
+ac_cv_env_APR_LIBS_value=
+ac_cv_env_AVAHI_CFLAGS_set=
+ac_cv_env_AVAHI_CFLAGS_value=
+ac_cv_env_AVAHI_LIBS_set=
+ac_cv_env_AVAHI_LIBS_value=
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_PKG_CONFIG_set=
+ac_cv_env_PKG_CONFIG_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_objext=o
+ac_cv_path_APACHECTL=/usr/sbin/apachectl
+ac_cv_path_APXS=/usr/sbin/apxs
+ac_cv_path_ac_pt_PKG_CONFIG=/usr/bin/pkg-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/bin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+am_cv_CC_dependencies_compiler_type=none
+pkg_cv_APR_CFLAGS='-DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/apr-1'
+pkg_cv_APR_LIBS='-lapr-1 -luuid -lrt -lcrypt -lpthread -ldl'
+pkg_cv_AVAHI_CFLAGS=-D_REENTRANT
+pkg_cv_AVAHI_LIBS='-lavahi-common -lavahi-client'
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/mod_dnssd/src/mod_dnssd-0.6/missing --run aclocal-1.10'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='${SHELL} /tmp/mod_dnssd/src/mod_dnssd-0.6/missing --run tar'
+APACHECTL='/usr/sbin/apachectl'
+APR_CFLAGS='-DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/apr-1'
+APR_LIBS='-lapr-1 -luuid -lrt -lcrypt -lpthread -ldl'
+APXS='/usr/sbin/apxs'
+AUTOCONF='${SHELL} /tmp/mod_dnssd/src/mod_dnssd-0.6/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/mod_dnssd/src/mod_dnssd-0.6/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/mod_dnssd/src/mod_dnssd-0.6/missing --run automake-1.10'
+AVAHI_CFLAGS='-D_REENTRANT'
+AVAHI_LIBS='-lavahi-common -lavahi-client'
+AWK='gawk'
+CC='gcc'
+CCDEPMODE='depmode=none'
+CFLAGS='-DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/apr-1 -g -O2 -std=c99 -Wall -W -Wextra -pedantic -pipe -Wformat -Wold-style-definition -Wdeclaration-after-statement -Wfloat-equal -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wredundant-decls -Wmissing-noreturn -Wshadow -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Winline'
+CPP='gcc -E'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS='-lapr-1 -luuid -lrt -lcrypt -lpthread -ldl '
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/mod_dnssd/src/mod_dnssd-0.6/missing --run makeinfo'
+MKDIR_P='/usr/bin/mkdir -p'
+OBJEXT='o'
+PACKAGE='mod_dnssd'
+PACKAGE_BUGREPORT='mzzbqqaffq (at) 0pointer (dot) net'
+PACKAGE_NAME='mod_dnssd'
+PACKAGE_STRING='mod_dnssd 0.6'
+PACKAGE_TARNAME='mod_dnssd'
+PACKAGE_URL='http://0pointer.de/lennart/projects/mod_dnssd/'
+PACKAGE_VERSION='0.6'
+PATH_SEPARATOR=':'
+PKG_CONFIG='/usr/bin/pkg-config'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+USE_LYNX_FALSE=''
+USE_LYNX_TRUE='#'
+VERSION='0.6'
+ac_ct_CC='gcc'
+am__fastdepCC_FALSE=''
+am__fastdepCC_TRUE='#'
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__quote=''
+am__tar='${AMTAR} chof - "$$tardir"'
+am__untar='${AMTAR} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+have_lynx=''
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='$(SHELL) /tmp/mod_dnssd/src/mod_dnssd-0.6/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='/usr/bin/mkdir -p'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define PACKAGE_NAME "mod_dnssd"
+#define PACKAGE_TARNAME "mod_dnssd"
+#define PACKAGE_VERSION "0.6"
+#define PACKAGE_STRING "mod_dnssd 0.6"
+#define PACKAGE_BUGREPORT "mzzbqqaffq (at) 0pointer (dot) net"
+#define PACKAGE "mod_dnssd"
+#define VERSION "0.6"
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

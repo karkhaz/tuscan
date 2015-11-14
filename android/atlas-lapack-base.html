@@ -1,0 +1,114 @@
+        <html><head></head><body>
+        <h1>Report for atlas-lapack-base on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data atlas-lapack-base
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 381 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: atlas-lapack-base 3.10.2-2 (Fri Nov 13 23:09:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) gcc-fortran-5.2.0-2
+
+Total Download Size:    6.54 MiB
+Total Installed Size:  21.53 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading gcc-fortran.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing gcc-fortran...
+==> Retrieving sources...
+  -> Downloading lapack-3.5.0.tgz...
+  -> Downloading atlas3.10.2.tar.bz2...
+  -> Found blas-license.txt
+  -> Found atlas-license.txt
+  -> Found Makefile
+  -> Found disable-throttling-check.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting atlas3.10.2.tar.bz2 with bsdtar
+==> Starting prepare()...
+patching file ATLAS/CONFIG/src/config.c
+==> Sources are ready.
+Copied source directory to /sources/atlas-lapack-base
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: atlas-lapack-base 3.10.2-2 (Fri Nov 13 23:10:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc -I/tmp/atlas-lapack-base/src/ATLAS/build/..//CONFIG/include  -g -w -c /tmp/atlas-lapack-base/src/ATLAS/build/..//CONFIG/src/atlconf_misc.c
+gcc -I/tmp/atlas-lapack-base/src/ATLAS/build/..//CONFIG/include  -g -w -o xconfig /tmp/atlas-lapack-base/src/ATLAS/build/..//CONFIG/src/config.c atlconf_misc.o 
+/tmp/cc921Wbu.o: In function `ATL_tmpnam':
+/tmp/atlas-lapack-base/src/ATLAS/build/..//CONFIG/include/atlas_sys.h:224: warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+./xconfig -d s /tmp/atlas-lapack-base/src/ATLAS/build/../ -d b /tmp/atlas-lapack-base/src/ATLAS/build  --host x86_64-unknown-linux -b 64 -A x86SSE2 -V 448 -Fa alg -fPIC -Si latune 0 -t 0 -Si lapackref 1
+
+ERROR around arg 7 (--host).
+USAGE: ./xconfig [flags] where flags are:
+   -v <verb> : verbosity level
+   -O <enum OSTYPE #>  : set OS type
+   -s <enum ASMDIA #>  : set assembly dialect
+   -A <enum MACHTYPE #> : set machine/architecture
+   -V #    # = ((1<<vecISA1) | (1<<vecISA2) | ... | (1<<vecISAN))
+   -b <32/64> : set pointer bitwidth
+   -o <outfile>
+   -C [xc,ic,if,sk,dk,sm,dm,al,ac] <compiler>
+   -F [xc,ic,if,sk,dk,sm,dm,al,ac,gc] '<comp flags>'
+   -Fa [xc,ic,if,sk,dk,sm,dm,al,ac,gc] '<comp flags to append>'
+        al: append flags to all compilers
+        ac: append flags to all C compilers
+        gc: append flags to gcc compiler used in user-contributed index files.
+        acg: append to all C compilers & the index gcc
+        alg: append to all compilers & the index gcc
+   -T <targ> : ssh target for cross-compilation (probably broken)
+   -D [c,f] -D<mac>=<rep> : cpp #define to add to [CDEFS,F2CDEFS]
+      eg. -D c -DL2SIZE=8388604 -D f -DADD__ -D f -DStringSunStyle
+   -d [s,b]  : set source/build directory
+   -f <#> : size (in KB) to flush before timing
+   -t <#> : set # of threads (-1: autodect; 0: no threading)
+   -m <mhz> : set clock rate
+   -S[i/s] <handle> <val>  : special int/string arg
+      -Si bozol1 <0/1> : supress/enable bozo L1 defaults
+      -Si archdef <1/0> : enable/supress arch default use
+      -Si ieee <1/0> : dis/allow optimizations that break IEEE FP standard
+          (eg., NEON, 3DNow!)
+      -Si latune <1/0> : do/don't tune F77 LAPACK routines
+      -Si nof77 <0/1> : Have/don't have fortran compiler
+      -Si nocygwin <0/1> : Do/don't depend on GPL cygwin library
+                           (Windows compiler/cygwin install only)
+   -tl <#> <list> : set # of threads, use list of affinity IDs
+      -Si omp <0/1> : don'tuse/use OpenMP for threading
+      -Si antthr <0/1/2> : nobuild/build/use Antoine's code for threading
+      -Si lapackref <0/1>: Netlib lapack is not/is unpacked
+                           to $BLDdir/src/lapack/ref
+      -Ss kern <path/to/comp> : use comp for all kernel compilers
+      -Ss ADdir <path/to/archdefs> : Get archdefs frm custom path
+      -Ss pmake <parallel make invocation (eg '$(MAKE) -j 4')>
+      -Ss f77lib <path to f77 lib needed by C compiler>
+      -Ss flapack <path to netlib lapack>: used to build full lapack lib
+      -Ss [s,d]maflags 'flags'
+NOTE: enum #s can be found by : make xprint_enums ; ./xprint_enums
+xconfig exited with 7
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem df928ce919730e6ace4fab1242a6e81b90da9dbff8dc94402f61800f7558ce2f: rename /usr/local/google/home/khazem/docker/aufs/diff/df928ce919730e6ace4fab1242a6e81b90da9dbff8dc94402f61800f7558ce2f /usr/local/google/home/khazem/docker/aufs/diff/df928ce919730e6ace4fab1242a6e81b90da9dbff8dc94402f61800f7558ce2f-removing: device or resource busy></pre></code>
+        </body></html>

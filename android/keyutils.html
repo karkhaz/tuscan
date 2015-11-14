@@ -1,0 +1,68 @@
+        <html><head></head><body>
+        <h1>Report for keyutils on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:17</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data keyutils
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1621 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: keyutils 1.5.9-1 (Fri Nov 13 23:42:21 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading keyutils-1.5.9.tar.bz2...
+  -> Found request-key.conf.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting keyutils-1.5.9.tar.bz2 with bsdtar
+==> Starting prepare()...
+patching file request-key.conf
+==> Sources are ready.
+Copied source directory to /sources/keyutils
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: keyutils 1.5.9-1 (Fri Nov 13 23:42:22 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+grep: /etc/rpm/macros.dist: No such file or directory
+arm-linux-androideabi-gcc -I. -DPKGBUILD="\"2015-11-13\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -fPIC -o keyutils.os -c keyutils.c
+arm-linux-androideabi-gcc -I.  -o keyctl.o -c keyctl.c
+arm-linux-androideabi-gcc -I.  -o request-key.o -c request-key.c
+arm-linux-androideabi-gcc -I.  -o key.dns_resolver.o -c key.dns_resolver.c
+arm-linux-androideabi-gcc -I. -DPKGBUILD="\"2015-11-13\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -UNO_GLIBC_KEYERR -o keyutils.o -c keyutils.c
+key.dns_resolver.c: In function 'main':
+key.dns_resolver.c:703:11: warning: incompatible implicit declaration of built-in function 'rindex' [enabled by default]
+  keyend = rindex(keyend, ';');
+           ^
+key.dns_resolver.c:708:9: warning: incompatible implicit declaration of built-in function 'index' [enabled by default]
+  name = index(keyend, ':');
+         ^
+arm-linux-androideabi-gcc  -fPIC  -shared -Wl,-soname,libkeyutils.so.1 -Wl,--version-script,version.lds -o libkeyutils.so.1.5 keyutils.os 
+ar rcs libkeyutils.a keyutils.o
+ln -sf libkeyutils.so.1.5 libkeyutils.so.1
+ln -sf libkeyutils.so.1 libkeyutils.so
+arm-linux-androideabi-gcc -L.    -o keyctl keyctl.o -lkeyutils
+arm-linux-androideabi-gcc -L.    -o request-key request-key.o -lkeyutils
+arm-linux-androideabi-gcc -L.    -o key.dns_resolver key.dns_resolver.o -lkeyutils -lresolv
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lresolv
+key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_parserr'
+key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_get16'
+key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_name_uncompress'
+key.dns_resolver.o:key.dns_resolver.c:function dns_query_afsdb: error: undefined reference to '__ns_initparse'
+key.dns_resolver.o:key.dns_resolver.c:function main: error: undefined reference to 'rindex'
+collect2: error: ld returned 1 exit status
+Makefile:150: recipe for target 'key.dns_resolver' failed
+make: *** [key.dns_resolver] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

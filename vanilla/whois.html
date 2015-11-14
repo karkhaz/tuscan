@@ -1,0 +1,101 @@
+        <html><head></head><body>
+        <h1>Report for whois on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:43</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data whois
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2466 packages in cache
+Found permanent source directory in /sources/whois
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: whois 5.2.7-1 (Sat Nov 14 07:00:51 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -MM -MG *.c > Makefile.depend
+perl make_version_h.pl debian/changelog > version.h
+perl make_ip_del.pl < ip_del_list > ip_del.h
+perl make_ip6_del.pl < ip6_del_list > ip6_del.h
+perl make_as_del.pl < as_del_list > as_del.h
+perl make_as32_del.pl < as32_del_list > as32_del.h
+perl make_new_gtlds.pl < new_gtlds_list > new_gtlds.h
+perl make_tld_serv.pl < tld_serv_list > tld_serv.h
+perl make_servers_charset.pl < servers_charset_list > servers_charset.h
+cc -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -c whois.c
+cc -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -c utils.c
+cc -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -c simple_recode.c
+cc   -o whois whois.o utils.o simple_recode.o -lidn 
+cc -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -c mkpasswd.c
+In file included from /usr/include/stdio.h:27:0,
+                 from mkpasswd.c:25:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+cc   -o mkpasswd mkpasswd.o utils.o -lcrypt 
+cd po && make
+make[1]: Entering directory '/tmp/whois/src/whois-5.2.7/po'
+xgettext --default-domain=whois \
+       	  --add-comments --keyword=_ --keyword=N_ ../whois.c ../mkpasswd.c
+if cmp -s whois.po whois.pot; then \
+  rm -f whois.po; \
+else \
+  mv whois.po whois.pot; \
+fi
+msgfmt --statistics --check --verbose --output-file=cs.mo cs.po
+cs.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=da.mo da.po
+da.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=de.mo de.po
+de.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=el.mo el.po
+el.po: 21 translated messages, 7 fuzzy translations, 2 untranslated messages.
+msgfmt --statistics --check --verbose --output-file=es.mo es.po
+es.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=eu.mo eu.po
+eu.po: 18 translated messages, 10 fuzzy translations, 2 untranslated messages.
+msgfmt --statistics --check --verbose --output-file=fi.mo fi.po
+fi.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=fr.mo fr.po
+fr.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=it.mo it.po
+it.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=ja.mo ja.po
+ja.po: 21 translated messages, 7 fuzzy translations, 2 untranslated messages.
+msgfmt --statistics --check --verbose --output-file=nb.mo nb.po
+nb.po: 5 translated messages, 4 fuzzy translations, 21 untranslated messages.
+msgfmt --statistics --check --verbose --output-file=pl.mo pl.po
+pl.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=pt_BR.mo pt_BR.po
+pt_BR.po: 23 translated messages, 5 fuzzy translations, 2 untranslated messages.
+msgfmt --statistics --check --verbose --output-file=ru.mo ru.po
+ru.po: 30 translated messages.
+msgfmt --statistics --check --verbose --output-file=zh_CN.mo zh_CN.po
+zh_CN.po: 30 translated messages.
+make[1]: Leaving directory '/tmp/whois/src/whois-5.2.7/po'
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d /tmp/whois/pkg/whois/usr/bin/
+install -d /tmp/whois/pkg/whois/usr/share/man/man1/
+install -d /tmp/whois/pkg/whois/usr/share/man/man5/
+install -m 0755 whois /tmp/whois/pkg/whois/usr/bin/
+install -m 0644 whois.1 /tmp/whois/pkg/whois/usr/share/man/man1/
+install -m 0644 whois.conf.5 /tmp/whois/pkg/whois/usr/share/man/man5/
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "whois"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: whois 5.2.7-1 (Sat Nov 14 07:00:53 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

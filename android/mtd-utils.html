@@ -1,0 +1,191 @@
+        <html><head></head><body>
+        <h1>Report for mtd-utils on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:42</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mtd-utils
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1981 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mtd-utils 1.5.2-1 (Fri Nov 13 23:53:24 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading mtd-utils-1.5.2.tar.bz2...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting mtd-utils-1.5.2.tar.bz2 with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/mtd-utils
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mtd-utils 1.5.2-1 (Fri Nov 13 23:53:28 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make: Entering directory '/tmp/mtd-utils/src/mtd-utils-1.5.2'
+  CHK     include/version.h
+  CC      ftl_format.o
+  CC      lib/libmtd.o
+lib/libmtd.c: In function 'mtd_get_dev_info1':
+lib/libmtd.c:749:46: warning: passing argument 3 of 'dev_read_data' discards 'const' qualifier from pointer target type [-Wdiscarded-array-qualifiers]
+  ret = dev_read_data(lib->mtd_name, mtd_num, &mtd->name,
+                                              ^
+lib/libmtd.c:182:12: note: expected 'void *' but argument is of type 'const char (*)[128]'
+ static int dev_read_data(const char *patt, int mtd_num, void *buf, int buf_len)
+            ^
+lib/libmtd.c:755:46: warning: passing argument 3 of 'dev_read_data' discards 'const' qualifier from pointer target type [-Wdiscarded-array-qualifiers]
+  ret = dev_read_data(lib->mtd_type, mtd_num, &mtd->type_str,
+                                              ^
+lib/libmtd.c:182:12: note: expected 'void *' but argument is of type 'const char (*)[65]'
+ static int dev_read_data(const char *patt, int mtd_num, void *buf, int buf_len)
+            ^
+  CC      lib/libmtd_legacy.o
+  CC      lib/libcrc32.o
+  CC      lib/libfec.o
+  CC      flash_erase.o
+  CC      nanddump.o
+  CC      doc_loadbios.o
+  CC      ftl_check.o
+  CC      mkfs.jffs2.o
+mkfs.jffs2.c: In function 'interpret_table_entry':
+mkfs.jffs2.c:423:20: warning: format '%a' expects argument of type 'float *', but argument 3 has type 'char **' [-Wformat=]
+  if (sscanf (line, "%" SCANF_PREFIX "s %c %lo %lu %lu %lu %lu %lu %lu %lu",
+                    ^
+  CC      compr_rtime.o
+  CC      compr_zlib.o
+  CC      compr_lzo.o
+  CC      compr.o
+  CC      rbtree.o
+  CC      flash_lock.o
+  CC      flash_unlock.o
+  CC      flash_otp_info.o
+  CC      flash_otp_dump.o
+  CC      flash_otp_lock.o
+  CC      flash_otp_write.o
+  CC      mtd_debug.o
+  CC      flashcp.o
+flashcp.c: In function 'main':
+flashcp.c:255:2: warning: #warning "Check for smaller erase regions" [-Wcpp]
+ #warning "Check for smaller erase regions"
+  ^
+  CC      nandwrite.o
+  CC      nandtest.o
+  CC      mtdpart.o
+  CC      jffs2dump.o
+  CC      nftldump.o
+  CC      nftl_format.o
+  CC      docfdisk.o
+  CC      rfdformat.o
+  CC      rfddump.o
+  CC      serve_image.o
+  CC      recv_image.o
+In file included from /usr/include/errno.h:28:0,
+                 from recv_image.c:6:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+  CC      sumtool.o
+  CC      jffs2reader.o
+  CC      mkfs.ubifs/mkfs.ubifs.o
+  CC      mkfs.ubifs/crc16.o
+  CC      mkfs.ubifs/lpt.o
+  CC      mkfs.ubifs/devtable.o
+  CC      mkfs.ubifs/compr.o
+  CC      mkfs.ubifs/hashtable/hashtable.o
+  CC      mkfs.ubifs/hashtable/hashtable_itr.o
+  CC      ubi-utils/libubi.o
+  CC      ubi-utils/ubiupdatevol.o
+  CC      ubi-utils/ubiutils-common.o
+  CC      ubi-utils/ubimkvol.o
+  CC      ubi-utils/ubirmvol.o
+  CC      ubi-utils/ubicrc32.o
+  CC      ubi-utils/ubinfo.o
+  CC      ubi-utils/ubiattach.o
+  CC      ubi-utils/ubidetach.o
+  CC      ubi-utils/ubinize.o
+  CC      ubi-utils/libubigen.o
+  CC      ubi-utils/libiniparser.o
+  CC      ubi-utils/dictionary.o
+  CC      ubi-utils/ubiformat.o
+  CC      ubi-utils/libscan.o
+  CC      ubi-utils/ubirename.o
+  CC      ubi-utils/mtdinfo.o
+  CC      ubi-utils/ubirsvol.o
+  CC      ubi-utils/ubiblock.o
+  AR      lib/libmtd.a
+  AR      ubi-utils/libubi.a
+  AR      ubi-utils/libubigen.a
+  AR      ubi-utils/libiniparser.a
+  AR      ubi-utils/libscan.a
+  LD      ubi-utils/ubirename
+  LD      ubi-utils/mtdinfo
+  LD      ubi-utils/ubirsvol
+  LD      ubi-utils/ubiblock
+  LD      ftl_format
+  LD      flash_erase
+  LD      nanddump
+  LD      doc_loadbios
+  LD      ftl_check
+  LD      mkfs.jffs2
+  LD      flash_lock
+  LD      flash_unlock
+  LD      flash_otp_info
+  LD      flash_otp_dump
+  LD      flash_otp_lock
+  LD      flash_otp_write
+  LD      mtd_debug
+  LD      flashcp
+  LD      nandwrite
+  LD      nandtest
+  LD      mtdpart
+  LD      jffs2dump
+  LD      nftldump
+  LD      nftl_format
+  LD      docfdisk
+  LD      rfddump
+  LD      rfdformat
+  LD      serve_image
+  LD      recv_image
+  LD      sumtool
+  LD      jffs2reader
+  LD      mkfs.ubifs/mkfs.ubifs
+  LD      ubi-utils/ubiupdatevol
+  LD      ubi-utils/ubimkvol
+  LD      ubi-utils/ubirmvol
+  LD      ubi-utils/ubicrc32
+  LD      ubi-utils/ubinfo
+  LD      ubi-utils/ubiattach
+  LD      ubi-utils/ubidetach
+  LD      ubi-utils/ubinize
+  LD      ubi-utils/ubiformat
+make: Leaving directory '/tmp/mtd-utils/src/mtd-utils-1.5.2'
+==> Entering fakeroot environment...
+==> Starting package()...
+make: Entering directory '/tmp/mtd-utils/src/mtd-utils-1.5.2'
+  CHK     include/version.h
+mkdir -p /tmp/mtd-utils/pkg/mtd-utils//usr/bin
+install -m 0755 /tmp/mtd-utils/src/mtd-utils-1.5.2/ftl_format /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_erase /tmp/mtd-utils/src/mtd-utils-1.5.2/nanddump /tmp/mtd-utils/src/mtd-utils-1.5.2/doc_loadbios /tmp/mtd-utils/src/mtd-utils-1.5.2/ftl_check /tmp/mtd-utils/src/mtd-utils-1.5.2/mkfs.jffs2 /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_lock /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_unlock /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_otp_info /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_otp_dump /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_otp_lock /tmp/mtd-utils/src/mtd-utils-1.5.2/flash_otp_write /tmp/mtd-utils/src/mtd-utils-1.5.2/mtd_debug /tmp/mtd-utils/src/mtd-utils-1.5.2/flashcp /tmp/mtd-utils/src/mtd-utils-1.5.2/nandwrite /tmp/mtd-utils/src/mtd-utils-1.5.2/nandtest /tmp/mtd-utils/src/mtd-utils-1.5.2/mtdpart /tmp/mtd-utils/src/mtd-utils-1.5.2/jffs2dump /tmp/mtd-utils/src/mtd-utils-1.5.2/nftldump /tmp/mtd-utils/src/mtd-utils-1.5.2/nftl_format /tmp/mtd-utils/src/mtd-utils-1.5.2/docfdisk /tmp/mtd-utils/src/mtd-utils-1.5.2/rfddump /tmp/mtd-utils/src/mtd-utils-1.5.2/rfdformat /tmp/mtd-utils/src/mtd-utils-1.5.2/serve_image /tmp/mtd-utils/src/mtd-utils-1.5.2/recv_image /tmp/mtd-utils/src/mtd-utils-1.5.2/sumtool /tmp/mtd-utils/src/mtd-utils-1.5.2/jffs2reader /tmp/mtd-utils/src/mtd-utils-1.5.2/mkfs.ubifs/mkfs.ubifs /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubiupdatevol /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubimkvol /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubirmvol /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubicrc32 /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubinfo /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubiattach /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubidetach /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubinize /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubiformat /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubirename /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/mtdinfo /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubirsvol /tmp/mtd-utils/src/mtd-utils-1.5.2/ubi-utils/ubiblock flash_eraseall /tmp/mtd-utils/pkg/mtd-utils//usr/bin/
+mkdir -p /tmp/mtd-utils/pkg/mtd-utils//usr/share/man/man1
+install -m 0644 mkfs.jffs2.1 /tmp/mtd-utils/pkg/mtd-utils//usr/share/man/man1/
+gzip -9f /tmp/mtd-utils/pkg/mtd-utils//usr/share/man/man1/*.1
+make: Leaving directory '/tmp/mtd-utils/src/mtd-utils-1.5.2'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "mtd-utils"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: mtd-utils 1.5.2-1 (Fri Nov 13 23:53:39 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

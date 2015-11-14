@@ -1,0 +1,161 @@
+        <html><head></head><body>
+        <h1>Report for udns on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:31</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data udns
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 832 packages in cache
+Found permanent source directory in /sources/udns
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: udns 0.4-2 (Sat Nov 14 04:50:19 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure... udns package
+checking for C compiler... gcc
+checking whenever C compiler (gcc) is GNU CC... yes
+checking whenever the C compiler (gcc -Wall -W -O2 -pipe)
+           can produce executables... yes
+checking for ranlib... ranlib
+checking for getopt()... yes
+checking for libraries needed for socket and connect... ok (none needed)
+checking for inet_pton() && inet_ntop()... yes
+checking for socklen_t... yes
+checking for IPv6... yes
+checking for poll()... yes
+creating config.h... ok
+creating Makefile... ok
+creating config.status... ok
+all done.
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_dn.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_dntosp.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_parse.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_resolver.c
+udns_resolver.c: In function 'dns_dummy_cb':
+udns_resolver.c:868:67: warning: parameter 'data' set but not used [-Wunused-but-set-parameter]
+ static void dns_dummy_cb(struct dns_ctx *ctx, void *result, void *data) {
+                                                                   ^
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_init.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_misc.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_XtoX.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_rr_a.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_rr_ptr.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_rr_mx.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_rr_txt.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_bl.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_rr_srv.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_rr_naptr.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_codes.c
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_jran.c
+rm -f libudns.a
+ar rv libudns.a udns_dn.o udns_dntosp.o udns_parse.o udns_resolver.o udns_init.o udns_misc.o udns_XtoX.o udns_rr_a.o udns_rr_ptr.o udns_rr_mx.o udns_rr_txt.o udns_bl.o udns_rr_srv.o udns_rr_naptr.o udns_codes.o udns_jran.o 
+ar: creating libudns.a
+a - udns_dn.o
+a - udns_dntosp.o
+a - udns_parse.o
+a - udns_resolver.o
+a - udns_init.o
+a - udns_misc.o
+a - udns_XtoX.o
+a - udns_rr_a.o
+a - udns_rr_ptr.o
+a - udns_rr_mx.o
+a - udns_rr_txt.o
+a - udns_bl.o
+a - udns_rr_srv.o
+a - udns_rr_naptr.o
+a - udns_codes.o
+a - udns_jran.o
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c dnsget.c
+dnsget.c: In function 'dbgcb':
+dnsget.c:413:31: warning: unused parameter 'unused_q' [-Wunused-parameter]
+       const struct dns_query *unused_q, void *unused_data) {
+                               ^
+dnsget.c:413:47: warning: unused parameter 'unused_data' [-Wunused-parameter]
+       const struct dns_query *unused_q, void *unused_data) {
+                                               ^
+gcc  -o dnsget dnsget.o -L. -ludns 
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c rblcheck.c
+gcc  -o rblcheck rblcheck.o -L. -ludns 
+gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c ex-rdns.c
+gcc  -o ex-rdns ex-rdns.o -L. -ludns 
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_dn.lo -c udns_dn.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_dntosp.lo -c udns_dntosp.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_parse.lo -c udns_parse.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_resolver.lo -c udns_resolver.c
+udns_resolver.c: In function 'dns_dummy_cb':
+udns_resolver.c:868:67: warning: parameter 'data' set but not used [-Wunused-but-set-parameter]
+ static void dns_dummy_cb(struct dns_ctx *ctx, void *result, void *data) {
+                                                                   ^
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_init.lo -c udns_init.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_misc.lo -c udns_misc.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_XtoX.lo -c udns_XtoX.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_rr_a.lo -c udns_rr_a.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_rr_ptr.lo -c udns_rr_ptr.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_rr_mx.lo -c udns_rr_mx.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_rr_txt.lo -c udns_rr_txt.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_bl.lo -c udns_bl.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_rr_srv.lo -c udns_rr_srv.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_rr_naptr.lo -c udns_rr_naptr.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_codes.lo -c udns_codes.c
+gcc -Wall -W -O2 -pipe -fPIC -DHAVE_CONFIG_H -o udns_jran.lo -c udns_jran.c
+gcc -shared -Wl,--soname,libudns.so.0 -o libudns.so.0 udns_dn.lo udns_dntosp.lo udns_parse.lo udns_resolver.lo udns_init.lo udns_misc.lo udns_XtoX.lo udns_rr_a.lo udns_rr_ptr.lo udns_rr_mx.lo udns_rr_txt.lo udns_bl.lo udns_rr_srv.lo udns_rr_naptr.lo udns_codes.lo udns_jran.lo  
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "udns"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: udns 0.4-2 (Sat Nov 14 04:50:26 UTC 2015)
+===> Printing config.logs
+found log at /tmp/udns/src/udns-0.4/config.log
+____
+File /tmp/udns/src/udns-0.4/config.log
+This file contains any messages produced by compilers etc while
+running configure, to aid debugging if configure script makes a mistake.
+
+>>> configure
+=== udns package
+>>> checking for C compiler
+=== gcc
+>>> checking whenever C compiler (gcc) is GNU CC
+=== yes
+>>> checking whenever the C compiler (gcc -Wall -W -O2 -pipe)
+           can produce executables
+=== yes
+>>> checking for ranlib
+=== ranlib
+>>> checking for getopt()
+=== yes
+>>> checking for libraries needed for socket and connect
+=== ok (none needed)
+>>> checking for inet_pton() && inet_ntop()
+=== yes
+>>> checking for socklen_t
+=== yes
+>>> checking for IPv6
+=== yes
+>>> checking for poll()
+=== yes
+>>> creating config.h
+=== ok
+>>> creating Makefile
+=== ok
+>>> creating config.status
+=== ok
+=== all done.
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

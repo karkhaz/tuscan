@@ -1,0 +1,62 @@
+        <html><head></head><body>
+        <h1>Report for hdparm on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:17</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hdparm
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2089 packages in cache
+Found permanent source directory in /sources/hdparm
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hdparm 9.48-1 (Sat Nov 14 05:59:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o hdparm.o hdparm.c
+In file included from /usr/include/unistd.h:25:0,
+                 from hdparm.c:9:
+/usr/include/features.h:148:3: warning: #warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [-Wcpp]
+ # warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   ^
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o identify.o identify.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o sgio.o sgio.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o sysfs.o sysfs.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o geom.o geom.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o fallocate.o fallocate.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o fibmap.o fibmap.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o fwdownload.o fwdownload.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o dvdspeed.o dvdspeed.c
+cc -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs    -c -o wdidle3.o wdidle3.c
+cc -s -o hdparm hdparm.o identify.o sgio.o sysfs.o geom.o fallocate.o fibmap.o fwdownload.o dvdspeed.o wdidle3.o
+strip hdparm
+==> Entering fakeroot environment...
+==> Starting package()...
+if [ ! -z /tmp/hdparm/pkg/hdparm ]; then install -m 755 -d /tmp/hdparm/pkg/hdparm ; fi
+if [ ! -z /tmp/hdparm/pkg/hdparm/usr/bin ]; then install -m 755 -d /tmp/hdparm/pkg/hdparm/usr/bin ; fi
+if [ ! -z /tmp/hdparm/pkg/hdparm/usr/share/man ]; then install -m 755 -d /tmp/hdparm/pkg/hdparm/usr/share/man ; fi
+if [ ! -z /tmp/hdparm/pkg/hdparm/usr/share/man/man8/ ]; then install -m 755 -d /tmp/hdparm/pkg/hdparm/usr/share/man/man8/ ; fi
+if [ -f /tmp/hdparm/pkg/hdparm/usr/bin/hdparm ]; then rm -f /tmp/hdparm/pkg/hdparm/usr/bin/hdparm ; fi
+if [ -f /tmp/hdparm/pkg/hdparm/usr/share/man/man8/hdparm.8 ]; then rm -f /tmp/hdparm/pkg/hdparm/usr/share/man/man8/hdparm.8 ;\
+elif [ -f /tmp/hdparm/pkg/hdparm/usr/man/man8/hdparm.8 ]; then rm -f /tmp/hdparm/pkg/hdparm/usr/man/man8/hdparm.8 ; fi
+install -D hdparm /tmp/hdparm/pkg/hdparm/usr/bin/hdparm
+if [ -d /tmp/hdparm/pkg/hdparm/usr/share/man ]; then install -m 644 -D hdparm.8 /tmp/hdparm/pkg/hdparm/usr/share/man/man8/hdparm.8 ;\
+elif [ -d /tmp/hdparm/pkg/hdparm/usr/man ]; then install -m 644 -D hdparm.8 /tmp/hdparm/pkg/hdparm/usr/man/man8/hdparm.8 ; fi
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "hdparm"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: hdparm 9.48-1 (Sat Nov 14 05:59:10 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

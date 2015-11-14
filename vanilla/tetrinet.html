@@ -1,0 +1,84 @@
+        <html><head></head><body>
+        <h1>Report for tetrinet on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:20</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data tetrinet
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2191 packages in cache
+Found permanent source directory in /sources/tetrinet
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: tetrinet 0.11-7 (Sat Nov 14 06:13:38 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c sockets.c
+cc -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tetrinet.c
+tetrinet.c: In function 'init':
+tetrinet.c:640:44: warning: pointer targets in passing argument 3 of 'conn' differ in signedness [-Wpointer-sign]
+     if ((server_sock = conn(server, 31457, ip)) < 0) {
+                                            ^
+In file included from tetrinet.c:17:0:
+sockets.h:15:12: note: expected 'char *' but argument is of type 'unsigned char *'
+ extern int conn(const char *host, int port, char ipbuf[4]);
+            ^
+cc -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tetris.c
+cc -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tty.c
+tty.c: In function 'draw_attdef':
+tty.c:862:12: warning: variable 'width' set but not used [-Wunused-but-set-variable]
+     int i, width;
+            ^
+cc -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c xwin.c
+xwin.c: In function 'draw_attdef':
+xwin.c:802:12: warning: variable 'width' set but not used [-Wunused-but-set-variable]
+     int i, width;
+            ^
+cc  -o tetrinet sockets.o tetrinet.o tetris.o tty.o xwin.o -lncursesw
+cc -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall  -o tetrinet-server -DSERVER_ONLY server.c sockets.c tetrinet.c tetris.c
+server.c: In function 'check_sockets':
+server.c:843:52: warning: pointer targets in passing argument 3 of 'accept' differ in signedness [-Wpointer-sign]
+  fd = accept(listen_sock, (struct sockaddr *)&sin, &len);
+                                                    ^
+In file included from /usr/include/netinet/in.h:23:0,
+                 from server.c:14:
+/usr/include/sys/socket.h:243:12: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'int *'
+ extern int accept (int __fd, __SOCKADDR_ARG __addr,
+            ^
+server.c:861:54: warning: pointer targets in passing argument 3 of 'accept' differ in signedness [-Wpointer-sign]
+  fd = accept(listen_sock6, (struct sockaddr *)&sin6, &len);
+                                                      ^
+In file included from /usr/include/netinet/in.h:23:0,
+                 from server.c:14:
+/usr/include/sys/socket.h:243:12: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'int *'
+ extern int accept (int __fd, __SOCKADDR_ARG __addr,
+            ^
+tetris.c:35:23: warning: 'timeout' defined but not used [-Wunused-variable]
+ static struct timeval timeout; /* Time of next action */
+                       ^
+tetris.c:40:12: warning: 'piece_waiting' defined but not used [-Wunused-variable]
+ static int piece_waiting; /* Are we waiting for a new piece to start? */
+            ^
+tetris.c:42:12: warning: 'last_special' defined but not used [-Wunused-variable]
+ static int last_special; /* Last line for which we added a special */
+            ^
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "tetrinet"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: tetrinet 0.11-7 (Sat Nov 14 06:13:40 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

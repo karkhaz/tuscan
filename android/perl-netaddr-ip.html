@@ -1,0 +1,323 @@
+        <html><head></head><body>
+        <h1>Report for perl-netaddr-ip on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-netaddr-ip
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2332 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-netaddr-ip 4.078-1 (Sat Nov 14 00:19:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading NetAddr-IP-4.078.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting NetAddr-IP-4.078.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-netaddr-ip
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-netaddr-ip 4.078-1 (Sat Nov 14 00:19:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+
+This build requires a C compiler by default except on Windows where
+the Pure Perl version is mandatory. The Pure Perl version, which does
+not require compilation of XS code, can be used by invoking this as:
+
+  perl Makefile.PL -noxs
+
+
+======================================================================
+W A R N I N G - Please do read below if you have legacy code
+======================================================================
+
+Versions 3.21 and above of NetAddr::IP, include hooks for the Storable
+class that are incompatible with the old (automatic) method of storing
+data. To regain backwards compatibility, the module must be use()d as
+
+    use NetAddr::IP ':old_storable';
+
+which will disable the new hooks and revert back to the old ways.
+
+If you do not use Storable along with NetAddr::IP, or just don't know
+what this all means, most likely you're safe to go ahead.
+
+Versions before 3.25 recognized by default IP addresses as returned by
+inet_aton. This is no longer the default. To enable this behavior
+again, the module must be use()d as
+
+    use NetAddr::IP ':aton';
+
+Versions before 4.008 recognized the above syntax. This behavior is
+fundamentally broken, is DEPRECATED and WILL BE REMOVED in version 5.0
+Use this method to create new objects from 'aton's
+
+    $ip = new_from_aton NetAddr::IP(inet_aton('1.2.3.4'))
+
+Checking if your kit is complete...
+Looks good
+Checking if your kit is complete...
+Looks good
+Testing if you have a C compiler and the needed header files....
+building for linux
+arm-linux-androideabi-gcc compile.c -o compile.output
+You have a working compiler.
+checking for gcc... arm-linux-androideabi-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... configure.gcc: error: cannot run C compiled programs.
+If you meant to cross compile, use `--host'.
+See `config.log' for more details.
+Cannot read config.h built by 'gcc', trying 'cc'.
+checking for gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... configure.cc: error: in `/tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite/Util':
+configure.cc: error: cannot run C compiled programs.
+If you meant to cross compile, use `--host'.
+See `config.log' for more details
+Cannot read config.h built by 'cc', using 'pure Perl'.
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for NetAddr::IP::Util
+Writing MYMETA.yml and MYMETA.json
+Generating a Unix-style Makefile
+Writing Makefile for NetAddr::IP::Lite
+Writing MYMETA.yml and MYMETA.json
+"\x{00c3}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00b1}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00c3}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00b1}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00c3}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00b1}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00c3}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+"\x{00b1}" does not map to ascii at /usr/share/perl5/core_perl/ExtUtils/MakeMaker.pm line 1182.
+Generating a Unix-style Makefile
+Writing Makefile for NetAddr::IP
+Writing MYMETA.yml and MYMETA.json
+make[1]: Entering directory '/tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite'
+cp IP.pm blib/lib/NetAddr/IP.pm
+AutoSplitting blib/lib/NetAddr/IP.pm (blib/lib/auto/NetAddr/IP)
+make[2]: Entering directory '/tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite/Util'
+cp Lite.pm ../blib/lib/NetAddr/IP/Lite.pm
+make[2]: *** No rule to make target 'config.h', needed by 'Util.c'.  Stop.
+make[2]: *** Waiting for unfinished jobs....
+Running Mkbootstrap for NetAddr::IP::Util ()
+chmod 644 "Util.bs"
+cp lib/NetAddr/IP/UtilPP.pm ../../blib/lib/NetAddr/IP/UtilPP.pm
+AutoSplitting ../../blib/lib/NetAddr/IP/UtilPP.pm (../../blib/lib/auto/NetAddr/IP/UtilPP)
+cp Util.pm ../../blib/lib/NetAddr/IP/Util.pm
+AutoSplitting ../../blib/lib/NetAddr/IP/Util.pm (../../blib/lib/auto/NetAddr/IP/Util)
+cp Util_IS.pm ../../blib/lib/NetAddr/IP/Util_IS.pm
+cp lib/NetAddr/IP/InetBase.pm ../../blib/lib/NetAddr/IP/InetBase.pm
+AutoSplitting ../../blib/lib/NetAddr/IP/InetBase.pm (../../blib/lib/auto/NetAddr/IP/InetBase)
+make[2]: Leaving directory '/tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite/Util'
+Makefile:472: recipe for target 'subdirs' failed
+make[1]: *** [subdirs] Error 2
+make[1]: Leaving directory '/tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite'
+Makefile:488: recipe for target 'subdirs' failed
+make: *** [subdirs] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite/Util/config.log
+____
+File /tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite/Util/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure.cc, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ configure.cc 
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = b775141f89b9
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure.cc:2374: checking for gcc
+configure.cc:2401: result: arm-linux-androideabi-gcc
+configure.cc:2630: checking for C compiler version
+configure.cc:2639: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure.cc:2650: $? = 0
+configure.cc:2639: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure.cc:2650: $? = 0
+configure.cc:2639: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure.cc:2650: $? = 1
+configure.cc:2639: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure.cc:2650: $? = 1
+configure.cc:2670: checking whether the C compiler works
+configure.cc:2692: arm-linux-androideabi-gcc    conftest.c  >&5
+configure.cc:2696: $? = 0
+configure.cc:2744: result: yes
+configure.cc:2747: checking for C compiler default output file name
+configure.cc:2749: result: a.out
+configure.cc:2755: checking for suffix of executables
+configure.cc:2762: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure.cc:2766: $? = 0
+configure.cc:2788: result: 
+configure.cc:2810: checking whether we are cross compiling
+configure.cc:2818: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure.cc:2822: $? = 0
+configure.cc:2829: ./conftest
+configure.cc: line 2831: ./conftest: cannot execute binary file: Exec format error
+configure.cc:2833: $? = 126
+configure.cc:2840: error: in `/tmp/perl-netaddr-ip/src/NetAddr-IP-4.078/Lite/Util':
+configure.cc:2842: error: cannot run C compiled programs.
+If you meant to cross compile, use `--host'.
+See `config.log' for more details
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=
+ac_cv_env_host_alias_value=
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_prog_ac_ct_CC=arm-linux-androideabi-gcc
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='arm-linux-androideabi-gcc'
+CFLAGS=''
+CPP=''
+CPPFLAGS=''
+DEFS=''
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP=''
+EXEEXT=''
+GREP=''
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT=''
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+SHELL='/bin/sh'
+ac_ct_CC='arm-linux-androideabi-gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='NONE'
+host_alias=''
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='NONE'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+
+configure.cc: exit 1
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

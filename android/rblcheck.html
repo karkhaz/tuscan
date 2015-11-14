@@ -1,0 +1,810 @@
+        <html><head></head><body>
+        <h1>Report for rblcheck on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:48</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data rblcheck
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 958 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rblcheck 1.5-3 (Fri Nov 13 23:19:19 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) perl-error-0.17024-1  git-2.6.2-1
+
+Total Installed Size:  26.16 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> Retrieving sources...
+  -> Cloning rblcheck git repo...
+Cloning into bare repository '/sources/rblcheck/rblcheck'...
+  -> Found 01-change-filename-tags-for-directories.patch
+  -> Found 02-fix-configure.patch
+  -> Found 03-custom-rbl.patch
+  -> Found 04-fix-missing-include.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of rblcheck git repo...
+Cloning into 'rblcheck'...
+done.
+Switched to a new branch 'makepkg'
+==> Starting prepare()...
+  -> Apply patch 01-change-filename-tags-for-directories.patch
+patching file docs/rblcheck.sgml
+  -> Apply patch 02-fix-configure.patch
+patching file configure.in
+  -> Apply patch 03-custom-rbl.patch
+patching file sites.h
+  -> Apply patch 04-fix-missing-include.patch
+patching file rblcheck.c
+==> Sources are ready.
+Copied source directory to /sources/rblcheck
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rblcheck 1.5-3 (Fri Nov 13 23:19:24 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
++ aclocal -I config
+aclocal: warning: autoconf input should be named 'configure.ac', not 'configure.in'
++ autoheader
++ automake --foreign --add-missing --include-deps --copy
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE ([^ \t=:+{}]+)}/ at /usr/sbin/automake line 3936.
+automake: warning: autoconf input should be named 'configure.ac', not 'configure.in'
+configure.in:5: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.in:5: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+configure.in:10: installing 'config/compile'
+configure.in:5: installing 'config/install-sh'
+configure.in:5: installing 'config/missing'
+Makefile.am: installing 'config/depcomp'
+automake: warning: autoconf input should be named 'configure.ac', not 'configure.in'
+parallel-tests: installing 'config/test-driver'
++ autoconf
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking whether arm-linux-androideabi-gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for unistd.h... (cached) yes
+checking getopt.h usability... yes
+checking getopt.h presence... yes
+checking for getopt.h... yes
+checking libc.h usability... no
+checking libc.h presence... no
+checking for libc.h... no
+checking for an ANSI C-conforming const... yes
+checking for __res_query in -lresolv... no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating docs/Makefile
+config.status: creating config/rblcheck.spec
+config.status: creating config/pkginfo
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/rblcheck/src/rblcheck'
+Making all in docs
+make[2]: Entering directory '/tmp/rblcheck/src/rblcheck/docs'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/rblcheck/src/rblcheck/docs'
+Making all in .
+make[2]: Entering directory '/tmp/rblcheck/src/rblcheck'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I.      -MT rblcheck.o -MD -MP -MF .deps/rblcheck.Tpo -c -o rblcheck.o rblcheck.c
+rm -f rbl rbl.tmp
+sed -e 's,@bindir\@,/usr/bin,g' \
+  -e 's,@sysconfdir\@,/etc,g' rbl.in >rbl.tmp
+chmod +x rbl.tmp
+mv rbl.tmp rbl
+mv -f .deps/rblcheck.Tpo .deps/rblcheck.Po
+arm-linux-androideabi-gcc     -o rblcheck rblcheck.o  
+make[2]: Leaving directory '/tmp/rblcheck/src/rblcheck'
+make[1]: Leaving directory '/tmp/rblcheck/src/rblcheck'
+==> Entering fakeroot environment...
+==> Starting package()...
+Making install in docs
+make[1]: Entering directory '/tmp/rblcheck/src/rblcheck/docs'
+make[2]: Entering directory '/tmp/rblcheck/src/rblcheck/docs'
+make[2]: Nothing to be done for 'install-exec-am'.
+srcdir=`cd . && pwd`; \
+db2html $srcdir/rblcheck.sgml
+srcdir=`cd . && pwd`; \
+db2ps $srcdir/rblcheck.sgml
+/bin/sh: line 1: db2ps: command not found
+/bin/sh: line 1: db2html: command not found
+Makefile:408: recipe for target 'rblcheck.ps' failed
+make[2]: [rblcheck.ps] Error 127 (ignored)
+srcdir=`cd . && pwd`; \
+db2rtf $srcdir/rblcheck.sgml
+Makefile:403: recipe for target 'html/index.html' failed
+make[2]: [html/index.html] Error 127 (ignored)
+mv rblcheck html
+mv: cannot stat 'rblcheck': No such file or directory
+Makefile:403: recipe for target 'html/index.html' failed
+make[2]: [html/index.html] Error 1 (ignored)
+/bin/sh: line 1: db2rtf: command not found
+Makefile:412: recipe for target 'rblcheck.rtf' failed
+make[2]: [rblcheck.rtf] Error 127 (ignored)
+for file in ./*.html; do \
+	basefile=`echo $file | sed -e 's,^.*/,,'`; \
+	/usr/bin/install -c -m 644 $file /tmp/rblcheck/pkg/rblcheck/usr/share/docs/$basefile; \
+done
+/usr/bin/install: cannot stat './*.html': No such file or directory
+Makefile:425: recipe for target 'install-data-local' failed
+make[2]: [install-data-local] Error 1 (ignored)
+/usr/bin/install -c -m 644 ./rblcheck.ps /tmp/rblcheck/pkg/rblcheck/usr/share/docs/rblcheck.ps
+/usr/bin/install: cannot stat './rblcheck.ps': No such file or directory
+Makefile:425: recipe for target 'install-data-local' failed
+make[2]: [install-data-local] Error 1 (ignored)
+/usr/bin/install -c -m 644 ./rblcheck.rtf /tmp/rblcheck/pkg/rblcheck/usr/share/docs/rblcheck.rtf
+/usr/bin/install: cannot stat './rblcheck.rtf': No such file or directory
+Makefile:425: recipe for target 'install-data-local' failed
+make[2]: [install-data-local] Error 1 (ignored)
+make[2]: Leaving directory '/tmp/rblcheck/src/rblcheck/docs'
+make[1]: Leaving directory '/tmp/rblcheck/src/rblcheck/docs'
+Making install in .
+make[1]: Entering directory '/tmp/rblcheck/src/rblcheck'
+make[2]: Entering directory '/tmp/rblcheck/src/rblcheck'
+make[2]: Nothing to be done for 'install-data-am'.
+ /usr/sbin/mkdir -p '/tmp/rblcheck/pkg/rblcheck/usr/bin'
+ /usr/sbin/mkdir -p '/tmp/rblcheck/pkg/rblcheck/usr/bin'
+  /usr/bin/install -c rblcheck '/tmp/rblcheck/pkg/rblcheck/usr/bin'
+ /usr/bin/install -c rbl '/tmp/rblcheck/pkg/rblcheck/usr/bin'
+make[2]: Leaving directory '/tmp/rblcheck/src/rblcheck'
+make[1]: Leaving directory '/tmp/rblcheck/src/rblcheck'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "rblcheck"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: rblcheck 1.5-3 (Fri Nov 13 23:19:30 UTC 2015)
+===> Printing config.logs
+found log at /tmp/rblcheck/src/rblcheck/config.log
+____
+File /tmp/rblcheck/src/rblcheck/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sysconfdir=/etc
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 68e6c06d856a
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2121: checking for a BSD-compatible install
+configure:2189: result: /usr/bin/install -c
+configure:2200: checking whether build environment is sane
+configure:2255: result: yes
+configure:2314: checking for x86_64-unknown-linux-strip
+configure:2344: result: no
+configure:2354: checking for strip
+configure:2370: found /usr/sbin/strip
+configure:2381: result: strip
+configure:2406: checking for a thread-safe mkdir -p
+configure:2445: result: /usr/sbin/mkdir -p
+configure:2452: checking for gawk
+configure:2468: found /usr/sbin/gawk
+configure:2479: result: gawk
+configure:2490: checking whether make sets $(MAKE)
+configure:2512: result: yes
+configure:2541: checking whether make supports nested variables
+configure:2558: result: yes
+configure:2687: checking whether to enable maintainer-specific portions of Makefiles
+configure:2696: result: no
+configure:2718: checking for x86_64-unknown-linux-gcc
+configure:2745: result: arm-linux-androideabi-gcc
+configure:3014: checking for C compiler version
+configure:3023: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3034: $? = 0
+configure:3023: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:3034: $? = 0
+configure:3023: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3034: $? = 1
+configure:3023: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:3034: $? = 1
+configure:3054: checking whether the C compiler works
+configure:3076: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:3080: $? = 0
+configure:3128: result: yes
+configure:3131: checking for C compiler default output file name
+configure:3133: result: a.out
+configure:3139: checking for suffix of executables
+configure:3146: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3150: $? = 0
+configure:3172: result: 
+configure:3194: checking whether we are cross compiling
+configure:3202: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3206: $? = 0
+configure:3213: ./conftest
+./configure: line 3215: ./conftest: cannot execute binary file: Exec format error
+configure:3217: $? = 126
+configure:3232: result: yes
+configure:3237: checking for suffix of object files
+configure:3259: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3263: $? = 0
+configure:3284: result: o
+configure:3288: checking whether we are using the GNU C compiler
+configure:3307: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3307: $? = 0
+configure:3316: result: yes
+configure:3325: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3345: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3345: $? = 0
+configure:3386: result: yes
+configure:3403: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3466: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3466: $? = 0
+configure:3479: result: none needed
+configure:3504: checking whether arm-linux-androideabi-gcc understands -c and -o together
+configure:3526: arm-linux-androideabi-gcc -c conftest.c -o conftest2.o
+configure:3529: $? = 0
+configure:3526: arm-linux-androideabi-gcc -c conftest.c -o conftest2.o
+configure:3529: $? = 0
+configure:3541: result: yes
+configure:3569: checking for style of include used by make
+configure:3597: result: GNU
+configure:3623: checking dependency style of arm-linux-androideabi-gcc
+configure:3734: result: gcc3
+configure:3757: checking how to run the C preprocessor
+configure:3788: arm-linux-androideabi-gcc -E  conftest.c
+configure:3788: $? = 0
+configure:3802: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3802: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "rblcheck"
+| #define VERSION "1.5"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3827: result: arm-linux-androideabi-gcc -E
+configure:3847: arm-linux-androideabi-gcc -E  conftest.c
+configure:3847: $? = 0
+configure:3861: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3861: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "rblcheck"
+| #define VERSION "1.5"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3890: checking for grep that handles long lines and -e
+configure:3948: result: /usr/sbin/grep
+configure:3953: checking for egrep
+configure:4015: result: /usr/sbin/grep -E
+configure:4020: checking for ANSI C header files
+configure:4040: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4040: $? = 0
+configure:4124: result: yes
+configure:4137: checking for sys/types.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for sys/stat.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for stdlib.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for string.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for memory.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for strings.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for inttypes.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for stdint.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4137: checking for unistd.h
+configure:4137: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4137: $? = 0
+configure:4137: result: yes
+configure:4151: checking for unistd.h
+configure:4151: result: yes
+configure:4163: checking getopt.h usability
+configure:4163: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4163: $? = 0
+configure:4163: result: yes
+configure:4163: checking getopt.h presence
+configure:4163: arm-linux-androideabi-gcc -E  conftest.c
+configure:4163: $? = 0
+configure:4163: result: yes
+configure:4163: checking for getopt.h
+configure:4163: result: yes
+configure:4175: checking libc.h usability
+configure:4175: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:56:18: fatal error: libc.h: No such file or directory
+ #include <libc.h>
+                  ^
+compilation terminated.
+configure:4175: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "rblcheck"
+| #define VERSION "1.5"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_GETOPT_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <libc.h>
+configure:4175: result: no
+configure:4175: checking libc.h presence
+configure:4175: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:23:18: fatal error: libc.h: No such file or directory
+ #include <libc.h>
+                  ^
+compilation terminated.
+configure:4175: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "rblcheck"
+| #define VERSION "1.5"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_GETOPT_H 1
+| /* end confdefs.h.  */
+| #include <libc.h>
+configure:4175: result: no
+configure:4175: checking for libc.h
+configure:4175: result: no
+configure:4186: checking for an ANSI C-conforming const
+configure:4252: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4252: $? = 0
+configure:4259: result: yes
+configure:4268: checking for __res_query in -lresolv
+configure:4293: arm-linux-androideabi-gcc -o conftest    conftest.c -lresolv   >&5
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lresolv
+/tmp/ccOtUUic.o:conftest.c:function main: error: undefined reference to '__res_query'
+collect2: error: ld returned 1 exit status
+configure:4293: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "rblcheck"
+| #define VERSION "1.5"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_GETOPT_H 1
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char __res_query ();
+| int
+| main ()
+| {
+| return __res_query ();
+|   ;
+|   return 0;
+| }
+configure:4302: result: no
+configure:4424: checking that generated files are newer than configure
+configure:4430: result: done
+configure:4457: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 68e6c06d856a
+
+config.status:860: creating Makefile
+config.status:860: creating docs/Makefile
+config.status:860: creating config/rblcheck.spec
+config.status:860: creating config/pkginfo
+config.status:860: creating config.h
+config.status:1089: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_getopt_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_libc_h=no
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_resolv___res_query=no
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_CPP='arm-linux-androideabi-gcc -E'
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_make_support_nested_variables=yes
+am_cv_prog_cc_c_o=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/rblcheck/src/rblcheck/config/missing aclocal-1.15'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AM_BACKSLASH='\'
+AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
+AM_DEFAULT_VERBOSITY='1'
+AM_V='$(V)'
+AUTOCONF='${SHELL} /tmp/rblcheck/src/rblcheck/config/missing autoconf'
+AUTOHEADER='${SHELL} /tmp/rblcheck/src/rblcheck/config/missing autoheader'
+AUTOMAKE='${SHELL} /tmp/rblcheck/src/rblcheck/config/missing automake-1.15'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=''
+CPP='arm-linux-androideabi-gcc -E'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAINT='#'
+MAINTAINER_MODE_FALSE=''
+MAINTAINER_MODE_TRUE='#'
+MAKEINFO='${SHELL} /tmp/rblcheck/src/rblcheck/config/missing makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='rblcheck'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='1.5'
+ac_ct_CC=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/rblcheck/src/rblcheck/config/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='$(MKDIR_P)'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "rblcheck"
+#define VERSION "1.5"
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_GETOPT_H 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

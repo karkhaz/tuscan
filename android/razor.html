@@ -1,0 +1,200 @@
+        <html><head></head><body>
+        <h1>Report for razor on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:12</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data razor
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2859 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: razor 2.85-5 (Sat Nov 14 01:17:33 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) perl-digest-hmac-1.03-3  perl-net-ip-1.26-2  perl-digest-nilsimsa-0.06-11  perl-digest-sha1-2.13-6  perl-net-dns-1.03-1  perl-uri-1.69-1
+
+Total Download Size:   0.01 MiB
+Total Installed Size:  1.09 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading perl-digest-nilsimsa-0.06-11-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-digest-sha1...
+installing perl-digest-hmac...
+installing perl-net-ip...
+installing perl-net-dns...
+Optional dependencies for perl-net-dns
+    perl-io-socket-inet6: IPv6 support
+    perl-socket6: IPv6 support
+installing perl-uri...
+installing perl-digest-nilsimsa...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading razor-agents-2.85.tar.bz2...
+  -> Found razor-2.85-cosmetic-pv-fix.patch
+  -> Found razor-2.85-makefile-quoting-fix.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting razor-agents-2.85.tar.bz2 with bsdtar
+==> Starting prepare()...
+patching file lib/Razor2/Client/Version.pm
+patching file META.yml
+patching file Makefile.PL
+==> Sources are ready.
+Copied source directory to /sources/razor
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: razor 2.85-5 (Sat Nov 14 01:17:54 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Warning: NAME must be a package name
+Checking if your kit is complete...
+Looks good
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Razor2::Preproc::deHTMLxs
+Writing MYMETA.yml and MYMETA.json
+Generating a Unix-style Makefile
+Writing Makefile for razor-agents
+Writing MYMETA.yml and MYMETA.json
+cp bin/razor-report blib/script/razor-report
+"/usr/bin/perl" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/razor-report
+cp lib/Razor2/Signature/Ephemeral.pm blib/lib/Razor2/Signature/Ephemeral.pm
+cp lib/Razor2/Preproc/deHTML.pm blib/lib/Razor2/Preproc/deHTML.pm
+cp lib/Razor2/Preproc/deQP.pm blib/lib/Razor2/Preproc/deQP.pm
+cp lib/Razor2/Preproc/deBase64.pm blib/lib/Razor2/Preproc/deBase64.pm
+cp lib/Razor2/String.pm blib/lib/Razor2/String.pm
+cp lib/Razor2/Preproc/Manager.pm blib/lib/Razor2/Preproc/Manager.pm
+cp lib/Razor2/Logger.pm blib/lib/Razor2/Logger.pm
+cp lib/Razor2/Client/Config.pm blib/lib/Razor2/Client/Config.pm
+cp lib/Razor2/Client/Version.pm blib/lib/Razor2/Client/Version.pm
+cp lib/Razor2/Signature/Whiplash.pm blib/lib/Razor2/Signature/Whiplash.pm
+cp lib/Razor2/Errorhandler.pm blib/lib/Razor2/Errorhandler.pm
+cp lib/Razor2/Preproc/deHTML_comment.pm blib/lib/Razor2/Preproc/deHTML_comment.pm
+cp lib/Razor2/Engine/VR8.pm blib/lib/Razor2/Engine/VR8.pm
+cp lib/Razor2/Client/Agent.pm blib/lib/Razor2/Client/Agent.pm
+cp lib/Razor2/Preproc/enBase64.pm blib/lib/Razor2/Preproc/enBase64.pm
+cp lib/Razor2/Syslog.pm blib/lib/Razor2/Syslog.pm
+AutoSplitting blib/lib/Razor2/Syslog.pm (blib/lib/auto/Razor2/Syslog)
+cp lib/Razor2/Preproc/deNewline.pm blib/lib/Razor2/Preproc/deNewline.pm
+cp lib/Razor2/Client/Core.pm blib/lib/Razor2/Client/Core.pm
+cp lib/Razor2/Client/Engine.pm blib/lib/Razor2/Client/Engine.pm
+cp bin/razor-revoke blib/script/razor-revoke
+"/usr/bin/perl" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/razor-revoke
+cp bin/razor-client blib/script/razor-client
+"/usr/bin/perl" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/razor-client
+cp bin/razor-check blib/script/razor-check
+"/usr/bin/perl" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/razor-check
+"/usr/bin/perl" "-MExtUtils::Command::MM" -e pod2man "--" \
+docs/razor-agent.conf.pod \
+blib/man5/razor-agent.conf.5 \
+docs/razor-agents.pod \
+blib/man5/razor-agents.5 \
+docs/razor-whitelist.pod \
+blib/man5/razor-whitelist.5
+cp bin/razor-admin blib/script/razor-admin
+"/usr/bin/perl" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/razor-admin
+Manifying 3 pod documents
+make[1]: Entering directory '/tmp/razor/src/razor-agents-2.85/Razor2-Preproc-deHTMLxs'
+Running Mkbootstrap for Razor2::Preproc::deHTMLxs ()
+chmod 644 "deHTMLxs.bs"
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"2.18\" -DXS_VERSION=\"2.18\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   _deHTMLxs.c
+cp deHTMLxs.pm ../blib/lib/Razor2/Preproc/deHTMLxs.pm
+AutoSplitting ../blib/lib/Razor2/Preproc/deHTMLxs.pm (../blib/lib/auto/Razor2/Preproc/deHTMLxs)
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  deHTMLxs.xs > deHTMLxs.xsc && mv deHTMLxs.xsc deHTMLxs.c
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"2.18\" -DXS_VERSION=\"2.18\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   deHTMLxs.c
+rm -f ../blib/arch/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong _deHTMLxs.o deHTMLxs.o  -o ../blib/arch/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so 	\
+     	\
+
+chmod 755 ../blib/arch/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- deHTMLxs.bs ../blib/arch/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.bs 644
+Manifying 1 pod document
+make[1]: Leaving directory '/tmp/razor/src/razor-agents-2.85/Razor2-Preproc-deHTMLxs'
+Manifying 4 pod documents
+Manifying 2 pod documents
+==> Entering fakeroot environment...
+==> Starting package()...
+"/usr/bin/perl" "-MExtUtils::Command::MM" -e pod2man "--" \
+docs/razor-agent.conf.pod \
+blib/man5/razor-agent.conf.5 \
+docs/razor-agents.pod \
+blib/man5/razor-agents.5 \
+docs/razor-whitelist.pod \
+blib/man5/razor-whitelist.5
+make[1]: Entering directory '/tmp/razor/src/razor-agents-2.85/Razor2-Preproc-deHTMLxs'
+Running Mkbootstrap for Razor2::Preproc::deHTMLxs ()
+chmod 644 "deHTMLxs.bs"
+Manifying 3 pod documents
+Manifying 1 pod document
+make[1]: Leaving directory '/tmp/razor/src/razor-agents-2.85/Razor2-Preproc-deHTMLxs'
+Manifying 4 pod documents
+Manifying 2 pod documents
+Appending installation info to /tmp/razor/pkg/razor/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/auto/Razor2/Preproc/deHTMLxs/autosplit.ix
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/auto/Razor2/Syslog/autosplit.ix
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Syslog.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Logger.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Errorhandler.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/String.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/Manager.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/deQP.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/deHTMLxs.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/enBase64.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/deBase64.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/deNewline.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/deHTML.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Preproc/deHTML_comment.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Client/Core.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Client/Version.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Client/Agent.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Client/Engine.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Client/Config.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Signature/Ephemeral.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Signature/Whiplash.pm
+Installing /tmp/razor/pkg/razor/usr/lib/perl5/vendor_perl/Razor2/Engine/VR8.pm
+Installing /tmp/razor/pkg/razor/usr/share/man/man1/razor-report.1
+Installing /tmp/razor/pkg/razor/usr/share/man/man1/razor-revoke.1
+Installing /tmp/razor/pkg/razor/usr/share/man/man1/razor-admin.1
+Installing /tmp/razor/pkg/razor/usr/share/man/man1/razor-check.1
+Installing /tmp/razor/pkg/razor/usr/share/man/man3/Razor2::Syslog.3pm
+Installing /tmp/razor/pkg/razor/usr/share/man/man3/Razor2::Errorhandler.3pm
+Installing /tmp/razor/pkg/razor/usr/share/man/man3/Razor2::Preproc::deHTMLxs.3pm
+Installing /tmp/razor/pkg/razor/usr/share/man/man5/razor-whitelist.5
+Installing /tmp/razor/pkg/razor/usr/share/man/man5/razor-agents.5
+Installing /tmp/razor/pkg/razor/usr/share/man/man5/razor-agent.conf.5
+Installing /tmp/razor/pkg/razor/usr/bin/vendor_perl/razor-client
+Installing /tmp/razor/pkg/razor/usr/bin/vendor_perl/razor-check
+Installing /tmp/razor/pkg/razor/usr/bin/vendor_perl/razor-report
+Installing /tmp/razor/pkg/razor/usr/bin/vendor_perl/razor-revoke
+Installing /tmp/razor/pkg/razor/usr/bin/vendor_perl/razor-admin
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "razor"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: razor 2.85-5 (Sat Nov 14 01:17:58 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

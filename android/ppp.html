@@ -1,0 +1,197 @@
+        <html><head></head><body>
+        <h1>Report for ppp on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:35</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data ppp
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2239 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ppp 2.4.7-2 (Sat Nov 14 00:12:34 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libnl-3.2.26-1  libpcap-1.7.4-1
+
+Total Installed Size:  2.06 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+installing libpcap...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading ppp-2.4.7.tar.gz...
+  -> Downloading ppp-2.4.7.tar.gz.asc...
+  -> Found ppp-2.4.6-makefiles.patch
+  -> Found options
+  -> Found ip-up
+  -> Found ip-down
+  -> Found ip-up.d.dns.sh
+  -> Found ip-down.d.dns.sh
+  -> Found ipv6-up
+  -> Found ipv6-down
+  -> Found ipv6-up.d.iface-config.sh
+  -> Found ppp.systemd
+  -> Found CVE-2015-3310.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting ppp-2.4.7.tar.gz with bsdtar
+==> Starting prepare()...
+patching file chat/Makefile.linux
+patching file configure
+patching file linux/Makefile.top
+patching file pppd/Makefile.linux
+patching file pppd/plugins/Makefile.linux
+patching file pppd/plugins/pppoatm/Makefile.linux
+patching file pppd/plugins/pppol2tp/Makefile.linux
+patching file pppd/plugins/radius/Makefile.linux
+patching file pppd/plugins/rp-pppoe/Makefile.linux
+patching file pppdump/Makefile.linux
+patching file pppstats/Makefile.linux
+patching file pppd/plugins/radius/util.c
+==> Sources are ready.
+Copied source directory to /sources/ppp
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ppp 2.4.7-2 (Sat Nov 14 00:12:41 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Configuring for Linux
+Creating Makefiles.
+  Makefile <= linux/Makefile.top
+  pppd/Makefile <= pppd/Makefile.linux
+  pppstats/Makefile <= pppstats/Makefile.linux
+  chat/Makefile <= chat/Makefile.linux
+  pppdump/Makefile <= pppdump/Makefile.linux
+  pppd/plugins/Makefile <= pppd/plugins/Makefile.linux
+  pppd/plugins/rp-pppoe/Makefile <= pppd/plugins/rp-pppoe/Makefile.linux
+  pppd/plugins/radius/Makefile <= pppd/plugins/radius/Makefile.linux
+  pppd/plugins/pppoatm/Makefile <= pppd/plugins/pppoatm/Makefile.linux
+  pppd/plugins/pppol2tp/Makefile <= pppd/plugins/pppol2tp/Makefile.linux
+cd chat; make -j --jobserver-fds=3,4 all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/chat'
+arm-linux-androideabi-gcc -c -D_GNU_SOURCE -DTERMIOS			 -DSIGTYPE=void			 -UNO_SLEEP			 -DFNDELAY=O_NDELAY		  -o chat.o chat.c
+arm-linux-androideabi-gcc -o chat chat.o
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/chat'
+cd pppd/plugins; make -j --jobserver-fds=3,4 all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins'
+arm-linux-androideabi-gcc -o minconn.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 minconn.c
+arm-linux-androideabi-gcc -o passprompt.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 passprompt.c
+arm-linux-androideabi-gcc -o passwordfd.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 passwordfd.c
+arm-linux-androideabi-gcc -o winbind.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 winbind.c
+for d in rp-pppoe pppoatm pppol2tp radius; do make -w -j --jobserver-fds=3,4 -C $d all; done
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/rp-pppoe'
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o plugin.o -fPIC plugin.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o discovery.o -fPIC discovery.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o if.o -fPIC if.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o common.o -fPIC common.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -c -o pppoe-discovery.o pppoe-discovery.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -c -o debug.o debug.c
+arm-linux-androideabi-gcc -o rp-pppoe.so -shared  plugin.o discovery.o if.o common.o
+arm-linux-androideabi-gcc -o pppoe-discovery  pppoe-discovery.o debug.o
+pppoe-discovery.o:pppoe-discovery.c:function sendPADI: error: undefined reference to 'error'
+pppoe-discovery.o:pppoe-discovery.c:function sendPADI: error: undefined reference to 'error'
+pppoe-discovery.o:pppoe-discovery.c:function sendPADI: error: undefined reference to 'error'
+collect2: error: ld returned 1 exit status
+Makefile:35: recipe for target 'pppoe-discovery' failed
+make[2]: *** [pppoe-discovery] Error 1
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/rp-pppoe'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppoatm'
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o pppoatm.o pppoatm.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o text2qos.o text2qos.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o text2atm.o text2atm.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o misc.o misc.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o ans.o ans.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -o pppoatm.so  -shared pppoatm.o text2qos.o text2atm.o misc.o ans.o -lresolv
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lresolv
+collect2: error: ld returned 1 exit status
+Makefile:36: recipe for target 'pppoatm.so' failed
+make[2]: *** [pppoatm.so] Error 1
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppoatm'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppol2tp'
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -c -o pppol2tp.o pppol2tp.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -c -o openl2tp.o openl2tp.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -o openl2tp.so  -shared openl2tp.o 
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -o pppol2tp.so  -shared pppol2tp.o 
+rm openl2tp.o pppol2tp.o
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppol2tp'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/radius'
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o radius.o radius.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o avpair.o avpair.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o buildreq.o buildreq.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o config.o config.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o dict.o dict.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o ip_util.o ip_util.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o clientid.o clientid.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o sendserver.o sendserver.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o lock.o lock.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o util.o util.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o md5.o md5.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o radattr.o radattr.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o radrealms.o radrealms.c
+ar rv libradiusclient.a avpair.o buildreq.o config.o dict.o ip_util.o clientid.o sendserver.o lock.o util.o md5.o
+ar: creating libradiusclient.a
+a - avpair.o
+a - buildreq.o
+a - config.o
+a - dict.o
+a - ip_util.o
+a - clientid.o
+a - sendserver.o
+a - lock.o
+a - util.o
+a - md5.o
+arm-linux-androideabi-gcc -o radattr.so -shared  radattr.o
+arm-linux-androideabi-gcc -o radius.so -shared  radius.o libradiusclient.a
+arm-linux-androideabi-gcc -o radrealms.so -shared  radrealms.o
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/radius'
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins'
+cd pppd; make -j --jobserver-fds=3,4 all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o main.o main.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o magic.o magic.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o fsm.o fsm.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o lcp.o lcp.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ipcp.o ipcp.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o upap.o upap.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o chap-new.o chap-new.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o md5.o md5.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ccp.o ccp.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ecp.o ecp.c
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o auth.o auth.c
+auth.c:96:20: fatal error: shadow.h: No such file or directory
+ #include <shadow.h>
+                    ^
+arm-linux-androideabi-gcc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o options.o options.c
+compilation terminated.
+<builtin>: recipe for target 'auth.o' failed
+make[1]: *** [auth.o] Error 1
+make[1]: *** Waiting for unfinished jobs....
+options.c:59:18: fatal error: pcap.h: No such file or directory
+ #include <pcap.h>
+                  ^
+compilation terminated.
+<builtin>: recipe for target 'options.o' failed
+make[1]: *** [options.o] Error 1
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+Makefile:13: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

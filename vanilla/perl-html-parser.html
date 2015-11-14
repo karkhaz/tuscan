@@ -1,0 +1,97 @@
+        <html><head></head><body>
+        <h1>Report for perl-html-parser on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:31</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-html-parser
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2283 packages in cache
+Found permanent source directory in /sources/perl-html-parser
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-html-parser 3.71-4 (Sat Nov 14 06:29:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) perl-html-tagset-3.20-4
+
+Total Installed Size:  0.02 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-html-tagset...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for HTML::Parser
+Writing MYMETA.yml and MYMETA.json
+cp lib/HTML/LinkExtor.pm blib/lib/HTML/LinkExtor.pm
+cp lib/HTML/Entities.pm blib/lib/HTML/Entities.pm
+cp lib/HTML/Filter.pm blib/lib/HTML/Filter.pm
+cp Parser.pm blib/lib/HTML/Parser.pm
+cp lib/HTML/TokeParser.pm blib/lib/HTML/TokeParser.pm
+cp lib/HTML/PullParser.pm blib/lib/HTML/PullParser.pm
+cp lib/HTML/HeadParser.pm blib/lib/HTML/HeadParser.pm
+Running Mkbootstrap for HTML::Parser ()
+chmod 644 "Parser.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  Parser.xs > Parser.xsc && mv Parser.xsc Parser.c
+"/usr/bin/perl" mkhctype >hctype.h
+"/usr/bin/perl" mkpfunc >pfunc.h
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"3.71\" -DXS_VERSION=\"3.71\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"  -DMARKED_SECTION Parser.c
+rm -f blib/arch/auto/HTML/Parser/Parser.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Parser.o  -o blib/arch/auto/HTML/Parser/Parser.so 	\
+     	\
+
+chmod 755 blib/arch/auto/HTML/Parser/Parser.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Parser.bs blib/arch/auto/HTML/Parser/Parser.bs 644
+Manifying 7 pod documents
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for HTML::Parser ()
+chmod 644 "Parser.bs"
+Manifying 7 pod documents
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/auto/HTML/Parser/Parser.so
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/TokeParser.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/HeadParser.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/Filter.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/Parser.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/LinkExtor.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/Entities.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/vendor_perl/HTML/PullParser.pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::Parser.3pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::Filter.3pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::TokeParser.3pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::Entities.3pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::PullParser.3pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::LinkExtor.3pm
+Installing /tmp/perl-html-parser/pkg/perl-html-parser/usr/share/man/man3/HTML::HeadParser.3pm
+Appending installation info to /tmp/perl-html-parser/pkg/perl-html-parser/usr/lib/perl5/core_perl/perllocal.pod
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-html-parser"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-html-parser 3.71-4 (Sat Nov 14 06:30:03 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 8a57c4007362a64b615f40cee74acb271c4f7d46404f005f3dc27354d8fa756c: rename /usr/local/google/home/khazem/docker/aufs/diff/8a57c4007362a64b615f40cee74acb271c4f7d46404f005f3dc27354d8fa756c /usr/local/google/home/khazem/docker/aufs/diff/8a57c4007362a64b615f40cee74acb271c4f7d46404f005f3dc27354d8fa756c-removing: device or resource busy></pre></code>
+        </body></html>

@@ -1,0 +1,27 @@
+        <html><head></head><body>
+        <h1>Report for nemesis on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 1</p>
+        <p>Time to run: 00:00:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data nemesis
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1396 packages in cache
+Found permanent source directory in /sources/nemesis
+Traceback (most recent call last):
+  File "/build/make_package.py", line 215, in <module>
+    main()
+  File "/build/make_package.py", line 212, in main
+    result = copy_and_build(args)
+  File "/build/make_package.py", line 118, in copy_and_build
+    copytree(permanent_source_dir, build_dir)
+  File "/usr/lib/python3.5/shutil.py", line 353, in copytree
+    raise Error(errors)
+shutil.Error: [('/sources/nemesis/src/Libnet-1.0.2a/support/bpf-lkm/OpenBSD/OpenBSD', '/tmp/nemesis/src/Libnet-1.0.2a/support/bpf-lkm/OpenBSD/OpenBSD', "[Errno 40] Too many levels of symbolic links: '/sources/nemesis/src/Libnet-1.0.2a/support/bpf-lkm/OpenBSD/OpenBSD'")]
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 29eaa365776db26f7c9a1bb99df14b175d4286b63c827a52c9bdfdb5de44a95b: rename /usr/local/google/home/khazem/docker/aufs/mnt/29eaa365776db26f7c9a1bb99df14b175d4286b63c827a52c9bdfdb5de44a95b /usr/local/google/home/khazem/docker/aufs/mnt/29eaa365776db26f7c9a1bb99df14b175d4286b63c827a52c9bdfdb5de44a95b-removing: device or resource busy></pre></code>
+        </body></html>

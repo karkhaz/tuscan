@@ -1,0 +1,153 @@
+        <html><head></head><body>
+        <h1>Report for vpnc on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data vpnc
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 3148 packages in cache
+Found permanent source directory in /sources/vpnc
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: vpnc 0.5.3.svn550-1 (Sat Nov 14 12:20:16 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (7) apr-1.5.2-1  apr-util-1.5.4-1  perl-error-0.17024-1  serf-1.3.8-1  sqlite-3.9.2-1  git-2.6.2-1  subversion-1.9.2-1
+
+Total Installed Size:  67.28 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing apr...
+installing apr-util...
+Optional dependencies for apr-util
+    gdbm: enable gdbm support [installed]
+    libldap: enable ldap support [installed]
+    unixodbc: enable odbc support
+    libmariadbclient: enable mysql/mariadb support
+    postgresql-libs: enable postgres support
+    db: enable berkley db support [installed]
+    sqlite: enable sqlite support [installed]
+    nss: enable nss crypto support
+    openssl: enable openssl crypto support [installed]
+installing serf...
+installing subversion...
+Optional dependencies for subversion
+    libgnome-keyring: for GNOME Keyring for auth credentials
+    kdebase-runtime: for KWallet for auth credentials
+    bash-completion: for svn bash completion
+    python2: for some hook scripts
+    java-environment: for Java support
+    ruby: for some hook scripts
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn [installed]
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+LC_ALL=C perl -w ./enum2debug.pl isakmp.h >vpnc-debug.c 2>vpnc-debug.h
+cc -MM sysdep.c vpnc-debug.c isakmp-pkt.c tunip.c config.c dh.c math_group.c supp.c decrypt-utils.c crypto.c crypto-openssl.c vpnc.c cisco-decrypt.c test-crypto.c -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\" > .depend
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o sysdep.o sysdep.c
+sysdep.c: In function 'tun_close':
+sysdep.c:517:29: warning: parameter 'dev' set but not used [-Wunused-but-set-parameter]
+ int tun_close(int fd, char *dev)
+                             ^
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o vpnc-debug.o vpnc-debug.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o isakmp-pkt.o isakmp-pkt.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o tunip.o tunip.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o config.o config.c
+config.c: In function 'vpnc_getpass':
+config.c:253:6: warning: 'pass' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (buf == NULL)
+      ^
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o dh.o dh.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o math_group.o math_group.c
+math_group.c: In function 'modp_getraw':
+math_group.c:243:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+  int ret;
+      ^
+math_group.c: In function 'modp_setraw':
+math_group.c:259:38: warning: parameter 'grp' set but not used [-Wunused-but-set-parameter]
+ static int modp_setraw(struct group *grp, gcry_mpi_t d, unsigned char *s, int l)
+                                      ^
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o supp.o supp.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o decrypt-utils.o decrypt-utils.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o crypto.o crypto.c
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o crypto-openssl.o crypto-openssl.c
+crypto-openssl.c: In function 'password_cb':
+crypto-openssl.c:66:30: warning: unused parameter 'buf' [-Wunused-parameter]
+ static int password_cb(char *buf, int size, int rwflag, void *userdata)
+                              ^
+crypto-openssl.c:66:39: warning: unused parameter 'size' [-Wunused-parameter]
+ static int password_cb(char *buf, int size, int rwflag, void *userdata)
+                                       ^
+crypto-openssl.c:66:49: warning: unused parameter 'rwflag' [-Wunused-parameter]
+ static int password_cb(char *buf, int size, int rwflag, void *userdata)
+                                                 ^
+crypto-openssl.c:66:63: warning: unused parameter 'userdata' [-Wunused-parameter]
+ static int password_cb(char *buf, int size, int rwflag, void *userdata)
+                                                               ^
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o vpnc.o vpnc.c
+vpnc.c: In function 'do_phase1_am_packet2':
+vpnc.c:1901:38: warning: argument to 'sizeof' in 'memset' call is the same expression as the destination; did you mean to provide an explicit length? [-Wsizeof-pointer-memaccess]
+    memset(dh_shared_secret, 0, sizeof(dh_shared_secret));
+                                      ^
+cc -g -o vpnc sysdep.o vpnc-debug.o isakmp-pkt.o tunip.o config.o dh.o math_group.o supp.o decrypt-utils.o crypto.o crypto-openssl.o vpnc.o -lgcrypt -lgpg-error -lcrypto
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o cisco-decrypt.o cisco-decrypt.c
+cc -g -o cisco-decrypt cisco-decrypt.o decrypt-utils.o -lgcrypt -lgpg-error -lcrypto
+cc -O3 -g -W -Wall -Wmissing-declarations -Wwrite-strings  -DOPENSSL_GPL_VIOLATION -DCRYPTO_OPENSSL -DVERSION=\"0.5.3-550M\"  -c -o test-crypto.o test-crypto.c
+cc -g -o test-crypto sysdep.o test-crypto.o crypto.o crypto-openssl.o -lgcrypt -lgpg-error -lcrypto
+./makeman.pl
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d /tmp/vpnc/pkg/vpnc/etc/vpnc /tmp/vpnc/pkg/vpnc/usr/bin /tmp/vpnc/pkg/vpnc/usr/bin /tmp/vpnc/pkg/vpnc/usr/share/man/man1 /tmp/vpnc/pkg/vpnc/usr/share/man/man8 /tmp/vpnc/pkg/vpnc/usr/share/doc/vpnc
+if [ "`uname -s | cut -c-6`" = "CYGWIN" ]; then \
+	install vpnc-script-win /tmp/vpnc/pkg/vpnc/etc/vpnc/vpnc-script; \
+	install vpnc-script-win.js /tmp/vpnc/pkg/vpnc/etc/vpnc; \
+else \
+	install vpnc-script /tmp/vpnc/pkg/vpnc/etc/vpnc; \
+fi
+install -m600 vpnc.conf /tmp/vpnc/pkg/vpnc/etc/vpnc/default.conf
+install -m755 vpnc-disconnect /tmp/vpnc/pkg/vpnc/usr/bin
+install -m755 pcf2vpnc /tmp/vpnc/pkg/vpnc/usr/bin
+install -m644 vpnc.8 /tmp/vpnc/pkg/vpnc/usr/share/man/man8
+install -m644 pcf2vpnc.1 /tmp/vpnc/pkg/vpnc/usr/share/man/man1
+install -m644 cisco-decrypt.1 /tmp/vpnc/pkg/vpnc/usr/share/man/man1
+install -m644 COPYING /tmp/vpnc/pkg/vpnc/usr/share/doc/vpnc
+install -m755 vpnc /tmp/vpnc/pkg/vpnc/usr/bin
+install -m755 cisco-decrypt /tmp/vpnc/pkg/vpnc/usr/bin
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "vpnc"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: vpnc 0.5.3.svn550-1 (Sat Nov 14 12:20:32 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

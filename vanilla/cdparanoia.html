@@ -1,0 +1,919 @@
+        <html><head></head><body>
+        <h1>Report for cdparanoia on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:31</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data cdparanoia
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2328 packages in cache
+Found permanent source directory in /sources/cdparanoia
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: cdparanoia 10.2-5 (Sat Nov 14 06:36:56 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking for x86_64-unknown-linux-ranlib... no
+checking for ranlib... ranlib
+checking for ar... ar
+checking for install... install
+checking how to run the C preprocessor... gcc -E
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for short... yes
+checking size of short... 2
+checking for int... yes
+checking size of int... 4
+checking for long... yes
+checking size of long... 8
+checking for long long... yes
+checking size of long long... 8
+checking for int16_t... yes
+checking for int32_t... yes
+checking linux/sbpcd.h usability... no
+checking linux/sbpcd.h presence... no
+checking for linux/sbpcd.h... no
+checking linux/ucdrom.h usability... no
+checking linux/ucdrom.h presence... no
+checking for linux/ucdrom.h... no
+checking whether make sets $(MAKE)... yes
+checking for an ANSI C-conforming const... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating interface/Makefile
+config.status: creating paranoia/Makefile
+cd interface && make all
+make[1]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+make libcdda_interface.a CFLAGS="-O2 -fsigned-char -g -O2" 
+make[2]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+gcc -O2 -fsigned-char -g -O2 -c scan_devices.c
+gcc -O2 -fsigned-char -g -O2 -c common_interface.c
+gcc -O2 -fsigned-char -g -O2 -c cooked_interface.c
+gcc -O2 -fsigned-char -g -O2 -c interface.c
+gcc -O2 -fsigned-char -g -O2 -c scsi_interface.c
+gcc -O2 -fsigned-char -g -O2 -c smallft.c
+gcc -O2 -fsigned-char -g -O2 -c toc.c
+gcc -O2 -fsigned-char -g -O2 -c test_interface.c
+ar -r libcdda_interface.a scan_devices.o	common_interface.o cooked_interface.o interface.o scsi_interface.o smallft.o toc.o test_interface.o
+ar: creating libcdda_interface.a
+ranlib libcdda_interface.a
+make[2]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+make lessmessy
+make[2]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+rm  -f *.o core *~ *.out
+make[2]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+make libcdda_interface.so CFLAGS="-O2 -fsigned-char -g -O2 -fpic" 
+make[2]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+gcc -O2 -fsigned-char -g -O2 -fpic -c scan_devices.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c common_interface.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c cooked_interface.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c interface.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c scsi_interface.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c smallft.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c toc.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c test_interface.c
+gcc -fpic -shared -o libcdda_interface.so.0.10.2 -Wl,-soname -Wl,libcdda_interface.so.0 scan_devices.o	common_interface.o cooked_interface.o interface.o scsi_interface.o smallft.o toc.o test_interface.o -lm -lrt
+[ -e libcdda_interface.so.0 ] || ln -s libcdda_interface.so.0.10.2 libcdda_interface.so.0
+[ -e libcdda_interface.so ] || ln -s libcdda_interface.so.0.10.2 libcdda_interface.so
+make[2]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+[ -e libcdda_interface.so.0 ] || ln -s libcdda_interface.so libcdda_interface.so.0
+make[1]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/interface'
+cd paranoia && make all
+make[1]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+make libcdda_paranoia.a CFLAGS="-O2 -fsigned-char -g -O2" 
+make[2]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+gcc -O2 -fsigned-char -g -O2 -c paranoia.c
+gcc -O2 -fsigned-char -g -O2 -c p_block.c
+gcc -O2 -fsigned-char -g -O2 -c overlap.c
+gcc -O2 -fsigned-char -g -O2 -c gap.c
+gcc -O2 -fsigned-char -g -O2 -c isort.c
+ar -r libcdda_paranoia.a paranoia.o p_block.o overlap.o gap.o isort.o 
+ar: creating libcdda_paranoia.a
+ranlib libcdda_paranoia.a
+make[2]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+make lessmessy
+make[2]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+rm -f *.o  *.t core *~
+make[2]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+make libcdda_paranoia.so CFLAGS="-O2 -fsigned-char -g -O2 -fpic" 
+make[2]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+gcc -O2 -fsigned-char -g -O2 -fpic -c paranoia.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c p_block.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c overlap.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c gap.c
+gcc -O2 -fsigned-char -g -O2 -fpic -c isort.c
+gcc -fpic -shared -o libcdda_paranoia.so.0.10.2 -Wl,-soname -Wl,libcdda_paranoia.so.0 paranoia.o p_block.o overlap.o gap.o isort.o  -L ../interface -lcdda_interface
+[ -e libcdda_paranoia.so.0 ] || ln -s libcdda_paranoia.so.0.10.2 libcdda_paranoia.so.0
+[ -e libcdda_paranoia.so ] || ln -s libcdda_paranoia.so.0.10.2 libcdda_paranoia.so
+make[2]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+make[1]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia'
+make cdparanoia CFLAGS="-O2 -fsigned-char -g -O2" 
+make[1]: Entering directory '/tmp/cdparanoia/src/cdparanoia-III-10.2'
+gcc -O2 -fsigned-char -g -O2 -c main.c
+gcc -O2 -fsigned-char -g -O2 -c report.c
+gcc -O2 -fsigned-char -g -O2 -c header.c
+gcc -O2 -fsigned-char -g -O2 -c buffering_write.c
+gcc -O2 -fsigned-char -g -O2 -c cachetest.c
+gcc -O2 -fsigned-char -g -O2 -g -O2 main.o report.o header.o buffering_write.o cachetest.o \
+	-L/tmp/cdparanoia/src/cdparanoia-III-10.2/paranoia -L/tmp/cdparanoia/src/cdparanoia-III-10.2/interface \
+	-o cdparanoia -lcdda_interface -lcdda_paranoia -lm -lrt
+make[1]: Leaving directory '/tmp/cdparanoia/src/cdparanoia-III-10.2'
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d -m 0755 /tmp/cdparanoia/pkg/cdparanoia/usr/bin
+install -m 755 ./cdparanoia /tmp/cdparanoia/pkg/cdparanoia/usr/bin
+install -d -m 0755 /tmp/cdparanoia/pkg/cdparanoia/usr/share/man
+install -d -m 0755 /tmp/cdparanoia/pkg/cdparanoia/usr/share/man/man1
+install -m 0644 ./cdparanoia.1 /tmp/cdparanoia/pkg/cdparanoia/usr/share/man/man1
+install -d -m 0755 /tmp/cdparanoia/pkg/cdparanoia/usr/include
+install -m 0644 ./paranoia/cdda_paranoia.h /tmp/cdparanoia/pkg/cdparanoia/usr/include
+install -d -m 0755 /tmp/cdparanoia/pkg/cdparanoia/usr/lib
+install -m 0644 ./paranoia/libcdda_paranoia.so.0.10.2 /tmp/cdparanoia/pkg/cdparanoia/usr/lib
+install -m 0644 ./paranoia/libcdda_paranoia.a /tmp/cdparanoia/pkg/cdparanoia/usr/lib
+install -m 0644 ./interface/cdda_interface.h /tmp/cdparanoia/pkg/cdparanoia/usr/include
+install -m 0644 ./interface/libcdda_interface.so.0.10.2 /tmp/cdparanoia/pkg/cdparanoia/usr/lib
+install -m 0644 ./interface/libcdda_interface.a /tmp/cdparanoia/pkg/cdparanoia/usr/lib
+install -m 0644 ./utils.h /tmp/cdparanoia/pkg/cdparanoia/usr/include
+ln -fs libcdda_interface.so.0.10.2 \
+	/tmp/cdparanoia/pkg/cdparanoia/usr/lib/libcdda_interface.so.0
+ln -fs libcdda_interface.so.0.10.2 \
+	/tmp/cdparanoia/pkg/cdparanoia/usr/lib/libcdda_interface.so
+ln -fs libcdda_paranoia.so.0.10.2 \
+	/tmp/cdparanoia/pkg/cdparanoia/usr/lib/libcdda_paranoia.so.0
+ln -fs libcdda_paranoia.so.0.10.2 \
+	/tmp/cdparanoia/pkg/cdparanoia/usr/lib/libcdda_paranoia.so
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing static library files...
+==> Creating package "cdparanoia"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: cdparanoia 10.2-5 (Sat Nov 14 06:37:19 UTC 2015)
+===> Printing config.logs
+found log at /tmp/cdparanoia/src/cdparanoia-III-10.2/config.log
+____
+File /tmp/cdparanoia/src/cdparanoia-III-10.2/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.59.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --mandir=/usr/share/man
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 882603225c73
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+hostinfo               = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1326: checking build system type
+configure:1344: result: x86_64-unknown-linux-gnu
+configure:1352: checking host system type
+configure:1366: result: x86_64-unknown-linux-gnu
+configure:1384: checking for x86_64-unknown-linux-gcc
+configure:1413: result: no
+configure:1422: checking for gcc
+configure:1438: found /usr/sbin/gcc
+configure:1448: result: gcc
+configure:1692: checking for C compiler version
+configure:1695: gcc --version </dev/null >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:1698: $? = 0
+configure:1700: gcc -v </dev/null >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:1703: $? = 0
+configure:1705: gcc -V </dev/null >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:1708: $? = 1
+configure:1731: checking for C compiler default output file name
+configure:1734: gcc    conftest.c  >&5
+configure:1737: $? = 0
+configure:1783: result: a.out
+configure:1788: checking whether the C compiler works
+configure:1794: ./a.out
+configure:1797: $? = 0
+configure:1814: result: yes
+configure:1821: checking whether we are cross compiling
+configure:1823: result: no
+configure:1826: checking for suffix of executables
+configure:1828: gcc -o conftest    conftest.c  >&5
+configure:1831: $? = 0
+configure:1856: result: 
+configure:1862: checking for suffix of object files
+configure:1883: gcc -c   conftest.c >&5
+configure:1886: $? = 0
+configure:1908: result: o
+configure:1912: checking whether we are using the GNU C compiler
+configure:1936: gcc -c   conftest.c >&5
+configure:1942: $? = 0
+configure:1946: test -z 
+			 || test ! -s conftest.err
+configure:1949: $? = 0
+configure:1952: test -s conftest.o
+configure:1955: $? = 0
+configure:1968: result: yes
+configure:1974: checking whether gcc accepts -g
+configure:1995: gcc -c -g  conftest.c >&5
+configure:2001: $? = 0
+configure:2005: test -z 
+			 || test ! -s conftest.err
+configure:2008: $? = 0
+configure:2011: test -s conftest.o
+configure:2014: $? = 0
+configure:2025: result: yes
+configure:2042: checking for gcc option to accept ANSI C
+configure:2112: gcc  -c -g -O2  conftest.c >&5
+configure:2118: $? = 0
+configure:2122: test -z 
+			 || test ! -s conftest.err
+configure:2125: $? = 0
+configure:2128: test -s conftest.o
+configure:2131: $? = 0
+configure:2149: result: none needed
+configure:2167: gcc -c -g -O2  conftest.c >&5
+conftest.c:2:3: error: unknown type name 'choke'
+   choke me
+   ^
+conftest.c:2:3: error: expected '=', ',', ';', 'asm' or '__attribute__' at end of input
+configure:2173: $? = 1
+configure: failed program was:
+| #ifndef __cplusplus
+|   choke me
+| #endif
+configure:2310: checking for x86_64-unknown-linux-ranlib
+configure:2339: result: no
+configure:2348: checking for ranlib
+configure:2364: found /usr/sbin/ranlib
+configure:2375: result: ranlib
+configure:2389: checking for ar
+configure:2405: found /usr/sbin/ar
+configure:2415: result: ar
+configure:2424: checking for install
+configure:2440: found /usr/sbin/install
+configure:2450: result: install
+configure:2478: checking how to run the C preprocessor
+configure:2513: gcc -E  conftest.c
+configure:2519: $? = 0
+configure:2551: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2557: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2596: result: gcc -E
+configure:2620: gcc -E  conftest.c
+configure:2626: $? = 0
+configure:2658: gcc -E  conftest.c
+conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2664: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2708: checking for egrep
+configure:2718: result: grep -E
+configure:2723: checking for ANSI C header files
+configure:2748: gcc -c -g -O2  conftest.c >&5
+configure:2754: $? = 0
+configure:2758: test -z 
+			 || test ! -s conftest.err
+configure:2761: $? = 0
+configure:2764: test -s conftest.o
+configure:2767: $? = 0
+configure:2856: gcc -o conftest -g -O2   conftest.c  >&5
+conftest.c: In function 'main':
+conftest.c:26:7: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+       exit(2);
+       ^
+conftest.c:26:7: warning: incompatible implicit declaration of built-in function 'exit'
+conftest.c:26:7: note: include '<stdlib.h>' or provide a declaration of 'exit'
+conftest.c:27:3: warning: incompatible implicit declaration of built-in function 'exit'
+   exit (0);
+   ^
+conftest.c:27:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2859: $? = 0
+configure:2861: ./conftest
+configure:2864: $? = 0
+configure:2879: result: yes
+configure:2904: checking for sys/types.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for sys/stat.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for stdlib.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for string.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for memory.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for strings.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for inttypes.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for stdint.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2904: checking for unistd.h
+configure:2920: gcc -c -g -O2  conftest.c >&5
+configure:2926: $? = 0
+configure:2930: test -z 
+			 || test ! -s conftest.err
+configure:2933: $? = 0
+configure:2936: test -s conftest.o
+configure:2939: $? = 0
+configure:2950: result: yes
+configure:2962: checking for short
+configure:2986: gcc -c -g -O2  conftest.c >&5
+configure:2992: $? = 0
+configure:2996: test -z 
+			 || test ! -s conftest.err
+configure:2999: $? = 0
+configure:3002: test -s conftest.o
+configure:3005: $? = 0
+configure:3016: result: yes
+configure:3019: checking size of short
+configure:3338: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3341: $? = 0
+configure:3343: ./conftest
+configure:3346: $? = 0
+configure:3369: result: 2
+configure:3376: checking for int
+configure:3400: gcc -c -g -O2  conftest.c >&5
+configure:3406: $? = 0
+configure:3410: test -z 
+			 || test ! -s conftest.err
+configure:3413: $? = 0
+configure:3416: test -s conftest.o
+configure:3419: $? = 0
+configure:3430: result: yes
+configure:3433: checking size of int
+configure:3752: gcc -o conftest -g -O2   conftest.c  >&5
+configure:3755: $? = 0
+configure:3757: ./conftest
+configure:3760: $? = 0
+configure:3783: result: 4
+configure:3790: checking for long
+configure:3814: gcc -c -g -O2  conftest.c >&5
+configure:3820: $? = 0
+configure:3824: test -z 
+			 || test ! -s conftest.err
+configure:3827: $? = 0
+configure:3830: test -s conftest.o
+configure:3833: $? = 0
+configure:3844: result: yes
+configure:3847: checking size of long
+configure:4166: gcc -o conftest -g -O2   conftest.c  >&5
+configure:4169: $? = 0
+configure:4171: ./conftest
+configure:4174: $? = 0
+configure:4197: result: 8
+configure:4204: checking for long long
+configure:4228: gcc -c -g -O2  conftest.c >&5
+configure:4234: $? = 0
+configure:4238: test -z 
+			 || test ! -s conftest.err
+configure:4241: $? = 0
+configure:4244: test -s conftest.o
+configure:4247: $? = 0
+configure:4258: result: yes
+configure:4261: checking size of long long
+configure:4580: gcc -o conftest -g -O2   conftest.c  >&5
+configure:4583: $? = 0
+configure:4585: ./conftest
+configure:4588: $? = 0
+configure:4611: result: 8
+configure:4630: checking for int16_t
+configure:4654: gcc -c -g -O2  conftest.c >&5
+configure:4660: $? = 0
+configure:4664: test -z 
+			 || test ! -s conftest.err
+configure:4667: $? = 0
+configure:4670: test -s conftest.o
+configure:4673: $? = 0
+configure:4684: result: yes
+configure:4690: checking for int32_t
+configure:4714: gcc -c -g -O2  conftest.c >&5
+configure:4720: $? = 0
+configure:4724: test -z 
+			 || test ! -s conftest.err
+configure:4727: $? = 0
+configure:4730: test -s conftest.o
+configure:4733: $? = 0
+configure:4744: result: yes
+configure:4776: checking linux/sbpcd.h usability
+configure:4788: gcc -c -g -O2  conftest.c >&5
+conftest.c:57:25: fatal error: linux/sbpcd.h: No such file or directory
+compilation terminated.
+configure:4794: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_INT 4
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #if HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #if HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #if STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # if HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #if HAVE_STRING_H
+| # if !STDC_HEADERS && HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #if HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #if HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #else
+| # if HAVE_STDINT_H
+| #  include <stdint.h>
+| # endif
+| #endif
+| #if HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <linux/sbpcd.h>
+configure:4817: result: no
+configure:4821: checking linux/sbpcd.h presence
+configure:4831: gcc -E  conftest.c
+conftest.c:23:25: fatal error: linux/sbpcd.h: No such file or directory
+compilation terminated.
+configure:4837: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_INT 4
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <linux/sbpcd.h>
+configure:4857: result: no
+configure:4892: checking for linux/sbpcd.h
+configure:4899: result: no
+configure:4926: checking linux/ucdrom.h usability
+configure:4938: gcc -c -g -O2  conftest.c >&5
+conftest.c:57:26: fatal error: linux/ucdrom.h: No such file or directory
+compilation terminated.
+configure:4944: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_INT 4
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #if HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #if HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #if STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # if HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #if HAVE_STRING_H
+| # if !STDC_HEADERS && HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #if HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #if HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #else
+| # if HAVE_STDINT_H
+| #  include <stdint.h>
+| # endif
+| #endif
+| #if HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <linux/ucdrom.h>
+configure:4967: result: no
+configure:4971: checking linux/ucdrom.h presence
+configure:4981: gcc -E  conftest.c
+conftest.c:23:26: fatal error: linux/ucdrom.h: No such file or directory
+compilation terminated.
+configure:4987: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_INT 4
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <linux/ucdrom.h>
+configure:5007: result: no
+configure:5042: checking for linux/ucdrom.h
+configure:5049: result: no
+configure:5063: checking whether make sets $(MAKE)
+configure:5083: result: yes
+configure:5092: checking for an ANSI C-conforming const
+configure:5159: gcc -c -g -O2  conftest.c >&5
+configure:5165: $? = 0
+configure:5169: test -z 
+			 || test ! -s conftest.err
+configure:5172: $? = 0
+configure:5175: test -s conftest.o
+configure:5178: $? = 0
+configure:5189: result: yes
+configure:5334: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.59.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 882603225c73
+
+config.status:653: creating Makefile
+config.status:653: creating interface/Makefile
+config.status:653: creating paranoia/Makefile
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_build=x86_64-unknown-linux-gnu
+ac_cv_build_alias=x86_64-unknown-linux-gnu
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_exeext=
+ac_cv_header_inttypes_h=yes
+ac_cv_header_linux_sbpcd_h=no
+ac_cv_header_linux_ucdrom_h=no
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_host=x86_64-unknown-linux-gnu
+ac_cv_host_alias=x86_64-unknown-linux
+ac_cv_objext=o
+ac_cv_prog_AR=ar
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_INSTALL=install
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_RANLIB=ranlib
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cc_stdc=
+ac_cv_prog_egrep='grep -E'
+ac_cv_prog_make_make_set=yes
+ac_cv_sizeof_int=4
+ac_cv_sizeof_long=8
+ac_cv_sizeof_long_long=8
+ac_cv_sizeof_short=2
+ac_cv_type_int=yes
+ac_cv_type_int16_t=yes
+ac_cv_type_int32_t=yes
+ac_cv_type_long=yes
+ac_cv_type_long_long=yes
+ac_cv_type_short=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+AR='ar'
+CC='gcc'
+CFLAGS='-g -O2'
+CPP='gcc -E'
+CPPFLAGS=''
+DEBUG='-g -Wall -fsigned-char'
+DEFS='-DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DSIZEOF_SHORT=2 -DSIZEOF_INT=4 -DSIZEOF_LONG=8 -DSIZEOF_LONG_LONG=8 '
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='grep -E'
+EXEEXT=''
+INSTALL='install'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT='o'
+OPT='-O2 -fsigned-char'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+RANLIB='ranlib'
+SBPCD_H=''
+SET_MAKE=''
+SHELL='/bin/sh'
+TYPESIZES=''
+UCDROM_H=''
+ac_ct_CC='gcc'
+ac_ct_RANLIB='ranlib'
+bindir='${exec_prefix}/bin'
+build='x86_64-unknown-linux-gnu'
+build_alias=''
+build_cpu='x86_64'
+build_os='linux-gnu'
+build_vendor='unknown'
+datadir='${prefix}/share'
+exec_prefix='${prefix}'
+host='x86_64-unknown-linux-gnu'
+host_alias='x86_64-unknown-linux'
+host_cpu='x86_64'
+host_os='linux-gnu'
+host_vendor='unknown'
+includedir='${prefix}/include'
+infodir='${prefix}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localstatedir='${prefix}/var'
+mandir='/usr/share/man'
+oldincludedir='/usr/include'
+prefix='/usr'
+program_transform_name='s,x,x,'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define HAVE_INTTYPES_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_STRING_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_UNISTD_H 1
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_NAME ""
+#define PACKAGE_STRING ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define SIZEOF_INT 4
+#define SIZEOF_LONG 8
+#define SIZEOF_LONG_LONG 8
+#define SIZEOF_SHORT 2
+#define STDC_HEADERS 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,96 @@
+        <html><head></head><body>
+        <h1>Report for lockdev on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data lockdev
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2052 packages in cache
+Found permanent source directory in /sources/lockdev
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: lockdev 1.0.3_1.6-1 (Sat Nov 14 05:54:38 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc -D_PATH_LOCK=\"/run/lock/lockdev\" -fPIC -c -fPIC -o src/lockdev.z src/lockdev.c
+gcc -g -fPIC -O2 -fPIC -Wall -pipe -D_REENTRANT  -shared -Wl,-soname,liblockdev.so.1 src/lockdev.z -lc -o liblockdev.so.1.0.3
+gcc -D_PATH_LOCK=\"/run/lock/lockdev\" -fPIC   -c -o src/lockdev.o src/lockdev.c
+ar rv liblockdev.a src/lockdev.o
+ar: creating liblockdev.a
+a - src/lockdev.o
+cd LockDev && perl Makefile.PL INSTALLDIRS=vendor
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for LockDev
+Writing MYMETA.yml and MYMETA.json
+cd LockDev && make OPTIMIZE="-O2 -g -Wall"
+make[1]: Entering directory '/tmp/lockdev/src/lockdev-1.0.3/LockDev'
+cp LockDev.pm blib/lib/LockDev.pm
+Running Mkbootstrap for LockDev ()
+chmod 644 "LockDev.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  LockDev.xs > LockDev.xsc && mv LockDev.xsc LockDev.c
+Please specify prototyping behavior for LockDev.xs (see perlxs manual)
+cc -c  -I../src -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g -Wall   -DVERSION=\"1.0\" -DXS_VERSION=\"1.0\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   LockDev.c
+LockDev.xs: In function 'constant':
+LockDev.xs:32:1: warning: label 'not_there' defined but not used [-Wunused-label]
+ not_there:
+ ^
+LockDev.c: At top level:
+LockDev.xs:14:1: warning: 'not_here' defined but not used [-Wunused-function]
+ not_here(s)
+ ^
+rm -f blib/arch/auto/LockDev/LockDev.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong LockDev.o  -o blib/arch/auto/LockDev/LockDev.so ../src/lockdev.z	\
+     	\
+
+chmod 755 blib/arch/auto/LockDev/LockDev.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- LockDev.bs blib/arch/auto/LockDev/LockDev.bs 644
+Manifying 1 pod document
+make[1]: Leaving directory '/tmp/lockdev/src/lockdev-1.0.3/LockDev'
+cd LockDev && make test
+make[1]: Entering directory '/tmp/lockdev/src/lockdev-1.0.3/LockDev'
+Running Mkbootstrap for LockDev ()
+chmod 644 "LockDev.bs"
+PERL_DL_NONLAZY=1 "/usr/bin/perl" "-Iblib/lib" "-Iblib/arch" test.pl
+1..8
+ok 1
+not ok 2
+not ok 3
+not ok 4
+not ok 5
+not ok 6
+not ok 7
+not ok 8
+make[1]: Leaving directory '/tmp/lockdev/src/lockdev-1.0.3/LockDev'
+==> Entering fakeroot environment...
+==> Starting package()...
+install -m755 -d	/tmp/lockdev/pkg/lockdev/usr/lib
+install -m644 liblockdev.a	/tmp/lockdev/pkg/lockdev/usr/lib
+install -m755 -d	/tmp/lockdev/pkg/lockdev/usr/include
+install -m644 src/lockdev.h	/tmp/lockdev/pkg/lockdev/usr/include
+install -m644 src/ttylock.h	/tmp/lockdev/pkg/lockdev/usr/include
+install -m755 -d	/tmp/lockdev/pkg/lockdev/usr/share/man/man3
+install -m644 docs/lockdev.3	/tmp/lockdev/pkg/lockdev/usr/share/man/man3
+install -m755 -d	/tmp/lockdev/pkg/lockdev/usr/lib
+install -m644 liblockdev.so.1.0.3	/tmp/lockdev/pkg/lockdev/usr/lib
+ln -s liblockdev.so.1.0.3		/tmp/lockdev/pkg/lockdev/usr/lib/liblockdev.so
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "lockdev"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: lockdev 1.0.3_1.6-1 (Sat Nov 14 05:54:46 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

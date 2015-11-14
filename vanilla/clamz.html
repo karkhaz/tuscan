@@ -1,0 +1,663 @@
+        <html><head></head><body>
+        <h1>Report for clamz on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:22</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data clamz
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 758 packages in cache
+Found permanent source directory in /sources/clamz
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: clamz 0.5-2 (Sat Nov 14 04:48:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) libxml2-2.9.2-2  desktop-file-utils-0.22-1  shared-mime-info-1.5-1
+
+Total Installed Size:  12.96 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing desktop-file-utils...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: if you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for update-mime-database... update-mime-database
+checking for update-desktop-database... update-desktop-database
+checking for XML_ParserCreate in -lexpat... yes
+checking for x86_64-unknown-linux-pkg-config... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for LIBCURL... yes
+checking for libgcrypt-config... /usr/bin/libgcrypt-config
+checking for LIBGCRYPT - version >= 1.2.0... yes (1.6.4)
+checking LIBGCRYPT API version... okay
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for size_t... yes
+checking for off_t... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+gcc -g -O2 -W -Wall   -I.  -DHAVE_CONFIG_H -c ./clamz.c
+gcc -g -O2 -W -Wall   -I.  -DHAVE_CONFIG_H -c ./options.c
+gcc -g -O2 -W -Wall   -I.  -DHAVE_CONFIG_H -c ./playlist.c
+gcc -g -O2 -W -Wall   -I.  -DHAVE_CONFIG_H -c ./download.c
+gcc -g -O2 -W -Wall   -I.  -DHAVE_CONFIG_H -c ./vars.c
+gcc -g -O2 -W -Wall  -o clamz clamz.o options.o playlist.o download.o vars.o -lgcrypt -lgpg-error -lcurl -lexpat 
+==> Entering fakeroot environment...
+==> Starting package()...
+/usr/bin/install -c -d -m 755 /tmp/clamz/pkg/clamz/usr/bin
+/usr/bin/install -c -m 755 clamz /tmp/clamz/pkg/clamz/usr/bin
+/usr/bin/install -c -d -m 755 /tmp/clamz/pkg/clamz/usr/share/man/man1
+/usr/bin/install -c -m 644 ./clamz.1 /tmp/clamz/pkg/clamz/usr/share/man/man1
+/usr/bin/install -c -d -m 755 /tmp/clamz/pkg/clamz/usr/share/applications
+/usr/bin/install -c -m 644 ./clamz.desktop /tmp/clamz/pkg/clamz/usr/share/applications
+/usr/bin/install -c -d -m 755 /tmp/clamz/pkg/clamz/usr/share/mime/packages
+/usr/bin/install -c -m 644 ./clamz.xml /tmp/clamz/pkg/clamz/usr/share/mime/packages
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "clamz"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: clamz 0.5-2 (Sat Nov 14 04:48:15 UTC 2015)
+===> Printing config.logs
+found log at /tmp/clamz/src/clamz-0.5/config.log
+____
+File /tmp/clamz/src/clamz-0.5/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by Clamz configure 0.5, which was
+generated by GNU Autoconf 2.68.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr/
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 3412b9022033
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2022: checking for x86_64-unknown-linux-gcc
+configure:2052: result: no
+configure:2062: checking for gcc
+configure:2078: found /usr/bin/gcc
+configure:2089: result: gcc
+configure:2318: checking for C compiler version
+configure:2327: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2338: $? = 0
+configure:2327: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2338: $? = 0
+configure:2327: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2338: $? = 1
+configure:2327: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2338: $? = 1
+configure:2358: checking whether the C compiler works
+configure:2380: gcc    conftest.c  >&5
+configure:2384: $? = 0
+configure:2432: result: yes
+configure:2435: checking for C compiler default output file name
+configure:2437: result: a.out
+configure:2443: checking for suffix of executables
+configure:2450: gcc -o conftest    conftest.c  >&5
+configure:2454: $? = 0
+configure:2476: result: 
+configure:2498: checking whether we are cross compiling
+configure:2506: gcc -o conftest    conftest.c  >&5
+configure:2510: $? = 0
+configure:2517: ./conftest
+configure:2521: $? = 0
+configure:2536: result: no
+configure:2541: checking for suffix of object files
+configure:2563: gcc -c   conftest.c >&5
+configure:2567: $? = 0
+configure:2588: result: o
+configure:2592: checking whether we are using the GNU C compiler
+configure:2611: gcc -c   conftest.c >&5
+configure:2611: $? = 0
+configure:2620: result: yes
+configure:2629: checking whether gcc accepts -g
+configure:2649: gcc -c -g  conftest.c >&5
+configure:2649: $? = 0
+configure:2690: result: yes
+configure:2707: checking for gcc option to accept ISO C89
+configure:2771: gcc  -c -g -O2  conftest.c >&5
+configure:2771: $? = 0
+configure:2784: result: none needed
+configure:2850: checking for a BSD-compatible install
+configure:2918: result: /usr/bin/install -c
+configure:2933: checking for update-mime-database
+configure:2949: found /usr/bin/update-mime-database
+configure:2961: result: update-mime-database
+configure:2973: checking for update-desktop-database
+configure:2989: found /usr/bin/update-desktop-database
+configure:3001: result: update-desktop-database
+configure:3012: checking for XML_ParserCreate in -lexpat
+configure:3037: gcc -o conftest -g -O2 -W -Wall   conftest.c -lexpat   >&5
+configure:3037: $? = 0
+configure:3046: result: yes
+configure:3065: checking for x86_64-unknown-linux-pkg-config
+configure:3098: result: no
+configure:3108: checking for pkg-config
+configure:3126: found /usr/bin/pkg-config
+configure:3138: result: /usr/bin/pkg-config
+configure:3163: checking pkg-config is at least version 0.9.0
+configure:3166: result: yes
+configure:3177: checking for LIBCURL
+configure:3185: $PKG_CONFIG --exists --print-errors "libcurl"
+configure:3188: $? = 0
+configure:3203: $PKG_CONFIG --exists --print-errors "libcurl"
+configure:3206: $? = 0
+configure:3261: result: yes
+configure:3285: checking for libgcrypt-config
+configure:3303: found /usr/bin/libgcrypt-config
+configure:3316: result: /usr/bin/libgcrypt-config
+configure:3333: checking for LIBGCRYPT - version >= 1.2.0
+configure:3367: result: yes (1.6.4)
+configure:3379: checking LIBGCRYPT API version
+configure:3382: result: okay
+configure:3412: checking how to run the C preprocessor
+configure:3443: gcc -E  conftest.c
+configure:3443: $? = 0
+configure:3457: gcc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3457: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "Clamz"
+| #define PACKAGE_TARNAME "clamz"
+| #define PACKAGE_VERSION "0.5"
+| #define PACKAGE_STRING "Clamz 0.5"
+| #define PACKAGE_BUGREPORT "floppusmaximus@users.sf.net"
+| #define PACKAGE_URL ""
+| #define HAVE_LIBEXPAT 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3482: result: gcc -E
+configure:3502: gcc -E  conftest.c
+configure:3502: $? = 0
+configure:3516: gcc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3516: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "Clamz"
+| #define PACKAGE_TARNAME "clamz"
+| #define PACKAGE_VERSION "0.5"
+| #define PACKAGE_STRING "Clamz 0.5"
+| #define PACKAGE_BUGREPORT "floppusmaximus@users.sf.net"
+| #define PACKAGE_URL ""
+| #define HAVE_LIBEXPAT 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3545: checking for grep that handles long lines and -e
+configure:3603: result: /usr/bin/grep
+configure:3608: checking for egrep
+configure:3670: result: /usr/bin/grep -E
+configure:3675: checking for ANSI C header files
+configure:3695: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3695: $? = 0
+configure:3768: gcc -o conftest -g -O2 -W -Wall   conftest.c -lexpat  >&5
+configure:3768: $? = 0
+configure:3768: ./conftest
+configure:3768: $? = 0
+configure:3779: result: yes
+configure:3792: checking for sys/types.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for sys/stat.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for stdlib.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for string.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for memory.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for strings.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for inttypes.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for stdint.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3792: checking for unistd.h
+configure:3792: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3792: $? = 0
+configure:3792: result: yes
+configure:3804: checking for size_t
+configure:3804: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3804: $? = 0
+configure:3804: gcc -c -g -O2 -W -Wall  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:56:21: error: expected expression before ')' token
+ if (sizeof ((size_t)))
+                     ^
+configure:3804: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "Clamz"
+| #define PACKAGE_TARNAME "clamz"
+| #define PACKAGE_VERSION "0.5"
+| #define PACKAGE_STRING "Clamz 0.5"
+| #define PACKAGE_BUGREPORT "floppusmaximus@users.sf.net"
+| #define PACKAGE_URL ""
+| #define HAVE_LIBEXPAT 1
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((size_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:3804: result: yes
+configure:3815: checking for off_t
+configure:3815: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3815: $? = 0
+configure:3815: gcc -c -g -O2 -W -Wall  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:56:20: error: expected expression before ')' token
+ if (sizeof ((off_t)))
+                    ^
+configure:3815: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "Clamz"
+| #define PACKAGE_TARNAME "clamz"
+| #define PACKAGE_VERSION "0.5"
+| #define PACKAGE_STRING "Clamz 0.5"
+| #define PACKAGE_BUGREPORT "floppusmaximus@users.sf.net"
+| #define PACKAGE_URL ""
+| #define HAVE_LIBEXPAT 1
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((off_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:3815: result: yes
+configure:3833: checking for special C compiler options needed for large files
+configure:3878: result: no
+configure:3884: checking for _FILE_OFFSET_BITS value needed for large files
+configure:3909: gcc -c -g -O2 -W -Wall  conftest.c >&5
+configure:3909: $? = 0
+configure:3941: result: no
+configure:4141: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by Clamz config.status 0.5, which was
+generated by GNU Autoconf 2.68.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 3412b9022033
+
+config.status:822: creating Makefile
+config.status:822: creating config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBCURL_CFLAGS_set=
+ac_cv_env_LIBCURL_CFLAGS_value=
+ac_cv_env_LIBCURL_LIBS_set=
+ac_cv_env_LIBCURL_LIBS_value=
+ac_cv_env_LIBGCRYPT_CFLAGS_set=
+ac_cv_env_LIBGCRYPT_CFLAGS_value=
+ac_cv_env_LIBGCRYPT_LIBS_set=
+ac_cv_env_LIBGCRYPT_LIBS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_PKG_CONFIG_set=
+ac_cv_env_PKG_CONFIG_value=
+ac_cv_env_UPDATE_DESKTOP_DATABASE_set=
+ac_cv_env_UPDATE_DESKTOP_DATABASE_value=
+ac_cv_env_UPDATE_MIME_DATABASE_set=
+ac_cv_env_UPDATE_MIME_DATABASE_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_expat_XML_ParserCreate=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/bin/grep -E'
+ac_cv_path_GREP=/usr/bin/grep
+ac_cv_path_LIBGCRYPT_CONFIG=/usr/bin/libgcrypt-config
+ac_cv_path_ac_pt_PKG_CONFIG=/usr/bin/pkg-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_UPDATE_DESKTOP_DATABASE=update-desktop-database
+ac_cv_prog_UPDATE_MIME_DATABASE=update-mime-database
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_sys_file_offset_bits=no
+ac_cv_sys_largefile_CC=no
+ac_cv_type_off_t=yes
+ac_cv_type_size_t=yes
+pkg_cv_LIBCURL_CFLAGS=
+pkg_cv_LIBCURL_LIBS=-lcurl
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS='-g -O2 -W -Wall'
+CPP='gcc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/bin/grep -E'
+EXEEXT=''
+GREP='/usr/bin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+LDFLAGS=''
+LIBCURL_CFLAGS=''
+LIBCURL_LIBS='-lcurl'
+LIBGCRYPT_CFLAGS=''
+LIBGCRYPT_CONFIG='/usr/bin/libgcrypt-config'
+LIBGCRYPT_LIBS='-lgcrypt -lgpg-error'
+LIBOBJS=''
+LIBS='-lexpat '
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT='floppusmaximus@users.sf.net'
+PACKAGE_NAME='Clamz'
+PACKAGE_STRING='Clamz 0.5'
+PACKAGE_TARNAME='clamz'
+PACKAGE_URL=''
+PACKAGE_VERSION='0.5'
+PATH_SEPARATOR=':'
+PKG_CONFIG='/usr/bin/pkg-config'
+SHELL='/bin/sh'
+UPDATE_DESKTOP_DATABASE='update-desktop-database'
+UPDATE_MIME_DATABASE='update-mime-database'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "Clamz"
+#define PACKAGE_TARNAME "clamz"
+#define PACKAGE_VERSION "0.5"
+#define PACKAGE_STRING "Clamz 0.5"
+#define PACKAGE_BUGREPORT "floppusmaximus@users.sf.net"
+#define PACKAGE_URL ""
+#define HAVE_LIBEXPAT 1
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+
+configure: exit 0
+
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 3412b9022033696256e9c3782cafbf61eb973d6aac81ac216c13b439aac4e443: rename /usr/local/google/home/khazem/docker/aufs/mnt/3412b9022033696256e9c3782cafbf61eb973d6aac81ac216c13b439aac4e443 /usr/local/google/home/khazem/docker/aufs/mnt/3412b9022033696256e9c3782cafbf61eb973d6aac81ac216c13b439aac4e443-removing: device or resource busy></pre></code>
+        </body></html>

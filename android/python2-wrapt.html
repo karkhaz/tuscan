@@ -1,0 +1,317 @@
+        <html><head></head><body>
+        <h1>Report for python-wrapt on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:25</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-wrapt
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 484 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-wrapt 1.10.5-2 (Fri Nov 13 23:10:36 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) perl-error-0.17024-1  sqlite-3.9.2-1  git-2.6.2-1  python2-2.7.10-2
+
+Total Installed Size:  101.91 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts [installed]
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> Retrieving sources...
+  -> Cloning wrapt git repo...
+Cloning into bare repository '/sources/python-wrapt/wrapt'...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of wrapt git repo...
+Cloning into 'wrapt'...
+done.
+Switched to a new branch 'makepkg'
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/python-wrapt
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-wrapt 1.10.5-2 (Fri Nov 13 23:10:47 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-3.5
+creating build/lib.linux-x86_64-3.5/wrapt
+copying src/__init__.py -> build/lib.linux-x86_64-3.5/wrapt
+copying src/decorators.py -> build/lib.linux-x86_64-3.5/wrapt
+copying src/importer.py -> build/lib.linux-x86_64-3.5/wrapt
+copying src/wrappers.py -> build/lib.linux-x86_64-3.5/wrapt
+copying src/arguments.py -> build/lib.linux-x86_64-3.5/wrapt
+running build_ext
+building 'wrapt._wrappers' extension
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/src
+arm-linux-androideabi-gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5m -c src/_wrappers.c -o build/temp.linux-x86_64-3.5/src/_wrappers.o
+In file included from /usr/include/python3.5m/Python.h:50:0,
+                 from src/_wrappers.c:3:
+/usr/include/python3.5m/pyport.h:811:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+  ^
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Trying to build without extensions.
+
+***************************************************************************
+running build
+running build_py
+creating build/lib
+creating build/lib/wrapt
+copying src/__init__.py -> build/lib/wrapt
+copying src/decorators.py -> build/lib/wrapt
+copying src/importer.py -> build/lib/wrapt
+copying src/wrappers.py -> build/lib/wrapt
+copying src/arguments.py -> build/lib/wrapt
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Only pure Python version of package installed.
+
+***************************************************************************
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/wrapt
+copying src/__init__.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/decorators.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/importer.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/wrappers.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/arguments.py -> build/lib.linux-x86_64-2.7/wrapt
+running build_ext
+building 'wrapt._wrappers' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/src
+arm-linux-androideabi-gcc -DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/tmp/toolchain/include/python2.7 -c src/_wrappers.c -o build/temp.linux-x86_64-2.7/src/_wrappers.o
+In file included from /tmp/toolchain/include/python2.7/Python.h:58:0,
+                 from src/_wrappers.c:3:
+/tmp/toolchain/include/python2.7/pyport.h:1029:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+  ^
+src/_wrappers.c: In function 'moduleinit':
+src/_wrappers.c:2697:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptObjectProxy_Type);
+     ^
+src/_wrappers.c:2700:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptCallableObjectProxy_Type);
+     ^
+src/_wrappers.c:2703:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptFunctionWrapper_Type);
+     ^
+src/_wrappers.c:2707:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptFunctionWrapperBase_Type);
+     ^
+src/_wrappers.c:2710:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptBoundFunctionWrapper_Type);
+     ^
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Trying to build without extensions.
+
+***************************************************************************
+running build
+running build_py
+creating build/lib
+creating build/lib/wrapt
+copying src/__init__.py -> build/lib/wrapt
+copying src/decorators.py -> build/lib/wrapt
+copying src/importer.py -> build/lib/wrapt
+copying src/wrappers.py -> build/lib/wrapt
+copying src/arguments.py -> build/lib/wrapt
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Only pure Python version of package installed.
+
+***************************************************************************
+==> Entering fakeroot environment...
+==> Starting package_python-wrapt()...
+running install
+running build
+running build_py
+running build_ext
+building 'wrapt._wrappers' extension
+arm-linux-androideabi-gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5m -c src/_wrappers.c -o build/temp.linux-x86_64-3.5/src/_wrappers.o
+In file included from /usr/include/python3.5m/Python.h:50:0,
+                 from src/_wrappers.c:3:
+/usr/include/python3.5m/pyport.h:811:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+  ^
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Trying to build without extensions.
+
+***************************************************************************
+running install
+running build
+running build_py
+running install_lib
+creating /tmp/python-wrapt/pkg/python-wrapt/usr
+creating /tmp/python-wrapt/pkg/python-wrapt/usr/lib
+creating /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5
+creating /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages
+creating /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt
+copying build/lib/wrapt/__init__.py -> /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt
+copying build/lib/wrapt/decorators.py -> /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt
+copying build/lib/wrapt/importer.py -> /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt
+copying build/lib/wrapt/wrappers.py -> /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt
+copying build/lib/wrapt/arguments.py -> /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt
+byte-compiling /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt/__init__.py to __init__.cpython-35.pyc
+byte-compiling /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt/decorators.py to decorators.cpython-35.pyc
+byte-compiling /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt/importer.py to importer.cpython-35.pyc
+byte-compiling /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt/wrappers.py to wrappers.cpython-35.pyc
+byte-compiling /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt/arguments.py to arguments.cpython-35.pyc
+writing byte-compilation script '/tmp/tmprs2ob9bo.py'
+/usr/sbin/python3 -O /tmp/tmprs2ob9bo.py
+removing /tmp/tmprs2ob9bo.py
+running install_egg_info
+Writing /tmp/python-wrapt/pkg/python-wrapt/usr/lib/python3.5/site-packages/wrapt-1.10.5-py3.5.egg-info
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Only pure Python version of package installed.
+
+***************************************************************************
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-wrapt"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python2-wrapt()...
+running install
+running build
+running build_py
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/wrapt
+copying src/__init__.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/decorators.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/importer.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/wrappers.py -> build/lib.linux-x86_64-2.7/wrapt
+copying src/arguments.py -> build/lib.linux-x86_64-2.7/wrapt
+running build_ext
+building 'wrapt._wrappers' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/src
+arm-linux-androideabi-gcc -DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/tmp/toolchain/include/python2.7 -c src/_wrappers.c -o build/temp.linux-x86_64-2.7/src/_wrappers.o
+In file included from /tmp/toolchain/include/python2.7/Python.h:58:0,
+                 from src/_wrappers.c:3:
+/tmp/toolchain/include/python2.7/pyport.h:1029:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+  ^
+src/_wrappers.c: In function 'moduleinit':
+src/_wrappers.c:2697:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptObjectProxy_Type);
+     ^
+src/_wrappers.c:2700:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptCallableObjectProxy_Type);
+     ^
+src/_wrappers.c:2703:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptFunctionWrapper_Type);
+     ^
+src/_wrappers.c:2707:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptFunctionWrapperBase_Type);
+     ^
+src/_wrappers.c:2710:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     Py_INCREF(&WraptBoundFunctionWrapper_Type);
+     ^
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Trying to build without extensions.
+
+***************************************************************************
+running install
+running build
+running build_py
+running install_lib
+creating /tmp/python-wrapt/pkg/python2-wrapt/tmp
+creating /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain
+creating /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib
+creating /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7
+creating /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages
+creating /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt
+copying build/lib/wrapt/__init__.py -> /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt
+copying build/lib/wrapt/decorators.py -> /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt
+copying build/lib/wrapt/importer.py -> /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt
+copying build/lib/wrapt/wrappers.py -> /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt
+copying build/lib/wrapt/arguments.py -> /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt
+byte-compiling /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt/__init__.py to __init__.pyc
+byte-compiling /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt/decorators.py to decorators.pyc
+byte-compiling /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt/importer.py to importer.pyc
+byte-compiling /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt/wrappers.py to wrappers.pyc
+byte-compiling /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt/arguments.py to arguments.pyc
+writing byte-compilation script '/tmp/tmpRQ0V67.py'
+/tmp/toolchain/bin/python2 -O /tmp/tmpRQ0V67.py
+removing /tmp/tmpRQ0V67.py
+running install_egg_info
+Writing /tmp/python-wrapt/pkg/python2-wrapt/tmp/toolchain/lib/python2.7/site-packages/wrapt-1.10.5-py2.7.egg-info
+***************************************************************************
+
+WARNING: The C extension component for wrapt could not be compiled.
+
+INFO: Only pure Python version of package installed.
+
+***************************************************************************
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-wrapt"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-wrapt 1.10.5-2 (Fri Nov 13 23:10:49 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

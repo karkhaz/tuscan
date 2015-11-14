@@ -1,0 +1,146 @@
+        <html><head></head><body>
+        <h1>Report for netcount on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:41</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data netcount
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2245 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: netcount 0.8i-7 (Sat Nov 14 00:13:08 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) sqlite-3.9.2-1  python2-2.7.10-2
+
+Total Installed Size:  75.75 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) libnl-3.2.26-1  libpcap-1.7.4-1  ppp-2.4.7-2
+
+Total Installed Size:  2.91 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+installing libpcap...
+installing ppp...
+==> Retrieving sources...
+  -> Downloading netcount-0.8i.tar.gz...
+  -> Found build.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting netcount-0.8i.tar.gz with bsdtar
+==> Starting prepare()...
+patching file Makefile
+patching file pytkcheck.sh
+==> Sources are ready.
+Copied source directory to /sources/netcount
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: netcount 0.8i-7 (Sat Nov 14 00:13:21 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+executing: sed <patterns...> netcount-init.d.in > netcount-init.d
+executing: sed <patterns...> netcount-upd.in > netcount-upd
+executing: sed <patterns...> netcount-init.in > netcount-init
+executing: sed <patterns...> 10netcount-ip-up.d.in > 10netcount-ip-up.d
+executing: sed <patterns...> nstat.1.in > nstat.1
+executing: sed <patterns...> netcount-ip-down-local.in > netcount-ip-down-local
+executing: sed <patterns...> netcount.cgi.in > netcount.cgi
+executing: sed <patterns...> netcount.1.in > netcount.1
+executing: sed <patterns...> nstat.py.in > nstat.py
+executing: sed <patterns...> netcount-cron.d.in > netcount-cron.d
+executing: sed <patterns...> netcount-logrotate-d.in > netcount-logrotate-d
+executing: sed <patterns...> 10netcount-ip-down.d.in > 10netcount-ip-down.d
+executing: sed <patterns...> netcount-ip-up-local.in > netcount-ip-up-local
+executing: sed <patterns...> netcount.py.in > netcount.py
+executing: sed <patterns...> netcount-cron.hourly.in > netcount-cron.hourly
+./pytkcheck.sh nstat.py nstat
+
+Looking for a Python interpreter:
+echo -e \
+ "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> \
+ <html><head><title>INSTALL</title></head><body><pre>" \
+ > INSTALL.html
+  Checking "python2" ... cat INSTALL >> INSTALL.html
+echo -e "</pre></body></html>" >>INSTALL.html
+lynx -dump netcount.html | \
+sed 's,file://.*/,http://www.hczim.de/,g' > README
+/bin/sh: lynx: command not found
+./pytkcheck.sh netcount.py netcount
+
+Looking for a Python interpreter:
+  Checking "python2" ... found ... found ... ok.
+Installing the following Python interpreter into nstat:
+  Python path: /tmp/toolchain/bin/python2 
+ok.
+Installing the following Python interpreter into netcount:
+  Python path: /tmp/toolchain/bin/python2 
+  This is a symbolic link to python2.7
+  Python version:  This is a symbolic link to python2.7
+  Python version:
+    2.7.5 (default, Jul 13 2014, 15:59:34) 
+    [GCC 4.6.x-google 20120106 (prerelease)]
+
+    2.7.5 (default, Jul 13 2014, 15:59:34) 
+    [GCC 4.6.x-google 20120106 (prerelease)]
+current shebang line will be removed
+
+chmod +x netcount
+
+chmod +x nstat
+==> Entering fakeroot environment...
+==> Starting package()...
+Makefile:390: warning: overriding recipe for target '/tmp/netcount/src/netcount'
+Makefile:352: warning: ignoring old recipe for target '/tmp/netcount/src/netcount'
+install  --mode=u+rwx netcount-upd /tmp/netcount/pkg/netcount/usr/bin/netcount-upd
+install  --mode=go+rx,u+rwx netcount /tmp/netcount/pkg/netcount/usr/bin/netcount
+install  --mode=go+r,u+rw netcount.1 /tmp/netcount/pkg/netcount/usr/share/man/man1/netcount.1
+install  --mode=u+rw netcount-logrotate-d /tmp/netcount/pkg/netcount/etc/logrotate.d/netcount
+install  --mode=go+r,u+rw nstat.1 /tmp/netcount/pkg/netcount/usr/share/man/man1/nstat.1
+install  --mode=go+rx,u+rwx nstat /tmp/netcount/pkg/netcount/usr/bin/nstat
+install  --mode=go+r,u+rw netcount-cron.d /tmp/netcount/src/netcount
+
+Installation finished.
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "netcount"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: netcount 0.8i-7 (Sat Nov 14 00:13:23 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

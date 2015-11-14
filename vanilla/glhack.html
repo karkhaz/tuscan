@@ -1,0 +1,571 @@
+        <html><head></head><body>
+        <h1>Report for glhack on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:03:39</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data glhack
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2911 packages in cache
+Found permanent source directory in /sources/glhack
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: glhack 1.2-7 (Sat Nov 14 09:01:58 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+:: There are 4 providers available for libgl:
+:: Repository extra
+   1) mesa-libgl  2) nvidia-304xx-libgl  3) nvidia-340xx-libgl  4) nvidia-libgl
+
+Enter a number (default=1): 
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (31) damageproto-1.2.1-3  elfutils-0.164-1  fixesproto-5.0-3  kbproto-1.0.7-1  libdrm-2.4.65-1  libedit-20150325_3.1-2  libelf-0.164-1  libomxil-bellagio-0.9.3-1  libpciaccess-0.13.4-1  libtxc_dxtn-1.0.1-6  libx11-1.6.3-1  libxau-1.0.8-2  libxcb-1.11.1-1  libxdamage-1.1.4-2  libxdmcp-1.1.2-1  libxext-1.3.3-1  libxfixes-5.0.1-1  libxrender-0.9.9-1  libxshmfence-1.2-1  libxxf86vm-1.1.4-1  llvm-libs-3.7.0-5  mesa-11.0.5-1  renderproto-0.11.1-3  wayland-1.9.0-1  xcb-proto-1.11-2  xextproto-7.3.0-1  xf86vidmodeproto-2.3.1-3  xproto-7.0.28-1  libpng-1.6.18-1  mesa-libgl-11.0.5-1  sdl-1.2.15-7
+
+Total Installed Size:  96.48 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing xcb-proto...
+installing xproto...
+installing libxdmcp...
+installing libxau...
+installing libxcb...
+installing kbproto...
+installing libx11...
+installing xextproto...
+installing libxext...
+installing renderproto...
+installing libxrender...
+installing sdl...
+Optional dependencies for sdl
+    alsa-lib: ALSA audio driver
+    libpulse: PulseAudio audio driver
+installing libpng...
+installing libpciaccess...
+installing libdrm...
+installing wayland...
+installing xf86vidmodeproto...
+installing libxxf86vm...
+installing fixesproto...
+installing libxfixes...
+installing damageproto...
+installing libxdamage...
+installing libxshmfence...
+installing libelf...
+installing elfutils...
+installing libomxil-bellagio...
+installing libtxc_dxtn...
+installing libedit...
+installing llvm-libs...
+installing mesa...
+Optional dependencies for mesa
+    opengl-man-pages: for the OpenGL API man pages
+    mesa-vdpau: for accelerated video playback
+    libva-mesa-driver: for accelerated video playback
+installing mesa-libgl...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+( cd src ; make )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+touch ../src/config.h-t
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c monst.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c objects.c
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+gcc -O -I../include   -c -o makedefs.o makedefs.c
+gcc  -o makedefs makedefs.o ../src/monst.o ../src/objects.o
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+./makedefs -p
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+./makedefs -o
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+touch ../src/hack.h-t
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o allmain.o allmain.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o alloc.o alloc.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o apply.o apply.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o artifact.o artifact.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o attrib.o attrib.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o ball.o ball.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o bones.o bones.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o botl.o botl.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o cmd.o cmd.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dbridge.o dbridge.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o decl.o decl.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o detect.o detect.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dig.o dig.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o display.o display.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dlb.o dlb.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o do.o do.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o do_name.o do_name.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o do_wear.o do_wear.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dog.o dog.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dogmove.o dogmove.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dokick.o dokick.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dothrow.o dothrow.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o drawing.o drawing.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o dungeon.o dungeon.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o eat.o eat.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o end.o end.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o engrave.o engrave.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o exper.o exper.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o explode.o explode.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o extralev.o extralev.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o files.o files.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o fountain.o fountain.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o hack.o hack.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o hacklib.o hacklib.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o invent.o invent.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o light.o light.c
+light.c: In function 'del_light_source':
+light.c:101:30: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     case LS_OBJECT: tmp_id = (genericptr_t)(((struct obj *)id)->o_id);
+                              ^
+light.c:103:31: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     case LS_MONSTER: tmp_id = (genericptr_t)(((struct monst *)id)->m_id);
+                               ^
+light.c: In function 'relink_light_sources':
+light.c:311:30: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (!lookup_id_mapping((unsigned)ls->id, &nid))
+                              ^
+light.c:314:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       nid = (unsigned) ls->id;
+             ^
+light.c: In function 'write_ls':
+light.c:392:12: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   ls->id = (genericptr_t)otmp->o_id;
+            ^
+light.c:399:12: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   ls->id = (genericptr_t)mtmp->m_id;
+            ^
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o lock.o lock.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mail.o mail.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o makemon.o makemon.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mapglyph.o mapglyph.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mcastu.o mcastu.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mhitm.o mhitm.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mhitu.o mhitu.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o minion.o minion.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mklev.o mklev.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mkmap.o mkmap.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mkmaze.o mkmaze.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mkobj.o mkobj.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mkroom.o mkroom.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mon.o mon.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mondata.o mondata.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o monmove.o monmove.c
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+./makedefs -m
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o monstr.o monstr.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mplayer.o mplayer.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o mthrowu.o mthrowu.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o muse.o muse.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o music.o music.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o o_init.o o_init.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o objnam.o objnam.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o options.o options.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o pager.o pager.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o pickup.o pickup.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o pline.o pline.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o polyself.o polyself.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o potion.o potion.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o pray.o pray.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o priest.o priest.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o quest.o quest.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o questpgr.o questpgr.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o read.o read.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o rect.o rect.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o region.o region.c
+region.c: In function 'expire_gas_cloud':
+region.c:884:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     damage = (int) reg->arg;
+              ^
+region.c:889:13: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  reg->arg = (genericptr_t) damage;
+             ^
+region.c: In function 'inside_gas_cloud':
+region.c:906:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     dam = (int) reg->arg;
+           ^
+region.c: In function 'create_gas_cloud':
+region.c:978:18: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     cloud->arg = (genericptr_t) damage;
+                  ^
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o restore.o restore.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o rip.o rip.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o rnd.o rnd.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o role.o role.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o rumors.o rumors.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o save.o save.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o shk.o shk.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o shknam.o shknam.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o sit.o sit.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o sounds.o sounds.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o sp_lev.o sp_lev.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o spell.o spell.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o steal.o steal.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o steed.o steed.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o teleport.o teleport.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o timeout.o timeout.c
+timeout.c: In function 'write_timer':
+timeout.c:1627:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   timer->arg = (genericptr_t)((struct obj *)timer->arg)->o_id;
+                ^
+timeout.c:1641:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   timer->arg = (genericptr_t)((struct monst *)timer->arg)->m_id;
+                ^
+timeout.c: In function 'relink_timers':
+timeout.c:1839:30: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (!lookup_id_mapping((unsigned)curr->arg, &nid))
+                              ^
+timeout.c:1842:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       nid = (unsigned) curr->arg;
+             ^
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o topten.o topten.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o track.o track.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o trap.o trap.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o u_init.o u_init.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o uhitm.o uhitm.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o vault.o vault.c
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+./makedefs -z
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o vision.o vision.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o vis_tab.o vis_tab.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o weapon.o weapon.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o were.o were.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o wield.o wield.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o windows.o windows.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o wizard.o wizard.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o worm.o worm.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o worn.o worn.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o write.o write.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o zap.o zap.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../sys/share/ioctl.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../sys/unix/unixmain.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../sys/share/unixtty.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../sys/unix/unixunix.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../sys/unix/unixres.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_3d.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_conf.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_emul.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_font.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_hardw.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_image.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_main.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_map.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_menu.c
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+gcc -O -I../include  -o tilemap ../win/share/tilemap.c 
+./tilemap
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+../util/makedefs -v
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_opt.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_rendu.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_role.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_softw.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_stat.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_text.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_tile.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_unit.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c ../win/gl/gl_win.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o tile.o tile.c
+gcc -O -I../include -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -c -o version.o version.c
+Loading ...
+gcc  -o glhack monst.o objects.o allmain.o alloc.o apply.o artifact.o attrib.o ball.o bones.o botl.o cmd.o dbridge.o decl.o detect.o dig.o display.o dlb.o do.o do_name.o do_wear.o dog.o dogmove.o dokick.o dothrow.o drawing.o dungeon.o eat.o end.o engrave.o exper.o explode.o extralev.o files.o fountain.o hack.o hacklib.o invent.o light.o lock.o mail.o makemon.o mapglyph.o mcastu.o mhitm.o mhitu.o minion.o mklev.o mkmap.o mkmaze.o mkobj.o mkroom.o mon.o mondata.o monmove.o monstr.o mplayer.o mthrowu.o muse.o music.o o_init.o objnam.o options.o pager.o pickup.o pline.o polyself.o potion.o pray.o priest.o quest.o questpgr.o read.o rect.o region.o restore.o rip.o rnd.o role.o rumors.o save.o shk.o shknam.o sit.o sounds.o sp_lev.o spell.o steal.o steed.o teleport.o timeout.o topten.o track.o trap.o u_init.o uhitm.o vault.o vision.o vis_tab.o weapon.o were.o wield.o windows.o wizard.o worm.o worn.o write.o zap.o  ioctl.o unixmain.o unixtty.o unixunix.o unixres.o gl_3d.o gl_conf.o gl_emul.o gl_font.o gl_hardw.o gl_image.o gl_main.o gl_map.o gl_menu.o gl_opt.o gl_rendu.o gl_role.o gl_softw.o gl_stat.o gl_text.o gl_tile.o gl_unit.o gl_win.o tile.o version.o -L/usr/lib -lSDL -lpthread -L/usr/X11R6/lib -lGL -lz -lpng 
+glhack is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+( cd util ; make recover_glhack )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+gcc -O -I../include   -c -o recover.o recover.c
+gcc  -o recover_glhack recover.o 
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd doc ; make Guidebook )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/doc'
+tbl tmac.n Guidebook.mn | nroff | col -bx > Guidebook
+warning: file `Guidebook.mn', around line 204:
+  table wider than line width
+Guidebook.mn:1951: warning [p 39, 2.8i]: cannot adjust line
+warning: file `Guidebook.mn', around line 2705:
+  table wider than line width
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/doc'
+( cd dat ; make data )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/makedefs -d
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make oracles )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/makedefs -h
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make options )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'options' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make quest.dat )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/makedefs -q
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make rumors )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/makedefs -r
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd util ; make dgn_comp )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+bison -y  -d dgn_comp.y
+mv y.tab.c dgn_yacc.c
+mv y.tab.h ../include/dgn_comp.h
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+gcc -O -I../include   -c -o dgn_yacc.o dgn_yacc.c
+flex  dgn_comp.l
+mv lex.yy.c dgn_lex.c
+gcc -c -O -I../include dgn_lex.c
+gcc -O -I../include   -c -o dgn_main.o dgn_main.c
+gcc -O -I../include   -c -o panic.o panic.c
+gcc  -o dgn_comp dgn_yacc.o dgn_lex.o dgn_main.o ../src/alloc.o panic.o 
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; make dungeon )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/makedefs -e
+../util/dgn_comp dungeon.pdf
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd util ; make lev_comp )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+bison -y  -d lev_comp.y
+mv y.tab.c lev_yacc.c
+mv y.tab.h ../include/lev_comp.h
+gcc -O -I../include   -c -o lev_yacc.o lev_yacc.c
+flex  lev_comp.l
+mv lex.yy.c lev_lex.c
+gcc -c -O -I../include lev_lex.c
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+gcc -O -I../include   -c -o lev_main.o lev_main.c
+gcc  -o lev_comp lev_yacc.o lev_lex.o lev_main.o ../src/alloc.o panic.o ../src/drawing.o ../src/decl.o ../src/monst.o ../src/objects.o 
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; make spec_levs )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/lev_comp bigroom.des
+../util/lev_comp castle.des
+../util/lev_comp endgame.des
+../util/lev_comp gehennom.des
+../util/lev_comp knox.des
+../util/lev_comp medusa.des
+../util/lev_comp mines.des
+../util/lev_comp oracle.des
+../util/lev_comp sokoban.des
+../util/lev_comp tower.des
+../util/lev_comp yendor.des
+touch spec_levs
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make quest_levs )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+../util/lev_comp Arch.des
+../util/lev_comp Barb.des
+../util/lev_comp Caveman.des
+../util/lev_comp Healer.des
+../util/lev_comp Knight.des
+../util/lev_comp Monk.des
+../util/lev_comp Priest.des
+../util/lev_comp Ranger.des
+../util/lev_comp Rogue.des
+../util/lev_comp Samurai.des
+../util/lev_comp Tourist.des
+../util/lev_comp Valkyrie.des
+../util/lev_comp Wizard.des
+touch quest_levs
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+    color, data librarian, debug mode, Elbereth,
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2'
+( cd util ; make dlb )
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+make[3]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[3]: '../include/date.h' is up to date.
+make[3]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+gcc -O -I../include -c dlb_main.c
+gcc  -o dlb dlb_main.o ../src/dlb.o ../src/alloc.o panic.o 
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; ../util/dlb cf nhdat help hh cmdhelp history opthelp wizhelp dungeon asmodeus.lev baalz.lev bigrm-?.lev castle.lev fakewiz?.lev juiblex.lev knox.lev medusa-?.lev minend-?.lev minefill.lev minetn-?.lev oracle.lev orcus.lev sanctum.lev soko?-?.lev tower?.lev valley.lev wizard?.lev astral.lev air.lev earth.lev fire.lev water.lev ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev data oracles options quest.dat rumors )
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2'
+Done.
+==> Entering fakeroot environment...
+==> Starting package()...
+( cd src ; make )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+glhack is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+( cd util ; make recover_glhack )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; make data )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'data' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make oracles )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'oracles' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make options )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'options' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make quest.dat )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'quest.dat' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make rumors )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'rumors' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd util ; make dgn_comp )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; make dungeon )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'dungeon' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd util ; make lev_comp )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[2]: '../include/date.h' is up to date.
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; make spec_levs )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'spec_levs' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+( cd dat ; make quest_levs )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[1]: 'quest_levs' is up to date.
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+mkdir -p /tmp/glhack/pkg/glhack/usr/bin
+rm -rf /tmp/glhack/pkg/glhack/usr/share/glhack /tmp/glhack/pkg/glhack/var/games/glhack
+mkdir -p /tmp/glhack/pkg/glhack/usr/share/glhack /tmp/glhack/pkg/glhack/var/games/glhack /tmp/glhack/pkg/glhack/var/games/glhack/save
+rmdir ./-p
+rmdir: failed to remove './-p': No such file or directory
+Makefile:255: recipe for target 'install' failed
+make: [install] Error 1 (ignored)
+chown root /tmp/glhack/pkg/glhack/usr/share/glhack /tmp/glhack/pkg/glhack/var/games/glhack /tmp/glhack/pkg/glhack/var/games/glhack/save
+chgrp games /tmp/glhack/pkg/glhack/usr/share/glhack /tmp/glhack/pkg/glhack/var/games/glhack /tmp/glhack/pkg/glhack/var/games/glhack/save
+chmod 02775 /tmp/glhack/pkg/glhack/usr/share/glhack /tmp/glhack/pkg/glhack/var/games/glhack /tmp/glhack/pkg/glhack/var/games/glhack/save
+( make dofiles )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2'
+target=`sed -n					\
+	-e '/librarian/{' 			\
+	-e	's/.*/dlb/p' 			\
+	-e	'q' 				\
+	-e '}' 					\
+  	-e '$s/.*/nodlb/p' < dat/options` ;	\
+make dofiles-${target-nodlb}
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2'
+( cd src ; make )
+make[3]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+glhack is up to date.
+make[3]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+( cd dat ; make options )
+make[3]: Entering directory '/tmp/glhack/src/glhack-1.2/dat'
+make[3]: 'options' is up to date.
+make[3]: Leaving directory '/tmp/glhack/src/glhack-1.2/dat'
+    color, data librarian, debug mode, Elbereth,
+make[3]: Entering directory '/tmp/glhack/src/glhack-1.2'
+( cd util ; make dlb )
+make[4]: Entering directory '/tmp/glhack/src/glhack-1.2/util'
+make[5]: Entering directory '/tmp/glhack/src/glhack-1.2/src'
+make[5]: '../include/date.h' is up to date.
+make[5]: Leaving directory '/tmp/glhack/src/glhack-1.2/src'
+make[4]: Leaving directory '/tmp/glhack/src/glhack-1.2/util'
+( cd dat ; ../util/dlb cf nhdat help hh cmdhelp history opthelp wizhelp dungeon asmodeus.lev baalz.lev bigrm-?.lev castle.lev fakewiz?.lev juiblex.lev knox.lev medusa-?.lev minend-?.lev minefill.lev minetn-?.lev oracle.lev orcus.lev sanctum.lev soko?-?.lev tower?.lev valley.lev wizard?.lev astral.lev air.lev earth.lev fire.lev water.lev ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev data oracles options quest.dat rumors )
+make[3]: Leaving directory '/tmp/glhack/src/glhack-1.2'
+( cd dat ; cp nhdat  license glfont8.png glfont14.png glfont20.png glfont22.png gltile16.png gltile32.png gltile64.png gllogo.png glrip.png glface16.lst glface32.lst /tmp/glhack/pkg/glhack/usr/share/glhack )
+( cd /tmp/glhack/pkg/glhack/usr/share/glhack ; chown root nhdat  license glfont8.png glfont14.png glfont20.png glfont22.png gltile16.png gltile32.png gltile64.png gllogo.png glrip.png glface16.lst glface32.lst ; \
+		chgrp games nhdat  license glfont8.png glfont14.png glfont20.png glfont22.png gltile16.png gltile32.png gltile64.png gllogo.png glrip.png glface16.lst glface32.lst ; \
+		chmod 0644 nhdat  license glfont8.png glfont14.png glfont20.png glfont22.png gltile16.png gltile32.png gltile64.png gllogo.png glrip.png glface16.lst glface32.lst )
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2'
+cp src/glhack /tmp/glhack/pkg/glhack/usr/share/glhack
+cp util/recover_glhack /tmp/glhack/pkg/glhack/usr/share/glhack
+rm -f /tmp/glhack/pkg/glhack/usr/bin/glhack
+rm -f /tmp/glhack/pkg/glhack/usr/games/glhack
+sed -e 's;/usr/games/lib/nethackdir;/tmp/glhack/pkg/glhack/usr/share/glhack;' \
+	-e 's;HACKDIR/nethack;HACKDIR/glhack;' \
+	< win/gl/glhack.sh \
+	> /tmp/glhack/pkg/glhack/usr/bin/glhack
+( cd /tmp/glhack/pkg/glhack/usr/share/glhack ; chown root glhack recover_glhack ; \
+		chgrp games glhack recover_glhack )
+chmod 02755 /tmp/glhack/pkg/glhack/usr/share/glhack/glhack
+chmod 0755 /tmp/glhack/pkg/glhack/usr/share/glhack/recover_glhack
+chown root /tmp/glhack/pkg/glhack/usr/bin/glhack
+chgrp games /tmp/glhack/pkg/glhack/usr/bin/glhack
+chmod 0755 /tmp/glhack/pkg/glhack/usr/bin/glhack
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2'
+touch /tmp/glhack/pkg/glhack/var/games/glhack/perm /tmp/glhack/pkg/glhack/var/games/glhack/record /tmp/glhack/pkg/glhack/var/games/glhack/logfile
+( cd /tmp/glhack/pkg/glhack/var/games/glhack ; chown root perm record logfile ; \
+		chgrp games perm record logfile ; \
+		chmod 0664 perm record logfile )
+( make manpages )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2'
+cp doc/glhack.6 /tmp/glhack/pkg/glhack/usr/share/man/man6
+cp doc/glhackrc.5 /tmp/glhack/pkg/glhack/usr/share/man/man5
+cp doc/nethack-guidebook.6 /tmp/glhack/pkg/glhack/usr/share/man/man6
+( cd doc ; make manpages )
+make[2]: Entering directory '/tmp/glhack/src/glhack-1.2/doc'
+cp nethack.6 /tmp/glhack/pkg/glhack/usr/share/man/man6/nethack.6
+cp lev_comp.6 /tmp/glhack/pkg/glhack/usr/share/man/man6/lev_comp.6
+cp dgn_comp.6 /tmp/glhack/pkg/glhack/usr/share/man/man6/dgn_comp.6
+cp recover.6 /tmp/glhack/pkg/glhack/usr/share/man/man6/recover.6
+cp dlb.6 /tmp/glhack/pkg/glhack/usr/share/man/man6/dlb.6
+make[2]: Leaving directory '/tmp/glhack/src/glhack-1.2/doc'
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2'
+( make reminder )
+make[1]: Entering directory '/tmp/glhack/src/glhack-1.2'
+
+
+---- glHack INSTALLATION FINISHED ----
+
+The following manpages are available:
+   glhack(6)  glhackrc(5)  nethack-guidebook(6)
+
+If your OS is Debian or Mandrake Linux, you can install
+the glHack desktop menu with one of these commands:
+   su -c 'make debian_install'
+   su -c 'make mandrake_install'
+
+
+make[1]: Leaving directory '/tmp/glhack/src/glhack-1.2'
+/tmp/glhack/pkg/glhack/usr/share/man/man6 /tmp/glhack/src/glhack-1.2
+/tmp/glhack/src/glhack-1.2
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "glhack"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: glhack 1.2-7 (Sat Nov 14 09:05:09 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

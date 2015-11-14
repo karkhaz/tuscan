@@ -1,0 +1,338 @@
+        <html><head></head><body>
+        <h1>Report for linuxdoc-tools on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:57</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data linuxdoc-tools
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1481 packages in cache
+Found permanent source directory in /sources/linuxdoc-tools
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: linuxdoc-tools 0.9.69-1 (Sat Nov 14 05:21:29 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) jade-1.2.1-9
+
+Total Installed Size:  5.05 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing jade...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+creating cache ./config.cache
+checking for a BSD compatible install... /usr/bin/install -c
+checking for perl... /usr/bin/perl
+checking for groff... /usr/bin/groff
+checking whether /usr/bin/groff accepts -mgs... no
+checking for gawk... /usr/bin/gawk
+checking for nsgmls... /usr/bin/nsgmls
+checking for sgmlsasp... no
+updating cache ./config.cache
+creating ./config.status
+creating Makefile
+configuring in entity-map
+running /bin/sh ./configure  --host x86_64-unknown-linux --prefix=/usr --mandir=/usr/share/man --cache-file=.././config.cache --srcdir=.
+loading cache .././config.cache
+checking for a BSD compatible install... (cached) /usr/bin/install -c
+checking whether make sets ${MAKE}... yes
+checking for sed... sed
+checking for perl5... no
+checking for perl... /usr/bin/perl
+updating cache .././config.cache
+creating ./config.status
+creating Makefile
+configuring in iso-entities
+running /bin/sh ./configure  --host x86_64-unknown-linux --prefix=/usr --mandir=/usr/share/man --cache-file=.././config.cache --srcdir=.
+loading cache .././config.cache
+checking for a BSD compatible install... (cached) /usr/bin/install -c
+checking whether make sets ${MAKE}... (cached) yes
+checking for sed... (cached) sed
+checking for perl5... (cached) /usr/bin/perl
+creating ./config.status
+creating Makefile
+Configuring sgmls-1.1
+Generating config.h from unix.cfg.
+If this fails, copy unix.cfg to config.h and then edit config.h.
+This may take a minute or two...
+chmod +x configure
+CC="gcc" CFLAGS="    -O" LIBS="" PREFIX=".." \
+  ./configure
+Compiling the SGML translator tools (in sgmls-1.1/)...
+( cd sgmls-1.1 ; \
+  make CFLAGS="    -O" LDFLAGS=" " sgmlsasp )
+make[1]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/sgmls-1.1'
+gcc -O   -c -o sgmlsasp.o sgmlsasp.c
+gcc -O   -c -o replace.o replace.c
+gcc -O   -c -o sgmls.o sgmls.c
+gcc -O   -c -o strerror.o strerror.c
+gcc -O   -c -o getopt.o getopt.c
+gcc -o sgmlsasp  sgmlsasp.o replace.o sgmls.o strerror.o getopt.o 
+make[1]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/sgmls-1.1'
+Building Entity Mapping library (in entity-map)...
+( cd entity-map ; \
+  make CFLAGS="    -O" LDFLAGS=" ")
+make[1]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map'
+rm -f EntityMap.pm
+sed < EntityMap.pm.in > EntityMap.pm \
+  -e 's|[@]localentitymapdir@|/usr/share/entity-map|g' \
+  -e 's|[@]entitymapdir@|/usr/share/entity-map/0.1.0|g'
+make[1]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map'
+Compiling preprocessor (in sgmlpre/)...
+( cd sgmlpre ; \
+  make  CFLAGS="    -O" LDFLAGS=" " LEX=flex sgmlpre || exit -1 )
+make[1]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/sgmlpre'
+cc -O    sgmlpre.c   -o sgmlpre
+sgmlpre.l:30:8: warning: type defaults to 'int' in declaration of 'nest' [-Wimplicit-int]
+ static nest;   /* how deep are we nested? */
+        ^
+sgmlpre.l:31:8: warning: type defaults to 'int' in declaration of 'ifsense' [-Wimplicit-int]
+ static ifsense;   /* sense of last `if' or unless seen */
+        ^
+sgmlpre.l:32:8: warning: type defaults to 'int' in declaration of 'firstoff' [-Wimplicit-int]
+ static firstoff;  /* nesting depth of first turnoff */
+        ^
+sgmlpre.l:130:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(int argc, char *argv[])
+ ^
+make[1]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/sgmlpre'
+Compiling RTF conversion tools (in rtf-fix/)...
+( cd rtf-fix ; \
+  make CFLAGS="    -O" LDFLAGS=" " || exit -1 )
+make[1]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/rtf-fix'
+flex -t rtf2rtf.l>rtf2rtf.c
+gcc -O   -o rtf2rtf rtf2rtf.c -lfl
+make[1]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/rtf-fix'
+making man pages in genman ...
+if [ ! -d genman ]; then mkdir genman ; fi
+for ii in man/* ; do \
+  bn=`basename $ii`; \
+  cat $ii | sed \
+    -e "s,\$LINUXDOCLIB,/usr/share/linuxdoc-tools," \
+    -e "s,\$LINUXDOCBIN,/usr/bin," \
+    > genman/$bn; \
+done
+==> Entering fakeroot environment...
+==> Starting package()...
+sed -e 's!\@prefix\@!/usr!g' \
+    -e 's!\@auxbindir\@!/usr/bin!g' \
+    -e 's!\@pkgdatadir\@!/usr/share/linuxdoc-tools!g' \
+    -e 's!\@perl5libdir\@!/usr/share/linuxdoc-tools!g' \
+    -e 's!\@PERL\@!/usr/bin/perl!g' \
+    -e 's!\@PERLWARN\@!!g' \
+    -e 's!\@GROFFMACRO\@!-ms!g' \
+bin/linuxdoc.in > bin/linuxdoc
+Installing binaries in /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin ...
+[ -d /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin ] || mkdir -m 755 -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin
+/usr/bin/install -c -m 755 sgmls-1.1/sgmlsasp /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin/sgmlsasp
+Installing Entity Mapping library (in entity-map)...
+( cd entity-map; \
+  make install DESTDIR=/tmp/linuxdoc-tools/pkg/linuxdoc-tools/ perl5libdir=/usr/share/linuxdoc-tools)
+make[1]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map'
+for ii in \
+	 \
+	/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools/Text \
+	/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map \
+	/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0; do \
+  ./config/install-sh -d $ii; \
+done
+/usr/bin/install -c -m 644 EntityMap.pm /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools/Text/EntityMap.pm
+cd sdata; make LIBDIR=/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0 \
+  PERM_D=755 PERM_F=644 MKDIR="../config/install-sh -d" CP=cp install
+make[2]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map/sdata'
+if [ ! -d /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0 ]; then \
+  ../config/install-sh -d /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0; \
+  chmod 755 /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0; \
+fi
+cp ISOlat1 ISOlat1.2ab ISOlat1.2as ISOlat1.2html ISOlat1.2l1b ISOlat1.2tex ISOlat2 ISOlat2.2ab ISOlat2.2as ISOlat2.2rtf ISOlat2.2tex ISOlat2.2texi ISOdia ISOdia.2ab ISOdia.2as ISOdia.2html ISOdia.2tex ISOdia.2tr ISOnum ISOnum.2ab ISOnum.2as ISOnum.2html ISOnum.2l1b ISOnum.2l1s ISOnum.2rtf ISOnum.2tex ISOnum.2texi ISOnum.2tr ISOnum.2l1tr ISOpub ISOpub.2ab ISOpub.2as ISOpub.2html ISOpub.2l1b ISOpub.2rtf ISOpub.2l1s ISOpub.2tex ISOpub.2texi ISOpub.2tr ISOtech ISOtech.2ab ISOtech.2as ISOtech.2html ISOtech.2l1b ISOtech.2l1s ISOtech.2rtf ISOtech.2tex ISOtech.2texi ISOtech.2tr GFextra.2ab  GFextra.2as  GFextra.2tex   GFextra.2texi LDextra.2tex LDextra.2tr LDextra.2html greek.2html lat1.2sdata /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0
+(cd /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0; chmod 644 ISOlat1 ISOlat1.2ab ISOlat1.2as ISOlat1.2html ISOlat1.2l1b ISOlat1.2tex ISOlat2 ISOlat2.2ab ISOlat2.2as ISOlat2.2rtf ISOlat2.2tex ISOlat2.2texi ISOdia ISOdia.2ab ISOdia.2as ISOdia.2html ISOdia.2tex ISOdia.2tr ISOnum ISOnum.2ab ISOnum.2as ISOnum.2html ISOnum.2l1b ISOnum.2l1s ISOnum.2rtf ISOnum.2tex ISOnum.2texi ISOnum.2tr ISOnum.2l1tr ISOpub ISOpub.2ab ISOpub.2as ISOpub.2html ISOpub.2l1b ISOpub.2rtf ISOpub.2l1s ISOpub.2tex ISOpub.2texi ISOpub.2tr ISOtech ISOtech.2ab ISOtech.2as ISOtech.2html ISOtech.2l1b ISOtech.2l1s ISOtech.2rtf ISOtech.2tex ISOtech.2texi ISOtech.2tr GFextra.2ab  GFextra.2as  GFextra.2tex   GFextra.2texi LDextra.2tex LDextra.2tr LDextra.2html greek.2html lat1.2sdata)
+(cd /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/entity-map/0.1.0; \
+ rm -f ISOlat1.2rtf ISOlat1.2texi ISOlat1.2tr ISOlat1.2l1s ISOlat1.2l1tr \
+       ISOlat2.2l1b ISOlat2.2l1s \
+       ISOdia.2rtf ISOdia.2texi ISOdia.2l1b ISOdia.2l1s ISOdia.2l1tr \
+       ISOpub.2l1tr \
+       ISOtech.2l1tr \
+       GFextra.2l1b GFextra.2rtf \
+       LDextra.2l1tr; \
+ln -s ISOlat1.2ab ISOlat1.2rtf; \
+ln -s ISOlat1.2ab ISOlat1.2texi; \
+ln -s ISOlat1.2ab ISOlat1.2tr; \
+ln -s ISOlat1.2l1b ISOlat1.2l1s; \
+ln -s ISOlat1.2l1b ISOlat1.2l1tr; \
+ln -s ISOlat2.2ab ISOlat2.2l1b; \
+ln -s ISOlat2.2as ISOlat2.2l1s; \
+ln -s ISOdia.2ab ISOdia.2rtf; \
+ln -s ISOdia.2ab ISOdia.2texi; \
+ln -s ISOdia.2ab ISOdia.2l1b; \
+ln -s ISOdia.2as ISOdia.2l1s; \
+ln -s ISOdia.2tr ISOdia.2l1tr; \
+ln -s ISOpub.2tr ISOpub.2l1tr; \
+ln -s ISOtech.2tr ISOtech.2l1tr; \
+ln -s GFextra.2ab GFextra.2l1b; \
+ln -s GFextra.2ab GFextra.2rtf; \
+ln -s GFextra.2as GFextra.2l1s; \
+ln -s LDextra.2tr LDextra.2l1tr;)
+make[2]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map/sdata'
+make[1]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map'
+Installing ISO character entity sets (in iso-entities)...
+( cd iso-entities; \
+  make install  DESTDIR=/tmp/linuxdoc-tools/pkg/linuxdoc-tools/)
+make[1]: Entering directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/iso-entities'
+for ii in /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/sgml /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/sgml/iso-entities-8879.1986; do \
+  ./config/install-sh -d $ii; \
+done
+/usr/bin/install -c -m 644 iso-entities.cat /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/sgml/iso-entities-8879.1986/iso-entities.cat
+for ii in `cd entities; find . -type f`; do \
+  /usr/bin/install -c -m 644 entities/$ii /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/sgml/iso-entities-8879.1986/$ii; \
+done
+make[1]: Leaving directory '/tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/iso-entities'
+/usr/bin/install -c -m 755 bin/linuxdoc /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin/linuxdoc
+mkdir -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin
+for ii in sgmlpre/sgmlpre rtf-fix/rtf2rtf; do \
+  bn=`basename $ii`; \
+  /usr/bin/install -c -m 755 $ii /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin/$bn; \
+done
+Installing library and support files in /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools...
+[ -d /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools ] || mkdir -m 755 -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools
+( cd lib && tar --exclude='CVS' -cpf - . ) | ( cd /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools && tar -xpf - )
+cp VERSION /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools
+Installing man pages in /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/man/man1 ...
+[ -d /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/man/man1 ] || mkdir -m 755 -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/man/man1
+for ii in genman/sgml2* genman/sgmlcheck.1 \
+          genman/rtf*.1 genman/sgmlpre*.1; do \
+  bn=`basename $ii`; \
+  /usr/bin/install -c -m 644 $ii /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/man/man1/$bn; \
+done
+/usr/bin/install -c -m 644 genman/linuxdoc.1 /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/man/man1/linuxdoc.1
+/usr/bin/install -c -m 644 man/sgmlsasp.1 /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/man/man1/sgmlsasp.1
+find /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools -type d -print | xargs chmod 755
+find /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools -type f -print | xargs chmod 644
+(cd /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin; for i in sgml2html sgml2info sgml2latex sgml2lyx sgml2rtf sgml2txt sgmlcheck; do rm -f $i; ln -s linuxdoc $i;done)
+mkdir -m 755 -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools/LinuxDocTools
+/usr/bin/install -c -m 644 perl5lib/LinuxDocTools.pm   /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools
+/usr/bin/install -c -m 644 perl5lib/LinuxDocTools/*.pm /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools/LinuxDocTools
+mkdir -m 755 -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools
+/usr/bin/install -c -m 644 tex/* /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools
+Installing documentation in /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools ...
+(cd doc; \
+	PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin \
+	PREFIX=/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr \
+	AUXBINDIR=/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin \
+ 	PKGPERL5LIB=/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools \
+ 	PKGDATADIR=/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/linuxdoc-tools \
+	bash Makedoc.sh)
+-------- Building linuxdoc-tools docs ---------
+Installed tree: /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr
+Using temporary directory: /tmp/ldt.xsrug2CcFk
+- Building txt docs
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE (.*)}{(.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{(.*)}{ <-- HERE (.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE .*}{.*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{.*}{ <-- HERE .*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage{ <-- HERE \@LINUXDOC_DTD\@-sgml}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 370.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage\[\@BABELOPTIONS\@\]{ <-- HERE babel}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 375.
+Processing file ./guide
+<standard input>:2254: warning [p 1, 226.3i]: can't break line
+which: no latex in (/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin)
+which: no dvips in (/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/bin)
+- Building info docs
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE (.*)}{(.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{(.*)}{ <-- HERE (.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE .*}{.*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{.*}{ <-- HERE .*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage{ <-- HERE \@LINUXDOC_DTD\@-sgml}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 370.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage\[\@BABELOPTIONS\@\]{ <-- HERE babel}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 375.
+Processing file ./guide.sgml
+- Building lyx docs
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE (.*)}{(.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{(.*)}{ <-- HERE (.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE .*}{.*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{.*}{ <-- HERE .*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage{ <-- HERE \@LINUXDOC_DTD\@-sgml}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 370.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage\[\@BABELOPTIONS\@\]{ <-- HERE babel}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 375.
+Processing file ./guide.sgml
+- Building html docs
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE (.*)}{(.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{(.*)}{ <-- HERE (.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE .*}{.*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{.*}{ <-- HERE .*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage{ <-- HERE \@LINUXDOC_DTD\@-sgml}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 370.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage\[\@BABELOPTIONS\@\]{ <-- HERE babel}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 375.
+Processing file ./guide
+- Building rtf docs
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE (.*)}{(.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{(.*)}{ <-- HERE (.*)}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 287.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{ <-- HERE .*}{.*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\\nameurl{.*}{ <-- HERE .*}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 291.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage{ <-- HERE \@LINUXDOC_DTD\@-sgml}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 370.
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/^\\usepackage\[\@BABELOPTIONS\@\]{ <-- HERE babel}/ at /tmp/ldt.xsrug2CcFk/linuxdoc-tools/fmt/fmt_latex2e.pl line 375.
+Processing file ./guide
+mkdir -m 755 -p /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools
+# cp -r doc/* /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools
+( cd doc && tar --exclude='CVS' -cpf - . ) | ( cd /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools && tar -xpf - )
+rm -f /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools/Makedoc.sh
+find /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools -type d -print | xargs chmod 755
+find /tmp/linuxdoc-tools/pkg/linuxdoc-tools//usr/share/doc/linuxdoc-tools -type f -print | xargs chmod 644
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "linuxdoc-tools"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: linuxdoc-tools 0.9.69-1 (Sat Nov 14 05:22:00 UTC 2015)
+===> Printing config.logs
+found log at /tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/config.log
+found log at /tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map/config.log
+found log at /tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/iso-entities/config.log
+____
+File /tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:577: checking for a BSD compatible install
+configure:633: checking for perl
+configure:689: checking for groff
+configure:724: checking whether /usr/bin/groff accepts -mgs
+configure:750: checking for gawk
+configure:794: checking for nsgmls
+configure:838: checking for sgmlsasp
+
+____
+File /tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/entity-map/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:561: checking for a BSD compatible install
+configure:614: checking whether make sets ${MAKE}
+configure:663: checking for sed
+configure:694: checking for perl5
+configure:694: checking for perl
+
+____
+File /tmp/linuxdoc-tools/src/linuxdoc-tools-0.9.69/iso-entities/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:561: checking for a BSD compatible install
+configure:614: checking whether make sets ${MAKE}
+configure:663: checking for sed
+configure:694: checking for perl5
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

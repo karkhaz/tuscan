@@ -1,0 +1,83 @@
+        <html><head></head><body>
+        <h1>Report for openresolv on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:07</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data openresolv
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 3001 packages in cache
+Found permanent source directory in /sources/openresolv
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: openresolv 3.7.1-1 (Sat Nov 14 09:42:31 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+./configure: WARNING: unknown option x86_64-unknown-linux
+Checking for directory /run ... yes
+Deriving operating system from ... --host
+Configuring openresolv for ... host
+Checking for systemd ... yes
+
+   SYSCONFDIR =		/etc
+   SBINDIR =		/usr/bin
+   LIBEXECDIR =		/usr/lib/resolvconf
+   RUNDIR =		/run
+   VARDIR =		/run/resolvconf
+   MANDIR =		/usr/share/man
+
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	resolvconf.in > resolvconf
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	resolvconf.8.in > resolvconf.8
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	resolvconf.conf.5.in > resolvconf.conf.5
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	libc.in > libc
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	dnsmasq.in > dnsmasq
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	named.in > named
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	pdnsd.in > pdnsd
+sed	-e 's:@SBINDIR@:/usr/bin:g' -e 's:@SYSCONFDIR@:/etc:g' -e 's:@LIBEXECDIR@:/usr/lib/resolvconf:g' -e 's:@RUNDIR@:/run:g' \
+	-e 's:@VARDIR@:/run/resolvconf:g' -e 's:@RCDIR@::g' -e 's:@RESTARTCMD \(.*\)@:/bin/systemctl --fail --no-block try-restart \1:g' -e 's:@RELOADCMD \([^ ]*\) \(.*\)@:/bin/systemctl --fail --no-block reload \1:g' \
+	unbound.in > unbound
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d /tmp/openresolv/pkg/openresolv/usr/bin
+install -m 0755 resolvconf /tmp/openresolv/pkg/openresolv/usr/bin
+install -d /tmp/openresolv/pkg/openresolv/etc
+test -e /tmp/openresolv/pkg/openresolv/etc/resolvconf.conf || \
+install -m 0644 resolvconf.conf /tmp/openresolv/pkg/openresolv/etc
+install -d /tmp/openresolv/pkg/openresolv/usr/lib/resolvconf
+install -m 0644 libc dnsmasq named pdnsd unbound /tmp/openresolv/pkg/openresolv/usr/lib/resolvconf
+install -d /tmp/openresolv/pkg/openresolv/usr/share/man/man8
+install -m 0444 resolvconf.8 /tmp/openresolv/pkg/openresolv/usr/share/man/man8
+install -d /tmp/openresolv/pkg/openresolv/usr/share/man/man5
+install -m 0444 resolvconf.conf.5 /tmp/openresolv/pkg/openresolv/usr/share/man/man5
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "openresolv"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: openresolv 3.7.1-1 (Sat Nov 14 09:42:33 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,127 @@
+        <html><head></head><body>
+        <h1>Report for x265 on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:30</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data x265
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2472 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: x265 1.8-1 (Sat Nov 14 00:30:44 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3  yasm-1.3.0-1
+
+Total Installed Size:  43.53 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing yasm...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading x265_1.8.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting x265_1.8.tar.gz with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/x265
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: x265 1.8-1 (Sat Nov 14 00:30:58 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- cmake version 3.3.2
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detected x86 target processor
+-- Could NOT find NUMA (missing:  NUMA_ROOT_DIR NUMA_INCLUDE_DIR NUMA_LIBRARY) 
+-- Looking for include file inttypes.h
+-- Looking for include file inttypes.h - found
+-- Performing Test CC_HAS_NO_STRICT_OVERFLOW
+-- Performing Test CC_HAS_NO_STRICT_OVERFLOW - Success
+-- Performing Test CC_HAS_NO_NARROWING
+-- Performing Test CC_HAS_NO_NARROWING - Success
+-- Performing Test CC_HAS_NO_ARRAY_BOUNDS
+-- Performing Test CC_HAS_NO_ARRAY_BOUNDS - Success
+-- Performing Test CC_HAS_FAST_MATH
+-- Performing Test CC_HAS_FAST_MATH - Success
+-- Performing Test CC_HAS_STACK_REALIGN
+-- Performing Test CC_HAS_STACK_REALIGN - Failed
+-- Performing Test CC_HAS_FNO_EXCEPTIONS_FLAG
+-- Performing Test CC_HAS_FNO_EXCEPTIONS_FLAG - Success
+-- Found yasm: /usr/sbin/yasm (found version "1.3.0") 
+-- Found Yasm 1.3.0 to build assembly primitives
+-- x265 version 1.8+1-5dcc9d3a928c400b
+-- The ASM_YASM compiler identification is unknown
+-- Found assembler: /usr/sbin/yasm
+-- Looking for strtok_r
+-- Looking for strtok_r - found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/x265/src/x265_11047/build-12
+Scanning dependencies of target encoder
+[  1%] Building CXX object encoder/CMakeFiles/encoder.dir/analysis.cpp.o
+arm-linux-androideabi-g++: error: unrecognized argument in option '-march=i686'
+arm-linux-androideabi-g++: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+encoder/CMakeFiles/encoder.dir/build.make:62: recipe for target 'encoder/CMakeFiles/encoder.dir/analysis.cpp.o' failed
+make[2]: *** [encoder/CMakeFiles/encoder.dir/analysis.cpp.o] Error 1
+CMakeFiles/Makefile2:187: recipe for target 'encoder/CMakeFiles/encoder.dir/all' failed
+make[1]: *** [encoder/CMakeFiles/encoder.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+Scanning dependencies of target common
+[  2%] Building ASM_YASM object common/CMakeFiles/common.dir/x86/const-a.asm.o
+[  4%] Building ASM_YASM object common/CMakeFiles/common.dir/x86/pixel-a.asm.o
+[  5%] Building ASM_YASM object common/CMakeFiles/common.dir/x86/cpu-a.asm.o
+[  7%] Building ASM_YASM object common/CMakeFiles/common.dir/x86/ssd-a.asm.o
+/tmp/x265/src/x265_11047/source/common/x86/ssd-a.asm:120: error: undefined symbol `m8' (first use)
+/tmp/x265/src/x265_11047/source/common/x86/ssd-a.asm:120: error:  (Each undefined symbol is reported only once.)
+/tmp/x265/src/x265_11047/source/common/x86/ssd-a.asm:155: error: undefined symbol `m9' (first use)
+common/CMakeFiles/common.dir/build.make:110: recipe for target 'common/CMakeFiles/common.dir/x86/ssd-a.asm.o' failed
+make[2]: *** [common/CMakeFiles/common.dir/x86/ssd-a.asm.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+CMakeFiles/Makefile2:242: recipe for target 'common/CMakeFiles/common.dir/all' failed
+make[1]: *** [common/CMakeFiles/common.dir/all] Error 2
+Makefile:127: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 9cfef613f98876608ff4938113262f1e6c59a1072d714a1c6a42210dedbb701b: rename /usr/local/google/home/khazem/docker/aufs/diff/9cfef613f98876608ff4938113262f1e6c59a1072d714a1c6a42210dedbb701b /usr/local/google/home/khazem/docker/aufs/diff/9cfef613f98876608ff4938113262f1e6c59a1072d714a1c6a42210dedbb701b-removing: device or resource busy></pre></code>
+        </body></html>

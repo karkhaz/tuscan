@@ -1,0 +1,596 @@
+        <html><head></head><body>
+        <h1>Report for bti on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:30</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data bti
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1728 packages in cache
+Found permanent source directory in /sources/bti
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: bti 034-1 (Sat Nov 14 05:35:28 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) json-c-0.12-2  liboauth-1.0.3-1  libxml2-2.9.2-2
+
+Total Download Size:   0.03 MiB
+Total Installed Size:  8.58 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading liboauth-1.0.3-1-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing liboauth...
+installing json-c...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for xsltproc... no
+checking for x86_64-unknown-linux-pkg-config... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for LIBOAUTH... yes
+checking for LIBPCRE... yes
+checking for LIBCURL... yes
+checking for XML... yes
+checking for JSON... yes
+checking for library containing dlopen... -ldl
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: executing depfiles commands
+
+	bti 034
+	=======
+
+	prefix:                 /usr
+	datarootdir:            ${prefix}/share
+	mandir:                 ${datarootdir}/man
+
+	compiler:               gcc
+	cflags:                 -g -O2
+	ldflags:                
+
+	xsltproc:               
+
+  CC       bti-config.o
+  CC       bti-bti.o
+bti.c: In function 'json_parse_array':
+bti.c:506:3: warning: 'json_object_object_get' is deprecated [-Wdeprecated-declarations]
+   jarray = json_object_object_get(jobj, key);
+   ^
+In file included from /usr/include/json-c/linkhash.h:16:0,
+                 from /usr/include/json-c/json.h:22,
+                 from bti.c:35:
+/usr/include/json-c/json_object.h:290:1: note: declared here
+ THIS_FUNCTION_IS_DEPRECATED(extern struct json_object* json_object_object_get(struct json_object* obj,
+ ^
+bti.c: In function 'json_parse':
+bti.c:645:4: warning: 'json_object_object_get' is deprecated [-Wdeprecated-declarations]
+    json_parse(json_object_object_get(jobj, key), nestlevel);
+    ^
+In file included from /usr/include/json-c/linkhash.h:16:0,
+                 from /usr/include/json-c/json.h:22,
+                 from bti.c:35:
+/usr/include/json-c/json_object.h:290:1: note: declared here
+ THIS_FUNCTION_IS_DEPRECATED(extern struct json_object* json_object_object_get(struct json_object* obj,
+ ^
+bti.c: In function 'request_access_token':
+bti.c:808:2: warning: 'oauth_http_get' is deprecated [-Wdeprecated-declarations]
+  reply = oauth_http_get(request_url, post_params);
+  ^
+In file included from bti.c:39:0:
+/usr/include/oauth.h:572:7: note: declared here
+ char *oauth_http_get (const char *u, const char *q) attribute_deprecated;
+       ^
+bti.c:844:2: warning: 'oauth_http_get' is deprecated [-Wdeprecated-declarations]
+  reply = oauth_http_get(request_url, post_params);
+  ^
+In file included from bti.c:39:0:
+/usr/include/oauth.h:572:7: note: declared here
+ char *oauth_http_get (const char *u, const char *q) attribute_deprecated;
+       ^
+bti.c: In function 'send_request':
+bti.c:1121:5: warning: 'oauth_http_post' is deprecated [-Wdeprecated-declarations]
+     reply = oauth_http_post(req_url, postarg);
+     ^
+In file included from bti.c:39:0:
+/usr/include/oauth.h:629:7: note: declared here
+ char *oauth_http_post (const char *u, const char *p) attribute_deprecated;
+       ^
+bti.c:1128:5: warning: 'oauth_http_get' is deprecated [-Wdeprecated-declarations]
+     reply = oauth_http_get(req_url, postarg);
+     ^
+In file included from bti.c:39:0:
+/usr/include/oauth.h:572:7: note: declared here
+ char *oauth_http_get (const char *u, const char *q) attribute_deprecated;
+       ^
+  CCLD     bti
+==> Entering fakeroot environment...
+==> Starting package()...
+make[1]: Entering directory '/tmp/bti/src/bti-034'
+ /usr/bin/mkdir -p '/tmp/bti/pkg/bti/usr/bin'
+  /usr/bin/install -c bti '/tmp/bti/pkg/bti/usr/bin'
+ /usr/bin/mkdir -p '/tmp/bti/pkg/bti/usr/bin'
+ /usr/bin/install -c bti-shrink-urls '/tmp/bti/pkg/bti/usr/bin'
+ /usr/bin/mkdir -p '/tmp/bti/pkg/bti/usr/share/man/man1'
+ /usr/bin/install -c -m 644 bti.1 bti-shrink-urls.1 '/tmp/bti/pkg/bti/usr/share/man/man1'
+make[1]: Leaving directory '/tmp/bti/src/bti-034'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "bti"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: bti 034-1 (Sat Nov 14 05:35:43 UTC 2015)
+===> Printing config.logs
+found log at /tmp/bti/src/bti-034/config.log
+____
+File /tmp/bti/src/bti-034/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by bti configure 034, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 263190a11b94
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1927: checking for a BSD-compatible install
+configure:1995: result: /usr/bin/install -c
+configure:2006: checking whether build environment is sane
+configure:2061: result: yes
+configure:2120: checking for x86_64-unknown-linux-strip
+configure:2150: result: no
+configure:2160: checking for strip
+configure:2176: found /usr/bin/strip
+configure:2187: result: strip
+configure:2212: checking for a thread-safe mkdir -p
+configure:2251: result: /usr/bin/mkdir -p
+configure:2258: checking for gawk
+configure:2274: found /usr/bin/gawk
+configure:2285: result: gawk
+configure:2296: checking whether make sets $(MAKE)
+configure:2318: result: yes
+configure:2347: checking whether make supports nested variables
+configure:2364: result: yes
+configure:2502: checking whether make supports nested variables
+configure:2519: result: yes
+configure:2539: checking for x86_64-unknown-linux-gcc
+configure:2569: result: no
+configure:2579: checking for gcc
+configure:2595: found /usr/bin/gcc
+configure:2606: result: gcc
+configure:2835: checking for C compiler version
+configure:2844: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2855: $? = 0
+configure:2844: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2855: $? = 0
+configure:2844: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2855: $? = 1
+configure:2844: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2855: $? = 1
+configure:2875: checking whether the C compiler works
+configure:2897: gcc    conftest.c  >&5
+configure:2901: $? = 0
+configure:2949: result: yes
+configure:2952: checking for C compiler default output file name
+configure:2954: result: a.out
+configure:2960: checking for suffix of executables
+configure:2967: gcc -o conftest    conftest.c  >&5
+configure:2971: $? = 0
+configure:2993: result: 
+configure:3015: checking whether we are cross compiling
+configure:3023: gcc -o conftest    conftest.c  >&5
+configure:3027: $? = 0
+configure:3034: ./conftest
+configure:3038: $? = 0
+configure:3053: result: no
+configure:3058: checking for suffix of object files
+configure:3080: gcc -c   conftest.c >&5
+configure:3084: $? = 0
+configure:3105: result: o
+configure:3109: checking whether we are using the GNU C compiler
+configure:3128: gcc -c   conftest.c >&5
+configure:3128: $? = 0
+configure:3137: result: yes
+configure:3146: checking whether gcc accepts -g
+configure:3166: gcc -c -g  conftest.c >&5
+configure:3166: $? = 0
+configure:3207: result: yes
+configure:3224: checking for gcc option to accept ISO C89
+configure:3287: gcc  -c -g -O2  conftest.c >&5
+configure:3287: $? = 0
+configure:3300: result: none needed
+configure:3325: checking whether gcc understands -c and -o together
+configure:3347: gcc -c conftest.c -o conftest2.o
+configure:3350: $? = 0
+configure:3347: gcc -c conftest.c -o conftest2.o
+configure:3350: $? = 0
+configure:3362: result: yes
+configure:3390: checking for style of include used by make
+configure:3418: result: GNU
+configure:3444: checking dependency style of gcc
+configure:3555: result: gcc3
+configure:3576: checking for xsltproc
+configure:3609: result: no
+configure:3626: checking for x86_64-unknown-linux-pkg-config
+configure:3659: result: no
+configure:3669: checking for pkg-config
+configure:3687: found /usr/bin/pkg-config
+configure:3699: result: /usr/bin/pkg-config
+configure:3724: checking pkg-config is at least version 0.9.0
+configure:3727: result: yes
+configure:3738: checking for LIBOAUTH
+configure:3745: $PKG_CONFIG --exists --print-errors "oauth"
+configure:3748: $? = 0
+configure:3762: $PKG_CONFIG --exists --print-errors "oauth"
+configure:3765: $? = 0
+configure:3823: result: yes
+configure:3829: checking for LIBPCRE
+configure:3836: $PKG_CONFIG --exists --print-errors "libpcre"
+configure:3839: $? = 0
+configure:3853: $PKG_CONFIG --exists --print-errors "libpcre"
+configure:3856: $? = 0
+configure:3914: result: yes
+configure:3920: checking for LIBCURL
+configure:3927: $PKG_CONFIG --exists --print-errors "libcurl"
+configure:3930: $? = 0
+configure:3944: $PKG_CONFIG --exists --print-errors "libcurl"
+configure:3947: $? = 0
+configure:4005: result: yes
+configure:4011: checking for XML
+configure:4018: $PKG_CONFIG --exists --print-errors "libxml-2.0"
+configure:4021: $? = 0
+configure:4035: $PKG_CONFIG --exists --print-errors "libxml-2.0"
+configure:4038: $? = 0
+configure:4096: result: yes
+configure:4102: checking for JSON
+configure:4109: $PKG_CONFIG --exists --print-errors "json-c"
+configure:4112: $? = 0
+configure:4126: $PKG_CONFIG --exists --print-errors "json-c"
+configure:4129: $? = 0
+configure:4187: result: yes
+configure:4193: checking for library containing dlopen
+configure:4224: gcc -o conftest -g -O2   conftest.c  >&5
+/tmp/ccCSzKJ3.o: In function `main':
+/tmp/bti/src/bti-034/conftest.c:22: undefined reference to `dlopen'
+collect2: error: ld returned 1 exit status
+configure:4224: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "bti"
+| #define PACKAGE_TARNAME "bti"
+| #define PACKAGE_VERSION "034"
+| #define PACKAGE_STRING "bti 034"
+| #define PACKAGE_BUGREPORT "greg@kroah.com"
+| #define PACKAGE_URL ""
+| #define PACKAGE "bti"
+| #define VERSION "034"
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char dlopen ();
+| int
+| main ()
+| {
+| return dlopen ();
+|   ;
+|   return 0;
+| }
+configure:4224: gcc -o conftest -g -O2   conftest.c -ldl   >&5
+configure:4224: $? = 0
+configure:4241: result: -ldl
+configure:4398: checking that generated files are newer than configure
+configure:4404: result: done
+configure:4427: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by bti config.status 034, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 263190a11b94
+
+config.status:786: creating Makefile
+config.status:958: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_JSON_CFLAGS_set=
+ac_cv_env_JSON_CFLAGS_value=
+ac_cv_env_JSON_LIBS_set=
+ac_cv_env_JSON_LIBS_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBCURL_CFLAGS_set=
+ac_cv_env_LIBCURL_CFLAGS_value=
+ac_cv_env_LIBCURL_LIBS_set=
+ac_cv_env_LIBCURL_LIBS_value=
+ac_cv_env_LIBOAUTH_CFLAGS_set=
+ac_cv_env_LIBOAUTH_CFLAGS_value=
+ac_cv_env_LIBOAUTH_LIBS_set=
+ac_cv_env_LIBOAUTH_LIBS_value=
+ac_cv_env_LIBPCRE_CFLAGS_set=
+ac_cv_env_LIBPCRE_CFLAGS_value=
+ac_cv_env_LIBPCRE_LIBS_set=
+ac_cv_env_LIBPCRE_LIBS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_PKG_CONFIG_LIBDIR_set=
+ac_cv_env_PKG_CONFIG_LIBDIR_value=
+ac_cv_env_PKG_CONFIG_PATH_set=
+ac_cv_env_PKG_CONFIG_PATH_value=
+ac_cv_env_PKG_CONFIG_set=
+ac_cv_env_PKG_CONFIG_value=
+ac_cv_env_XML_CFLAGS_set=
+ac_cv_env_XML_CFLAGS_value=
+ac_cv_env_XML_LIBS_set=
+ac_cv_env_XML_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_objext=o
+ac_cv_path_ac_pt_PKG_CONFIG=/usr/bin/pkg-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/bin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+ac_cv_search_dlopen=-ldl
+am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_make_support_nested_variables=yes
+am_cv_prog_cc_c_o=yes
+pkg_cv_JSON_CFLAGS=-I/usr/include/json-c
+pkg_cv_JSON_LIBS=-ljson-c
+pkg_cv_LIBCURL_CFLAGS=
+pkg_cv_LIBCURL_LIBS=-lcurl
+pkg_cv_LIBOAUTH_CFLAGS=
+pkg_cv_LIBOAUTH_LIBS=-loauth
+pkg_cv_LIBPCRE_CFLAGS=
+pkg_cv_LIBPCRE_LIBS=-lpcre
+pkg_cv_XML_CFLAGS=-I/usr/include/libxml2
+pkg_cv_XML_LIBS=-lxml2
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/bti/src/bti-034/missing aclocal-1.14'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AM_BACKSLASH='\'
+AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
+AM_DEFAULT_VERBOSITY='0'
+AM_V='$(V)'
+AUTOCONF='${SHELL} /tmp/bti/src/bti-034/missing autoconf'
+AUTOHEADER='${SHELL} /tmp/bti/src/bti-034/missing autoheader'
+AUTOMAKE='${SHELL} /tmp/bti/src/bti-034/missing automake-1.14'
+AWK='gawk'
+CC='gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS='-g -O2'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DPACKAGE_NAME=\"bti\" -DPACKAGE_TARNAME=\"bti\" -DPACKAGE_VERSION=\"034\" -DPACKAGE_STRING=\"bti\ 034\" -DPACKAGE_BUGREPORT=\"greg@kroah.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"bti\" -DVERSION=\"034\"'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+JSON_CFLAGS='-I/usr/include/json-c'
+JSON_LIBS='-ljson-c'
+LDFLAGS=''
+LIBCURL_CFLAGS=''
+LIBCURL_LIBS='-lcurl'
+LIBOAUTH_CFLAGS=''
+LIBOAUTH_LIBS='-loauth'
+LIBOBJS=''
+LIBPCRE_CFLAGS=''
+LIBPCRE_LIBS='-lpcre'
+LIBS='-ldl '
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/bti/src/bti-034/missing makeinfo'
+MKDIR_P='/usr/bin/mkdir -p'
+OBJEXT='o'
+PACKAGE='bti'
+PACKAGE_BUGREPORT='greg@kroah.com'
+PACKAGE_NAME='bti'
+PACKAGE_STRING='bti 034'
+PACKAGE_TARNAME='bti'
+PACKAGE_URL=''
+PACKAGE_VERSION='034'
+PATH_SEPARATOR=':'
+PKG_CONFIG='/usr/bin/pkg-config'
+PKG_CONFIG_LIBDIR=''
+PKG_CONFIG_PATH=''
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='034'
+XML_CFLAGS='-I/usr/include/libxml2'
+XML_LIBS='-lxml2'
+XSLTPROC=''
+ac_ct_CC='gcc'
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/bti/src/bti-034/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='$(MKDIR_P)'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "bti"
+#define PACKAGE_TARNAME "bti"
+#define PACKAGE_VERSION "034"
+#define PACKAGE_STRING "bti 034"
+#define PACKAGE_BUGREPORT "greg@kroah.com"
+#define PACKAGE_URL ""
+#define PACKAGE "bti"
+#define VERSION "034"
+
+configure: exit 0
+
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 263190a11b94b864b0a684b421e32d23fcab74d963d45d2d2918d141e62bb170: rename /usr/local/google/home/khazem/docker/aufs/mnt/263190a11b94b864b0a684b421e32d23fcab74d963d45d2d2918d141e62bb170 /usr/local/google/home/khazem/docker/aufs/mnt/263190a11b94b864b0a684b421e32d23fcab74d963d45d2d2918d141e62bb170-removing: device or resource busy></pre></code>
+        </body></html>

@@ -1,0 +1,218 @@
+        <html><head></head><body>
+        <h1>Report for linuxtv-dvb-apps on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:01:00</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data linuxtv-dvb-apps
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2329 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: linuxtv-dvb-apps 1504-1 (Sat Nov 14 00:19:32 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) python2-2.7.10-2  sqlite-3.9.2-1  mercurial-3.5.1-1
+
+Total Installed Size:  90.88 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing mercurial...
+Optional dependencies for mercurial
+    tk: for the hgk GUI
+==> Retrieving sources...
+  -> Cloning dvb-apps hg repo...
+requesting all changes
+adding changesets
+adding manifests
+adding file changes
+added 1506 changesets with 6093 changes to 2111 files
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of  hg repo...
+updating to branch default
+547 files updated, 0 files merged, 0 files removed, 0 files unresolved
+==> Starting pkgver()...
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/linuxtv-dvb-apps
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: linuxtv-dvb-apps 1504-1 (Sat Nov 14 00:20:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make -C lib all
+make[1]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib'
+make -C libdvbapi all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvbapi'
+CC dvbaudio.o
+CC dvbca.o
+CC dvbdemux.o
+CC dvbfe.o
+CC dvbnet.o
+CC dvbvideo.o
+CC libdvbapi.so
+AR libdvbapi.a
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvbapi'
+make -C libdvbcfg all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvbcfg'
+CC dvbcfg_zapchannel.o
+CC dvbcfg_scanfile.o
+CC dvbcfg_common.o
+CC libdvbcfg.so
+AR libdvbcfg.a
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvbcfg'
+make -C libdvben50221 all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvben50221'
+CC asn_1.o
+CC en50221_app_ai.o
+CC en50221_app_auth.o
+CC en50221_app_ca.o
+CC en50221_app_datetime.o
+CC en50221_app_dvb.o
+CC en50221_app_epg.o
+CC en50221_app_lowspeed.o
+CC en50221_app_mmi.o
+CC en50221_app_rm.o
+CC en50221_app_smartcard.o
+CC en50221_app_teletext.o
+CC en50221_app_utils.o
+CC en50221_session.o
+CC en50221_stdcam.o
+CC en50221_stdcam_hlci.o
+CC en50221_stdcam_llci.o
+CC en50221_transport.o
+AR libdvben50221.a
+CC libdvben50221.so
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvben50221'
+make -C libdvbsec all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvbsec'
+CC dvbsec_api.o
+CC dvbsec_cfg.o
+CC libdvbsec.so
+AR libdvbsec.a
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libdvbsec'
+make -C libesg all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libesg'
+CC types.o
+CC bootstrap/access_descriptor.o
+CC bootstrap/provider_discovery_descriptor.o
+CC encapsulation/container.o
+CC encapsulation/fragment_management_information.o
+CC encapsulation/data_repository.o
+CC encapsulation/string_repository.o
+CC representation/encapsulated_textual_esg_xml_fragment.o
+CC representation/init_message.o
+CC representation/textual_decoder_init.o
+CC transport/session_partition_declaration.o
+CC libesg.so
+AR libesg.a
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libesg'
+make -C libucsi all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libucsi'
+CC crc32.o
+CC section_buf.o
+CC transport_packet.o
+CC atsc/atsc_text.o
+CC atsc/cvct_section.o
+CC atsc/dccsct_section.o
+CC atsc/dcct_section.o
+CC atsc/eit_section.o
+CC atsc/ett_section.o
+CC atsc/mgt_section.o
+CC atsc/rrt_section.o
+CC atsc/stt_section.o
+CC atsc/tvct_section.o
+CC atsc/types.o
+CC dvb/bat_section.o
+CC dvb/dit_section.o
+CC dvb/eit_section.o
+CC dvb/int_section.o
+CC dvb/nit_section.o
+CC dvb/rst_section.o
+CC dvb/sdt_section.o
+CC dvb/sit_section.o
+CC dvb/st_section.o
+CC dvb/tdt_section.o
+CC dvb/tot_section.o
+CC dvb/tva_container_section.o
+CC dvb/types.o
+CC mpeg/cat_section.o
+CC mpeg/metadata_section.o
+CC mpeg/odsmt_section.o
+CC mpeg/pat_section.o
+CC mpeg/pmt_section.o
+CC mpeg/tsdt_section.o
+CC libucsi.so
+AR libucsi.a
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib/libucsi'
+make[1]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/lib'
+make -C test all
+make[1]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/test'
+CC hex_dump.o
+CC lnb.o
+CC diseqc
+CC sendburst
+CC set22k
+CC setpid
+CC setvoltage
+CC test_av
+CC test_av_play
+CC test_dvr
+CC test_tapdmx
+CC test_dvr_play
+CC test_pes
+CC test_sec_ne
+CC test_sections
+CC test_stc
+CC test_stillimage
+CC test_tt
+CC test_vevent
+CC test_video
+CC evtest
+CC szap2
+CC lock_s
+make -C libdvbcfg all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/test'
+make[2]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
+CC dvbcfg_test
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/test/libdvbcfg'
+make -C libdvben50221 all
+make[2]: Entering directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/test'
+make[2]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
+CC test-app
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lpthread
+collect2: error: ld returned 1 exit status
+../../Make.rules:75: recipe for target 'test-app' failed
+make[2]: *** [test-app] Error 1
+make[2]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/test/libdvben50221'
+Makefile:30: recipe for target 'all' failed
+make[1]: *** [all] Error 2
+make[1]: Leaving directory '/tmp/linuxtv-dvb-apps/src/dvb-apps/test'
+Makefile:12: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

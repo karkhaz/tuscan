@@ -1,0 +1,111 @@
+        <html><head></head><body>
+        <h1>Report for rhash on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:20</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data rhash
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1478 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rhash 1.3.3-1 (Fri Nov 13 23:34:26 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading rhash-1.3.3-src.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting rhash-1.3.3-src.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/rhash
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rhash 1.3.3-1 (Fri Nov 13 23:34:27 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations calc_sums.c -o calc_sums.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations hash_print.c -o hash_print.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations common_func.c -o common_func.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations hash_update.c -o hash_update.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations file_mask.c -o file_mask.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations file_set.c -o file_set.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations find_file.c -o find_file.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations hash_check.c -o hash_check.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations output.c -o output.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations parse_cmdline.c -o parse_cmdline.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations rhash_main.c -o rhash_main.o
+gcc -c -pipe -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections  -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations win_utils.c -o win_utils.o
+make -C librhash lib-shared
+make[1]: Entering directory '/tmp/rhash/src/rhash-1.3.3/librhash'
+sed -n '1s/.*/{ global:/p; s/^RHASH_API.* \([a-z0-9_]\+\)(.*/  \1;/p; $s/.*/local: *; };/p' rhash.h rhash_torrent.h rhash_timing.h > exports.sym
+gcc -fpic  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations -shared algorithms.c byte_order.c plug_openssl.c rhash.c rhash_timing.c rhash_torrent.c util.c aich.c crc32.c ed2k.c edonr.c hex.c md4.c md5.c sha1.c sha256.c sha512.c sha3.c ripemd-160.c gost.c has160.c snefru.c tiger.c tiger_sbox.c tth.c torrent.c whirlpool.c whirlpool_sbox.c -Wl,--version-script,exports.sym,-soname,librhash.so.0   -o librhash.so.0
+ln -s librhash.so.0 librhash.so
+make[1]: Leaving directory '/tmp/rhash/src/rhash-1.3.3/librhash'
+gcc calc_sums.o hash_print.o common_func.o hash_update.o file_mask.o file_set.o find_file.o hash_check.o output.o parse_cmdline.o rhash_main.o win_utils.o   -o rhash_shared librhash/librhash.so.0
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d /tmp/rhash/pkg/rhash/usr/bin
+install -d /tmp/rhash/pkg/rhash/usr/share/man/man1
+install -d /tmp/rhash/pkg/rhash/etc
+install -m 644 dist/rhash.1 /tmp/rhash/pkg/rhash/usr/share/man/man1/rhash.1
+sed -e 's/\x0D//g' dist/rhashrc.sample > rc.tmp && install -m 644 rc.tmp /tmp/rhash/pkg/rhash/etc/rhashrc
+install -m 755 rhash_shared /tmp/rhash/pkg/rhash/usr/bin/rhash
+for f in sfv-hash tiger-hash tth-hash whirlpool-hash has160-hash gost-hash ed2k-link magnet-link; do ln -fs rhash /tmp/rhash/pkg/rhash/usr/bin/$f; done
+rm -f rc.tmp
+cd /tmp/rhash/pkg/rhash/usr/share/man/man1 && for f in sfv-hash tiger-hash tth-hash whirlpool-hash has160-hash gost-hash ed2k-link magnet-link; do ln -fs rhash.1* $f.1; done
+make: Entering directory '/tmp/rhash/src/rhash-1.3.3/librhash'
+install -d /tmp/rhash/pkg/rhash/usr/include
+install -m 644 rhash.h rhash_torrent.h /tmp/rhash/pkg/rhash/usr/include/
+install -d /tmp/rhash/pkg/rhash/usr/lib
+install -m 644 librhash.so.0 /tmp/rhash/pkg/rhash/usr/lib/
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations algorithms.c -o algorithms.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations byte_order.c -o byte_order.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations plug_openssl.c -o plug_openssl.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations rhash.c -o rhash.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations rhash_timing.c -o rhash_timing.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations rhash_torrent.c -o rhash_torrent.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations util.c -o util.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations aich.c -o aich.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations crc32.c -o crc32.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations ed2k.c -o ed2k.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations edonr.c -o edonr.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations hex.c -o hex.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations md4.c -o md4.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations md5.c -o md5.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations sha1.c -o sha1.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations sha256.c -o sha256.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations sha512.c -o sha512.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations sha3.c -o sha3.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations ripemd-160.c -o ripemd-160.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations gost.c -o gost.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations has160.c -o has160.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations snefru.c -o snefru.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations tiger.c -o tiger.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations tiger_sbox.c -o tiger_sbox.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations tth.c -o tth.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations torrent.c -o torrent.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations whirlpool.c -o whirlpool.o
+gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations whirlpool_sbox.c -o whirlpool_sbox.o
+ar cqs librhash.a algorithms.o byte_order.o plug_openssl.o rhash.o rhash_timing.o rhash_torrent.o util.o aich.o crc32.o ed2k.o edonr.o hex.o md4.o md5.o sha1.o sha256.o sha512.o sha3.o ripemd-160.o gost.o has160.o snefru.o tiger.o tiger_sbox.o tth.o torrent.o whirlpool.o whirlpool_sbox.o
+install -d /tmp/rhash/pkg/rhash/usr/lib
+install -m 644 librhash.a /tmp/rhash/pkg/rhash/usr/lib/
+ln -s librhash.so.0 /tmp/rhash/pkg/rhash/usr/lib/librhash.so
+make: Leaving directory '/tmp/rhash/src/rhash-1.3.3/librhash'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "rhash"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: rhash 1.3.3-1 (Fri Nov 13 23:34:37 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

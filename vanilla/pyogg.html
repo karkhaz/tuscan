@@ -1,0 +1,110 @@
+        <html><head></head><body>
+        <h1>Report for pyogg on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data pyogg
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1353 packages in cache
+Found permanent source directory in /sources/pyogg
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pyogg 1.3-8 (Sat Nov 14 05:13:50 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) sqlite-3.9.2-1  libogg-1.3.2-1  python2-2.7.10-2
+
+Total Installed Size:  76.17 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing libogg...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking for Ogg ... success
+Wrote Setup file
+==> Entering fakeroot environment...
+==> Starting package()...
+running install
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/ogg
+copying pysrc/__init__.py -> build/lib.linux-x86_64-2.7/ogg
+running build_ext
+building '_ogg' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/src
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/_oggmodule.c -o build/temp.linux-x86_64-2.7/src/_oggmodule.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/pyoggpacket.c -o build/temp.linux-x86_64-2.7/src/pyoggpacket.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/pyoggstreamstate.c -o build/temp.linux-x86_64-2.7/src/pyoggstreamstate.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/pyoggpage.c -o build/temp.linux-x86_64-2.7/src/pyoggpage.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/pyoggpackbuff.c -o build/temp.linux-x86_64-2.7/src/pyoggpackbuff.o
+In file included from /usr/include/python2.7/Python.h:8:0,
+                 from src/pyoggpackbuff.h:5,
+                 from src/pyoggpackbuff.c:1:
+/usr/include/python2.7/pyconfig.h:1188:0: warning: "_POSIX_C_SOURCE" redefined
+ #define _POSIX_C_SOURCE 200112L
+ ^
+In file included from /usr/include/inttypes.h:25:0,
+                 from /usr/include/ogg/config_types-64.h:10,
+                 from /usr/include/ogg/config_types.h:6,
+                 from /usr/include/ogg/os_types.h:143,
+                 from /usr/include/ogg/ogg.h:25,
+                 from src/pyoggpackbuff.h:4,
+                 from src/pyoggpackbuff.c:1:
+/usr/include/features.h:225:0: note: this is the location of the previous definition
+ # define _POSIX_C_SOURCE 200809L
+ ^
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/pyoggsyncstate.c -o build/temp.linux-x86_64-2.7/src/pyoggsyncstate.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DVERSION_MAJOR=1 -DVERSION_MINOR=3 -DVERSION="1.3" -I/usr/local/include -Iinclude -I/usr/include/python2.7 -c src/general.c -o build/temp.linux-x86_64-2.7/src/general.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/src/_oggmodule.o build/temp.linux-x86_64-2.7/src/pyoggpacket.o build/temp.linux-x86_64-2.7/src/pyoggstreamstate.o build/temp.linux-x86_64-2.7/src/pyoggpage.o build/temp.linux-x86_64-2.7/src/pyoggpackbuff.o build/temp.linux-x86_64-2.7/src/pyoggsyncstate.o build/temp.linux-x86_64-2.7/src/general.o -L/usr/local/lib -L/usr/lib -logg -lpython2.7 -o build/lib.linux-x86_64-2.7/ogg/_ogg.so
+running install_lib
+creating /tmp/pyogg/pkg/pyogg/usr
+creating /tmp/pyogg/pkg/pyogg/usr/lib
+creating /tmp/pyogg/pkg/pyogg/usr/lib/python2.7
+creating /tmp/pyogg/pkg/pyogg/usr/lib/python2.7/site-packages
+creating /tmp/pyogg/pkg/pyogg/usr/lib/python2.7/site-packages/ogg
+copying build/lib.linux-x86_64-2.7/ogg/__init__.py -> /tmp/pyogg/pkg/pyogg/usr/lib/python2.7/site-packages/ogg
+copying build/lib.linux-x86_64-2.7/ogg/_ogg.so -> /tmp/pyogg/pkg/pyogg/usr/lib/python2.7/site-packages/ogg
+byte-compiling /tmp/pyogg/pkg/pyogg/usr/lib/python2.7/site-packages/ogg/__init__.py to __init__.pyc
+running install_headers
+creating /tmp/pyogg/pkg/pyogg/usr/include
+creating /tmp/pyogg/pkg/pyogg/usr/include/python2.7
+creating /tmp/pyogg/pkg/pyogg/usr/include/python2.7/pyogg
+copying include/pyogg/pyogg.h -> /tmp/pyogg/pkg/pyogg/usr/include/python2.7/pyogg
+running install_egg_info
+Writing /tmp/pyogg/pkg/pyogg/usr/lib/python2.7/site-packages/pyogg-1.3-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "pyogg"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: pyogg 1.3-8 (Sat Nov 14 05:13:57 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 8d4d4d52ef4525183197079c6bee890cad626943f0120e02d2c478298fa26953: rename /usr/local/google/home/khazem/docker/aufs/mnt/8d4d4d52ef4525183197079c6bee890cad626943f0120e02d2c478298fa26953 /usr/local/google/home/khazem/docker/aufs/mnt/8d4d4d52ef4525183197079c6bee890cad626943f0120e02d2c478298fa26953-removing: device or resource busy></pre></code>
+        </body></html>

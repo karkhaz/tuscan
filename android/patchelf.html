@@ -1,0 +1,465 @@
+        <html><head></head><body>
+        <h1>Report for patchelf on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data patchelf
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 385 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: patchelf 0.8-1 (Fri Nov 13 23:09:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading patchelf-0.8.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting patchelf-0.8.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/patchelf
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: patchelf 0.8-1 (Fri Nov 13 23:10:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for style of include used by make... GNU
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking whether arm-linux-androideabi-gcc and cc understand -c and -o together... yes
+checking whether we are using the GNU C++ compiler... yes
+checking whether arm-linux-androideabi-g++ accepts -g... yes
+checking dependency style of arm-linux-androideabi-g++... gcc3
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating tests/Makefile
+config.status: creating patchelf.spec
+config.status: executing depfiles commands
+Making all in src
+make[1]: Entering directory '/tmp/patchelf/src/patchelf-0.8/src'
+arm-linux-androideabi-g++ -DPACKAGE_NAME=\"patchelf\" -DPACKAGE_TARNAME=\"patchelf\" -DPACKAGE_VERSION=\"0.8\" -DPACKAGE_STRING=\"patchelf\ 0.8\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"patchelf\" -DVERSION=\"0.8\" -I.      -MT patchelf.o -MD -MP -MF .deps/patchelf.Tpo -c -o patchelf.o patchelf.cc
+mv -f .deps/patchelf.Tpo .deps/patchelf.Po
+arm-linux-androideabi-g++     -o patchelf patchelf.o  
+make[1]: Leaving directory '/tmp/patchelf/src/patchelf-0.8/src'
+Making all in tests
+make[1]: Entering directory '/tmp/patchelf/src/patchelf-0.8/tests'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/patchelf/src/patchelf-0.8/tests'
+make[1]: Entering directory '/tmp/patchelf/src/patchelf-0.8'
+make[1]: Nothing to be done for 'all-am'.
+make[1]: Leaving directory '/tmp/patchelf/src/patchelf-0.8'
+==> Entering fakeroot environment...
+==> Starting package()...
+make: Entering directory '/tmp/patchelf/src/patchelf-0.8'
+Making install in src
+make[1]: Entering directory '/tmp/patchelf/src/patchelf-0.8/src'
+make[2]: Entering directory '/tmp/patchelf/src/patchelf-0.8/src'
+make[2]: Nothing to be done for 'install-data-am'.
+ /usr/sbin/mkdir -p '/tmp/patchelf/pkg/patchelf//usr/bin'
+  /usr/bin/install -c patchelf '/tmp/patchelf/pkg/patchelf//usr/bin'
+make[2]: Leaving directory '/tmp/patchelf/src/patchelf-0.8/src'
+make[1]: Leaving directory '/tmp/patchelf/src/patchelf-0.8/src'
+Making install in tests
+make[1]: Entering directory '/tmp/patchelf/src/patchelf-0.8/tests'
+make[2]: Entering directory '/tmp/patchelf/src/patchelf-0.8/tests'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/tmp/patchelf/src/patchelf-0.8/tests'
+make[1]: Leaving directory '/tmp/patchelf/src/patchelf-0.8/tests'
+make[1]: Entering directory '/tmp/patchelf/src/patchelf-0.8'
+make[2]: Entering directory '/tmp/patchelf/src/patchelf-0.8'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/sbin/mkdir -p '/tmp/patchelf/pkg/patchelf//usr/share/doc/patchelf'
+ /usr/sbin/mkdir -p '/tmp/patchelf/pkg/patchelf//usr/share/man/man1'
+ /usr/bin/install -c -m 644 README '/tmp/patchelf/pkg/patchelf//usr/share/doc/patchelf'
+ /usr/bin/install -c -m 644 patchelf.1 '/tmp/patchelf/pkg/patchelf//usr/share/man/man1'
+make[2]: Leaving directory '/tmp/patchelf/src/patchelf-0.8'
+make[1]: Leaving directory '/tmp/patchelf/src/patchelf-0.8'
+make: Leaving directory '/tmp/patchelf/src/patchelf-0.8'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "patchelf"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: patchelf 0.8-1 (Fri Nov 13 23:10:06 UTC 2015)
+===> Printing config.logs
+found log at /tmp/patchelf/src/patchelf-0.8/config.log
+____
+File /tmp/patchelf/src/patchelf-0.8/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by patchelf configure 0.8, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 09f1d9b78e26
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1872: checking for a BSD-compatible install
+configure:1940: result: /usr/bin/install -c
+configure:1951: checking whether build environment is sane
+configure:2006: result: yes
+configure:2065: checking for x86_64-unknown-linux-strip
+configure:2095: result: no
+configure:2105: checking for strip
+configure:2121: found /usr/sbin/strip
+configure:2132: result: strip
+configure:2157: checking for a thread-safe mkdir -p
+configure:2196: result: /usr/sbin/mkdir -p
+configure:2203: checking for gawk
+configure:2219: found /usr/sbin/gawk
+configure:2230: result: gawk
+configure:2241: checking whether make sets $(MAKE)
+configure:2263: result: yes
+configure:2362: checking for style of include used by make
+configure:2390: result: GNU
+configure:2421: checking for x86_64-unknown-linux-gcc
+configure:2448: result: arm-linux-androideabi-gcc
+configure:2717: checking for C compiler version
+configure:2726: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2737: $? = 0
+configure:2726: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2737: $? = 0
+configure:2726: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2737: $? = 1
+configure:2726: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2737: $? = 1
+configure:2757: checking whether the C compiler works
+configure:2779: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2783: $? = 0
+configure:2831: result: yes
+configure:2834: checking for C compiler default output file name
+configure:2836: result: a.out
+configure:2842: checking for suffix of executables
+configure:2849: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2853: $? = 0
+configure:2875: result: 
+configure:2897: checking whether we are cross compiling
+configure:2905: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2909: $? = 0
+configure:2916: ./conftest
+./configure: line 2918: ./conftest: cannot execute binary file: Exec format error
+configure:2920: $? = 126
+configure:2935: result: yes
+configure:2940: checking for suffix of object files
+configure:2962: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2966: $? = 0
+configure:2987: result: o
+configure:2991: checking whether we are using the GNU C compiler
+configure:3010: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3010: $? = 0
+configure:3019: result: yes
+configure:3028: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3048: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3048: $? = 0
+configure:3089: result: yes
+configure:3106: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3169: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3169: $? = 0
+configure:3182: result: none needed
+configure:3204: checking dependency style of arm-linux-androideabi-gcc
+configure:3315: result: gcc3
+configure:3331: checking whether arm-linux-androideabi-gcc and cc understand -c and -o together
+configure:3362: arm-linux-androideabi-gcc -c conftest.c -o conftest2.o >&5
+configure:3366: $? = 0
+configure:3372: arm-linux-androideabi-gcc -c conftest.c -o conftest2.o >&5
+configure:3376: $? = 0
+configure:3387: cc -c conftest.c >&5
+configure:3391: $? = 0
+configure:3399: cc -c conftest.c -o conftest2.o >&5
+configure:3403: $? = 0
+configure:3409: cc -c conftest.c -o conftest2.o >&5
+configure:3413: $? = 0
+configure:3431: result: yes
+configure:3568: checking for C++ compiler version
+configure:3577: arm-linux-androideabi-g++ --version >&5
+arm-linux-androideabi-g++ (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3588: $? = 0
+configure:3577: arm-linux-androideabi-g++ -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-g++
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:3588: $? = 0
+configure:3577: arm-linux-androideabi-g++ -V >&5
+arm-linux-androideabi-g++: error: unrecognized command line option '-V'
+arm-linux-androideabi-g++: fatal error: no input files
+compilation terminated.
+configure:3588: $? = 1
+configure:3577: arm-linux-androideabi-g++ -qversion >&5
+arm-linux-androideabi-g++: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-g++: fatal error: no input files
+compilation terminated.
+configure:3588: $? = 1
+configure:3592: checking whether we are using the GNU C++ compiler
+configure:3611: arm-linux-androideabi-g++ -c   conftest.cpp >&5
+configure:3611: $? = 0
+configure:3620: result: yes
+configure:3629: checking whether arm-linux-androideabi-g++ accepts -g
+configure:3649: arm-linux-androideabi-g++ -c -g  conftest.cpp >&5
+configure:3649: $? = 0
+configure:3690: result: yes
+configure:3715: checking dependency style of arm-linux-androideabi-g++
+configure:3826: result: gcc3
+configure:3989: checking that generated files are newer than configure
+configure:3995: result: done
+configure:4022: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by patchelf config.status 0.8, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 09f1d9b78e26
+
+config.status:777: creating Makefile
+config.status:777: creating src/Makefile
+config.status:777: creating tests/Makefile
+config.status:777: creating patchelf.spec
+config.status:949: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_cxx_compiler_gnu=yes
+ac_cv_env_CCC_set=
+ac_cv_env_CCC_value=
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CXXFLAGS_set=set
+ac_cv_env_CXXFLAGS_value=
+ac_cv_env_CXX_set=set
+ac_cv_env_CXX_value=arm-linux-androideabi-g++
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_objext=o
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_arm_linux_androideabi_gcc_c_o=yes
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cxx_g=yes
+ac_cv_prog_make_make_set=yes
+am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_CXX_dependencies_compiler_type=gcc3
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/patchelf/src/patchelf-0.8/build-aux/missing --run aclocal-1.12'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AUTOCONF='${SHELL} /tmp/patchelf/src/patchelf-0.8/build-aux/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/patchelf/src/patchelf-0.8/build-aux/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/patchelf/src/patchelf-0.8/build-aux/missing --run automake-1.12'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=''
+CPPFLAGS=''
+CXX='arm-linux-androideabi-g++'
+CXXDEPMODE='depmode=gcc3'
+CXXFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DPACKAGE_NAME=\"patchelf\" -DPACKAGE_TARNAME=\"patchelf\" -DPACKAGE_VERSION=\"0.8\" -DPACKAGE_STRING=\"patchelf\ 0.8\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"patchelf\" -DVERSION=\"0.8\"'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/patchelf/src/patchelf-0.8/build-aux/missing --run makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='patchelf'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='patchelf'
+PACKAGE_STRING='patchelf 0.8'
+PACKAGE_TARNAME='patchelf'
+PACKAGE_URL=''
+PACKAGE_VERSION='0.8'
+PATH_SEPARATOR=':'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='0.8'
+ac_ct_CC=''
+ac_ct_CXX=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__fastdepCXX_FALSE='#'
+am__fastdepCXX_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/patchelf/src/patchelf-0.8/build-aux/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='$(MKDIR_P)'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "patchelf"
+#define PACKAGE_TARNAME "patchelf"
+#define PACKAGE_VERSION "0.8"
+#define PACKAGE_STRING "patchelf 0.8"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "patchelf"
+#define VERSION "0.8"
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

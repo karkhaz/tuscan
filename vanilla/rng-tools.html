@@ -1,0 +1,591 @@
+        <html><head></head><body>
+        <h1>Report for rng-tools on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:18</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data rng-tools
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2033 packages in cache
+Found permanent source directory in /sources/rng-tools
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rng-tools 5-4 (Sat Nov 14 05:52:04 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for x86_64-unknown-linux-ranlib... no
+checking for ranlib... ranlib
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking whether gcc needs -traditional... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking gcrypt.h usability... yes
+checking gcrypt.h presence... yes
+checking for gcrypt.h... yes
+checking for gcry_check_version in -lgcrypt... yes
+checking dependency style of gcc... gcc3
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating contrib/Makefile
+config.status: creating rngd.8
+config.status: creating rngtest.1
+config.status: creating rng-tools-config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/rng-tools/src/rng-tools-5'
+Making all in contrib
+make[2]: Entering directory '/tmp/rng-tools/src/rng-tools-5/contrib'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/rng-tools/src/rng-tools-5/contrib'
+make[2]: Entering directory '/tmp/rng-tools/src/rng-tools-5'
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT fips.o -MD -MP -MF .deps/fips.Tpo -c -o fips.o fips.c
+mv -f .deps/fips.Tpo .deps/fips.Po
+rm -f librngd.a
+ar cru librngd.a fips.o 
+ar: `u' modifier ignored since `D' is the default (see `U')
+ranlib librngd.a
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT stats.o -MD -MP -MF .deps/stats.Tpo -c -o stats.o stats.c
+mv -f .deps/stats.Tpo .deps/stats.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT rngtest.o -MD -MP -MF .deps/rngtest.Tpo -c -o rngtest.o rngtest.c
+mv -f .deps/rngtest.Tpo .deps/rngtest.Po
+gcc  -g -O2   -o rngtest stats.o rngtest.o librngd.a -lgcrypt 
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT rngd.o -MD -MP -MF .deps/rngd.Tpo -c -o rngd.o rngd.c
+mv -f .deps/rngd.Tpo .deps/rngd.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT rngd_entsource.o -MD -MP -MF .deps/rngd_entsource.Tpo -c -o rngd_entsource.o rngd_entsource.c
+mv -f .deps/rngd_entsource.Tpo .deps/rngd_entsource.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT rngd_linux.o -MD -MP -MF .deps/rngd_linux.Tpo -c -o rngd_linux.o rngd_linux.c
+mv -f .deps/rngd_linux.Tpo .deps/rngd_linux.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT util.o -MD -MP -MF .deps/util.Tpo -c -o util.o util.c
+mv -f .deps/util.Tpo .deps/util.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT rngd_rdrand.o -MD -MP -MF .deps/rngd_rdrand.Tpo -c -o rngd_rdrand.o rngd_rdrand.c
+mv -f .deps/rngd_rdrand.Tpo .deps/rngd_rdrand.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT rdrand_asm.o -MD -MP -MF .deps/rdrand_asm.Tpo -c -o rdrand_asm.o rdrand_asm.S
+mv -f .deps/rdrand_asm.Tpo .deps/rdrand_asm.Po
+gcc  -g -O2   -o rngd rngd.o rngd_entsource.o rngd_linux.o util.o rngd_rdrand.o rdrand_asm.o librngd.a -lgcrypt 
+make[2]: Leaving directory '/tmp/rng-tools/src/rng-tools-5'
+make[1]: Leaving directory '/tmp/rng-tools/src/rng-tools-5'
+==> Entering fakeroot environment...
+==> Starting package()...
+Making install in contrib
+make[1]: Entering directory '/tmp/rng-tools/src/rng-tools-5/contrib'
+make[2]: Entering directory '/tmp/rng-tools/src/rng-tools-5/contrib'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/tmp/rng-tools/src/rng-tools-5/contrib'
+make[1]: Leaving directory '/tmp/rng-tools/src/rng-tools-5/contrib'
+make[1]: Entering directory '/tmp/rng-tools/src/rng-tools-5'
+make[2]: Entering directory '/tmp/rng-tools/src/rng-tools-5'
+ /usr/sbin/mkdir -p '/tmp/rng-tools/pkg/rng-tools/usr/bin'
+  /usr/bin/install -c rngtest '/tmp/rng-tools/pkg/rng-tools/usr/bin'
+ /usr/sbin/mkdir -p '/tmp/rng-tools/pkg/rng-tools/usr/bin'
+  /usr/bin/install -c rngd '/tmp/rng-tools/pkg/rng-tools/usr/bin'
+ /usr/sbin/mkdir -p '/tmp/rng-tools/pkg/rng-tools/usr/share/man/man1'
+ /usr/bin/install -c -m 644 rngtest.1 '/tmp/rng-tools/pkg/rng-tools/usr/share/man/man1'
+ /usr/sbin/mkdir -p '/tmp/rng-tools/pkg/rng-tools/usr/share/man/man8'
+ /usr/bin/install -c -m 644 rngd.8 '/tmp/rng-tools/pkg/rng-tools/usr/share/man/man8'
+make[2]: Leaving directory '/tmp/rng-tools/src/rng-tools-5'
+make[1]: Leaving directory '/tmp/rng-tools/src/rng-tools-5'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "rng-tools"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: rng-tools 5-4 (Sat Nov 14 05:52:18 UTC 2015)
+===> Printing config.logs
+found log at /tmp/rng-tools/src/rng-tools-5/config.log
+____
+File /tmp/rng-tools/src/rng-tools-5/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by rng-tools configure 5, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sbindir=/usr/bin
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 666a99751039
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2103: checking for a BSD-compatible install
+configure:2171: result: /usr/bin/install -c
+configure:2182: checking whether build environment is sane
+configure:2237: result: yes
+configure:2296: checking for x86_64-unknown-linux-strip
+configure:2326: result: no
+configure:2336: checking for strip
+configure:2352: found /usr/sbin/strip
+configure:2363: result: strip
+configure:2388: checking for a thread-safe mkdir -p
+configure:2427: result: /usr/sbin/mkdir -p
+configure:2434: checking for gawk
+configure:2450: found /usr/sbin/gawk
+configure:2461: result: gawk
+configure:2472: checking whether make sets $(MAKE)
+configure:2494: result: yes
+configure:2523: checking whether make supports nested variables
+configure:2540: result: yes
+configure:2639: checking whether to enable maintainer-specific portions of Makefiles
+configure:2648: result: no
+configure:2670: checking for x86_64-unknown-linux-gcc
+configure:2700: result: no
+configure:2710: checking for gcc
+configure:2726: found /usr/sbin/gcc
+configure:2737: result: gcc
+configure:2966: checking for C compiler version
+configure:2975: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2986: $? = 0
+configure:2975: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2986: $? = 0
+configure:2975: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2986: $? = 1
+configure:2975: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2986: $? = 1
+configure:3006: checking whether the C compiler works
+configure:3028: gcc    conftest.c  >&5
+configure:3032: $? = 0
+configure:3080: result: yes
+configure:3083: checking for C compiler default output file name
+configure:3085: result: a.out
+configure:3091: checking for suffix of executables
+configure:3098: gcc -o conftest    conftest.c  >&5
+configure:3102: $? = 0
+configure:3124: result: 
+configure:3146: checking whether we are cross compiling
+configure:3154: gcc -o conftest    conftest.c  >&5
+configure:3158: $? = 0
+configure:3165: ./conftest
+configure:3169: $? = 0
+configure:3184: result: no
+configure:3189: checking for suffix of object files
+configure:3211: gcc -c   conftest.c >&5
+configure:3215: $? = 0
+configure:3236: result: o
+configure:3240: checking whether we are using the GNU C compiler
+configure:3259: gcc -c   conftest.c >&5
+configure:3259: $? = 0
+configure:3268: result: yes
+configure:3277: checking whether gcc accepts -g
+configure:3297: gcc -c -g  conftest.c >&5
+configure:3297: $? = 0
+configure:3338: result: yes
+configure:3355: checking for gcc option to accept ISO C89
+configure:3418: gcc  -c -g -O2  conftest.c >&5
+configure:3418: $? = 0
+configure:3431: result: none needed
+configure:3462: checking for style of include used by make
+configure:3490: result: GNU
+configure:3516: checking dependency style of gcc
+configure:3627: result: gcc3
+configure:3645: checking for x86_64-unknown-linux-ranlib
+configure:3675: result: no
+configure:3685: checking for ranlib
+configure:3701: found /usr/sbin/ranlib
+configure:3712: result: ranlib
+configure:3740: checking how to run the C preprocessor
+configure:3771: gcc -E  conftest.c
+configure:3771: $? = 0
+configure:3785: gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3785: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "rng-tools"
+| #define PACKAGE_TARNAME "rng-tools"
+| #define PACKAGE_VERSION "5"
+| #define PACKAGE_STRING "rng-tools 5"
+| #define PACKAGE_BUGREPORT "Jeff Garzik <jgarzik@pobox.com>"
+| #define PACKAGE_URL ""
+| #define PACKAGE "rng-tools"
+| #define VERSION "5"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3810: result: gcc -E
+configure:3830: gcc -E  conftest.c
+configure:3830: $? = 0
+configure:3844: gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:3844: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "rng-tools"
+| #define PACKAGE_TARNAME "rng-tools"
+| #define PACKAGE_VERSION "5"
+| #define PACKAGE_STRING "rng-tools 5"
+| #define PACKAGE_BUGREPORT "Jeff Garzik <jgarzik@pobox.com>"
+| #define PACKAGE_URL ""
+| #define PACKAGE "rng-tools"
+| #define VERSION "5"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3873: checking for grep that handles long lines and -e
+configure:3931: result: /usr/sbin/grep
+configure:3936: checking for egrep
+configure:3998: result: /usr/sbin/grep -E
+configure:4004: checking whether gcc needs -traditional
+configure:4038: result: no
+configure:4051: checking for ANSI C header files
+configure:4071: gcc -c -g -O2  conftest.c >&5
+configure:4071: $? = 0
+configure:4144: gcc -o conftest -g -O2   conftest.c  >&5
+configure:4144: $? = 0
+configure:4144: ./conftest
+configure:4144: $? = 0
+configure:4155: result: yes
+configure:4168: checking for sys/types.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for sys/stat.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for stdlib.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for string.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for memory.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for strings.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for inttypes.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for stdint.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4168: checking for unistd.h
+configure:4168: gcc -c -g -O2  conftest.c >&5
+configure:4168: $? = 0
+configure:4168: result: yes
+configure:4182: checking gcrypt.h usability
+configure:4182: gcc -c -g -O2  conftest.c >&5
+configure:4182: $? = 0
+configure:4182: result: yes
+configure:4182: checking gcrypt.h presence
+configure:4182: gcc -E  conftest.c
+configure:4182: $? = 0
+configure:4182: result: yes
+configure:4182: checking for gcrypt.h
+configure:4182: result: yes
+configure:4184: checking for gcry_check_version in -lgcrypt
+configure:4255: gcc -o conftest -g -O2   conftest.c -lgcrypt   >&5
+configure:4255: $? = 0
+configure:4264: result: yes
+configure:4314: checking dependency style of gcc
+configure:4423: result: gcc3
+configure:4551: checking that generated files are newer than configure
+configure:4557: result: done
+configure:4588: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by rng-tools config.status 5, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 666a99751039
+
+config.status:865: creating Makefile
+config.status:865: creating contrib/Makefile
+config.status:865: creating rngd.8
+config.status:865: creating rngtest.1
+config.status:865: creating rng-tools-config.h
+config.status:1094: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CCASFLAGS_set=
+ac_cv_env_CCASFLAGS_value=
+ac_cv_env_CCAS_set=
+ac_cv_env_CCAS_value=
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_gcrypt_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_gcrypt_gcry_check_version=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_RANLIB=ranlib
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_gcc_traditional=no
+ac_cv_prog_make_make_set=yes
+am_cv_CCAS_dependencies_compiler_type=gcc3
+am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_make_support_nested_variables=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/rng-tools/src/rng-tools-5/missing aclocal-1.13'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='$${TAR-tar}'
+AM_BACKSLASH='\'
+AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
+AM_DEFAULT_VERBOSITY='1'
+AM_V='$(V)'
+AUTOCONF='${SHELL} /tmp/rng-tools/src/rng-tools-5/missing autoconf'
+AUTOHEADER='${SHELL} /tmp/rng-tools/src/rng-tools-5/missing autoheader'
+AUTOMAKE='${SHELL} /tmp/rng-tools/src/rng-tools-5/missing automake-1.13'
+AWK='gawk'
+CC='gcc'
+CCAS='gcc'
+CCASDEPMODE='depmode=gcc3'
+CCASFLAGS='-g -O2'
+CCDEPMODE='depmode=gcc3'
+CFLAGS='-g -O2'
+CPP='gcc -E'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS='-lgcrypt '
+LTLIBOBJS=''
+MAINT='#'
+MAINTAINER_MODE_FALSE=''
+MAINTAINER_MODE_TRUE='#'
+MAKEINFO='${SHELL} /tmp/rng-tools/src/rng-tools-5/missing makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='rng-tools'
+PACKAGE_BUGREPORT='Jeff Garzik <jgarzik@pobox.com>'
+PACKAGE_NAME='rng-tools'
+PACKAGE_STRING='rng-tools 5'
+PACKAGE_TARNAME='rng-tools'
+PACKAGE_URL=''
+PACKAGE_VERSION='5'
+PATH_SEPARATOR=':'
+RANLIB='ranlib'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='5'
+ac_ct_CC='gcc'
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCCAS_FALSE='#'
+am__fastdepCCAS_TRUE=''
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__nodep='_no'
+am__quote=''
+am__tar='$${TAR-tar} chof - "$$tardir"'
+am__untar='$${TAR-tar} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/rng-tools/src/rng-tools-5/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='$(MKDIR_P)'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='/usr/bin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "rng-tools"
+#define PACKAGE_TARNAME "rng-tools"
+#define PACKAGE_VERSION "5"
+#define PACKAGE_STRING "rng-tools 5"
+#define PACKAGE_BUGREPORT "Jeff Garzik <jgarzik@pobox.com>"
+#define PACKAGE_URL ""
+#define PACKAGE "rng-tools"
+#define VERSION "5"
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_LIBGCRYPT 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

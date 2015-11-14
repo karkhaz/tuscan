@@ -1,0 +1,154 @@
+        <html><head></head><body>
+        <h1>Report for python-pybluez on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:15</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-pybluez
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 3031 packages in cache
+Found permanent source directory in /sources/python-pybluez
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-pybluez 0.20-4 (Sat Nov 14 09:53:17 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) sqlite-3.9.2-1  bluez-libs-5.36-1  python2-2.7.10-2
+
+Total Installed Size:  76.04 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing bluez-libs...
+==> WARNING: Using existing $srcdir/ tree
+==> Entering fakeroot environment...
+==> Starting package_python-pybluez()...
+running install
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-3.5
+creating build/lib.linux-x86_64-3.5/bluetooth
+copying bluetooth/osx.py -> build/lib.linux-x86_64-3.5/bluetooth
+copying bluetooth/msbt.py -> build/lib.linux-x86_64-3.5/bluetooth
+copying bluetooth/widcomm.py -> build/lib.linux-x86_64-3.5/bluetooth
+copying bluetooth/__init__.py -> build/lib.linux-x86_64-3.5/bluetooth
+copying bluetooth/btcommon.py -> build/lib.linux-x86_64-3.5/bluetooth
+copying bluetooth/bluez.py -> build/lib.linux-x86_64-3.5/bluetooth
+running build_ext
+building 'bluetooth._bluetooth' extension
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/bluez
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I./port3 -I/usr/include/python3.5m -c bluez/btmodule.c -o build/temp.linux-x86_64-3.5/bluez/btmodule.o
+In file included from /usr/include/python3.5m/Python.h:51:0,
+                 from bluez/btmodule.h:4,
+                 from bluez/btmodule.c:20:
+bluez/btmodule.c:2807:14: warning: 'socket_doc' defined but not used [-Wunused-variable]
+ PyDoc_STRVAR(socket_doc,
+              ^
+/usr/include/python3.5m/pymacro.h:63:37: note: in definition of macro 'PyDoc_VAR'
+ #define PyDoc_VAR(name) static char name[]
+                                     ^
+bluez/btmodule.c:2807:1: note: in expansion of macro 'PyDoc_STRVAR'
+ PyDoc_STRVAR(socket_doc,
+ ^
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I./port3 -I/usr/include/python3.5m -c bluez/btsdp.c -o build/temp.linux-x86_64-3.5/bluez/btsdp.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/bluez/btmodule.o build/temp.linux-x86_64-3.5/bluez/btsdp.o -L/usr/lib -lbluetooth -lpython3.5m -o build/lib.linux-x86_64-3.5/bluetooth/_bluetooth.cpython-35m-x86_64-linux-gnu.so
+running install_lib
+creating /tmp/python-pybluez/pkg/python-pybluez/usr
+creating /tmp/python-pybluez/pkg/python-pybluez/usr/lib
+creating /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5
+creating /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages
+creating /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/osx.py -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/msbt.py -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/widcomm.py -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/__init__.py -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/_bluetooth.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/btcommon.py -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+copying build/lib.linux-x86_64-3.5/bluetooth/bluez.py -> /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth
+byte-compiling /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth/osx.py to osx.cpython-35.pyc
+byte-compiling /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth/msbt.py to msbt.cpython-35.pyc
+byte-compiling /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth/widcomm.py to widcomm.cpython-35.pyc
+byte-compiling /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth/__init__.py to __init__.cpython-35.pyc
+byte-compiling /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth/btcommon.py to btcommon.cpython-35.pyc
+byte-compiling /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/bluetooth/bluez.py to bluez.cpython-35.pyc
+running install_egg_info
+Writing /tmp/python-pybluez/pkg/python-pybluez/usr/lib/python3.5/site-packages/PyBluez-0.20-py3.5.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-pybluez"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python2-pybluez()...
+running install
+running build
+running build_py
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/bluetooth
+copying bluetooth/osx.py -> build/lib.linux-x86_64-2.7/bluetooth
+copying bluetooth/msbt.py -> build/lib.linux-x86_64-2.7/bluetooth
+copying bluetooth/widcomm.py -> build/lib.linux-x86_64-2.7/bluetooth
+copying bluetooth/__init__.py -> build/lib.linux-x86_64-2.7/bluetooth
+copying bluetooth/btcommon.py -> build/lib.linux-x86_64-2.7/bluetooth
+copying bluetooth/bluez.py -> build/lib.linux-x86_64-2.7/bluetooth
+running build_ext
+building 'bluetooth._bluetooth' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/bluez
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I./port3 -I/usr/include/python2.7 -c bluez/btmodule.c -o build/temp.linux-x86_64-2.7/bluez/btmodule.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I./port3 -I/usr/include/python2.7 -c bluez/btsdp.c -o build/temp.linux-x86_64-2.7/bluez/btsdp.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/bluez/btmodule.o build/temp.linux-x86_64-2.7/bluez/btsdp.o -L/usr/lib -lbluetooth -lpython2.7 -o build/lib.linux-x86_64-2.7/bluetooth/_bluetooth.so
+running install_lib
+creating /tmp/python-pybluez/pkg/python2-pybluez/usr
+creating /tmp/python-pybluez/pkg/python2-pybluez/usr/lib
+creating /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7
+creating /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages
+creating /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/osx.py -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/msbt.py -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/widcomm.py -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/__init__.py -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/_bluetooth.so -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/btcommon.py -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+copying build/lib.linux-x86_64-2.7/bluetooth/bluez.py -> /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth
+byte-compiling /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth/osx.py to osx.pyc
+byte-compiling /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth/msbt.py to msbt.pyc
+byte-compiling /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth/widcomm.py to widcomm.pyc
+byte-compiling /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth/__init__.py to __init__.pyc
+byte-compiling /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth/btcommon.py to btcommon.pyc
+byte-compiling /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/bluetooth/bluez.py to bluez.pyc
+running install_egg_info
+Writing /tmp/python-pybluez/pkg/python2-pybluez/usr/lib/python2.7/site-packages/PyBluez-0.20-py2.7.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-pybluez"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-pybluez 0.20-4 (Sat Nov 14 09:53:27 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

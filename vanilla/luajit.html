@@ -1,0 +1,91 @@
+        <html><head></head><body>
+        <h1>Report for luajit on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:50</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data luajit
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1665 packages in cache
+Found permanent source directory in /sources/luajit
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: luajit 2.0.4-1 (Sat Nov 14 05:34:25 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Building LuaJIT 2.0.4
+make -C src amalg
+make[1]: Entering directory '/tmp/luajit/src/LuaJIT-2.0.4/src'
++--------------------------------------------------------------------------+
+| WARNING: Compiling the amalgamation needs a lot of virtual memory        |
+| (around 300 MB with GCC 4.x)! If you don't have enough physical memory   |
+| your machine will start swapping to disk and the compile will not finish |
+| within a reasonable amount of time.                                      |
+| So either compile on a bigger machine or use the non-amalgamated build.  |
++--------------------------------------------------------------------------+
+make all "LJCORE_O=ljamalg.o"
+make[2]: Entering directory '/tmp/luajit/src/LuaJIT-2.0.4/src'
+HOSTCC    host/minilua.o
+HOSTLINK  host/minilua
+DYNASM    host/buildvm_arch.h
+HOSTCC    host/buildvm.o
+HOSTCC    host/buildvm_asm.o
+HOSTCC    host/buildvm_peobj.o
+HOSTCC    host/buildvm_lib.o
+HOSTCC    host/buildvm_fold.o
+HOSTLINK  host/buildvm
+BUILDVM   lj_vm.s
+ASM       lj_vm.o
+BUILDVM   lj_ffdef.h
+BUILDVM   lj_bcdef.h
+BUILDVM   lj_folddef.h
+BUILDVM   lj_recdef.h
+BUILDVM   lj_libdef.h
+CC        ljamalg.o
+AR        libluajit.a
+ar: `u' modifier ignored since `D' is the default (see `U')
+CC        luajit.o
+BUILDVM   jit/vmdef.lua
+DYNLINK   libluajit.so
+LINK      luajit
+OK        Successfully built LuaJIT
+make[2]: Leaving directory '/tmp/luajit/src/LuaJIT-2.0.4/src'
+make[1]: Leaving directory '/tmp/luajit/src/LuaJIT-2.0.4/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+==== Installing LuaJIT 2.0.4 to /usr ====
+mkdir -p /tmp/luajit/pkg/luajit/usr/bin /tmp/luajit/pkg/luajit/usr/lib /tmp/luajit/pkg/luajit/usr/include/luajit-2.0 /tmp/luajit/pkg/luajit/usr/share/man/man1 /tmp/luajit/pkg/luajit/usr/lib/pkgconfig /tmp/luajit/pkg/luajit/usr/share/luajit-2.0.4/jit /tmp/luajit/pkg/luajit/usr/share/lua/5.1 /tmp/luajit/pkg/luajit/usr/lib/lua/5.1
+cd src && install -m 0755 luajit /tmp/luajit/pkg/luajit/usr/bin/luajit-2.0.4
+cd src && test -f libluajit.a && install -m 0644 libluajit.a /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.a || :
+rm -f /tmp/luajit/pkg/luajit/usr/bin/luajit /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.so.2.0.4 /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.so /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.so
+cd src && test -f libluajit.so && \
+  install -m 0755 libluajit.so /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.so.2.0.4 && \
+  ldconfig -n /tmp/luajit/pkg/luajit/usr/lib && \
+  ln -sf libluajit-5.1.so.2.0.4 /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.so && \
+  ln -sf libluajit-5.1.so.2.0.4 /tmp/luajit/pkg/luajit/usr/lib/libluajit-5.1.so || :
+cd etc && install -m 0644 luajit.1 /tmp/luajit/pkg/luajit/usr/share/man/man1
+cd etc && sed -e "s|^prefix=.*|prefix=/usr|" -e "s|^multilib=.*|multilib=lib|" luajit.pc > luajit.pc.tmp && \
+  install -m 0644 luajit.pc.tmp /tmp/luajit/pkg/luajit/usr/lib/pkgconfig/luajit.pc && \
+  rm -f luajit.pc.tmp
+cd src && install -m 0644 lua.h lualib.h lauxlib.h luaconf.h lua.hpp luajit.h /tmp/luajit/pkg/luajit/usr/include/luajit-2.0
+cd src/jit && install -m 0644 bc.lua v.lua dump.lua dis_x86.lua dis_x64.lua dis_arm.lua dis_ppc.lua dis_mips.lua dis_mipsel.lua bcsave.lua vmdef.lua /tmp/luajit/pkg/luajit/usr/share/luajit-2.0.4/jit
+ln -sf luajit-2.0.4 /tmp/luajit/pkg/luajit/usr/bin/luajit
+==== Successfully installed LuaJIT 2.0.4 to /usr ====
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "luajit"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: luajit 2.0.4-1 (Sat Nov 14 05:35:10 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

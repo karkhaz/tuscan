@@ -1,0 +1,128 @@
+        <html><head></head><body>
+        <h1>Report for upx on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:34</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data upx
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1927 packages in cache
+Found permanent source directory in /sources/upx
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: upx 3.91-1 (Sat Nov 14 05:44:14 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) ucl-1.03-7
+
+Total Download Size:   0.02 MiB
+Total Installed Size:  0.10 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading ucl-1.03-7-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing ucl...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make -C src all
+make[1]: Entering directory '/tmp/upx/src/upx-3.91-src/src'
+Updating .depend
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o c_file.o -c c_file.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o c_init.o -c c_init.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o c_none.o -c c_none.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o c_screen.o -c c_screen.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o compress.o -c compress.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -Wno-cast-qual -Wno-shadow -Wno-error -o compress_lzma.o -c compress_lzma.cpp
+In file included from compress_lzma.cpp:236:0:
+/tmp/upx/src/C/LzmaEnc.c: In function 'SRes LzmaEnc_SetProps(CLzmaEncHandle, const CLzmaEncProps*)':
+/tmp/upx/src/C/LzmaEnc.c:419:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       props.dictSize > (1 << kDicLogSizeMaxCompress) || props.dictSize > (1 << 30))
+                      ^
+/tmp/upx/src/C/LzmaEnc.c: In function 'SRes LzmaEnc_Alloc(CLzmaEnc*, UInt32, ISzAlloc*, ISzAlloc*)':
+/tmp/upx/src/C/LzmaEnc.c:1922:8: warning: variable 'btMode' set but not used [-Wunused-but-set-variable]
+   Bool btMode;
+        ^
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o compress_ucl.o -c compress_ucl.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o compress_zlib.o -c compress_zlib.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o except.o -c except.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o file.o -c file.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o filter.o -c filter.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o filteri.o -c filteri.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o help.o -c help.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o lefile.o -c lefile.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o linker.o -c linker.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o main.o -c main.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o mem.o -c mem.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o msg.o -c msg.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_armpe.o -c p_armpe.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_com.o -c p_com.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_djgpp2.o -c p_djgpp2.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_elks.o -c p_elks.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_exe.o -c p_exe.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_lx_elf.o -c p_lx_elf.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_lx_exc.o -c p_lx_exc.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_lx_interp.o -c p_lx_interp.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_lx_sh.o -c p_lx_sh.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_mach.o -c p_mach.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_ps1.o -c p_ps1.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_sys.o -c p_sys.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_tmt.o -c p_tmt.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_tos.o -c p_tos.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_unix.o -c p_unix.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_vmlinx.o -c p_vmlinx.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_vmlinz.o -c p_vmlinz.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_w16ne.o -c p_w16ne.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_w32pe.o -c p_w32pe.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_w64pep.o -c p_w64pep.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o p_wcle.o -c p_wcle.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o packer.o -c packer.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o packer_c.o -c packer_c.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o packer_f.o -c packer_f.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o packhead.o -c packhead.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o packmast.o -c packmast.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o pefile.o -c pefile.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o pepfile.o -c pepfile.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o s_djgpp2.o -c s_djgpp2.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o s_object.o -c s_object.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o s_vcsa.o -c s_vcsa.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o s_win32.o -c s_win32.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o snprintf.o -c snprintf.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o stdcxx.o -c stdcxx.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o ui.o -c ui.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o util.o -c util.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o work.o -c work.cpp
+g++ -DWITH_LZMA=0x465 -I/tmp/upx/src -O2 -Wall -W -Wcast-align -Wcast-qual -Wpointer-arith -Wshadow -Wwrite-strings -Werror -o upx.out c_file.o c_init.o c_none.o c_screen.o compress.o compress_lzma.o compress_ucl.o compress_zlib.o except.o file.o filter.o filteri.o help.o lefile.o linker.o main.o mem.o msg.o p_armpe.o p_com.o p_djgpp2.o p_elks.o p_exe.o p_lx_elf.o p_lx_exc.o p_lx_interp.o p_lx_sh.o p_mach.o p_ps1.o p_sys.o p_tmt.o p_tos.o p_unix.o p_vmlinx.o p_vmlinz.o p_w16ne.o p_w32pe.o p_w64pep.o p_wcle.o packer.o packer_c.o packer_f.o packhead.o packmast.o pefile.o pepfile.o s_djgpp2.o s_object.o s_vcsa.o s_win32.o snprintf.o stdcxx.o ui.o util.o work.o -lucl -lz
+make[1]: Leaving directory '/tmp/upx/src/upx-3.91-src/src'
+make -C doc all
+make[1]: Entering directory '/tmp/upx/src/upx-3.91-src/doc'
+pod2man --center=" " --release="upx 3.91" --date="2013-09-30" upx.pod | sed -e 's/[ 	]*$//' > upx.1
+pod2text < upx.pod | sed -e 's/[ 	]*$//' > upx.doc
+pod2html --noindex upx.pod | sed -e 's/[ 	]*$//' | sed -e 's/	/  /g' > upx.html
+make[1]: Leaving directory '/tmp/upx/src/upx-3.91-src/doc'
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "upx"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: upx 3.91-1 (Sat Nov 14 05:45:39 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

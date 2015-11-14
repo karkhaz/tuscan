@@ -1,0 +1,715 @@
+        <html><head></head><body>
+        <h1>Report for mod_wsgi on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:26</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mod_wsgi
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2885 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mod_wsgi 4.4.21-1 (Sat Nov 14 01:21:25 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (7) apr-1.5.2-1  apr-util-1.5.4-1  perl-error-0.17024-1  sqlite-3.9.2-1  apache-2.4.17-3  git-2.6.2-1  python2-2.7.10-2
+
+Total Installed Size:  108.89 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing apr...
+installing apr-util...
+Optional dependencies for apr-util
+    gdbm: enable gdbm support [installed]
+    libldap: enable ldap support [installed]
+    unixodbc: enable odbc support
+    libmariadbclient: enable mysql/mariadb support
+    postgresql-libs: enable postgres support
+    db: enable berkley db support [installed]
+    sqlite: enable sqlite support [pending]
+    nss: enable nss crypto support
+    openssl: enable openssl crypto support [installed]
+installing apache...
+Optional dependencies for apache
+    lua: for mod_lua module
+    openssl: for mod_ssl module [installed]
+    libxml2: for mod_proxy_html, mod_xml2enc modules
+    nghttp2: for mod_http2 module
+    lynx: apachectl status
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts [installed]
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> Retrieving sources...
+  -> Cloning mod_wsgi git repo...
+Cloning into bare repository '/sources/mod_wsgi/mod_wsgi'...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of mod_wsgi git repo...
+Cloning into 'mod_wsgi'...
+done.
+Switched to a new branch 'makepkg'
+==> Sources are ready.
+Copied source directory to /sources/mod_wsgi
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mod_wsgi 4.4.21-1 (Sat Nov 14 01:21:45 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking for prctl... yes
+checking Apache version... 2.4.17
+configure: creating ./config.status
+config.status: creating Makefile
+/usr/bin/apxs -c -I/usr/include/python3.5m -DNDEBUG   src/server/mod_wsgi.c src/server/wsgi_*.c -L/usr/lib -L/usr/lib/python3.5/config-3.5m  -lpython3 -lpthread -ldl -lutil -lm
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/mod_wsgi.lo src/server/mod_wsgi.c && touch src/server/mod_wsgi.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_apache.lo src/server/wsgi_apache.c && touch src/server/wsgi_apache.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_buckets.lo src/server/wsgi_buckets.c && touch src/server/wsgi_buckets.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_convert.lo src/server/wsgi_convert.c && touch src/server/wsgi_convert.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_daemon.lo src/server/wsgi_daemon.c && touch src/server/wsgi_daemon.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_interp.lo src/server/wsgi_interp.c && touch src/server/wsgi_interp.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_logger.lo src/server/wsgi_logger.c && touch src/server/wsgi_logger.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_memory.lo src/server/wsgi_memory.c && touch src/server/wsgi_memory.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_metrics.lo src/server/wsgi_metrics.c && touch src/server/wsgi_metrics.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_restrict.lo src/server/wsgi_restrict.c && touch src/server/wsgi_restrict.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_server.lo src/server/wsgi_server.c && touch src/server/wsgi_server.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_stream.lo src/server/wsgi_stream.c && touch src/server/wsgi_stream.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python3.5m -DNDEBUG  -c -o src/server/wsgi_validate.lo src/server/wsgi_validate.c && touch src/server/wsgi_validate.slo
+/usr/share/apr-1/build/libtool --silent --mode=link gcc -Wl,-O1,--sort-common,--as-needed,-z,relro   -o src/server/mod_wsgi.la  -rpath /usr/lib/httpd/modules -module -avoid-version    src/server/wsgi_validate.lo src/server/wsgi_stream.lo src/server/wsgi_server.lo src/server/wsgi_restrict.lo src/server/wsgi_metrics.lo src/server/wsgi_memory.lo src/server/wsgi_logger.lo src/server/wsgi_interp.lo src/server/wsgi_daemon.lo src/server/wsgi_convert.lo src/server/wsgi_buckets.lo src/server/wsgi_apache.lo src/server/mod_wsgi.lo -L/usr/lib -L/usr/lib/python3.5/config-3.5m -lpython3 -lpthread -ldl -lutil -lm
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking for prctl... yes
+checking Apache version... 2.4.17
+configure: creating ./config.status
+config.status: creating Makefile
+/usr/bin/apxs -c -I/usr/include/python2.7 -DNDEBUG   src/server/mod_wsgi.c src/server/wsgi_*.c -L/usr/lib -L/usr/lib/python2.7/config  -lpython2.7 -lpthread -ldl  -lutil -lm
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/mod_wsgi.lo src/server/mod_wsgi.c && touch src/server/mod_wsgi.slo
+In file included from /usr/include/python2.7/Python.h:8:0,
+                 from src/server/wsgi_python.h:24,
+                 from src/server/mod_wsgi.c:22:
+/usr/include/python2.7/pyconfig.h:1188:0: warning: "_POSIX_C_SOURCE" redefined
+ #define _POSIX_C_SOURCE 200112L
+ ^
+In file included from /usr/include/sys/types.h:25:0,
+                 from /usr/include/apr-1/apr.h:164,
+                 from /usr/include/httpd/ap_hooks.h:39,
+                 from /usr/include/httpd/ap_config.h:25,
+                 from /usr/include/httpd/httpd.h:44,
+                 from src/server/wsgi_apache.h:38,
+                 from src/server/mod_wsgi.c:21:
+/usr/include/features.h:225:0: note: this is the location of the previous definition
+ # define _POSIX_C_SOURCE 200809L
+ ^
+In file included from /usr/include/python2.7/Python.h:8:0,
+                 from src/server/wsgi_python.h:24,
+                 from src/server/mod_wsgi.c:22:
+/usr/include/python2.7/pyconfig.h:1210:0: warning: "_XOPEN_SOURCE" redefined
+ #define _XOPEN_SOURCE 600
+ ^
+In file included from /usr/include/sys/types.h:25:0,
+                 from /usr/include/apr-1/apr.h:164,
+                 from /usr/include/httpd/ap_hooks.h:39,
+                 from /usr/include/httpd/ap_config.h:25,
+                 from /usr/include/httpd/httpd.h:44,
+                 from src/server/wsgi_apache.h:38,
+                 from src/server/mod_wsgi.c:21:
+/usr/include/features.h:166:0: note: this is the location of the previous definition
+ # define _XOPEN_SOURCE 700
+ ^
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_apache.lo src/server/wsgi_apache.c && touch src/server/wsgi_apache.slo
+In file included from /usr/include/python2.7/Python.h:8:0,
+                 from src/server/wsgi_python.h:24,
+                 from src/server/wsgi_daemon.h:24,
+                 from src/server/wsgi_apache.c:23:
+/usr/include/python2.7/pyconfig.h:1188:0: warning: "_POSIX_C_SOURCE" redefined
+ #define _POSIX_C_SOURCE 200112L
+ ^
+In file included from /usr/include/sys/types.h:25:0,
+                 from /usr/include/apr-1/apr.h:164,
+                 from /usr/include/httpd/ap_hooks.h:39,
+                 from /usr/include/httpd/ap_config.h:25,
+                 from /usr/include/httpd/httpd.h:44,
+                 from src/server/wsgi_apache.h:38,
+                 from src/server/wsgi_apache.c:21:
+/usr/include/features.h:225:0: note: this is the location of the previous definition
+ # define _POSIX_C_SOURCE 200809L
+ ^
+In file included from /usr/include/python2.7/Python.h:8:0,
+                 from src/server/wsgi_python.h:24,
+                 from src/server/wsgi_daemon.h:24,
+                 from src/server/wsgi_apache.c:23:
+/usr/include/python2.7/pyconfig.h:1210:0: warning: "_XOPEN_SOURCE" redefined
+ #define _XOPEN_SOURCE 600
+ ^
+In file included from /usr/include/sys/types.h:25:0,
+                 from /usr/include/apr-1/apr.h:164,
+                 from /usr/include/httpd/ap_hooks.h:39,
+                 from /usr/include/httpd/ap_config.h:25,
+                 from /usr/include/httpd/httpd.h:44,
+                 from src/server/wsgi_apache.h:38,
+                 from src/server/wsgi_apache.c:21:
+/usr/include/features.h:166:0: note: this is the location of the previous definition
+ # define _XOPEN_SOURCE 700
+ ^
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_buckets.lo src/server/wsgi_buckets.c && touch src/server/wsgi_buckets.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_convert.lo src/server/wsgi_convert.c && touch src/server/wsgi_convert.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_daemon.lo src/server/wsgi_daemon.c && touch src/server/wsgi_daemon.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_interp.lo src/server/wsgi_interp.c && touch src/server/wsgi_interp.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_logger.lo src/server/wsgi_logger.c && touch src/server/wsgi_logger.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_memory.lo src/server/wsgi_memory.c && touch src/server/wsgi_memory.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_metrics.lo src/server/wsgi_metrics.c && touch src/server/wsgi_metrics.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_restrict.lo src/server/wsgi_restrict.c && touch src/server/wsgi_restrict.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_server.lo src/server/wsgi_server.c && touch src/server/wsgi_server.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_stream.lo src/server/wsgi_stream.c && touch src/server/wsgi_stream.slo
+/usr/share/apr-1/build/libtool --silent --mode=compile gcc -prefer-pic -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong  -DLINUX -D_REENTRANT -D_GNU_SOURCE -pthread -I/usr/include/httpd  -I/usr/include/apr-1   -I/usr/include/apr-1 -I/usr/include -I/usr/include/python2.7 -DNDEBUG  -c -o src/server/wsgi_validate.lo src/server/wsgi_validate.c && touch src/server/wsgi_validate.slo
+/usr/share/apr-1/build/libtool --silent --mode=link gcc -Wl,-O1,--sort-common,--as-needed,-z,relro   -o src/server/mod_wsgi.la  -rpath /usr/lib/httpd/modules -module -avoid-version    src/server/wsgi_validate.lo src/server/wsgi_stream.lo src/server/wsgi_server.lo src/server/wsgi_restrict.lo src/server/wsgi_metrics.lo src/server/wsgi_memory.lo src/server/wsgi_logger.lo src/server/wsgi_interp.lo src/server/wsgi_daemon.lo src/server/wsgi_convert.lo src/server/wsgi_buckets.lo src/server/wsgi_apache.lo src/server/mod_wsgi.lo -L/usr/lib -L/usr/lib/python2.7/config -lpython2.7 -lpthread -ldl -lutil -lm
+==> Entering fakeroot environment...
+==> Starting package_mod_wsgi()...
+make: Entering directory '/tmp/mod_wsgi/src/mod_wsgi'
+mkdir -p /tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules
+/usr/bin/apxs -i -S LIBEXECDIR=/tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules -n 'mod_wsgi' src/server/mod_wsgi.la
+/usr/lib/httpd/build/instdso.sh SH_LIBTOOL='/usr/share/apr-1/build/libtool' src/server/mod_wsgi.la /tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules
+/usr/share/apr-1/build/libtool --mode=install install src/server/mod_wsgi.la /tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules/
+libtool: install: install src/server/.libs/mod_wsgi.so /tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules/mod_wsgi.so
+libtool: install: install src/server/.libs/mod_wsgi.lai /tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules/mod_wsgi.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib/httpd/modules'
+chmod 755 /tmp/mod_wsgi/pkg/mod_wsgi/usr/lib/httpd/modules/mod_wsgi.so
+make: Leaving directory '/tmp/mod_wsgi/src/mod_wsgi'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "mod_wsgi"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_mod_wsgi2()...
+make: Entering directory '/tmp/mod_wsgi/src/py2'
+mkdir -p /tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules
+/usr/bin/apxs -i -S LIBEXECDIR=/tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules -n 'mod_wsgi' src/server/mod_wsgi.la
+/usr/lib/httpd/build/instdso.sh SH_LIBTOOL='/usr/share/apr-1/build/libtool' src/server/mod_wsgi.la /tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules
+/usr/share/apr-1/build/libtool --mode=install install src/server/mod_wsgi.la /tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules/
+libtool: install: install src/server/.libs/mod_wsgi.so /tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules/mod_wsgi.so
+libtool: install: install src/server/.libs/mod_wsgi.lai /tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules/mod_wsgi.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib/httpd/modules'
+chmod 755 /tmp/mod_wsgi/pkg/mod_wsgi2/usr/lib/httpd/modules/mod_wsgi.so
+make: Leaving directory '/tmp/mod_wsgi/src/py2'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "mod_wsgi2"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: mod_wsgi 4.4.21-1 (Sat Nov 14 01:22:07 UTC 2015)
+===> Printing config.logs
+found log at /tmp/mod_wsgi/src/mod_wsgi/config.log
+found log at /tmp/mod_wsgi/src/py2/config.log
+____
+File /tmp/mod_wsgi/src/mod_wsgi/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --with-apxs=/usr/bin/apxs --with-python=/usr/bin/python
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = e2dfe8a99b21
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1969: checking for x86_64-unknown-linux-gcc
+configure:1996: result: arm-linux-androideabi-gcc
+configure:2265: checking for C compiler version
+configure:2274: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2285: $? = 0
+configure:2274: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2285: $? = 0
+configure:2274: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2285: $? = 1
+configure:2274: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2285: $? = 1
+configure:2305: checking whether the C compiler works
+configure:2327: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2331: $? = 0
+configure:2379: result: yes
+configure:2382: checking for C compiler default output file name
+configure:2384: result: a.out
+configure:2390: checking for suffix of executables
+configure:2397: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2401: $? = 0
+configure:2423: result: 
+configure:2445: checking whether we are cross compiling
+configure:2453: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2457: $? = 0
+configure:2464: ./conftest
+./configure: line 2466: ./conftest: cannot execute binary file: Exec format error
+configure:2468: $? = 126
+configure:2483: result: yes
+configure:2488: checking for suffix of object files
+configure:2510: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2514: $? = 0
+configure:2535: result: o
+configure:2539: checking whether we are using the GNU C compiler
+configure:2558: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2558: $? = 0
+configure:2567: result: yes
+configure:2576: checking whether arm-linux-androideabi-gcc accepts -g
+configure:2596: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:2596: $? = 0
+configure:2637: result: yes
+configure:2654: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:2717: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:2717: $? = 0
+configure:2730: result: none needed
+configure:2753: checking for prctl
+configure:2753: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2753: $? = 0
+configure:2753: result: yes
+configure:2763: checking Apache version
+configure:2785: result: 2.4.17
+configure:3121: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on e2dfe8a99b21
+
+config.status:723: creating Makefile
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_prctl=yes
+ac_cv_objext=o
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+APXS='/usr/bin/apxs'
+CC='arm-linux-androideabi-gcc'
+CFLAGS=' '
+CPPFLAGS=' -I/usr/include/python3.5m -DNDEBUG '
+DEFS='-DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DHAVE_PRCTL=1'
+DESTDIR=''
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+LDFLAGS=' -L/usr/lib -L/usr/lib/python3.5/config-3.5m '
+LDLIBS=' -lpython3.5m -lpthread -ldl  -lutil -lm'
+LIBEXECDIR='/usr/lib/httpd/modules'
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PYTHON='/usr/bin/python'
+SHELL='/bin/sh'
+ac_ct_CC=''
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define HAVE_PRCTL 1
+
+configure: exit 0
+
+____
+File /tmp/mod_wsgi/src/py2/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --with-apxs=/usr/bin/apxs --with-python=/usr/bin/python2
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = e2dfe8a99b21
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1969: checking for x86_64-unknown-linux-gcc
+configure:1996: result: arm-linux-androideabi-gcc
+configure:2265: checking for C compiler version
+configure:2274: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2285: $? = 0
+configure:2274: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2285: $? = 0
+configure:2274: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2285: $? = 1
+configure:2274: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2285: $? = 1
+configure:2305: checking whether the C compiler works
+configure:2327: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2331: $? = 0
+configure:2379: result: yes
+configure:2382: checking for C compiler default output file name
+configure:2384: result: a.out
+configure:2390: checking for suffix of executables
+configure:2397: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2401: $? = 0
+configure:2423: result: 
+configure:2445: checking whether we are cross compiling
+configure:2453: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2457: $? = 0
+configure:2464: ./conftest
+./configure: line 2466: ./conftest: cannot execute binary file: Exec format error
+configure:2468: $? = 126
+configure:2483: result: yes
+configure:2488: checking for suffix of object files
+configure:2510: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2514: $? = 0
+configure:2535: result: o
+configure:2539: checking whether we are using the GNU C compiler
+configure:2558: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2558: $? = 0
+configure:2567: result: yes
+configure:2576: checking whether arm-linux-androideabi-gcc accepts -g
+configure:2596: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:2596: $? = 0
+configure:2637: result: yes
+configure:2654: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:2717: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:2717: $? = 0
+configure:2730: result: none needed
+configure:2753: checking for prctl
+configure:2753: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2753: $? = 0
+configure:2753: result: yes
+configure:2763: checking Apache version
+configure:2785: result: 2.4.17
+configure:3121: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on e2dfe8a99b21
+
+config.status:723: creating Makefile
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_prctl=yes
+ac_cv_objext=o
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+APXS='/usr/bin/apxs'
+CC='arm-linux-androideabi-gcc'
+CFLAGS=' '
+CPPFLAGS=' -I/usr/include/python2.7 -DNDEBUG '
+DEFS='-DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DHAVE_PRCTL=1'
+DESTDIR=''
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+LDFLAGS=' -L/usr/lib -L/usr/lib/python2.7/config '
+LDLIBS=' -lpython2.7 -lpthread -ldl  -lutil -lm'
+LIBEXECDIR='/usr/lib/httpd/modules'
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PYTHON='/usr/bin/python2'
+SHELL='/bin/sh'
+ac_ct_CC=''
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define HAVE_PRCTL 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

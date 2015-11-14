@@ -1,0 +1,79 @@
+        <html><head></head><body>
+        <h1>Report for ed on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:14</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data ed
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2222 packages in cache
+Found permanent source directory in /sources/ed
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ed 1.12-1 (Sat Nov 14 06:20:12 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: unrecognized option: '--host'
+
+creating config.status
+creating Makefile
+VPATH = .
+prefix = 
+exec_prefix = $(prefix)
+bindir = /usr/bin
+datarootdir = $(prefix)/share
+infodir = /usr/share/info
+mandir = /usr/share/man
+program_prefix = 
+CC = gcc
+CPPFLAGS = 
+CFLAGS = 
+LDFLAGS = 
+OK. Now you can run make.
+gcc   -c -o buffer.o buffer.c
+gcc   -c -o carg_parser.o carg_parser.c
+gcc   -c -o global.o global.c
+gcc   -c -o io.o io.c
+gcc   -DPROGVERSION=\"1.12\" -c -o main.o main.c
+gcc   -c -o main_loop.o main_loop.c
+gcc   -c -o regex.o regex.c
+gcc   -c -o signal.o signal.c
+gcc   -o ed buffer.o carg_parser.o global.o io.o main.o main_loop.o regex.o signal.o
+cat ./red.in > red
+chmod a+x red
+==> Entering fakeroot environment...
+==> Starting package()...
+make: Entering directory '/tmp/ed/src/ed-1.12'
+if [ ! -d "/tmp/ed/pkg/ed/usr/bin" ] ; then install -d -m 755 "/tmp/ed/pkg/ed/usr/bin" ; fi
+install -m 755 ./ed "/tmp/ed/pkg/ed/usr/bin/ed"
+install -m 755 ./red "/tmp/ed/pkg/ed/usr/bin/red"
+if [ ! -d "/tmp/ed/pkg/ed/usr/share/info" ] ; then install -d -m 755 "/tmp/ed/pkg/ed/usr/share/info" ; fi
+rm -f "/tmp/ed/pkg/ed/usr/share/info/ed.info"*
+install -m 644 ./doc/ed.info "/tmp/ed/pkg/ed/usr/share/info/ed.info"
+install-info --info-dir="/tmp/ed/pkg/ed/usr/share/info" "/tmp/ed/pkg/ed/usr/share/info/ed.info"
+if [ ! -d "/tmp/ed/pkg/ed/usr/share/man/man1" ] ; then install -d -m 755 "/tmp/ed/pkg/ed/usr/share/man/man1" ; fi
+rm -f "/tmp/ed/pkg/ed/usr/share/man/man1/ed.1"*
+rm -f "/tmp/ed/pkg/ed/usr/share/man/man1/red.1"*
+install -m 644 ./doc/ed.1 "/tmp/ed/pkg/ed/usr/share/man/man1/ed.1"
+cd "/tmp/ed/pkg/ed/usr/share/man/man1" && ln -s "ed.1" "red.1"
+make: Leaving directory '/tmp/ed/src/ed-1.12'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "ed"...
+  -> Generating .PKGINFO file...
+  -> Adding install file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: ed 1.12-1 (Sat Nov 14 06:20:17 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

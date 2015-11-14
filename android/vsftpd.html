@@ -1,0 +1,92 @@
+        <html><head></head><body>
+        <h1>Report for vsftpd on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:25</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data vsftpd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1202 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: vsftpd 3.0.3-1 (Fri Nov 13 23:25:46 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading vsftpd-3.0.3.tar.gz...
+  -> Downloading vsftpd-3.0.3.tar.gz.asc...
+  -> Found vsftpd-ssl.socket
+  -> Found vsftpd.socket
+  -> Found vsftpd.service
+  -> Found vsftpd@.service
+  -> Found vsftpd-ssl.service
+  -> Found vsftpd-ssl@.service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting vsftpd-3.0.3.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/vsftpd
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: vsftpd 3.0.3-1 (Fri Nov 13 23:25:48 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc -c main.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c utility.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c prelogin.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ftpcmdio.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c postlogin.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c privsock.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c tunables.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ftpdataio.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c secbuf.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ls.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c postprivparent.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c logging.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c str.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c netstr.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c sysstr.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c strlist.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c banner.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c filestr.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c parseconf.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c secutil.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ascii.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c oneprocess.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c twoprocess.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c privops.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c standalone.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c hash.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c tcpwrap.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ipaddrparse.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c access.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c features.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c readwrite.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c opts.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ssl.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c sslslave.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ptracesandbox.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c ftppolicy.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c sysutil.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c sysdeputil.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -c seccompsandbox.c -O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 -Wall -W -Wshadow -Werror -Wformat-security -D_FORTIFY_SOURCE=2  -idirafter dummyinc
+gcc -o vsftpd main.o utility.o prelogin.o ftpcmdio.o postlogin.o privsock.o tunables.o ftpdataio.o secbuf.o ls.o postprivparent.o logging.o str.o netstr.o sysstr.o strlist.o banner.o filestr.o parseconf.o secutil.o ascii.o oneprocess.o twoprocess.o privops.o standalone.o hash.o tcpwrap.o ipaddrparse.o access.o features.o readwrite.o opts.o ssl.o sslslave.o ptracesandbox.o ftppolicy.o sysutil.o sysdeputil.o seccompsandbox.o -Wl,-s -fPIE -pie -Wl,-z,relro -Wl,-z,now `./vsf_findlibs.sh`
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "vsftpd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: vsftpd 3.0.3-1 (Fri Nov 13 23:25:55 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

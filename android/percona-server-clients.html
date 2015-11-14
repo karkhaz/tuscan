@@ -1,0 +1,114 @@
+        <html><head></head><body>
+        <h1>Report for percona-server on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:01:54</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data percona-server
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2982 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: percona-server 5.6.26_74.0-2 (Sat Nov 14 01:43:24 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3  valgrind-3.11.0-1
+
+Total Installed Size:  88.43 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+installing valgrind...
+Optional dependencies for valgrind
+    openmpi: MPI support
+==> Retrieving sources...
+  -> Downloading percona-server-5.6.26-74.0.tar.gz...
+  -> Found my.cnf
+  -> Found mysql-user.conf
+  -> Found mysqld-tmpfile.conf
+  -> Found mysql56-bufsize.patch
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting percona-server-5.6.26-74.0.tar.gz with bsdtar
+==> Starting prepare()...
+patching file storage/innobase/row/row0log.cc
+Hunk #1 succeeded at 2584 (offset 220 lines).
+Hunk #2 succeeded at 3412 (offset 259 lines).
+removed 'sql/sql_yacc.cc'
+removed 'sql/sql_yacc.h'
+==> Sources are ready.
+Copied source directory to /sources/percona-server
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: percona-server 5.6.26_74.0-2 (Sat Nov 14 01:43:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- Running cmake version 3.3.2
+-- Could NOT find Git (missing:  GIT_EXECUTABLE) 
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for include file libaio.h
+-- Looking for include file libaio.h - not found
+-- Looking for io_queue_init in aio
+-- Looking for io_queue_init in aio - not found
+CMake Error at cmake/build_configurations/mysql_release.cmake:46 (MESSAGE):
+
+
+          aio is required on Linux, you need to install the required library:
+
+
+
+            Debian/Ubuntu:              apt-get install libaio-dev
+            RedHat/Fedora/Oracle Linux: yum install libaio-devel
+            SuSE:                       zypper install libaio-devel
+
+
+
+          If you really do not want it, pass -DIGNORE_AIO_CHECK to cmake.
+
+Call Stack (most recent call first):
+  CMakeLists.txt:131 (INCLUDE)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/tmp/percona-server/src/build/CMakeFiles/CMakeOutput.log".
+See also "/tmp/percona-server/src/build/CMakeFiles/CMakeError.log".
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

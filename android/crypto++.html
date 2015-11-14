@@ -1,0 +1,96 @@
+        <html><head></head><body>
+        <h1>Report for crypto++ on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:46</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data crypto++
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2676 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: crypto++ 5.6.2-3 (Sat Nov 14 00:53:13 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) unzip-6.0-11
+
+Total Installed Size:  0.28 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing unzip...
+==> Retrieving sources...
+  -> Downloading cryptopp562.zip...
+  -> Found CVE-2015-2141.patch
+  -> Found libcrypto++.pc
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting cryptopp562.zip with bsdtar
+==> Starting prepare()...
+patching file rw.cpp
+==> Sources are ready.
+Copied source directory to /sources/crypto++
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: crypto++ 5.6.2-3 (Sat Nov 14 00:53:19 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c rc6.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c skipjack.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c arc4.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c hmac.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c hex.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c esign.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c randpool.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c sharkbox.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c base32.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c files.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c md4.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c seal.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c fips140.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c eprecomp.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c dsa.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c dll.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c winpipes.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c md2.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c fipstest.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c rc5.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c mars.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c simple.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c queue.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c xtrcrypt.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c gf256.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c vmac.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c authenc.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c des.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c idea.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c squaretb.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c xtr.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c emsa2.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c network.cpp
+arm-linux-androideabi-g++  -DNDEBUG -fPIC -c eax.cpp
+In file included from network.cpp:5:0:
+wait.h:184:2: error: 'fd_set' does not name a type
+  fd_set m_readfds, m_writefds;
+  ^
+GNUmakefile:208: recipe for target 'network.o' failed
+make: *** [network.o] Error 1
+make: *** Waiting for unfinished jobs....
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

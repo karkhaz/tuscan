@@ -1,0 +1,81 @@
+        <html><head></head><body>
+        <h1>Report for keyutils on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:10</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data keyutils
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 690 packages in cache
+Found permanent source directory in /sources/keyutils
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: keyutils 1.5.9-1 (Sat Nov 14 04:46:54 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+grep: /etc/rpm/macros.dist: No such file or directory
+cc -I. -DPKGBUILD="\"2015-11-14\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -fPIC -o keyutils.os -c keyutils.c
+cc  -fPIC  -shared -Wl,-soname,libkeyutils.so.1 -Wl,--version-script,version.lds -o libkeyutils.so.1.5 keyutils.os 
+ln -sf libkeyutils.so.1.5 libkeyutils.so.1
+ln -sf libkeyutils.so.1 libkeyutils.so
+cc -I.  -o keyctl.o -c keyctl.c
+cc -L.    -o keyctl keyctl.o -lkeyutils
+cc -I.  -o request-key.o -c request-key.c
+cc -L.    -o request-key request-key.o -lkeyutils
+cc -I.  -o key.dns_resolver.o -c key.dns_resolver.c
+cc -L.    -o key.dns_resolver key.dns_resolver.o -lkeyutils -lresolv
+cc -I. -DPKGBUILD="\"2015-11-14\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -UNO_GLIBC_KEYERR -o keyutils.o -c keyutils.c
+ar rcs libkeyutils.a keyutils.o
+==> Entering fakeroot environment...
+==> Starting package()...
+grep: /etc/rpm/macros.dist: No such file or directory
+install -D -m 0644 libkeyutils.a /tmp/keyutils/pkg/keyutils/usr/lib/libkeyutils.a
+install -D libkeyutils.so.1.5 /tmp/keyutils/pkg/keyutils/usr/lib/libkeyutils.so.1.5
+ln -sf libkeyutils.so.1.5 /tmp/keyutils/pkg/keyutils/usr/lib/libkeyutils.so.1
+mkdir -p /tmp/keyutils/pkg/keyutils/usr/lib
+ln -sf /usr/lib/libkeyutils.so.1 /tmp/keyutils/pkg/keyutils/usr/lib/libkeyutils.so
+install -D keyctl /tmp/keyutils/pkg/keyutils/usr/bin/keyctl
+install -D request-key /tmp/keyutils/pkg/keyutils/usr/bin/request-key
+install -D request-key-debug.sh /tmp/keyutils/pkg/keyutils/usr/share/keyutils/request-key-debug.sh
+install -D key.dns_resolver /tmp/keyutils/pkg/keyutils/usr/bin/key.dns_resolver
+install -D -m 0644 request-key.conf /tmp/keyutils/pkg/keyutils/etc/request-key.conf
+mkdir -p /tmp/keyutils/pkg/keyutils/etc/request-key.d
+mkdir -p /tmp/keyutils/pkg/keyutils/usr/share/man/man1
+install -m 0644 man/keyctl.1 /tmp/keyutils/pkg/keyutils/usr/share/man/man1
+mkdir -p /tmp/keyutils/pkg/keyutils/usr/share/man/man3
+install -m 0644 man/keyctl_get_keyring_ID.3 man/keyctl.3 man/keyctl_chown.3 man/keyctl_revoke.3 man/keyctl_get_security.3 man/keyctl_session_to_parent.3 man/keyctl_set_timeout.3 man/find_key_by_type_and_name.3 man/keyctl_join_session_keyring.3 man/keyctl_invalidate.3 man/keyctl_set_reqkey_keyring.3 man/keyctl_instantiate.3 man/keyctl_clear.3 man/keyctl_link.3 man/keyctl_search.3 man/keyctl_setperm.3 man/keyctl_update.3 man/keyctl_describe.3 man/keyctl_read.3 man/keyctl_get_persistent.3 man/recursive_key_scan.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3
+mkdir -p /tmp/keyutils/pkg/keyutils/usr/share/man/man5
+install -m 0644 man/request-key.conf.5 /tmp/keyutils/pkg/keyutils/usr/share/man/man5
+mkdir -p /tmp/keyutils/pkg/keyutils/usr/share/man/man7
+install -m 0644 man/persistent-keyring.7 man/process-keyring.7 man/keyutils.7 man/thread-keyring.7 man/keyrings.7 man/session-keyring.7 man/user-session-keyring.7 man/user-keyring.7 /tmp/keyutils/pkg/keyutils/usr/share/man/man7
+mkdir -p /tmp/keyutils/pkg/keyutils/usr/share/man/man8
+install -m 0644 man/request-key.8 man/key.dns_resolver.8 /tmp/keyutils/pkg/keyutils/usr/share/man/man8
+ln -sf keyctl_describe.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_describe_alloc.3
+ln -sf keyctl_get_security.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_get_security_alloc.3
+ln -sf keyctl_instantiate.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_instantiate_iov.3
+ln -sf keyctl_instantiate.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_reject.3
+ln -sf keyctl_instantiate.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_negate.3
+ln -sf keyctl_instantiate.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_assume_authority.3
+ln -sf keyctl_link.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_unlink.3
+ln -sf keyctl_read.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/keyctl_read_alloc.3
+ln -sf recursive_key_scan.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3/recursive_session_key_scan.3
+install -D -m 0644 keyutils.h /tmp/keyutils/pkg/keyutils/usr/include/keyutils.h
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "keyutils"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: keyutils 1.5.9-1 (Sat Nov 14 04:46:57 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem ce0c4cf7d946cd27439f042a4cbd8845d05fe1c5715ff2316772fd9e012dc91b: rename /usr/local/google/home/khazem/docker/aufs/mnt/ce0c4cf7d946cd27439f042a4cbd8845d05fe1c5715ff2316772fd9e012dc91b /usr/local/google/home/khazem/docker/aufs/mnt/ce0c4cf7d946cd27439f042a4cbd8845d05fe1c5715ff2316772fd9e012dc91b-removing: device or resource busy></pre></code>
+        </body></html>

@@ -1,0 +1,89 @@
+        <html><head></head><body>
+        <h1>Report for rtmpdump on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:38</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data rtmpdump
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2666 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rtmpdump 20140918-2 (Sat Nov 14 00:52:00 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) perl-error-0.17024-1  git-2.6.2-1
+
+Total Installed Size:  26.16 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> Retrieving sources...
+  -> Cloning rtmpdump git repo...
+Cloning into bare repository '/sources/rtmpdump/rtmpdump'...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Creating working copy of rtmpdump git repo...
+Cloning into 'rtmpdump'...
+done.
+Switched to a new branch 'makepkg'
+==> Sources are ready.
+Copied source directory to /sources/rtmpdump
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: rtmpdump 20140918-2 (Sat Nov 14 00:52:11 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make[1]: Entering directory '/tmp/rtmpdump/src/rtmpdump/librtmp'
+gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o rtmp.o rtmp.c
+rtmp.c: In function 'RTMP_ReadPacket':
+rtmp.c:3552:7: warning: variable 'didAlloc' set but not used [-Wunused-but-set-variable]
+   int didAlloc = FALSE;
+       ^
+gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o log.o log.c
+gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o amf.o amf.c
+gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o hashswf.o hashswf.c
+gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o parseurl.o parseurl.c
+ar rs librtmp.a rtmp.o log.o amf.o hashswf.o parseurl.o
+ar: creating librtmp.a
+gcc -shared -Wl,-soname,librtmp.so.1  -o librtmp.so.1 rtmp.o log.o amf.o hashswf.o parseurl.o  -lssl -lcrypto -lz 
+ln -sf librtmp.so.1 librtmp.so
+make[1]: Leaving directory '/tmp/rtmpdump/src/rtmpdump/librtmp'
+gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\"      -c -o rtmpdump.o rtmpdump.c
+gcc -Wall  -o rtmpdump rtmpdump.o -Llibrtmp -lrtmp -lssl -lcrypto -lz  
+rtmpdump.o: In function `main':
+rtmpdump.c:(.text+0x2d04): undefined reference to `CleanupSockets'
+collect2: error: ld returned 1 exit status
+Makefile:79: recipe for target 'rtmpdump' failed
+make: *** [rtmpdump] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

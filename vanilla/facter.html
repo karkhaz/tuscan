@@ -1,0 +1,426 @@
+        <html><head></head><body>
+        <h1>Report for facter on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:20:01</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data facter
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2762 packages in cache
+Found permanent source directory in /sources/facter
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: facter 3.1.0-2 (Sat Nov 14 08:03:48 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) icu-56.1-1  libyaml-0.1.6-1  boost-libs-1.59.0-3  ruby-2.2.3-1  yaml-cpp-0.5.2-2
+
+Total Installed Size:  65.05 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libyaml...
+installing ruby...
+The default location of gem installs is $HOME/.gem/ruby
+Add the following line to your PATH if you plan to install using gem
+$(ruby -rubygems -e "puts Gem.user_dir")/bin
+If you want to install to the system wide location, you must either:
+edit /etc/gemrc or run gem with the --no-user-install flag.
+Optional dependencies for ruby
+    ruby-docs: Ruby documentation
+    tk: for Ruby/TK
+installing yaml-cpp...
+installing icu...
+installing boost-libs...
+Optional dependencies for boost-libs
+    openmpi: for mpi support
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  boost-1.59.0-3  cmake-3.3.2-3
+
+Total Installed Size:  183.55 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing boost...
+Optional dependencies for boost
+    python: for python bindings [installed]
+    python2: for python2 bindings
+    boost-build: to use boost jam for building your project.
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 5.2.0
+-- The CXX compiler identification is GNU 5.2.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Defaulting to a release build.
+-- Boost version: 1.59.0
+-- Found the following Boost libraries:
+--   program_options
+--   system
+--   filesystem
+--   date_time
+--   regex
+-- Found Ruby: /usr/bin/ruby (found suitable version "2.2.0", minimum required is "1.9") 
+-- Found YAMLCPP: /usr/lib64/libyaml-cpp.so  
+-- Found OPENSSL: /usr/lib64/libcrypto.so  
+-- Found BLKID: /usr/lib64/libblkid.so.1  
+-- Found CURL: /usr/lib64/libcurl.so (found version "7.45.0") 
+-- Could NOT find JNI (missing:  JAVA_AWT_LIBRARY JAVA_JVM_LIBRARY JAVA_INCLUDE_PATH JAVA_INCLUDE_PATH2 JAVA_AWT_INCLUDE_PATH) 
+-- 
+-- The following OPTIONAL packages have been found:
+
+ * Ruby (required version >= 1.9)
+ * OPENSSL , An open-source implementation of the SSL and TLS protocols , <https://www.openssl.org/>
+   Enables SSH fingerprinting facts on POSIX systems.
+ * BLKID , The library for the Linux blkid utility , <http://en.wikipedia.org/wiki/Util-linux>
+   Enables the partitions fact on Linux.
+ * CURL , A free and easy-to-use client-side URL transfer library , <http://curl.haxx.se/libcurl/>
+   Enables facts that require HTTP.
+
+-- The following REQUIRED packages have been found:
+
+ * Boost (required version >= 1.54)
+ * YAMLCPP , A YAML emitter and parser written in C++ , <https://code.google.com/p/yaml-cpp/>
+   Enables support for outputting facts as YAML.
+
+-- The following OPTIONAL packages have not been found:
+
+ * JNI , Java Native Interface (JNI) is a programming framework that enables Java code running in a Java Virtual Machine (JVM) to call and be called by native applications.
+   Enables JRuby support in Facter.
+
+-- Boost version: 1.59.0
+-- Boost version: 1.59.0
+-- Boost version: 1.59.0
+-- Found the following Boost libraries:
+--   log
+--   log_setup
+--   thread
+--   date_time
+--   filesystem
+--   system
+--   chrono
+--   regex
+-- Looking for include file pthread.h
+-- Looking for include file pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Boost version: 1.59.0
+-- Found the following Boost libraries:
+--   date_time
+--   chrono
+--   system
+-- Boost version: 1.59.0
+-- Found the following Boost libraries:
+--   filesystem
+--   system
+-- Found PythonInterp: /usr/bin/python (found version "3.5") 
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Failed
+-- Performing Test COMPILER_HAS_DEPRECATED
+-- Performing Test COMPILER_HAS_DEPRECATED - Failed
+-- Ruby 2.2.0 found.
+-- "make install" will install facter.rb to /usr/lib/ruby/vendor_ruby
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/facter/src/facter-3.1.0
+Scanning dependencies of target leatherman_locale
+[  0%] Building CXX object vendor/leatherman/locale/CMakeFiles/leatherman_locale.dir/src/posix/locale.cc.o
+[  1%] Linking CXX static library libleatherman_locale.a
+[  1%] Built target leatherman_locale
+Scanning dependencies of target leatherman_logging
+[  1%] Building CXX object vendor/leatherman/logging/CMakeFiles/leatherman_logging.dir/src/logging.cc.o
+[  2%] Building CXX object vendor/leatherman/logging/CMakeFiles/leatherman_logging.dir/src/posix/logging.cc.o
+[  3%] Linking CXX static library libleatherman_logging.a
+[  3%] Built target leatherman_logging
+Scanning dependencies of target leatherman_util
+[  4%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/strings.cc.o
+[  5%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/time.cc.o
+[  5%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/environment.cc.o
+[  6%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/scope_exit.cc.o
+[  6%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/scoped_env.cc.o
+[  7%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/posix/time.cc.o
+[  8%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/posix/environment.cc.o
+[  8%] Building CXX object vendor/leatherman/util/CMakeFiles/leatherman_util.dir/src/posix/scoped_descriptor.cc.o
+[  9%] Linking CXX static library libleatherman_util.a
+[  9%] Built target leatherman_util
+Scanning dependencies of target leatherman_file_util
+[  9%] Building CXX object vendor/leatherman/file_util/CMakeFiles/leatherman_file_util.dir/src/directory.cc.o
+[ 10%] Building CXX object vendor/leatherman/file_util/CMakeFiles/leatherman_file_util.dir/src/file.cc.o
+[ 11%] Linking CXX static library libleatherman_file_util.a
+[ 11%] Built target leatherman_file_util
+Scanning dependencies of target leatherman_curl
+[ 11%] Building CXX object vendor/leatherman/curl/CMakeFiles/leatherman_curl.dir/src/client.cc.o
+[ 12%] Building CXX object vendor/leatherman/curl/CMakeFiles/leatherman_curl.dir/src/request.cc.o
+[ 13%] Building CXX object vendor/leatherman/curl/CMakeFiles/leatherman_curl.dir/src/response.cc.o
+[ 13%] Linking CXX static library libleatherman_curl.a
+[ 13%] Built target leatherman_curl
+Scanning dependencies of target mock_curl
+[ 14%] Building CXX object vendor/leatherman/curl/CMakeFiles/mock_curl.dir/tests/mock_curl.cc.o
+[ 15%] Linking CXX shared library ../../../lib/libmock_curl.so
+[ 15%] Built target mock_curl
+Scanning dependencies of target leatherman_dynamic_library
+[ 16%] Building CXX object vendor/leatherman/dynamic_library/CMakeFiles/leatherman_dynamic_library.dir/src/posix/dynamic_library.cc.o
+[ 16%] Building CXX object vendor/leatherman/dynamic_library/CMakeFiles/leatherman_dynamic_library.dir/src/dynamic_library.cc.o
+[ 17%] Linking CXX static library libleatherman_dynamic_library.a
+[ 17%] Built target leatherman_dynamic_library
+Scanning dependencies of target libtest
+[ 18%] Building CXX object vendor/leatherman/dynamic_library/CMakeFiles/libtest.dir/tests/test-lib/hello.cc.o
+[ 18%] Linking CXX shared library ../../../lib/libtest.so
+[ 18%] Built target libtest
+Scanning dependencies of target libtest1
+[ 19%] Building CXX object vendor/leatherman/dynamic_library/CMakeFiles/libtest1.dir/tests/test-lib/hello.cc.o
+[ 20%] Building CXX object vendor/leatherman/dynamic_library/CMakeFiles/libtest1.dir/tests/test-lib/goodbye.cc.o
+[ 20%] Linking CXX shared library ../../../lib/libtest1.so
+[ 20%] Built target libtest1
+Scanning dependencies of target leatherman_execution
+[ 21%] Building CXX object vendor/leatherman/execution/CMakeFiles/leatherman_execution.dir/src/execution.cc.o
+[ 21%] Building CXX object vendor/leatherman/execution/CMakeFiles/leatherman_execution.dir/src/posix/execution.cc.o
+[ 22%] Linking CXX static library libleatherman_execution.a
+[ 22%] Built target leatherman_execution
+Scanning dependencies of target leatherman_ruby
+[ 22%] Building CXX object vendor/leatherman/ruby/CMakeFiles/leatherman_ruby.dir/src/api.cc.o
+[ 23%] Building CXX object vendor/leatherman/ruby/CMakeFiles/leatherman_ruby.dir/src/posix/api.cc.o
+[ 23%] Linking CXX static library libleatherman_ruby.a
+[ 23%] Built target leatherman_ruby
+Scanning dependencies of target libfactersrc
+[ 23%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/array_value.cc.o
+[ 24%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/collection.cc.o
+[ 25%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/external/execution_resolver.cc.o
+[ 25%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/external/json_resolver.cc.o
+[ 26%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/external/resolver.cc.o
+[ 26%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/external/text_resolver.cc.o
+[ 27%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/external/yaml_resolver.cc.o
+[ 28%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/map_value.cc.o
+[ 28%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolver.cc.o
+[ 29%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/augeas_resolver.cc.o
+[ 29%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/disk_resolver.cc.o
+[ 30%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/dmi_resolver.cc.o
+[ 31%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/ec2_resolver.cc.o
+[ 31%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/filesystem_resolver.cc.o
+[ 32%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/gce_resolver.cc.o
+[ 33%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/identity_resolver.cc.o
+[ 33%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/kernel_resolver.cc.o
+[ 34%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/ldom_resolver.cc.o
+[ 34%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/load_average_resolver.cc.o
+[ 35%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/memory_resolver.cc.o
+[ 36%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/networking_resolver.cc.o
+[ 36%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/operating_system_resolver.cc.o
+[ 37%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/path_resolver.cc.o
+[ 37%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/processor_resolver.cc.o
+[ 38%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/ruby_resolver.cc.o
+[ 39%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/ssh_resolver.cc.o
+[ 39%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/system_profiler_resolver.cc.o
+[ 40%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/timezone_resolver.cc.o
+[ 40%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/uptime_resolver.cc.o
+[ 41%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/virtualization_resolver.cc.o
+[ 42%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/xen_resolver.cc.o
+[ 42%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/zpool_resolver.cc.o
+[ 43%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/zone_resolver.cc.o
+[ 43%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/resolvers/zfs_resolver.cc.o
+[ 44%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/scalar_value.cc.o
+[ 45%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/logging/logging.cc.o
+[ 45%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/aggregate_resolution.cc.o
+[ 46%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/chunk.cc.o
+[ 46%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/confine.cc.o
+[ 47%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/fact.cc.o
+[ 48%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/module.cc.o
+[ 48%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/resolution.cc.o
+[ 49%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/ruby.cc.o
+[ 49%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/ruby_value.cc.o
+[ 50%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/ruby/simple_resolution.cc.o
+[ 51%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/util/scoped_file.cc.o
+[ 51%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/util/string.cc.o
+[ 52%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/collection.cc.o
+[ 53%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/identity_resolver.cc.o
+[ 53%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/networking_resolver.cc.o
+[ 54%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/operatingsystem_resolver.cc.o
+[ 54%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/processor_resolver.cc.o
+[ 55%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/ssh_resolver.cc.o
+[ 56%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/timezone_resolver.cc.o
+[ 56%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/uptime_resolver.cc.o
+[ 57%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/xen_resolver.cc.o
+[ 57%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/util/posix/scoped_addrinfo.cc.o
+[ 58%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/util/posix/scoped_descriptor.cc.o
+[ 59%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/util/posix/scoped_bio.cc.o
+[ 59%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/posix/kernel_resolver.cc.o
+[ 60%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/bsd/networking_resolver.cc.o
+[ 60%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/glib/load_average_resolver.cc.o
+[ 61%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/disk_resolver.cc.o
+[ 62%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/dmi_resolver.cc.o
+[ 62%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/filesystem_resolver.cc.o
+[ 63%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/kernel_resolver.cc.o
+[ 63%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/memory_resolver.cc.o
+[ 64%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/networking_resolver.cc.o
+[ 65%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/operating_system_resolver.cc.o
+[ 65%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/os_linux.cc.o
+[ 66%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/uptime_resolver.cc.o
+[ 66%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/collection.cc.o
+[ 67%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/processor_resolver.cc.o
+[ 68%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/facts/linux/virtualization_resolver.cc.o
+[ 68%] Building CXX object lib/CMakeFiles/libfactersrc.dir/src/util/bsd/scoped_ifaddrs.cc.o
+[ 68%] Built target libfactersrc
+Scanning dependencies of target libfacter
+[ 69%] Linking CXX shared library libfacter.so
+[ 69%] Built target libfacter
+Scanning dependencies of target libfacter_test
+[ 69%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/array_value.cc.o
+[ 70%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/boolean_value.cc.o
+[ 70%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/double_value.cc.o
+[ 71%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/external/json_resolver.cc.o
+[ 72%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/external/text_resolver.cc.o
+[ 72%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/external/yaml_resolver.cc.o
+[ 73%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/collection.cc.o
+[ 73%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/integer_value.cc.o
+[ 74%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/map_value.cc.o
+[ 75%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/augeas_resolver.cc.o
+[ 75%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/disk_resolver.cc.o
+[ 76%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/dmi_resolver.cc.o
+[ 76%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/filesystem_resolver.cc.o
+[ 77%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/identity_resolver.cc.o
+[ 78%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/kernel_resolver.cc.o
+[ 78%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/ldom_resolver.cc.o
+[ 79%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/memory_resolver.cc.o
+[ 79%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/networking_resolver.cc.o
+[ 80%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/operating_system_resolver.cc.o
+[ 81%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/processor_resolver.cc.o
+[ 81%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/ruby_resolver.cc.o
+[ 82%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/ssh_resolver.cc.o
+[ 82%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/system_profiler_resolver.cc.o
+[ 83%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/timezone_resolver.cc.o
+[ 84%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/uptime_resolver.cc.o
+[ 84%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/virtualization_resolver.cc.o
+[ 85%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/xen_resolver.cc.o
+[ 85%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/zfs_resolver.cc.o
+[ 86%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/zone_resolver.cc.o
+[ 87%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/resolvers/zpool_resolver.cc.o
+[ 87%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/schema.cc.o
+[ 88%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/string_value.cc.o
+[ 89%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/logging/logging.cc.o
+[ 89%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/log_capture.cc.o
+[ 90%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/main.cc.o
+[ 90%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/util/string.cc.o
+[ 91%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/fixtures.cc.o
+[ 92%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/collection_fixture.cc.o
+[ 92%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/ruby/ruby.cc.o
+[ 93%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/ruby/ruby_helper.cc.o
+[ 93%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/linux/dmi_resolver.cc.o
+[ 94%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/linux/filesystem_resolver.cc.o
+[ 95%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/util/bsd/scoped_ifaddrs.cc.o
+[ 95%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/posix/collection.cc.o
+[ 96%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/posix/uptime_resolver.cc.o
+[ 96%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/facts/external/posix/execution_resolver.cc.o
+[ 97%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/util/posix/scoped_addrinfo.cc.o
+[ 98%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/util/posix/scoped_descriptor.cc.o
+[ 98%] Building CXX object lib/tests/CMakeFiles/libfacter_test.dir/util/posix/scoped_bio.cc.o
+[ 99%] Linking CXX executable ../../bin/libfacter_test
+[ 99%] Built target libfacter_test
+Scanning dependencies of target facter
+[ 99%] Building CXX object exe/CMakeFiles/facter.dir/facter.cc.o
+[100%] Linking CXX executable ../bin/facter
+[100%] Built target facter
+==> Entering fakeroot environment...
+==> Starting package()...
+[  1%] Built target leatherman_locale
+[  3%] Built target leatherman_logging
+[  9%] Built target leatherman_util
+[ 11%] Built target leatherman_file_util
+[ 13%] Built target leatherman_curl
+[ 15%] Built target mock_curl
+[ 17%] Built target leatherman_dynamic_library
+[ 18%] Built target libtest
+[ 20%] Built target libtest1
+[ 22%] Built target leatherman_execution
+[ 23%] Built target leatherman_ruby
+[ 68%] Built target libfactersrc
+[ 69%] Built target libfacter
+[ 99%] Built target libfacter_test
+[100%] Built target facter
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /tmp/facter/pkg/facter/usr/share/man/man8/facter.8
+-- Installing: /tmp/facter/pkg/facter/usr/lib/libfacter.so.3.1.0
+-- Installing: /tmp/facter/pkg/facter/usr/lib/libfacter.so
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/util
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/util/string.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/version.h
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/ruby
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/ruby/ruby.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/export.h
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/logging
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/logging/logging.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/os_family.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/scalar_value.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/map_value.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/vm.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/collection.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/fact.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/resolver.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/array_value.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/value.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/os.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/external
+-- Installing: /tmp/facter/pkg/facter/usr/include/facter/facts/external/resolver.hpp
+-- Installing: /tmp/facter/pkg/facter/usr/lib/ruby/vendor_ruby/facter.rb
+-- Installing: /tmp/facter/pkg/facter/usr/bin/facter
+-- Removed runtime path from "/tmp/facter/pkg/facter/usr/bin/facter"
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "facter"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: facter 3.1.0-2 (Sat Nov 14 08:23:08 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,63 @@
+        <html><head></head><body>
+        <h1>Report for jbigkit on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:48</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data jbigkit
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2064 packages in cache
+Found permanent source directory in /sources/jbigkit
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: jbigkit 2.1-2 (Sat Nov 14 05:55:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cd libjbig && make -e
+make[1]: Entering directory '/tmp/jbigkit/src/jbigkit-2.1/libjbig'
+gcc -fPIC   -c -o jbig.o jbig.c
+gcc -fPIC   -c -o jbig_ar.o jbig_ar.c
+rm -f libjbig.a
+ar rc libjbig.a jbig.o jbig_ar.o
+ranlib libjbig.a
+gcc -fPIC   -c -o jbig85.o jbig85.c
+rm -f libjbig85.a
+ar rc libjbig85.a jbig85.o jbig_ar.o
+ranlib libjbig85.a
+gcc -fPIC   -c -o tstcodec.o tstcodec.c
+gcc -fPIC -o tstcodec tstcodec.o jbig.o jbig_ar.o
+gcc -fPIC   -c -o tstcodec85.o tstcodec85.c
+gcc -fPIC -o tstcodec85 tstcodec85.o jbig85.o jbig_ar.o
+make[1]: Leaving directory '/tmp/jbigkit/src/jbigkit-2.1/libjbig'
+cd pbmtools && make -e
+make[1]: Entering directory '/tmp/jbigkit/src/jbigkit-2.1/pbmtools'
+gcc -fPIC -I../libjbig   -c -o pbmtojbg.o pbmtojbg.c
+gcc -fPIC -o pbmtojbg pbmtojbg.o -L../libjbig -ljbig
+gcc -fPIC -I../libjbig   -c -o jbgtopbm.o jbgtopbm.c
+gcc -fPIC -o jbgtopbm jbgtopbm.o -L../libjbig -ljbig
+gcc -fPIC -I../libjbig   -c -o pbmtojbg85.o pbmtojbg85.c
+gcc -fPIC -o pbmtojbg85 pbmtojbg85.o -L../libjbig -ljbig85
+gcc -fPIC -I../libjbig   -c -o jbgtopbm85.o jbgtopbm85.c
+gcc -fPIC -o jbgtopbm85 jbgtopbm85.o -L../libjbig -ljbig85
+make[1]: Leaving directory '/tmp/jbigkit/src/jbigkit-2.1/pbmtools'
+Enter 'make test' in order to start some automatic tests.
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "jbigkit"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: jbigkit 2.1-2 (Sat Nov 14 05:55:59 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

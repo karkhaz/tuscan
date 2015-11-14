@@ -1,0 +1,195 @@
+        <html><head></head><body>
+        <h1>Report for python-msgpack on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:46</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-msgpack
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2279 packages in cache
+Found permanent source directory in /sources/python-msgpack
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-msgpack 0.4.6-3 (Sat Nov 14 06:29:00 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (8) python-packaging-15.3-2  python2-2.7.10-2  python2-packaging-15.3-2  sqlite-3.9.2-1  cython-0.23.4-1  cython2-0.23.4-1  python-setuptools-1:18.5-1  python2-setuptools-1:18.5-1
+
+Total Installed Size:  96.69 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing python-packaging...
+installing python-setuptools...
+installing cython...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools [pending]
+    python2-pip
+installing python2-packaging...
+installing python2-setuptools...
+installing cython2...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+running build
+running build_py
+creating build
+creating build/python
+creating build/python/msgpack
+copying msgpack/fallback.py -> build/python/msgpack
+copying msgpack/_version.py -> build/python/msgpack
+copying msgpack/__init__.py -> build/python/msgpack
+copying msgpack/exceptions.py -> build/python/msgpack
+running build_ext
+building 'msgpack._packer' extension
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/msgpack
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -D__LITTLE_ENDIAN__=1 -I. -I/usr/include/python3.5m -c msgpack/_packer.cpp -o build/temp.linux-x86_64-3.5/msgpack/_packer.o
+cc1plus: warning: command line option '-Wstrict-prototypes' is valid for C/ObjC but not for C++
+g++ -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/msgpack/_packer.o -L/usr/lib -lpython3.5m -o build/python/msgpack/_packer.cpython-35m-x86_64-linux-gnu.so
+building 'msgpack._unpacker' extension
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -D__LITTLE_ENDIAN__=1 -I. -I/usr/include/python3.5m -c msgpack/_unpacker.cpp -o build/temp.linux-x86_64-3.5/msgpack/_unpacker.o
+cc1plus: warning: command line option '-Wstrict-prototypes' is valid for C/ObjC but not for C++
+msgpack/_unpacker.pyx: In function 'PyObject* __pyx_pf_7msgpack_9_unpacker_2unpackb(PyObject*, PyObject*, PyObject*, PyObject*, int, PyObject*, PyObject*, PyObject*, PyObject*, Py_ssize_t, Py_ssize_t, Py_ssize_t, Py_ssize_t, Py_ssize_t)':
+msgpack/_unpacker.pyx:141:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+msgpack/_unpacker.pyx: In function 'PyObject* __pyx_f_7msgpack_9_unpacker_8Unpacker_read_from_file(__pyx_obj_7msgpack_9_unpacker_Unpacker*)':
+msgpack/_unpacker.pyx:367:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                     self.max_buffer_size - (self.buf_tail - self.buf_head)
+                   ^
+msgpack/_unpacker.pyx: In function 'PyObject* __pyx_pf_7msgpack_9_unpacker_8Unpacker_8read_bytes(__pyx_obj_7msgpack_9_unpacker_Unpacker*, Py_ssize_t)':
+msgpack/_unpacker.pyx:412:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         nread = min(self.buf_tail - self.buf_head, nbytes)
+                   ^
+In file included from msgpack/unpack.h:278:0,
+                 from msgpack/_unpacker.cpp:253:
+msgpack/unpack_template.h: In function 'int unpack_execute(unpack_context*, const char*, size_t, size_t*) [with bool construct = false; unpack_context = unpack_context; size_t = long unsigned int]':
+msgpack/unpack_template.h:346:9: warning: 'obj' may be used uninitialized in this function [-Wmaybe-uninitialized]
+         c->map_key = obj;
+         ^
+g++ -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/msgpack/_unpacker.o -L/usr/lib -lpython3.5m -o build/python/msgpack/_unpacker.cpython-35m-x86_64-linux-gnu.so
+cythonize: 'msgpack/_packer.pyx'
+cythonize: 'msgpack/_unpacker.pyx'
+running build
+running build_py
+creating build/python2
+creating build/python2/msgpack
+copying msgpack/fallback.py -> build/python2/msgpack
+copying msgpack/_version.py -> build/python2/msgpack
+copying msgpack/__init__.py -> build/python2/msgpack
+copying msgpack/exceptions.py -> build/python2/msgpack
+running build_ext
+building 'msgpack._packer' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/msgpack
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -D__LITTLE_ENDIAN__=1 -I. -I/usr/include/python2.7 -c msgpack/_packer.cpp -o build/temp.linux-x86_64-2.7/msgpack/_packer.o
+g++ -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/msgpack/_packer.o -L/usr/lib -lpython2.7 -o build/python2/msgpack/_packer.so
+building 'msgpack._unpacker' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -D__LITTLE_ENDIAN__=1 -I. -I/usr/include/python2.7 -c msgpack/_unpacker.cpp -o build/temp.linux-x86_64-2.7/msgpack/_unpacker.o
+In file included from msgpack/_unpacker.cpp:253:0:
+msgpack/unpack.h: In function 'int unpack_callback_ext(unpack_user*, const char*, const char*, unsigned int, PyObject**)':
+msgpack/unpack.h:268:77: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+     py = PyObject_CallFunction(u->ext_hook, "(is#)", typecode, pos, length-1);
+                                                                             ^
+g++ -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/msgpack/_unpacker.o -L/usr/lib -lpython2.7 -o build/python2/msgpack/_unpacker.so
+==> Entering fakeroot environment...
+==> Starting package_python-msgpack()...
+running build
+running build_py
+running build_ext
+running install
+running install_lib
+creating /tmp/python-msgpack/pkg/python-msgpack/usr
+creating /tmp/python-msgpack/pkg/python-msgpack/usr/lib
+creating /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5
+creating /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages
+creating /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+copying build/python/msgpack/_unpacker.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+copying build/python/msgpack/fallback.py -> /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+copying build/python/msgpack/_version.py -> /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+copying build/python/msgpack/__init__.py -> /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+copying build/python/msgpack/_packer.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+copying build/python/msgpack/exceptions.py -> /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack
+byte-compiling /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack/fallback.py to fallback.cpython-35.pyc
+byte-compiling /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack/_version.py to _version.cpython-35.pyc
+byte-compiling /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack/__init__.py to __init__.cpython-35.pyc
+byte-compiling /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack/exceptions.py to exceptions.cpython-35.pyc
+writing byte-compilation script '/tmp/tmpav1t906u.py'
+/usr/bin/python -O /tmp/tmpav1t906u.py
+removing /tmp/tmpav1t906u.py
+running install_egg_info
+running egg_info
+creating msgpack_python.egg-info
+writing top-level names to msgpack_python.egg-info/top_level.txt
+writing dependency_links to msgpack_python.egg-info/dependency_links.txt
+writing msgpack_python.egg-info/PKG-INFO
+writing manifest file 'msgpack_python.egg-info/SOURCES.txt'
+reading manifest file 'msgpack_python.egg-info/SOURCES.txt'
+writing manifest file 'msgpack_python.egg-info/SOURCES.txt'
+Copying msgpack_python.egg-info to /tmp/python-msgpack/pkg/python-msgpack/usr/lib/python3.5/site-packages/msgpack_python-0.4.6-py3.5.egg-info
+running install_scripts
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-msgpack"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python2-msgpack()...
+running build
+running build_py
+running build_ext
+running install
+running install_lib
+creating /tmp/python-msgpack/pkg/python2-msgpack/usr
+creating /tmp/python-msgpack/pkg/python2-msgpack/usr/lib
+creating /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7
+creating /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages
+creating /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+copying build/python2/msgpack/fallback.py -> /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+copying build/python2/msgpack/_version.py -> /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+copying build/python2/msgpack/__init__.py -> /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+copying build/python2/msgpack/_unpacker.so -> /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+copying build/python2/msgpack/exceptions.py -> /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+copying build/python2/msgpack/_packer.so -> /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack
+byte-compiling /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack/fallback.py to fallback.pyc
+byte-compiling /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack/_version.py to _version.pyc
+byte-compiling /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack/__init__.py to __init__.pyc
+byte-compiling /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack/exceptions.py to exceptions.pyc
+writing byte-compilation script '/tmp/tmpddW64v.py'
+/usr/bin/python2 -O /tmp/tmpddW64v.py
+removing /tmp/tmpddW64v.py
+running install_egg_info
+running egg_info
+writing msgpack_python.egg-info/PKG-INFO
+writing top-level names to msgpack_python.egg-info/top_level.txt
+writing dependency_links to msgpack_python.egg-info/dependency_links.txt
+reading manifest file 'msgpack_python.egg-info/SOURCES.txt'
+writing manifest file 'msgpack_python.egg-info/SOURCES.txt'
+Copying msgpack_python.egg-info to /tmp/python-msgpack/pkg/python2-msgpack/usr/lib/python2.7/site-packages/msgpack_python-0.4.6-py2.7.egg-info
+running install_scripts
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-msgpack"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-msgpack 0.4.6-3 (Sat Nov 14 06:29:39 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

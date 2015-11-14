@@ -1,0 +1,164 @@
+        <html><head></head><body>
+        <h1>Report for simavr on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:55</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data simavr
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 3163 packages in cache
+Found permanent source directory in /sources/simavr
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: simavr 1.2-1 (Sat Nov 14 12:27:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libelf-0.164-1  elfutils-0.164-1
+
+Total Installed Size:  3.77 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libelf...
+installing elfutils...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) avr-binutils-2.25.1-1  avr-gcc-5.2.0-1  perl-error-0.17024-1  avr-libc-1.8.1-4  git-2.6.2-1
+
+Total Download Size:     0.59 MiB
+Total Installed Size:  134.19 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading avr-libc-1.8.1-4-any.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing avr-binutils...
+installing avr-gcc...
+Optional dependencies for avr-gcc
+    avr-libc: Standard C library for Atmel AVR development [pending]
+installing avr-libc...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make -C simavr RELEASE=1
+make[1]: Entering directory '/tmp/simavr/src/simavr/simavr'
+CONF obj-x86_64-unknown-linux-gnu/cores.deps
+make obj config
+make[2]: Entering directory '/tmp/simavr/src/simavr/simavr'
+make[2]: Nothing to be done for 'obj'.
+CONF sim_core_decl.h
+make[2]: Leaving directory '/tmp/simavr/src/simavr/simavr'
+make libsimavr run_avr
+make[2]: Entering directory '/tmp/simavr/src/simavr/simavr'
+CC sim/sim_core.c
+CC sim/sim_irq.c
+CC sim/sim_hex.c
+CC sim/sim_cycle_timers.c
+CC sim/sim_elf.c
+CC sim/sim_gdb.c
+CC sim/sim_io.c
+CC sim/sim_avr.c
+CC sim/sim_interrupts.c
+CC sim/sim_vcd_file.c
+CC sim/avr_adc.c
+CC sim/avr_lin.c
+CC sim/avr_twi.c
+CC sim/avr_bitbang.c
+CC sim/avr_uart.c
+CC sim/avr_spi.c
+CC sim/avr_usb.c
+CC sim/avr_ioport.c
+CC sim/avr_extint.c
+CC sim/avr_eeprom.c
+CC sim/avr_timer.c
+CC sim/avr_flash.c
+CC sim/avr_watchdog.c
+CORE cores/sim_90usb162.c
+CORE cores/sim_mega128.c
+CORE cores/sim_mega1280.c
+CORE cores/sim_mega1281.c
+CORE cores/sim_mega1284.c
+CORE cores/sim_mega128rfa1.c
+CORE cores/sim_mega128rfr2.c
+CORE cores/sim_mega16.c
+CORE cores/sim_mega164.c
+CORE cores/sim_mega168.c
+CORE cores/sim_mega169.c
+CORE cores/sim_mega16m1.c
+CORE cores/sim_mega2560.c
+CORE cores/sim_mega32.c
+CORE cores/sim_mega324.c
+CORE cores/sim_mega328.c
+CORE cores/sim_mega48.c
+CORE cores/sim_mega644.c
+CORE cores/sim_mega8.c
+CORE cores/sim_mega88.c
+CORE cores/sim_megax.c
+CORE cores/sim_megax4.c
+CORE cores/sim_megax8.c
+CORE cores/sim_megaxm1.c
+CORE cores/sim_tiny13.c
+CORE cores/sim_tiny2313.c
+CORE cores/sim_tiny24.c
+CORE cores/sim_tiny25.c
+CORE cores/sim_tiny44.c
+CORE cores/sim_tiny45.c
+cores/sim_tiny84.c:32:0: warning: "HFUSE_DEFAULT" redefined
+ #define HFUSE_DEFAULT FUSE_HFUSE_DEFAULT
+ ^
+In file included from cores/sim_tiny84.c:31:0:
+/usr/avr/include/avr/iotn84.h:73:0: note: this is the location of the previous definition
+ #define HFUSE_DEFAULT    (FUSE_SPIEN)
+ ^
+cores/sim_tiny84.c:32:23: error: 'FUSE_HFUSE_DEFAULT' undeclared here (not in a function)
+ #define HFUSE_DEFAULT FUSE_HFUSE_DEFAULT
+                       ^
+cores/sim_core_declare.h:48:27: note: in expansion of macro 'HFUSE_DEFAULT'
+  .fuse = { LFUSE_DEFAULT, HFUSE_DEFAULT, EFUSE_DEFAULT }, \
+                           ^
+cores/sim_tinyx4.h:63:9: note: in expansion of macro 'DEFAULT_CORE'
+         DEFAULT_CORE(SIM_VECTOR_SIZE),
+         ^
+../Makefile.common:149: recipe for target 'obj-x86_64-unknown-linux-gnu/sim_tiny84.o' failed
+make[2]: *** [obj-x86_64-unknown-linux-gnu/sim_tiny84.o] Error 1
+make[2]: Leaving directory '/tmp/simavr/src/simavr/simavr'
+Makefile:34: recipe for target 'all' failed
+make[1]: *** [all] Error 2
+make[1]: Leaving directory '/tmp/simavr/src/simavr/simavr'
+Makefile:15: recipe for target 'build-simavr' failed
+make: *** [build-simavr] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,210 @@
+        <html><head></head><body>
+        <h1>Report for python-psutil on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:28</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data python-psutil
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2115 packages in cache
+Found permanent source directory in /sources/python-psutil
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: python-psutil 3.2.2-1 (Sat Nov 14 06:02:46 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) python-packaging-15.3-2  python2-packaging-15.3-2  sqlite-3.9.2-1  python-setuptools-1:18.5-1  python2-2.7.10-2  python2-setuptools-1:18.5-1
+
+Total Installed Size:  78.53 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing python-packaging...
+installing python-setuptools...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools [pending]
+    python2-pip
+installing python2-packaging...
+installing python2-setuptools...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+  -> python
+running build
+running build_py
+creating build
+creating build/python
+creating build/python/psutil
+copying psutil/_compat.py -> build/python/psutil
+copying psutil/_pswindows.py -> build/python/psutil
+copying psutil/_pssunos.py -> build/python/psutil
+copying psutil/__init__.py -> build/python/psutil
+copying psutil/_psposix.py -> build/python/psutil
+copying psutil/_common.py -> build/python/psutil
+copying psutil/_pslinux.py -> build/python/psutil
+copying psutil/_psbsd.py -> build/python/psutil
+copying psutil/_psosx.py -> build/python/psutil
+running build_ext
+building 'psutil._psutil_linux' extension
+creating build/temp.linux-x86_64-3.5
+creating build/temp.linux-x86_64-3.5/psutil
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPSUTIL_VERSION=322 -I/usr/include/python3.5m -c psutil/_psutil_linux.c -o build/temp.linux-x86_64-3.5/psutil/_psutil_linux.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/psutil/_psutil_linux.o -L/usr/lib -lpython3.5m -o build/python/psutil/_psutil_linux.cpython-35m-x86_64-linux-gnu.so
+building 'psutil._psutil_posix' extension
+gcc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I/usr/include/python3.5m -c psutil/_psutil_posix.c -o build/temp.linux-x86_64-3.5/psutil/_psutil_posix.o
+psutil/_psutil_posix.c: In function 'psutil_convert_ipaddr':
+psutil/_psutil_posix.c:141:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         for (n = 0; n < len; ++n) {
+                       ^
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-3.5/psutil/_psutil_posix.o -L/usr/lib -lpython3.5m -o build/python/psutil/_psutil_posix.cpython-35m-x86_64-linux-gnu.so
+  -> python2
+running build
+running build_py
+creating build/python2
+creating build/python2/psutil
+copying psutil/_compat.py -> build/python2/psutil
+copying psutil/_pswindows.py -> build/python2/psutil
+copying psutil/_pssunos.py -> build/python2/psutil
+copying psutil/__init__.py -> build/python2/psutil
+copying psutil/_psposix.py -> build/python2/psutil
+copying psutil/_common.py -> build/python2/psutil
+copying psutil/_pslinux.py -> build/python2/psutil
+copying psutil/_psbsd.py -> build/python2/psutil
+copying psutil/_psosx.py -> build/python2/psutil
+running build_ext
+building 'psutil._psutil_linux' extension
+creating build/temp.linux-x86_64-2.7
+creating build/temp.linux-x86_64-2.7/psutil
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -DPSUTIL_VERSION=322 -I/usr/include/python2.7 -c psutil/_psutil_linux.c -o build/temp.linux-x86_64-2.7/psutil/_psutil_linux.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/psutil/_psutil_linux.o -L/usr/lib -lpython2.7 -o build/python2/psutil/_psutil_linux.so
+building 'psutil._psutil_posix' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I/usr/include/python2.7 -c psutil/_psutil_posix.c -o build/temp.linux-x86_64-2.7/psutil/_psutil_posix.o
+gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/psutil/_psutil_posix.o -L/usr/lib -lpython2.7 -o build/python2/psutil/_psutil_posix.so
+==> Entering fakeroot environment...
+==> Starting package_python-psutil()...
+running build
+running build_py
+running build_ext
+running install
+running install_lib
+creating /tmp/python-psutil/pkg/python-psutil/usr
+creating /tmp/python-psutil/pkg/python-psutil/usr/lib
+creating /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5
+creating /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages
+creating /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_psutil_posix.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_compat.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_pswindows.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_pssunos.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/__init__.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_psposix.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_psutil_linux.cpython-35m-x86_64-linux-gnu.so -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_common.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_pslinux.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_psbsd.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+copying build/python/psutil/_psosx.py -> /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_compat.py to _compat.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_pswindows.py to _pswindows.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_pssunos.py to _pssunos.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/__init__.py to __init__.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_psposix.py to _psposix.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_common.py to _common.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_pslinux.py to _pslinux.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_psbsd.py to _psbsd.cpython-35.pyc
+byte-compiling /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil/_psosx.py to _psosx.cpython-35.pyc
+writing byte-compilation script '/tmp/tmpmvbj2d1e.py'
+/usr/bin/python -O /tmp/tmpmvbj2d1e.py
+removing /tmp/tmpmvbj2d1e.py
+running install_egg_info
+running egg_info
+writing top-level names to psutil.egg-info/top_level.txt
+writing psutil.egg-info/PKG-INFO
+writing dependency_links to psutil.egg-info/dependency_links.txt
+reading manifest file 'psutil.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+warning: manifest_maker: MANIFEST.in, line 18: 'recursive-include' expects <dir> <pattern1> <pattern2> ...
+
+writing manifest file 'psutil.egg-info/SOURCES.txt'
+Copying psutil.egg-info to /tmp/python-psutil/pkg/python-psutil/usr/lib/python3.5/site-packages/psutil-3.2.2-py3.5.egg-info
+running install_scripts
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python-psutil"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Starting package_python2-psutil()...
+running build
+running build_py
+running build_ext
+running install
+running install_lib
+creating /tmp/python-psutil/pkg/python2-psutil/usr
+creating /tmp/python-psutil/pkg/python2-psutil/usr/lib
+creating /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7
+creating /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages
+creating /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_compat.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_pswindows.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_psutil_posix.so -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_pssunos.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/__init__.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_psposix.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_common.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_pslinux.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_psbsd.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_psosx.py -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+copying build/python2/psutil/_psutil_linux.so -> /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_compat.py to _compat.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_pswindows.py to _pswindows.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_pssunos.py to _pssunos.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/__init__.py to __init__.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_psposix.py to _psposix.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_common.py to _common.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_pslinux.py to _pslinux.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_psbsd.py to _psbsd.pyc
+byte-compiling /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil/_psosx.py to _psosx.pyc
+writing byte-compilation script '/tmp/tmpxQVFL0.py'
+/usr/bin/python2 -O /tmp/tmpxQVFL0.py
+removing /tmp/tmpxQVFL0.py
+running install_egg_info
+running egg_info
+writing psutil.egg-info/PKG-INFO
+writing top-level names to psutil.egg-info/top_level.txt
+writing dependency_links to psutil.egg-info/dependency_links.txt
+reading manifest file 'psutil.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '*' found under directory 'docs/_build'
+warning: manifest_maker: MANIFEST.in, line 18: 'recursive-include' expects <dir> <pattern1> <pattern2> ...
+
+writing manifest file 'psutil.egg-info/SOURCES.txt'
+Copying psutil.egg-info to /tmp/python-psutil/pkg/python2-psutil/usr/lib/python2.7/site-packages/psutil-3.2.2-py2.7.egg-info
+running install_scripts
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "python2-psutil"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: python-psutil 3.2.2-1 (Sat Nov 14 06:03:02 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

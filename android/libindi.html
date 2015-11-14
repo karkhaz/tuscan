@@ -1,0 +1,163 @@
+        <html><head></head><body>
+        <h1>Report for libindi on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:02:23</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data libindi
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2815 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libindi 1.1.0-2 (Sat Nov 14 01:07:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (6) icu-56.1-1  boost-libs-1.59.0-3  cfitsio-3.370-3  gsl-1.16-1  libjpeg-turbo-1.4.2-1  libnova-0.15.0-1
+
+Total Download Size:    0.80 MiB
+Total Installed Size:  56.01 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading libnova-0.15.0-1-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnova...
+installing cfitsio...
+installing icu...
+installing boost-libs...
+Optional dependencies for boost-libs
+    openmpi: for mpi support
+installing libjpeg-turbo...
+installing gsl...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (5) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  boost-1.59.0-3  cmake-3.3.2-3
+
+Total Installed Size:  183.55 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+installing boost...
+Optional dependencies for boost
+    python: for python bindings [installed]
+    python2: for python2 bindings
+    boost-build: to use boost jam for building your project.
+==> Retrieving sources...
+  -> Downloading libindi_1.1.0.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting libindi_1.1.0.tar.gz with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/libindi
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libindi 1.1.0-2 (Sat Nov 14 01:08:30 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ZLIB: /usr/lib/libz.so (found version "1.2.8") 
+-- Found libusb-1.0:
+--  - Includes: /usr/include/libusb-1.0
+--  - Libraries: /usr/lib/libusb-1.0.so
+-- Performing Test ERROR_NAME_COMPILE
+-- Performing Test ERROR_NAME_COMPILE - Failed
+--  - 1.0.8 or older
+-- Found CURL: /usr/lib/libcurl.so (found version "7.45.0") 
+-- Found CFITSIO 3.37: /usr/lib/libcfitsio.so
+-- Found NOVA: /usr/lib/libnova.so
+-- Looking for include file pthread.h
+-- Looking for include file pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - no
+-- Found Threads: TRUE  
+-- Found JPEG: /usr/lib/libjpeg.so  
+-- Looking for include file linux/videodev2.h
+-- Looking for include file linux/videodev2.h - found
+-- Looking for include file termios.h
+-- Looking for include file termios.h - found
+-- Found PkgConfig: /usr/sbin/pkg-config (found version "0.29") 
+-- checking for module 'gsl >= 1.10'
+--   found gsl , version 1.16
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/libindi/src/build
+Scanning dependencies of target indi
+[  1%] Building C object CMakeFiles/indi.dir/libs/indicom.c.o
+Scanning dependencies of target indidriver
+In file included from /tmp/libindi/src/libindi_1.1.0/libs/indicom.c:43:0:
+/usr/include/libnova/libnova.h:101:30: fatal error: libnova/ln_types.h: No such file or directory
+ #include <libnova/ln_types.h>
+                              ^
+compilation terminated.
+CMakeFiles/indi.dir/build.make:62: recipe for target 'CMakeFiles/indi.dir/libs/indicom.c.o' failed
+make[2]: *** [CMakeFiles/indi.dir/libs/indicom.c.o] Error 1
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/indi.dir/all' failed
+make[1]: *** [CMakeFiles/indi.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[  1%] Building C object CMakeFiles/indidriver.dir/base64.c.o
+[  2%] Building C object CMakeFiles/indidriver.dir/libs/indicom.c.o
+In file included from /tmp/libindi/src/libindi_1.1.0/libs/indicom.c:43:0:
+/usr/include/libnova/libnova.h:101:30: fatal error: libnova/ln_types.h: No such file or directory
+ #include <libnova/ln_types.h>
+                              ^
+compilation terminated.
+CMakeFiles/indidriver.dir/build.make:62: recipe for target 'CMakeFiles/indidriver.dir/libs/indicom.c.o' failed
+make[2]: *** [CMakeFiles/indidriver.dir/libs/indicom.c.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+CMakeFiles/Makefile2:1401: recipe for target 'CMakeFiles/indidriver.dir/all' failed
+make[1]: *** [CMakeFiles/indidriver.dir/all] Error 2
+Makefile:127: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

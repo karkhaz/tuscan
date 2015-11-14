@@ -1,0 +1,229 @@
+        <html><head></head><body>
+        <h1>Report for pawm on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:02</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data pawm
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1040 packages in cache
+Found permanent source directory in /sources/pawm
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pawm 2.3.0-3 (Sat Nov 14 04:57:07 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+warning: dependency cycle detected:
+warning: harfbuzz will be installed before its freetype2 dependency
+
+Packages (23) fontconfig-2.11.1-2  freetype2-2.6.1-1  graphite-1:1.3.3-1  harfbuzz-1.0.6-2  kbproto-1.0.7-1  libice-1.0.9-1  libpng-1.6.18-1  libsm-1.2.2-2  libx11-1.6.3-1  libxau-1.0.8-2  libxcb-1.11.1-1  libxdmcp-1.1.2-1  libxext-1.3.3-1  libxrender-0.9.9-1  libxt-1.1.5-1  randrproto-1.5.0-1  renderproto-0.11.1-3  xcb-proto-1.11-2  xextproto-7.3.0-1  xproto-7.0.28-1  libxft-2.3.2-1  libxpm-3.5.11-1  libxrandr-1.5.0-1
+
+Total Installed Size:  28.06 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libpng...
+installing graphite...
+installing harfbuzz...
+Optional dependencies for harfbuzz
+    cairo: hb-view program
+installing freetype2...
+installing fontconfig...
+
+  Fontconfig configuration is done via /etc/fonts/conf.avail and conf.d.
+  Read /etc/fonts/conf.d/README for more information.
+
+  Configuration via /etc/fonts/local.conf is still possible,
+  but is no longer recommended for options available in conf.avail.
+
+  Main systemwide configuration should be done by symlinks
+  (especially for autohinting, sub-pixel and lcdfilter):
+
+  cd /etc/fonts/conf.d
+  ln -s ../conf.avail/XX-foo.conf
+
+  Check also https://wiki.archlinux.org/index.php/Font_Configuration
+  and https://wiki.archlinux.org/index.php/Fonts.
+
+updating font cache... done.
+installing xcb-proto...
+installing xproto...
+installing libxdmcp...
+installing libxau...
+installing libxcb...
+installing kbproto...
+installing libx11...
+installing renderproto...
+installing libxrender...
+installing libxft...
+installing libice...
+installing libsm...
+installing libxt...
+installing xextproto...
+installing libxext...
+installing libxpm...
+installing randrproto...
+installing libxrandr...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.83 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 5.2.0
+-- The CXX compiler identification is GNU 5.2.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29") 
+-- checking for module 'x11'
+--   found x11, version 1.6.3
+-- checking for module 'xpm'
+--   found xpm, version 3.5.11
+-- checking for module 'xft'
+--   found xft, version 2.3.2
+-- checking for module 'freetype2'
+--   found freetype2, version 18.1.12
+-- checking for module 'xrandr'
+--   found xrandr, version 1.5.0
+-- Found Freetype: /usr/lib64/libfreetype.so (found version "2.6.1") 
+CMake Warning (dev) at CMakeLists.txt:60 (LINK_DIRECTORIES):
+  This command specifies the relative path
+
+    .
+
+  as a link directory.
+
+  Policy CMP0015 is not set: link_directories() treats paths relative to the
+  source dir.  Run "cmake --help-policy CMP0015" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/pawm/src/pawm-2.3.0
+Scanning dependencies of target pawm
+[  6%] Building C object CMakeFiles/pawm.dir/src/signals.o
+[ 12%] Building C object CMakeFiles/pawm.dir/src/chain.o
+[ 18%] Building C object CMakeFiles/pawm.dir/src/cfgpool.o
+[ 25%] Building C object CMakeFiles/pawm.dir/src/x.o
+/tmp/pawm/src/pawm-2.3.0/src/x.c: In function 'x_build_pixmap_from_argb':
+/tmp/pawm/src/pawm-2.3.0/src/x.c:355:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   icon->w=(int)icons[idx];
+           ^
+/tmp/pawm/src/pawm-2.3.0/src/x.c:356:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   icon->h=(int)icons[idx+1];
+           ^
+/tmp/pawm/src/pawm-2.3.0/src/x.c:376:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   alpha= ((((CARD32)icons[0]) >> 24))/255.0; 
+             ^
+/tmp/pawm/src/pawm-2.3.0/src/x.c:378:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   r= ((((CARD32)icons[0]) & 0x00FF0000) >> 16)*alpha; 
+         ^
+/tmp/pawm/src/pawm-2.3.0/src/x.c:379:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   g= ((((CARD32)icons[0]) & 0x0000FF00) >> 8)*alpha; 
+         ^
+/tmp/pawm/src/pawm-2.3.0/src/x.c:380:8: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   b= (((CARD32)icons[0]) & 0x000000FF)*alpha; 
+        ^
+[ 31%] Building C object CMakeFiles/pawm.dir/src/wm.o
+[ 37%] Building C object CMakeFiles/pawm.dir/src/keyboard.o
+[ 43%] Building C object CMakeFiles/pawm.dir/src/button.o
+[ 50%] Building C object CMakeFiles/pawm.dir/src/palabel.o
+[ 56%] Building C object CMakeFiles/pawm.dir/src/paicon.o
+[ 62%] Building C object CMakeFiles/pawm.dir/src/pafont.o
+[ 68%] Building C object CMakeFiles/pawm.dir/src/pashut.o
+[ 75%] Building C object CMakeFiles/pawm.dir/src/pabar.o
+[ 81%] Building C object CMakeFiles/pawm.dir/src/pimp.o
+[ 87%] Building C object CMakeFiles/pawm.dir/src/pawindow.o
+[ 93%] Building C object CMakeFiles/pawm.dir/src/pawm.o
+[100%] Linking C executable src/pawm
+[100%] Built target pawm
+==> Entering fakeroot environment...
+==> Starting package()...
+[100%] Built target pawm
+Install the project...
+-- Install configuration: ""
+-- Installing: /tmp/pawm/pkg/pawm/usr/bin/pawm
+-- Removed runtime path from "/tmp/pawm/pkg/pawm/usr/bin/pawm"
+-- Installing: /tmp/pawm/pkg/pawm/etc/pawm.conf
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/close_h_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/min_d.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/max_d.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/close_o.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/max_h.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/powerbutton_pressed.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/powerbutton_active_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/penguin-gentoo_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/powerbutton_normal.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/close_h.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/max_o.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/powerbutton_active.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/min_h_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/min_h.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/powerbutton_pressed_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/powerbutton_normal_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/penguin-gentoo.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/penguin_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/close_d_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/min_o.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/max_d_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/penguin.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/close_o_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/min_o_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/max_h_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/close_d.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/min_d_256.xpm
+-- Installing: /tmp/pawm/pkg/pawm/usr/share/pawm/icons/max_o_256.xpm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "pawm"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: pawm 2.3.0-3 (Sat Nov 14 04:57:54 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

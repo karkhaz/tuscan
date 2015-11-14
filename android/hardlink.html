@@ -1,0 +1,65 @@
+        <html><head></head><body>
+        <h1>Report for hardlink on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:33</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data hardlink
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1386 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hardlink 0.3.0-1 (Fri Nov 13 23:31:24 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading hardlink_0.3.0.tar.xz...
+  -> Downloading hardlink_0.3.0.tar.xz.asc...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting hardlink_0.3.0.tar.xz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/hardlink
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: hardlink 0.3.0-1 (Fri Nov 13 23:31:26 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking for GETOPT_LONG...	FAIL
+Checking for POSIX_FADVISE...	FAIL
+Checking for XATTR...	FAIL
+Checking for libpcreposix...	FAIL
+arm-linux-androideabi-gcc    -DHAVE_CONFIG_H  -o hardlink.o -c hardlink.c
+arm-linux-androideabi-gcc   -o hardlink hardlink.o  -lpcreposix
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lpcreposix
+collect2: error: ld returned 1 exit status
+Makefile:51: recipe for target 'hardlink' failed
+make: *** [hardlink] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/hardlink/src/hardlink-0.3.0/config.log
+____
+File /tmp/hardlink/src/hardlink-0.3.0/config.log
+Checking for GETOPT_LONG.../tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lpcreposix
+collect2: error: ld returned 1 exit status
+	FAIL
+Checking for POSIX_FADVISE.../tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lpcreposix
+collect2: error: ld returned 1 exit status
+	FAIL
+Checking for XATTR.../tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lpcreposix
+collect2: error: ld returned 1 exit status
+	FAIL
+Checking for libpcreposix...configure.c:56:23: fatal error: pcreposix.h: No such file or directory
+ #include <pcreposix.h>
+                       ^
+compilation terminated.
+	FAIL
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

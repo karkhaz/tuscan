@@ -1,0 +1,167 @@
+        <html><head></head><body>
+        <h1>Report for efivar on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:39</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data efivar
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2130 packages in cache
+Found permanent source directory in /sources/efivar
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: efivar 0.21-1 (Sat Nov 14 06:04:55 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) perl-error-0.17024-1  git-2.6.2-1
+
+Total Installed Size:  26.16 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make -C src TOPDIR=/tmp/efivar/src/efivar SRCDIR=/tmp/efivar/src/efivar/src/ ARCH=x86_64
+make[1]: Entering directory '/tmp/efivar/src/efivar/src'
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .guid.h.P guid.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .util.h.P util.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -DEFIVAR_BUILD_ENVIRONMENT -c -o makeguids.o makeguids.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -DEFIVAR_BUILD_ENVIRONMENT -c -o fakeguid.o guid.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -o makeguids makeguids.o fakeguid.o -ldl
+./makeguids guids.txt guids.bin names.bin guid-symbols.S include/efivar/efivar-guids.h
+32 lines
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efivar.h.P include/efivar/efivar.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .makeguids.c.P makeguids.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efiboot-loadopt.h.P include/efivar/efiboot-loadopt.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efiboot-creator.h.P include/efivar/efiboot-creator.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .loadopt.c.P loadopt.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .linux.h.P linux.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .linux.c.P linux.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .gpt.h.P gpt.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .gpt.c.P gpt.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .disk.h.P disk.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .disk.c.P disk.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .creator.c.P creator.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .crc32.h.P crc32.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .crc32.c.P crc32.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efivar-guids.h.P include/efivar/efivar-guids.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efivar-dp.h.P include/efivar/efivar-dp.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .lib.h.P lib.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .generics.h.P generics.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp.h.P dp.h
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .vars.c.P vars.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .lib.c.P lib.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .guid.c.P guid.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .export.c.P export.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .efivarfs.c.P efivarfs.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .efivar.c.P efivar.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-message.c.P dp-message.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-media.c.P dp-media.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-hw.c.P dp-hw.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-acpi.c.P dp-acpi.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp.c.P dp.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o dp.o dp.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o dp-acpi.o dp-acpi.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o dp-hw.o dp-hw.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o dp-media.o dp-media.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o dp-message.o dp-message.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o efivarfs.o efivarfs.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o export.o export.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o guid.o guid.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -c -o guidlist.o guids.S
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -c -o guid-symbols.o guid-symbols.S
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o lib.o lib.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o vars.o vars.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -Wl,-soname,libefivar.so.0 -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized    -fno-merge-constants -shared dp.o dp-acpi.o dp-hw.o dp-media.o dp-message.o efivarfs.o export.o guid.o guidlist.o guid-symbols.o lib.o vars.o -o libefivar.so.0.21 -ldl
+ln -sf libefivar.so.0.21 libefivar.so.0
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o crc32.o crc32.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o creator.o creator.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o disk.o disk.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o gpt.o gpt.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o linux.o linux.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o loadopt.o loadopt.c
+ln -sf libefivar.so.0.21 libefivar.so
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized -Wl,-soname,libefiboot.so.0 -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized    -fno-merge-constants -shared crc32.o creator.o disk.o gpt.o linux.o loadopt.o libefivar.so -o libefiboot.so.0.21 
+ln -sf libefiboot.so.0.21 libefiboot.so.0
+sed -e "s,@@VERSION@@,0.21,g" \
+    -e "s,@@LIBDIR@@,/usr/lib/,g" \
+	efivar.pc.in > efivar.pc
+sed -e "s,@@VERSION@@,0.21,g" \
+    -e "s,@@LIBDIR@@,/usr/lib/,g" \
+	efiboot.pc.in > efiboot.pc
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o efivar.o efivar.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized    -fno-merge-constants -L. -lefivar -o efivar efivar.o libefivar.so \
+	-lpopt -ldl
+ln -sf libefiboot.so.0.21 libefiboot.so
+make[2]: Entering directory '/tmp/efivar/src/efivar/src/test'
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -c -o tester.o tester.c
+gcc -O2 -g -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/  -Wmaybe-uninitialized  -Wl,-rpath,/tmp/efivar/src/efivar/src -L/tmp/efivar/src/efivar/src -o tester tester.o -lefivar -ldl
+make[2]: Leaving directory '/tmp/efivar/src/efivar/src/test'
+make[1]: Leaving directory '/tmp/efivar/src/efivar/src'
+make -C docs TOPDIR=/tmp/efivar/src/efivar SRCDIR=/tmp/efivar/src/efivar/docs/ ARCH=x86_64
+make[1]: Entering directory '/tmp/efivar/src/efivar/docs'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/efivar/src/efivar/docs'
+
+==> Entering fakeroot environment...
+==> Starting package()...
+make[1]: Entering directory '/tmp/efivar/src/efivar/src'
+make[2]: Entering directory '/tmp/efivar/src/efivar/src/test'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/efivar/src/efivar/src/test'
+install -d -m 755 /tmp/efivar/pkg/efivar//usr/lib/
+install -m 755 libefivar.so.0.21 /tmp/efivar/pkg/efivar//usr/lib/;  install -m 755 libefivar.so.0 /tmp/efivar/pkg/efivar//usr/lib/;  install -m 755 libefiboot.so.0.21 /tmp/efivar/pkg/efivar//usr/lib/;  install -m 755 libefiboot.so.0 /tmp/efivar/pkg/efivar//usr/lib/;
+install -d -m 755 /tmp/efivar/pkg/efivar//usr/lib//pkgconfig/
+install -m 644 efivar.pc /tmp/efivar/pkg/efivar//usr/lib//pkgconfig/ ;  install -m 644 efiboot.pc /tmp/efivar/pkg/efivar//usr/lib//pkgconfig/ ;
+install -d -m 755 /tmp/efivar/pkg/efivar//usr/include//efivar
+install -m 644 /tmp/efivar/src/efivar/src/include/efivar/efivar-guids.h /tmp/efivar/pkg/efivar//usr/include//efivar/efivar-guids.h;  install -m 644 /tmp/efivar/src/efivar/src/include/efivar/efivar.h /tmp/efivar/pkg/efivar//usr/include//efivar/efivar.h;  install -m 644 /tmp/efivar/src/efivar/src/include/efivar/efiboot.h /tmp/efivar/pkg/efivar//usr/include//efivar/efiboot.h;  install -m 644 /tmp/efivar/src/efivar/src/include/efivar/efiboot-loadopt.h /tmp/efivar/pkg/efivar//usr/include//efivar/efiboot-loadopt.h;  install -m 644 /tmp/efivar/src/efivar/src/include/efivar/efivar-dp.h /tmp/efivar/pkg/efivar//usr/include//efivar/efivar-dp.h;  install -m 644 /tmp/efivar/src/efivar/src/include/efivar/efiboot-creator.h /tmp/efivar/pkg/efivar//usr/include//efivar/efiboot-creator.h;
+install -d -m 755 /tmp/efivar/pkg/efivar//usr/bin/
+install -m 755 efivar /tmp/efivar/pkg/efivar//usr/bin/;
+ln -fs libefivar.so.0.21 /tmp/efivar/pkg/efivar//usr/lib//libefivar.so;  ln -fs libefiboot.so.0.21 /tmp/efivar/pkg/efivar//usr/lib//libefiboot.so;
+ln -fs libefivar.so.0.21 /tmp/efivar/pkg/efivar//usr/lib//libefivar.so.0;  ln -fs libefiboot.so.0.21 /tmp/efivar/pkg/efivar//usr/lib//libefiboot.so.0;
+make[1]: Leaving directory '/tmp/efivar/src/efivar/src'
+make[1]: Entering directory '/tmp/efivar/src/efivar/docs'
+install -d -m 755 /tmp/efivar/pkg/efivar//usr/share/man//man1
+install -m 644 efivar.1 /tmp/efivar/pkg/efivar///usr/share/man//man1/;
+install -d -m 755 /tmp/efivar/pkg/efivar//usr/share/man//man3
+install -m 644 efi_append_variable.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_del_variable.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_get_next_variable_name.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_get_variable.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_get_variable_attributes.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_get_variable_size.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_guid_to_id_guid.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_guid_to_name.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_guid_to_str.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_guid_to_symbol.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_name_to_guid.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_set_variable.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_str_to_guid.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_symbol_to_guid.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variables_supported.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_t.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_import.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_export.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_alloc.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_free.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_set_name.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_get_name.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_set_guid.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_get_guid.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_set_data.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_get_data.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_get_attributes.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_set_attributes.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;  install -m 644 efi_variable_realize.3 /tmp/efivar/pkg/efivar///usr/share/man//man3/;
+make[1]: Leaving directory '/tmp/efivar/src/efivar/docs'
+
+==> Tidying install...
+  -> Purging unwanted files...
+  -> Compressing man and info pages...
+  -> Stripping unneeded symbols from binaries and libraries...
+==> Creating package "efivar"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: efivar 0.21-1 (Sat Nov 14 06:05:10 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

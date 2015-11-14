@@ -1,0 +1,225 @@
+        <html><head></head><body>
+        <h1>Report for dhex on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:14</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dhex
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 745 packages in cache
+Found permanent source directory in /sources/dhex
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dhex 0.68-3 (Sat Nov 14 04:47:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+gcc buffers.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+gcc configfile.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+configfile.c: In function 'readconfigfile':
+configfile.c:193:23: warning: pointer targets in passing argument 2 of 'getcolors' differ in signedness [-Wpointer-sign]
+      getcolors(output,line);
+                       ^
+configfile.c:77:5: note: expected 'char *' but argument is of type 'unsigned char *'
+ int getcolors(tOutput* output,char* line)
+     ^
+configfile.c:194:59: warning: pointer targets in passing argument 2 of 'configkeytab' differ in signedness [-Wpointer-sign]
+      keyboardcnt+=(configkeytab((tKeyTab*)output->pKeyTab,line)==0);
+                                                           ^
+In file included from configfile.c:9:0:
+input.h:43:5: note: expected 'char *' but argument is of type 'unsigned char *'
+ int configkeytab(tKeyTab* pKeyTab,char* line);
+     ^
+gcc correlation.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+correlation.c: In function 'find_mindiff':
+correlation.c:181:9: warning: variable 'match' set but not used [-Wunused-but-set-variable]
+  tInt64 match;
+         ^
+gcc gpl.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+gcc hexcalc.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+gcc input.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+input.c: In function 'getkey':
+input.c:72:5: warning: implicit declaration of function 'usleep' [-Wimplicit-function-declaration]
+     usleep(1);
+     ^
+gcc machine_type.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+gcc main.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+main.c: In function 'parsecommandlineoptions':
+main.c:217:14: warning: variable 'forward' set but not used [-Wunused-but-set-variable]
+        tBool forward=1;
+              ^
+main.c: In function 'main':
+main.c:516:41: warning: pointer targets in passing argument 3 of 'searchfor' differ in signedness [-Wpointer-sign]
+  if (gosearch1) searchfor(&search1,buf1,&cursorpos1,1);
+                                         ^
+In file included from ui.h:5:0,
+                 from main.c:15:
+search.h:8:7: note: expected 'tUInt64 * {aka long long unsigned int *}' but argument is of type 'tInt64 * {aka long long int *}'
+ tInt8 searchfor(tSearch* search,tBuffer* buf,tUInt64* cursorpos,tBool nextnotprev);
+       ^
+main.c:517:53: warning: pointer targets in passing argument 3 of 'searchfor' differ in signedness [-Wpointer-sign]
+  if (gosearch2 && diffmode) searchfor(&search2,buf2,&cursorpos2,1);
+                                                     ^
+In file included from ui.h:5:0,
+                 from main.c:15:
+search.h:8:7: note: expected 'tUInt64 * {aka long long unsigned int *}' but argument is of type 'tInt64 * {aka long long int *}'
+ tInt8 searchfor(tSearch* search,tBuffer* buf,tUInt64* cursorpos,tBool nextnotprev);
+       ^
+main.c:621:33: warning: pointer targets in passing argument 3 of 'gotomask' differ in signedness [-Wpointer-sign]
+     if (gotomask(output,markers,&cursorpos1,buf1->baseaddr)==RETOK)
+                                 ^
+In file included from main.c:19:0:
+markers.h:9:7: note: expected 'tUInt64 * {aka long long unsigned int *}' but argument is of type 'tInt64 * {aka long long int *}'
+ tInt8 gotomask(tOutput* output,tMarkers* markers,tUInt64* cursorpos,tInt64 baseaddr);
+       ^
+main.c:630:37: warning: pointer targets in passing argument 4 of 'searchmask' differ in signedness [-Wpointer-sign]
+     searchmask(output,&search1,buf1,&cursorpos1);
+                                     ^
+In file included from main.c:15:0:
+ui.h:8:6: note: expected 'tUInt64 * {aka long long unsigned int *}' but argument is of type 'tInt64 * {aka long long int *}'
+ void searchmask(tOutput* output,tSearch* search,tBuffer* buf,tUInt64* cursorpos);
+      ^
+main.c:684:30: warning: pointer targets in passing argument 3 of 'searchfor' differ in signedness [-Wpointer-sign]
+      searchfor(&search1,buf1,&cursorpos1,(ch==KEYF3)); // f3: next
+                              ^
+In file included from ui.h:5:0,
+                 from main.c:15:
+search.h:8:7: note: expected 'tUInt64 * {aka long long unsigned int *}' but argument is of type 'tInt64 * {aka long long int *}'
+ tInt8 searchfor(tSearch* search,tBuffer* buf,tUInt64* cursorpos,tBool nextnotprev);
+       ^
+gcc markers.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+gcc menu.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+menu.c: In function 'MenuInteract':
+menu.c:222:8: warning: variable 'retval' set but not used [-Wunused-but-set-variable]
+  tInt8 retval;
+        ^
+gcc output.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+output.c: In function 'printbuffersingle':
+output.c:90:9: warning: variable 'charcnt' set but not used [-Wunused-but-set-variable]
+  tInt32 charcnt;
+         ^
+output.c: In function 'printbufferdiff':
+output.c:205:9: warning: variable 'charcnt' set but not used [-Wunused-but-set-variable]
+  tInt32 charcnt;
+         ^
+output.c: In function 'printmainmenu':
+output.c:411:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Goto  ", // F1
+ ^
+output.c:411:1: note: (near initialization for 'menutextsnodiff[0]')
+output.c:412:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Search", // F2
+ ^
+output.c:412:1: note: (near initialization for 'menutextsnodiff[1]')
+output.c:413:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Next  ", // F3
+ ^
+output.c:413:1: note: (near initialization for 'menutextsnodiff[2]')
+output.c:414:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Prev  ", // F4
+ ^
+output.c:414:1: note: (near initialization for 'menutextsnodiff[3]')
+output.c:415:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "HexCal", // F5
+ ^
+output.c:415:1: note: (near initialization for 'menutextsnodiff[4]')
+output.c:416:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F6
+ ^
+output.c:416:1: note: (near initialization for 'menutextsnodiff[5]')
+output.c:417:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F7
+ ^
+output.c:417:1: note: (near initialization for 'menutextsnodiff[6]')
+output.c:418:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F8
+ ^
+output.c:418:1: note: (near initialization for 'menutextsnodiff[7]')
+output.c:419:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Undo  ", // F9
+ ^
+output.c:419:1: note: (near initialization for 'menutextsnodiff[8]')
+output.c:420:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Quit  "}; // F10
+ ^
+output.c:420:1: note: (near initialization for 'menutextsnodiff[9]')
+output.c:423:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F1
+ ^
+output.c:423:1: note: (near initialization for 'menutextsdiff[0]')
+output.c:424:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F2
+ ^
+output.c:424:1: note: (near initialization for 'menutextsdiff[1]')
+output.c:425:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Next  ", // F3
+ ^
+output.c:425:1: note: (near initialization for 'menutextsdiff[2]')
+output.c:426:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Prev  ", // F4
+ ^
+output.c:426:1: note: (near initialization for 'menutextsdiff[3]')
+output.c:427:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "HexCal", // F5
+ ^
+output.c:427:1: note: (near initialization for 'menutextsdiff[4]')
+output.c:428:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Corr. ", // F6
+ ^
+output.c:428:1: note: (near initialization for 'menutextsdiff[5]')
+output.c:429:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F7
+ ^
+output.c:429:1: note: (near initialization for 'menutextsdiff[6]')
+output.c:430:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "      ", // F8
+ ^
+output.c:430:1: note: (near initialization for 'menutextsdiff[7]')
+output.c:431:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "       ", // F9
+ ^
+output.c:431:1: note: (near initialization for 'menutextsdiff[8]')
+output.c:432:1: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+ "Quit  "}; // F10
+ ^
+output.c:432:1: note: (near initialization for 'menutextsdiff[9]')
+gcc search.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+search.c: In function 'searchfor':
+search.c:80:11: warning: variable 'firstsearchlogpos' set but not used [-Wunused-but-set-variable]
+    tInt64 firstsearchlogpos;
+           ^
+gcc ui.c -c -I. -I/usr/include	-I/usr/local/include	-I/usr/include/ncurses	-I/usr/local/include/ncurses -O3 -Wall -std=c99  
+ui.c: In function 'correlationmask':
+ui.c:194:37: warning: pointer targets in passing argument 4 of 'decinput' differ in signedness [-Wpointer-sign]
+    decinput(output,offsy+4,offsx+22,&correlation->start_mindiff,18);
+                                     ^
+In file included from ui.c:8:0:
+input.h:39:8: note: expected 'tUInt64 * {aka long long unsigned int *}' but argument is of type 'tInt64 * {aka long long int *}'
+ tInt16 decinput(tOutput* output,tInt16 y,tInt16 x,tUInt64* val,tInt16 len);
+        ^
+gcc -L/usr/lib	-L/usr/local/lib  	-L/usr/lib/ncurses	-L/usr/local/lib/ncurses -o dhex buffers.o configfile.o correlation.o gpl.o hexcalc.o input.o machine_type.o main.o markers.o menu.o output.o search.o ui.o -lncurses
+==> Entering fakeroot environment...
+==> Starting package()...
+strip dhex
+cp dhex /tmp/dhex/pkg/dhex/usr/bin
+cp dhex.1 /tmp/dhex/pkg/dhex/usr/man/man1
+cp dhexrc.5 /tmp/dhex/pkg/dhex/usr/man/man5
+cp dhex_markers.5 /tmp/dhex/pkg/dhex/usr/man/man5
+cp dhex_searchlog.5 /tmp/dhex/pkg/dhex/usr/man/man5
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "dhex"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: dhex 0.68-3 (Sat Nov 14 04:47:53 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

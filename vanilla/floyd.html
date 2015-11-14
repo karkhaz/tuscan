@@ -1,0 +1,60 @@
+        <html><head></head><body>
+        <h1>Report for floyd on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:11</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data floyd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1445 packages in cache
+Found permanent source directory in /sources/floyd
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: floyd 2.0.1-5 (Sat Nov 14 05:18:22 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+patching file floyd.c
+patching file voodoo.c
+make PDEFS="-DPTHREAD -DPROCTHREAD -D_REENTRANT" pfloyd -kj6
+make[1]: Entering directory '/tmp/floyd/src/floyd-2.0.1'
+cc -Wall -O2 -DFLOYD -DBLINKLED=LED_CAP      -DPACKETLOAD -DMORSE		  -DPTHREAD -DPROCTHREAD -D_REENTRANT    -c -o floyd.o floyd.c
+cc -Wall -O2 -DFLOYD -DBLINKLED=LED_CAP      -DPACKETLOAD -DMORSE		  -DPTHREAD -DPROCTHREAD -D_REENTRANT    -c -o packetload.o packetload.c
+cc -Wall -O2 -DFLOYD -DBLINKLED=LED_CAP      -DPACKETLOAD -DMORSE		  -DPTHREAD -DPROCTHREAD -D_REENTRANT    -c -o led.o led.c
+cc -Wall -O2 -DFLOYD -DBLINKLED=LED_CAP      -DPACKETLOAD -DMORSE		  -DPTHREAD -DPROCTHREAD -D_REENTRANT    -c -o jobmgr.o jobmgr.c
+cc -Wall -O2 -DFLOYD -DBLINKLED=LED_CAP      -DPACKETLOAD -DMORSE		  -DPTHREAD -DPROCTHREAD -D_REENTRANT    -c -o voodoo.o voodoo.c
+floyd.c:899:6: warning: return type of 'main' is not 'int' [-Wmain]
+ void main(int ac, char **av) {
+      ^
+cc  -o floyd floyd.o packetload.o led.o jobmgr.o voodoo.o  -lpthread 
+make[1]: Leaving directory '/tmp/floyd/src/floyd-2.0.1'
+==> Entering fakeroot environment...
+==> Starting package()...
+make PDEFS="-DPTHREAD -DPROCTHREAD -D_REENTRANT" pfloyd -kj6
+make[1]: Entering directory '/tmp/floyd/src/floyd-2.0.1'
+cc  -o floyd floyd.o packetload.o led.o jobmgr.o voodoo.o  -lpthread 
+make[1]: Leaving directory '/tmp/floyd/src/floyd-2.0.1'
+rm -f wywh
+ln -s floyd wywh
+rm -f tfloyd
+ln -s floyd tfloyd
+install -c -s -m 755 floyd /tmp/floyd/pkg/floyd/usr/bin
+gzip -c floyd.1 >floyd.1.gz
+install -c -m 644 floyd.1.gz /tmp/floyd/pkg/floyd/usr/share/man/man1
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "floyd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: floyd 2.0.1-5 (Sat Nov 14 05:18:24 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

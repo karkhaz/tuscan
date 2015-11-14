@@ -1,0 +1,71 @@
+        <html><head></head><body>
+        <h1>Report for libaio on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:08</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data libaio
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2207 packages in cache
+Found permanent source directory in /sources/libaio
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libaio 0.3.110-1 (Sat Nov 14 06:17:51 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make[1]: Entering directory '/tmp/libaio/src/libaio-0.3.110/src'
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_init.ol io_queue_init.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_release.ol io_queue_release.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_wait.ol io_queue_wait.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_run.ol io_queue_run.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_getevents.ol io_getevents.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_submit.ol io_submit.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_cancel.ol io_cancel.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_setup.ol io_setup.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_destroy.ol io_destroy.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o raw_syscall.ol raw_syscall.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o compat-0_1.ol compat-0_1.c
+rm -f libaio.a
+ar r libaio.a io_queue_init.ol io_queue_release.ol io_queue_wait.ol io_queue_run.ol io_getevents.ol io_submit.ol io_cancel.ol io_setup.ol io_destroy.ol raw_syscall.ol compat-0_1.ol
+ar: creating libaio.a
+ranlib libaio.a
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_init.os io_queue_init.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_release.os io_queue_release.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_wait.os io_queue_wait.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_run.os io_queue_run.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_getevents.os io_getevents.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_submit.os io_submit.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_cancel.os io_cancel.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_setup.os io_setup.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_destroy.os io_destroy.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o raw_syscall.os raw_syscall.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o compat-0_1.os compat-0_1.c
+cc -shared -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -Wl,--version-script=libaio.map -Wl,-soname=libaio.so.1 -o libaio.so.1.0.1 io_queue_init.os io_queue_release.os io_queue_wait.os io_queue_run.os io_getevents.os io_submit.os io_cancel.os io_setup.os io_destroy.os raw_syscall.os compat-0_1.os  
+make[1]: Leaving directory '/tmp/libaio/src/libaio-0.3.110/src'
+==> Entering fakeroot environment...
+==> Starting package()...
+make[1]: Entering directory '/tmp/libaio/src/libaio-0.3.110/src'
+install -D -m 644 libaio.h /tmp/libaio/pkg/libaio/usr/include/libaio.h
+install -D -m 644 libaio.a /tmp/libaio/pkg/libaio/usr/lib/libaio.a
+install -D -m 755 libaio.so.1.0.1 /tmp/libaio/pkg/libaio/usr/lib/libaio.so.1.0.1
+ln -sf libaio.so.1.0.1 /tmp/libaio/pkg/libaio/usr/lib/libaio.so.1
+ln -sf libaio.so.1.0.1 /tmp/libaio/pkg/libaio/usr/lib/libaio.so
+make[1]: Leaving directory '/tmp/libaio/src/libaio-0.3.110/src'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "libaio"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: libaio 0.3.110-1 (Sat Nov 14 06:17:56 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

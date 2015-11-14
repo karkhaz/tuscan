@@ -1,0 +1,169 @@
+        <html><head></head><body>
+        <h1>Report for p2c on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:20</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data p2c
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1172 packages in cache
+Found permanent source directory in /sources/p2c
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: p2c 1.21alpha2-11 (Sat Nov 14 05:02:36 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc                         makeproto.c -o makeproto
+makeproto.c: In function 'usage':
+makeproto.c:137:5: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+     exit(1);
+     ^
+makeproto.c:137:5: warning: incompatible implicit declaration of built-in function 'exit'
+makeproto.c:137:5: note: include '<stdlib.h>' or provide a declaration of 'exit'
+makeproto.c: In function 'main':
+makeproto.c:171:23: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+             typetab = atoi(argv[1] + 2);
+                       ^
+makeproto.c:210:13: warning: incompatible implicit declaration of built-in function 'exit'
+             exit(1);
+             ^
+makeproto.c:210:13: note: include '<stdlib.h>' or provide a declaration of 'exit'
+makeproto.c:501:9: warning: incompatible implicit declaration of built-in function 'exit'
+         exit(1);
+         ^
+makeproto.c:501:9: note: include '<stdlib.h>' or provide a declaration of 'exit'
+makeproto.c:503:9: warning: incompatible implicit declaration of built-in function 'exit'
+         exit(0);
+         ^
+makeproto.c:503:9: note: include '<stdlib.h>' or provide a declaration of 'exit'
+./makeproto -n -m -h -t16 -a35 -s1 -i trans.c stuff.c out.c comment.c lex.c parse.c decl.c expr.c pexpr.c funcs.c dir.c hpmods.c citmods.c -o p2c.proto
+./makeproto -n -m -h -t16 -a35 -s0 -x trans.c stuff.c out.c comment.c lex.c parse.c decl.c expr.c pexpr.c funcs.c dir.c hpmods.c citmods.c -o p2c.hdrs
+cc                     -c    -DHASDUMPS -DP2C_HOME=\"/usr/lib/p2c\" trans.c
+In file included from trans.c:23:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+trans.c: In function 'closelogfile':
+trans.c:616:57: warning: implicit declaration of function 'sbrk' [-Wimplicit-function-declaration]
+  fprintf(logf, "Total memory used: %ld bytes.\n", (long)sbrk(0));
+                                                         ^
+trans.c: In function 'main':
+trans.c:782:12: warning: overflow in implicit constant conversion [-Woverflow]
+   bft.f1 = 0xffff;
+            ^
+cc                          -c -o stuff.o stuff.c
+In file included from stuff.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o out.o out.c
+In file included from out.c:31:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o comment.o comment.c
+In file included from comment.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o lex.o lex.c
+In file included from lex.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o parse.o parse.c
+In file included from parse.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o decl.o decl.c
+In file included from decl.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o expr.o expr.c
+In file included from expr.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o pexpr.o pexpr.c
+In file included from pexpr.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o funcs.o funcs.c
+In file included from funcs.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                     -c    -DCUST1=hpmods -DCUST2=citmods dir.c
+In file included from dir.c:22:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o hpmods.o hpmods.c
+In file included from hpmods.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                          -c -o citmods.o citmods.c
+In file included from citmods.c:21:0:
+trans.h:1776:42: warning: built-in function 'logf' declared as non-function
+ extern FILE *inf, *outf, *codef, *hdrf, *logf;
+                                          ^
+cc                      trans.o stuff.o out.o comment.o lex.o parse.o decl.o expr.o pexpr.o funcs.o dir.o hpmods.o citmods.o -o p2c
+cc                     -c    p2clib.c
+cc                          -c -o loc.p2clib.o loc.p2clib.c
+ar r libp2c.a p2clib.o loc.p2clib.o 
+ar: creating libp2c.a
+sed -e "s;--HOMEDIR--;/usr/lib/p2c;"   \
+            -e "s;--INCDIR--;/usr/include/p2c;"     \
+            -e "s;--LIBDIR--;/usr/lib;"     \
+            p2c.man >p2c.man.inst
+if [ -f /usr/bin/nroff -o -f /bin/nroff ];  \
+    then nroff -man p2c.man.inst >p2c.cat; fi
+==> Entering fakeroot environment...
+==> Starting package()...
+if [ ! -d /tmp/p2c/pkg/p2c/usr/lib/p2c ]; then mkdir /tmp/p2c/pkg/p2c/usr/lib/p2c; else true; fi
+if [ ! -d /tmp/p2c/pkg/p2c/usr/bin ]; then mkdir /tmp/p2c/pkg/p2c/usr/bin; else true; fi
+if [ ! -d /tmp/p2c/pkg/p2c/usr/lib ]; then mkdir /tmp/p2c/pkg/p2c/usr/lib; else true; fi
+if [ ! -d /tmp/p2c/pkg/p2c/usr/share/man/man1 ]; then mkdir /tmp/p2c/pkg/p2c/usr/share/man/man1; else true; fi
+if [ ! -d /tmp/p2c/pkg/p2c/usr/include/p2c ]; then mkdir /tmp/p2c/pkg/p2c/usr/include/p2c; else true; fi
+cp  p2c          /tmp/p2c/pkg/p2c/usr/bin/p2c
+sed -e "s;--HOMEDIR--;/tmp/p2c/pkg/p2c/usr/lib/p2c;"   \
+    -e "s;--INCDIR--;/tmp/p2c/pkg/p2c/usr/include/p2c;"     \
+    -e "s;--LIBDIR--;/tmp/p2c/pkg/p2c/usr/lib;"     \
+    -e "s;/bin/perl;`which perl`;"      \
+    p2cc.perl >p2cc
+chmod a+x p2cc
+cp  p2cc         /tmp/p2c/pkg/p2c/usr/bin/p2cc
+cp  libp2c.a     /tmp/p2c/pkg/p2c/usr/lib/libp2c.a
+if [ -f /usr/bin/ranlib -o -f /bin/ranlib ]; then ranlib /tmp/p2c/pkg/p2c/usr/lib/libp2c.a; fi
+cp  p2c.cat             /tmp/p2c/pkg/p2c/usr/share/man/man1/p2c.1
+cp  p2c.h        /tmp/p2c/pkg/p2c/usr/include/p2c/p2c.h
+cp  sys.p2crc    /tmp/p2c/pkg/p2c/usr/lib/p2c/p2crc
+cp  loc.p2crc    /tmp/p2c/pkg/p2c/usr/lib/p2c/loc.p2crc
+cp  system.imp   /tmp/p2c/pkg/p2c/usr/lib/p2c/system.imp
+cp  system.m2    /tmp/p2c/pkg/p2c/usr/lib/p2c/system.m2
+cp  turbo.imp    /tmp/p2c/pkg/p2c/usr/lib/p2c/turbo.imp
+cp  string.pas   /tmp/p2c/pkg/p2c/usr/lib/p2c/string.pas
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> WARNING: Package contains reference to $pkgdir
+==> Creating package "p2c"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: p2c 1.21alpha2-11 (Sat Nov 14 05:02:45 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 0c8de87431a9ed22049727daf63a7c40af07ea58a526ad2333600f2ea2433063: rename /usr/local/google/home/khazem/docker/aufs/mnt/0c8de87431a9ed22049727daf63a7c40af07ea58a526ad2333600f2ea2433063 /usr/local/google/home/khazem/docker/aufs/mnt/0c8de87431a9ed22049727daf63a7c40af07ea58a526ad2333600f2ea2433063-removing: device or resource busy></pre></code>
+        </body></html>

@@ -1,0 +1,761 @@
+        <html><head></head><body>
+        <h1>Report for reaver on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:33</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data reaver
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1057 packages in cache
+Found permanent source directory in /sources/reaver
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: reaver 1.4-2 (Sat Nov 14 04:57:47 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) libnl-3.2.26-1  libpcap-1.7.4-1  sqlite-3.9.2-1
+
+Total Installed Size:  7.34 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+installing libpcap...
+installing sqlite...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: If you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used.
+checking for x86_64-unknown-linux-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for pcap_open_live in -lpcap... yes
+checking for sqlite3_open in -lsqlite3... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for stdlib.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for string.h... (cached) yes
+checking pcap.h usability... yes
+checking pcap.h presence... yes
+checking for pcap.h... yes
+checking sqlite3.h usability... yes
+checking sqlite3.h presence... yes
+checking for sqlite3.h... yes
+configure: creating ./config.status
+config.status: creating Makefile
+(cd utils && make)
+make[1]: Entering directory '/tmp/reaver/src/reaver-1.4/src/utils'
+  CC  base64.c
+  CC  common.c
+  CC  ip_addr.c
+  CC  radiotap.c
+  CC  trace.c
+  CC  uuid.c
+  CC  wpa_debug.c
+  CC  wpabuf.c
+  CC  os_unix.c
+  CC  eloop.c
+ar crT libutils.a base64.o common.o ip_addr.o radiotap.o trace.o uuid.o wpa_debug.o wpabuf.o os_unix.o eloop.o
+make[1]: Leaving directory '/tmp/reaver/src/reaver-1.4/src/utils'
+(cd tls && make)
+make[1]: Entering directory '/tmp/reaver/src/reaver-1.4/src/tls'
+  CC  asn1.c
+In file included from bignum.c:21:0:
+libtommath.c: In function 'mp_exptmod':
+libtommath.c:580:7: warning: variable 'dr' set but not used [-Wunused-but-set-variable]
+   int dr;
+       ^
+  CC  bignum.c
+  CC  pkcs1.c
+  CC  pkcs5.c
+  CC  pkcs8.c
+  CC  rsa.c
+  CC  tlsv1_client.c
+  CC  tlsv1_client_read.c
+  CC  tlsv1_client_write.c
+  CC  tlsv1_common.c
+  CC  tlsv1_cred.c
+  CC  tlsv1_record.c
+  CC  tlsv1_server.c
+tlsv1_server_read.c: In function 'tls_process_client_key_exchange_rsa':
+tlsv1_server_read.c:474:6: warning: variable 'encr_len' set but not used [-Wunused-but-set-variable]
+  u16 encr_len;
+      ^
+  CC  tlsv1_server_read.c
+  CC  tlsv1_server_write.c
+  CC  x509v3.c
+ar crT libtls.a asn1.o bignum.o pkcs1.o pkcs5.o pkcs8.o rsa.o tlsv1_client.o tlsv1_client_read.o tlsv1_client_write.o tlsv1_common.o tlsv1_cred.o tlsv1_record.o tlsv1_server.o tlsv1_server_read.o tlsv1_server_write.o x509v3.o
+make[1]: Leaving directory '/tmp/reaver/src/reaver-1.4/src/tls'
+(cd crypto && make)
+make[1]: Entering directory '/tmp/reaver/src/reaver-1.4/src/crypto'
+  CC  aes-cbc.c
+  CC  aes-ctr.c
+  CC  aes-eax.c
+  CC  aes-encblock.c
+  CC  aes-internal.c
+  CC  aes-internal-dec.c
+  CC  aes-internal-enc.c
+  CC  aes-omac1.c
+  CC  aes-unwrap.c
+  CC  aes-wrap.c
+  CC  des-internal.c
+  CC  dh_group5.c
+  CC  dh_groups.c
+  CC  md4-internal.c
+  CC  md5.c
+In file included from ../utils/common.h:18:0,
+                 from md5-internal.c:17:
+md5-internal.c: In function 'MD5Final':
+md5-internal.c:191:29: warning: argument to 'sizeof' in 'memset' call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
+     os_memset(ctx, 0, sizeof(ctx)); /* In case it's sensitive */
+                             ^
+../utils/os.h:413:41: note: in definition of macro 'os_memset'
+ #define os_memset(s, c, n) memset(s, c, n)
+                                         ^
+  CC  md5-internal.c
+  CC  md5-non-fips.c
+  CC  milenage.c
+  CC  ms_funcs.c
+  CC  rc4.c
+  CC  sha1.c
+  CC  sha1-internal.c
+  CC  sha1-pbkdf2.c
+  CC  sha1-tlsprf.c
+  CC  sha1-tprf.c
+  CC  sha256.c
+  CC  sha256-internal.c
+  CC  crypto_internal.c
+  CC  crypto_internal-cipher.c
+  CC  crypto_internal-modexp.c
+  CC  crypto_internal-rsa.c
+  CC  tls_internal.c
+  CC  fips_prf_internal.c
+ar crT libcrypto.a aes-cbc.o aes-ctr.o aes-eax.o aes-encblock.o aes-internal.o aes-internal-dec.o aes-internal-enc.o aes-omac1.o aes-unwrap.o aes-wrap.o des-internal.o dh_group5.o dh_groups.o md4-internal.o md5.o md5-internal.o md5-non-fips.o milenage.o ms_funcs.o rc4.o sha1.o sha1-internal.o sha1-pbkdf2.o sha1-tlsprf.o sha1-tprf.o sha256.o sha256-internal.o crypto_internal.o crypto_internal-cipher.o crypto_internal-modexp.o crypto_internal-rsa.o tls_internal.o fips_prf_internal.o
+make[1]: Leaving directory '/tmp/reaver/src/reaver-1.4/src/crypto'
+(cd wps && make)
+make[1]: Entering directory '/tmp/reaver/src/reaver-1.4/src/wps'
+gcc -I../utils -I ../ wps_attr_build.c -c
+gcc -I../utils -I ../ wps_attr_parse.c -c
+gcc -I../utils -I ../ wps_attr_process.c -c
+gcc -I../utils -I ../ wps.c -c
+gcc -I../utils -I ../ wps_common.c -c
+gcc -I../utils -I ../ wps_dev_attr.c -c
+gcc -I../utils -I ../ wps_enrollee.c -c
+gcc -I../utils -I ../ wps_registrar.c -c
+gcc -I../utils -I ../ wps_ufd.c -c
+make[1]: Leaving directory '/tmp/reaver/src/reaver-1.4/src/wps'
+(cd lwe && make BUILD_STATIC=y libiw.a)
+make[1]: Entering directory '/tmp/reaver/src/reaver-1.4/src/lwe'
+cp wireless.21.h wireless.h
+gcc -Os -W -Wall -Wstrict-prototypes -Wmissing-prototypes -Wshadow -Wpointer-arith -Wcast-qual -Winline -I. -MMD     -fPIC -c -o iwlib.so iwlib.c
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'print_iface_version_info':
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:387:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWNAME, &wrq) < 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:396:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWRANGE, &wrq) < 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'iw_get_range_info':
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:483:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWRANGE, &wrq) < 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'iw_get_priv_info':
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:623:10: warning: called from here [-Winline]
+       if(iw_get_ext(skfd, ifname, SIOCGIWPRIV, &wrq) >= 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'iw_set_basic_config':
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:748:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWNAME, &wrq) < 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:761:10: warning: called from here [-Winline]
+       if(iw_get_ext(skfd, ifname, SIOCSIWMODE, &wrq) < 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.h:506:1: warning: inlining failed in call to 'iw_set_ext': call is unlikely and code size would grow [-Winline]
+ iw_set_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:773:10: warning: called from here [-Winline]
+       if(iw_set_ext(skfd, ifname, SIOCSIWFREQ, &wrq) < 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.h:506:1: warning: inlining failed in call to 'iw_set_ext': call is unlikely and code size would grow [-Winline]
+ iw_set_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:793:7: warning: called from here [-Winline]
+    if(iw_set_ext(skfd, ifname, SIOCSIWENCODE, &wrq) < 0)
+       ^
+In file included from iwlib.c:14:0:
+iwlib.h:506:1: warning: inlining failed in call to 'iw_set_ext': call is unlikely and code size would grow [-Winline]
+ iw_set_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:813:10: warning: called from here [-Winline]
+       if(iw_set_ext(skfd, ifname, SIOCSIWENCODE, &wrq) < 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.h:506:1: warning: inlining failed in call to 'iw_set_ext': call is unlikely and code size would grow [-Winline]
+ iw_set_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:827:10: warning: called from here [-Winline]
+       if(iw_set_ext(skfd, ifname, SIOCSIWNWID, &wrq) < 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.h:506:1: warning: inlining failed in call to 'iw_set_ext': call is unlikely and code size would grow [-Winline]
+ iw_set_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:850:10: warning: called from here [-Winline]
+       if(iw_set_ext(skfd, ifname, SIOCSIWESSID, &wrq) < 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'iw_get_basic_config':
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:673:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWNAME, &wrq) < 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:683:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWNWID, &wrq) >= 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:690:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWFREQ, &wrq) >= 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:701:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWENCODE, &wrq) >= 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:712:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWESSID, &wrq) >= 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:719:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWMODE, &wrq) >= 0)
+      ^
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'iw_get_stats':
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:1276:10: warning: called from here [-Winline]
+       if(iw_get_ext(skfd, ifname, SIOCGIWSTATS, &wrq) < 0)
+          ^
+In file included from iwlib.c:14:0:
+iwlib.c: In function 'iw_process_scan':
+iwlib.h:506:1: warning: inlining failed in call to 'iw_set_ext': call is unlikely and code size would grow [-Winline]
+ iw_set_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:3058:11: warning: called from here [-Winline]
+       if((iw_set_ext(skfd, ifname, SIOCSIWSCAN, &wrq) < 0)
+           ^
+In file included from iwlib.c:14:0:
+iwlib.h:522:1: warning: inlining failed in call to 'iw_get_ext': call is unlikely and code size would grow [-Winline]
+ iw_get_ext(int   skfd,  /* Socket to the kernel */
+ ^
+iwlib.c:3082:6: warning: called from here [-Winline]
+   if(iw_get_ext(skfd, ifname, SIOCGIWSCAN, &wrq) < 0)
+      ^
+rm -f libiw.a
+ar cru libiw.a iwlib.so
+ar: `u' modifier ignored since `D' is the default (see `U')
+ranlib libiw.a
+make[1]: Leaving directory '/tmp/reaver/src/reaver-1.4/src/lwe'
+(cd libwps && make)
+make[1]: Entering directory '/tmp/reaver/src/reaver-1.4/src/libwps'
+gcc -Wall libwps.c -c
+libwps.c: In function 'parse_wps_parameters':
+libwps.c:29:9: warning: variable 'data_len' set but not used [-Wunused-but-set-variable]
+  size_t data_len = 0, offset = 0;
+         ^
+make[1]: Leaving directory '/tmp/reaver/src/reaver-1.4/src/libwps'
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 globule.c -c 
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps argsparser.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 init.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 misc.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps sql.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 builder.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 crc.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps 80211.c -c
+80211.c: In function 'read_ap_beacon':
+80211.c:76:9: warning: variable 'tag_offset' set but not used [-Wunused-but-set-variable]
+  size_t tag_offset = 0;
+         ^
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 iface.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps wpsmon.c *.o libwps/*.o wps/*.o tls/bignum.o tls/libtls.a utils/libutils.a crypto/libcrypto.a lwe/libiw.a -ldl -lm -lpcap -lsqlite3  -o wash
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps sigint.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 sigalrm.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 keys.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 pins.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 send.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps exchange.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps session.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps cracker.c -c
+gcc -DCONF_DIR='"/etc/reaver"' -DREAVER_DATABASE='"/etc/reaver/reaver.db"' -Wall -g -O2 -Ilibwps wpscrack.c *.o libwps/*.o wps/*.o tls/bignum.o tls/libtls.a utils/libutils.a crypto/libcrypto.a lwe/libiw.a -ldl -lm -lpcap -lsqlite3  -o reaver
+wpscrack.c: In function 'main':
+wpscrack.c:38:30: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  int ret_val = EXIT_FAILURE, r = 0;
+                              ^
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "reaver"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: reaver 1.4-2 (Sat Nov 14 04:58:53 UTC 2015)
+===> Printing config.logs
+found log at /tmp/reaver/src/reaver-1.4/src/config.log
+____
+File /tmp/reaver/src/reaver-1.4/src/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by reaver configure 1.4, which was
+generated by GNU Autoconf 2.65.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --sysconfdir=/etc
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = eac4ae81e475
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /usr/bin/site_perl
+PATH: /usr/bin/vendor_perl
+PATH: /usr/bin/core_perl
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1993: checking for x86_64-unknown-linux-gcc
+configure:2023: result: no
+configure:2033: checking for gcc
+configure:2049: found /usr/bin/gcc
+configure:2060: result: gcc
+configure:2289: checking for C compiler version
+configure:2298: gcc --version >&5
+gcc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2309: $? = 0
+configure:2298: gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2309: $? = 0
+configure:2298: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2309: $? = 1
+configure:2298: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'
+gcc: fatal error: no input files
+compilation terminated.
+configure:2309: $? = 1
+configure:2329: checking whether the C compiler works
+configure:2351: gcc    conftest.c  >&5
+configure:2355: $? = 0
+configure:2404: result: yes
+configure:2407: checking for C compiler default output file name
+configure:2409: result: a.out
+configure:2415: checking for suffix of executables
+configure:2422: gcc -o conftest    conftest.c  >&5
+configure:2426: $? = 0
+configure:2448: result: 
+configure:2470: checking whether we are cross compiling
+configure:2478: gcc -o conftest    conftest.c  >&5
+configure:2482: $? = 0
+configure:2489: ./conftest
+configure:2493: $? = 0
+configure:2508: result: no
+configure:2513: checking for suffix of object files
+configure:2535: gcc -c   conftest.c >&5
+configure:2539: $? = 0
+configure:2560: result: o
+configure:2564: checking whether we are using the GNU C compiler
+configure:2583: gcc -c   conftest.c >&5
+configure:2583: $? = 0
+configure:2592: result: yes
+configure:2601: checking whether gcc accepts -g
+configure:2621: gcc -c -g  conftest.c >&5
+configure:2621: $? = 0
+configure:2662: result: yes
+configure:2679: checking for gcc option to accept ISO C89
+configure:2743: gcc  -c -g -O2  conftest.c >&5
+configure:2743: $? = 0
+configure:2756: result: none needed
+configure:2787: checking for pcap_open_live in -lpcap
+configure:2812: gcc -o conftest -Wall -g -O2  -ldl -lm -lpcap -lsqlite3  conftest.c -lpcap   >&5
+configure:2812: $? = 0
+configure:2821: result: yes
+configure:2834: checking for sqlite3_open in -lsqlite3
+configure:2859: gcc -o conftest -Wall -g -O2  -ldl -lm -lpcap -lsqlite3  conftest.c -lsqlite3  -lpcap  >&5
+configure:2859: $? = 0
+configure:2868: result: yes
+configure:2886: checking how to run the C preprocessor
+configure:2917: gcc -E  conftest.c
+configure:2917: $? = 0
+configure:2931: gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2931: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "reaver"
+| #define PACKAGE_TARNAME "reaver"
+| #define PACKAGE_VERSION "1.4"
+| #define PACKAGE_STRING "reaver 1.4"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBPCAP 1
+| #define HAVE_LIBSQLITE3 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2956: result: gcc -E
+configure:2976: gcc -E  conftest.c
+configure:2976: $? = 0
+configure:2990: gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2990: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "reaver"
+| #define PACKAGE_TARNAME "reaver"
+| #define PACKAGE_VERSION "1.4"
+| #define PACKAGE_STRING "reaver 1.4"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBPCAP 1
+| #define HAVE_LIBSQLITE3 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3019: checking for grep that handles long lines and -e
+configure:3077: result: /usr/bin/grep
+configure:3082: checking for egrep
+configure:3144: result: /usr/bin/grep -E
+configure:3149: checking for ANSI C header files
+configure:3169: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3169: $? = 0
+configure:3242: gcc -o conftest -Wall -g -O2  -ldl -lm -lpcap -lsqlite3  conftest.c -lsqlite3 -lpcap  >&5
+configure:3242: $? = 0
+configure:3242: ./conftest
+configure:3242: $? = 0
+configure:3253: result: yes
+configure:3266: checking for sys/types.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for sys/stat.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for stdlib.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for string.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for memory.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for strings.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for inttypes.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for stdint.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3266: checking for unistd.h
+configure:3266: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3266: $? = 0
+configure:3266: result: yes
+configure:3282: checking for stdlib.h
+configure:3282: result: yes
+configure:3282: checking for stdint.h
+configure:3282: result: yes
+configure:3282: checking for string.h
+configure:3282: result: yes
+configure:3297: checking pcap.h usability
+configure:3297: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3297: $? = 0
+configure:3297: result: yes
+configure:3297: checking pcap.h presence
+configure:3297: gcc -E  conftest.c
+configure:3297: $? = 0
+configure:3297: result: yes
+configure:3297: checking for pcap.h
+configure:3297: result: yes
+configure:3311: checking sqlite3.h usability
+configure:3311: gcc -c -Wall -g -O2  conftest.c >&5
+configure:3311: $? = 0
+configure:3311: result: yes
+configure:3311: checking sqlite3.h presence
+configure:3311: gcc -E  conftest.c
+configure:3311: $? = 0
+configure:3311: result: yes
+configure:3311: checking for sqlite3.h
+configure:3311: result: yes
+configure:3468: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by reaver config.status 1.4, which was
+generated by GNU Autoconf 2.65.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on eac4ae81e475
+
+config.status:728: creating Makefile
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_pcap_h=yes
+ac_cv_header_sqlite3_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_lib_pcap_pcap_open_live=yes
+ac_cv_lib_sqlite3_sqlite3_open=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/bin/grep -E'
+ac_cv_path_GREP=/usr/bin/grep
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='gcc'
+CFLAGS='-Wall -g -O2'
+CPP='gcc -E'
+CPPFLAGS=''
+DEFS='-DPACKAGE_NAME=\"reaver\" -DPACKAGE_TARNAME=\"reaver\" -DPACKAGE_VERSION=\"1.4\" -DPACKAGE_STRING=\"reaver\ 1.4\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DHAVE_LIBPCAP=1 -DHAVE_LIBSQLITE3=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STDINT_H=1 -DHAVE_STRING_H=1 -DHAVE_PCAP_H=1 -DHAVE_SQLITE3_H=1'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/bin/grep -E'
+EXEEXT=''
+GREP='/usr/bin/grep'
+LDFLAGS='-ldl -lm -lpcap -lsqlite3 '
+LIBOBJS=''
+LIBS='-lsqlite3 -lpcap '
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='reaver'
+PACKAGE_STRING='reaver 1.4'
+PACKAGE_TARNAME='reaver'
+PACKAGE_URL=''
+PACKAGE_VERSION='1.4'
+PATH_SEPARATOR=':'
+SHELL='/bin/sh'
+ac_ct_CC='gcc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='/etc'
+target='reaver'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "reaver"
+#define PACKAGE_TARNAME "reaver"
+#define PACKAGE_VERSION "1.4"
+#define PACKAGE_STRING "reaver 1.4"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define HAVE_LIBPCAP 1
+#define HAVE_LIBSQLITE3 1
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_STRING_H 1
+#define HAVE_PCAP_H 1
+#define HAVE_SQLITE3_H 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

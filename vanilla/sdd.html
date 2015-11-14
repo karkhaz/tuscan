@@ -1,0 +1,3515 @@
+        <html><head></head><body>
+        <h1>Report for sdd on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:52</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data sdd
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2249 packages in cache
+Found permanent source directory in /sources/sdd
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sdd 1.52-8 (Sat Nov 14 06:27:34 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+File include/schily.h is read-only; trying to patch anyway
+patching file include/schily.h
+File libschily/stdio/fgetline.c is read-only; trying to patch anyway
+patching file libschily/stdio/fgetline.c
+File RULES/mk-gmake.id is read-only; trying to patch anyway
+patching file RULES/mk-gmake.id
+File sdd/sdd.c is read-only; trying to patch anyway
+patching file sdd/sdd.c
+		W A R N I N G	Messages like:
+
+gmake[2]: Entering directory `/tmp/cdrtools-2.01/libschily'
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/cvmod.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/dat.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fcons.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fdown.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fdup.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/ffileread.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/ffilewrite.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fgetline.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fgetstr.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/file_raise.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fileclose.d: No such file or directory
+....
+
+are caused by a GNU make bug and not by the Schily makefile system.
+
+The related bug has been reported to the GNU make maintainers in 1988 but
+as the bug has not yet been fixed, it seems that GNU make is unmaintained :-(
+A working highly portable make program is at ftp://ftp.berlios.de/pub/smake
+RULES/rules1.top:234: incs/Dcc.x86_64-linux: No such file or directory
+RULES/rules.cnf:56: incs/x86_64-linux-cc/Inull: No such file or directory
+RULES/rules.cnf:57: incs/x86_64-linux-cc/rules.cnf: No such file or directory
+	==> MAKING DIRECTORY "incs/x86_64-linux-cc/Inull"
+	==> CONFIGURING RULES "incs/x86_64-linux-cc/rules.cnf"
+creating cache ./config.cache
+checking host system type... Invalid configuration `x86_64-unknown-linux-gnu': machine `x86_64-unknown' not recognized
+
+checking for Cygwin environment... no
+checking for mingw32 environment... no
+checking for EMX/OS2 environment... no
+checking for executable suffix... no
+checking how to run the C preprocessor... cc -E
+checking for ranlib... ranlib
+checking whether make sets ${MAKE}... yes
+checking for ANSI C header files... yes
+checking for UNIX-98 compliant inttypes.h... yes
+checking for dirent.h that defines DIR... yes
+checking for opendir in -ldir... no
+checking whether stat file-mode macros are broken... no
+checking whether time.h and sys/time.h may both be included... yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking if select needs nonstd include files... no
+checking if sys/select.h is needed for select... no
+checking if sys/socket.h is needed for select... no
+checking for varargs.h... no
+checking for stdarg.h... yes
+checking for stdlib.h... yes
+checking for stddef.h... yes
+checking for string.h... yes
+checking for strings.h... yes
+checking for unistd.h... yes
+checking for fcntl.h... yes
+checking for sys/file.h... yes
+checking for getopt.h... yes
+checking for limits.h... yes
+checking for a.out.h... yes
+checking for aouthdr.h... no
+checking for elf.h... yes
+checking for malloc.h... yes
+checking for termios.h... yes
+checking for termio.h... yes
+checking for pwd.h... yes
+checking for grp.h... yes
+checking for sys/acl.h... yes
+checking for acllib.h... no
+checking for shadow.h... yes
+checking for syslog.h... yes
+checking for sys/time.h... yes
+checking for sys/times.h... yes
+checking for utime.h... yes
+checking for sys/utime.h... no
+checking for sys/ioctl.h... yes
+checking for sys/filio.h... no
+checking for sys/param.h... yes
+checking for sys/systeminfo.h... no
+checking for sys/syscall.h... yes
+checking for mntent.h... yes
+checking for sys/mntent.h... no
+checking for sys/mnttab.h... no
+checking for sys/mount.h... yes
+checking for wait.h... yes
+checking for sys/resource.h... yes
+checking for sys/procfs.h... yes
+checking for sys/utsname.h... yes
+checking for sys/priocntl.h... no
+checking for sys/rtpriocntl.h... no
+checking for sys/mtio.h... yes
+checking for sys/tape.h... no
+checking for sys/mman.h... yes
+checking for linux/pg.h... yes
+checking for camlib.h... no
+checking for sys/shm.h... yes
+checking for sys/ipc.h... yes
+checking for sys/dkio.h... no
+checking for sys/dklabel.h... no
+checking for sun/dkio.h... no
+checking for sun/dklabel.h... no
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for types.h... no
+checking for stat.h... no
+checking for poll.h... yes
+checking for sys/poll.h... yes
+checking for sys/select.h... yes
+checking for netdb.h... yes
+checking for sys/socket.h... yes
+checking for ieeefp.h... no
+checking for fp.h... no
+checking for values.h... yes
+checking for float.h... yes
+checking for arpa/inet.h... yes
+checking for bsd/dev/scsireg.h... no
+checking for sys/bsdtty.h... no
+checking for OS.h... no
+checking for attr/xattr.h... yes
+checking for fnmatch.h... yes
+checking for header file containing  major(), minor() and makedev()... sys/sysmacros.h
+checking bits in minor device number... 32
+checking whether bits in minor device numbers are non contiguous... yes
+checking for _filbuf()... no
+checking for __filbuf()... no
+checking for USG derived STDIO... no
+checking for errno definition in errno.h... yes
+checking for working const... yes
+checking whether byte ordering is bigendian... no
+checking whether bitorder in bitfields is htol... no
+checking return type of signal handlers... void
+checking for uid_t in sys/types.h... yes
+checking type of array argument to getgroups... gid_t
+checking for type long long... yes
+checking for prototypes... yes
+checking if compiler allows dynamic arrays... yes
+checking for uid_t in sys/types.h... (cached) yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking for pid_t... yes
+checking for off_t... yes
+checking for mode_t... yes
+checking for time_t... yes
+checking for caddr_t... yes
+checking for daddr_t... yes
+checking for dev_t... yes
+checking for ino_t... yes
+checking for nlink_t... yes
+checking for blksize_t... yes
+checking for blkcnt_t... yes
+checking for clock_t... yes
+checking for socklen_t... yes
+checking for u_char... yes
+checking for u_short... yes
+checking for u_int... yes
+checking for u_long... yes
+checking size of char... 1
+checking size of short int... 2
+checking size of int... 4
+checking size of long int... 8
+checking size of long long... 8
+checking size of char *... 8
+checking size of unsigned char... 1
+checking size of unsigned short int... 2
+checking size of unsigned int... 4
+checking size of unsigned long int... 8
+checking size of unsigned long long... 8
+checking size of unsigned char *... 8
+checking if char is unsigned... no
+checking if va_list is an array... yes
+checking if struct mtget contains mt_type... yes
+checking if struct mtget contains mt_model... no
+checking if struct mtget contains mt_dsreg... yes
+checking if struct mtget contains mt_dsreg1... no
+checking if struct mtget contains mt_dsreg2... no
+checking if struct mtget contains mt_gstat... yes
+checking if struct mtget contains mt_erreg... yes
+checking if struct mtget contains mt_resid... yes
+checking if struct mtget contains mt_fileno... yes
+checking if struct mtget contains mt_blkno... yes
+checking if struct mtget contains mt_flags... no
+checking if struct mtget contains mt_bf... no
+checking if struct rusage is declared in sys/resource.h... yes
+checking if struct siginfo contains si_utime... no
+checking if struct sockaddr_storage is declared in socket.h... yes
+checking if an illegal declaration for union semun in sys/sem.h exists... no
+checking if union wait is declared in wait.h or sys/wait.h... yes
+checking if struct stat contains st_spare1... no
+checking if struct stat contains st_atimensec... no
+checking if struct stat contains st_atim.tv_nsec... yes
+checking if struct stat contains st_atim.st__tim.tv_nsec... no
+checking if struct stat contains st_atimespec.tv_nsec... no
+checking for st_blksize in struct stat... yes
+checking for st_blocks in struct stat... yes
+checking if struct stat contains st_fstype... no
+checking for st_rdev in struct stat... yes
+checking if struct stat contains st_flags... no
+checking for wait3 that fills in rusage... yes
+checking for mlock... yes
+checking for mlockall... yes
+checking for va_copy... yes
+checking for __va_copy... yes
+checking for working ecvt() ... yes
+checking for working fcvt() ... yes
+checking for working gcvt() ... yes
+checking for __dtoa... no
+checking for __dtoa that needs result ptr... no
+checking for unistd.h... (cached) yes
+checking for getpagesize... yes
+checking for mmap that needs ptr to size... no
+checking for unistd.h... (cached) yes
+checking for getpagesize... (cached) yes
+checking for working mmap... yes
+checking for unistd.h... (cached) yes
+checking for getpagesize... (cached) yes
+checking for mmap that needs ptr to size... (cached) no
+checking if mmap works to get shared memory... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking if quotactl is an ioctl... no
+checking for file locking via fcntl... yes
+checking for uname... yes
+checking for vfork.h... no
+checking for working vfork... yes
+checking for sys_siglist... yes
+checking for BSD compliant getpgrp... no
+checking for BSD compliant setpgrp... no
+checking for access... yes
+checking for eaccess... yes
+checking for euidaccess... yes
+checking for brk... yes
+checking for sbrk... yes
+checking for strerror... yes
+checking for nice... yes
+checking for memmove... yes
+checking for flock... yes
+checking for lockf... yes
+checking for fchdir... yes
+checking for statvfs... yes
+checking for quotactl... yes
+checking for dup2... yes
+checking for getcwd... yes
+checking for shmat... yes
+checking for semget... yes
+checking for lstat... yes
+checking for readlink... yes
+checking for symlink... yes
+checking for link... yes
+checking for rename... yes
+checking for mkfifo... yes
+checking for mknod... yes
+checking for setreuid... yes
+checking for setresuid... yes
+checking for seteuid... yes
+checking for setuid... yes
+checking for setregid... yes
+checking for setresgid... yes
+checking for setegid... yes
+checking for setgid... yes
+checking for getpgid... yes
+checking for setpgid... yes
+checking for getpgrp... yes
+checking for setpgrp... yes
+checking for getspnam... yes
+checking for getspwnam... no
+checking for sync... yes
+checking for fsync... yes
+checking for fork... yes
+checking for wait4... yes
+checking for waitid... yes
+checking for waitpid... yes
+checking for getrusage... yes
+checking for getrlimit... yes
+checking for setrlimit... yes
+checking for ulimit... yes
+checking for execl... yes
+checking for execle... yes
+checking for execlp... yes
+checking for execv... yes
+checking for execve... yes
+checking for execvp... yes
+checking for gethostid... yes
+checking for gethostname... yes
+checking for getdomainname... yes
+checking for getpagesize... (cached) yes
+checking for getdtablesize... yes
+checking for gettimeofday... yes
+checking for settimeofday... yes
+checking for time... yes
+checking for stime... yes
+checking for poll... yes
+checking for select... yes
+checking for chown... yes
+checking for lchown... yes
+checking for times... yes
+checking for utime... yes
+checking for utimes... yes
+checking for ecvt_r... yes
+checking for fcvt_r... yes
+checking for gcvt_r... no
+checking for econvert... no
+checking for fconvert... no
+checking for gconvert... no
+checking for isinf... yes
+checking for isnan... yes
+checking for rand... yes
+checking for drand48... yes
+checking for setpriority... yes
+checking for DosSetPriority... no
+checking for DosAllocSharedMem... no
+checking for seekdir... yes
+checking for strsignal... yes
+checking for str2sig... no
+checking for sig2str... no
+checking for killpg... yes
+checking for sigrelse... yes
+checking for sigprocmask... yes
+checking for sigsetmask... yes
+checking for sigset... yes
+checking for nanosleep... yes
+checking for usleep... yes
+checking for tcgetattr... yes
+checking for tcsetattr... yes
+checking for putenv... yes
+checking for setenv... yes
+checking for snprintf... yes
+checking for strcasecmp... yes
+checking for strdup... yes
+checking for valloc... yes
+checking for madvise... yes
+checking for chflags... no
+checking for fchflags... no
+checking for fflagstostr... no
+checking for strtofflags... no
+checking for fnmatch... yes
+checking if we may not define our own malloc()... no
+checking if link() allows hard links on symlinks... yes
+checking if link() does not folow symlinks... yes
+checking for unistd.h... (cached) yes
+checking if access() does implement E_OK... no
+checking for fseeko()... yes
+checking for ftello()... yes
+checking for rcmd in -lsocket... no
+checking for inet_ntoa in -lnsl... yes
+checking for rcmd... yes
+checking for socket... yes
+checking for socketpair... yes
+checking for getservbyname... yes
+checking for inet_ntoa... yes
+checking for getaddrinfo... yes
+checking for getnameinfo... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking for _LARGE_FILES value needed for large files... no
+checking for _LARGEFILE_SOURCE value needed for large files... no
+checking if system supports Large Files at all... yes
+checking for crypt in -lc... no
+checking for crypt in -lcrypt... yes
+checking for crypt... yes
+checking for Posix Access Control List support
+checking for acl_get_file in -lacl... yes
+checking for acl_get_file in -lpacl... no
+checking for acl_get_file... yes
+checking for acl_set_file... yes
+checking for acl_from_text... yes
+checking for acl_to_text... yes
+checking for acl_free... yes
+checking for acl_delete_def_file... yes
+checking for Solaris Access Control List support
+checking for acltotext in -lsec... no
+checking for acl... no
+checking for facl... no
+checking for aclfromtext... no
+checking for acltotext... no
+checking for HP-UX Access Control List support
+checking for getacl... no
+checking for fgetacl... no
+checking for setacl... no
+checking for fsetacl... no
+checking for strtoacl... no
+checking for acltostr... no
+checking for cpacl... no
+checking for fcpacl... no
+checking for chownacl... no
+checking for setaclentry... no
+checking for fsetaclentry... no
+checking for Extended Attribute support
+checking for getxattr in -lattr... yes
+checking for getxattr... yes
+checking for setxattr... yes
+checking for listxattr... yes
+updating cache ./config.cache
+creating ./config.status
+creating rules.cnf
+creating xconfig.h
+sh conf/cc-config.sh cc incs/Dcc.x86_64-linux
+Trying to find cc
+Found cc
+Creating empty 'incs/Dcc.x86_64-linux'
+		W A R N I N G	Messages like:
+
+gmake[2]: Entering directory `/tmp/cdrtools-2.01/libschily'
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/cvmod.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/dat.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fcons.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fdown.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fdup.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/ffileread.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/ffilewrite.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fgetline.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fgetstr.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/file_raise.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fileclose.d: No such file or directory
+....
+
+are caused by a GNU make bug and not by the Schily makefile system.
+
+The related bug has been reported to the GNU make maintainers in 1988 but
+as the bug has not yet been fixed, it seems that GNU make is unmaintained :-(
+A working highly portable make program is at ftp://ftp.berlios.de/pub/smake
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/conf"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/conf'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/conf'
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/inc"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> MAKING "all" ON SUBCOMPONENT "SRCROOT/inc/align_test.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/inc'
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/align_test.d: No such file or directory
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/align_test.d"
+	==> COMPILING "OBJ/x86_64-linux-cc/align_test.o"
+align_test.c: In function 'main':
+align_test.c:188:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  i = ((int)buf) % 1024;
+       ^
+align_test.c: In function 'off_short':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:608:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct ss *, s));
+          ^
+align_test.c: In function 'off_int':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:620:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct si *, i));
+          ^
+align_test.c: In function 'off_long':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:632:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct sl *, l));
+          ^
+align_test.c: In function 'off_longlong':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:645:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct sll *, ll));
+          ^
+align_test.c: In function 'off_float':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:658:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct sf *, f));
+          ^
+align_test.c: In function 'off_double':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:670:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct sd *, d));
+          ^
+align_test.c: In function 'off_ptr':
+align_test.c:113:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ #define sm_off(s, m) ((int)&((s)0)->m)
+                       ^
+align_test.c:682:10: note: in expansion of macro 'sm_off'
+  return (sm_off(struct sp *, p));
+          ^
+	==> LINKING "OBJ/x86_64-linux-cc/align_test"
+	==> GENERATING include file "../incs/x86_64-linux-cc/align.h"
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> MAKING "all" ON SUBCOMPONENT "SRCROOT/inc/avoffset.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/inc'
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/avoffset.d: No such file or directory
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/avoffset.d"
+	==> COMPILING "OBJ/x86_64-linux-cc/avoffset.o"
+	==> LINKING "OBJ/x86_64-linux-cc/avoffset"
+	==> GENERATING include file "../incs/x86_64-linux-cc/avoffset.h"
+Warning: Cannot scan stack on this environment.
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/inc'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/libschily"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/libschily'
+	==> MAKING "all" ON SUBCOMPONENT "SRCROOT/libschily/libschily.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/libschily'
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/cvmod.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/dat.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fcons.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fdown.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/ffileread.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/ffilewrite.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fgetline.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/file_raise.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fileopen.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fileread.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fileseek.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/filesize.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/filestat.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/filewrite.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/flag.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/flush.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/niread.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/niwrite.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/openfd.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fcons64.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fileseek64.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/filesize64.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/filestat64.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fileopen64.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/astoi.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/astoll.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/comerr.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/cmpbytes.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/error.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fconv.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/fillbytes.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/format.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/getfp.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/getargs.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/getav0.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/geterrno.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/jsprintf.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/jssnprintf.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/movebytes.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/printf.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/raisecond.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/saveargs.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/seterrno.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/sprintf.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/streql.d: No such file or directory
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/streql.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/sprintf.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/seterrno.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/saveargs.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/raisecond.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/printf.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/movebytes.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/jssnprintf.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/jsprintf.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/geterrno.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/getav0.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/getargs.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/getfp.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/format.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fillbytes.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fconv.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/error.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/cmpbytes.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/comerr.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/astoll.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/astoi.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fileopen64.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/filestat64.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/filesize64.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fileseek64.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fcons64.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/openfd.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/niwrite.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/niread.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/flush.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/flag.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/filewrite.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/filestat.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/filesize.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fileseek.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fileread.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fileopen.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/file_raise.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fgetline.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/ffilewrite.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/ffileread.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fdown.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/fcons.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/dat.d"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/cvmod.d"
+	==> MAKING DIRECTORY "../libs/x86_64-linux-cc"
+	==> COMPILING "OBJ/x86_64-linux-cc/cvmod.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/dat.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fcons.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fdown.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/ffileread.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/ffilewrite.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fgetline.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/file_raise.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fileopen.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fileread.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fileseek.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/filesize.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/filestat.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/filewrite.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/flag.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/flush.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/niread.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/niwrite.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/openfd.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fcons64.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fileseek64.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/filesize64.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/filestat64.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fileopen64.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/astoi.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/astoll.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/comerr.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/cmpbytes.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/error.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fconv.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fillbytes.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/format.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/getfp.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/getargs.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/getav0.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/geterrno.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/jsprintf.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/jssnprintf.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/movebytes.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/printf.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/raisecond.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/saveargs.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/seterrno.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/sprintf.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/streql.o"
+	==> ARCHIVING  "../libs/x86_64-linux-cc/libschily.a"
+	==> RANDOMIZING ARCHIVE "../libs/x86_64-linux-cc/libschily.a"
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/libschily'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/libschily'
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/librmt"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "all" ON SUBCOMPONENT "SRCROOT/librmt/librmt.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/remote.d: No such file or directory
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/remote.d"
+	==> COMPILING "OBJ/x86_64-linux-cc/remote.o"
+	==> ARCHIVING  "../libs/x86_64-linux-cc/librmt.a"
+	==> RANDOMIZING ARCHIVE "../libs/x86_64-linux-cc/librmt.a"
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/sdd"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/sdd'
+../RULES/r-gmake.dep:76: OBJ/x86_64-linux-cc/sdd.d: No such file or directory
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc"
+	==> MAKING DEPENDENCIES "OBJ/x86_64-linux-cc/sdd.d"
+	==> COMPILING "OBJ/x86_64-linux-cc/sdd.o"
+	==> LINKING "OBJ/x86_64-linux-cc/sdd"
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/sdd'
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/man"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/man'
+	==> MAKING "all" ON SUBDIRECTORY "SRCROOT/man/man4"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> MAKING "all" ON SUBCOMPONENT "SRCROOT/man/man4/makefiles.mk"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc/man"
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/makefiles.5"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> MAKING "all" ON SUBCOMPONENT "SRCROOT/man/man4/makerules.mk"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/makerules.5"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/man/man4'
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/man/man4'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/man'
+==> Entering fakeroot environment...
+==> Starting package()...
+		W A R N I N G	Messages like:
+
+gmake[2]: Entering directory `/tmp/cdrtools-2.01/libschily'
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/cvmod.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/dat.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fcons.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fdown.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fdup.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/ffileread.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/ffilewrite.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fgetline.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fgetstr.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/file_raise.d: No such file or directory
+../RULES/r-gmake.dep:76: OBJ/<arch-dir>/fileclose.d: No such file or directory
+....
+
+are caused by a GNU make bug and not by the Schily makefile system.
+
+The related bug has been reported to the GNU make maintainers in 1988 but
+as the bug has not yet been fixed, it seems that GNU make is unmaintained :-(
+A working highly portable make program is at ftp://ftp.berlios.de/pub/smake
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/conf"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/conf'
+install: nothing to make
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/conf'
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/inc"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/inc/align_test.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> GENERATING include file "../incs/x86_64-linux-cc/align.h"
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/include"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/include/align.h"
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/inc/avoffset.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/include/avoffset.h"
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/inc'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/inc'
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/libschily"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/libschily'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/libschily/libschily.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/libschily'
+	==> COMPILING "OBJ/x86_64-linux-cc/cmpbytes.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/fillbytes.o"
+	==> COMPILING "OBJ/x86_64-linux-cc/movebytes.o"
+	==> ARCHIVING  "../libs/x86_64-linux-cc/libschily.a"
+	==> RANDOMIZING ARCHIVE "../libs/x86_64-linux-cc/libschily.a"
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/lib"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/lib/libschily.a"
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/libschily'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/libschily'
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/librmt"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/librmt.mk"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/lib/librmt.a"
+NOTICE: Partial source (SRCROOT/librmt/Makefile.man) missing
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtinit.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc/man"
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtinit.3"
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/man/man3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtinit.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtdebug.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtdebug.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtdebug.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtfilename.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtfilename.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtfilename.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmthostname.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmthostname.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmthostname.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtgetconn.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtgetconn.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtgetconn.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtopen.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtopen.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtopen.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtclose.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtclose.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtclose.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtread.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtread.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtread.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtwrite.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtwrite.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtwrite.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtseek.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtseek.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtseek.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtioctl.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtioctl.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtioctl.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtstatus.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtstatus.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtstatus.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtxstatus.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtxstatus.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtxstatus.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/mtg2rmtg.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/mtg2rmtg.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/mtg2rmtg.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/librmt/rmtg2mtg.mk3"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/rmtg2mtg.3"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man3/rmtg2mtg.3"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/librmt'
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/sdd"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/sdd'
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/bin"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/bin/sdd"
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/sdd/Makefile.man"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/sdd'
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc/man"
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/sdd.1"
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/man/man1"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man1/sdd.1"
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/sdd/Makefile_de.man"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/sdd'
+	==> MAKING DIRECTORY "OBJ/x86_64-linux-cc/man/de"
+	==> LOCALIZING "OBJ/x86_64-linux-cc/man/de/sdd.1"
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/man/de/man1"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/de/man1/sdd.1"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/sdd'
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/sdd'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/sdd'
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/man"
+make[1]: Entering directory '/tmp/sdd/src/sdd-1.52/man'
+	==> MAKING "install" ON SUBDIRECTORY "SRCROOT/man/man4"
+make[2]: Entering directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/man/man4/makefiles.mk"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> MAKING DIRECTORY "/tmp/sdd/pkg/sdd/usr/man/man5"
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man5/makefiles.5"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> MAKING "install" ON SUBCOMPONENT "SRCROOT/man/man4/makerules.mk"
+make[3]: Entering directory '/tmp/sdd/src/sdd-1.52/man/man4'
+	==> INSTALLING "/tmp/sdd/pkg/sdd/usr/man/man5/makerules.5"
+make[3]: Leaving directory '/tmp/sdd/src/sdd-1.52/man/man4'
+make[2]: Leaving directory '/tmp/sdd/src/sdd-1.52/man/man4'
+make[1]: Leaving directory '/tmp/sdd/src/sdd-1.52/man'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "sdd"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: sdd 1.52-8 (Sat Nov 14 06:28:53 UTC 2015)
+===> Printing config.logs
+found log at /tmp/sdd/src/sdd-1.52/incs/x86_64-linux-cc/config.log
+____
+File /tmp/sdd/src/sdd-1.52/incs/x86_64-linux-cc/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:726: checking host system type
+configure:748: checking for Cygwin environment
+configure:764: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:758:20: error: '__CYGWIN32__' undeclared (first use in this function)
+configure:760:8: note: in expansion of macro '__CYGWIN__'
+configure:758:20: note: each undeclared identifier is reported only once for each function it appears in
+configure:760:8: note: in expansion of macro '__CYGWIN__'
+configure: failed program was:
+#line 753 "configure"
+#include "confdefs.h"
+
+int main() {
+
+#ifndef __CYGWIN__
+#define __CYGWIN__ __CYGWIN32__
+#endif
+return __CYGWIN__;
+; return 0; }
+configure:781: checking for mingw32 environment
+configure:793: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:789:8: error: '__MINGW32__' undeclared (first use in this function)
+configure:789:8: note: each undeclared identifier is reported only once for each function it appears in
+configure: failed program was:
+#line 786 "configure"
+#include "confdefs.h"
+
+int main() {
+return __MINGW32__;
+; return 0; }
+configure:810: checking for EMX/OS2 environment
+configure:822: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:818:8: error: '__EMX__' undeclared (first use in this function)
+configure:818:8: note: each undeclared identifier is reported only once for each function it appears in
+configure: failed program was:
+#line 815 "configure"
+#include "confdefs.h"
+
+int main() {
+return __EMX__;
+; return 0; }
+configure:853: checking for executable suffix
+configure:863: cc -o conftest   -O     conftest.c  1>&5
+configure:884: checking how to run the C preprocessor
+configure:905: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:966: checking for ranlib
+configure:994: checking whether make sets ${MAKE}
+configure:1022: checking for ANSI C header files
+configure:1035: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1102: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:1097:67: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1097:67: warning: incompatible implicit declaration of built-in function 'exit'
+configure:1097:67: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:1098:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:1098:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:1126: checking for UNIX-98 compliant inttypes.h
+configure:1140: cc -c   -O    conftest.c 1>&5
+configure:1164: checking for dirent.h that defines DIR
+configure:1177: cc -c   -O    conftest.c 1>&5
+configure:1202: checking for opendir in -ldir
+configure:1221: cc -o conftest   -O     conftest.c -ldir   1>&5
+/usr/sbin/ld: cannot find -ldir
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 1210 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char opendir();
+
+int main() {
+opendir()
+; return 0; }
+configure:1285: checking whether stat file-mode macros are broken
+configure:1341: checking whether time.h and sys/time.h may both be included
+configure:1355: cc -c   -O    conftest.c 1>&5
+configure:1376: checking for sys/wait.h that is POSIX.1 compatible
+configure:1397: cc -c   -O    conftest.c 1>&5
+configure:1418: checking if select needs nonstd include files
+configure:1431: cc -c   -O    conftest.c 1>&5
+configure:1451: checking if sys/select.h is needed for select
+configure:1468: cc -c   -O    conftest.c 1>&5
+configure:1461:1: error: expected identifier or '(' before 'do'
+configure: failed program was:
+#line 1456 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/select.h>
+#ifndef	SELECT_NONSTD_HDR
+do not compile if we do not need nonstandard headers
+#endif
+int main() {
+fd_set rfd; FD_ZERO(&rfd); select(1, &rfd, 0, 0, 0);
+; return 0; }
+configure:1488: checking if sys/socket.h is needed for select
+configure:1505: cc -c   -O    conftest.c 1>&5
+configure:1498:1: error: expected identifier or '(' before 'do'
+configure: failed program was:
+#line 1493 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/socket.h>
+#ifndef	SELECT_NONSTD_HDR
+do not compile if we do not need nonstandard headers
+#endif
+int main() {
+fd_set rfd; FD_ZERO(&rfd); select(1, &rfd, 0, 0, 0);
+; return 0; }
+configure:1528: checking for varargs.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+In file included from configure:1534:0:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include/varargs.h:4:2: error: #error "GCC no longer implements <varargs.h>."
+ #error "GCC no longer implements <varargs.h>."
+  ^
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include/varargs.h:5:2: error: #error "Revise your code to use <stdarg.h>."
+ #error "Revise your code to use <stdarg.h>."
+  ^
+configure: failed program was:
+#line 1533 "configure"
+#include "confdefs.h"
+#include <varargs.h>
+configure:1528: checking for stdarg.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for stdlib.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for stddef.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for string.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for strings.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for unistd.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for fcntl.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1528: checking for sys/file.h
+configure:1538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1568: checking for getopt.h
+configure:1578: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1608: checking for limits.h
+configure:1618: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1648: checking for a.out.h
+configure:1658: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1648: checking for aouthdr.h
+configure:1658: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1654:21: fatal error: aouthdr.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1653 "configure"
+#include "confdefs.h"
+#include <aouthdr.h>
+configure:1648: checking for elf.h
+configure:1658: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1688: checking for malloc.h
+configure:1698: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1688: checking for termios.h
+configure:1698: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1688: checking for termio.h
+configure:1698: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1728: checking for pwd.h
+configure:1738: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1728: checking for grp.h
+configure:1738: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1728: checking for sys/acl.h
+configure:1738: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1728: checking for acllib.h
+configure:1738: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1734:20: fatal error: acllib.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1733 "configure"
+#include "confdefs.h"
+#include <acllib.h>
+configure:1768: checking for shadow.h
+configure:1778: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1768: checking for syslog.h
+configure:1778: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1808: checking for sys/time.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1808: checking for sys/times.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1808: checking for utime.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1808: checking for sys/utime.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1814:23: fatal error: sys/utime.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1813 "configure"
+#include "confdefs.h"
+#include <sys/utime.h>
+configure:1808: checking for sys/ioctl.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1808: checking for sys/filio.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1814:23: fatal error: sys/filio.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1813 "configure"
+#include "confdefs.h"
+#include <sys/filio.h>
+configure:1808: checking for sys/param.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1808: checking for sys/systeminfo.h
+configure:1818: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1814:28: fatal error: sys/systeminfo.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1813 "configure"
+#include "confdefs.h"
+#include <sys/systeminfo.h>
+configure:1848: checking for sys/syscall.h
+configure:1858: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1888: checking for mntent.h
+configure:1898: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1888: checking for sys/mntent.h
+configure:1898: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1894:24: fatal error: sys/mntent.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1893 "configure"
+#include "confdefs.h"
+#include <sys/mntent.h>
+configure:1888: checking for sys/mnttab.h
+configure:1898: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1894:24: fatal error: sys/mnttab.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1893 "configure"
+#include "confdefs.h"
+#include <sys/mnttab.h>
+configure:1888: checking for sys/mount.h
+configure:1898: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1928: checking for wait.h
+configure:1938: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1928: checking for sys/resource.h
+configure:1938: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1928: checking for sys/procfs.h
+configure:1938: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1968: checking for sys/utsname.h
+configure:1978: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1968: checking for sys/priocntl.h
+configure:1978: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1974:26: fatal error: sys/priocntl.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1973 "configure"
+#include "confdefs.h"
+#include <sys/priocntl.h>
+configure:1968: checking for sys/rtpriocntl.h
+configure:1978: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:1974:28: fatal error: sys/rtpriocntl.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1973 "configure"
+#include "confdefs.h"
+#include <sys/rtpriocntl.h>
+configure:2008: checking for sys/mtio.h
+configure:2018: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2008: checking for sys/tape.h
+configure:2018: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2014:22: fatal error: sys/tape.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2013 "configure"
+#include "confdefs.h"
+#include <sys/tape.h>
+configure:2008: checking for sys/mman.h
+configure:2018: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2008: checking for linux/pg.h
+configure:2018: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2008: checking for camlib.h
+configure:2018: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2014:20: fatal error: camlib.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2013 "configure"
+#include "confdefs.h"
+#include <camlib.h>
+configure:2048: checking for sys/shm.h
+configure:2058: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2048: checking for sys/ipc.h
+configure:2058: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2088: checking for sys/dkio.h
+configure:2098: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2094:22: fatal error: sys/dkio.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2093 "configure"
+#include "confdefs.h"
+#include <sys/dkio.h>
+configure:2088: checking for sys/dklabel.h
+configure:2098: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2094:25: fatal error: sys/dklabel.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2093 "configure"
+#include "confdefs.h"
+#include <sys/dklabel.h>
+configure:2088: checking for sun/dkio.h
+configure:2098: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2094:22: fatal error: sun/dkio.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2093 "configure"
+#include "confdefs.h"
+#include <sun/dkio.h>
+configure:2088: checking for sun/dklabel.h
+configure:2098: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2094:25: fatal error: sun/dklabel.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2093 "configure"
+#include "confdefs.h"
+#include <sun/dklabel.h>
+configure:2128: checking for sys/types.h
+configure:2138: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2128: checking for sys/stat.h
+configure:2138: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2128: checking for types.h
+configure:2138: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2134:19: fatal error: types.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2133 "configure"
+#include "confdefs.h"
+#include <types.h>
+configure:2128: checking for stat.h
+configure:2138: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2134:18: fatal error: stat.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2133 "configure"
+#include "confdefs.h"
+#include <stat.h>
+configure:2168: checking for poll.h
+configure:2178: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2168: checking for sys/poll.h
+configure:2178: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2168: checking for sys/select.h
+configure:2178: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2208: checking for netdb.h
+configure:2218: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2208: checking for sys/socket.h
+configure:2218: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2248: checking for ieeefp.h
+configure:2258: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2254:20: fatal error: ieeefp.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2253 "configure"
+#include "confdefs.h"
+#include <ieeefp.h>
+configure:2248: checking for fp.h
+configure:2258: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2254:16: fatal error: fp.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2253 "configure"
+#include "confdefs.h"
+#include <fp.h>
+configure:2288: checking for values.h
+configure:2298: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2288: checking for float.h
+configure:2298: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2328: checking for arpa/inet.h
+configure:2338: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2368: checking for bsd/dev/scsireg.h
+configure:2378: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2374:29: fatal error: bsd/dev/scsireg.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2373 "configure"
+#include "confdefs.h"
+#include <bsd/dev/scsireg.h>
+configure:2408: checking for sys/bsdtty.h
+configure:2418: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2414:24: fatal error: sys/bsdtty.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2413 "configure"
+#include "confdefs.h"
+#include <sys/bsdtty.h>
+configure:2448: checking for OS.h
+configure:2458: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2454:16: fatal error: OS.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2453 "configure"
+#include "confdefs.h"
+#include <OS.h>
+configure:2488: checking for attr/xattr.h
+configure:2498: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2528: checking for fnmatch.h
+configure:2538: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:2566: checking for header file containing  major(), minor() and makedev()
+configure:2580: cc -c   -O    conftest.c 1>&5
+configure:2574:23: fatal error: sys/mkdev.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 2572 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/mkdev.h>
+int main() {
+int i = major(0); i = minor(0); i = makedev(0,0);
+; return 0; }
+configure:2598: cc -c   -O    conftest.c 1>&5
+configure:2625: checking bits in minor device number
+configure:2686: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:2673:10: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:2673:10: warning: incompatible implicit declaration of built-in function 'exit'
+configure:2673:10: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2682:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:2682:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2706: checking whether bits in minor device numbers are non contiguous
+configure:2762: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:2759:1: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:2759:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:2759:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:2785: checking for _filbuf()
+configure:2810: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:2799:1: warning: implicit declaration of function '_filbuf' [-Wimplicit-function-declaration]
+configure:2800:1: warning: implicit declaration of function '_flsbuf' [-Wimplicit-function-declaration]
+configure:2801:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2802:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2802:20: error: '_IOERR' undeclared (first use in this function)
+configure:2802:20: note: each undeclared identifier is reported only once for each function it appears in
+configure:2803:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2803:20: error: '_IOEOF' undeclared (first use in this function)
+configure:2804:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_cnt'
+configure:2805:16: error: 'FILE {aka struct _IO_FILE}' has no member named '_ptr'
+configure: failed program was:
+#line 2790 "configure"
+#include "confdefs.h"
+#include <stdio.h>
+int main() {
+FILE    *f;
+int     flag;
+int     count;
+char    *ptr;
+char	c = 0;
+f = fopen("confdefs.h", "r");
+_filbuf(f);
+_flsbuf(c, f);
+flag  = f->_flag & _IONBF;
+flag |= f->_flag & _IOERR;
+flag |= f->_flag & _IOEOF;
+count = f->_cnt;
+ptr = (char *)f->_ptr;
+fclose(f);
+; return 0; }
+configure:2830: checking for __filbuf()
+configure:2855: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:2844:1: warning: implicit declaration of function '__filbuf' [-Wimplicit-function-declaration]
+configure:2845:1: warning: implicit declaration of function '__flsbuf' [-Wimplicit-function-declaration]
+configure:2846:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2847:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2847:20: error: '_IOERR' undeclared (first use in this function)
+configure:2847:20: note: each undeclared identifier is reported only once for each function it appears in
+configure:2848:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2848:20: error: '_IOEOF' undeclared (first use in this function)
+configure:2849:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_cnt'
+configure:2850:16: error: 'FILE {aka struct _IO_FILE}' has no member named '_ptr'
+configure: failed program was:
+#line 2835 "configure"
+#include "confdefs.h"
+#include <stdio.h>
+int main() {
+FILE    *f;
+int     flag;
+int     count;
+char    *ptr;
+char	c = 0;
+f = fopen("confdefs.h", "r");
+__filbuf(f);
+__flsbuf(c, f);
+flag  = f->_flag & _IONBF;
+flag |= f->_flag & _IOERR;
+flag |= f->_flag & _IOEOF;
+count = f->_cnt;
+ptr = (char *)f->_ptr;
+fclose(f);
+; return 0; }
+configure:2875: checking for USG derived STDIO
+configure:2909: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:2897:1: error: unknown type name 'no'
+configure:2900:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'flag'
+configure:2901:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2901:20: error: '_IOERR' undeclared (first use in this function)
+configure:2901:20: note: each undeclared identifier is reported only once for each function it appears in
+configure:2902:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_flag'
+configure:2902:20: error: '_IOEOF' undeclared (first use in this function)
+configure:2903:10: error: 'FILE {aka struct _IO_FILE}' has no member named '_cnt'
+configure:2904:16: error: 'FILE {aka struct _IO_FILE}' has no member named '_ptr'
+configure: failed program was:
+#line 2880 "configure"
+#include "confdefs.h"
+#include <stdio.h>
+int main() {
+FILE    *f;
+int     flag;
+int     count;
+char    *ptr;
+char	c = 0;
+f = fopen("confdefs.h", "r");
+#ifdef	HAVE___FILBUF
+__filbuf(f);
+__flsbuf(c, f);
+#else
+#	ifdef	HAVE__FILBUF
+_filbuf(f);
+_flsbuf(c, f);
+#	else
+no filbuf()
+#	endif
+#endif
+flag  = f->_flag & _IONBF;
+flag |= f->_flag & _IOERR;
+flag |= f->_flag & _IOEOF;
+count = f->_cnt;
+ptr = (char *)f->_ptr;
+fclose(f);
+; return 0; }
+configure:2929: checking for errno definition in errno.h
+configure:2941: cc -c   -O    conftest.c 1>&5
+configure:2962: checking for working const
+configure:3016: cc -c   -O    conftest.c 1>&5
+configure:3037: checking whether byte ordering is bigendian
+configure:3055: cc -c   -O    conftest.c 1>&5
+configure:3070: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:3065:2: error: unknown type name 'not'
+configure:3065:10: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'endian'
+configure: failed program was:
+#line 3059 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/param.h>
+int main() {
+
+#if BYTE_ORDER != BIG_ENDIAN
+ not big endian
+#endif
+; return 0; }
+configure:3127: checking whether bitorder in bitfields is htol
+configure:3151: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:3148:1: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:3148:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:3148:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 3135 "configure"
+#include "confdefs.h"
+
+struct {
+	unsigned char	x1:4;
+	unsigned char	x2:4;
+} a;
+int
+main()
+{
+char	*cp;
+
+cp = (char *)&a;
+*cp = 0x12;
+exit(a.x1 == 2);}
+configure:3173: checking return type of signal handlers
+configure:3195: cc -c   -O    conftest.c 1>&5
+configure:3214: checking for uid_t in sys/types.h
+configure:3248: checking type of array argument to getgroups
+configure:3281: cc -o conftest   -O     conftest.c  1>&5
+configure:3263:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:3272:7: warning: implicit declaration of function 'getgroups' [-Wimplicit-function-declaration]
+configure:3276:3: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:3276:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:3276:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:3319: checking for type long long
+configure:3331: cc -c   -O    conftest.c 1>&5
+configure:3351: checking for prototypes
+configure:3369: cc -o conftest   -O     conftest.c  1>&5
+configure:3361:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:3366:1: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:3366:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:3366:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:3391: checking if compiler allows dynamic arrays
+configure:3403: cc -c   -O    conftest.c 1>&5
+configure:3424: checking for uid_t in sys/types.h
+configure:3458: checking for size_t
+configure:3491: checking for ssize_t
+configure:3524: checking for pid_t
+configure:3557: checking for off_t
+configure:3590: checking for mode_t
+configure:3623: checking for time_t
+configure:3646: cc -c   -O    conftest.c 1>&5
+configure:3666: checking for caddr_t
+configure:3699: checking for daddr_t
+configure:3732: checking for dev_t
+configure:3765: checking for ino_t
+configure:3798: checking for nlink_t
+configure:3831: checking for blksize_t
+configure:3864: checking for blkcnt_t
+configure:3897: checking for clock_t
+configure:3937: cc -c   -O    conftest.c 1>&5
+configure:3957: checking for socklen_t
+configure:3991: checking for u_char
+configure:4024: checking for u_short
+configure:4057: checking for u_int
+configure:4090: checking for u_long
+configure:4124: checking size of char
+configure:4143: cc -o conftest   -O     conftest.c  1>&5
+configure:4134:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4137:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4137:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4137:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4139:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4139:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4163: checking size of short int
+configure:4182: cc -o conftest   -O     conftest.c  1>&5
+configure:4173:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4176:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4176:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4176:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4178:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4178:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4202: checking size of int
+configure:4221: cc -o conftest   -O     conftest.c  1>&5
+configure:4212:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4215:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4215:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4215:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4217:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4217:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4241: checking size of long int
+configure:4260: cc -o conftest   -O     conftest.c  1>&5
+configure:4251:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4254:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4254:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4254:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4256:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4256:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4280: checking size of long long
+configure:4299: cc -o conftest   -O     conftest.c  1>&5
+configure:4290:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4293:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4293:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4293:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4295:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4295:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4319: checking size of char *
+configure:4338: cc -o conftest   -O     conftest.c  1>&5
+configure:4329:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4332:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4332:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4332:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4334:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4334:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4359: checking size of unsigned char
+configure:4378: cc -o conftest   -O     conftest.c  1>&5
+configure:4369:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4372:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4372:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4372:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4374:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4374:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4398: checking size of unsigned short int
+configure:4417: cc -o conftest   -O     conftest.c  1>&5
+configure:4408:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4411:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4411:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4411:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4413:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4413:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4437: checking size of unsigned int
+configure:4456: cc -o conftest   -O     conftest.c  1>&5
+configure:4447:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4450:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4450:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4450:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4452:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4452:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4476: checking size of unsigned long int
+configure:4495: cc -o conftest   -O     conftest.c  1>&5
+configure:4486:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4489:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4489:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4489:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4491:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4491:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4515: checking size of unsigned long long
+configure:4534: cc -o conftest   -O     conftest.c  1>&5
+configure:4525:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4528:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4528:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4528:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4530:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4530:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4554: checking size of unsigned char *
+configure:4573: cc -o conftest   -O     conftest.c  1>&5
+configure:4564:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:4567:11: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4567:11: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4567:11: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4569:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4569:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:4594: checking if char is unsigned
+configure:4613: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:4610:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:4610:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:4610:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 4602 "configure"
+#include "confdefs.h"
+
+int
+main()
+{
+	char c;
+
+	c = -1;
+	exit(c < 0);}
+configure:4635: checking if va_list is an array
+configure:4656: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:4652:3: error: assignment to expression with array type
+configure: failed program was:
+#line 4640 "configure"
+#include "confdefs.h"
+
+#ifdef	HAVE_STDARG_H
+#	include <stdarg.h>
+#else
+#	include <varargs.h>
+#endif
+
+int main() {
+
+va_list a, b;
+
+a = b;
+; return 0; }
+configure:4676: checking if struct mtget contains mt_type
+configure:4689: cc -c   -O    conftest.c 1>&5
+configure:4709: checking if struct mtget contains mt_model
+configure:4722: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:4718:19: error: 'struct mtget' has no member named 'mt_model'
+configure: failed program was:
+#line 4714 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/mtio.h>
+int main() {
+struct  mtget t; t.mt_model = 0;
+; return 0; }
+configure:4742: checking if struct mtget contains mt_dsreg
+configure:4755: cc -c   -O    conftest.c 1>&5
+configure:4775: checking if struct mtget contains mt_dsreg1
+configure:4788: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:4784:19: error: 'struct mtget' has no member named 'mt_dsreg1'
+configure: failed program was:
+#line 4780 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/mtio.h>
+int main() {
+struct  mtget t; t.mt_dsreg1 = 0;
+; return 0; }
+configure:4808: checking if struct mtget contains mt_dsreg2
+configure:4821: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:4817:19: error: 'struct mtget' has no member named 'mt_dsreg2'
+configure: failed program was:
+#line 4813 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/mtio.h>
+int main() {
+struct  mtget t; t.mt_dsreg2 = 0;
+; return 0; }
+configure:4841: checking if struct mtget contains mt_gstat
+configure:4854: cc -c   -O    conftest.c 1>&5
+configure:4874: checking if struct mtget contains mt_erreg
+configure:4887: cc -c   -O    conftest.c 1>&5
+configure:4907: checking if struct mtget contains mt_resid
+configure:4920: cc -c   -O    conftest.c 1>&5
+configure:4940: checking if struct mtget contains mt_fileno
+configure:4953: cc -c   -O    conftest.c 1>&5
+configure:4973: checking if struct mtget contains mt_blkno
+configure:4986: cc -c   -O    conftest.c 1>&5
+configure:5006: checking if struct mtget contains mt_flags
+configure:5019: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5015:19: error: 'struct mtget' has no member named 'mt_flags'
+configure: failed program was:
+#line 5011 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/mtio.h>
+int main() {
+struct  mtget t; t.mt_flags = 0;
+; return 0; }
+configure:5039: checking if struct mtget contains mt_bf
+configure:5052: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5048:19: error: 'struct mtget' has no member named 'mt_bf'
+configure: failed program was:
+#line 5044 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/mtio.h>
+int main() {
+struct  mtget t; t.mt_bf = 0;
+; return 0; }
+configure:5072: checking if struct rusage is declared in sys/resource.h
+configure:5085: cc -c   -O    conftest.c 1>&5
+configure:5105: checking if struct siginfo contains si_utime
+configure:5118: cc -c   -O    conftest.c 1>&5
+configure:5112:25: fatal error: sys/siginfo.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 5110 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/siginfo.h>
+int main() {
+struct  siginfo si; si.si_utime = 0;
+; return 0; }
+configure:5138: checking if struct sockaddr_storage is declared in socket.h
+configure:5150: cc -c   -O    conftest.c 1>&5
+configure:5170: checking if an illegal declaration for union semun in sys/sem.h exists
+configure:5184: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5180:13: error: storage size of 's' isn't known
+configure: failed program was:
+#line 5175 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+int main() {
+union semun s;
+; return 0; }
+configure:5204: checking if union wait is declared in wait.h or sys/wait.h
+configure:5221: cc -c   -O    conftest.c 1>&5
+configure:5241: checking if struct stat contains st_spare1
+configure:5254: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5250:18: error: 'struct stat' has no member named 'st_spare1'
+configure: failed program was:
+#line 5246 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+int main() {
+struct  stat s; s.st_spare1 = 0;
+; return 0; }
+configure:5274: checking if struct stat contains st_atimensec
+configure:5287: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5283:18: error: 'struct stat' has no member named 'st_atimensec'
+configure: failed program was:
+#line 5279 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+int main() {
+struct  stat s; s.st_atimensec = 0;
+; return 0; }
+configure:5307: checking if struct stat contains st_atim.tv_nsec
+configure:5320: cc -c   -O    conftest.c 1>&5
+configure:5340: checking if struct stat contains st_atim.st__tim.tv_nsec
+configure:5353: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5349:26: error: 'struct timespec' has no member named 'st__tim'
+configure: failed program was:
+#line 5345 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+int main() {
+struct  stat s; s.st_atim.st__tim.tv_nsec = 0;
+; return 0; }
+configure:5373: checking if struct stat contains st_atimespec.tv_nsec
+configure:5386: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5382:18: error: 'struct stat' has no member named 'st_atimespec'
+configure: failed program was:
+#line 5378 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+int main() {
+struct  stat s; s.st_atimespec.tv_nsec = 0;
+; return 0; }
+configure:5406: checking for st_blksize in struct stat
+configure:5419: cc -c   -O    conftest.c 1>&5
+configure:5440: checking for st_blocks in struct stat
+configure:5453: cc -c   -O    conftest.c 1>&5
+configure:5476: checking if struct stat contains st_fstype
+configure:5489: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5485:18: error: 'struct stat' has no member named 'st_fstype'
+configure: failed program was:
+#line 5481 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+int main() {
+struct  stat s; s.st_fstype[0] = 0;
+; return 0; }
+configure:5509: checking for st_rdev in struct stat
+configure:5522: cc -c   -O    conftest.c 1>&5
+configure:5543: checking if struct stat contains st_flags
+configure:5556: cc -c   -O    conftest.c 1>&5
+configure: In function 'main':
+configure:5552:18: error: 'struct stat' has no member named 'st_flags'
+configure: failed program was:
+#line 5548 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+int main() {
+struct  stat s; s.st_flags = 0;
+; return 0; }
+configure:5577: checking for wait3 that fills in rusage
+configure:5620: cc -o conftest   -O     conftest.c  1>&5
+configure:5591:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:5604:11: warning: implicit declaration of function 'fork' [-Wimplicit-function-declaration]
+configure:5606:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+configure:5607:30: warning: implicit declaration of function 'getpid' [-Wimplicit-function-declaration]
+configure:5608:5: warning: implicit declaration of function '_exit' [-Wimplicit-function-declaration]
+configure:5608:5: warning: incompatible implicit declaration of built-in function '_exit'
+configure:5611:5: warning: implicit declaration of function 'wait3' [-Wimplicit-function-declaration]
+configure:5613:5: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:5613:5: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5613:5: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5643: checking for mlock
+configure:5671: cc -o conftest   -O     conftest.c  1>&5
+configure:5659:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:5661:6: warning: implicit declaration of function 'mlock' [-Wimplicit-function-declaration]
+configure:5664:4: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:5664:4: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5664:4: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5665:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5665:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5667:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5667:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5693: checking for mlockall
+configure:5724: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:5716:4: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:5716:4: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5716:4: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5717:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5717:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5719:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5719:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5746: checking for va_copy
+configure:5766: cc -o conftest   -O     conftest.c  1>&5
+configure:5786: checking for __va_copy
+configure:5806: cc -o conftest   -O     conftest.c  1>&5
+configure:5826: checking for working ecvt() 
+configure:5854: cc -o conftest   -O     conftest.c  1>&5
+configure:5838:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure:5838:1: warning: conflicting types for built-in function 'sprintf'
+configure: In function 'sprintf':
+configure:5838:1: warning: number of arguments doesn't match built-in prototype
+configure:5841:2: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+configure:5841:2: warning: incompatible implicit declaration of built-in function 'strcpy'
+configure:5841:2: note: include '<string.h>' or provide a declaration of 'strcpy'
+configure: In function 'main':
+configure:5850:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:5850:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5850:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5850:8: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+configure:5876: checking for working fcvt() 
+configure:5904: cc -o conftest   -O     conftest.c  1>&5
+configure:5888:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure:5888:1: warning: conflicting types for built-in function 'sprintf'
+configure: In function 'sprintf':
+configure:5888:1: warning: number of arguments doesn't match built-in prototype
+configure:5891:2: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+configure:5891:2: warning: incompatible implicit declaration of built-in function 'strcpy'
+configure:5891:2: note: include '<string.h>' or provide a declaration of 'strcpy'
+configure: In function 'main':
+configure:5900:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:5900:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5900:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5900:8: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+configure:5926: checking for working gcvt() 
+configure:5954: cc -o conftest   -O     conftest.c  1>&5
+configure:5938:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure:5938:1: warning: conflicting types for built-in function 'sprintf'
+configure: In function 'sprintf':
+configure:5938:1: warning: number of arguments doesn't match built-in prototype
+configure:5941:2: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+configure:5941:2: warning: incompatible implicit declaration of built-in function 'strcpy'
+configure:5941:2: note: include '<string.h>' or provide a declaration of 'strcpy'
+configure: In function 'main':
+configure:5950:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:5950:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:5950:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:5950:8: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+configure:5976: checking for __dtoa
+configure:5989: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccPu2ecg.o: In function `main':
+conftest.c:(.text+0x25): undefined reference to `__dtoa'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 5981 "configure"
+#include "confdefs.h"
+extern  char *__dtoa();
+int main() {
+int decpt; int sign; char *ep; char *bp;
+bp = __dtoa(0.0, 2, 6, &decpt, &sign, &ep);
+; return 0; }
+configure:6009: checking for __dtoa that needs result ptr
+configure:6038: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:6033:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:6033:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6033:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 6017 "configure"
+#include "confdefs.h"
+
+extern	char *__dtoa();
+int
+main()
+{
+#ifdef	HAVE_DTOA
+	int	decpt, sign;
+	char	*bp;
+	char	*ep;
+	char	*result;
+
+	result = 0;
+	bp = __dtoa(1.9, 2, 5, &decpt, &sign, &ep, &result);
+	exit(result == 0);
+#else
+	exit(1);
+#endif
+}
+configure:6063: checking for unistd.h
+configure:6102: checking for getpagesize
+configure:6130: cc -o conftest   -O     conftest.c  1>&5
+configure:6155: checking for mmap that needs ptr to size
+configure:6304: cc -o conftest   -O     conftest.c  1>&5
+configure:6219:7: warning: conflicting types for built-in function 'malloc'
+configure: In function 'intr':
+configure:6227:18: warning: passing argument 2 of 'signal' from incompatible pointer type [-Wincompatible-pointer-types]
+In file included from configure:6167:0:
+/usr/include/signal.h:102:23: note: expected '__sighandler_t {aka void (*)(int)}' but argument is of type 'int (*)()'
+ extern __sighandler_t signal (int __sig, __sighandler_t __handler)
+                       ^
+configure: In function 'main':
+configure:6238:13: warning: implicit declaration of function 'getpagesize' [-Wimplicit-function-declaration]
+configure:6245:3: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:6245:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6245:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6247:17: warning: implicit declaration of function 'rand' [-Wimplicit-function-declaration]
+configure:6248:2: warning: implicit declaration of function 'umask' [-Wimplicit-function-declaration]
+configure:6251:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6251:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6252:6: warning: implicit declaration of function 'write' [-Wimplicit-function-declaration]
+configure:6253:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6253:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6254:2: warning: implicit declaration of function 'close' [-Wimplicit-function-declaration]
+configure:6263:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6263:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6275:18: warning: passing argument 2 of 'signal' from incompatible pointer type [-Wincompatible-pointer-types]
+In file included from configure:6167:0:
+/usr/include/signal.h:102:23: note: expected '__sighandler_t {aka void (*)(int)}' but argument is of type 'int (*)()'
+ extern __sighandler_t signal (int __sig, __sighandler_t __handler)
+                       ^
+configure:6282:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6282:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6284:18: warning: passing argument 2 of 'signal' from incompatible pointer type [-Wincompatible-pointer-types]
+In file included from configure:6167:0:
+/usr/include/signal.h:102:23: note: expected '__sighandler_t {aka void (*)(int)}' but argument is of type 'int (*)()'
+ extern __sighandler_t signal (int __sig, __sighandler_t __handler)
+                       ^
+configure:6286:19: warning: passing argument 2 of 'mmap' makes integer from pointer without a cast [-Wint-conversion]
+In file included from configure:6169:0:
+/usr/include/sys/mman.h:57:14: note: expected 'size_t {aka long unsigned int}' but argument is of type 'int *'
+ extern void *mmap (void *__addr, size_t __len, int __prot,
+              ^
+configure:6291:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6291:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6295:4: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6295:4: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6298:2: warning: implicit declaration of function 'unlink' [-Wimplicit-function-declaration]
+configure:6299:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6299:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 6163 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <setjmp.h>
+#include <sys/mman.h>
+
+#ifndef MAP_FILE
+#define MAP_FILE   0		/* Needed on Apollo Domain/OS */
+#endif
+
+/* This mess was copied from the GNU getpagesize.h.  */
+#ifndef HAVE_GETPAGESIZE
+# ifdef HAVE_UNISTD_H
+#  include <unistd.h>
+# endif
+
+/* Assume that all systems that can run configure have sys/param.h.  */
+# ifndef HAVE_SYS_PARAM_H
+#  define HAVE_SYS_PARAM_H 1
+# endif
+
+# ifdef _SC_PAGESIZE
+#  define getpagesize() sysconf(_SC_PAGESIZE)
+# else /* no _SC_PAGESIZE */
+#  ifdef HAVE_SYS_PARAM_H
+#   include <sys/param.h>
+#   ifdef EXEC_PAGESIZE
+#    define getpagesize() EXEC_PAGESIZE
+#   else /* no EXEC_PAGESIZE */
+#    ifdef NBPG
+#     define getpagesize() NBPG * CLSIZE
+#     ifndef CLSIZE
+#      define CLSIZE 1
+#     endif /* no CLSIZE */
+#    else /* no NBPG */
+#     ifdef NBPC
+#      define getpagesize() NBPC
+#     else /* no NBPC */
+#      ifdef PAGESIZE
+#       define getpagesize() PAGESIZE
+#      endif /* PAGESIZE */
+#     endif /* no NBPC */
+#    endif /* no NBPG */
+#   endif /* no EXEC_PAGESIZE */
+#  else /* no HAVE_SYS_PARAM_H */
+#   define getpagesize() 8192	/* punt totally */
+#  endif /* no HAVE_SYS_PARAM_H */
+# endif /* no _SC_PAGESIZE */
+
+#endif /* no HAVE_GETPAGESIZE */
+
+#ifdef __cplusplus
+extern "C" { void *malloc(unsigned); }
+#else
+char *malloc();
+#endif
+
+jmp_buf jenv;
+
+int
+intr()
+{
+	signal(SIGSEGV, intr);
+	longjmp(jenv, 1);
+}
+
+int
+main()
+{
+	char *data, *data2;
+	int i, pagesize, ps;
+	int fd;
+
+	pagesize = getpagesize();
+
+	/*
+	 * First, make a file with some known garbage in it.
+	 */
+	data = malloc(pagesize);
+	if (!data)
+		exit(1);
+	for (i = 0; i < pagesize; ++i)
+		*(data + i) = rand();
+	umask(0);
+	fd = creat("conftestmmap", 0600);
+	if (fd < 0)
+		exit(1);
+	if (write(fd, data, pagesize) != pagesize)
+		exit(1);
+	close(fd);
+
+	/*
+	 * Next, try to mmap the file at a fixed address which
+	 * already has something else allocated at it.  If we can,
+	 * also make sure that we see the same garbage.
+	 */
+	fd = open("conftestmmap", O_RDWR);
+	if (fd < 0)
+		exit(1);
+
+	/*
+	 * Keep a copy, Apollo modifies the value...
+	 */
+	ps = pagesize;
+
+	/*
+	 * Apollo mmap() is not a syscall but a library function and fails
+	 * if it tries to dereference 'ps'. We must use setjmp in order to
+	 * catch the failure.
+	 */
+	signal(SIGSEGV, intr);
+	if (setjmp(jenv) == 0) {
+		data2 = mmap(0, ps, PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0L);
+	} else {
+		data2 = (char *)-1;
+	}
+	if (data2 != (char *)-1)
+		exit(1);
+
+	signal(SIGSEGV, intr);
+	if (setjmp(jenv) == 0) {
+		data2 = mmap(0, &ps, PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0L);
+	} else {
+		data2 = (char *)-1;
+	}
+	if (data2 == (char *)-1)
+		exit(1);
+
+	for (i = 0; i < pagesize; ++i)
+		if (*(data + i) != *(data2 + i))
+			exit(1);
+
+	close(fd);
+	unlink("conftestmmap");
+	exit(0);
+}
+
+configure:6330: checking for unistd.h
+configure:6369: checking for getpagesize
+configure:6422: checking for working mmap
+configure:6579: cc -o conftest   -O     conftest.c  1>&5
+configure:6510:7: warning: conflicting types for built-in function 'malloc'
+configure: In function 'main':
+configure:6520:13: warning: implicit declaration of function 'getpagesize' [-Wimplicit-function-declaration]
+configure:6527:3: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:6527:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6527:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6529:17: warning: implicit declaration of function 'rand' [-Wimplicit-function-declaration]
+configure:6530:2: warning: implicit declaration of function 'umask' [-Wimplicit-function-declaration]
+configure:6533:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6533:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6534:6: warning: implicit declaration of function 'write' [-Wimplicit-function-declaration]
+configure:6535:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6535:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6536:2: warning: implicit declaration of function 'close' [-Wimplicit-function-declaration]
+configure:6545:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6545:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6548:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6548:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6549:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+configure:6552:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6552:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6555:4: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6555:4: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6566:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6566:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6567:6: warning: implicit declaration of function 'read' [-Wimplicit-function-declaration]
+configure:6568:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6568:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6571:4: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6571:4: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6573:2: warning: implicit declaration of function 'unlink' [-Wimplicit-function-declaration]
+configure:6574:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6574:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6605: checking for unistd.h
+configure:6644: checking for getpagesize
+configure:6697: checking for mmap that needs ptr to size
+configure:6869: checking if mmap works to get shared memory
+configure:6949: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'mkshare':
+configure:6913:17: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:6913:17: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6913:17: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6914:9: warning: implicit declaration of function 'close' [-Wimplicit-function-declaration]
+configure: In function 'main':
+configure:6927:17: warning: implicit declaration of function 'fork' [-Wimplicit-function-declaration]
+configure:6930:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+configure:6930:17: warning: incompatible implicit declaration of built-in function 'printf'
+configure:6930:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+configure:6930:35: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6930:35: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6934:17: warning: implicit declaration of function '_exit' [-Wimplicit-function-declaration]
+configure:6934:17: warning: incompatible implicit declaration of built-in function '_exit'
+configure:6937:17: warning: implicit declaration of function 'wait' [-Wimplicit-function-declaration]
+configure:6938:17: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+configure:6943:17: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6943:17: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6944:9: warning: incompatible implicit declaration of built-in function 'exit'
+configure:6944:9: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:6973: checking for working alloca.h
+configure:6985: cc -o conftest   -O     conftest.c  1>&5
+configure:7006: checking for alloca
+configure:7039: cc -o conftest   -O     conftest.c  1>&5
+configure:7205: checking if quotactl is an ioctl
+configure:7218: cc -o conftest   -O     conftest.c  1>&5
+configure:7212:30: fatal error: sys/fs/ufs_quota.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 7210 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/fs/ufs_quota.h>
+int main() {
+struct quotctl q; ioctl(0, Q_QUOTACTL, &q)
+; return 0; }
+configure:7238: checking for file locking via fcntl
+configure:7254: cc -o conftest   -O     conftest.c  1>&5
+configure:7274: checking for uname
+configure:7287: cc -o conftest   -O     conftest.c  1>&5
+configure:7308: checking for vfork.h
+configure:7318: cc -E  conftest.c >/dev/null 2>conftest.out
+configure:7314:19: fatal error: vfork.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 7313 "configure"
+#include "confdefs.h"
+#include <vfork.h>
+configure:7343: checking for working vfork
+configure:7494: cc -o conftest   -O     conftest.c  1>&5
+configure:7420:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure:7437:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:7475:12: warning: implicit declaration of function 'wait' [-Wimplicit-function-declaration]
+configure:7477:5: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:7477:5: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7477:5: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:7517: checking for sys_siglist
+configure:7535: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:7531:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:7531:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7531:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:7532:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7532:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:7557: checking for BSD compliant getpgrp
+configure:7579: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:7573:6: warning: implicit declaration of function 'getpgrp' [-Wimplicit-function-declaration]
+configure:7574:38: warning: implicit declaration of function 'getpid' [-Wimplicit-function-declaration]
+configure:7575:3: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:7575:3: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7575:3: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:7576:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7576:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 7565 "configure"
+#include "confdefs.h"
+
+int
+main()
+{ long p;
+/*
+ * POSIX getpgrp() has void parameter...
+ */
+	p = getpgrp(-1);
+	if (p == getpgrp(1) && p == getpgrp(getpid()))
+		exit(1);
+exit(0);}
+configure:7601: checking for BSD compliant setpgrp
+configure:7626: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:7621:5: warning: implicit declaration of function 'setpgrp' [-Wimplicit-function-declaration]
+configure:7622:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:7622:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7622:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:7623:1: warning: incompatible implicit declaration of built-in function 'exit'
+configure:7623:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 7609 "configure"
+#include "confdefs.h"
+
+#include <errno.h>
+#ifndef	HAVE_ERRNO_DEF
+extern	int	errno;
+#endif
+int
+main()
+{ errno = 0;
+/*
+ * Force illegal pid on BSD
+ */
+if (setpgrp(-1, 100) < 0 && errno == ESRCH)
+	exit(0);
+exit(1);}
+configure:7650: checking for access
+configure:7678: cc -o conftest   -O     conftest.c  1>&5
+configure:7650: checking for eaccess
+configure:7678: cc -o conftest   -O     conftest.c  1>&5
+configure:7650: checking for euidaccess
+configure:7678: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for brk
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for sbrk
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for strerror
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for nice
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for memmove
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7717:6: warning: conflicting types for built-in function 'memmove'
+configure:7705: checking for flock
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for lockf
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for fchdir
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for statvfs
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7705: checking for quotactl
+configure:7733: cc -o conftest   -O     conftest.c  1>&5
+configure:7760: checking for dup2
+configure:7788: cc -o conftest   -O     conftest.c  1>&5
+configure:7815: checking for getcwd
+configure:7843: cc -o conftest   -O     conftest.c  1>&5
+configure:7815: checking for shmat
+configure:7843: cc -o conftest   -O     conftest.c  1>&5
+configure:7815: checking for semget
+configure:7843: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for lstat
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for readlink
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for symlink
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for link
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for rename
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for mkfifo
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7870: checking for mknod
+configure:7898: cc -o conftest   -O     conftest.c  1>&5
+configure:7925: checking for setreuid
+configure:7953: cc -o conftest   -O     conftest.c  1>&5
+configure:7925: checking for setresuid
+configure:7953: cc -o conftest   -O     conftest.c  1>&5
+configure:7925: checking for seteuid
+configure:7953: cc -o conftest   -O     conftest.c  1>&5
+configure:7925: checking for setuid
+configure:7953: cc -o conftest   -O     conftest.c  1>&5
+configure:7980: checking for setregid
+configure:8008: cc -o conftest   -O     conftest.c  1>&5
+configure:7980: checking for setresgid
+configure:8008: cc -o conftest   -O     conftest.c  1>&5
+configure:7980: checking for setegid
+configure:8008: cc -o conftest   -O     conftest.c  1>&5
+configure:7980: checking for setgid
+configure:8008: cc -o conftest   -O     conftest.c  1>&5
+configure:8035: checking for getpgid
+configure:8063: cc -o conftest   -O     conftest.c  1>&5
+configure:8035: checking for setpgid
+configure:8063: cc -o conftest   -O     conftest.c  1>&5
+configure:8090: checking for getpgrp
+configure:8118: cc -o conftest   -O     conftest.c  1>&5
+configure:8090: checking for setpgrp
+configure:8118: cc -o conftest   -O     conftest.c  1>&5
+configure:8145: checking for getspnam
+configure:8173: cc -o conftest   -O     conftest.c  1>&5
+configure:8145: checking for getspwnam
+configure:8173: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccQx2flh.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `getspwnam'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8150 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char getspwnam(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getspwnam();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_getspwnam) || defined (__stub___getspwnam)
+choke me
+#else
+getspwnam();
+#endif
+
+; return 0; }
+configure:8200: checking for sync
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for fsync
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for fork
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8212:6: warning: conflicting types for built-in function 'fork'
+configure:8200: checking for wait4
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for waitid
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for waitpid
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for getrusage
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for getrlimit
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for setrlimit
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8200: checking for ulimit
+configure:8228: cc -o conftest   -O     conftest.c  1>&5
+configure:8255: checking for execl
+configure:8283: cc -o conftest   -O     conftest.c  1>&5
+configure:8267:6: warning: conflicting types for built-in function 'execl'
+configure:8255: checking for execle
+configure:8283: cc -o conftest   -O     conftest.c  1>&5
+configure:8267:6: warning: conflicting types for built-in function 'execle'
+configure:8255: checking for execlp
+configure:8283: cc -o conftest   -O     conftest.c  1>&5
+configure:8267:6: warning: conflicting types for built-in function 'execlp'
+configure:8255: checking for execv
+configure:8283: cc -o conftest   -O     conftest.c  1>&5
+configure:8267:6: warning: conflicting types for built-in function 'execv'
+configure:8255: checking for execve
+configure:8283: cc -o conftest   -O     conftest.c  1>&5
+configure:8267:6: warning: conflicting types for built-in function 'execve'
+configure:8255: checking for execvp
+configure:8283: cc -o conftest   -O     conftest.c  1>&5
+configure:8267:6: warning: conflicting types for built-in function 'execvp'
+configure:8310: checking for gethostid
+configure:8338: cc -o conftest   -O     conftest.c  1>&5
+configure:8310: checking for gethostname
+configure:8338: cc -o conftest   -O     conftest.c  1>&5
+configure:8310: checking for getdomainname
+configure:8338: cc -o conftest   -O     conftest.c  1>&5
+configure:8310: checking for getpagesize
+configure:8310: checking for getdtablesize
+configure:8338: cc -o conftest   -O     conftest.c  1>&5
+configure:8365: checking for gettimeofday
+configure:8393: cc -o conftest   -O     conftest.c  1>&5
+configure:8365: checking for settimeofday
+configure:8393: cc -o conftest   -O     conftest.c  1>&5
+configure:8365: checking for time
+configure:8393: cc -o conftest   -O     conftest.c  1>&5
+configure:8365: checking for stime
+configure:8393: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for poll
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for select
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for chown
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for lchown
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for times
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for utime
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8420: checking for utimes
+configure:8448: cc -o conftest   -O     conftest.c  1>&5
+configure:8475: checking for ecvt_r
+configure:8503: cc -o conftest   -O     conftest.c  1>&5
+configure:8475: checking for fcvt_r
+configure:8503: cc -o conftest   -O     conftest.c  1>&5
+configure:8475: checking for gcvt_r
+configure:8503: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccANNfnK.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `gcvt_r'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8480 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char gcvt_r(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char gcvt_r();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_gcvt_r) || defined (__stub___gcvt_r)
+choke me
+#else
+gcvt_r();
+#endif
+
+; return 0; }
+configure:8530: checking for econvert
+configure:8558: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccZtQzF1.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `econvert'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8535 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char econvert(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char econvert();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_econvert) || defined (__stub___econvert)
+choke me
+#else
+econvert();
+#endif
+
+; return 0; }
+configure:8530: checking for fconvert
+configure:8558: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccCi6HuB.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `fconvert'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8535 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fconvert(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fconvert();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fconvert) || defined (__stub___fconvert)
+choke me
+#else
+fconvert();
+#endif
+
+; return 0; }
+configure:8530: checking for gconvert
+configure:8558: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccArVx9K.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `gconvert'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8535 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char gconvert(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char gconvert();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_gconvert) || defined (__stub___gconvert)
+choke me
+#else
+gconvert();
+#endif
+
+; return 0; }
+configure:8585: checking for isinf
+configure:8613: cc -o conftest   -O     conftest.c  1>&5
+configure:8597:6: warning: conflicting types for built-in function 'isinf'
+configure:8585: checking for isnan
+configure:8613: cc -o conftest   -O     conftest.c  1>&5
+configure:8597:6: warning: conflicting types for built-in function 'isnan'
+configure:8640: checking for rand
+configure:8668: cc -o conftest   -O     conftest.c  1>&5
+configure:8640: checking for drand48
+configure:8668: cc -o conftest   -O     conftest.c  1>&5
+configure:8695: checking for setpriority
+configure:8723: cc -o conftest   -O     conftest.c  1>&5
+configure:8695: checking for DosSetPriority
+configure:8723: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccjRkEAr.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `DosSetPriority'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8700 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char DosSetPriority(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char DosSetPriority();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_DosSetPriority) || defined (__stub___DosSetPriority)
+choke me
+#else
+DosSetPriority();
+#endif
+
+; return 0; }
+configure:8750: checking for DosAllocSharedMem
+configure:8778: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccQ2iomy.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `DosAllocSharedMem'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8755 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char DosAllocSharedMem(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char DosAllocSharedMem();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_DosAllocSharedMem) || defined (__stub___DosAllocSharedMem)
+choke me
+#else
+DosAllocSharedMem();
+#endif
+
+; return 0; }
+configure:8805: checking for seekdir
+configure:8833: cc -o conftest   -O     conftest.c  1>&5
+configure:8860: checking for strsignal
+configure:8888: cc -o conftest   -O     conftest.c  1>&5
+configure:8860: checking for str2sig
+configure:8888: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccduVRnQ.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `str2sig'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8865 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char str2sig(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char str2sig();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_str2sig) || defined (__stub___str2sig)
+choke me
+#else
+str2sig();
+#endif
+
+; return 0; }
+configure:8860: checking for sig2str
+configure:8888: cc -o conftest   -O     conftest.c  1>&5
+/tmp/cc2HfJwZ.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `sig2str'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 8865 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char sig2str(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char sig2str();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_sig2str) || defined (__stub___sig2str)
+choke me
+#else
+sig2str();
+#endif
+
+; return 0; }
+configure:8915: checking for killpg
+configure:8943: cc -o conftest   -O     conftest.c  1>&5
+configure:8915: checking for sigrelse
+configure:8943: cc -o conftest   -O     conftest.c  1>&5
+configure:8915: checking for sigprocmask
+configure:8943: cc -o conftest   -O     conftest.c  1>&5
+configure:8915: checking for sigsetmask
+configure:8943: cc -o conftest   -O     conftest.c  1>&5
+configure:8915: checking for sigset
+configure:8943: cc -o conftest   -O     conftest.c  1>&5
+configure:8970: checking for nanosleep
+configure:8998: cc -o conftest   -O     conftest.c  1>&5
+configure:8970: checking for usleep
+configure:8998: cc -o conftest   -O     conftest.c  1>&5
+configure:9025: checking for tcgetattr
+configure:9053: cc -o conftest   -O     conftest.c  1>&5
+configure:9025: checking for tcsetattr
+configure:9053: cc -o conftest   -O     conftest.c  1>&5
+configure:9080: checking for putenv
+configure:9108: cc -o conftest   -O     conftest.c  1>&5
+configure:9080: checking for setenv
+configure:9108: cc -o conftest   -O     conftest.c  1>&5
+configure:9080: checking for snprintf
+configure:9108: cc -o conftest   -O     conftest.c  1>&5
+configure:9092:6: warning: conflicting types for built-in function 'snprintf'
+configure:9080: checking for strcasecmp
+configure:9108: cc -o conftest   -O     conftest.c  1>&5
+configure:9092:6: warning: conflicting types for built-in function 'strcasecmp'
+configure:9080: checking for strdup
+configure:9108: cc -o conftest   -O     conftest.c  1>&5
+configure:9092:6: warning: conflicting types for built-in function 'strdup'
+configure:9135: checking for valloc
+configure:9163: cc -o conftest   -O     conftest.c  1>&5
+configure:9190: checking for madvise
+configure:9218: cc -o conftest   -O     conftest.c  1>&5
+configure:9245: checking for chflags
+configure:9273: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:9265:1: error: unknown type name 'choke'
+configure: failed program was:
+#line 9250 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char chflags(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char chflags();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_chflags) || defined (__stub___chflags)
+choke me
+#else
+chflags();
+#endif
+
+; return 0; }
+configure:9245: checking for fchflags
+configure:9273: cc -o conftest   -O     conftest.c  1>&5
+configure: In function 'main':
+configure:9265:1: error: unknown type name 'choke'
+configure: failed program was:
+#line 9250 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fchflags(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fchflags();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fchflags) || defined (__stub___fchflags)
+choke me
+#else
+fchflags();
+#endif
+
+; return 0; }
+configure:9245: checking for fflagstostr
+configure:9273: cc -o conftest   -O     conftest.c  1>&5
+/tmp/cchnO0uY.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `fflagstostr'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 9250 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fflagstostr(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fflagstostr();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fflagstostr) || defined (__stub___fflagstostr)
+choke me
+#else
+fflagstostr();
+#endif
+
+; return 0; }
+configure:9245: checking for strtofflags
+configure:9273: cc -o conftest   -O     conftest.c  1>&5
+/tmp/ccoH4RP7.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `strtofflags'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 9250 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char strtofflags(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char strtofflags();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_strtofflags) || defined (__stub___strtofflags)
+choke me
+#else
+strtofflags();
+#endif
+
+; return 0; }
+configure:9300: checking for fnmatch
+configure:9328: cc -o conftest   -O     conftest.c  1>&5
+configure:9354: checking if we may not define our own malloc()
+configure:9388: cc -o conftest   -O     conftest.c  1>&5
+configure:9366:1: warning: conflicting types for built-in function 'malloc'
+configure: In function 'malloc':
+configure:9372:2: warning: implicit declaration of function '_exit' [-Wimplicit-function-declaration]
+configure:9372:2: warning: incompatible implicit declaration of built-in function '_exit'
+configure: At top level:
+configure:9376:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure:9376:1: warning: conflicting types for built-in function 'free'
+configure:9378:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:9381:2: warning: implicit declaration of function 'strdup' [-Wimplicit-function-declaration]
+configure:9381:2: warning: incompatible implicit declaration of built-in function 'strdup'
+configure:9385:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:9385:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:9385:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:9411: checking if link() allows hard links on symlinks
+configure:9441: cc -o conftest   -O     conftest.c  1>&5
+configure:9421:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:9425:2: warning: implicit declaration of function 'unlink' [-Wimplicit-function-declaration]
+configure:9429:6: warning: implicit declaration of function 'symlink' [-Wimplicit-function-declaration]
+configure:9431:6: warning: implicit declaration of function 'link' [-Wimplicit-function-declaration]
+configure:9437:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:9437:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:9437:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:9463: checking if link() does not folow symlinks
+configure:9505: cc -o conftest   -O     conftest.c  1>&5
+configure:9476:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:9482:2: warning: implicit declaration of function 'unlink' [-Wimplicit-function-declaration]
+configure:9486:6: warning: implicit declaration of function 'creat' [-Wimplicit-function-declaration]
+configure:9487:2: warning: implicit declaration of function 'close' [-Wimplicit-function-declaration]
+configure:9488:6: warning: implicit declaration of function 'symlink' [-Wimplicit-function-declaration]
+configure:9490:6: warning: implicit declaration of function 'link' [-Wimplicit-function-declaration]
+configure:9501:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:9501:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:9501:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure:9530: checking for unistd.h
+configure:9567: checking if access() does implement E_OK
+configure:9620: cc -o conftest   -O     conftest.c  1>&5
+configure:9604:1: warning: return type defaults to 'int' [-Wimplicit-int]
+configure: In function 'main':
+configure:9616:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:9616:2: warning: incompatible implicit declaration of built-in function 'exit'
+configure:9616:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+configure: failed program was:
+#line 9575 "configure"
+#include "confdefs.h"
+
+# ifdef HAVE_UNISTD_H
+#  include <unistd.h>
+# endif
+#ifndef	R_OK
+#define	R_OK	4	/* Test for Read permission */
+#define	W_OK	2	/* Test for Write permission */
+#define	X_OK	1	/* Test for eXecute permission */
+#define	F_OK	0	/* Test for existence of File */
+#endif
+
+#ifndef	E_OK
+#ifdef	EFF_ONLY_OK
+#define	E_OK	EFF_ONLY_OK /* Irix */
+#else
+#ifdef	EUID_OK
+#define	E_OK	EUID_OK	/* UNICOS (0400) */
+#else
+#define	E_OK	010	/* Test effective uids */
+#endif
+#endif
+#endif
+
+#include <errno.h>
+#ifndef	HAVE_ERRNO_DEF
+extern	int	errno;
+#endif
+
+main()
+{
+	int	ret = 0;
+
+	if (access(".", F_OK) != 0)
+		ret = 1;
+	else if (access(".", E_OK|F_OK) != 0)
+		ret = 1;
+	else if (access(".", (R_OK<<4)|F_OK) == 0)
+		ret = 1;
+
+
+	exit(ret);
+}
+configure:9644: checking for fseeko()
+configure:9656: cc -o conftest   -O     conftest.c  1>&5
+configure:9676: checking for ftello()
+configure:9688: cc -o conftest   -O     conftest.c  1>&5
+configure:9709: checking for rcmd in -lsocket
+configure:9728: cc -o conftest   -O     conftest.c -lsocket   1>&5
+/usr/sbin/ld: cannot find -lsocket
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 9717 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char rcmd();
+
+int main() {
+rcmd()
+; return 0; }
+configure:9751: checking for inet_ntoa in -lnsl
+configure:9770: cc -o conftest   -O     conftest.c -lnsl    1>&5
+configure:9794: checking for rcmd
+configure:9822: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9794: checking for socket
+configure:9822: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9794: checking for socketpair
+configure:9822: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9849: checking for getservbyname
+configure:9877: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9849: checking for inet_ntoa
+configure:9877: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9904: checking for getaddrinfo
+configure:9932: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9904: checking for getnameinfo
+configure:9932: cc -o conftest   -O     conftest.c   -lnsl 1>&5
+configure:9967: checking for special C compiler options needed for large files
+configure:9993: cc -c   -O    conftest.c 1>&5
+configure:10039: checking for _FILE_OFFSET_BITS value needed for large files
+configure:10061: cc -c   -O    conftest.c 1>&5
+configure:10106: checking for _LARGE_FILES value needed for large files
+configure:10128: cc -c   -O    conftest.c 1>&5
+configure:10173: checking for _LARGEFILE_SOURCE value needed for large files
+configure:10186: cc -c   -O    conftest.c 1>&5
+configure:10224: checking if system supports Large Files at all
+configure:10249: cc -c   -O    conftest.c 1>&5
+configure:10292: checking for crypt in -lc
+configure:10311: cc -o conftest   -O     conftest.c -lc    1>&5
+/tmp/ccfuRknQ.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `crypt'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10300 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char crypt();
+
+int main() {
+crypt()
+; return 0; }
+configure:10330: checking for crypt in -lcrypt
+configure:10349: cc -o conftest   -O     conftest.c -lcrypt    1>&5
+configure:10377: checking for crypt
+configure:10405: cc -o conftest   -O     conftest.c   -lcrypt 1>&5
+configure:10438: checking for Posix Access Control List support
+configure:10440: checking for acl_get_file in -lacl
+configure:10459: cc -o conftest   -O     conftest.c -lacl    1>&5
+configure:10480: checking for acl_get_file in -lpacl
+configure:10499: cc -o conftest   -O     conftest.c -lpacl    1>&5
+/usr/sbin/ld: cannot find -lpacl
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10488 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char acl_get_file();
+
+int main() {
+acl_get_file()
+; return 0; }
+configure:10525: checking for acl_get_file
+configure:10553: cc -o conftest   -O     conftest.c   -lacl 1>&5
+configure:10525: checking for acl_set_file
+configure:10553: cc -o conftest   -O     conftest.c   -lacl 1>&5
+configure:10525: checking for acl_from_text
+configure:10553: cc -o conftest   -O     conftest.c   -lacl 1>&5
+configure:10525: checking for acl_to_text
+configure:10553: cc -o conftest   -O     conftest.c   -lacl 1>&5
+configure:10525: checking for acl_free
+configure:10553: cc -o conftest   -O     conftest.c   -lacl 1>&5
+configure:10525: checking for acl_delete_def_file
+configure:10553: cc -o conftest   -O     conftest.c   -lacl 1>&5
+configure:10580: checking for Solaris Access Control List support
+configure:10582: checking for acltotext in -lsec
+configure:10601: cc -o conftest   -O     conftest.c -lsec    1>&5
+/usr/sbin/ld: cannot find -lsec
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10590 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char acltotext();
+
+int main() {
+acltotext()
+; return 0; }
+configure:10626: checking for acl
+configure:10654: cc -o conftest   -O     conftest.c   -lacl 1>&5
+/tmp/ccq4kaZf.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `acl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10631 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char acl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char acl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_acl) || defined (__stub___acl)
+choke me
+#else
+acl();
+#endif
+
+; return 0; }
+configure:10626: checking for facl
+configure:10654: cc -o conftest   -O     conftest.c   -lacl 1>&5
+/tmp/ccinHlXj.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `facl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10631 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char facl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char facl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_facl) || defined (__stub___facl)
+choke me
+#else
+facl();
+#endif
+
+; return 0; }
+configure:10626: checking for aclfromtext
+configure:10654: cc -o conftest   -O     conftest.c   -lacl 1>&5
+/tmp/ccgXw2cr.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `aclfromtext'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10631 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char aclfromtext(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char aclfromtext();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_aclfromtext) || defined (__stub___aclfromtext)
+choke me
+#else
+aclfromtext();
+#endif
+
+; return 0; }
+configure:10626: checking for acltotext
+configure:10654: cc -o conftest   -O     conftest.c   -lacl 1>&5
+/tmp/ccBu9uny.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `acltotext'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10631 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char acltotext(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char acltotext();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_acltotext) || defined (__stub___acltotext)
+choke me
+#else
+acltotext();
+#endif
+
+; return 0; }
+configure:10681: checking for HP-UX Access Control List support
+configure:10685: checking for getacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccdQUHhE.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `getacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char getacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_getacl) || defined (__stub___getacl)
+choke me
+#else
+getacl();
+#endif
+
+; return 0; }
+configure:10685: checking for fgetacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/cc9bMbRL.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `fgetacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fgetacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fgetacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fgetacl) || defined (__stub___fgetacl)
+choke me
+#else
+fgetacl();
+#endif
+
+; return 0; }
+configure:10685: checking for setacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccAb19KR.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `setacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char setacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char setacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_setacl) || defined (__stub___setacl)
+choke me
+#else
+setacl();
+#endif
+
+; return 0; }
+configure:10685: checking for fsetacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/cc0nDHpY.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `fsetacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fsetacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fsetacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fsetacl) || defined (__stub___fsetacl)
+choke me
+#else
+fsetacl();
+#endif
+
+; return 0; }
+configure:10685: checking for strtoacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/cc5xGcz2.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `strtoacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char strtoacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char strtoacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_strtoacl) || defined (__stub___strtoacl)
+choke me
+#else
+strtoacl();
+#endif
+
+; return 0; }
+configure:10685: checking for acltostr
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccZYcEV3.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `acltostr'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char acltostr(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char acltostr();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_acltostr) || defined (__stub___acltostr)
+choke me
+#else
+acltostr();
+#endif
+
+; return 0; }
+configure:10685: checking for cpacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccQGJJ56.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `cpacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char cpacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char cpacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_cpacl) || defined (__stub___cpacl)
+choke me
+#else
+cpacl();
+#endif
+
+; return 0; }
+configure:10685: checking for fcpacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccM3HZOf.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `fcpacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fcpacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fcpacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fcpacl) || defined (__stub___fcpacl)
+choke me
+#else
+fcpacl();
+#endif
+
+; return 0; }
+configure:10685: checking for chownacl
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccKfD0sj.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `chownacl'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char chownacl(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char chownacl();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_chownacl) || defined (__stub___chownacl)
+choke me
+#else
+chownacl();
+#endif
+
+; return 0; }
+configure:10685: checking for setaclentry
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccSVrlMx.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `setaclentry'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char setaclentry(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char setaclentry();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_setaclentry) || defined (__stub___setaclentry)
+choke me
+#else
+setaclentry();
+#endif
+
+; return 0; }
+configure:10685: checking for fsetaclentry
+configure:10713: cc -o conftest   -O     conftest.c   1>&5
+/tmp/ccSzXUoO.o: In function `main':
+conftest.c:(.text+0xa): undefined reference to `fsetaclentry'
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 10690 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fsetaclentry(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fsetaclentry();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fsetaclentry) || defined (__stub___fsetaclentry)
+choke me
+#else
+fsetaclentry();
+#endif
+
+; return 0; }
+configure:10742: checking for Extended Attribute support
+configure:10744: checking for getxattr in -lattr
+configure:10763: cc -o conftest   -O     conftest.c -lattr    1>&5
+configure:10788: checking for getxattr
+configure:10816: cc -o conftest   -O     conftest.c   -lattr 1>&5
+configure:10788: checking for setxattr
+configure:10816: cc -o conftest   -O     conftest.c   -lattr 1>&5
+configure:10788: checking for listxattr
+configure:10816: cc -o conftest   -O     conftest.c   -lattr 1>&5
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

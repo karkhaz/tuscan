@@ -1,0 +1,63 @@
+        <html><head></head><body>
+        <h1>Report for perl-clone on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:10</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-clone
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2910 packages in cache
+Found permanent source directory in /sources/perl-clone
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-clone 0.37-3 (Sat Nov 14 08:59:12 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Clone
+Writing MYMETA.yml and MYMETA.json
+cp Clone.pm blib/lib/Clone.pm
+AutoSplitting blib/lib/Clone.pm (blib/lib/auto/Clone)
+Running Mkbootstrap for Clone ()
+chmod 644 "Clone.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap"  Clone.xs > Clone.xsc && mv Clone.xsc Clone.c
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O3   -DVERSION=\"0.37\" -DXS_VERSION=\"0.37\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Clone.c
+rm -f blib/arch/auto/Clone/Clone.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Clone.o  -o blib/arch/auto/Clone/Clone.so 	\
+     	\
+
+chmod 755 blib/arch/auto/Clone/Clone.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Clone.bs blib/arch/auto/Clone/Clone.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Clone ()
+chmod 644 "Clone.bs"
+Manifying 1 pod document
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-clone/pkg/perl-clone/usr/lib/perl5/vendor_perl/auto/Clone/Clone.so
+Installing /tmp/perl-clone/pkg/perl-clone/usr/lib/perl5/vendor_perl/Clone.pm
+Installing /tmp/perl-clone/pkg/perl-clone/usr/lib/perl5/vendor_perl/auto/Clone/autosplit.ix
+Installing /tmp/perl-clone/pkg/perl-clone/usr/share/man/man3/Clone.3pm
+Appending installation info to /tmp/perl-clone/pkg/perl-clone/usr/lib/perl5/core_perl/perllocal.pod
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-clone"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-clone 0.37-3 (Sat Nov 14 08:59:15 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

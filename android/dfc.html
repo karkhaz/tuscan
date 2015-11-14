@@ -1,0 +1,3680 @@
+        <html><head></head><body>
+        <h1>Report for dfc on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:41</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dfc
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1423 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dfc 3.0.5-1 (Fri Nov 13 23:32:43 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) jsoncpp-1.6.5-1  libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.83 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing jsoncpp...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading dfc-3.0.5.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting dfc-3.0.5.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/dfc
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dfc 3.0.5-1 (Fri Nov 13 23:32:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/HP-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/MIPSpro-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Cray-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/TI-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Embarcadero-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Watcom-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/XL-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/GHS-DetermineCompiler.cmake:3 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Compaq-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/GNU-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/SunPro-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/PathScale-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:12 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:6 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '${_compiler_id_version_compute}
+    # define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif
+    # define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif
+    # define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:12 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/PGI-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Intel-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Intel-DetermineCompiler.cmake:23 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/MSVC-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/zOS-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Borland-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/ADSP-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  the old evaluation rules produce:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  but the new evaluation rules produce:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/HP-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/MIPSpro-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Cray-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/TI-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Embarcadero-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Watcom-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/XL-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/GHS-DetermineCompiler.cmake:3 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Compaq-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/GNU-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/SunPro-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/PathScale-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:12 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:6 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '${_compiler_id_version_compute}
+    # define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif
+    # define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif
+    # define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:12 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/PGI-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Intel-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Intel-DetermineCompiler.cmake:23 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/MSVC-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/zOS-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Borland-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/ADSP-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  the old evaluation rules produce:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  but the new evaluation rules produce:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/HP-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __HP_cc = VVRRPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__HP_cc/10000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__HP_cc/100 % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__HP_cc     % 100)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/MIPSpro-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_SGI_COMPILER_VERSION)
+      /* _SGI_COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_SGI_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_SGI_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_SGI_COMPILER_VERSION    % 10)
+    # else
+      /* _COMPILER_VERSION = VRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_COMPILER_VERSION/100)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_COMPILER_VERSION/10 % 10)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_COMPILER_VERSION    % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Cray-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_RELEASE)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_RELEASE_MINOR)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRP + 1100 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@((__WATCOMC__ - 1100) / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/TI-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__TI_COMPILER_VERSION__/1000   % 1000)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__TI_COMPILER_VERSION__        % 1000)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Embarcadero-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__CODEGEARC_VERSION__>>24 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__CODEGEARC_VERSION__>>16 & 0x00FF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__CODEGEARC_VERSION__     & 0xFFFF)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Watcom-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+       /* __WATCOMC__ = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__WATCOMC__ / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@((__WATCOMC__ / 10) % 10)
+    # if (__WATCOMC__ % 10) > 0
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__WATCOMC__ % 10)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/XL-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/GHS-DetermineCompiler.cmake:3 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEGRITY_MAJOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEGRITY_MINOR_VERSION)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEGRITY_PATCH_VERSION)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Compaq-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __DECC_VER = VVRRTPPPP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__DECC_VER/10000000)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__DECC_VER/100000  % 100)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__DECC_VER         % 10000)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/GNU-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__GNUC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__GNUC_MINOR__)
+    # if defined(__GNUC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__GNUC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/SunPro-C-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if __SUNPRO_C >= 0x5100
+       /* __SUNPRO_C = 0xVRRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>12)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xFF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # else
+       /* __SUNPRO_CC = 0xVRP */
+    #  define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__SUNPRO_C>>8)
+    #  define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__SUNPRO_C>>4 & 0xF)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__SUNPRO_C    & 0xF)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/PathScale-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PATHCC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PATHCC_MINOR__)
+    # if defined(__PATHCC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PATHCC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:12 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/AppleClang-DetermineCompiler.cmake:6 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '${_compiler_id_version_compute}
+    # define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif
+    # define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  but the new evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif
+    # define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__apple_build_version__)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__clang_major__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__clang_minor__)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__clang_patchlevel__)
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompilerInternal.cmake:12 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/Clang-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/PGI-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__PGIC__)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__PGIC_MINOR__)
+    # if defined(__PGIC_PATCHLEVEL__)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__PGIC_PATCHLEVEL__)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Intel-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define /usrSIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define /usrSIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __INTEL_COMPILER = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__INTEL_COMPILER/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__INTEL_COMPILER/10 % 10)
+    # if defined(__INTEL_COMPILER_UPDATE)
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER_UPDATE)
+    # else
+    #  define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__INTEL_COMPILER   % 10)
+    # endif
+    # if defined(__INTEL_COMPILER_BUILD_DATE)
+      /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(__INTEL_COMPILER_BUILD_DATE)
+    # endif
+    # if defined(_MSC_VER)
+       /* _MSC_VER = VVRR */
+    #  define @PREFIX@SIMULATE_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    #  define @PREFIX@SIMULATE_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Intel-DetermineCompiler.cmake:23 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID \"MSVC\"
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define /usrSIMULATE_ID "MSVC"
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+    # if defined(_MSC_VER)
+    #  define @PREFIX@SIMULATE_ID "MSVC"
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/MSVC-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  the old evaluation rules produce:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define /usrCOMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  but the new evaluation rules produce:
+
+    '
+      /* _MSC_VER = VVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(_MSC_VER / 100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(_MSC_VER % 100)
+    # if defined(_MSC_FULL_VER)
+    #  if _MSC_VER >= 1400
+        /* _MSC_FULL_VER = VVRRPPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 100000)
+    #  else
+        /* _MSC_FULL_VER = VVRRPPPP */
+    #   define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(_MSC_FULL_VER % 10000)
+    #  endif
+    # endif
+    # if defined(_MSC_BUILD)
+    #  define @PREFIX@COMPILER_VERSION_TWEAK @MACRO_DEC@(_MSC_BUILD)
+    # endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake:2 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __IBMC__ = VRP */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_DEC@(__IBMC__/100)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_DEC@(__IBMC__/10 % 10)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_DEC@(__IBMC__    % 10)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/Compiler/zOS-C-DetermineCompiler.cmake:4 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/Borland-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  the old evaluation rules produce:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  but the new evaluation rules produce:
+
+    '
+      /* __BORLANDC__ = 0xVRR */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__BORLANDC__>>8)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__BORLANDC__ & 0xFF)'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.3/Modules/Compiler/ADSP-DetermineCompiler.cmake:4 (set):
+  Policy CMP0053 is not set: Simplify variable reference and escape sequence
+  evaluation.  Run "cmake --help-policy CMP0053" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  For input:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  the old evaluation rules produce:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define /usrCOMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define /usrCOMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define /usrCOMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  but the new evaluation rules produce:
+
+    '
+    #if defined(__VISUALDSPVERSION__)
+      /* __VISUALDSPVERSION__ = 0xVVRRPP00 */
+    # define @PREFIX@COMPILER_VERSION_MAJOR @MACRO_HEX@(__VISUALDSPVERSION__>>24)
+    # define @PREFIX@COMPILER_VERSION_MINOR @MACRO_HEX@(__VISUALDSPVERSION__>>16 & 0xFF)
+    # define @PREFIX@COMPILER_VERSION_PATCH @MACRO_HEX@(__VISUALDSPVERSION__>>8  & 0xFF)
+    #endif'
+
+  Using the old result for compatibility since the policy is not set.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:16 (include)
+  /usr/share/cmake-3.3/Modules/CMakeCompilerIdDetection.cmake:44 (_readFile)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:108 (compiler_id_detection)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:126 (CMAKE_DETERMINE_COMPILER_ID_WRITE)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCompilerId.cmake:39 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  /usr/share/cmake-3.3/Modules/CMakeDetermineCCompiler.cmake:109 (CMAKE_DETERMINE_COMPILER_ID)
+  CMakeLists.txt:4 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- The C compiler identification is unknown
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Looking for gettext
+-- Looking for gettext - not found
+-- Could NOT find Libintl (missing:  LIBINTL_LIB_FOUND) 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/dfc/src/dfc-3.0.5
+Scanning dependencies of target dfc
+[ 11%] Building C object CMakeFiles/dfc.dir/src/csv.c.o
+[ 22%] Building C object CMakeFiles/dfc.dir/src/dotfile.c.o
+[ 33%] Building C object CMakeFiles/dfc.dir/src/dfc.c.o
+/tmp/dfc/src/dfc-3.0.5/src/dfc.c: In function 'main':
+/tmp/dfc/src/dfc-3.0.5/src/dfc.c:190:5: warning: implicit declaration of function 'getsubopt' [-Wimplicit-function-declaration]
+     switch (getsubopt(&subopts, color_opts, &value)) {
+     ^
+[ 44%] Building C object CMakeFiles/dfc.dir/src/html.c.o
+[ 55%] Building C object CMakeFiles/dfc.dir/src/list.c.o
+[ 66%] Building C object CMakeFiles/dfc.dir/src/tex.c.o
+[ 77%] Building C object CMakeFiles/dfc.dir/src/text.c.o
+[ 88%] Building C object CMakeFiles/dfc.dir/src/util.c.o
+[100%] Linking C executable bin/RELEASE/dfc
+CMakeFiles/dfc.dir/src/dfc.c.o:dfc.c:function main: error: undefined reference to 'getsubopt'
+CMakeFiles/dfc.dir/src/dfc.c.o:dfc.c:function main: error: undefined reference to 'getsubopt'
+CMakeFiles/dfc.dir/src/dfc.c.o:dfc.c:function main: error: undefined reference to 'getsubopt'
+CMakeFiles/dfc.dir/src/dfc.c.o:dfc.c:function main: error: undefined reference to 'getsubopt'
+collect2: error: ld returned 1 exit status
+CMakeFiles/dfc.dir/build.make:276: recipe for target 'bin/RELEASE/dfc' failed
+make[2]: *** [bin/RELEASE/dfc] Error 1
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/dfc.dir/all' failed
+make[1]: *** [CMakeFiles/dfc.dir/all] Error 2
+Makefile:149: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

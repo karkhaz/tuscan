@@ -1,0 +1,54 @@
+        <html><head></head><body>
+        <h1>Report for whois on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:49</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data whois
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2470 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: whois 5.2.7-1 (Sat Nov 14 00:30:13 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading whois_5.2.7.tar.xz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting whois_5.2.7.tar.xz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/whois
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: whois 5.2.7-1 (Sat Nov 14 00:30:14 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-gcc  -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -MM -MG *.c > Makefile.depend
+perl make_version_h.pl debian/changelog > version.h
+perl make_ip_del.pl < ip_del_list > ip_del.h
+perl make_ip6_del.pl < ip6_del_list > ip6_del.h
+perl make_as_del.pl < as_del_list > as_del.h
+perl make_as32_del.pl < as32_del_list > as32_del.h
+perl make_new_gtlds.pl < new_gtlds_list > new_gtlds.h
+perl make_tld_serv.pl < tld_serv_list > tld_serv.h
+perl make_servers_charset.pl < servers_charset_list > servers_charset.h
+arm-linux-androideabi-gcc  -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -c utils.c
+arm-linux-androideabi-gcc  -DCONFIG_FILE=\"/etc/whois.conf\" -DHAVE_LIBIDN -DHAVE_ICONV   -c simple_recode.c
+simple_recode.c:26:19: fatal error: iconv.h: No such file or directory
+ #include <iconv.h>
+                   ^
+compilation terminated.
+Makefile:63: recipe for target 'simple_recode.o' failed
+make: *** [simple_recode.o] Error 1
+make: *** Waiting for unfinished jobs....
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

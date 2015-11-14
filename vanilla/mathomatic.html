@@ -1,0 +1,149 @@
+        <html><head></head><body>
+        <h1>Report for mathomatic on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:03</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data mathomatic
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2079 packages in cache
+Found permanent source directory in /sources/mathomatic
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: mathomatic 16.0.5-3 (Sat Nov 14 05:57:05 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) time-1.7-7
+
+Total Download Size:   0.01 MiB
+Total Installed Size:  0.04 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading time-1.7-7-x86_64.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing time...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o main.o main.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o globals.o globals.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o am.o am.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o solve.o solve.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o help.o help.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o parse.o parse.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o cmds.o cmds.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o simplify.o simplify.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o factor.o factor.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o super.o super.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o unfactor.o unfactor.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o poly.o poly.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o diff.o diff.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o integrate.o integrate.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o complex.o complex.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o complex_lib.o complex_lib.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o list.o list.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o gcd.o gcd.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE    -c -o factor_int.o factor_int.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts  -fexceptions -DUNIX -DVERSION=\"`cat VERSION`\" -DREADLINE   main.o globals.o am.o solve.o help.o parse.o cmds.o simplify.o factor.o super.o unfactor.o poly.o diff.o integrate.o complex.o complex_lib.o list.o gcd.o factor_int.o -lm  -lreadline   -o mathomatic
+
+./mathomatic successfully created.
+
+Testing ./mathomatic (Mathomatic version 16.0.5)
+cd tests && time -p ../mathomatic -t all 0<&- >test.out && diff -u --strip-trailing-cr all.out test.out && rm test.out && cd ..
+real 9.14
+user 0.95
+sys 0.01
+All tests passed 100% correctly.
+cc -O3  -Wall -Wshadow -Wno-char-subscripts     matho-primes.c  -lm -o matho-primes
+cc -O3  -Wall -Wshadow -Wno-char-subscripts     matho-pascal.c  -lm -o matho-pascal
+cc -O3  -Wall -Wshadow -Wno-char-subscripts    -c -o matho-sumsq.o matho-sumsq.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts    -c -o lsqrt.o lsqrt.c
+cc -O3  -Wall -Wshadow -Wno-char-subscripts   matho-sumsq.o lsqrt.o -lm -o matho-sumsq
+
+Prime Number Tools successfully created.
+Testing basic functionality of matho-primes:
+time -p ./matho-primes 10000000000000 10000000300000 twin >test.out && diff -u --strip-trailing-cr twins.out test.out
+real 0.12
+user 0.07
+sys 0.00
+Small primes test passed.
+
+==> Entering fakeroot environment...
+==> Starting package()...
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/bin
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/applications
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/pixmaps
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/man/man1
+install   mathomatic /tmp/mathomatic/pkg/mathomatic/usr/bin
+install  -m 0644  icons/mathomatic.desktop /tmp/mathomatic/pkg/mathomatic/usr/share/applications
+install  -m 0644  icons/mathomatic.png icons/mathomatic.xpm /tmp/mathomatic/pkg/mathomatic/usr/share/pixmaps
+install  -m 0644  mathomatic.1 /tmp/mathomatic/pkg/mathomatic/usr/share/man/man1
+Installing docs...
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic/html
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic/tests
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic/examples
+install  -m 0644  VERSION AUTHORS COPYING README.txt NEWS /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic
+install  -m 0644  doc/* /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic/html
+install  -m 0644  *.pdf /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic
+install: cannot stat '*.pdf': No such file or directory
+makefile:289: recipe for target 'docinstall' failed
+make: [docinstall] Error 1 (ignored)
+install  -m 0644  tests/* /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic/tests
+install  -m 0644  examples/* /tmp/mathomatic/pkg/mathomatic/usr/share/doc/mathomatic/examples
+
+Mathomatic is installed.
+
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/mathomatic
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/mathomatic/m4
+echo '#!/bin/sh' >/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo '# Shell script to run Mathomatic with the GNU m4 preprocessor.' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo '# This allows entry of many standard math functions.' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo '#' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo '# Usage: matho [ input_files ]' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo 'if ! m4  --version >/dev/null' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo 'then' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo '  echo The m4  package is not installed.  GNU m4 is required to run m4 Mathomatic.' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo '  exit 1' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo 'fi' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+echo 'm4  -eP -- /tmp/mathomatic/pkg/mathomatic/usr/share/mathomatic/m4/functions.m4 "$@" - | mathomatic -ru -s-1' >>/tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+chmod 0755 /tmp/mathomatic/pkg/mathomatic/usr/bin/matho
+install   m4/rmath /tmp/mathomatic/pkg/mathomatic/usr/bin
+install  -m 0644  rmath.1 /tmp/mathomatic/pkg/mathomatic/usr/share/man/man1
+cd /tmp/mathomatic/pkg/mathomatic/usr/share/man/man1 && ln -sf rmath.1 matho.1
+install  -m 0644  m4/functions.m4 m4/degrees.m4 m4/gradians.m4 /tmp/mathomatic/pkg/mathomatic/usr/share/mathomatic/m4
+
+m4 Mathomatic install completed.
+
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/bin
+install  -d /tmp/mathomatic/pkg/mathomatic/usr/share/man/man1
+install   matho-primes matho-pascal matho-sumsq primorial matho-mult matho-sum /tmp/mathomatic/pkg/mathomatic/usr/bin
+install  -m 0644  matho-primes.1 matho-pascal.1 matho-sumsq.1 primorial.1 matho-mult.1 matho-sum.1 /tmp/mathomatic/pkg/mathomatic/usr/share/man/man1
+
+The Prime Number Tools are installed.
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "mathomatic"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: mathomatic 16.0.5-3 (Sat Nov 14 05:57:46 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

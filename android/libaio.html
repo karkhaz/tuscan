@@ -1,0 +1,55 @@
+        <html><head></head><body>
+        <h1>Report for libaio on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:47</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data libaio
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2214 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libaio 0.3.110-1 (Sat Nov 14 00:11:01 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading libaio_0.3.110.orig.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting libaio_0.3.110.orig.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/libaio
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: libaio 0.3.110-1 (Sat Nov 14 00:11:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+make[1]: Entering directory '/tmp/libaio/src/libaio-0.3.110/src'
+arm-linux-androideabi-gcc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_init.ol io_queue_init.c
+arm-linux-androideabi-gcc -march=x86-64 -mtune=generic -O2 -pipe -nostdlib -nostartfiles -Wall -I. -fPIC -c -o io_queue_release.ol io_queue_release.c
+arm-linux-androideabi-gcc: error: unrecognized argument in option '-march=x86-64'
+arm-linux-androideabi-gcc: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+arm-linux-androideabi-gcc: error: unrecognized argument in option '-mtune=generic'
+arm-linux-androideabi-gcc: note: valid arguments to '-mtune=' are: arm1020e arm1020t arm1022e arm1026ej-s arm10e arm10tdmi arm1136j-s arm1136jf-s arm1156t2-s arm1156t2f-s arm1176jz-s arm1176jzf-s arm2 arm250 arm3 arm6 arm60 arm600 arm610 arm620 arm7 arm70 arm700 arm700i arm710 arm7100 arm710c arm710t arm720 arm720t arm740t arm7500 arm7500fe arm7d arm7di arm7dm arm7dmi arm7m arm7tdmi arm7tdmi-s arm8 arm810 arm9 arm920 arm920t arm922t arm926ej-s arm940t arm946e-s arm966e-s arm968e-s arm9e arm9tdmi cortex-a15 cortex-a5 cortex-a7 cortex-a8 cortex-a9 cortex-m0 cortex-m0plus cortex-m1 cortex-m3 cortex-m4 cortex-r4 cortex-r4f cortex-r5 ep9312 fa526 fa606te fa626 fa626te fa726te fmp626 generic-armv7-a iwmmxt iwmmxt2 marvell-pj4 mpcore mpcorenovfp native strongarm strongarm110 strongarm1100 strongarm1110 xscale
+Makefile:43: recipe for target 'io_queue_release.ol' failed
+make[1]: *** [io_queue_release.ol] Error 1
+make[1]: *** Waiting for unfinished jobs....
+arm-linux-androideabi-gcc: error: unrecognized argument in option '-march=x86-64'
+arm-linux-androideabi-gcc: note: valid arguments to '-march=' are: armv2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6-m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv7-r armv7e-m armv8-a iwmmxt iwmmxt2 native
+arm-linux-androideabi-gcc: error: unrecognized argument in option '-mtune=generic'
+arm-linux-androideabi-gcc: note: valid arguments to '-mtune=' are: arm1020e arm1020t arm1022e arm1026ej-s arm10e arm10tdmi arm1136j-s arm1136jf-s arm1156t2-s arm1156t2f-s arm1176jz-s arm1176jzf-s arm2 arm250 arm3 arm6 arm60 arm600 arm610 arm620 arm7 arm70 arm700 arm700i arm710 arm7100 arm710c arm710t arm720 arm720t arm740t arm7500 arm7500fe arm7d arm7di arm7dm arm7dmi arm7m arm7tdmi arm7tdmi-s arm8 arm810 arm9 arm920 arm920t arm922t arm926ej-s arm940t arm946e-s arm966e-s arm968e-s arm9e arm9tdmi cortex-a15 cortex-a5 cortex-a7 cortex-a8 cortex-a9 cortex-m0 cortex-m0plus cortex-m1 cortex-m3 cortex-m4 cortex-r4 cortex-r4f cortex-r5 ep9312 fa526 fa606te fa626 fa626te fa726te fmp626 generic-armv7-a iwmmxt iwmmxt2 marvell-pj4 mpcore mpcorenovfp native strongarm strongarm110 strongarm1100 strongarm1110 xscale
+Makefile:43: recipe for target 'io_queue_init.ol' failed
+make[1]: *** [io_queue_init.ol] Error 1
+make[1]: Leaving directory '/tmp/libaio/src/libaio-0.3.110/src'
+Makefile:15: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

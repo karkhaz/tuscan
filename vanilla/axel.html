@@ -1,0 +1,51 @@
+        <html><head></head><body>
+        <h1>Report for axel on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:16</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data axel
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 828 packages in cache
+Found permanent source directory in /sources/axel
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: axel 2.4-4 (Sat Nov 14 04:50:04 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Axel configure
+
+Usage: ./configure [OPTIONS]
+
+Option		Description				Default
+
+--prefix=...	Directories to put files in		/usr/local
+--bindir=...						$prefix/bin
+--etcdir=...						$prefix/etc
+--mandir=...						$sharedir/man
+--locale=...						$sharedir/locale
+
+--i18n=0/1	Disable/enable internationalization	1
+--debug=0/1	Disable/enable debugging		0
+--strip=0/1	Disable/enable binary stripping		1
+make: Nothing to be done for 'all'.
+==> Entering fakeroot environment...
+==> Starting package()...
+mkdir -p /tmp/axel/pkg/axel/
+cp  /tmp/axel/pkg/axel/
+cp: missing destination file operand after '/tmp/axel/pkg/axel/'
+Try 'cp --help' for more information.
+Makefile:63: recipe for target 'install-bin' failed
+make: *** [install-bin] Error 1
+==> ERROR: A failure occurred in package().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs
+Error deleting container: Error response from daemon: Driver aufs failed to remove root filesystem 8f5606d088d5c21f8963373e8679ad21d7d3c67c75ed8b0f9d7c20e53ad5be39: rename /usr/local/google/home/khazem/docker/aufs/mnt/8f5606d088d5c21f8963373e8679ad21d7d3c67c75ed8b0f9d7c20e53ad5be39 /usr/local/google/home/khazem/docker/aufs/mnt/8f5606d088d5c21f8963373e8679ad21d7d3c67c75ed8b0f9d7c20e53ad5be39-removing: device or resource busy></pre></code>
+        </body></html>

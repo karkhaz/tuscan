@@ -1,0 +1,88 @@
+        <html><head></head><body>
+        <h1>Report for arptables on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:44</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data arptables
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2866 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: arptables 0.0.4-3 (Sat Nov 14 01:19:20 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading arptables-v0.0.4.tar.gz...
+  -> Found arptables.systemd
+  -> Found arptables.service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting arptables-v0.0.4.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/arptables
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: arptables 0.0.4-3 (Sat Nov 14 01:19:21 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-gcc -O2 -Wall -Wunused -I.//include/ -Iinclude/ -DARPTABLES_VERSION=\"0.0.4\"  -c -o arptables-standalone.o arptables-standalone.c
+arm-linux-androideabi-gcc -O2 -Wall -Wunused -I.//include/ -Iinclude/ -DARPTABLES_VERSION=\"0.0.4\"  -c -o arptables.o arptables.c
+arptables.c:251:32: error: 'ETH_ALEN' undeclared here (not in a function)
+ unsigned char mac_type_unicast[ETH_ALEN] =   {0,0,0,0,0,0};
+                                ^
+arptables.c: In function 'getmac_and_mask':
+arptables.c:299:3: warning: implicit declaration of function 'ether_aton' [-Wimplicit-function-declaration]
+   if (!(addr = ether_aton(p + 1)))
+   ^
+arptables.c:299:14: warning: assignment makes pointer from integer without a cast [enabled by default]
+   if (!(addr = ether_aton(p + 1)))
+              ^
+arptables.c:304:13: warning: assignment makes pointer from integer without a cast [enabled by default]
+  if (!(addr = ether_aton(from)))
+             ^
+arptables.c: In function 'get16_and_mask':
+arptables.c:342:3: warning: implicit declaration of function 'htons' [-Wimplicit-function-declaration]
+   *mask = htons((uint16_t)i);
+   ^
+arptables.c: In function 'network_to_addr':
+arptables.c:424:3: warning: implicit declaration of function 'htonl' [-Wimplicit-function-declaration]
+   addr.s_addr = htonl((unsigned long) net->n_net);
+   ^
+arptables.c: In function 'addr_to_network':
+arptables.c:894:2: warning: implicit declaration of function 'ntohl' [-Wimplicit-function-declaration]
+  if ((net = getnetbyaddr((long) ntohl(addr->s_addr), AF_INET)) != NULL)
+  ^
+arptables.c: In function 'print_firewall':
+arptables.c:1324:3: warning: implicit declaration of function 'ntohs' [-Wimplicit-function-declaration]
+   int tmp = ntohs(fw->arp.arpop);
+   ^
+arm-linux-androideabi-gcc -O2 -Wall -Wunused -I.//include/ -Iinclude/ -DARPTABLES_VERSION=\"0.0.4\"  -c -o libarptc/libarptc.o libarptc/libarptc.c
+libarptc/libarptc.c:27:22: error: conflicting types for 'socklen_t'
+ typedef unsigned int socklen_t;
+                      ^
+In file included from /tmp/toolchain/sysroot/usr/include/strings.h:42:0,
+                 from /tmp/toolchain/sysroot/usr/include/stdlib.h:36,
+                 from libarptc/libarptc.c:17:
+/tmp/toolchain/sysroot/usr/include/sys/types.h:127:21: note: previous declaration of 'socklen_t' was here
+ typedef __socklen_t socklen_t;
+                     ^
+libarptc/libarptc.c: In function 'dump_entry':
+libarptc/libarptc.c:125:9: warning: implicit declaration of function 'ntohl' [-Wimplicit-function-declaration]
+         IP_PARTS(e->arp.src.s_addr),IP_PARTS(e->arp.smsk.s_addr));
+         ^
+Makefile:25: recipe for target 'arptables.o' failed
+make: *** [arptables.o] Error 1
+make: *** Waiting for unfinished jobs....
+Makefile:31: recipe for target 'libarptc/libarptc.o' failed
+make: *** [libarptc/libarptc.o] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

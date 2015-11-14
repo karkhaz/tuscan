@@ -1,0 +1,144 @@
+        <html><head></head><body>
+        <h1>Report for sysdig on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:43</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data sysdig
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2147 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sysdig 0.3.0-1 (Sat Nov 14 00:04:09 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) dkms-2.2.0.3+git151023-1  jsoncpp-1.6.5-1  luajit-2.0.4-1
+
+Total Installed Size:  1.58 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing dkms...
+Optional dependencies for dkms
+    linux-headers: build modules against Arch kernel
+    linux-lts-headers: build modules against LTS Arch kernel
+installing jsoncpp...
+installing luajit...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) libxml2-2.9.2-2  shared-mime-info-1.5-1  cmake-3.3.2-3
+
+Total Installed Size:  39.52 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing shared-mime-info...
+installing cmake...
+Optional dependencies for cmake
+    qt5-base: cmake-gui
+    libxkbcommon-x11: cmake-gui
+==> Retrieving sources...
+  -> Downloading sysdig-0.3.0.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting sysdig-0.3.0.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/sysdig
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: sysdig 0.3.0-1 (Sat Nov 14 00:04:22 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+-- The C compiler identification is GNU 4.8.0
+-- The CXX compiler identification is GNU 4.8.0
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc
+-- Check for working C compiler: /tmp/toolchain/bin/arm-linux-androideabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++
+-- Check for working CXX compiler: /tmp/toolchain/bin/arm-linux-androideabi-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found LuaJIT: include: /usr/include/luajit-2.0, lib: /usr/lib/libluajit-5.1.so
+-- Found jsoncpp: include: /usr/include, lib: /usr/lib/libjsoncpp.so
+-- Found zlib: include: /usr/include, lib: /usr/lib/libz.so
+-- Looking for wsyncup in /usr/lib/libcurses.so
+-- Looking for wsyncup in /usr/lib/libcurses.so - not found
+-- Looking for wsyncup in /usr/lib/libncurses.so
+-- Looking for wsyncup in /usr/lib/libncurses.so - not found
+-- Looking for cbreak in /usr/lib/libncurses.so
+-- Looking for cbreak in /usr/lib/libncurses.so - not found
+-- Found Curses: /usr/lib/libncurses.so  
+-- Found ncurses: include: /usr/include, lib: /usr/lib/libncurses.so;/usr/lib/libform.so
+-- Configuring done
+CMake Warning (dev) at userspace/libscap/CMakeLists.txt:17 (add_dependencies):
+  Policy CMP0046 is not set: Error on non-existent dependency in
+  add_dependencies.  Run "cmake --help-policy CMP0046" for policy details.
+  Use the cmake_policy command to set the policy and suppress this warning.
+
+  The dependency target "zlib" of target "scap" does not exist.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at userspace/libsinsp/CMakeLists.txt:45 (add_dependencies):
+  Policy CMP0046 is not set: Error on non-existent dependency in
+  add_dependencies.  Run "cmake --help-policy CMP0046" for policy details.
+  Use the cmake_policy command to set the policy and suppress this warning.
+
+  The dependency target "luajit" of target "sinsp" does not exist.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Generating done
+-- Build files have been written to: /tmp/sysdig/src/sysdig-0.3.0/build
+Scanning dependencies of target configure_driver
+Scanning dependencies of target scap
+[  0%] Built target configure_driver
+[  2%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap.c.o
+[  4%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_event.c.o
+/tmp/sysdig/src/sysdig-0.3.0/userspace/libscap/scap.c: In function 'scap_get_readfile_offset':
+/tmp/sysdig/src/sysdig-0.3.0/userspace/libscap/scap.c:988:2: warning: implicit declaration of function 'gzoffset' [-Wimplicit-function-declaration]
+  return gzoffset(handle->m_file);
+  ^
+[  6%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_fds.c.o
+[  8%] Building C object userspace/libscap/CMakeFiles/scap.dir/scap_iflist.c.o
+/tmp/sysdig/src/sysdig-0.3.0/userspace/libscap/scap_iflist.c:30:21: fatal error: ifaddrs.h: No such file or directory
+ #include <ifaddrs.h>
+                     ^
+compilation terminated.
+userspace/libscap/CMakeFiles/scap.dir/build.make:134: recipe for target 'userspace/libscap/CMakeFiles/scap.dir/scap_iflist.c.o' failed
+make[2]: *** [userspace/libscap/CMakeFiles/scap.dir/scap_iflist.c.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+CMakeFiles/Makefile2:345: recipe for target 'userspace/libscap/CMakeFiles/scap.dir/all' failed
+make[1]: *** [userspace/libscap/CMakeFiles/scap.dir/all] Error 2
+Makefile:149: recipe for target 'all' failed
+make: *** [all] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

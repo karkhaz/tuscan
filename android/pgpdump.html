@@ -1,0 +1,599 @@
+        <html><head></head><body>
+        <h1>Report for pgpdump on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:42</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data pgpdump
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2250 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pgpdump 0.29-2 (Sat Nov 14 00:13:57 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading pgpdump-0.29.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting pgpdump-0.29.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/pgpdump
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pgpdump 0.29-2 (Sat Nov 14 00:13:59 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking for inflate in -lz... yes
+checking for BZ2_bzBuffToBuffDecompress in -lbz2... no
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for unistd.h... (cached) yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking unixlib/local.h usability... no
+checking unixlib/local.h presence... no
+checking for unixlib/local.h... no
+checking whether time.h and sys/time.h may both be included... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for struct tm.tm_zone... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status: creating config.h
+arm-linux-androideabi-gcc -c -O -Wall pgpdump.c
+arm-linux-androideabi-gcc -c -O -Wall types.c
+arm-linux-androideabi-gcc -c -O -Wall tagfuncs.c
+arm-linux-androideabi-gcc -c -O -Wall packet.c
+arm-linux-androideabi-gcc -c -O -Wall subfunc.c
+arm-linux-androideabi-gcc -c -O -Wall signature.c
+arm-linux-androideabi-gcc -c -O -Wall keys.c
+arm-linux-androideabi-gcc -c -O -Wall buffer.c
+arm-linux-androideabi-gcc -c -O -Wall uatfunc.c
+arm-linux-androideabi-gcc -O -Wall -o pgpdump pgpdump.o types.o tagfuncs.o packet.o subfunc.o signature.o keys.o buffer.o uatfunc.o -lz  
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d /tmp/pgpdump/pkg/pgpdump/usr/bin
+install -cp -pm755 pgpdump /tmp/pgpdump/pkg/pgpdump/usr/bin
+install -d /tmp/pgpdump/pkg/pgpdump/usr/share/man/man1
+install -cp -pm644 pgpdump.1 /tmp/pgpdump/pkg/pgpdump/usr/share/man/man1
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "pgpdump"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: pgpdump 0.29-2 (Sat Nov 14 00:14:02 UTC 2015)
+===> Printing config.logs
+found log at /tmp/pgpdump/src/pgpdump-0.29/config.log
+____
+File /tmp/pgpdump/src/pgpdump-0.29/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = a42c3f4804af
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2123: checking for x86_64-unknown-linux-gcc
+configure:2150: result: arm-linux-androideabi-gcc
+configure:2419: checking for C compiler version
+configure:2428: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2439: $? = 0
+configure:2428: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2439: $? = 0
+configure:2428: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2439: $? = 1
+configure:2428: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2439: $? = 1
+configure:2459: checking whether the C compiler works
+configure:2481: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2485: $? = 0
+configure:2533: result: yes
+configure:2536: checking for C compiler default output file name
+configure:2538: result: a.out
+configure:2544: checking for suffix of executables
+configure:2551: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2555: $? = 0
+configure:2577: result: 
+configure:2599: checking whether we are cross compiling
+configure:2607: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2611: $? = 0
+configure:2618: ./conftest
+./configure: line 2620: ./conftest: cannot execute binary file: Exec format error
+configure:2622: $? = 126
+configure:2637: result: yes
+configure:2642: checking for suffix of object files
+configure:2664: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2668: $? = 0
+configure:2689: result: o
+configure:2693: checking whether we are using the GNU C compiler
+configure:2712: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2712: $? = 0
+configure:2721: result: yes
+configure:2730: checking whether arm-linux-androideabi-gcc accepts -g
+configure:2750: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:2750: $? = 0
+configure:2791: result: yes
+configure:2808: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:2871: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:2871: $? = 0
+configure:2884: result: none needed
+configure:2905: checking for inflate in -lz
+configure:2930: arm-linux-androideabi-gcc -o conftest    conftest.c -lz   >&5
+configure:2930: $? = 0
+configure:2939: result: yes
+configure:2950: checking for BZ2_bzBuffToBuffDecompress in -lbz2
+configure:2975: arm-linux-androideabi-gcc -o conftest    conftest.c -lbz2  -lz  >&5
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lbz2
+/tmp/ccQBthZg.o:conftest.c:function main: error: undefined reference to 'BZ2_bzBuffToBuffDecompress'
+collect2: error: ld returned 1 exit status
+configure:2975: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBZ 1
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char BZ2_bzBuffToBuffDecompress ();
+| int
+| main ()
+| {
+| return BZ2_bzBuffToBuffDecompress ();
+|   ;
+|   return 0;
+| }
+configure:2984: result: no
+configure:3003: checking how to run the C preprocessor
+configure:3034: arm-linux-androideabi-gcc -E  conftest.c
+configure:3034: $? = 0
+configure:3048: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3048: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBZ 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3073: result: arm-linux-androideabi-gcc -E
+configure:3093: arm-linux-androideabi-gcc -E  conftest.c
+configure:3093: $? = 0
+configure:3107: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3107: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBZ 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3136: checking for grep that handles long lines and -e
+configure:3194: result: /usr/sbin/grep
+configure:3199: checking for egrep
+configure:3261: result: /usr/sbin/grep -E
+configure:3266: checking for ANSI C header files
+configure:3286: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3286: $? = 0
+configure:3370: result: yes
+configure:3383: checking for sys/types.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for sys/stat.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for stdlib.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for string.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for memory.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for strings.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for inttypes.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for stdint.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3383: checking for unistd.h
+configure:3383: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3383: $? = 0
+configure:3383: result: yes
+configure:3397: checking for unistd.h
+configure:3397: result: yes
+configure:3409: checking sys/time.h usability
+configure:3409: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3409: $? = 0
+configure:3409: result: yes
+configure:3409: checking sys/time.h presence
+configure:3409: arm-linux-androideabi-gcc -E  conftest.c
+configure:3409: $? = 0
+configure:3409: result: yes
+configure:3409: checking for sys/time.h
+configure:3409: result: yes
+configure:3421: checking unixlib/local.h usability
+configure:3421: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:55:27: fatal error: unixlib/local.h: No such file or directory
+ #include <unixlib/local.h>
+                           ^
+compilation terminated.
+configure:3421: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBZ 1
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <unixlib/local.h>
+configure:3421: result: no
+configure:3421: checking unixlib/local.h presence
+configure:3421: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:22:27: fatal error: unixlib/local.h: No such file or directory
+ #include <unixlib/local.h>
+                           ^
+compilation terminated.
+configure:3421: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define HAVE_LIBZ 1
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_SYS_TIME_H 1
+| /* end confdefs.h.  */
+| #include <unixlib/local.h>
+configure:3421: result: no
+configure:3421: checking for unixlib/local.h
+configure:3421: result: no
+configure:3431: checking whether time.h and sys/time.h may both be included
+configure:3451: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3451: $? = 0
+configure:3458: result: yes
+configure:3467: checking whether struct tm is in sys/time.h or time.h
+configure:3487: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3487: $? = 0
+configure:3494: result: time.h
+configure:3502: checking for struct tm.tm_zone
+configure:3502: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3502: $? = 0
+configure:3502: result: yes
+configure:3687: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on a42c3f4804af
+
+config.status:803: creating Makefile
+config.status:902: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+config.status:803: creating config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_time_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_time=yes
+ac_cv_header_unistd_h=yes
+ac_cv_header_unixlib_local_h=no
+ac_cv_lib_bz2_BZ2_bzBuffToBuffDecompress=no
+ac_cv_lib_z_inflate=yes
+ac_cv_member_struct_tm_tm_zone=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_CPP='arm-linux-androideabi-gcc -E'
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_struct_tm=time.h
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='arm-linux-androideabi-gcc'
+CFLAGS=''
+CPP='arm-linux-androideabi-gcc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+LDFLAGS=''
+LIBOBJS=''
+LIBS='-lz '
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_URL=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+SHELL='/bin/sh'
+ac_ct_CC=''
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define HAVE_LIBZ 1
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_SYS_TIME_H 1
+#define TIME_WITH_SYS_TIME 1
+#define HAVE_STRUCT_TM_TM_ZONE 1
+#define HAVE_TM_ZONE 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

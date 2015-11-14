@@ -1,0 +1,253 @@
+        <html><head></head><body>
+        <h1>Report for ppp on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:30</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data ppp
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2234 packages in cache
+Found permanent source directory in /sources/ppp
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: ppp 2.4.7-2 (Sat Nov 14 06:22:54 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libnl-3.2.26-1  libpcap-1.7.4-1
+
+Total Installed Size:  2.06 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libnl...
+installing libpcap...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Configuring for Linux
+Creating Makefiles.
+  Makefile <= linux/Makefile.top
+  pppd/Makefile <= pppd/Makefile.linux
+  pppstats/Makefile <= pppstats/Makefile.linux
+  chat/Makefile <= chat/Makefile.linux
+  pppdump/Makefile <= pppdump/Makefile.linux
+  pppd/plugins/Makefile <= pppd/plugins/Makefile.linux
+  pppd/plugins/rp-pppoe/Makefile <= pppd/plugins/rp-pppoe/Makefile.linux
+  pppd/plugins/radius/Makefile <= pppd/plugins/radius/Makefile.linux
+  pppd/plugins/pppoatm/Makefile <= pppd/plugins/pppoatm/Makefile.linux
+  pppd/plugins/pppol2tp/Makefile <= pppd/plugins/pppol2tp/Makefile.linux
+cd chat; make  all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/chat'
+cc -c -D_GNU_SOURCE -DTERMIOS			 -DSIGTYPE=void			 -UNO_SLEEP			 -DFNDELAY=O_NDELAY		  -o chat.o chat.c
+cc -o chat chat.o
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/chat'
+cd pppd/plugins; make  all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins'
+cc -o minconn.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 minconn.c
+cc -o passprompt.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 passprompt.c
+cc -o passwordfd.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 passwordfd.c
+cc -o winbind.so -shared -D_GNU_SOURCE -I.. -I../../include -fPIC -DMPPE=1 winbind.c
+for d in rp-pppoe pppoatm pppol2tp radius; do make -w -C $d all; done
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/rp-pppoe'
+cc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o plugin.o -fPIC plugin.c
+cc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o discovery.o -fPIC discovery.c
+cc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o if.o -fPIC if.c
+cc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o common.o -fPIC common.c
+cc -o rp-pppoe.so -shared  plugin.o discovery.o if.o common.o
+cc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -c -o pppoe-discovery.o pppoe-discovery.c
+In file included from pppoe-discovery.c:18:0:
+pppoe-discovery.c: In function 'sendPADI':
+pppoe.h:299:2: warning: implicit declaration of function 'error' [-Wimplicit-function-declaration]
+  error("Would create too-long packet"); \
+  ^
+pppoe-discovery.c:455:5: note: in expansion of macro 'CHECK_ROOM'
+     CHECK_ROOM(cursor, packet.payload, plen);
+     ^
+cc -D_GNU_SOURCE -I../../../include '-DRP_VERSION="3.8p"' -c -o debug.o debug.c
+cc -o pppoe-discovery  pppoe-discovery.o debug.o
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/rp-pppoe'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppoatm'
+cc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o pppoatm.o pppoatm.c
+cc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o text2qos.o text2qos.c
+cc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o text2atm.o text2atm.c
+cc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o misc.o misc.c
+cc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -c -o ans.o ans.c
+cc -D_GNU_SOURCE -I../.. -I../../../include -fPIC -I. -o pppoatm.so  -shared pppoatm.o text2qos.o text2atm.o misc.o ans.o -lresolv
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppoatm'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppol2tp'
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -c -o pppol2tp.o pppol2tp.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -o pppol2tp.so  -shared pppol2tp.o 
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -c -o openl2tp.o openl2tp.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -fPIC -o openl2tp.so  -shared openl2tp.o 
+rm openl2tp.o pppol2tp.o
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppol2tp'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/radius'
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o radius.o radius.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o avpair.o avpair.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o buildreq.o buildreq.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o config.o config.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o dict.o dict.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o ip_util.o ip_util.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o clientid.o clientid.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o sendserver.o sendserver.c
+In file included from /usr/include/netdb.h:27:0,
+                 from ./includes.h:22,
+                 from sendserver.c:17:
+sendserver.c: In function 'rc_send_server':
+sendserver.c:247:31: warning: implicit declaration of function 'rc_own_bind_ipaddress' [-Wimplicit-function-declaration]
+  sin->sin_addr.s_addr = htonl(rc_own_bind_ipaddress());
+                               ^
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o lock.o lock.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o util.o util.c
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o md5.o md5.c
+ar rv libradiusclient.a avpair.o buildreq.o config.o dict.o ip_util.o clientid.o sendserver.o lock.o util.o md5.o
+ar: creating libradiusclient.a
+a - avpair.o
+a - buildreq.o
+a - config.o
+a - dict.o
+a - ip_util.o
+a - clientid.o
+a - sendserver.o
+a - lock.o
+a - util.o
+a - md5.o
+cc -o radius.so -shared  radius.o libradiusclient.a
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o radattr.o radattr.c
+cc -o radattr.so -shared  radattr.o
+cc -D_GNU_SOURCE -I. -I../.. -I../../../include -O2 -fPIC -DRC_LOG_FACILITY=LOG_DAEMON -DCHAPMS=1 -DMPPE=1 -DMAXOCTETS=1   -c -o radrealms.o radrealms.c
+cc -o radrealms.so -shared  radrealms.o
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/radius'
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins'
+cd pppd; make  all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o main.o main.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o magic.o magic.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o fsm.o fsm.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o lcp.o lcp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ipcp.o ipcp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o upap.o upap.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o chap-new.o chap-new.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o md5.o md5.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ccp.o ccp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ecp.o ecp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o auth.o auth.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o options.o options.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o demand.o demand.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o utils.o utils.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o sys-linux.o sys-linux.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ipxcp.o ipxcp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o tty.o tty.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o eap.o eap.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o chap-md5.o chap-md5.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o session.o session.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o md4.o md4.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o chap_ms.o chap_ms.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o sha1.o sha1.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o pppcrypt.o pppcrypt.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o multilink.o multilink.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o tdb.o tdb.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o spinlock.o spinlock.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o ipv6cp.o ipv6cp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o eui64.o eui64.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS   -c -o cbcp.o cbcp.c
+cc -D_GNU_SOURCE -DHAVE_PATHS_H -DIPX_CHANGE -DHAVE_MMAP -I../include '-DDESTDIR="/usr"' -DCHAPMS=1 -DMPPE=1 -DHAS_SHADOW -DHAVE_CRYPT_H=1 -DHAVE_LOGWTMP=1 -DUSE_CRYPT=1 -DHAVE_MULTILINK -DUSE_TDB=1 -DPLUGIN -DPPP_FILTER -DINET6=1 -DCBCP_SUPPORT -DMAXOCTETS  -Wl,-E -o pppd main.o magic.o fsm.o lcp.o ipcp.o upap.o chap-new.o md5.o ccp.o ecp.o auth.o options.o demand.o utils.o sys-linux.o ipxcp.o tty.o eap.o chap-md5.o session.o md4.o chap_ms.o sha1.o pppcrypt.o multilink.o tdb.o spinlock.o ipv6cp.o eui64.o cbcp.o  -lcrypt -lutil -ldl -lpcap
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+cd pppstats; make  all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppstats'
+cc -D_GNU_SOURCE -I../include  -o pppstats pppstats.c 
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppstats'
+cd pppdump; make  all
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppdump'
+cc -D_GNU_SOURCE -I../include/net   -c -o pppdump.o pppdump.c
+cc -D_GNU_SOURCE -I../include/net   -c -o bsd-comp.o bsd-comp.c
+cc -D_GNU_SOURCE -I../include/net   -c -o deflate.o deflate.c
+cc -D_GNU_SOURCE -I../include/net   -c -o zlib.o zlib.c
+cc  -o pppdump pppdump.o bsd-comp.o deflate.o zlib.o
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppdump'
+==> Entering fakeroot environment...
+==> Starting package()...
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/bin
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/share/man/man8
+cd chat; make  install
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/chat'
+mkdir -p /tmp/ppp/pkg/ppp/usr/bin /tmp/ppp/pkg/ppp/usr/share/man/man8
+install -s -c chat /tmp/ppp/pkg/ppp/usr/bin
+install -c -m 644 chat.8 /tmp/ppp/pkg/ppp/usr/share/man/man8
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/chat'
+cd pppd/plugins; make  install
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins'
+install -d /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install minconn.so passprompt.so passwordfd.so winbind.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+for d in rp-pppoe pppoatm pppol2tp radius; do make -w -C $d install; done
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/rp-pppoe'
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -s -c -m 4550 rp-pppoe.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/bin
+install -s -c -m 555 pppoe-discovery /tmp/ppp/pkg/ppp/usr/bin
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/rp-pppoe'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppoatm'
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -c -m 4550 pppoatm.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppoatm'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppol2tp'
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -c -m 755 pppol2tp.so openl2tp.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/pppol2tp'
+make[2]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/radius'
+install -d -m 755 /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -s -c -m 755 radius.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -s -c -m 755 radattr.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -s -c -m 755 radrealms.so /tmp/ppp/pkg/ppp/usr/lib/pppd/2.4.7
+install -c -m 444 pppd-radius.8 /tmp/ppp/pkg/ppp/usr/share/man/man8
+install -c -m 444 pppd-radattr.8 /tmp/ppp/pkg/ppp/usr/share/man/man8
+make[2]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins/radius'
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd/plugins'
+cd pppd; make  install
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+mkdir -p /tmp/ppp/pkg/ppp/usr/bin /tmp/ppp/pkg/ppp/usr/share/man/man8
+install -s -c -m 555 pppd /tmp/ppp/pkg/ppp/usr/bin/pppd
+if chgrp pppusers /tmp/ppp/pkg/ppp/usr/bin/pppd 2>/dev/null; then \
+  chmod o-rx,u+s /tmp/ppp/pkg/ppp/usr/bin/pppd; fi
+install -c -m 444 pppd.8 /tmp/ppp/pkg/ppp/usr/share/man/man8
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+cd pppstats; make  install
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppstats'
+mkdir -p /tmp/ppp/pkg/ppp/usr/share/man/man8
+install -s -c pppstats /tmp/ppp/pkg/ppp/usr/bin
+install -c -m 444 pppstats.8 /tmp/ppp/pkg/ppp/usr/share/man/man8
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppstats'
+cd pppdump; make  install
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppdump'
+mkdir -p /tmp/ppp/pkg/ppp/usr/bin /tmp/ppp/pkg/ppp/usr/share/man/man8
+install -s -c pppdump /tmp/ppp/pkg/ppp/usr/bin
+install -c -m 444 pppdump.8 /tmp/ppp/pkg/ppp/usr/share/man/man8
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppdump'
+cd pppd; make  install-devel
+make[1]: Entering directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+mkdir -p /tmp/ppp/pkg/ppp/usr/include/pppd
+install -c -m 644 ccp.h session.h chap-new.h ecp.h fsm.h ipcp.h ipxcp.h lcp.h magic.h md5.h patchlevel.h pathnames.h pppd.h upap.h eap.h md4.h chap_ms.h sha1.h pppcrypt.h tdb.h spinlock.h ipv6cp.h eui64.h cbcp.h /tmp/ppp/pkg/ppp/usr/include/pppd
+make[1]: Leaving directory '/tmp/ppp/src/ppp-2.4.7/pppd'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "ppp"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: ppp 2.4.7-2 (Sat Nov 14 06:23:12 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

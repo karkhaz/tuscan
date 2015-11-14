@@ -1,0 +1,112 @@
+        <html><head></head><body>
+        <h1>Report for dg on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:27</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dg
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 391 packages in cache
+Found permanent source directory in /sources/dg
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dg 1.1.0.20151005-1 (Sat Nov 14 04:42:47 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) perl-error-0.17024-1  git-2.6.2-1
+
+Total Download Size:    4.29 MiB
+Total Installed Size:  26.16 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+downloading git.pkg.tar.xz...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing perl-error...
+installing git...
+Optional dependencies for git
+    tk: gitk and git gui
+    perl-libwww: git svn
+    perl-term-readkey: git svn
+    perl-mime-tools: git send-email
+    perl-net-smtp-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    python2: various helper scripts
+    subversion: git svn
+    cvsps2: git cvsimport
+    gnome-keyring: GNOME keyring credential helper
+==> WARNING: Using existing $srcdir/ tree
+==> Entering fakeroot environment...
+==> Starting package()...
+running install
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/dg
+copying ./__init__.py -> build/lib/dg
+copying ./readline.dg -> build/lib/dg
+copying ./__main__.dg -> build/lib/dg
+copying ./repl.dg -> build/lib/dg
+creating build/lib/dg/core
+copying ./core/4.emitter.dg -> build/lib/dg/core
+copying ./core/3.parser.dg -> build/lib/dg/core
+copying ./core/5.compiler.dg -> build/lib/dg/core
+copying ./core/__init__.dg -> build/lib/dg/core
+copying ./core/2.ast.dg -> build/lib/dg/core
+copying ./core/1.runtime.dg -> build/lib/dg/core
+creating build/lib/dg/bundle
+copying ./bundle/cpython-35.dgbundle -> build/lib/dg/bundle
+copying ./bundle/cpython-36.dgbundle -> build/lib/dg/bundle
+copying ./bundle/cpython-34.dgbundle -> build/lib/dg/bundle
+running install_lib
+creating /tmp/dg/pkg/dg/usr
+creating /tmp/dg/pkg/dg/usr/lib
+creating /tmp/dg/pkg/dg/usr/lib/python3.5
+creating /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages
+creating /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg
+creating /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/core/4.emitter.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/core/3.parser.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/core/5.compiler.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/core/__init__.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/core/2.ast.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/core/1.runtime.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/core
+copying build/lib/dg/readline.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg
+copying build/lib/dg/__init__.py -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg
+creating /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/bundle
+copying build/lib/dg/bundle/cpython-35.dgbundle -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/bundle
+copying build/lib/dg/bundle/cpython-36.dgbundle -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/bundle
+copying build/lib/dg/bundle/cpython-34.dgbundle -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/bundle
+copying build/lib/dg/__main__.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg
+copying build/lib/dg/repl.dg -> /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg
+byte-compiling /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg/__init__.py to __init__.cpython-35.pyc
+writing byte-compilation script '/tmp/tmp0zycsm8w.py'
+/usr/bin/python -O /tmp/tmp0zycsm8w.py
+removing /tmp/tmp0zycsm8w.py
+running install_egg_info
+Writing /tmp/dg/pkg/dg/usr/lib/python3.5/site-packages/dg-1.1.0_git-py3.5.egg-info
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "dg"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: dg 1.1.0.20151005-1 (Sat Nov 14 04:42:57 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

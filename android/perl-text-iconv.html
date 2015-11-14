@@ -1,0 +1,81 @@
+        <html><head></head><body>
+        <h1>Report for perl-text-iconv on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:01:24</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-text-iconv
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 3018 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-text-iconv 1.7-10 (Sat Nov 14 01:48:54 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading Text-Iconv-1.7.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting Text-Iconv-1.7.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-text-iconv
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-text-iconv 1.7-10 (Sat Nov 14 01:48:54 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking for iconv ... ok (iconv apparently in libc)
+
+NOTE: If you have multiple iconv implementations installed, you might
+      want to make sure that I've found the one you want to use.
+      If necessary, you can explicitly specify paths like this:
+
+      /usr/bin/perl Makefile.PL LIBS='-L/path/to/lib' INC='-I/path/to/include'
+
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Text::Iconv
+Writing MYMETA.yml and MYMETA.json
+Running Mkbootstrap for Text::Iconv ()
+cp Iconv.pm blib/lib/Text/Iconv.pm
+AutoSplitting blib/lib/Text/Iconv.pm (blib/lib/auto/Text/Iconv)
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  Iconv.xs > Iconv.xsc && mv Iconv.xsc Iconv.c
+chmod 644 "Iconv.bs"
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"1.7\" -DXS_VERSION=\"1.7\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Iconv.c
+rm -f blib/arch/auto/Text/Iconv/Iconv.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Iconv.o  -o blib/arch/auto/Text/Iconv/Iconv.so 	\
+     	\
+
+chmod 755 blib/arch/auto/Text/Iconv/Iconv.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Iconv.bs blib/arch/auto/Text/Iconv/Iconv.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Text::Iconv ()
+chmod 644 "Iconv.bs"
+Manifying 1 pod document
+Appending installation info to /tmp/perl-text-iconv/pkg/perl-text-iconv/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-text-iconv/pkg/perl-text-iconv/usr/lib/perl5/vendor_perl/auto/Text/Iconv/Iconv.so
+Installing /tmp/perl-text-iconv/pkg/perl-text-iconv/usr/lib/perl5/vendor_perl/Text/Iconv.pm
+Installing /tmp/perl-text-iconv/pkg/perl-text-iconv/usr/lib/perl5/vendor_perl/auto/Text/Iconv/autosplit.ix
+Installing /tmp/perl-text-iconv/pkg/perl-text-iconv/usr/share/man/man3/Text::Iconv.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-text-iconv"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-text-iconv 1.7-10 (Sat Nov 14 01:48:57 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

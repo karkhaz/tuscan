@@ -1,0 +1,137 @@
+        <html><head></head><body>
+        <h1>Report for pcsc-perl on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:26</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data pcsc-perl
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1679 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pcsc-perl 1.4.13-4 (Fri Nov 13 23:44:19 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) python2-2.7.10-2  sqlite-3.9.2-1  pcsclite-1.8.13-1
+
+Total Installed Size:  76.03 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing sqlite...
+installing python2...
+Optional dependencies for python2
+    tk: for IDLE
+    python2-setuptools
+    python2-pip
+installing pcsclite...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading pcsc-perl-1.4.13.tar.bz2...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting pcsc-perl-1.4.13.tar.bz2 with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/pcsc-perl
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: pcsc-perl 1.4.13-4 (Fri Nov 13 23:44:27 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+osname: linux
+LDDFLAGS: 
+INC: `pkg-config --cflags libpcsclite`
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Chipcard::PCSC::Card
+Writing MYMETA.yml and MYMETA.json
+Generating a Unix-style Makefile
+Writing Makefile for Chipcard::PCSC
+Writing MYMETA.yml and MYMETA.json
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Chipcard::PCSC ()
+chmod 644 "PCSC.bs"
+cp PCSC.pm blib/lib/Chipcard/PCSC.pm
+cp PCSC.pod blib/lib/Chipcard/PCSC.pod
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  PCSC.xs > PCSC.xsc && mv PCSC.xsc PCSC.c
+make[1]: Entering directory '/tmp/pcsc-perl/src/pcsc-perl-1.4.13/Card'
+cc -c  `pkg-config --cflags libpcsclite` -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.05\" -DXS_VERSION=\"0.05\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"  -O2 -Wall PCSC.c
+cp Card.pod ../blib/lib/Chipcard/PCSC/Card.pod
+cp Card.pm ../blib/lib/Chipcard/PCSC/Card.pm
+Manifying 1 pod document
+make[1]: Leaving directory '/tmp/pcsc-perl/src/pcsc-perl-1.4.13/Card'
+PCSC.c: In function 'XS_Chipcard__PCSC__EstablishContext':
+PCSC.c:567:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__ListReaders':
+PCSC.c:629:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__Connect':
+PCSC.c:730:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__Reconnect':
+PCSC.c:766:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__Status':
+PCSC.c:840:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__Transmit':
+PCSC.c:970:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__Control':
+PCSC.c:1089:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  SV * RETVAL;
+       ^
+PCSC.c: In function 'XS_Chipcard__PCSC__GetStatusChange':
+PCSC.c:1241:7: warning: unused variable 'RETVAL' [-Wunused-variable]
+  bool RETVAL;
+       ^
+rm -f blib/arch/auto/Chipcard/PCSC/PCSC.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong PCSC.o  -o blib/arch/auto/Chipcard/PCSC/PCSC.so 	\
+     	\
+
+chmod 755 blib/arch/auto/Chipcard/PCSC/PCSC.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- PCSC.bs blib/arch/auto/Chipcard/PCSC/PCSC.bs 644
+Manifying 1 pod document
+Appending installation info to /tmp/pcsc-perl/pkg/pcsc-perl/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/lib/perl5/vendor_perl/auto/Chipcard/PCSC/PCSC.so
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/lib/perl5/vendor_perl/Chipcard/PCSC.pm
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/lib/perl5/vendor_perl/Chipcard/PCSC.pod
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/lib/perl5/vendor_perl/Chipcard/PCSC/Card.pm
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/lib/perl5/vendor_perl/Chipcard/PCSC/Card.pod
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/share/man/man3/Chipcard::PCSC.3pm
+Installing /tmp/pcsc-perl/pkg/pcsc-perl/usr/share/man/man3/Chipcard::PCSC::Card.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "pcsc-perl"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: pcsc-perl 1.4.13-4 (Fri Nov 13 23:44:30 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

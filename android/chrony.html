@@ -1,0 +1,353 @@
+        <html><head></head><body>
+        <h1>Report for chrony on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:26</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data chrony
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1676 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: chrony 2.2-1 (Fri Nov 13 23:44:03 UTC 2015)
+==> Checking runtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (4) nspr-4.10.10-1  sqlite-3.9.2-1  libedit-20150325_3.1-2  nss-3.20.1-1
+
+Total Installed Size:  11.60 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing nspr...
+installing sqlite...
+installing nss...
+installing libedit...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading chrony-2.2.tar.gz...
+  -> Found service
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting chrony-2.2.tar.gz with bsdtar
+==> Starting prepare()...
+==> Sources are ready.
+Copied source directory to /sources/chrony
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: chrony 2.2-1 (Fri Nov 13 23:44:09 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Unrecognized option :  --host
+Unrecognized option :  x86_64-unknown-linux
+Configuring for  Linux-x86_64
+Checking for arm-linux-androideabi-gcc : Yes
+Checking for 64-bit time_t : No
+Checking for math : No
+Checking for math in -lm : Yes
+Checking for <stdint.h> : Yes
+Checking for <inttypes.h> : Yes
+Checking for struct in_pktinfo : Yes
+Checking for IPv6 support : Yes
+Checking for struct in6_pktinfo : Yes
+Checking for getaddrinfo() : Yes
+Checking for pthread : Yes
+Checking for <sys/timepps.h> : No
+Checking for <timepps.h> : No
+Checking for libcap : No
+Checking for <linux/rtc.h> : Yes
+Checking for <linux/ptp_clock.h> : Yes
+Checking for clock_gettime() : Yes
+Checking for sched_setscheduler() : Yes
+Checking for mlockall() : Yes
+Checking for editline : No
+Checking for readline : No
+Checking for readline with -lncurses : No
+Checking for NSS : No
+Checking for tomcrypt : No
+Features : +CMDMON +NTP +REFCLOCK +RTC -PRIVDROP -SCFILTER -SECHASH +ASYNCDNS -READLINE +IPV6 -DEBUG
+Creating Makefile
+Creating chrony.conf.5
+Creating chrony.texi
+Creating chronyc.1
+Creating chronyd.8
+arm-linux-androideabi-gcc -O2 -g -pthread  -c array.c
+arm-linux-androideabi-gcc -O2 -g -pthread  -c cmdparse.c
+In file included from cmdparse.c:32:0:
+sysincl.h:37:18: fatal error: glob.h: No such file or directory
+ #include <glob.h>
+                  ^
+compilation terminated.
+Makefile:117: recipe for target 'cmdparse.o' failed
+make: *** [cmdparse.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from array.c:30:0:
+sysincl.h:37:18: fatal error: glob.h: No such file or directory
+ #include <glob.h>
+                  ^
+compilation terminated.
+Makefile:117: recipe for target 'array.o' failed
+make: *** [array.o] Error 1
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/chrony/src/chrony-2.2/config.log
+____
+File /tmp/chrony/src/chrony-2.2/config.log
+docheck.c:
+int main(int argc, char **argv) {
+
+return 0; }
+arm-linux-androideabi-gcc -o docheck docheck.c
+
+docheck.c:
+#include <time.h>
+int main(int argc, char **argv) {
+
+  char x[sizeof(time_t) > 4 ? 1 : -1] = {0};
+  return x[0];
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+docheck.c: In function 'main':
+docheck.c:4:8: error: size of array 'x' is negative
+   char x[sizeof(time_t) > 4 ? 1 : -1] = {0};
+        ^
+
+docheck.c:
+#include <math.h>
+int main(int argc, char **argv) {
+return (int) pow(2.0, log(sqrt((double)argc)));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+docheck.c:3: error: undefined reference to 'sqrt'
+docheck.c:3: error: undefined reference to 'log'
+docheck.c:3: error: undefined reference to 'pow'
+collect2: error: ld returned 1 exit status
+
+docheck.c:
+#include <math.h>
+int main(int argc, char **argv) {
+return (int) pow(2.0, log(sqrt((double)argc)));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c -lm
+
+docheck.c:
+#include <stdint.h>
+int main(int argc, char **argv) {
+
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+
+docheck.c:
+#include <inttypes.h>
+int main(int argc, char **argv) {
+
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+
+docheck.c:
+#include <sys/socket.h>
+#include <netinet/in.h>
+int main(int argc, char **argv) {
+
+  struct in_pktinfo ipi;
+  return sizeof (ipi.ipi_spec_dst.s_addr) + IP_PKTINFO;
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+
+docheck.c:
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+int main(int argc, char **argv) {
+
+    struct sockaddr_in6 n;
+    char p[100];
+    n.sin6_addr = in6addr_any;
+    return !inet_ntop(AF_INET6, &n.sin6_addr.s6_addr, p, sizeof(p));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+
+docheck.c:
+#include <sys/socket.h>
+#include <netinet/in.h>
+int main(int argc, char **argv) {
+
+    return sizeof (struct in6_pktinfo) + IPV6_PKTINFO;
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+
+docheck.c:
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+int main(int argc, char **argv) {
+return getaddrinfo(0, 0, 0, 0);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -o docheck docheck.c
+
+docheck.c:
+#include <pthread.h>
+int main(int argc, char **argv) {
+return pthread_create((void *)1, NULL, (void *)1, NULL);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+
+docheck.c:
+#include <sys/timepps.h>
+int main(int argc, char **argv) {
+
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+docheck.c:1:25: fatal error: sys/timepps.h: No such file or directory
+ #include <sys/timepps.h>
+                         ^
+compilation terminated.
+
+docheck.c:
+#include <timepps.h>
+int main(int argc, char **argv) {
+
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+docheck.c:1:21: fatal error: timepps.h: No such file or directory
+ #include <timepps.h>
+                     ^
+compilation terminated.
+
+docheck.c:
+#include <sys/types.h>
+#include <pwd.h>
+#include <sys/prctl.h>
+#include <sys/capability.h>
+#include <grp.h>
+int main(int argc, char **argv) {
+prctl(PR_SET_KEEPCAPS, 1);cap_set_proc(cap_from_text("cap_sys_time=ep"));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c -lcap
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lcap
+docheck.c:7: error: undefined reference to 'cap_from_text'
+docheck.c:7: error: undefined reference to 'cap_set_proc'
+collect2: error: ld returned 1 exit status
+
+docheck.c:
+#include <sys/ioctl.h>
+#include <linux/rtc.h>
+int main(int argc, char **argv) {
+ioctl(1, RTC_UIE_ON&RTC_UIE_OFF&RTC_RD_TIME&RTC_SET_TIME, 0&RTC_UF);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+
+docheck.c:
+#include <sys/ioctl.h>
+#include <linux/ptp_clock.h>
+int main(int argc, char **argv) {
+ioctl(1, PTP_CLOCK_GETCAPS, 0);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+
+docheck.c:
+#include <time.h>
+int main(int argc, char **argv) {
+clock_gettime(0, NULL);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+
+docheck.c:
+#include <sched.h>
+int main(int argc, char **argv) {
+
+     struct sched_param sched;
+     sched_get_priority_max(SCHED_FIFO);
+     sched_setscheduler(0, SCHED_FIFO, &sched);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+
+docheck.c:
+#include <sys/mman.h>
+#include <sys/resource.h>
+int main(int argc, char **argv) {
+
+     struct rlimit rlim;
+     setrlimit(RLIMIT_MEMLOCK, &rlim);
+     mlockall(MCL_CURRENT|MCL_FUTURE);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c
+
+docheck.c:
+#include <stdio.h>
+#include <editline/readline.h>
+int main(int argc, char **argv) {
+add_history(readline("prompt"));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c -ledit
+docheck.c:2:31: fatal error: editline/readline.h: No such file or directory
+ #include <editline/readline.h>
+                               ^
+compilation terminated.
+
+docheck.c:
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+int main(int argc, char **argv) {
+add_history(readline("prompt"));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c -lreadline
+docheck.c:2:31: fatal error: readline/readline.h: No such file or directory
+ #include <readline/readline.h>
+                               ^
+compilation terminated.
+
+docheck.c:
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+int main(int argc, char **argv) {
+add_history(readline("prompt"));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -o docheck docheck.c -lreadline -lncurses
+docheck.c:2:31: fatal error: readline/readline.h: No such file or directory
+ #include <readline/readline.h>
+                               ^
+compilation terminated.
+
+docheck.c:
+#include <nss.h>
+#include <hasht.h>
+#include <nsslowhash.h>
+int main(int argc, char **argv) {
+NSSLOWHASH_Begin(NSSLOWHASH_NewContext(NSSLOW_Init(), HASH_AlgSHA512));
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -I/usr/include/nss -I/usr/include/nspr -o docheck docheck.c -lfreebl3
+/tmp/toolchain/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lfreebl3
+docheck.c:5: error: undefined reference to 'NSSLOW_Init'
+docheck.c:5: error: undefined reference to 'NSSLOWHASH_NewContext'
+docheck.c:5: error: undefined reference to 'NSSLOWHASH_Begin'
+collect2: error: ld returned 1 exit status
+
+docheck.c:
+#include <tomcrypt.h>
+int main(int argc, char **argv) {
+hash_memory_multi(find_hash("md5"), NULL, NULL, NULL, 0, NULL, 0);
+return 0; }
+arm-linux-androideabi-gcc -O2 -g -pthread -I/usr/include/tomcrypt -o docheck docheck.c -ltomcrypt
+docheck.c:1:22: fatal error: tomcrypt.h: No such file or directory
+ #include <tomcrypt.h>
+                      ^
+compilation terminated.
+
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

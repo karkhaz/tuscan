@@ -1,0 +1,80 @@
+        <html><head></head><body>
+        <h1>Report for perl-devel-leak on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:22</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-devel-leak
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 761 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-devel-leak 0.03-2 (Fri Nov 13 23:14:48 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading Devel-Leak-0.03.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting Devel-Leak-0.03.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-devel-leak
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-devel-leak 0.03-2 (Fri Nov 13 23:14:49 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+This perl is not compiled with -DDEBUGGING - functions restricted
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Devel::Leak
+Writing MYMETA.yml and MYMETA.json
+Running Mkbootstrap for Devel::Leak ()
+cp Leak.pm blib/lib/Devel/Leak.pm
+chmod 644 "Leak.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  Leak.xs > Leak.xsc && mv Leak.xsc Leak.c
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.03\" -DXS_VERSION=\"0.03\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Leak.c
+Leak.xs:15:0: warning: "sv_dump" redefined
+ #define sv_dump(sv) PerlIO_printf(PerlIO_stderr(), "\n")
+ ^
+In file included from /usr/lib/perl5/core_perl/CORE/perl.h:5541:0,
+                 from Leak.xs:8:
+/usr/lib/perl5/core_perl/CORE/embed.h:617:0: note: this is the location of the previous definition
+ #define sv_dump(a)  Perl_sv_dump(aTHX_ a)
+ ^
+rm -f blib/arch/auto/Devel/Leak/Leak.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Leak.o  -o blib/arch/auto/Devel/Leak/Leak.so 	\
+     	\
+
+chmod 755 blib/arch/auto/Devel/Leak/Leak.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Leak.bs blib/arch/auto/Devel/Leak/Leak.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Devel::Leak ()
+chmod 644 "Leak.bs"
+Manifying 1 pod document
+Appending installation info to /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/lib/perl5/vendor_perl/auto/Devel/Leak/Leak.so
+Installing /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/lib/perl5/vendor_perl/Devel/Leak.pm
+Installing /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/share/man/man3/Devel::Leak.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-devel-leak"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-devel-leak 0.03-2 (Fri Nov 13 23:14:51 UTC 2015)
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>

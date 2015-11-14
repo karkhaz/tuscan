@@ -1,0 +1,447 @@
+        <html><head></head><body>
+        <h1>Report for drbd-utils on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:01:32</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data drbd-utils
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2982 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: drbd-utils 8.9.4-1 (Sat Nov 14 01:43:26 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Installing missing dependencies...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) libxml2-2.9.2-2  libxslt-1.1.28-3
+
+Total Installed Size:  10.65 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+installing libxml2...
+Optional dependencies for libxml2
+    python2: python bindings to libxml
+installing libxslt...
+==> Retrieving sources...
+  -> Downloading drbd-utils-8.9.4.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting drbd-utils-8.9.4.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/drbd-utils
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: drbd-utils 8.9.4-1 (Sat Nov 14 01:43:34 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for x86_64-unknown-linux-pkg-config... no
+checking for pkg-config... /usr/sbin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+Using systemd unit directory: /usr/lib/systemd/system
+Using udev rules directory: /usr/lib/udev
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking whether ln -s works... yes
+checking for sed... /usr/sbin/sed
+checking for grep... /usr/sbin/grep
+checking for flex... /usr/sbin/flex
+checking for rpmbuild... no
+checking for xsltproc... /usr/sbin/xsltproc
+checking for tar... /usr/sbin/tar
+checking for git... no
+checking for dpkg-buildpackage... no
+checking for udevadm... /sbin/udevadm
+checking for udevinfo... false
+configure: WARNING: No rpmbuild found, building RPM packages is disabled.
+configure: WARNING: No dpkg-buildpackage found, building Debian packages is disabled.
+configure: WARNING: Cannot update buildtag without git. You may safely ignore this warning when building from a tarball.
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating user/shared/Makefile
+config.status: creating user/v9/Makefile
+config.status: creating user/v83/Makefile
+config.status: creating user/v84/Makefile
+config.status: creating scripts/Makefile
+config.status: creating documentation/v9/Makefile
+config.status: creating documentation/v83/Makefile
+config.status: creating documentation/v84/Makefile
+config.status: creating scripts/drbd.rules
+config.status: creating user/shared/config.h
+make[1]: Entering directory '/tmp/drbd-utils/src/drbd-utils-8.9.4/user/shared'
+flex -s -odrbdmeta_scanner.c drbdmeta_scanner.fl
+make[1]: Leaving directory '/tmp/drbd-utils/src/drbd-utils-8.9.4/user/shared'
+make[1]: Entering directory '/tmp/drbd-utils/src/drbd-utils-8.9.4/user/v9'
+flex -s -odrbdadm_scanner.c drbdadm_scanner.fl
+arm-linux-androideabi-gcc  -Wall -I../../drbd-headers -I.. -I. -I../shared   -c -o drbdadm_parser.o drbdadm_parser.c
+arm-linux-androideabi-gcc  -Wall -I../../drbd-headers -I.. -I. -I../shared   -c -o drbdadm_postparse.o drbdadm_postparse.c
+drbdadm_parser.c:34:18: fatal error: glob.h: No such file or directory
+ #include <glob.h>
+                  ^
+compilation terminated.
+<builtin>: recipe for target 'drbdadm_parser.o' failed
+make[1]: *** [drbdadm_parser.o] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make[1]: Leaving directory '/tmp/drbd-utils/src/drbd-utils-8.9.4/user/v9'
+Makefile:77: recipe for target 'tools' failed
+make: *** [tools] Error 2
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+found log at /tmp/drbd-utils/src/drbd-utils-8.9.4/config.log
+____
+File /tmp/drbd-utils/src/drbd-utils-8.9.4/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by DRBD configure 8.9.4, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr --localstatedir=/var --sysconfdir=/etc --sbindir=/usr/bin --libdir=/usr/lib --with-distro=generic --with-bashcompletion --with-udev --without-rgmanager --without-pacemaker --without-heartbeat --with-initscripttype=systemd --without-xen
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 86a92972ba4a
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1969: checking for x86_64-unknown-linux-pkg-config
+configure:2002: result: no
+configure:2012: checking for pkg-config
+configure:2030: found /usr/sbin/pkg-config
+configure:2042: result: /usr/sbin/pkg-config
+configure:2067: checking pkg-config is at least version 0.9.0
+configure:2070: result: yes
+configure:2097: result: Using systemd unit directory: /usr/lib/systemd/system
+configure:2122: result: Using udev rules directory: /usr/lib/udev
+configure:2159: checking for x86_64-unknown-linux-gcc
+configure:2186: result: arm-linux-androideabi-gcc
+configure:2455: checking for C compiler version
+configure:2464: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2475: $? = 0
+configure:2464: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2475: $? = 0
+configure:2464: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2475: $? = 1
+configure:2464: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2475: $? = 1
+configure:2495: checking whether the C compiler works
+configure:2517: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2521: $? = 0
+configure:2569: result: yes
+configure:2572: checking for C compiler default output file name
+configure:2574: result: a.out
+configure:2580: checking for suffix of executables
+configure:2587: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2591: $? = 0
+configure:2613: result: 
+configure:2635: checking whether we are cross compiling
+configure:2643: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:2647: $? = 0
+configure:2654: ./conftest
+./configure: line 2656: ./conftest: cannot execute binary file: Exec format error
+configure:2658: $? = 126
+configure:2673: result: yes
+configure:2678: checking for suffix of object files
+configure:2700: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2704: $? = 0
+configure:2725: result: o
+configure:2729: checking whether we are using the GNU C compiler
+configure:2748: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:2748: $? = 0
+configure:2757: result: yes
+configure:2766: checking whether arm-linux-androideabi-gcc accepts -g
+configure:2786: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:2786: $? = 0
+configure:2827: result: yes
+configure:2844: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:2907: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:2907: $? = 0
+configure:2920: result: none needed
+configure:2940: checking whether ln -s works
+configure:2944: result: yes
+configure:2953: checking for sed
+configure:2971: found /usr/sbin/sed
+configure:2983: result: /usr/sbin/sed
+configure:2993: checking for grep
+configure:3011: found /usr/sbin/grep
+configure:3023: result: /usr/sbin/grep
+configure:3033: checking for flex
+configure:3051: found /usr/sbin/flex
+configure:3063: result: /usr/sbin/flex
+configure:3073: checking for rpmbuild
+configure:3106: result: no
+configure:3113: checking for xsltproc
+configure:3131: found /usr/sbin/xsltproc
+configure:3143: result: /usr/sbin/xsltproc
+configure:3153: checking for tar
+configure:3171: found /usr/sbin/tar
+configure:3183: result: /usr/sbin/tar
+configure:3193: checking for git
+configure:3226: result: no
+configure:3233: checking for dpkg-buildpackage
+configure:3266: result: no
+configure:3273: checking for udevadm
+configure:3291: found /sbin/udevadm
+configure:3304: result: /sbin/udevadm
+configure:3314: checking for udevinfo
+configure:3345: result: false
+configure:3363: WARNING: No rpmbuild found, building RPM packages is disabled.
+configure:3368: WARNING: No dpkg-buildpackage found, building Debian packages is disabled.
+configure:3379: WARNING: Cannot update buildtag without git. You may safely ignore this warning when building from a tarball.
+configure:3405: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3405: $? = 0
+configure:3792: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by DRBD config.status 8.9.4, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 86a92972ba4a
+
+config.status:846: creating Makefile
+config.status:846: creating user/shared/Makefile
+config.status:846: creating user/v9/Makefile
+config.status:846: creating user/v83/Makefile
+config.status:846: creating user/v84/Makefile
+config.status:846: creating scripts/Makefile
+config.status:846: creating documentation/v9/Makefile
+config.status:846: creating documentation/v83/Makefile
+config.status:846: creating documentation/v84/Makefile
+config.status:846: creating scripts/drbd.rules
+config.status:846: creating user/shared/config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_PKG_CONFIG_LIBDIR_set=
+ac_cv_env_PKG_CONFIG_LIBDIR_value=
+ac_cv_env_PKG_CONFIG_PATH_set=
+ac_cv_env_PKG_CONFIG_PATH_value=
+ac_cv_env_PKG_CONFIG_set=
+ac_cv_env_PKG_CONFIG_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_objext=o
+ac_cv_path_FLEX=/usr/sbin/flex
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_SED=/usr/sbin/sed
+ac_cv_path_TAR=/usr/sbin/tar
+ac_cv_path_UDEVADM=/sbin/udevadm
+ac_cv_path_UDEVINFO=false
+ac_cv_path_XSLTPROC=/usr/sbin/xsltproc
+ac_cv_path_ac_pt_PKG_CONFIG=/usr/sbin/pkg-config
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+BASH_COMPLETION_SUFFIX=''
+CC='arm-linux-androideabi-gcc'
+CFLAGS=''
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+DISTRO='generic'
+DPKG_BUILDPACKAGE=''
+DRBD_CONFIG_DIR='/etc'
+DRBD_LIB_DIR='/var/lib/drbd'
+DRBD_LOCK_DIR='/var/lock'
+DRBD_RUN_DIR='/var/run/drbd'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EXEEXT=''
+FLEX='/usr/sbin/flex'
+GIT=''
+GREP='/usr/sbin/grep'
+INITDIR='/etc/init.d'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LN_S='ln -s'
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT='drbd-dev@lists.linbit.com'
+PACKAGE_NAME='DRBD'
+PACKAGE_STRING='DRBD 8.9.4'
+PACKAGE_TARNAME='drbd'
+PACKAGE_URL=''
+PACKAGE_VERSION='8.9.4'
+PATH_SEPARATOR=':'
+PKG_CONFIG='/usr/sbin/pkg-config'
+PKG_CONFIG_LIBDIR=''
+PKG_CONFIG_PATH=''
+RPMBUILD=''
+RPM_BUILDREQ_DEFAULT='gcc flex glibc-devel make'
+RPM_DIST_TAG=''
+RPM_REQ_BASH_COMPLETION=''
+RPM_REQ_CHKCONFIG_POST=''
+RPM_REQ_CHKCONFIG_PREUN=''
+RPM_REQ_HEARTBEAT=''
+RPM_REQ_PACEMAKER=''
+RPM_REQ_XEN=''
+RPM_SUBPACKAGE_NOARCH=''
+SED='/usr/sbin/sed'
+SHELL='/bin/sh'
+TAR='/usr/sbin/tar'
+UDEVADM='/sbin/udevadm'
+UDEVINFO='false'
+UDEV_RULE_SUFFIX=''
+WITH_83_SUPPORT='yes'
+WITH_84_SUPPORT='yes'
+WITH_BASHCOMPLETION='yes'
+WITH_HEARTBEAT='no'
+WITH_MANUAL='yes'
+WITH_PACEMAKER='no'
+WITH_RGMANAGER='no'
+WITH_UDEV='yes'
+WITH_XEN='no'
+XSLTPROC='/usr/sbin/xsltproc'
+ac_ct_CC=''
+bindir='/usr/bin'
+build_alias=''
+datadir='/usr/share'
+datarootdir='/usr/share'
+docdir='/usr/share/doc/drbd'
+dvidir='${docdir}'
+exec_prefix='/usr'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='/usr/include'
+infodir='/usr/share/info'
+initscripttype='systemd'
+libdir='/usr/lib'
+libexecdir='/usr/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='/var'
+mandir='/usr/share/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='/usr/bin'
+sharedstatedir='/usr/com'
+sysconfdir='/etc'
+systemdunitdir='/usr/lib/systemd/system'
+target_alias=''
+tmpfilesdir='${prefix}/lib/tmpfiles.d'
+udevdir='/usr/lib/udev'
+udevrulesdir='/usr/lib/udev/rules.d'
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "DRBD"
+#define PACKAGE_TARNAME "drbd"
+#define PACKAGE_VERSION "8.9.4"
+#define PACKAGE_STRING "DRBD 8.9.4"
+#define PACKAGE_BUGREPORT "drbd-dev@lists.linbit.com"
+#define PACKAGE_URL ""
+#define HAVE_CTRL_CMD_DELMCAST_GRP 1
+#define DRBD_LIB_DIR "/var/lib/drbd"
+#define DRBD_RUN_DIR "/var/run/drbd"
+#define DRBD_LOCK_DIR "/var/lock"
+#define DRBD_CONFIG_DIR "/etc"
+#define DRBD_LEGACY_83 1
+#define DRBD_LEGACY_84 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

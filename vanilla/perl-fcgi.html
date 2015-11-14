@@ -1,0 +1,543 @@
+        <html><head></head><body>
+        <h1>Report for perl-fcgi on toolchain
+            <a href="index.html">vanilla</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:37</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_vanilla -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-fcgi
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2664 packages in cache
+Found permanent source directory in /sources/perl-fcgi
+===> sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-fcgi 0.77-2 (Sat Nov 14 07:42:04 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for FCGI
+Writing MYMETA.yml and MYMETA.json
+Running ./configure for you
+Please read configure.readme for information on how to run it yourself
+checking for gcc... cc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ISO C89... none needed
+checking how to run the C preprocessor... cc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for ssize_t... yes
+checking for sun_len in sys/un.h... no
+checking for fpos_t in stdio.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking for unistd.h... (cached) yes
+checking for a fileno() prototype in stdio.h... yes
+checking whether cross-process locking is required by accept()... no
+checking whether va_arg(arg, long double) crashes the compiler... no
+checking for an ANSI C-conforming const... yes
+configure: creating ./config.status
+config.status: creating fcgi_config.h
+cp FCGI.pm blib/arch/FCGI.pm
+Running Mkbootstrap for FCGI ()
+chmod 644 "FCGI.bs"
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  FCGI.xs > FCGI.xsc && mv FCGI.xsc FCGI.c
+cc -c  -I. -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.77\" -DXS_VERSION=\"0.77\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   FCGI.c
+cc -c  -I. -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.77\" -DXS_VERSION=\"0.77\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   fcgiapp.c
+cc -c  -I. -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.77\" -DXS_VERSION=\"0.77\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   os_unix.c
+rm -f blib/arch/auto/FCGI/FCGI.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong FCGI.o fcgiapp.o os_unix.o  -o blib/arch/auto/FCGI/FCGI.so 	\
+     	\
+
+chmod 755 blib/arch/auto/FCGI/FCGI.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- FCGI.bs blib/arch/auto/FCGI/FCGI.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for FCGI ()
+chmod 644 "FCGI.bs"
+Manifying 1 pod document
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-fcgi/pkg/perl-fcgi/usr/lib/perl5/vendor_perl/FCGI.pm
+Installing /tmp/perl-fcgi/pkg/perl-fcgi/usr/lib/perl5/vendor_perl/auto/FCGI/FCGI.so
+Installing /tmp/perl-fcgi/pkg/perl-fcgi/usr/share/man/man3/FCGI.3pm
+Appending installation info to /tmp/perl-fcgi/pkg/perl-fcgi/usr/lib/perl5/core_perl/perllocal.pod
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-fcgi"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-fcgi 0.77-2 (Sat Nov 14 07:42:20 UTC 2015)
+===> Printing config.logs
+found log at /tmp/perl-fcgi/src/FCGI-0.77/config.log
+____
+File /tmp/perl-fcgi/src/FCGI-0.77/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.61.  Invocation command line was
+
+  $ configure 
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 02615efc3a72
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1723: checking for gcc
+configure:1750: result: cc
+configure:1988: checking for C compiler version
+configure:1995: cc --version >&5
+cc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:1998: $? = 0
+configure:2005: cc -v >&5
+Using built-in specs.
+COLLECT_GCC=cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:2008: $? = 0
+configure:2015: cc -V >&5
+cc: error: unrecognized command line option '-V'
+cc: fatal error: no input files
+compilation terminated.
+configure:2018: $? = 1
+configure:2041: checking for C compiler default output file name
+configure:2068: cc    conftest.c  >&5
+configure:2071: $? = 0
+configure:2109: result: a.out
+configure:2126: checking whether the C compiler works
+configure:2136: ./a.out
+configure:2139: $? = 0
+configure:2156: result: yes
+configure:2163: checking whether we are cross compiling
+configure:2165: result: no
+configure:2168: checking for suffix of executables
+configure:2175: cc -o conftest    conftest.c  >&5
+configure:2178: $? = 0
+configure:2202: result: 
+configure:2208: checking for suffix of object files
+configure:2234: cc -c   conftest.c >&5
+configure:2237: $? = 0
+configure:2260: result: o
+configure:2264: checking whether we are using the GNU C compiler
+configure:2293: cc -c   conftest.c >&5
+configure:2299: $? = 0
+configure:2316: result: yes
+configure:2321: checking whether cc accepts -g
+configure:2351: cc -c -g  conftest.c >&5
+configure:2357: $? = 0
+configure:2456: result: yes
+configure:2473: checking for cc option to accept ISO C89
+configure:2547: cc  -c -g -O2  conftest.c >&5
+configure:2553: $? = 0
+configure:2576: result: none needed
+configure:2599: checking how to run the C preprocessor
+configure:2639: cc -E  conftest.c
+configure:2645: $? = 0
+configure:2676: cc -E  conftest.c
+conftest.c:8:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2682: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2715: result: cc -E
+configure:2744: cc -E  conftest.c
+configure:2750: $? = 0
+configure:2781: cc -E  conftest.c
+conftest.c:8:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2787: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2827: checking for grep that handles long lines and -e
+configure:2901: result: /usr/sbin/grep
+configure:2906: checking for egrep
+configure:2984: result: /usr/sbin/grep -E
+configure:2989: checking for ANSI C header files
+configure:3019: cc -c -g -O2  conftest.c >&5
+configure:3025: $? = 0
+configure:3124: cc -o conftest -g -O2   conftest.c  >&5
+configure:3127: $? = 0
+configure:3133: ./conftest
+configure:3136: $? = 0
+configure:3153: result: yes
+configure:3177: checking for sys/types.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for sys/stat.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for stdlib.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for string.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for memory.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for strings.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for inttypes.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for stdint.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3177: checking for unistd.h
+configure:3198: cc -c -g -O2  conftest.c >&5
+configure:3204: $? = 0
+configure:3220: result: yes
+configure:3233: checking for ssize_t
+configure:3263: cc -c -g -O2  conftest.c >&5
+configure:3269: $? = 0
+configure:3284: result: yes
+configure:3297: checking for sun_len in sys/un.h
+configure:3318: result: no
+configure:3324: checking for fpos_t in stdio.h
+configure:3337: result: yes
+configure:3369: checking sys/socket.h usability
+configure:3386: cc -c -g -O2  conftest.c >&5
+configure:3392: $? = 0
+configure:3406: result: yes
+configure:3410: checking sys/socket.h presence
+configure:3425: cc -E  conftest.c
+configure:3431: $? = 0
+configure:3445: result: yes
+configure:3473: checking for sys/socket.h
+configure:3481: result: yes
+configure:3369: checking netdb.h usability
+configure:3386: cc -c -g -O2  conftest.c >&5
+configure:3392: $? = 0
+configure:3406: result: yes
+configure:3410: checking netdb.h presence
+configure:3425: cc -E  conftest.c
+configure:3431: $? = 0
+configure:3445: result: yes
+configure:3473: checking for netdb.h
+configure:3481: result: yes
+configure:3369: checking netinet/in.h usability
+configure:3386: cc -c -g -O2  conftest.c >&5
+configure:3392: $? = 0
+configure:3406: result: yes
+configure:3410: checking netinet/in.h presence
+configure:3425: cc -E  conftest.c
+configure:3431: $? = 0
+configure:3445: result: yes
+configure:3473: checking for netinet/in.h
+configure:3481: result: yes
+configure:3369: checking arpa/inet.h usability
+configure:3386: cc -c -g -O2  conftest.c >&5
+configure:3392: $? = 0
+configure:3406: result: yes
+configure:3410: checking arpa/inet.h presence
+configure:3425: cc -E  conftest.c
+configure:3431: $? = 0
+configure:3445: result: yes
+configure:3473: checking for arpa/inet.h
+configure:3481: result: yes
+configure:3512: checking sys/time.h usability
+configure:3529: cc -c -g -O2  conftest.c >&5
+configure:3535: $? = 0
+configure:3549: result: yes
+configure:3553: checking sys/time.h presence
+configure:3568: cc -E  conftest.c
+configure:3574: $? = 0
+configure:3588: result: yes
+configure:3616: checking for sys/time.h
+configure:3624: result: yes
+configure:3512: checking limits.h usability
+configure:3529: cc -c -g -O2  conftest.c >&5
+configure:3535: $? = 0
+configure:3549: result: yes
+configure:3553: checking limits.h presence
+configure:3568: cc -E  conftest.c
+configure:3574: $? = 0
+configure:3588: result: yes
+configure:3616: checking for limits.h
+configure:3624: result: yes
+configure:3512: checking sys/param.h usability
+configure:3529: cc -c -g -O2  conftest.c >&5
+configure:3535: $? = 0
+configure:3549: result: yes
+configure:3553: checking sys/param.h presence
+configure:3568: cc -E  conftest.c
+configure:3574: $? = 0
+configure:3588: result: yes
+configure:3616: checking for sys/param.h
+configure:3624: result: yes
+configure:3502: checking for unistd.h
+configure:3508: result: yes
+configure:3638: checking for a fileno() prototype in stdio.h
+configure:3651: result: yes
+configure:3697: checking whether cross-process locking is required by accept()
+configure:3710: result: no
+configure:3719: checking whether va_arg(arg, long double) crashes the compiler
+configure:3742: cc -c -g -O2  conftest.c >&5
+configure:3748: $? = 0
+configure:3753: result: no
+configure:3770: checking for an ANSI C-conforming const
+configure:3845: cc -c -g -O2  conftest.c >&5
+configure:3851: $? = 0
+configure:3866: result: yes
+configure:3978: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.61.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 02615efc3a72
+
+config.status:515: creating fcgi_config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=cc
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=
+ac_cv_env_host_alias_value=
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_header_arpa_inet_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_limits_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_netdb_h=yes
+ac_cv_header_netinet_in_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_param_h=yes
+ac_cv_header_sys_socket_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_time_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_prog_CPP='cc -E'
+ac_cv_prog_ac_ct_CC=cc
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_type_ssize_t=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='cc'
+CFLAGS='-g -O2'
+CPP='cc -E'
+CPPFLAGS=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+SHELL='/bin/sh'
+ac_ct_CC='cc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias=''
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr/local'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define PACKAGE_NAME ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+#define PACKAGE_STRING ""
+#define PACKAGE_BUGREPORT ""
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_FPOS 1
+#define HAVE_SYS_SOCKET_H 1
+#define HAVE_NETDB_H 1
+#define HAVE_NETINET_IN_H 1
+#define HAVE_ARPA_INET_H 1
+#define HAVE_SYS_TIME_H 1
+#define HAVE_LIMITS_H 1
+#define HAVE_SYS_PARAM_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_FILENO_PROTO 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

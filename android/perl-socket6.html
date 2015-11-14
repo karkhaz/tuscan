@@ -1,0 +1,725 @@
+        <html><head></head><body>
+        <h1>Report for perl-socket6 on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:32</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data perl-socket6
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1608 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-socket6 0.25-3 (Fri Nov 13 23:41:31 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading Socket6-0.25.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting Socket6-0.25.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/perl-socket6
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: perl-socket6 0.25-3 (Fri Nov 13 23:41:31 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+checking for gcc... cc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ANSI C... none needed
+checking whether your Perl5 have PL_sv_undef... yes
+checking how to run the C preprocessor... cc -E
+checking for egrep... grep -E
+checking for getaddrinfo... yes
+checking for getnameinfo... yes
+checking for gethostbyname2... yes
+checking for getipnodebyname... no
+checking for getipnodebyname in -lsocket... no
+checking whether your system has IPv6 directory... no
+checking for getipnodebyaddr... no
+checking for getipnodebyaddr in -lsocket... no
+checking whether your system has IPv6 directory... (cached) no
+checking for inet_pton... yes
+checking for inet_ntop... yes
+checking whether you have sa_len in struct sockaddr... no
+checking whether you have sin6_scope_id in struct sockaddr_in6... yes
+checking for socklen_t... yes
+configure: creating ./config.status
+config.status: creating config.pl
+config.status: creating gailookup.pl
+config.status: creating config.h
+Checking if your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile for Socket6
+Writing MYMETA.yml and MYMETA.json
+Running Mkbootstrap for Socket6 ()
+cp Socket6.pm blib/lib/Socket6.pm
+"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp" -noprototypes -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap"  Socket6.xs > Socket6.xsc && mv Socket6.xsc Socket6.c
+chmod 644 "Socket6.bs"
+cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4   -DVERSION=\"0.25\" -DXS_VERSION=\"0.25\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Socket6.c
+Socket6.xs: In function 'XS_Socket6_getipnodebyname':
+Socket6.xs:867:10: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  ST(0) = (SV *) not_here("getipnodebyname");
+          ^
+Socket6.xs: In function 'XS_Socket6_getipnodebyaddr':
+Socket6.xs:938:10: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  ST(0) = (SV *) not_here("getipnodebyaddr");
+          ^
+rm -f blib/arch/auto/Socket6/Socket6.so
+cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Socket6.o  -o blib/arch/auto/Socket6/Socket6.so 	\
+     	\
+
+chmod 755 blib/arch/auto/Socket6/Socket6.so
+"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Socket6.bs blib/arch/auto/Socket6/Socket6.bs 644
+Manifying 1 pod document
+==> Entering fakeroot environment...
+==> Starting package()...
+Running Mkbootstrap for Socket6 ()
+chmod 644 "Socket6.bs"
+Manifying 1 pod document
+Appending installation info to /tmp/perl-socket6/pkg/perl-socket6/usr/lib/perl5/core_perl/perllocal.pod
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /tmp/perl-socket6/pkg/perl-socket6/usr/lib/perl5/vendor_perl/auto/Socket6/Socket6.so
+Installing /tmp/perl-socket6/pkg/perl-socket6/usr/lib/perl5/vendor_perl/Socket6.pm
+Installing /tmp/perl-socket6/pkg/perl-socket6/usr/share/man/man3/Socket6.3pm
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+  -> Removing empty directories...
+==> Creating package "perl-socket6"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: perl-socket6 0.25-3 (Fri Nov 13 23:41:39 UTC 2015)
+===> Printing config.logs
+found log at /tmp/perl-socket6/src/Socket6-0.25/config.log
+____
+File /tmp/perl-socket6/src/Socket6-0.25/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by configure, which was
+generated by GNU Autoconf 2.59.  Invocation command line was
+
+  $ ./configure --with-perl=/usr/bin/perl
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 65b0672dba39
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+hostinfo               = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1306: checking for gcc
+configure:1332: result: cc
+configure:1576: checking for C compiler version
+configure:1579: cc --version </dev/null >&5
+cc (GCC) 5.2.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:1582: $? = 0
+configure:1584: cc -v </dev/null >&5
+Using built-in specs.
+COLLECT_GCC=cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc/src/gcc-5.2.0/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release --with-default-libstdcxx-abi=gcc4-compatible
+Thread model: posix
+gcc version 5.2.0 (GCC) 
+configure:1587: $? = 0
+configure:1589: cc -V </dev/null >&5
+cc: error: unrecognized command line option '-V'
+cc: fatal error: no input files
+compilation terminated.
+configure:1592: $? = 1
+configure:1615: checking for C compiler default output file name
+configure:1618: cc -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:1621: $? = 0
+configure:1667: result: a.out
+configure:1672: checking whether the C compiler works
+configure:1678: ./a.out
+configure:1681: $? = 0
+configure:1698: result: yes
+configure:1705: checking whether we are cross compiling
+configure:1707: result: no
+configure:1710: checking for suffix of executables
+configure:1712: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:1715: $? = 0
+configure:1740: result: 
+configure:1746: checking for suffix of object files
+configure:1767: cc -c -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  conftest.c >&5
+configure:1770: $? = 0
+configure:1792: result: o
+configure:1796: checking whether we are using the GNU C compiler
+configure:1820: cc -c -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  conftest.c >&5
+configure:1826: $? = 0
+configure:1830: test -z 
+			 || test ! -s conftest.err
+configure:1833: $? = 0
+configure:1836: test -s conftest.o
+configure:1839: $? = 0
+configure:1852: result: yes
+configure:1858: checking whether cc accepts -g
+configure:1879: cc -c -g  conftest.c >&5
+configure:1885: $? = 0
+configure:1889: test -z 
+			 || test ! -s conftest.err
+configure:1892: $? = 0
+configure:1895: test -s conftest.o
+configure:1898: $? = 0
+configure:1909: result: yes
+configure:1926: checking for cc option to accept ANSI C
+configure:1996: cc  -c -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  conftest.c >&5
+configure:2002: $? = 0
+configure:2006: test -z 
+			 || test ! -s conftest.err
+configure:2009: $? = 0
+configure:2012: test -s conftest.o
+configure:2015: $? = 0
+configure:2033: result: none needed
+configure:2051: cc -c -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  conftest.c >&5
+conftest.c:2:3: error: unknown type name 'choke'
+   choke me
+   ^
+conftest.c:2:3: error: expected '=', ',', ';', 'asm' or '__attribute__' at end of input
+configure:2057: $? = 1
+configure: failed program was:
+| #ifndef __cplusplus
+|   choke me
+| #endif
+configure:2259: checking whether your Perl5 have PL_sv_undef
+configure:2303: result: yes
+configure:2323: checking how to run the C preprocessor
+configure:2358: cc -E  conftest.c
+configure:2364: $? = 0
+configure:2396: cc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2402: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2441: result: cc -E
+configure:2465: cc -E  conftest.c
+configure:2471: $? = 0
+configure:2503: cc -E  conftest.c
+conftest.c:10:28: fatal error: ac_nonexistent.h: No such file or directory
+compilation terminated.
+configure:2509: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:2553: checking for egrep
+configure:2563: result: grep -E
+configure:2571: checking for getaddrinfo
+configure:2628: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:2634: $? = 0
+configure:2638: test -z 
+			 || test ! -s conftest.err
+configure:2641: $? = 0
+configure:2644: test -s conftest
+configure:2647: $? = 0
+configure:2659: result: yes
+configure:2967: checking for getnameinfo
+configure:3024: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:3030: $? = 0
+configure:3034: test -z 
+			 || test ! -s conftest.err
+configure:3037: $? = 0
+configure:3040: test -s conftest
+configure:3043: $? = 0
+configure:3055: result: yes
+configure:3363: checking for gethostbyname2
+configure:3420: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:3426: $? = 0
+configure:3430: test -z 
+			 || test ! -s conftest.err
+configure:3433: $? = 0
+configure:3436: test -s conftest
+configure:3439: $? = 0
+configure:3451: result: yes
+configure:3759: checking for getipnodebyname
+configure:3816: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+/tmp/ccPml0G4.o: In function `main':
+conftest.c:(.text+0xd): undefined reference to `getipnodebyname'
+/tmp/ccPml0G4.o:(.data+0x0): undefined reference to `getipnodebyname'
+collect2: error: ld returned 1 exit status
+configure:3822: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| #define HAVE_GETADDRINFO 1
+| #define HAVE_GETNAMEINFO 1
+| #define HAVE_GETHOSTBYNAME2 1
+| /* end confdefs.h.  */
+| /* Define getipnodebyname to an innocuous variant, in case <limits.h> declares getipnodebyname.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define getipnodebyname innocuous_getipnodebyname
+| 
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char getipnodebyname (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+| 
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+| 
+| #undef getipnodebyname
+| 
+| /* Override any gcc2 internal prototype to avoid an error.  */
+| #ifdef __cplusplus
+| extern "C"
+| {
+| #endif
+| /* We use char because int might match the return type of a gcc2
+|    builtin and then its argument prototype would still apply.  */
+| char getipnodebyname ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined (__stub_getipnodebyname) || defined (__stub___getipnodebyname)
+| choke me
+| #else
+| char (*f) () = getipnodebyname;
+| #endif
+| #ifdef __cplusplus
+| }
+| #endif
+| 
+| int
+| main ()
+| {
+| return f != getipnodebyname;
+|   ;
+|   return 0;
+| }
+configure:3847: result: no
+configure:3854: checking for getipnodebyname in -lsocket
+configure:3884: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c -lsocket   >&5
+/usr/sbin/ld: cannot find -lsocket
+collect2: error: ld returned 1 exit status
+configure:3890: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| #define HAVE_GETADDRINFO 1
+| #define HAVE_GETNAMEINFO 1
+| #define HAVE_GETHOSTBYNAME2 1
+| /* end confdefs.h.  */
+| 
+| /* Override any gcc2 internal prototype to avoid an error.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| /* We use char because int might match the return type of a gcc2
+|    builtin and then its argument prototype would still apply.  */
+| char getipnodebyname ();
+| int
+| main ()
+| {
+| getipnodebyname ();
+|   ;
+|   return 0;
+| }
+configure:3916: result: no
+configure:3923: checking whether your system has IPv6 directory
+configure:3934: result: no
+configure:4155: checking for getipnodebyaddr
+configure:4212: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+/tmp/cchfkdme.o: In function `main':
+conftest.c:(.text+0xd): undefined reference to `getipnodebyaddr'
+/tmp/cchfkdme.o:(.data+0x0): undefined reference to `getipnodebyaddr'
+collect2: error: ld returned 1 exit status
+configure:4218: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| #define HAVE_GETADDRINFO 1
+| #define HAVE_GETNAMEINFO 1
+| #define HAVE_GETHOSTBYNAME2 1
+| /* end confdefs.h.  */
+| /* Define getipnodebyaddr to an innocuous variant, in case <limits.h> declares getipnodebyaddr.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define getipnodebyaddr innocuous_getipnodebyaddr
+| 
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char getipnodebyaddr (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+| 
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+| 
+| #undef getipnodebyaddr
+| 
+| /* Override any gcc2 internal prototype to avoid an error.  */
+| #ifdef __cplusplus
+| extern "C"
+| {
+| #endif
+| /* We use char because int might match the return type of a gcc2
+|    builtin and then its argument prototype would still apply.  */
+| char getipnodebyaddr ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined (__stub_getipnodebyaddr) || defined (__stub___getipnodebyaddr)
+| choke me
+| #else
+| char (*f) () = getipnodebyaddr;
+| #endif
+| #ifdef __cplusplus
+| }
+| #endif
+| 
+| int
+| main ()
+| {
+| return f != getipnodebyaddr;
+|   ;
+|   return 0;
+| }
+configure:4243: result: no
+configure:4250: checking for getipnodebyaddr in -lsocket
+configure:4280: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c -lsocket   >&5
+/usr/sbin/ld: cannot find -lsocket
+collect2: error: ld returned 1 exit status
+configure:4286: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| #define HAVE_GETADDRINFO 1
+| #define HAVE_GETNAMEINFO 1
+| #define HAVE_GETHOSTBYNAME2 1
+| /* end confdefs.h.  */
+| 
+| /* Override any gcc2 internal prototype to avoid an error.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| /* We use char because int might match the return type of a gcc2
+|    builtin and then its argument prototype would still apply.  */
+| char getipnodebyaddr ();
+| int
+| main ()
+| {
+| getipnodebyaddr ();
+|   ;
+|   return 0;
+| }
+configure:4312: result: no
+configure:4319: checking whether your system has IPv6 directory
+configure:4330: result: no
+configure:4551: checking for inet_pton
+configure:4608: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:4614: $? = 0
+configure:4618: test -z 
+			 || test ! -s conftest.err
+configure:4621: $? = 0
+configure:4624: test -s conftest
+configure:4627: $? = 0
+configure:4639: result: yes
+configure:4947: checking for inet_ntop
+configure:5004: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:5010: $? = 0
+configure:5014: test -z 
+			 || test ! -s conftest.err
+configure:5017: $? = 0
+configure:5020: test -s conftest
+configure:5023: $? = 0
+configure:5035: result: yes
+configure:5346: checking whether you have sa_len in struct sockaddr
+configure:5368: cc -c -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:20:31: error: 'struct sockaddr' has no member named 'sa_len'
+ struct sockaddr sa; int i = sa.sa_len;
+                               ^
+configure:5374: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| 
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define HAVE_PL_SV_UNDEF 1
+| #define HAVE_GETADDRINFO 1
+| #define HAVE_GETNAMEINFO 1
+| #define HAVE_GETHOSTBYNAME2 1
+| #define HAVE_INET_PTON 1
+| #define HAVE_INET_NTOP 1
+| /* end confdefs.h.  */
+| #include <sys/types.h>
+| #include <sys/socket.h>
+| int
+| main ()
+| {
+| struct sockaddr sa; int i = sa.sa_len;
+|   ;
+|   return 0;
+| }
+configure:5407: result: no
+configure:5410: checking whether you have sin6_scope_id in struct sockaddr_in6
+configure:5433: cc -c -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  conftest.c >&5
+configure:5439: $? = 0
+configure:5443: test -z 
+			 || test ! -s conftest.err
+configure:5446: $? = 0
+configure:5449: test -s conftest.o
+configure:5452: $? = 0
+configure:5472: result: yes
+configure:5475: checking for socklen_t
+configure:5497: cc -o conftest -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   conftest.c  >&5
+configure:5503: $? = 0
+configure:5507: test -z 
+			 || test ! -s conftest.err
+configure:5510: $? = 0
+configure:5513: test -s conftest
+configure:5516: $? = 0
+configure:5537: result: yes
+configure:5639: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by config.status, which was
+generated by GNU Autoconf 2.59.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 65b0672dba39
+
+config.status:646: creating config.pl
+config.status:646: creating gailookup.pl
+config.status:749: creating config.h
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=cc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value='-D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64'
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=
+ac_cv_env_host_alias_value=
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_exeext=
+ac_cv_func_getaddrinfo=yes
+ac_cv_func_gethostbyname2=yes
+ac_cv_func_getipnodebyaddr=no
+ac_cv_func_getipnodebyname=no
+ac_cv_func_getnameinfo=yes
+ac_cv_func_inet_ntop=yes
+ac_cv_func_inet_pton=yes
+ac_cv_lib_inet6_getaddrinfo=no
+ac_cv_lib_inet6_gethostbyname2=no
+ac_cv_lib_inet6_getipnodebyaddr=no
+ac_cv_lib_inet6_getipnodebyname=no
+ac_cv_lib_inet6_getnameinfo=no
+ac_cv_lib_inet6_inet_ntop=no
+ac_cv_lib_inet6_inet_pton=no
+ac_cv_lib_socket_getaddrinfo=no
+ac_cv_lib_socket_gethostbyname2=no
+ac_cv_lib_socket_getipnodebyaddr=no
+ac_cv_lib_socket_getipnodebyname=no
+ac_cv_lib_socket_getnameinfo=no
+ac_cv_lib_socket_inet_ntop=no
+ac_cv_lib_socket_inet_pton=no
+ac_cv_objext=o
+ac_cv_path_perl=/usr/bin/perl
+ac_cv_prog_CPP='cc -E'
+ac_cv_prog_ac_ct_CC=cc
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cc_stdc=
+ac_cv_prog_egrep='grep -E'
+ipv6_cv_dir=no
+ipv6_cv_getaddrinfo=yes
+ipv6_cv_gethostbyname2=yes
+ipv6_cv_getipnodebyaddr=no
+ipv6_cv_getipnodebyname=no
+ipv6_cv_getnameinfo=yes
+ipv6_cv_inet_ntop=yes
+ipv6_cv_inet_pton=yes
+ipv6_cv_sa_len=no
+ipv6_cv_sin6_scope_id=yes
+ipv6_cv_socklen_t=yes
+socket6_cv_perl_path=/usr/bin/perl
+socket6_cv_pl_sv_undef=yes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+CC='cc'
+CFLAGS='-D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64'
+CPP='cc -E'
+CPPFLAGS=''
+DEFINES=''
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='grep -E'
+EXEEXT=''
+INET6LIBS=''
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME=''
+PACKAGE_STRING=''
+PACKAGE_TARNAME=''
+PACKAGE_VERSION=''
+PATH_SEPARATOR=':'
+PERLPATH='/usr/bin/perl'
+SHELL='/bin/sh'
+ac_ct_CC='cc'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${prefix}/share'
+exec_prefix='${prefix}'
+host_alias=''
+includedir='${prefix}/include'
+infodir='${prefix}/info'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localstatedir='${prefix}/var'
+mandir='${prefix}/man'
+oldincludedir='/usr/include'
+perl=''
+prefix='/usr/local'
+program_transform_name='s,x,x,'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define HAVE_GETADDRINFO 1
+#define HAVE_GETHOSTBYNAME2 1
+#define HAVE_GETNAMEINFO 1
+#define HAVE_INET_NTOP 1
+#define HAVE_INET_PTON 1
+#define HAVE_PL_SV_UNDEF 1
+#define HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID 1
+#define HAVE_SOCKLEN_T 1
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_NAME ""
+#define PACKAGE_STRING ""
+#define PACKAGE_TARNAME ""
+#define PACKAGE_VERSION ""
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

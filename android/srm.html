@@ -1,0 +1,1129 @@
+        <html><head></head><body>
+        <h1>Report for srm on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 0</p>
+        <p>Time to run: 00:00:38</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data srm
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 1146 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: srm 1.2.15-1 (Fri Nov 13 23:24:21 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading srm-1.2.15.tar.gz...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting srm-1.2.15.tar.gz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/srm
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: srm 1.2.15-1 (Fri Nov 13 23:24:23 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+configure: WARNING: if you wanted to set the --build type, don't use --host.
+    If a cross compiler is detected then cross compile mode will be used
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for x86_64-unknown-linux-strip... no
+checking for strip... strip
+checking for a thread-safe mkdir -p... /usr/sbin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for x86_64-unknown-linux-gcc... arm-linux-androideabi-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-linux-androideabi-gcc accepts -g... yes
+checking for arm-linux-androideabi-gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of arm-linux-androideabi-gcc... gcc3
+checking for x86_64-unknown-linux-ranlib... no
+checking for ranlib... ranlib
+configure: WARNING: using cross tools not prefixed with host triplet
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... unknown
+checking for _LARGE_FILES value needed for large files... unknown
+checking how to run the C preprocessor... arm-linux-androideabi-gcc -E
+checking for grep that handles long lines and -e... /usr/sbin/grep
+checking for egrep... /usr/sbin/grep -E
+checking for ANSI C header files... yes
+checking for sys/vfs.h... yes
+checking for sys/param.h... yes
+checking for sys/mount.h... yes
+checking for varargs.h... no
+checking for stdarg.h... yes
+checking for attr/xattr.h... no
+checking for sys/extattr.h... no
+checking for sys/xattr.h... yes
+checking for linux/fs.h... yes
+checking for linux/ext2_fs.h... no
+checking for linux/ext3_fs.h... no
+checking for an ANSI C-conforming const... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for struct stat.st_blksize... yes
+checking for fts_open... yes
+checking for nftw... yes
+checking for fdatasync... yes
+checking for chflags... no
+checking for snprintf... yes
+checking for vsnprintf... yes
+checking for lrand48... yes
+checking whether to enable debugging... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating doc/Makefile
+config.status: creating src/Makefile
+config.status: creating lib/Makefile
+config.status: creating win/Makefile
+config.status: creating srm.spec
+config.status: creating doc/srm.1
+config.status: creating test/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15'
+Making all in lib
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/lib'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..     -DNDEBUG -MT snprintf.o -MD -MP -MF .deps/snprintf.Tpo -c -o snprintf.o snprintf.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..     -DNDEBUG -MT getopt1.o -MD -MP -MF .deps/getopt1.Tpo -c -o getopt1.o getopt1.c
+mv -f .deps/snprintf.Tpo .deps/snprintf.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..     -DNDEBUG -MT getopt.o -MD -MP -MF .deps/getopt.Tpo -c -o getopt.o getopt.c
+mv -f .deps/getopt1.Tpo .deps/getopt1.Po
+mv -f .deps/getopt.Tpo .deps/getopt.Po
+rm -f libsrm.a
+ar cru libsrm.a snprintf.o getopt1.o getopt.o 
+ar: `u' modifier ignored since `D' is the default (see `U')
+ranlib libsrm.a
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/lib'
+Making all in src
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/src'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT error.o -MD -MP -MF .deps/error.Tpo -c -o error.o error.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/error.Tpo .deps/error.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT random.o -MD -MP -MF .deps/random.Tpo -c -o random.o random.c
+mv -f .deps/main.Tpo .deps/main.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT rename_unlink.o -MD -MP -MF .deps/rename_unlink.Tpo -c -o rename_unlink.o rename_unlink.c
+mv -f .deps/random.Tpo .deps/random.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT sunlink.o -MD -MP -MF .deps/sunlink.Tpo -c -o sunlink.o sunlink.c
+mv -f .deps/rename_unlink.Tpo .deps/rename_unlink.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT tree_walker.o -MD -MP -MF .deps/tree_walker.Tpo -c -o tree_walker.o tree_walker.c
+mv -f .deps/sunlink.Tpo .deps/sunlink.Po
+mv -f .deps/tree_walker.Tpo .deps/tree_walker.Po
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib  -Wall -DNDEBUG -MT fill.o -MD -MP -MF .deps/fill.Tpo -c -o fill.o fill.c
+mv -f .deps/fill.Tpo .deps/fill.Po
+arm-linux-androideabi-gcc -Wall -DNDEBUG   -o srm error.o main.o random.o rename_unlink.o sunlink.o tree_walker.o fill.o ../lib/libsrm.a 
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/src'
+Making all in doc
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/doc'
+Making all in win
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/win'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/win'
+Making all in test
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/test'
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib -I../src  -Wall -DNDEBUG -MT fill.o -MD -MP -MF .deps/fill.Tpo -c -o fill.o `test -f '../src/fill.c' || echo './'`../src/fill.c
+arm-linux-androideabi-gcc -DHAVE_CONFIG_H -I. -I..  -I../lib -I../src  -Wall -DNDEBUG -MT fill_test.o -MD -MP -MF .deps/fill_test.Tpo -c -o fill_test.o fill_test.c
+mv -f .deps/fill.Tpo .deps/fill.Po
+mv -f .deps/fill_test.Tpo .deps/fill_test.Po
+arm-linux-androideabi-gcc -Wall -DNDEBUG   -o fill_test fill.o fill_test.o  
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/test'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15'
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15'
+==> Entering fakeroot environment...
+==> Starting package()...
+Making install in lib
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15/lib'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/lib'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/lib'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15/lib'
+Making install in src
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15/src'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/src'
+test -z "/tmp/srm/pkg/srm/usr/bin" || /usr/sbin/mkdir -p "/tmp/srm/pkg/srm/usr/bin"
+make[2]: Nothing to be done for 'install-data-am'.
+  /usr/bin/install -c srm '/tmp/srm/pkg/srm/usr/bin'
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/src'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15/src'
+Making install in doc
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15/doc'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/doc'
+make[2]: Nothing to be done for 'install-exec-am'.
+test -z "/tmp/srm/pkg/srm/usr/share/man/man1" || /usr/sbin/mkdir -p "/tmp/srm/pkg/srm/usr/share/man/man1"
+ /usr/bin/install -c -m 644 srm.1 '/tmp/srm/pkg/srm/usr/share/man/man1'
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/doc'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15/doc'
+Making install in win
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15/win'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/win'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/win'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15/win'
+Making install in test
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15/test'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15/test'
+test -z "/tmp/srm/pkg/srm/usr/bin" || /usr/sbin/mkdir -p "/tmp/srm/pkg/srm/usr/bin"
+make[2]: Nothing to be done for 'install-data-am'.
+  /usr/bin/install -c fill_test '/tmp/srm/pkg/srm/usr/bin'
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15/test'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15/test'
+make[1]: Entering directory '/tmp/srm/src/srm-1.2.15'
+make[2]: Entering directory '/tmp/srm/src/srm-1.2.15'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/tmp/srm/src/srm-1.2.15'
+make[1]: Leaving directory '/tmp/srm/src/srm-1.2.15'
+==> Tidying install...
+  -> Removing doc files...
+  -> Purging unwanted files...
+==> Creating package "srm"...
+  -> Generating .PKGINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: srm 1.2.15-1 (Fri Nov 13 23:24:30 UTC 2015)
+===> Printing config.logs
+found log at /tmp/srm/src/srm-1.2.15/config.log
+____
+File /tmp/srm/src/srm-1.2.15/config.log
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by srm configure 1.2.15, which was
+generated by GNU Autoconf 2.67.  Invocation command line was
+
+  $ ./configure --host x86_64-unknown-linux --prefix=/usr
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = 363f9a25e263
+uname -m = x86_64
+uname -r = 3.13.0-66-generic
+uname -s = Linux
+uname -v = #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = unknown
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /tmp/toolchain/bin
+PATH: /usr/local/sbin
+PATH: /usr/local/bin
+PATH: /usr/sbin
+PATH: /usr/bin
+PATH: /sbin
+PATH: /bin
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:2122: checking for a BSD-compatible install
+configure:2190: result: /usr/bin/install -c
+configure:2201: checking whether build environment is sane
+configure:2251: result: yes
+configure:2300: checking for x86_64-unknown-linux-strip
+configure:2330: result: no
+configure:2340: checking for strip
+configure:2356: found /usr/sbin/strip
+configure:2367: result: strip
+configure:2392: checking for a thread-safe mkdir -p
+configure:2431: result: /usr/sbin/mkdir -p
+configure:2444: checking for gawk
+configure:2460: found /usr/sbin/gawk
+configure:2471: result: gawk
+configure:2482: checking whether make sets $(MAKE)
+configure:2504: result: yes
+configure:2595: checking for x86_64-unknown-linux-gcc
+configure:2622: result: arm-linux-androideabi-gcc
+configure:2891: checking for C compiler version
+configure:2900: arm-linux-androideabi-gcc --version >&5
+arm-linux-androideabi-gcc (GCC) 4.8
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2911: $? = 0
+configure:2900: arm-linux-androideabi-gcc -v >&5
+Using built-in specs.
+COLLECT_GCC=arm-linux-androideabi-gcc
+COLLECT_LTO_WRAPPER=/tmp/toolchain/bin/../libexec/gcc/arm-linux-androideabi/4.8/lto-wrapper
+Target: arm-linux-androideabi
+Configured with: /s/ndk-toolchain/src/build/../gcc/gcc-4.8/configure --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --target=arm-linux-androideabi --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpfr=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-mpc=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-cloog=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-isl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --with-ppl=/tmp/ndk-andrewhsieh/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --with-float=soft --with-fpu=vfp --with-arch=armv5te --enable-target-optspace --enable-initfini-array --disable-nls --prefix=/tmp/ndk-andrewhsieh/build/toolchain/prefix --with-sysroot=/tmp/ndk-andrewhsieh/build/toolchain/prefix/sysroot --with-binutils-version=2.25 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.8 --with-gdb-version=7.7 --with-python=/usr/local/google/home/andrewhsieh/mydroid/ndk/prebuilt/linux-x86_64/bin/python-config.sh --with-gxx-include-dir=/tmp/ndk-andrewhsieh/build/toolchain/prefix/include/c++/4.8 --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-threads --enable-graphite=yes --with-cloog-version=0.18.0 --with-isl-version=0.11.1 --enable-eh-frame-hdr-for-static --with-arch=armv5te --program-transform-name='s&^&arm-linux-androideabi-&' --enable-gold=default
+Thread model: posix
+gcc version 4.8 (GCC) 
+configure:2911: $? = 0
+configure:2900: arm-linux-androideabi-gcc -V >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-V'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2911: $? = 1
+configure:2900: arm-linux-androideabi-gcc -qversion >&5
+arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'
+arm-linux-androideabi-gcc: fatal error: no input files
+compilation terminated.
+configure:2911: $? = 1
+configure:2931: checking whether the C compiler works
+configure:2953: arm-linux-androideabi-gcc    conftest.c  >&5
+configure:2957: $? = 0
+configure:3005: result: yes
+configure:3008: checking for C compiler default output file name
+configure:3010: result: a.out
+configure:3016: checking for suffix of executables
+configure:3023: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3027: $? = 0
+configure:3049: result: 
+configure:3071: checking whether we are cross compiling
+configure:3079: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:3083: $? = 0
+configure:3090: ./conftest
+./configure: line 3092: ./conftest: cannot execute binary file: Exec format error
+configure:3094: $? = 126
+configure:3109: result: yes
+configure:3114: checking for suffix of object files
+configure:3136: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3140: $? = 0
+configure:3161: result: o
+configure:3165: checking whether we are using the GNU C compiler
+configure:3184: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:3184: $? = 0
+configure:3193: result: yes
+configure:3202: checking whether arm-linux-androideabi-gcc accepts -g
+configure:3222: arm-linux-androideabi-gcc -c -g  conftest.c >&5
+configure:3222: $? = 0
+configure:3263: result: yes
+configure:3280: checking for arm-linux-androideabi-gcc option to accept ISO C89
+configure:3344: arm-linux-androideabi-gcc  -c   conftest.c >&5
+configure:3344: $? = 0
+configure:3357: result: none needed
+configure:3388: checking for style of include used by make
+configure:3416: result: GNU
+configure:3441: checking dependency style of arm-linux-androideabi-gcc
+configure:3551: result: gcc3
+configure:3571: checking for x86_64-unknown-linux-ranlib
+configure:3601: result: no
+configure:3611: checking for ranlib
+configure:3627: found /usr/sbin/ranlib
+configure:3638: result: ranlib
+configure:3650: WARNING: using cross tools not prefixed with host triplet
+configure:3669: checking for special C compiler options needed for large files
+configure:3714: result: no
+configure:3720: checking for _FILE_OFFSET_BITS value needed for large files
+configure:3745: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:17:3: warning: left shift count >= width of type [enabled by default]
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+   ^
+conftest.c:17:3: warning: left shift count >= width of type [enabled by default]
+conftest.c:18:10: warning: left shift count >= width of type [enabled by default]
+          && LARGE_OFF_T % 2147483647 == 1)
+          ^
+conftest.c:18:10: warning: left shift count >= width of type [enabled by default]
+conftest.c:17:7: error: variably modified 'off_t_is_large' at file scope
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+       ^
+configure:3745: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| /* end confdefs.h.  */
+| #include <sys/types.h>
+|  /* Check that off_t can represent 2**63 - 1 correctly.
+|     We can't simply define LARGE_OFF_T to be 9223372036854775807,
+|     since some C++ compilers masquerading as C compilers
+|     incorrectly reject 9223372036854775807.  */
+| #define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
+|   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+| 		       && LARGE_OFF_T % 2147483647 == 1)
+| 		      ? 1 : -1];
+| int
+| main ()
+| {
+| 
+|   ;
+|   return 0;
+| }
+configure:3769: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:18:3: warning: left shift count >= width of type [enabled by default]
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+   ^
+conftest.c:18:3: warning: left shift count >= width of type [enabled by default]
+conftest.c:19:10: warning: left shift count >= width of type [enabled by default]
+          && LARGE_OFF_T % 2147483647 == 1)
+          ^
+conftest.c:19:10: warning: left shift count >= width of type [enabled by default]
+conftest.c:18:7: error: variably modified 'off_t_is_large' at file scope
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+       ^
+configure:3769: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| /* end confdefs.h.  */
+| #define _FILE_OFFSET_BITS 64
+| #include <sys/types.h>
+|  /* Check that off_t can represent 2**63 - 1 correctly.
+|     We can't simply define LARGE_OFF_T to be 9223372036854775807,
+|     since some C++ compilers masquerading as C compilers
+|     incorrectly reject 9223372036854775807.  */
+| #define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
+|   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+| 		       && LARGE_OFF_T % 2147483647 == 1)
+| 		      ? 1 : -1];
+| int
+| main ()
+| {
+| 
+|   ;
+|   return 0;
+| }
+configure:3777: result: unknown
+configure:3789: checking for _LARGE_FILES value needed for large files
+configure:3814: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:17:3: warning: left shift count >= width of type [enabled by default]
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+   ^
+conftest.c:17:3: warning: left shift count >= width of type [enabled by default]
+conftest.c:18:10: warning: left shift count >= width of type [enabled by default]
+          && LARGE_OFF_T % 2147483647 == 1)
+          ^
+conftest.c:18:10: warning: left shift count >= width of type [enabled by default]
+conftest.c:17:7: error: variably modified 'off_t_is_large' at file scope
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+       ^
+configure:3814: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| /* end confdefs.h.  */
+| #include <sys/types.h>
+|  /* Check that off_t can represent 2**63 - 1 correctly.
+|     We can't simply define LARGE_OFF_T to be 9223372036854775807,
+|     since some C++ compilers masquerading as C compilers
+|     incorrectly reject 9223372036854775807.  */
+| #define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
+|   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+| 		       && LARGE_OFF_T % 2147483647 == 1)
+| 		      ? 1 : -1];
+| int
+| main ()
+| {
+| 
+|   ;
+|   return 0;
+| }
+configure:3838: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:18:3: warning: left shift count >= width of type [enabled by default]
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+   ^
+conftest.c:18:3: warning: left shift count >= width of type [enabled by default]
+conftest.c:19:10: warning: left shift count >= width of type [enabled by default]
+          && LARGE_OFF_T % 2147483647 == 1)
+          ^
+conftest.c:19:10: warning: left shift count >= width of type [enabled by default]
+conftest.c:18:7: error: variably modified 'off_t_is_large' at file scope
+   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+       ^
+configure:3838: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| /* end confdefs.h.  */
+| #define _LARGE_FILES 1
+| #include <sys/types.h>
+|  /* Check that off_t can represent 2**63 - 1 correctly.
+|     We can't simply define LARGE_OFF_T to be 9223372036854775807,
+|     since some C++ compilers masquerading as C compilers
+|     incorrectly reject 9223372036854775807.  */
+| #define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
+|   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
+| 		       && LARGE_OFF_T % 2147483647 == 1)
+| 		      ? 1 : -1];
+| int
+| main ()
+| {
+| 
+|   ;
+|   return 0;
+| }
+configure:3846: result: unknown
+configure:3866: checking how to run the C preprocessor
+configure:3897: arm-linux-androideabi-gcc -E  conftest.c
+configure:3897: $? = 0
+configure:3911: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3911: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3936: result: arm-linux-androideabi-gcc -E
+configure:3956: arm-linux-androideabi-gcc -E  conftest.c
+configure:3956: $? = 0
+configure:3970: arm-linux-androideabi-gcc -E  conftest.c
+conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+                            ^
+compilation terminated.
+configure:3970: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:3999: checking for grep that handles long lines and -e
+configure:4057: result: /usr/sbin/grep
+configure:4062: checking for egrep
+configure:4124: result: /usr/sbin/grep -E
+configure:4129: checking for ANSI C header files
+configure:4149: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4149: $? = 0
+configure:4233: result: yes
+configure:4244: checking for sys/vfs.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4244: $? = 0
+configure:4244: result: yes
+configure:4244: checking for sys/param.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4244: $? = 0
+configure:4244: result: yes
+configure:4244: checking for sys/mount.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4244: $? = 0
+configure:4244: result: yes
+configure:4244: checking for varargs.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+In file included from conftest.c:21:0:
+/tmp/toolchain/lib/gcc/arm-linux-androideabi/4.8/include/varargs.h:4:2: error: #error "GCC no longer implements <varargs.h>."
+ #error "GCC no longer implements <varargs.h>."
+  ^
+/tmp/toolchain/lib/gcc/arm-linux-androideabi/4.8/include/varargs.h:5:2: error: #error "Revise your code to use <stdarg.h>."
+ #error "Revise your code to use <stdarg.h>."
+  ^
+configure:4244: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_VFS_H 1
+| #define HAVE_SYS_PARAM_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| /* end confdefs.h.  */
+| 
+| #ifdef HAVE_LINUX_FS_H
+| #include <linux/fs.h>
+| #endif
+| 
+| 
+| #include <varargs.h>
+configure:4244: result: no
+configure:4244: checking for stdarg.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4244: $? = 0
+configure:4244: result: yes
+configure:4244: checking for attr/xattr.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:22:24: fatal error: attr/xattr.h: No such file or directory
+ #include <attr/xattr.h>
+                        ^
+compilation terminated.
+configure:4244: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_VFS_H 1
+| #define HAVE_SYS_PARAM_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_STDARG_H 1
+| /* end confdefs.h.  */
+| 
+| #ifdef HAVE_LINUX_FS_H
+| #include <linux/fs.h>
+| #endif
+| 
+| 
+| #include <attr/xattr.h>
+configure:4244: result: no
+configure:4244: checking for sys/extattr.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:22:25: fatal error: sys/extattr.h: No such file or directory
+ #include <sys/extattr.h>
+                         ^
+compilation terminated.
+configure:4244: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_VFS_H 1
+| #define HAVE_SYS_PARAM_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_STDARG_H 1
+| /* end confdefs.h.  */
+| 
+| #ifdef HAVE_LINUX_FS_H
+| #include <linux/fs.h>
+| #endif
+| 
+| 
+| #include <sys/extattr.h>
+configure:4244: result: no
+configure:4244: checking for sys/xattr.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4244: $? = 0
+configure:4244: result: yes
+configure:4244: checking for linux/fs.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4244: $? = 0
+configure:4244: result: yes
+configure:4244: checking for linux/ext2_fs.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:24:27: fatal error: linux/ext2_fs.h: No such file or directory
+ #include <linux/ext2_fs.h>
+                           ^
+compilation terminated.
+configure:4244: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_VFS_H 1
+| #define HAVE_SYS_PARAM_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_STDARG_H 1
+| #define HAVE_SYS_XATTR_H 1
+| #define HAVE_LINUX_FS_H 1
+| /* end confdefs.h.  */
+| 
+| #ifdef HAVE_LINUX_FS_H
+| #include <linux/fs.h>
+| #endif
+| 
+| 
+| #include <linux/ext2_fs.h>
+configure:4244: result: no
+configure:4244: checking for linux/ext3_fs.h
+configure:4244: arm-linux-androideabi-gcc -c   conftest.c >&5
+conftest.c:24:27: fatal error: linux/ext3_fs.h: No such file or directory
+ #include <linux/ext3_fs.h>
+                           ^
+compilation terminated.
+configure:4244: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_VFS_H 1
+| #define HAVE_SYS_PARAM_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_STDARG_H 1
+| #define HAVE_SYS_XATTR_H 1
+| #define HAVE_LINUX_FS_H 1
+| /* end confdefs.h.  */
+| 
+| #ifdef HAVE_LINUX_FS_H
+| #include <linux/fs.h>
+| #endif
+| 
+| 
+| #include <linux/ext3_fs.h>
+configure:4244: result: no
+configure:4260: checking for an ANSI C-conforming const
+configure:4325: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4325: $? = 0
+configure:4332: result: yes
+configure:4346: checking for sys/types.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for sys/stat.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for stdlib.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for string.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for memory.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for strings.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for inttypes.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for stdint.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4346: checking for unistd.h
+configure:4346: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4346: $? = 0
+configure:4346: result: yes
+configure:4358: checking for struct stat.st_blksize
+configure:4358: arm-linux-androideabi-gcc -c   conftest.c >&5
+configure:4358: $? = 0
+configure:4358: result: yes
+configure:4374: checking for fts_open
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4374: $? = 0
+configure:4374: result: yes
+configure:4374: checking for nftw
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4374: $? = 0
+configure:4374: result: yes
+configure:4374: checking for fdatasync
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4374: $? = 0
+configure:4374: result: yes
+configure:4374: checking for chflags
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+/tmp/cc0zY0kE.o:conftest.c:function main: error: undefined reference to 'chflags'
+collect2: error: ld returned 1 exit status
+configure:4374: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "srm"
+| #define PACKAGE_TARNAME "srm"
+| #define PACKAGE_VERSION "1.2.15"
+| #define PACKAGE_STRING "srm 1.2.15"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define PACKAGE "srm"
+| #define VERSION "1.2.15"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_VFS_H 1
+| #define HAVE_SYS_PARAM_H 1
+| #define HAVE_SYS_MOUNT_H 1
+| #define HAVE_STDARG_H 1
+| #define HAVE_SYS_XATTR_H 1
+| #define HAVE_LINUX_FS_H 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
+| #define HAVE_ST_BLKSIZE 1
+| #define HAVE_FTS_OPEN 1
+| #define HAVE_NFTW 1
+| #define HAVE_FDATASYNC 1
+| /* end confdefs.h.  */
+| /* Define chflags to an innocuous variant, in case <limits.h> declares chflags.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define chflags innocuous_chflags
+| 
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char chflags (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+| 
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+| 
+| #undef chflags
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char chflags ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_chflags || defined __stub___chflags
+| choke me
+| #endif
+| 
+| int
+| main ()
+| {
+| return chflags ();
+|   ;
+|   return 0;
+| }
+configure:4374: result: no
+configure:4374: checking for snprintf
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:55:6: warning: conflicting types for built-in function 'snprintf' [enabled by default]
+ char snprintf ();
+      ^
+configure:4374: $? = 0
+configure:4374: result: yes
+configure:4374: checking for vsnprintf
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+conftest.c:56:6: warning: conflicting types for built-in function 'vsnprintf' [enabled by default]
+ char vsnprintf ();
+      ^
+configure:4374: $? = 0
+configure:4374: result: yes
+configure:4374: checking for lrand48
+configure:4374: arm-linux-androideabi-gcc -o conftest    conftest.c  >&5
+configure:4374: $? = 0
+configure:4374: result: yes
+configure:4384: checking whether to enable debugging
+configure:4400: result: no
+configure:4525: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by srm config.status 1.2.15, which was
+generated by GNU Autoconf 2.67.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on 363f9a25e263
+
+config.status:878: creating Makefile
+config.status:878: creating doc/Makefile
+config.status:878: creating src/Makefile
+config.status:878: creating lib/Makefile
+config.status:878: creating win/Makefile
+config.status:878: creating srm.spec
+config.status:878: creating doc/srm.1
+config.status:878: creating test/Makefile
+config.status:878: creating config.h
+config.status:1106: executing depfiles commands
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value=arm-linux-androideabi-gcc
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=x86_64-unknown-linux
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_chflags=no
+ac_cv_func_fdatasync=yes
+ac_cv_func_fts_open=yes
+ac_cv_func_lrand48=yes
+ac_cv_func_nftw=yes
+ac_cv_func_snprintf=yes
+ac_cv_func_vsnprintf=yes
+ac_cv_header_attr_xattr_h=no
+ac_cv_header_inttypes_h=yes
+ac_cv_header_linux_ext2_fs_h=no
+ac_cv_header_linux_ext3_fs_h=no
+ac_cv_header_linux_fs_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdarg_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_extattr_h=no
+ac_cv_header_sys_mount_h=yes
+ac_cv_header_sys_param_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_sys_vfs_h=yes
+ac_cv_header_sys_xattr_h=yes
+ac_cv_header_unistd_h=yes
+ac_cv_header_varargs_h=no
+ac_cv_member_struct_stat_st_blksize=yes
+ac_cv_objext=o
+ac_cv_path_EGREP='/usr/sbin/grep -E'
+ac_cv_path_GREP=/usr/sbin/grep
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_path_mkdir=/usr/sbin/mkdir
+ac_cv_prog_AWK=gawk
+ac_cv_prog_CC=arm-linux-androideabi-gcc
+ac_cv_prog_CPP='arm-linux-androideabi-gcc -E'
+ac_cv_prog_ac_ct_RANLIB=ranlib
+ac_cv_prog_ac_ct_STRIP=strip
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_make_make_set=yes
+ac_cv_sys_file_offset_bits=unknown
+ac_cv_sys_large_files=unknown
+ac_cv_sys_largefile_CC=no
+am_cv_CC_dependencies_compiler_type=gcc3
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL='${SHELL} /tmp/srm/src/srm-1.2.15/missing --run aclocal-1.11'
+AMDEPBACKSLASH='\'
+AMDEP_FALSE='#'
+AMDEP_TRUE=''
+AMTAR='${SHELL} /tmp/srm/src/srm-1.2.15/missing --run tar'
+AUTOCONF='${SHELL} /tmp/srm/src/srm-1.2.15/missing --run autoconf'
+AUTOHEADER='${SHELL} /tmp/srm/src/srm-1.2.15/missing --run autoheader'
+AUTOMAKE='${SHELL} /tmp/srm/src/srm-1.2.15/missing --run automake-1.11'
+AWK='gawk'
+CC='arm-linux-androideabi-gcc'
+CCDEPMODE='depmode=gcc3'
+CFLAGS=' -DNDEBUG'
+CPP='arm-linux-androideabi-gcc -E'
+CPPFLAGS=''
+CYGPATH_W='echo'
+DEFS='-DHAVE_CONFIG_H'
+DEPDIR='.deps'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/usr/sbin/grep -E'
+EXEEXT=''
+GREP='/usr/sbin/grep'
+INSTALL_DATA='${INSTALL} -m 644'
+INSTALL_PROGRAM='${INSTALL}'
+INSTALL_SCRIPT='${INSTALL}'
+INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
+LDFLAGS=''
+LIBOBJS=''
+LIBS=''
+LTLIBOBJS=''
+MAKEINFO='${SHELL} /tmp/srm/src/srm-1.2.15/missing --run makeinfo'
+MKDIR_P='/usr/sbin/mkdir -p'
+OBJEXT='o'
+PACKAGE='srm'
+PACKAGE_BUGREPORT=''
+PACKAGE_NAME='srm'
+PACKAGE_STRING='srm 1.2.15'
+PACKAGE_TARNAME='srm'
+PACKAGE_URL=''
+PACKAGE_VERSION='1.2.15'
+PATH_SEPARATOR=':'
+RANLIB='ranlib'
+SET_MAKE=''
+SHELL='/bin/sh'
+STRIP='strip'
+VERSION='1.2.15'
+ac_ct_CC=''
+am__EXEEXT_FALSE=''
+am__EXEEXT_TRUE='#'
+am__fastdepCC_FALSE='#'
+am__fastdepCC_TRUE=''
+am__include='include'
+am__isrc=''
+am__leading_dot='.'
+am__quote=''
+am__tar='${AMTAR} chof - "$$tardir"'
+am__untar='${AMTAR} xf -'
+bindir='${exec_prefix}/bin'
+build_alias=''
+datadir='${datarootdir}'
+datarootdir='${prefix}/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='${prefix}'
+host_alias='x86_64-unknown-linux'
+htmldir='${docdir}'
+includedir='${prefix}/include'
+infodir='${datarootdir}/info'
+install_sh='${SHELL} /tmp/srm/src/srm-1.2.15/install-sh'
+libdir='${exec_prefix}/lib'
+libexecdir='${exec_prefix}/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='${prefix}/var'
+mandir='${datarootdir}/man'
+mkdir_p='/usr/sbin/mkdir -p'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='${exec_prefix}/sbin'
+sharedstatedir='${prefix}/com'
+sysconfdir='${prefix}/etc'
+target_alias=''
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "srm"
+#define PACKAGE_TARNAME "srm"
+#define PACKAGE_VERSION "1.2.15"
+#define PACKAGE_STRING "srm 1.2.15"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "srm"
+#define VERSION "1.2.15"
+#define STDC_HEADERS 1
+#define HAVE_SYS_VFS_H 1
+#define HAVE_SYS_PARAM_H 1
+#define HAVE_SYS_MOUNT_H 1
+#define HAVE_STDARG_H 1
+#define HAVE_SYS_XATTR_H 1
+#define HAVE_LINUX_FS_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_STRUCT_STAT_ST_BLKSIZE 1
+#define HAVE_ST_BLKSIZE 1
+#define HAVE_FTS_OPEN 1
+#define HAVE_NFTW 1
+#define HAVE_FDATASYNC 1
+#define HAVE_SNPRINTF 1
+#define HAVE_VSNPRINTF 1
+#define HAVE_LRAND48 1
+
+configure: exit 0
+
+===> Finished printing config.logs></pre></code>
+        </body></html>

@@ -1,0 +1,57 @@
+        <html><head></head><body>
+        <h1>Report for dosfstools on toolchain
+            <a href="index.html">android</a>
+        </h1>
+        <p>Return code: 5</p>
+        <p>Time to run: 00:00:59</p>
+        <p>Log output:</p>
+        <code><pre><docker run --rm -v /tuscan_data --volumes-from tuscan_data -v /sources --volumes-from sources -v /var/cache/pacman/pkg --volumes-from pkg_cache_android -v logs:/logs make_package_container --sources-directory /sources --shared-directory /tuscan_data dosfstools
+:: Synchronizing package databases...
+downloading repo.db...
+downloading core.db...
+downloading extra.db...
+downloading community.db...
+Found 2134 packages in cache
+===> sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dosfstools 3.0.28-1 (Sat Nov 14 00:03:16 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading dosfstools-3.0.28.tar.xz...
+  -> Downloading dosfstools-3.0.28.tar.xz.sig...
+==> WARNING: Skipping all source file integrity checks.
+==> Extracting sources...
+  -> Extracting dosfstools-3.0.28.tar.xz with bsdtar
+==> Sources are ready.
+Copied source directory to /sources/dosfstools
+===> sudo -u tuscan PATH=/tmp/toolchain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck
+==> Making package: dosfstools 3.0.28-1 (Sat Nov 14 00:03:19 UTC 2015)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o fatlabel.o src/fatlabel.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o boot.o src/boot.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o check.o src/check.c
+src/check.c: In function 'check_file':
+src/check.c:588:4: warning: format '%lu' expects argument of type 'long unsigned int', but argument 4 has type 'long long unsigned int' [-Wformat=]
+    le32toh(file->dir_ent.size));
+    ^
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o common.o src/common.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o fat.o src/fat.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o file.o src/file.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o io.o src/io.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o lfn.o src/lfn.c
+arm-linux-androideabi-gcc  -O2 -fomit-frame-pointer -D_GNU_SOURCE  -Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wmissing-prototypes -Wstrict-prototypes -Wwrite-strings -g   -c -o charconv.o src/charconv.c
+src/charconv.c:2:19: fatal error: iconv.h: No such file or directory
+ #include <iconv.h>
+                   ^
+compilation terminated.
+<builtin>: recipe for target 'charconv.o' failed
+make: *** [charconv.o] Error 1
+make: *** Waiting for unfinished jobs....
+==> ERROR: A failure occurred in build().
+    Aborting...
+===> Printing config.logs
+===> Finished printing config.logs></pre></code>
+        </body></html>
