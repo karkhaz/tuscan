@@ -1,18 +1,18 @@
 ---
 build:
   copy_files:
-    - tuscan/ninja_syntax.py
+    - toolchains/$TOOLCHAIN/makepkg.conf
+    - toolchains/$TOOLCHAIN/Dockerfile
     - tuscan/utilities.py
-    - tuscan/provides.json
 
 run:
   dependencies:
     stages:
-      - get_base_package_names
+      - custom_repository
+      - deps_to_ninja
     data_containers:
       - tuscan_data
       - sources
       - pkg_cache_$TOOLCHAIN
 
-  stdout: makepkg.ninja
-  stderr: deps
+  command_override: ninja -f makepkg.ninja
