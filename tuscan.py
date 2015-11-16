@@ -34,7 +34,9 @@ def substitute_vars(data_structure, args):
     resolved at runtime. This method returns the dict or list passed in
     as the data_structure argument, with all substitutions applied.
     """
-    if isinstance(data_structure, basestring):
+    if isinstance(data_structure, bool):
+        ret = data_structure
+    elif isinstance(data_structure, basestring):
         ret = Template(data_structure)
         ret = Template(ret.safe_substitute(TOOLCHAIN=args.toolchain))
         ret = Template(ret.safe_substitute(TOUCH_DIR=args.touch_dir))
@@ -55,16 +57,6 @@ def substitute_vars(data_structure, args):
     return ret
 
 
-def run_ninja(args, ninja_file):
-    cmd = ["ninja", "-f", ninja_file]
-    if args.verbose:
-        cmd.append("-v")
-    cmd.append("build")
-
-    rc = call(cmd)
-    exit(rc)
-
-
 def create_build_file(args, ninja):
     prereqs = prerequisite_touch_files(ninja, args)
 
@@ -75,9 +67,15 @@ def create_build_file(args, ninja):
     stages.write_run_recipies()
     stages.write_build_recipies()
 
-    # The top-level build rule
-    ninja.build("build", "phony", touch("run", "make_package",
-                                        args))
+
+def run_ninja(args, ninja_file):
+    cmd = ["ninja", "-f", ninja_file]
+    if args.verbose:
+        cmd.append("-v")
+    cmd.append("build")
+
+    rc = call(cmd)
+    exit(rc)
 
 
 class DataContainers(object):
@@ -254,11 +252,17 @@ class Stages(object):
 
             rule_name = "run_stage_%s" % sta["name"]
 
-            self.ninja.rule(rule_name, command, description=
-                "Running stage '%s'" % sta["name"])
+            if "top_level" in sta["run"]:
+                self.ninja.build("build", "phony",
+                                 touch("run", sta["name"], self.args))
+                self.ninja.rule(rule_name, command, description=
+                    "Running stage '%s'", pool="console")
+            else:
+                self.ninja.rule(rule_name, command, description=
+                    "Running stage '%s'")
 
             self.ninja.build(touch("run", sta["name"], self.args),
-                        rule_name, sta_inputs)
+                             rule_name, sta_inputs)
 
 
     def write_build_recipies(self):
