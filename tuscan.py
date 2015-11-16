@@ -22,8 +22,37 @@ from os import getcwd, listdir
 from os.path import dirname, isfile, join
 from re import sub
 from subprocess import call
+from string import Template
 from sys import stdout, stderr
 from yaml import load
+
+
+def substitute_vars(data_structure, args):
+    """Substitute variables in YAML data files with values.
+
+    Data stored in YAML files can contain variables which need to be
+    resolved at runtime. This method returns the dict or list passed in
+    as the data_structure argument, with all substitutions applied.
+    """
+    if isinstance(data_structure, basestring):
+        ret = Template(data_structure)
+        ret = Template(ret.safe_substitute(TOOLCHAIN=args.toolchain))
+        ret = Template(ret.safe_substitute(TOUCH_DIR=args.touch_dir))
+
+        # Up to this point, ret is a Template. Turn it into a string
+        # with no-op substitute
+        ret = ret.safe_substitute()
+    elif isinstance(data_structure, list):
+        ret = []
+        for e in data_structure:
+            ret.append(substitute_vars(e, args))
+    elif isinstance(data_structure, dict):
+        ret = {}
+        for k, v in data_structure.items():
+            ret[k] = substitute_vars(v, args)
+    else: raise RuntimeError("Impossible type with value " +
+                             str(data_structure))
+    return ret
 
 
 def run_ninja(args, ninja_file):
@@ -47,7 +76,7 @@ def create_build_file(args, ninja):
     stages.write_build_recipies()
 
     # The top-level build rule
-    ninja.build("build", "phony", touch("run", "custom_repository",
+    ninja.build("build", "phony", touch("run", "make_package",
                                         args))
 
 
@@ -73,10 +102,7 @@ class DataContainers(object):
                          " 'data_containers.yaml'.\n")
             exit(1)
 
-        self.containers = containers
-        for cont in containers:
-            cont["name"] = sub("__TOOLCHAIN__", args.toolchain,
-                               cont["name"])
+        self.containers = substitute_vars(containers, self.args)
         self.data_container_sanity_checks()
 
 
@@ -151,7 +177,7 @@ class Stages(object):
                              " contain a deps.yaml file.\n")
                 exit(1)
 
-        self.stages = stages
+        self.stages = substitute_vars(stages, self.args)
         self.normalise_containers()
         self.container_sanity_checks()
 
@@ -177,33 +203,42 @@ class Stages(object):
 
             commands = []
 
-            docker = "docker run --rm "
+            if "command_override" in sta["run"]:
+                main_command = sta["run"]["command_override"]
+            else:
+                main_command = "docker run --rm "
 
-            for cont in data_containers_needed_by(sta,
-                            self.data_containers):
-                docker += "-v " + cont["mountpoint"]
-                docker += " --volumes-from " + cont["name"] + " "
+                for cont in data_containers_needed_by(sta,
+                                self.data_containers):
+                    main_command += "-v " + cont["mountpoint"]
+                    main_command += " --volumes-from " + cont["name"]
+                    main_command += " "
 
-            docker += " -t " + sta["name"]
-            docker += " --output-directory " + self.args.touch_dir
-            docker += " --toolchain " + self.args.toolchain
+                main_command += " -t " + sta["name"]
+                main_command += " --output-directory "
+                main_command += self.args.touch_dir
+                main_command += " --toolchain " + self.args.toolchain
 
-            for cont in data_containers_needed_by(sta,
-                            self.data_containers):
-                if "switch" in cont:
-                    docker += (" " + cont["switch"] +
-                               " " + cont["mountpoint"])
+                for cont in data_containers_needed_by(sta,
+                                self.data_containers):
+                    if "switch" in cont:
+                        main_command += (" --" + cont["switch"] +
+                                         "-directory "
+                                         + cont["mountpoint"])
+
+                        main_command += (" --" + cont["switch"] +
+                                         "-volume "
+                                         + cont["name"])
 
             if sta["run"]["stdout"]:
-                docker += " >" + sta["run"]["stdout"]
+                main_command += " >" + sta["run"]["stdout"]
             if sta["run"]["stderr"]:
-                docker += " 2>" + sta["run"]["stderr"]
+                main_command += " 2>" + sta["run"]["stderr"]
 
-            commands.append(docker)
+            commands.append(main_command)
 
             if "post_exit" in sta["run"]:
                 cmd = sta["run"]["post_exit"]
-                cmd = sub("__TOUCH_DIR__", self.args.touch_dir, cmd)
                 cmd = sub("\$", "$$", cmd)
                 commands.append(cmd.strip())
 
@@ -291,12 +326,6 @@ class Stages(object):
 
             if not "data_containers" in sta["run"]["dependencies"]:
                 sta["run"]["dependencies"]["data_containers"] = []
-
-            tmp = []
-            for cont in sta["run"]["dependencies"]["data_containers"]:
-                tmp.append(sub("__TOOLCHAIN__", self.args.toolchain,
-                           cont))
-            sta["run"]["dependencies"]["data_containers"] = tmp
 
             if not "stages" in sta["run"]["dependencies"]:
                 sta["run"]["dependencies"]["stages"] = []
