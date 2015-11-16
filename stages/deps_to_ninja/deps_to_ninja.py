@@ -328,25 +328,21 @@ def main():
 
     ninja  = Writer(stdout, 72)
 
-    for outs, rule, ins in global_builds:
-        ninja.build(outs, rule, ins)
-
     ninja.rule("makepkg", "./package_build_wrapper.py"
          + " --shared-directory " + args.shared_directory
+         + " --shared-volume " + args.shared_volume
          + " --sources-directory " + args.sources_directory
+         + " --sources-volume " + args.sources_volume
+         + " --pkg-cache-volume " + args.pkg_cache_volume
          + " --output-directory " + args.output_directory
          + " --target-package ${in}"
          + " ${out}"
-         + " && report_gen/single_package_report.py"
-         + " --toolchain " + args.toolchain
-         + " --package ${in}"
     )
 
-    stdout.flush()
+    for outs, rule, ins in global_builds:
+        ninja.build(outs, rule, ins)
 
-    for dep in global_deps:
-        print(dep, file=stderr)
-    stderr.flush()
+    stdout.flush()
 
 
 if __name__ == "__main__":

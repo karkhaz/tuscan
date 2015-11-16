@@ -80,11 +80,26 @@ def get_argparser():
                         dest="verbose", action="store_true")
     parser.add_argument("--output-directory",
                         dest="output_directory", action="store")
+
     parser.add_argument("--shared-directory",
                         dest="shared_directory", action="store")
+    parser.add_argument("--shared-volume",
+                        dest="shared_volume", action="store")
+
     parser.add_argument("--sources-directory",
                         dest="sources_directory", action="store")
+    parser.add_argument("--sources-volume",
+                        dest="sources_volume", action="store")
+
+    parser.add_argument("--pkg-cache-directory",
+                        dest="pkg_cache_directory", action="store")
+    parser.add_argument("--pkg-cache-volume",
+                        dest="pkg_cache_volume", action="store")
+
     parser.add_argument("--toolchain",
                         dest="toolchain", action="store")
+
+    parser.add_argument("--env-vars", nargs="*",
+                        dest="env_vars", action="store")
 
     return parser
