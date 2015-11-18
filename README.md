@@ -13,7 +13,9 @@ programs in various compilation environments:
 Running Tuscan
 --------------
 
-    ./tuscan.py TOOLCHAIN
+Generating data for a toolchain:
+
+    ./tuscan.py build TOOLCHAIN
 
 The names of toolchains are subdirectories of `toolchains/`. Currently,
 the only toolchain is `vanilla`, which builds Arch Linux packages using
@@ -34,13 +36,13 @@ order. Packages that have been built successfully are added to a local
 package repository, so that packages that depend on them can install
 them later.
 
-Currently, the stages write a `build.ninja` file that describes
-dependency relationships between Arch Linux packages.
+The stages write a `makepkg.ninja` file that describes dependency
+relationships between Arch Linux packages.
 
 Some stages depend on other stages having been run before they
 themselves are run. Some stages also depend on +data-only containers+
 having been created. For each experiment, these dependencies are
-described in the file `stages/$STA_NAME/deps.yaml`.
+described in the file `stages/$STAGE_NAME/deps.yaml`.
 
 
 Dependencies
