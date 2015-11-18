@@ -22,9 +22,11 @@
 FROM karkhaz/arch-tuscan:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
 
-COPY deps_to_ninja.py /build/deps_to_ninja.py
+COPY main.py /build/main.py
 COPY ninja_syntax.py /build/ninja_syntax.py
 COPY utilities.py /build/utilities.py
 COPY provides.json /build/provides.json
 
-ENTRYPOINT ["/usr/bin/python", "-u", "/build/deps_to_ninja.py"]
+COPY hwloc /var/abs/extra/hwloc/PKGBUILD
+
+ENTRYPOINT ["/usr/bin/python", "-u", "/build/main.py"]
