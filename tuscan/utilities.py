@@ -25,10 +25,36 @@ function might be passed by the build environment.
 """
 
 from argparse import ArgumentParser
-from os.path import basename, splitext, lexists, join
-from os import makedirs, remove, symlink
+from os.path import basename, dirname, isdir, join, lexists
+from os import chdir, makedirs, remove, symlink, getcwd, listdir, unlink
 from datetime import datetime
+from json import dumps
+from random import random, seed
+from re import search
+from shutil import move
+from subprocess import run, PIPE, Popen, STDOUT
 from sys import stderr
+from time import sleep
+
+
+def timestamp():
+    return datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+
+
+def log(kind, string, output=[], start_time=None):
+    if kind not in ["command", "info", "die"]:
+        raise RuntimeError("Bad kind: %s" % kind)
+
+    if not start_time:
+        start_time = timestamp()
+
+    obj = {"time" : start_time,
+         "kind" : kind,
+         "head" : string,
+         "body" : output
+    }
+    print(dumps(obj), file=stderr)
+
 
 class OutputDirectory():
     """Instantiated using the 'with' statement.
@@ -45,14 +71,14 @@ class OutputDirectory():
     symlink to point to the latest result when the script container has
     finished executing.
     """
-    def __init__(self, args, filename):
+    def __init__(self, args):
         """Arguments:
             args: an argparse object returned from a call to
                   setup_argparser(). This object must have an attribute
                   called 'shared_directory'.
         """
-        top_level = splitext(basename(filename))[0]
-        self.top_level = join(args.shared_directory, top_level)
+        top_level = args.stage_name
+        self.top_level = join(args.shared_directory,  top_level)
 
         timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         self.path = join(self.top_level, timestamp)
@@ -91,10 +117,18 @@ def get_argparser():
     parser.add_argument("--sources-volume",
                         dest="sources_volume", action="store")
 
-    parser.add_argument("--pkg-cache-directory",
-                        dest="pkg_cache_directory", action="store")
-    parser.add_argument("--pkg-cache-volume",
-                        dest="pkg_cache_volume", action="store")
+    parser.add_argument("--mirror-directory",
+                        dest="mirror_directory", action="store")
+    parser.add_argument("--mirror-volume",
+                        dest="mirror_volume", action="store")
+
+    parser.add_argument("--stage-name",
+                        dest="stage_name", action="store")
+
+    parser.add_argument("--toolchain-directory",
+                        dest="toolchain_directory", action="store")
+    parser.add_argument("--toolchain-volume",
+                        dest="toolchain_volume", action="store")
 
     parser.add_argument("--toolchain",
                         dest="toolchain", action="store")
@@ -103,3 +137,178 @@ def get_argparser():
                         dest="env_vars", action="store")
 
     return parser
+
+
+def create_package(path, pkg_name, args):
+    """Creates an Arch Linux package from the files in directory path.
+
+    The files in path should include a .PKGINFO at the top-level; all
+    standard Arch Linux packages should have one of these anyway. This
+    method will create a .MTREE file in path (overwriting any existing
+    .MTREE).
+
+    Returns:
+        the path to the new package, which will have extension
+        .pkg.tar.xz.
+    """
+    if not lexists(join(path, ".PKGINFO")):
+        raise RuntimeError("No .PKGINFO at " + path)
+
+    owd = getcwd()
+    chdir(path)
+
+    log("info", "Generating .MTREE")
+    try: unlink(".MTREE")
+    except FileNotFoundError: pass
+    files = " ".join(listdir("."))
+    cmd = ("bsdtar -czf .MTREE --format=mtree"
+           " --options=!all,use-set,type,uid,mode"
+           ",time,size,md5,sha256,link " + files)
+    time = timestamp()
+    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+             universal_newlines=True)
+    log("command", cmd, cp.stdout.splitlines(), time)
+    if cp.returncode:
+        exit(1)
+
+    log("info", "Tar-ing up files")
+    pkg_name = pkg_name + ".pkg.tar.xz"
+    files = " ".join(listdir("."))
+
+    tar_cmd = "bsdtar -cf - " + files
+    time = timestamp()
+    tar_proc = Popen(tar_cmd.split(), stdout=PIPE, stderr=PIPE,
+                     universal_newlines=False)
+
+    tar_data, tar_error = tar_proc.communicate()
+
+    if tar_proc.returncode:
+        log("command", tar_cmd, tar_error.decode("utf-8").splitlines(),
+            time)
+        exit(1)
+    log("command", tar_cmd, [], time)
+
+    xz_cmd = "xz -c -z"
+    time = timestamp()
+    xz_proc = Popen(xz_cmd.split(), stdin=PIPE, stdout=PIPE,
+                    stderr=PIPE, universal_newlines=False)
+
+    xz_data, xz_error = xz_proc.communicate(input=tar_data)
+
+    if xz_proc.returncode:
+        log("command", xz_cmd, xz_error.decode("utf-8").splitlines(),
+            time)
+        exit(1)
+    log("command", xz_cmd, [], time)
+
+    log("info", "Successfully ran " + tar_cmd + " | " + xz_cmd)
+    with open(pkg_name, "bw") as f:
+        f.write(xz_data)
+
+    cmd = "bsdtar -tqf " + pkg_name + " .PKGINFO"
+    time = timestamp()
+    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+             universal_newlines=True)
+    log("command", cmd, cp.stdout.splitlines(), time)
+    if cp.returncode:
+        exit(1)
+
+    pkg_path = join(args.toolchain_directory, pkg_name)
+    try: remove(pkg_path)
+    except: pass
+    move(pkg_name, args.toolchain_directory)
+
+    log("info", "Created package at path %s" % pkg_path)
+
+    chdir(owd)
+    return pkg_path
+
+
+def toolchain_repo_name(): return "tuscan"
+
+
+def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,
+                                  remove_name=None):
+    """Adds a package to the toolchain repository.
+
+    This function is used when a hybrid package is created from a
+    toolchain build. The hybrid package needs to be added to the local
+    toolchain repository so that it can be installed if a future build
+    depends on the package.
+
+    Arguments:
+
+        pkg: a path to a package (with extension .pkg.tar.xz)
+
+        toolchain_repo_dir: directory where the toolchain repository is
+                            stored, typically passed to stages via the
+                            --toolchain-directory argument.
+
+        remove_name: remove package with name 'remove_name' from
+                     the repository immediately after adding package
+                     pkg. This is intended to be used for creating a new
+                     empty repository, by adding a 'fake' package and
+                     then immediately removing it again.
+    """
+    if not isdir(toolchain_repo_dir):
+        log("die", "Toolchain directory '%s' doesn't exist. "
+                   "Check that the --tolchain-directory "
+                   "argument was passed and the data-only "
+                   "container was successfully created." %
+                   (toolchain_repo_dir))
+
+    repo = join(toolchain_repo_dir, toolchain_repo_name() + ".db.tar")
+
+    # repo-add and -remove fail if they can't acquire a lock on the
+    # database. This will happen quite often, as we're going to be
+    # building many packages at once and adding them to the database.
+    # So, keep trying to add until it works.
+
+    seed()
+
+    max_tries = 80
+    attempt = 1
+    while attempt <= max_tries:
+        log("info",
+            "Attempting to access local repository, attempt %d" %
+                attempt)
+
+        attempt = attempt + 1
+        sleep(random() * 3)
+
+        if attempt == max_tries:
+            log("info", "Couldn't add %s to %s after %d tries, dying."
+                % (pkg, repo, max_tries))
+            exit(1)
+
+        lock_fail = False
+
+        cmd = "repo-add %s %s" % (repo, pkg)
+        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+                 universal_newlines=True)
+        log("command", cmd, cp.stdout.splitlines())
+
+        for line in cp.stdout.splitlines():
+            if search("ERROR: Failed to acquire lockfile", line):
+                lock_fail = True
+        if lock_fail:
+            continue
+        elif cp.returncode:
+            exit(1)
+
+        if not remove_name: return
+
+        cmd = "repo-remove %s %s" % (repo, remove_name)
+        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+                 universal_newlines=True)
+        log("command", cmd, cp.stdout.splitlines())
+
+        for line in cp.stdout.splitlines():
+            if search("ERROR: Failed to acquire lockfile", line):
+                lock_fail = True
+        if lock_fail:
+            continue
+        elif cp.returncode:
+            exit(1)
+
+        return
