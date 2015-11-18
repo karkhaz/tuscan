@@ -1,0 +1,21 @@
+---
+build:
+  copy_files:
+    - tuscan/utilities.py
+    - toolchains/$TOOLCHAIN/setup.py
+
+run:
+  dependencies:
+    stages:
+      - get_base_package_names
+    data_containers:
+      - tuscan_data
+      - toolchain_$TOOLCHAIN_repo
+    local_mounts:
+      - mirror
+
+  # make_package containers are based on the image of this stage,
+  # therefore don't delete the container when finished and do a docker
+  # commit as a post-exit step
+  rm_container: false
+  post_exit: docker commit install_bootstrap install_bootstrap_repo
