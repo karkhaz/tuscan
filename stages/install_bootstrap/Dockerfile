@@ -22,7 +22,8 @@
 FROM karkhaz/arch-tuscan:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
 
-COPY custom_repository.py /build/custom_repository.py
+COPY main.py /build/main.py
 COPY utilities.py /build/utilities.py
+COPY setup.py /build/setup.py
 
-ENTRYPOINT ["/usr/bin/python", "-u", "/build/custom_repository.py"]
+ENTRYPOINT ["/usr/bin/python", "-u", "/build/main.py"]

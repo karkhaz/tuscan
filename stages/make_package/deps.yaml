@@ -1,19 +1,23 @@
 ---
 build:
+  stages:
+    - install_bootstrap
   copy_files:
     - toolchains/__TOOLCHAIN__/makepkg.conf
     - toolchains/__TOOLCHAIN__/Dockerfile
     - tuscan/utilities.py
+    - compiler_wrappers/wrapper.py
 
 run:
   dependencies:
     stages:
-      - custom_repository
       - deps_to_ninja
+      - get_base_package_names
+      - create_toolchain_repo
     data_containers:
       - tuscan_data
       - sources
-      - pkg_cache___TOOLCHAIN__
+      - toolchain___TOOLCHAIN___repo
 
-  command_override: ninja -f makepkg.ninja
+  command_override: ninja __VERBOSE__ -f makepkg.ninja
   top_level: true

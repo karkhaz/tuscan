@@ -7,3 +7,13 @@ run:
   dependencies:
     data_containers:
       - tuscan_data
+  stdout: .names
+  post_exit: >
+              while read name; do
+              export ns=$(echo $name | tr -d '\r');
+              mkdir -p __TOUCH_DIR__/pkgbuild_markers;
+              cat tuscan/empty.json
+              | sed "s/__PACKAGE/$ns/g"
+              > "__TOUCH_DIR__/pkgbuild_markers/$ns";
+              done < .names
+
