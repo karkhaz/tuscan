@@ -95,63 +95,14 @@ a:visited {
     <ul>
       
     </ul>
-    <p>The build took 00:05:12.</p>
+    <p>The build took 00:04:30.</p>
     <p>The return code of the build was 0.</p>
     <h2>Log</h2>
     
 
       <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck --nodeps</code>
-        </div>
-        
-          <div class="output">
-            
-            <span class="none">
-            <code>==> Making package: sqlite2 2.8.17-7 (Mon Dec  7 00:06:49 UTC 2015)</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> WARNING: Skipping dependency checks.</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> Retrieving sources...</code><br />
-            </span>
-            
-            <span class="none">
-            <code>  -> Downloading sqlite-2.8.17.tar.gz...</code><br />
-            </span>
-            
-            <span class="none">
-            <code>  -> Found LICENSE</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> WARNING: Skipping all source file integrity checks.</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> Extracting sources...</code><br />
-            </span>
-            
-            <span class="none">
-            <code>  -> Extracting sqlite-2.8.17.tar.gz with bsdtar</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> Sources are ready.</code><br />
-            </span>
-            
-          </div>
-        
-      </div>
-      <br />
-    
-
-      <div class="block">
         <div class="info">
-          <code>Copied source directory to /sources/sqlite2</code>
+          <code>Found permanent source directory in /sources/sqlite2</code>
         </div>
         
       </div>
@@ -208,7 +159,7 @@ a:visited {
           <div class="output">
             
             <span class="none">
-            <code>==> Making package: sqlite2 2.8.17-7 (Mon Dec  7 00:06:54 UTC 2015)</code><br />
+            <code>==> Making package: sqlite2 2.8.17-7 (Sat Dec 12 05:48:45 UTC 2015)</code><br />
             </span>
             
             <span class="none">
@@ -956,11 +907,31 @@ a:visited {
             </span>
             
             <span class="none">
+            <code>echo '/* Automatically generated file.  Do not edit */' >opcodes.h</code><br />
+            </span>
+            
+            <span class="none">
             <code>echo 'exit(0);}' >>temp.c</code><br />
             </span>
             
             <span class="none">
+            <code>grep '^case OP_' ./src/vdbe.c | \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed -e 's/://' | \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  awk '{printf "#define %-30s %3d\n", $2, ++cnt}' >>opcodes.h</code><br />
+            </span>
+            
+            <span class="none">
             <code>gcc  -o temp temp.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>gcc  -o lemon ./tool/lemon.c</code><br />
             </span>
             
             <span class="none">
@@ -985,26 +956,6 @@ a:visited {
             
             <span class="none">
             <code>temp.c:4:1: note: include '<stdlib.h>' or provide a declaration of 'exit'</code><br />
-            </span>
-            
-            <span class="none">
-            <code>echo '/* Automatically generated file.  Do not edit */' >opcodes.h</code><br />
-            </span>
-            
-            <span class="none">
-            <code>grep '^case OP_' ./src/vdbe.c | \</code><br />
-            </span>
-            
-            <span class="none">
-            <code>  sed -e 's/://' | \</code><br />
-            </span>
-            
-            <span class="none">
-            <code>  awk '{printf "#define %-30s %3d\n", $2, ++cnt}' >>opcodes.h</code><br />
-            </span>
-            
-            <span class="none">
-            <code>gcc  -o lemon ./tool/lemon.c</code><br />
             </span>
             
             <span class="none">
@@ -1060,7 +1011,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>cp ./tool/lempar.c .</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/encode.c -o encode.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1084,14 +1035,6 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>cp ./src/parse.y .</code><br />
-            </span>
-            
-            <span class="none">
-            <code>./lemon parse.y</code><br />
-            </span>
-            
-            <span class="none">
             <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c opcodes.c</code><br />
             </span>
             
@@ -1100,11 +1043,15 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/encode.c -o encode.o >/dev/null 2>&1</code><br />
+            <code>cp ./tool/lempar.c .</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c opcodes.c -o opcodes.o >/dev/null 2>&1</code><br />
+            <code>cp ./src/parse.y .</code><br />
+            </span>
+            
+            <span class="none">
+            <code>./lemon parse.y</code><br />
             </span>
             
             <span class="none">
@@ -1120,15 +1067,15 @@ a:visited {
             </span>
             
             <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c opcodes.c -o opcodes.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
             <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -DNO_TCL=1 -c ./src/auth.c</code><br />
             </span>
             
             <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -DNO_TCL=1 -c ./src/auth.c  -fPIC -DPIC -o .libs/auth.o</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -DNO_TCL=1 -c ./src/auth.c -o auth.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1140,11 +1087,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/build.c</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -DNO_TCL=1 -c ./src/auth.c -o auth.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/btree.c -o btree.o >/dev/null 2>&1</code><br />
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/build.c</code><br />
             </span>
             
             <span class="none">
@@ -1152,7 +1099,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/copy.c</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/btree.c -o btree.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1160,11 +1107,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/copy.c  -fPIC -DPIC -o .libs/copy.o</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/copy.c -o copy.o >/dev/null 2>&1</code><br />
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/copy.c</code><br />
             </span>
             
             <span class="none">
@@ -1172,11 +1115,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/date.c  -fPIC -DPIC -o .libs/date.o</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/copy.c  -fPIC -DPIC -o .libs/copy.o</code><br />
             </span>
             
             <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/delete.c</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/date.c  -fPIC -DPIC -o .libs/date.o</code><br />
             </span>
             
             <span class="none">
@@ -1184,11 +1127,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/delete.c  -fPIC -DPIC -o .libs/delete.o</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/copy.c -o copy.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/delete.c -o delete.o >/dev/null 2>&1</code><br />
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/delete.c</code><br />
             </span>
             
             <span class="none">
@@ -1196,7 +1139,19 @@ a:visited {
             </span>
             
             <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/delete.c  -fPIC -DPIC -o .libs/delete.o</code><br />
+            </span>
+            
+            <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/expr.c  -fPIC -DPIC -o .libs/expr.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/delete.c -o delete.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/expr.c -o expr.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1240,19 +1195,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/expr.c -o expr.o >/dev/null 2>&1</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/func.c -o func.o >/dev/null 2>&1</code><br />
-            </span>
-            
-            <span class="none">
             <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/hash.c</code><br />
-            </span>
-            
-            <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/insert.c</code><br />
             </span>
             
             <span class="none">
@@ -1260,7 +1203,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/insert.c  -fPIC -DPIC -o .libs/insert.o</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/func.c -o func.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/insert.c</code><br />
             </span>
             
             <span class="none">
@@ -1268,7 +1215,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/insert.c -o insert.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/insert.c  -fPIC -DPIC -o .libs/insert.o</code><br />
             </span>
             
             <span class="none">
@@ -1276,23 +1223,23 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/os.c</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/os.c  -fPIC -DPIC -o .libs/os.o</code><br />
-            </span>
-            
-            <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c -DTEMP_STORE=1 ./src/main.c  -fPIC -DPIC -o .libs/main.o</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/os.c -o os.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c -DTEMP_STORE=1 ./src/main.c -o main.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c -DTEMP_STORE=1 ./src/main.c -o main.o >/dev/null 2>&1</code><br />
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/os.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/insert.c -o insert.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/os.c  -fPIC -DPIC -o .libs/os.o</code><br />
             </span>
             
             <span class="none">
@@ -1301,6 +1248,10 @@ a:visited {
             
             <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/pager.c  -fPIC -DPIC -o .libs/pager.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/os.c -o os.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1352,15 +1303,15 @@ a:visited {
             </span>
             
             <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/random.c -o random.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
             <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/select.c</code><br />
             </span>
             
             <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/select.c  -fPIC -DPIC -o .libs/select.o</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/random.c -o random.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1372,11 +1323,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/select.c -o select.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/table.c -o table.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/table.c -o table.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/select.c -o select.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1396,11 +1347,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/update.c -o update.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/tokenize.c -o tokenize.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/tokenize.c -o tokenize.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/update.c -o update.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1420,19 +1371,11 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vacuum.c  -fPIC -DPIC -o .libs/vacuum.o</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vacuum.c -o vacuum.o >/dev/null 2>&1</code><br />
-            </span>
-            
-            <span class="none">
             <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vdbe.c</code><br />
             </span>
             
             <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vdbeaux.c</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vacuum.c  -fPIC -DPIC -o .libs/vacuum.o</code><br />
             </span>
             
             <span class="none">
@@ -1440,11 +1383,27 @@ a:visited {
             </span>
             
             <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vdbe.c -o vdbe.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vdbeaux.c</code><br />
+            </span>
+            
+            <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vdbeaux.c  -fPIC -DPIC -o .libs/vdbeaux.o</code><br />
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vdbe.c -o vdbe.o >/dev/null 2>&1</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/vacuum.c -o vacuum.o >/dev/null 2>&1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/where.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/where.c  -fPIC -DPIC -o .libs/where.o</code><br />
             </span>
             
             <span class="none">
@@ -1452,7 +1411,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>./libtool --mode=compile gcc  -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/where.c</code><br />
+            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/where.c -o where.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1464,15 +1423,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/where.c  -fPIC -DPIC -o .libs/where.o</code><br />
-            </span>
-            
-            <span class="none">
             <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/trigger.c -o trigger.o >/dev/null 2>&1</code><br />
-            </span>
-            
-            <span class="none">
-            <code> gcc -DOS_UNIX=1 -DOS_WIN=0 -DHAVE_USLEEP=1 -I. -I./src -c ./src/where.c -o where.o >/dev/null 2>&1</code><br />
             </span>
             
             <span class="none">
@@ -1656,7 +1607,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>==> Finished making: sqlite2 2.8.17-7 (Mon Dec  7 00:10:20 UTC 2015)</code><br />
+            <code>==> Finished making: sqlite2 2.8.17-7 (Sat Dec 12 05:50:28 UTC 2015)</code><br />
             </span>
             
           </div>
@@ -1767,31 +1718,31 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/include/sqlite.h</code><br />
+            <code>/toolchain_root/usr/include/sqlite.h</code><br />
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/lib/libsqlite.a</code><br />
+            <code>/toolchain_root/usr/lib/libsqlite.a</code><br />
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/lib/libsqlite.so.0</code><br />
+            <code>/toolchain_root/usr/lib/libsqlite.so.0</code><br />
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/lib/libsqlite.so</code><br />
+            <code>/toolchain_root/usr/lib/libsqlite.so</code><br />
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/lib/libsqlite.so.0.8.6</code><br />
+            <code>/toolchain_root/usr/lib/libsqlite.so.0.8.6</code><br />
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/lib/libsqlite.la</code><br />
+            <code>/toolchain_root/usr/lib/libsqlite.la</code><br />
             </span>
             
             <span class="none">
-            <code>/toolchain/usr/lib/pkgconfig/sqlite.pc</code><br />
+            <code>/toolchain_root/usr/lib/pkgconfig/sqlite.pc</code><br />
             </span>
             
             <span class="none">
@@ -1839,7 +1790,7 @@ a:visited {
 
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link toolchain .PKGINFO usr</code>
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link toolchain_root .PKGINFO usr</code>
         </div>
         
       </div>
@@ -1857,7 +1808,7 @@ a:visited {
 
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .MTREE toolchain .PKGINFO usr</code>
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .MTREE toolchain_root .PKGINFO usr</code>
         </div>
         
       </div>
@@ -1875,7 +1826,7 @@ a:visited {
 
       <div class="block">
         <div class="info">
-          <code>Successfully ran bsdtar -cf - .MTREE toolchain .PKGINFO usr | xz -c -z</code>
+          <code>Successfully ran bsdtar -cf - .MTREE toolchain_root .PKGINFO usr | xz -c -z</code>
         </div>
         
       </div>
@@ -1929,7 +1880,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>==> ERROR: Held by process 755</code><br />
+            <code>==> ERROR: Held by process 636</code><br />
             </span>
             
           </div>

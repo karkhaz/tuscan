@@ -95,44 +95,33 @@ a:visited {
     <ul>
       
     </ul>
-    <p>The build took 00:00:38.</p>
-    <p>The return code of the build was 3.</p>
+    <p>The build took 00:02:36.</p>
+    <p>The return code of the build was 0.</p>
     <h2>Log</h2>
     
 
       <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck --nodeps</code>
+        <div class="info">
+          <code>Found permanent source directory in /sources/colordiff</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Removed vanilla repositories from pacman.conf and added:</code>
         </div>
         
           <div class="output">
             
             <span class="none">
-            <code>==> Making package: colordiff 1.0.15-1 (Mon Dec  7 20:31:23 UTC 2015)</code><br />
+            <code>[tuscan]</code><br />
             </span>
             
             <span class="none">
-            <code>==> WARNING: Skipping dependency checks.</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> Retrieving sources...</code><br />
-            </span>
-            
-            <span class="none">
-            <code>  -> Downloading colordiff-1.0.15.tar.gz...</code><br />
-            </span>
-            
-            <span class="none">
-            <code>curl: (22) The requested URL returned error: 404 Not Found</code><br />
-            </span>
-            
-            <span class="none">
-            <code>==> ERROR: Failure while downloading colordiff-1.0.15.tar.gz</code><br />
-            </span>
-            
-            <span class="none">
-            <code>    Aborting...</code><br />
+            <code>Server = file:///toolchain_repo</code><br />
             </span>
             
           </div>
@@ -142,8 +131,191 @@ a:visited {
     
 
       <div class="block">
-        <div class="die">
-          <code>Unable to get sources for abs_dir '/var/abs/community/colordiff'</code>
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman -Syy --noconfirm</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>:: Synchronizing package databases...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>downloading tuscan.db...</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm LIBRARY_PATH=/toolchain_root/usr/lib CPATH=/toolchain_root/usr/include makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>==> Making package: colordiff 1.0.16-1 (Sun Dec 13 08:52:57 UTC 2015)</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Checking runtime dependencies...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Checking buildtime dependencies...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> WARNING: Using existing $srcdir/ tree</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Entering fakeroot environment...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Starting package()...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -d /tmp/colordiff/pkg/colordiff/usr/bin</code><br />
+            </span>
+            
+            <span class="none">
+            <code>sed -e "s%/etc%/etc%g" colordiff.pl > \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  /tmp/colordiff/pkg/colordiff/usr/bin/colordiff</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod +x /tmp/colordiff/pkg/colordiff/usr/bin/colordiff</code><br />
+            </span>
+            
+            <span class="none">
+            <code>if [ ! -f /tmp/colordiff/pkg/colordiff/usr/bin/cdiff ] ; then \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  install cdiff.sh /tmp/colordiff/pkg/colordiff/usr/bin/cdiff; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>fi</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -Dm 644 colordiff.1 /tmp/colordiff/pkg/colordiff/usr/share/man/man1/colordiff.1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -Dm 644 cdiff.1 /tmp/colordiff/pkg/colordiff/usr/share/man/man1/cdiff.1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>if [ -f /tmp/colordiff/pkg/colordiff/etc/colordiffrc ]; then \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  mv -f /tmp/colordiff/pkg/colordiff/etc/colordiffrc \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    /tmp/colordiff/pkg/colordiff/etc/colordiffrc.old; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>else \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  install -d /tmp/colordiff/pkg/colordiff/etc; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>fi</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cp colordiffrc /tmp/colordiff/pkg/colordiff/etc/colordiffrc</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chown root.root /tmp/colordiff/pkg/colordiff/etc/colordiffrc</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod 644 /tmp/colordiff/pkg/colordiff/etc/colordiffrc</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Tidying install...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Removing doc files...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Purging unwanted files...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Creating package "colordiff"...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Generating .PKGINFO file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Generating .MTREE file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Compressing package...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Leaving fakeroot environment.</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Finished making: colordiff 1.0.16-1 (Sun Dec 13 08:52:58 UTC 2015)</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file colordiff-1.0.16-1-any.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>colordiff 1.0.16-1</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'colordiff'</code>
         </div>
         
       </div>
@@ -152,8 +324,196 @@ a:visited {
 
       <div class="block">
         <div class="info">
-          <code>Printing config.logs</code>
+          <code>Trying to find vanilla package 'colordiff'...</code>
         </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/pool/community/colordiff-1.0.15-1-any.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>colordiff 1.0.15-1</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>/.MTREE</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/.PKGINFO</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/etc/colordiffrc-lightbg</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/etc/colordiffrc</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/cdiff</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/colordiff</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man1/cdiff.1.gz</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man1/colordiff.1.gz</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link etc .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .MTREE etc .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .MTREE etc .PKGINFO usr | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf colordiff.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>.PKGINFO</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /toolchain_repo/colordiff.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /toolchain_repo/tuscan.db.tar /toolchain_repo/colordiff.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>==> Extracting database to a temporary location...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Adding package '/toolchain_repo/colordiff.pkg.tar.xz'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Computing checksums...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Creating 'desc' db entry...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Creating 'depends' db entry...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Creating updated database file '/toolchain_repo/tuscan.db.tar'</code><br />
+            </span>
+            
+          </div>
         
       </div>
       <br />
