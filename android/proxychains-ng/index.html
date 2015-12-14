@@ -95,7 +95,7 @@ a:visited {
     <ul>
       
     </ul>
-    <p>The build took 00:01:19.</p>
+    <p>The build took 00:02:13.</p>
     <p>The return code of the build was 5.</p>
     <h2>Log</h2>
     
@@ -159,7 +159,7 @@ a:visited {
           <div class="output">
             
             <span class="none">
-            <code>==> Making package: proxychains-ng 4.10-1 (Sun Dec 13 09:04:50 UTC 2015)</code><br />
+            <code>==> Making package: proxychains-ng 4.10-1 (Mon Dec 14 18:30:54 UTC 2015)</code><br />
             </span>
             
             <span class="none">
@@ -187,19 +187,75 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>make: arm-linux-androideabi-gcc: Command not found</code><br />
-            </span>
-            
-            <span class="none">
             <code>printf '#define VERSION "%s"\n' "$(sh tools/version.sh)" > src/version.h</code><br />
             </span>
             
             <span class="none">
-            <code>Makefile:81: recipe for target 'src/nameinfo.o' failed</code><br />
+            <code>arm-linux-androideabi-gcc  -DSUPER_SECURE  -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/local/lib\" -DSYSCONFDIR=\"/usr/local/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/core.o src/core.c</code><br />
             </span>
             
             <span class="none">
-            <code>make: *** [src/nameinfo.o] Error 127</code><br />
+            <code>arm-linux-androideabi-gcc  -DSUPER_SECURE  -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/local/lib\" -DSYSCONFDIR=\"/usr/local/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/common.o src/common.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/core.c: In function 'proxy_getaddrinfo':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/core.c:838:2: warning: implicit declaration of function 'getservbyname_r' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  if(service) getservbyname_r(service, NULL, &se_buf, buf, sizeof(buf), &se);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>arm-linux-androideabi-gcc  -DSUPER_SECURE  -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/local/lib\" -DSYSCONFDIR=\"/usr/local/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/libproxychains.o src/libproxychains.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/libproxychains.c:321:5: error: conflicting types for 'connect'</code><br />
+            </span>
+            
+            <span class="none">
+            <code> int connect(int sock, const struct sockaddr *addr, unsigned int len) {</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>In file included from /toolchain_root/sysroot/usr/include/netdb.h:66:0,</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                 from src/libproxychains.c:27:</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/sysroot/usr/include/sys/socket.h:274:18: note: previous declaration of 'connect' was here</code><br />
+            </span>
+            
+            <span class="none">
+            <code> __socketcall int connect(int, const struct sockaddr*, socklen_t);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                  ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Makefile:81: recipe for target 'src/libproxychains.o' failed</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make: *** [src/libproxychains.o] Error 1</code><br />
             </span>
             
             <span class="none">

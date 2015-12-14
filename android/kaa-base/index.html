@@ -95,7 +95,7 @@ a:visited {
     <ul>
       
     </ul>
-    <p>The build took 00:02:53.</p>
+    <p>The build took 00:03:12.</p>
     <p>The return code of the build was 5.</p>
     <h2>Log</h2>
     
@@ -159,7 +159,7 @@ a:visited {
           <div class="output">
             
             <span class="none">
-            <code>==> Making package: kaa-base 0.6.0-5 (Sun Dec 13 12:17:55 UTC 2015)</code><br />
+            <code>==> Making package: kaa-base 0.6.0-5 (Mon Dec 14 21:37:22 UTC 2015)</code><br />
             </span>
             
             <span class="none">
@@ -187,7 +187,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>- inotify not enabled; are system headers not installed?</code><br />
+            <code>+ inotify supported by glibc; good.</code><br />
             </span>
             
             <span class="none">
@@ -463,11 +463,159 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>arm-linux-androideabi-gcc -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC -I/usr/include/python2.7 -c src/extensions/shmmodule.c -o build/temp.linux-x86_64-2.7/src/extensions/shmmodule.o -Wall</code><br />
+            <code>arm-linux-androideabi-gcc -DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/toolchain_root/include/python2.7 -c src/extensions/shmmodule.c -o build/temp.linux-x86_64-2.7/src/extensions/shmmodule.o -Wall</code><br />
             </span>
             
             <span class="none">
-            <code>unable to execute 'arm-linux-androideabi-gcc': No such file or directory</code><br />
+            <code>In file included from /toolchain_root/include/python2.7/Python.h:58:0,</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                 from src/extensions/shmmodule.c:120:</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/include/python2.7/pyport.h:1029:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."</code><br />
+            </span>
+            
+            <span class="none">
+            <code> #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:177:7: error: redefinition of 'union semun'</code><br />
+            </span>
+            
+            <span class="none">
+            <code> union semun {</code><br />
+            </span>
+            
+            <span class="none">
+            <code>       ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>In file included from /toolchain_root/sysroot/usr/include/sys/sem.h:32:0,</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                 from src/extensions/shmmodule.c:126:</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/sysroot/usr/include/linux/sem.h:55:7: note: originally defined here</code><br />
+            </span>
+            
+            <span class="none">
+            <code> union semun {</code><br />
+            </span>
+            
+            <span class="none">
+            <code>       ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c: In function 'check_memory_identity':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:229:2: warning: implicit declaration of function 'shmget' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  new_shmid = shmget(old_key, 0, 0);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:235:5: warning: implicit declaration of function 'shmctl' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     if ((shmctl(new_shmid, IPC_STAT, &(o->ds)) != -1) &&</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c: In function 'PyShmMemory_attach':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:277:5: warning: implicit declaration of function 'shmat' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     addr = (void *)shmat(self->shmid, (void *)address, mode);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:286:5: warning: implicit declaration of function 'shmdt' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     shmdt(old_addr);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c: In function 'check_semaphore_identity':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:623:2: warning: implicit declaration of function 'semget' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  new_semid = semget(old_key, 0, 0);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:630:5: warning: implicit declaration of function 'semctl' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     if ((semctl(new_semid, 0, IPC_STAT, arg) != -1) &&</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c: In function 'PyShmSemaphore_P':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>src/extensions/shmmodule.c:665:5: warning: implicit declaration of function 'semop' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     res = semop(self->semid, op, (size_t)1);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     ^</code><br />
             </span>
             
             <span class="none">
