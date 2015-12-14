@@ -15,6 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from tuscan.tuscan_html import do_html
 from tuscan.tuscan_build import do_build
 
 from argparse import ArgumentParser
@@ -47,6 +48,19 @@ def get_argparser():
     build_parser.add_argument("--no-run", action="store_false",
             dest="run", help="Set up containers, but don't run ninja.")
 
+    # ./tuscan.py html
+    html_parser = subparsers.add_parser("html",
+            help="Generate HTML output for results.")
+
+    html_parser.add_argument("-v", "--verbose", action="store_true",
+            dest="verbose",
+            help="Show verbose information in results page")
+
+    html_parser.add_argument("--im-an-engineer", action="store_true",
+            dest="you_are_an_engineer",
+            help="Use Solarized colour scheme")
+
+    html_parser.set_defaults(func=do_html)
 
     return parser
 

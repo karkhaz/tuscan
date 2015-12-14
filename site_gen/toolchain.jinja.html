@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ data["toolchain"] }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+          rel='stylesheet' type='text/css'>
+    <link
+    href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+          rel='stylesheet' type='text/css'>
+<style>
+
+body{
+  font-family: 'Roboto', 'sans-serif';
+  background-color: {{ data["col"]["bg"] }};
+  color: {{ data["col"]["fg"] }};
+}
+
+table { border-collapse: collapse; }
+table,td {border: 1px solid {{ data["col"]["fg"]}}; }
+td{ padding: 5px; border-radius: 15px; }
+
+.detail-list{
+  display: inline;
+  padding-right: 2em;
+}
+
+.column-list{
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+}
+
+code{
+  white-space: pre;
+  font-family: 'Source Code Pro', ;
+}
+
+a{
+  color: {{ data["col"]["cyan"] }};
+  text-decoration: none;
+}
+a:visited {
+  color: {{ data["col"]["magenta"] }};
+  text-decoration: none;
+}
+
+table{
+  margin-left: 20px;
+}
+
+/* Status indicators */
+.yes    {
+  background-color: {{ data["col"]["blue"] }};
+  color: {{ data["col"]["blue"] }};
+  border: 5px solid {{ data["col"]["bg"] }};
+}
+.no     {
+  background-color: {{ data["col"]["red"] }};
+  color: {{ data["col"]["red"] }};
+  border: 5px solid {{ data["col"]["bg"] }};
+}
+.maybe  {
+  background-color: {{ data["col"]["bgh"] }};
+  color: {{ data["col"]["bgh"] }};
+  border: 5px solid {{ data["col"]["bg"] }};
+}
+
+</style>
+  </head>
+  <body>
+    <h1>{{ data["title"] }} for toolchain
+      &quot;{{ data["toolchain"] }}&quot;</h1>
+
+    <p>[See overview for other toolchains:
+    {% for tc in toolchains %}
+    <a href="../{{ tc }}/index.html">{{ tc }}</a>,
+    {% endfor %}
+    ]</p>
+
+    <table style="margin-bottom: 50px; display: inline-table;">
+      <tr><th colspan="3">Statistics for build of
+          &quot;{{ data["toolchain"] }}&quot;,
+          click links to see applicable builds.
+      </th></tr>
+      {% for var in data["variations"] %}
+      <tr>
+        {% if var["heading"] %}
+        <th colspan="2">
+          {{ var["heading"] }}
+        </th>
+        {% else %}
+        <td>
+          {{var["number"]}}
+        </td>
+        <td>
+          <a href="{{ var["file_name"] }}.html"
+          >{{ var["description"] }}</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+
+    <table style="display: inline-table;">
+
+      <tr><th colspan="2">
+          Additional information about this page</th></tr>
+      {% for key, value_list in data["semantics"].iteritems() %}
+      <tr>
+        <td>
+          {{ key }}
+        </td>
+        <td>
+          <ul class="column-list">
+          {% for key, count in value_list %}
+          <li>{{ count }}&#215; {{ key }}</li>
+          {% endfor %}
+          <ul>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </table>
+
+    <table style="margin-bottom: 40px;">
+      <tr><th colspan="2">Key</th></tr>
+      <tr>
+        <td class="yes">y</td>
+        <td>Success</td>
+      </tr>
+      <tr>
+        <td class="no">n</td>
+        <td>Failure</td>
+      </tr>
+      <tr>
+        <td class="maybe">m</td>
+        <td>Don't know / not implemented</td>
+      </tr>
+      <tr>
+        <td>BoV</td>
+        <td>Successfully built with vanilla toolchain (for control)</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>BoV</th>
+        <th>Built</th>
+        <th>Time</th>
+        <th>Build name</th>
+        <th>Errors during configure</th>
+        <th>Errors outside configure</th>
+      </tr>
+      {% for package in data["packages"]  %}
+      <tr>
+        <td class=
+        {% if package["built_on_vanilla"] is equalto True %}
+          "yes">y
+        {% elif package["built_on_vanilla"] is equalto False %}
+          "no">x
+        {% else %}
+          "maybe">m
+        {% endif %}
+        </td>
+        <td class=
+        {% if package["return_code"] is equalto 0 %}
+          "yes">y
+        {% else %}
+          "no">n
+        {% endif %}
+        </td>
+
+        <td>
+          {{ package["time"] }}
+        </td>
+
+        <td>
+          <a href="{{ package["build_name"] }}/index.html">
+            {{ package["package_name"] }}
+          </a>
+        </td>
+
+        <td>
+          {% for error, count
+                 in package["configure_counts"].iteritems() %}
+          {{ error }} (&#215;{{ count }});
+          {% endfor %}
+        </td>
+
+        <td>
+          {% for error, count
+                 in package["non_configure_counts"].iteritems() %}
+          {{ error }} (&#215;{{ count }});
+          {% endfor %}
+        </td>
+
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

@@ -21,6 +21,10 @@ The names of toolchains are subdirectories of `toolchains/`. Currently,
 the only toolchain is `vanilla`, which builds Arch Linux packages using
 the default compiler and standard libraries.
 
+Generating HTML report for all toolchains:
+
+    ./tuscan.py html
+
 
 Structure / Contributing
 ------------------------
@@ -59,6 +63,10 @@ Dependencies
 *   PyYAML
 
     http://pyyaml.org/
+
+*   Jinja2
+
+    http://jinja.pocoo.org/
 
 
 Troubleshooting
