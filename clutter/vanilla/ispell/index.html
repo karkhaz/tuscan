@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ispell</title>
+<style>
+body{
+  background-color: #002b36;
+  color: #839496;
+}
+code{
+  white-space: pre;
+}
+div{
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  float: left;
+  min-width: 99%;
+  clear: both;
+}
+
+/* Each log block */
+.block{
+  background-color: #073642;
+  margin-bottom: 20px;
+}
+
+/* Different log block headers */
+.die{
+  background-color: #cb4b16;
+  color: #002b36;
+  font-weight: bold;
+}
+.command{
+  background-color: #6c71c4;
+  color: #002b36;
+  font-weight: bold;
+}
+.file{
+  background-color: #859900;
+  color: #002b36;
+  font-weight: bold;
+}
+.info{
+  background-color: #859900;
+  color: #002b36;
+  font-weight: bold;
+}
+
+a{
+ color: #2aa198;
+  text-decoration: none;
+}
+a:visited {
+  color: #d33682;
+  text-decoration: none;
+}
+
+/* Log block output */
+.output{
+  background-color: #002b36;
+  color: #839496;
+}
+
+/* The word CMD that indicates the header of a log block is a
+ * command-line invocation
+ */
+.prompt{
+  color: #002b36;
+  text-shadow: -2px -2px 0 #b58900,
+                2px -2px 0 #b58900,
+                2px  2px 0 #b58900,
+               -2px  2px 0 #b58900;
+}
+
+/* Formats for lines in command output */
+.none{
+
+}
+.error{
+  background-color: #dc322f;
+  color: #002b36;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+</style>
+  </head>
+  <body>
+    <h1>Build of /var/abs/extra/ispell
+        with <a href="../index.html">vanilla</a>
+        toolchain</h1>
+    <p>This PKGBUILD creates the following packages:</p>
+    <ul>
+      
+    </ul>
+    <p>The build took 00:01:47.</p>
+    <p>The return code of the build was 0.</p>
+    <h2>Log</h2>
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Found permanent source directory in /sources/ispell</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Removed vanilla repositories from pacman.conf and added:</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>[tuscan]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Server = file:///toolchain_repo</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman -Syy --noconfirm</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>:: Synchronizing package databases...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>downloading tuscan.db...</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>==> Making package: ispell 3.3.02-7 (Sat Dec 12 05:24:35 UTC 2015)</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Checking runtime dependencies...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Checking buildtime dependencies...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> WARNING: Using existing $srcdir/ tree</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Starting build()...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>File correct.c is read-only; trying to patch anyway</code><br />
+            </span>
+            
+            <span class="none">
+            <code>patching file correct.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>MASTERHASH=`cat config.X local.h \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | sed -n -e \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    's/^#define[ 	]*LANGUAGES[ 	][^}]*HASHFILES=\([^,}]*\).*$/\1/p' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | sed -n -e '$p'`; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>HASHSUFFIX=`cat config.X local.h \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | sed -n -e \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    's/^#define[ 	]*HASHSUFFIX[ 	]*"\(.*\)"/\1/p' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | sed -n -e '$p'`; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>case "$MASTERHASH" in \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    american*|british*) DEFHASH="english$HASHSUFFIX";; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    *) DEFHASH="$MASTERHASH";; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>esac; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>DEFLANG=`expr "$DEFHASH" : '\(.*\)\..*$'`.aff; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo "/* This file is generated by the Makefile.  Don't edit it! */" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  > defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#ifndef MASTERHASH' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#define MASTERHASH "'"$MASTERHASH"'"' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#endif' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#ifndef DEFHASH' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#define DEFHASH "'"$DEFHASH"'"' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#endif' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#ifndef DEFLANG' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#define DEFLANG "'"$DEFLANG"'"' >> defhash.h; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '#endif' >> defhash.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>for var in BAKEXT BINDIR CC CFLAGS COUNTSUFFIX DEFDICT DEFHASH \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  DEFLANG EXEEXT HASHSUFFIX INSTALL \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  LANGUAGES LIBDIR LIBES LINK LINT LINTFLAGS LOOK_XREF \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  MAKE_SORTTMP MAN1DIR MAN1EXT MAN45DIR MAN45EXT MAN45SECT MASTERHASH \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  MSGLANG POUNDBANG REGLIB STATSUFFIX \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  SPELL_XREF TERMLIB TIB_XREF WORDS YACC \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  ; do \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    cat config.X defhash.h local.h \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>      | sed -n -e "s/^#define[ 	]*$var[ 	]*"'"'"/$var=/p" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>      | sed -e 's/"[^"]*$/'"'/" -e "s/=/='/" -e 's/\\"/"/g' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>      | sed -n -e '$p'; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  done > config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo 'case "$MAKE_SORTTMP" in "") \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  SORTTMP="-e /!!SORTTMP!!/s/=.*$/=/";; *) SORTTMP=;; esac' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  >> config.sh</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cp config.X config.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod u+w config.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '' >> config.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>echo '/* AUTOMATICALLY-GENERATED SYMBOLS */' >> config.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cat local.h config.X \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | egrep '^#define[ 	]*SIGNAL_TYPE' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | sed -e 's/TYPE[ 	]*/TYPE_STRING "/' -e 's/$/"/' -e 1q \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  >> config.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cat local.h config.X \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | egrep '^#define[ 	]*MASKTYPE' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  | sed -e 's/TYPE[ 	]*/TYPE_STRING "/' -e 's/$/"/' -e 1q \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  >> config.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ rm -f msgs.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ ln languages/english/msgs.h msgs.h</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c buildhash.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c hash.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c makedent.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ yacc parse.y</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ '[' -f y_tab.c ']'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ mv y.tab.c y_tab.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c y_tab.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ mv y_tab.o parse.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ rm -f y_tab.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -o buildhash buildhash.o hash.o makedent.o parse.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < findaffix.X > findaffix</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod +x findaffix</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < tryaffix.X > tryaffix</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod +x tryaffix</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cc -O -c term.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>term.c: In function 'shellescape':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>term.c:505:9: warning: implicit declaration of function 'wait' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  while (wait (&termstat) != i)</code><br />
+            </span>
+            
+            <span class="none">
+            <code>         ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c ispell.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c correct.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c defmt.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c dump.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c exp_table.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c fields.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c good.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c lookup.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>lookup.c: In function 'linit':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>lookup.c:115:19: warning: implicit declaration of function 'open' [-Wimplicit-function-declaration]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>     if ((hashfd = open (hashname, 0 | MSDOS_BINARY_OPEN)) < 0)</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                   ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c tgood.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c tree.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>tree.c: In function 'treeinsert':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>tree.c:402:19: warning: overflow in implicit constant conversion [-Woverflow]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>       isvariant = (dp->flagfield & MOREVARIANTS);</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                   ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>tree.c:408:20: warning: overflow in implicit constant conversion [-Woverflow]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>        isvariant = dp->flagfield & MOREVARIANTS;</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                    ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>tree.c:417:20: warning: overflow in implicit constant conversion [-Woverflow]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>        isvariant = dp->flagfield & MOREVARIANTS;</code><br />
+            </span>
+            
+            <span class="none">
+            <code>                    ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c xgets.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -o ispell term.o ispell.o correct.o defmt.o dump.o exp_table.o fields.o good.o lookup.o hash.o makedent.o tgood.o tree.o xgets.o -lncurses</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c icombine.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -o icombine icombine.o makedent.o parse.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c ijoin.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -o ijoin ijoin.o fields.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < munchlist.X > munchlist</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod +x munchlist</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < subset.X > subset</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod +x subset</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < zapdups.X > zapdups</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod +x zapdups</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cd deformatters; make all</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02/deformatters'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c defmt-c.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -o defmt-c defmt-c.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -c defmt-sh.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cc -O -o defmt-sh defmt-sh.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02/deformatters'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>./ispell -v | sed -e 1q</code><br />
+            </span>
+            
+            <span class="none">
+            <code>@(#) International Ispell Version 3.3.02 12 Jun 2005</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < ispell.1X > ispell.1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>. ./config.sh; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  set +vx; \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  sed \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!BAKEXT!!@$BAKEXT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!COUNTSUFFIX!!@$COUNTSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!DEFHASH!!@$DEFHASH@" -e "s@!!DEFLANG!!@$DEFLANG@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!HASHSUFFIX!!@$HASHSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LIBDIR!!@$LIBDIR@" -e "s@!!DEFDICT!!@$DEFDICT@" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!LOOK_XREF!!@$LOOK_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!MAN45SECT!!@$MAN45SECT@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!POUNDBANG!!@$POUNDBANG@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!SPELL_XREF!!@$SPELL_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!STATSUFFIX!!@$STATSUFFIX@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!TIB_XREF!!@$TIB_XREF@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e "s@!!WORDS!!@$WORDS@g" \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    $SORTTMP < ispell.5X > ispell.5</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make LANGUAGE_TARGET=all SHELLDEBUG=+vx language-subdirs</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Entering directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ cd languages/american</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ eval make BUILD=build DBUILD=build CBUILD=build SHELLDEBUG=+vx ' '\''MASTERDICTS=american.med'\'' '\''HASHFILES=americanmed.hash'\'' '\''EXTRADICT='\''' all</code><br />
+            </span>
+            
+            <span class="none">
+            <code>++ make BUILD=build DBUILD=build CBUILD=build SHELLDEBUG=+vx MASTERDICTS=american.med HASHFILES=americanmed.hash EXTRADICT= all</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[2]: Entering directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[3]: Entering directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>rm -f english.[0-3] american.[0-2] altamer.[012] british.[012]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[3]: Leaving directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[3]: Entering directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make -f ../english/Makefile 'DBUILD=' VARIANTS=american \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  'EXTRADICT=' 'SHELLDEBUG=+vx' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  'AFFIXES=../english/english.aff' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  english.med</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[4]: Entering directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ eval sort -u -t/ +0f -1 +0 -T '${TMPDIR-/tmp}' -o english.med english.0 english.1 american.0 american.1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[4]: Leaving directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>rm -f american.med</code><br />
+            </span>
+            
+            <span class="none">
+            <code>+ ln english.med american.med</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[3]: Leaving directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make SHELLDEBUG=+vx americanmed.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[3]: Entering directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>rm -f americanmed.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>../../buildhash american.med ../english/english.aff americanmed.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Counting words in dictionary ...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 </code><br />
+            </span>
+            
+            <span class="none">
+            <code>31911 words</code><br />
+            </span>
+            
+            <span class="none">
+            <code>0 1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 </code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[3]: Leaving directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[2]: Leaving directory '/tmp/ispell/src/ispell-3.3.02/languages/american'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ispell/src/ispell-3.3.02'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Entering fakeroot environment...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Starting package()...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Tidying install...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Removing doc files...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Purging unwanted files...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Creating package "ispell"...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Generating .PKGINFO file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Generating .MTREE file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Compressing package...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Leaving fakeroot environment.</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Finished making: ispell 3.3.02-7 (Sat Dec 12 05:24:54 UTC 2015)</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file ispell-3.3.02-7-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>ispell 3.3.02-7</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'ispell'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'ispell'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/pool/packages/ispell-3.3.02-7-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>ispell 3.3.02-7</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>/.MTREE</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/.PKGINFO</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/ispell/english.aff</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/ispell/american.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/ispell/americanmed.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/ispell/english.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/iwhich</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/icombine</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/ijoin</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/tryaffix</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/ispell</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/findaffix</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/buildhash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/munchlist</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/ispell/english.aff</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/ispell/american.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/ispell/americanmed.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/ispell/english.hash</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/licenses/ispell/license.txt</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man1/ispell.1.gz</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man5/ispell.5.gz</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link toolchain_root .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .MTREE toolchain_root .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .MTREE toolchain_root .PKGINFO usr | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf ispell.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>.PKGINFO</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /toolchain_repo/ispell.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /toolchain_repo/tuscan.db.tar /toolchain_repo/ispell.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>==> Extracting database to a temporary location...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Adding package '/toolchain_repo/ispell.pkg.tar.xz'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Computing checksums...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Creating 'desc' db entry...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Creating 'depends' db entry...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Creating updated database file '/toolchain_repo/tuscan.db.tar'</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+  </body>
+</html>

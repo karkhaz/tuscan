@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>mkinitcpio</title>
+<style>
+body{
+  background-color: #002b36;
+  color: #839496;
+}
+code{
+  white-space: pre;
+}
+div{
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  float: left;
+  min-width: 99%;
+  clear: both;
+}
+
+/* Each log block */
+.block{
+  background-color: #073642;
+  margin-bottom: 20px;
+}
+
+/* Different log block headers */
+.die{
+  background-color: #cb4b16;
+  color: #002b36;
+  font-weight: bold;
+}
+.command{
+  background-color: #6c71c4;
+  color: #002b36;
+  font-weight: bold;
+}
+.file{
+  background-color: #859900;
+  color: #002b36;
+  font-weight: bold;
+}
+.info{
+  background-color: #859900;
+  color: #002b36;
+  font-weight: bold;
+}
+
+a{
+ color: #2aa198;
+  text-decoration: none;
+}
+a:visited {
+  color: #d33682;
+  text-decoration: none;
+}
+
+/* Log block output */
+.output{
+  background-color: #002b36;
+  color: #839496;
+}
+
+/* The word CMD that indicates the header of a log block is a
+ * command-line invocation
+ */
+.prompt{
+  color: #002b36;
+  text-shadow: -2px -2px 0 #b58900,
+                2px -2px 0 #b58900,
+                2px  2px 0 #b58900,
+               -2px  2px 0 #b58900;
+}
+
+/* Formats for lines in command output */
+.none{
+
+}
+.error{
+  background-color: #dc322f;
+  color: #002b36;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+</style>
+  </head>
+  <body>
+    <h1>Build of /var/abs/core/mkinitcpio
+        with <a href="../index.html">vanilla</a>
+        toolchain</h1>
+    <p>This PKGBUILD creates the following packages:</p>
+    <ul>
+      
+    </ul>
+    <p>The build took 00:00:57.</p>
+    <p>The return code of the build was 0.</p>
+    <h2>Log</h2>
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Found permanent source directory in /sources/mkinitcpio</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Removed vanilla repositories from pacman.conf and added:</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>[tuscan]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Server = file:///toolchain_repo</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman -Syy --noconfirm</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>:: Synchronizing package databases...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>downloading tuscan.db...</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>sudo -u tuscan  makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>==> Making package: mkinitcpio 18-2 (Sat Dec 12 07:23:03 UTC 2015)</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Checking runtime dependencies...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Checking buildtime dependencies...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> WARNING: Using existing $srcdir/ tree</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Entering fakeroot environment...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Starting package()...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make: Entering directory '/tmp/mkinitcpio/src/mkinitcpio-18'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>mkdir -p /tmp/mkinitcpio/pkg/mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/bin; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/bash-completion/completions; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/zsh/site-functions; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/etc/mkinitcpio.d; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/etc/initcpio/hooks; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/etc/initcpio/install; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio/hooks; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio/install; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio/udev; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/kernel/install.d; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/man/man8; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/man/man5; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/man/man1; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/mkinitcpio; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/systemd/system/shutdown.target.wants; install -dm755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/tmpfiles.d;</code><br />
+            </span>
+            
+            <span class="none">
+            <code>sed -e 's|^_f_config=.*|_f_config=/etc/mkinitcpio.conf|' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e 's|^_f_functions=.*|_f_functions=/usr/lib/initcpio/functions|' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e 's|^_d_hooks=.*|_d_hooks=/etc/initcpio/hooks:/usr/lib/initcpio/hooks|' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e 's|^_d_install=.*|_d_install=/etc/initcpio/install:/usr/lib/initcpio/install|' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e 's|^_d_presets=.*|_d_presets=/etc/mkinitcpio.d|' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e 's|%VERSION%|18|g' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    < mkinitcpio > /tmp/mkinitcpio/pkg/mkinitcpio/usr/bin/mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>sed -e 's|\(^_f_functions\)=.*|\1=/usr/lib/initcpio/functions|' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    -e 's|%VERSION%|18|g' \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>    < lsinitcpio > /tmp/mkinitcpio/pkg/mkinitcpio/usr/bin/lsinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>chmod 755 /tmp/mkinitcpio/pkg/mkinitcpio/usr/bin/lsinitcpio /tmp/mkinitcpio/pkg/mkinitcpio/usr/bin/mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 mkinitcpio.conf /tmp/mkinitcpio/pkg/mkinitcpio/etc/mkinitcpio.conf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m755 -t /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio init shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 -t /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio init_functions functions</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 udev/01-memdisk.rules /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio/udev/01-memdisk.rules</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cp -at /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/initcpio hooks install</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 -t /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/mkinitcpio mkinitcpio.d/*</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 systemd/mkinitcpio-generate-shutdown-ramfs.service \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>		/tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/systemd/system/mkinitcpio-generate-shutdown-ramfs.service</code><br />
+            </span>
+            
+            <span class="none">
+            <code>ln -s ../mkinitcpio-generate-shutdown-ramfs.service \</code><br />
+            </span>
+            
+            <span class="none">
+            <code>		/tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/systemd/system/shutdown.target.wants/mkinitcpio-generate-shutdown-ramfs.service</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 tmpfiles/mkinitcpio.conf /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/tmpfiles.d/mkinitcpio.conf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m755 50-mkinitcpio.install /tmp/mkinitcpio/pkg/mkinitcpio/usr/lib/kernel/install.d/50-mkinitcpio.install</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 man/mkinitcpio.8 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/man/man8/mkinitcpio.8</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 man/mkinitcpio.conf.5 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/man/man5/mkinitcpio.conf.5</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 man/lsinitcpio.1 /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/man/man1/lsinitcpio.1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 shell/bash-completion /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/bash-completion/completions/mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>ln -s mkinitcpio /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/bash-completion/completions/lsinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>install -m644 shell/zsh-completion /tmp/mkinitcpio/pkg/mkinitcpio/usr/share/zsh/site-functions/_mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make: Leaving directory '/tmp/mkinitcpio/src/mkinitcpio-18'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Tidying install...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Removing doc files...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Purging unwanted files...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Creating package "mkinitcpio"...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Generating .PKGINFO file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Adding install file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Generating .MTREE file...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Compressing package...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Leaving fakeroot environment.</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Finished making: mkinitcpio 18-2 (Sat Dec 12 07:23:06 UTC 2015)</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file mkinitcpio-18-2-any.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>mkinitcpio 18-2</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'mkinitcpio'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'mkinitcpio'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/pool/packages/mkinitcpio-18-2-any.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>mkinitcpio 18-2</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>/.MTREE</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/.INSTALL</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/.PKGINFO</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/etc/mkinitcpio.conf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/systemd/system/mkinitcpio-generate-shutdown-ramfs.service</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/systemd/system/shutdown.target.wants/mkinitcpio-generate-shutdown-ramfs.service</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/kernel/install.d/50-mkinitcpio.install</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/tmpfiles.d/mkinitcpio.conf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/functions</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/init_functions</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/init</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/consolefont</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/keymap</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/sleep</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/memdisk</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/usr</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/hooks/resume</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/base</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/modconf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/pata</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/consolefont</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/sata</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/block</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/keymap</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/keyboard</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/sleep</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/sd-vconsole</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/sd-shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/filesystems</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/virtio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/memdisk</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/fsck</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/usbinput</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/scsi</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/fw</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/mmc</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/autodetect</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/usr</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/resume</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/strip</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/install/usb</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/toolchain_root/usr/lib/initcpio/udev/01-memdisk.rules</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/lsinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/bin/mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/systemd/system/mkinitcpio-generate-shutdown-ramfs.service</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/systemd/system/shutdown.target.wants/mkinitcpio-generate-shutdown-ramfs.service</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/kernel/install.d/50-mkinitcpio.install</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/tmpfiles.d/mkinitcpio.conf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/functions</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/init_functions</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/init</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/consolefont</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/keymap</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/sleep</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/memdisk</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/usr</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/hooks/resume</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/base</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/modconf</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/pata</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/consolefont</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/sata</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/block</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/keymap</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/keyboard</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/sleep</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/sd-vconsole</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/sd-shutdown</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/filesystems</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/virtio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/memdisk</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/fsck</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/usbinput</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/scsi</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/fw</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/mmc</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/autodetect</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/usr</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/resume</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/strip</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/install/usb</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/lib/initcpio/udev/01-memdisk.rules</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/bash-completion/completions/lsinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/bash-completion/completions/mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/mkinitcpio/example.preset</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/zsh/site-functions/_mkinitcpio</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man1/lsinitcpio.1.gz</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man8/mkinitcpio.8.gz</code><br />
+            </span>
+            
+            <span class="none">
+            <code>/usr/share/man/man5/mkinitcpio.conf.5.gz</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link etc toolchain_root .INSTALL .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .MTREE etc toolchain_root .INSTALL .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .MTREE etc toolchain_root .INSTALL .PKGINFO usr | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf mkinitcpio.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>.PKGINFO</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /toolchain_repo/mkinitcpio.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /toolchain_repo/tuscan.db.tar /toolchain_repo/mkinitcpio.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <span class="none">
+            <code>==> Extracting database to a temporary location...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Adding package '/toolchain_repo/mkinitcpio.pkg.tar.xz'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> WARNING: An entry for 'mkinitcpio-18-2' already existed</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Computing checksums...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Removing existing entry 'mkinitcpio-18-2'...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Creating 'desc' db entry...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>  -> Creating 'depends' db entry...</code><br />
+            </span>
+            
+            <span class="none">
+            <code>==> Creating updated database file '/toolchain_repo/tuscan.db.tar'</code><br />
+            </span>
+            
+          </div>
+        
+      </div>
+      <br />
+    
+  </body>
+</html>
