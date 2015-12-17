@@ -25,6 +25,12 @@ td{ padding: 5px; border-radius: 15px; }
   padding-right: 2em;
 }
 
+.column-list{
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+}
+
 code{
   white-space: pre;
   font-family: 'Source Code Pro', ;
@@ -40,7 +46,7 @@ a:visited {
 }
 
 table{
-  left-margin: 20px;
+  margin-left: 20px;
 }
 
 /* Status indicators */
@@ -74,181 +80,512 @@ table{
     
     ]</p>
 
-    <table style="margin-bottom: 50px;">
-      <tr><td colspan="3">Statistics for build of
+    <table style="margin-bottom: 50px; display: inline-table;">
+      <tr><th colspan="3">Statistics for build of
           &quot;android&quot;,
           click links to see applicable builds.
-      </td></tr>
+      </th></tr>
       
       <tr>
+        
+        <th colspan="2">
+          Basic statistics
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
         <td>
           2766
         </td>
         <td>
           <a href="index.html"
-          >builds built in total</a>
+          >built in total</a>
         </td>
         
       </tr>
       
       <tr>
+        
         <td>
-          784
+          830
         </td>
         <td>
           <a href="success.html"
-          >builds built successfully</a>
+          >built successfully</a>
         </td>
         
       </tr>
       
       <tr>
+        
         <td>
-          1982
+          1936
         </td>
         <td>
           <a href="fail.html"
-          >builds failed to build successfully</a>
+          >failed to build successfully</a>
         </td>
         
       </tr>
       
       <tr>
+        
         <td>
-          1399
+          1355
         </td>
         <td>
           <a href="tc_fail.html"
-          >builds failed but were successful on vanilla</a>
+          >failed but were successful on vanilla</a>
         </td>
         
       </tr>
       
       <tr>
-        <td>
-          61
-        </td>
-        <td>
-          <a href="missing_source.html"
-          >builds failed because they had no sources</a>
-        </td>
         
-      </tr>
-      
-      <tr>
-        <td>
-          687
-        </td>
-        <td>
-          <a href="dep_fail.html"
-          >builds failed because their dependency didn't build</a>
-        </td>
-        
-      </tr>
-      
-      <tr>
-        <td>
-          1295
-        </td>
-        <td>
-          <a href="first_fail.html"
-          >builds failed despite all their deps building</a>
-        </td>
-        
-      </tr>
-      
-      <tr>
-        <td>
-          502
-        </td>
-        <td>
-          <a href="unknown_compiler_flag.html"
-          >builds failed because of unknown compiler flag</a>
-        </td>
-        
-      </tr>
-      
-      <tr>
-        <td>
-          4
-        </td>
-        <td>
-          <a href="host_flag_unrecognised.html"
-          >builds failed because their configure doesn't understand --host</a>
-        </td>
-        
-      </tr>
-      
-      <tr>
-        <td>
-          649
-        </td>
-        <td>
-          <a href="native_invocation.html"
-          >builds failed by invoking the native toolchain</a>
-        </td>
-        
-      </tr>
-      
-      <tr>
         <td>
           58
         </td>
         <td>
-          <a href="config_command_not_found.html"
-          >builds failed when configure couldn't find a command</a>
+          <a href="missing_source.html"
+          >failed because they had no sources</a>
         </td>
         
       </tr>
       
       <tr>
+        
         <td>
-          53
+          625
+        </td>
+        <td>
+          <a href="missing_deps.html"
+          >failed because their dependency didn't build</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          1311
+        </td>
+        <td>
+          <a href="first_fail.html"
+          >failed despite all their deps building</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds below this line built on vanilla but not with this toolchain,<br />and failed for a reason other than no-sources or dep-fail.
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          920
+        </td>
+        <td>
+          <a href="toolchain_fails_only.html"
+          >satisfy the above restriction.</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Configure statistics
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          20
+        </td>
+        <td>
+          <a href="configure_unknown.html"
+          >had a config.log with unknown return code</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          343
+        </td>
+        <td>
+          <a href="configure_no_log.html"
+          >had no config.log</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          298
+        </td>
+        <td>
+          <a href="configure_success.html"
+          >had all their configure checks successful</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          267
+        </td>
+        <td>
+          <a href="configure_failure.html"
+          >had at least one ./configure fail</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Generic errors
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          1
+        </td>
+        <td>
+          <a href="host_flag_unrecognised.html"
+          >failed because their configure doesn't understand --host</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          66
         </td>
         <td>
           <a href="configure_ignores_path.html"
-          >builds failed when configure ignored our $PATH</a>
+          >failed when configure ignored our $PATH</a>
         </td>
         
       </tr>
       
       <tr>
+        
+        <th colspan="2">
+          Builds that fail when executing an unrunnable binary
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
         <td>
-          503
+          185
+        </td>
+        <td>
+          <a href="exec_error_configure.html"
+          >...in their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          12
+        </td>
+        <td>
+          <a href="exec_error_non_configure.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of an unfound command
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          63
+        </td>
+        <td>
+          <a href="command_not_found.html"
+          >...in their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          10
+        </td>
+        <td>
+          <a href="command_not_found_non.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail by supplying an unknown flag to the compiler
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          186
+        </td>
+        <td>
+          <a href="unknown_compiler_flag.html"
+          >...in their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          5
+        </td>
+        <td>
+          <a href="unknown_compiler_flag_non.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail by invoking anative tool
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          95
+        </td>
+        <td>
+          <a href="native_invocation.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          366
+        </td>
+        <td>
+          <a href="non_native_invocation.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of a missing header
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          140
         </td>
         <td>
           <a href="missing_header.html"
-          >builds failed because of a missing header</a>
+          >...inside their configure script</a>
         </td>
         
       </tr>
       
       <tr>
+        
         <td>
-          283
+          121
         </td>
         <td>
-          <a href="unknown_fail.html"
-          >builds failed for some unknown reason</a>
+          <a href="non_missing_header.html"
+          >...outside their configure script</a>
         </td>
         
       </tr>
       
       <tr>
+        
+        <th colspan="2">
+          Builds that fail because of an assembler error
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
         <td>
-          112
+          5
+        </td>
+        <td>
+          <a href="assembler_error.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          4
+        </td>
+        <td>
+          <a href="assembler_error.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of a compiler error
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          110
+        </td>
+        <td>
+          <a href="compile_error.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          83
+        </td>
+        <td>
+          <a href="non_compile_error.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of a linker error
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          87
+        </td>
+        <td>
+          <a href="link_error.html"
+          >...inside their configure scripts</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          18
+        </td>
+        <td>
+          <a href="non_link_error.html"
+          >...outside their configure scripts</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of an undefined reference
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          16
+        </td>
+        <td>
+          <a href="undefined_reference.html"
+          >...during compilation</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          51
         </td>
         <td>
           <a href="unknown_fail.html"
-          >builds failed for some unknown reason, but not on vanilla</a>
+          >failed for some unknown reason</a>
         </td>
         
       </tr>
       
     </table>
 
+    <table style="display: inline-table;">
+
+      <tr><th colspan="2">
+          Additional information about this page</th></tr>
+      
+
+    </table>
+
     <table style="margin-bottom: 40px;">
-      <tr><td colspan="2">Key</td></tr>
+      <tr><th colspan="2">Key</th></tr>
       <tr>
         <td class="yes">y</td>
         <td>Success</td>
@@ -269,11 +606,11 @@ table{
 
     <table>
       <tr>
-        <td>BoV</td>
-        <td>Built</td>
-        <td>Time</td>
-        <td>Build name</td>
-        <td>Identified Errors</td>
+        <th>BoV</th>
+        <th>Built</th>
+        <th>Time</th>
+        <th>Build name</th>
+        <th>Identified Errors</th>
       </tr>
       
       <tr>
@@ -289,7 +626,7 @@ table{
         </td>
 
         <td>
-          00:02:19
+          00:01:47
         </td>
 
         <td>
@@ -300,9 +637,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -321,7 +660,7 @@ table{
         </td>
 
         <td>
-          00:06:33
+          00:05:10
         </td>
 
         <td>
@@ -332,7 +671,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;4);
           
         </td>
 
@@ -351,7 +694,7 @@ table{
         </td>
 
         <td>
-          00:01:48
+          00:01:30
         </td>
 
         <td>
@@ -362,41 +705,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
           
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "no">x
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:04
-        </td>
-
-        <td>
-          <a href="ocl-icd/index.html">
-            ocl-icd
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
+          command_not_found (&#215;5);
           
         </td>
 
@@ -415,7 +728,41 @@ table{
         </td>
 
         <td>
-          00:02:10
+          00:02:16
+        </td>
+
+        <td>
+          <a href="inputproto/index.html">
+            inputproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:01
         </td>
 
         <td>
@@ -426,9 +773,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -447,7 +796,7 @@ table{
         </td>
 
         <td>
-          00:02:14
+          00:02:00
         </td>
 
         <td>
@@ -458,9 +807,113 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:24
+        </td>
+
+        <td>
+          <a href="flac/index.html">
+            flac
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:46
+        </td>
+
+        <td>
+          <a href="xextproto/index.html">
+            xextproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:06:02
+        </td>
+
+        <td>
+          <a href="opensp/index.html">
+            opensp
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;1);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;4);
           
         </td>
 
@@ -483,16 +936,18 @@ table{
         </td>
 
         <td>
-          <a href="inputproto/index.html">
-            inputproto
+          <a href="printproto/index.html">
+            printproto
           </a>
         </td>
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -511,137 +966,7 @@ table{
         </td>
 
         <td>
-          00:02:30
-        </td>
-
-        <td>
-          <a href="flac/index.html">
-            flac
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          03:31:42
-        </td>
-
-        <td>
-          <a href="gap/index.html">
-            gap
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;25);
-          
-          unknown_compiler_flag (&#215;6);
-          
-          missing_header (&#215;14);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:05:35
-        </td>
-
-        <td>
-          <a href="opensp/index.html">
-            opensp
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;4);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:02
-        </td>
-
-        <td>
-          <a href="xf86miscproto/index.html">
-            xf86miscproto
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;4);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:14
+          00:02:06
         </td>
 
         <td>
@@ -652,9 +977,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -673,20 +1000,22 @@ table{
         </td>
 
         <td>
-          00:01:47
+          00:03:48
         </td>
 
         <td>
-          <a href="printproto/index.html">
-            printproto
+          <a href="lame/index.html">
+            lame
           </a>
         </td>
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -705,7 +1034,75 @@ table{
         </td>
 
         <td>
-          00:02:33
+          00:02:26
+        </td>
+
+        <td>
+          <a href="xf86miscproto/index.html">
+            xf86miscproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;4);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:12
+        </td>
+
+        <td>
+          <a href="pm-utils/index.html">
+            pm-utils
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:15
         </td>
 
         <td>
@@ -716,9 +1113,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -737,7 +1136,43 @@ table{
         </td>
 
         <td>
-          00:02:14
+          03:23:25
+        </td>
+
+        <td>
+          <a href="gap/index.html">
+            gap
+          </a>
+        </td>
+
+        <td>
+          
+          configure_ignores_path (&#215;2);
+          
+          assembler_error (&#215;1);
+          
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:13
         </td>
 
         <td>
@@ -748,9 +1183,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -769,7 +1206,7 @@ table{
         </td>
 
         <td>
-          00:02:22
+          00:01:30
         </td>
 
         <td>
@@ -780,9 +1217,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -801,7 +1240,41 @@ table{
         </td>
 
         <td>
-          00:02:22
+          00:02:12
+        </td>
+
+        <td>
+          <a href="libpciaccess/index.html">
+            libpciaccess
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:35
         </td>
 
         <td>
@@ -812,9 +1285,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -833,7 +1308,7 @@ table{
         </td>
 
         <td>
-          00:03:19
+          00:02:01
         </td>
 
         <td>
@@ -844,9 +1319,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -865,7 +1342,7 @@ table{
         </td>
 
         <td>
-          00:01:53
+          00:01:58
         </td>
 
         <td>
@@ -876,9 +1353,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -908,41 +1387,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
           
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:03
-        </td>
-
-        <td>
-          <a href="libpciaccess/index.html">
-            libpciaccess
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
+          command_not_found (&#215;5);
           
         </td>
 
@@ -961,7 +1410,7 @@ table{
         </td>
 
         <td>
-          00:05:55
+          00:05:36
         </td>
 
         <td>
@@ -972,9 +1421,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;4);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;4);
           
         </td>
 
@@ -993,20 +1444,22 @@ table{
         </td>
 
         <td>
-          00:02:13
+          00:01:17
         </td>
 
         <td>
-          <a href="libnetfilter_cttimeout/index.html">
-            libnetfilter_cttimeout
+          <a href="opusfile/index.html">
+            opusfile
           </a>
         </td>
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1025,22 +1478,22 @@ table{
         </td>
 
         <td>
-          03:31:42
+          00:00:48
         </td>
 
         <td>
-          <a href="gap/index.html">
-            gap
+          <a href="compositeproto/index.html">
+            compositeproto
           </a>
         </td>
 
         <td>
           
-          configure_ignores_path (&#215;25);
+          configure_error (&#215;2);
           
-          unknown_compiler_flag (&#215;6);
+          configure_ignores_path (&#215;1);
           
-          missing_header (&#215;14);
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1059,7 +1512,75 @@ table{
         </td>
 
         <td>
-          00:02:16
+          00:08:59
+        </td>
+
+        <td>
+          <a href="namazu/index.html">
+            namazu
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;1);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;4);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:33
+        </td>
+
+        <td>
+          <a href="damageproto/index.html">
+            damageproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:12
         </td>
 
         <td>
@@ -1070,75 +1591,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
           
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "no">x
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:32
-        </td>
-
-        <td>
-          <a href="indent/index.html">
-            indent
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;4);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "no">x
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:16:29
-        </td>
-
-        <td>
-          <a href="isdn4k-utils/index.html">
-            isdn4k-utils
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;72);
-          
-          missing_header (&#215;27);
-          
-          unknown_compiler_flag (&#215;15);
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1157,295 +1614,7 @@ table{
         </td>
 
         <td>
-          00:03:06
-        </td>
-
-        <td>
-          <a href="geoip/index.html">
-            geoip
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:03:05
-        </td>
-
-        <td>
-          <a href="speex/index.html">
-            speex
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:40
-        </td>
-
-        <td>
-          <a href="libnetfilter_acct/index.html">
-            libnetfilter_acct
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:55
-        </td>
-
-        <td>
-          <a href="recordproto/index.html">
-            recordproto
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:23
-        </td>
-
-        <td>
-          <a href="libsm/index.html">
-            libsm
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:01:28
-        </td>
-
-        <td>
-          <a href="fontsproto/index.html">
-            fontsproto
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:30
-        </td>
-
-        <td>
-          <a href="flac/index.html">
-            flac
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:01:58
-        </td>
-
-        <td>
-          <a href="libice/index.html">
-            libice
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:11
-        </td>
-
-        <td>
-          <a href="libxdmcp/index.html">
-            libxdmcp
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          03:31:42
+          03:23:25
         </td>
 
         <td>
@@ -1456,11 +1625,13 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;25);
+          configure_ignores_path (&#215;2);
           
-          unknown_compiler_flag (&#215;6);
+          assembler_error (&#215;1);
           
-          missing_header (&#215;14);
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
           
         </td>
 
@@ -1479,7 +1650,585 @@ table{
         </td>
 
         <td>
-          00:01:54
+          00:02:07
+        </td>
+
+        <td>
+          <a href="libnetfilter_cttimeout/index.html">
+            libnetfilter_cttimeout
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:42
+        </td>
+
+        <td>
+          <a href="geoip/index.html">
+            geoip
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:04
+        </td>
+
+        <td>
+          <a href="librtfcomp/index.html">
+            librtfcomp
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:09
+        </td>
+
+        <td>
+          <a href="speex/index.html">
+            speex
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:09
+        </td>
+
+        <td>
+          <a href="libnetfilter_acct/index.html">
+            libnetfilter_acct
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:44
+        </td>
+
+        <td>
+          <a href="recordproto/index.html">
+            recordproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:05
+        </td>
+
+        <td>
+          <a href="mp3unicode/index.html">
+            mp3unicode
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;1);
+          
+          configure_ignores_path (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:39
+        </td>
+
+        <td>
+          <a href="bigreqsproto/index.html">
+            bigreqsproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:05:17
+        </td>
+
+        <td>
+          <a href="libdnet/index.html">
+            libdnet
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:17
+        </td>
+
+        <td>
+          <a href="libsm/index.html">
+            libsm
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:45
+        </td>
+
+        <td>
+          <a href="libice/index.html">
+            libice
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:18
+        </td>
+
+        <td>
+          <a href="fontsproto/index.html">
+            fontsproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:17
+        </td>
+
+        <td>
+          <a href="fixesproto/index.html">
+            fixesproto
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:24
+        </td>
+
+        <td>
+          <a href="flac/index.html">
+            flac
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:56
+        </td>
+
+        <td>
+          <a href="libxdmcp/index.html">
+            libxdmcp
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          03:23:25
+        </td>
+
+        <td>
+          <a href="gap/index.html">
+            gap
+          </a>
+        </td>
+
+        <td>
+          
+          configure_ignores_path (&#215;2);
+          
+          assembler_error (&#215;1);
+          
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:55
+        </td>
+
+        <td>
+          <a href="xcb-util-renderutil/index.html">
+            xcb-util-renderutil
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:29
         </td>
 
         <td>
@@ -1490,41 +2239,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
           
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:02:48
-        </td>
-
-        <td>
-          <a href="tig/index.html">
-            tig
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1543,39 +2262,7 @@ table{
         </td>
 
         <td>
-          00:01:57
-        </td>
-
-        <td>
-          <a href="xbitmaps/index.html">
-            xbitmaps
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
-          
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:01:53
+          00:01:37
         </td>
 
         <td>
@@ -1586,9 +2273,147 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:28
+        </td>
+
+        <td>
+          <a href="tig/index.html">
+            tig
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:24
+        </td>
+
+        <td>
+          <a href="libtaginfo/index.html">
+            libtaginfo
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:25
+        </td>
+
+        <td>
+          <a href="libjpeg-turbo/index.html">
+            libjpeg-turbo
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:40
+        </td>
+
+        <td>
+          <a href="xbitmaps/index.html">
+            xbitmaps
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1618,41 +2443,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
           
-        </td>
-
-      </tr>
-      
-      <tr>
-        <td class=
-        
-          "yes">y
-        
-        </td>
-        <td class=
-        
-          "no">n
-        
-        </td>
-
-        <td>
-          00:01:02
-        </td>
-
-        <td>
-          <a href="libjpeg-turbo/index.html">
-            libjpeg-turbo
-          </a>
-        </td>
-
-        <td>
-          
-          configure_ignores_path (&#215;7);
-          
-          config_command_not_found (&#215;5);
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1671,7 +2466,7 @@ table{
         </td>
 
         <td>
-          03:31:42
+          03:23:25
         </td>
 
         <td>
@@ -1682,11 +2477,13 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;25);
+          configure_ignores_path (&#215;2);
           
-          unknown_compiler_flag (&#215;6);
+          assembler_error (&#215;1);
           
-          missing_header (&#215;14);
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
           
         </td>
 
@@ -1705,7 +2502,75 @@ table{
         </td>
 
         <td>
-          00:01:41
+          00:00:51
+        </td>
+
+        <td>
+          <a href="xcb-util-keysyms/index.html">
+            xcb-util-keysyms
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:00
+        </td>
+
+        <td>
+          <a href="xcb-util-wm/index.html">
+            xcb-util-wm
+          </a>
+        </td>
+
+        <td>
+          
+          configure_error (&#215;2);
+          
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:09
         </td>
 
         <td>
@@ -1716,9 +2581,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1737,7 +2604,7 @@ table{
         </td>
 
         <td>
-          00:03:17
+          00:03:57
         </td>
 
         <td>
@@ -1748,9 +2615,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1769,7 +2638,7 @@ table{
         </td>
 
         <td>
-          00:02:08
+          00:02:02
         </td>
 
         <td>
@@ -1780,9 +2649,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1801,7 +2672,7 @@ table{
         </td>
 
         <td>
-          00:01:32
+          00:01:19
         </td>
 
         <td>
@@ -1812,9 +2683,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1833,7 +2706,7 @@ table{
         </td>
 
         <td>
-          00:02:03
+          00:01:42
         </td>
 
         <td>
@@ -1844,9 +2717,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1865,7 +2740,7 @@ table{
         </td>
 
         <td>
-          00:01:35
+          00:01:36
         </td>
 
         <td>
@@ -1876,9 +2751,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1897,7 +2774,7 @@ table{
         </td>
 
         <td>
-          00:01:28
+          00:02:19
         </td>
 
         <td>
@@ -1908,9 +2785,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1929,7 +2808,7 @@ table{
         </td>
 
         <td>
-          00:03:01
+          00:02:13
         </td>
 
         <td>
@@ -1940,9 +2819,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 
@@ -1961,7 +2842,7 @@ table{
         </td>
 
         <td>
-          00:01:40
+          00:01:56
         </td>
 
         <td>
@@ -1972,9 +2853,11 @@ table{
 
         <td>
           
-          configure_ignores_path (&#215;7);
+          configure_error (&#215;2);
           
-          config_command_not_found (&#215;5);
+          configure_ignores_path (&#215;1);
+          
+          command_not_found (&#215;5);
           
         </td>
 

@@ -93,6 +93,13 @@ a:visited {
   text-decoration: underline;
 }
 
+.warning{
+  background-color: #ffeb3b;
+  color: #212121;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 </style>
   </head>
   <body>
@@ -103,7 +110,7 @@ a:visited {
     <ul>
       
     </ul>
-    <p>The build took 00:09:25.</p>
+    <p>The build took 00:08:13.</p>
     <p>The return code of the build was 5.</p>
     <h2>Log</h2>
     
@@ -167,7 +174,7 @@ a:visited {
           <div class="output">
             
             <span class="none">
-            <code>==> Making package: ncrack 0.4a-4 (Mon Dec 14 19:42:56 UTC 2015)</code><br />
+            <code>==> Making package: ncrack 0.4a-4 (Thu Dec 17 00:55:11 UTC 2015)</code><br />
             </span>
             
             <span class="none">
@@ -1315,19 +1322,19 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>Compiling libnbase</code><br />
-            </span>
-            
-            <span class="none">
-            <code>cd nbase && make</code><br />
-            </span>
-            
-            <span class="none">
             <code>Compiling modules</code><br />
             </span>
             
             <span class="none">
             <code>cd modules && make</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Compiling libnbase</code><br />
+            </span>
+            
+            <span class="none">
+            <code>cd nbase && make</code><br />
             </span>
             
             <span class="none">
@@ -1359,7 +1366,79 @@ a:visited {
             </span>
             
             <span class="none">
+            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_str.o nbase_str.c</code><br />
+            </span>
+            
+            <span class="none">
             <code>arm-linux-androideabi-g++ -c -Inbase -Insock/include -Imodules -DHAVE_CONFIG_H -DNCRACK_NAME=\"Ncrack\" -DNCRACK_URL=\"http://ncrack.org\" -DNCRACK_PLATFORM=\"x86_64-unknown-linux-gnu\" -DNCRACKDATADIR=\"/usr/share/ncrack\" -D_FORTIFY_SOURCE=2  -I.. -I../nsock/include -I../nbase -I../opensshlib -DHAVE_CONFIG_H -O2 -Wall -Wextra  -fno-strict-aliasing  ncrack_telnet.cc -o ncrack_telnet.o</code><br />
+            </span>
+            
+            <span class="none">
+            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_misc.o nbase_misc.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>nbase_misc.c: In function 'tval_unit':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>nbase_misc.c:317:10: warning: variable 'd' set but not used [-Wunused-but-set-variable]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>   double d;</code><br />
+            </span>
+            
+            <span class="none">
+            <code>          ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_memalloc.o nbase_memalloc.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_rnd.o nbase_rnd.c</code><br />
+            </span>
+            
+            <span class="none">
+            <code>rm -f libnbase.a</code><br />
+            </span>
+            
+            <span class="none">
+            <code>ar cr libnbase.a snprintf.o nbase_str.o nbase_misc.o nbase_memalloc.o nbase_rnd.o</code><br />
+            </span>
+            
+            <span class="error">
+            <code>tuscan: native invocation of 'ar'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Makefile:32: recipe for target 'libnbase.a' failed</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: *** [libnbase.a] Error 1</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make[1]: Leaving directory '/tmp/ncrack/src/ncrack-0.4ALPHA/nbase'</code><br />
+            </span>
+            
+            <span class="none">
+            <code>Makefile:74: recipe for target 'nbase_build' failed</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make: *** [nbase_build] Error 2</code><br />
+            </span>
+            
+            <span class="none">
+            <code>make: *** Waiting for unfinished jobs....</code><br />
+            </span>
+            
+            <span class="none">
+            <code>arm-linux-androideabi-g++ -c -Inbase -Insock/include -Imodules -DHAVE_CONFIG_H -DNCRACK_NAME=\"Ncrack\" -DNCRACK_URL=\"http://ncrack.org\" -DNCRACK_PLATFORM=\"x86_64-unknown-linux-gnu\" -DNCRACKDATADIR=\"/usr/share/ncrack\" -D_FORTIFY_SOURCE=2  -I.. -I../nsock/include -I../nbase -I../opensshlib -DHAVE_CONFIG_H -O2 -Wall -Wextra  -fno-strict-aliasing  ncrack_http.cc -o ncrack_http.o</code><br />
             </span>
             
             <span class="none">
@@ -1415,10 +1494,6 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>arm-linux-androideabi-g++ -c -Inbase -Insock/include -Imodules -DHAVE_CONFIG_H -DNCRACK_NAME=\"Ncrack\" -DNCRACK_URL=\"http://ncrack.org\" -DNCRACK_PLATFORM=\"x86_64-unknown-linux-gnu\" -DNCRACKDATADIR=\"/usr/share/ncrack\" -D_FORTIFY_SOURCE=2  -I.. -I../nsock/include -I../nbase -I../opensshlib -DHAVE_CONFIG_H -O2 -Wall -Wextra  -fno-strict-aliasing  ncrack_http.cc -o ncrack_http.o</code><br />
-            </span>
-            
-            <span class="none">
             <code>ncrack_http.cc: In function 'void ncrack_http(nsock_pool, Connection*)':</code><br />
             </span>
             
@@ -1447,59 +1522,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_str.o nbase_str.c</code><br />
-            </span>
-            
-            <span class="none">
             <code>arm-linux-androideabi-g++ -c -Inbase -Insock/include -Imodules -DHAVE_CONFIG_H -DNCRACK_NAME=\"Ncrack\" -DNCRACK_URL=\"http://ncrack.org\" -DNCRACK_PLATFORM=\"x86_64-unknown-linux-gnu\" -DNCRACKDATADIR=\"/usr/share/ncrack\" -D_FORTIFY_SOURCE=2  -I.. -I../nsock/include -I../nbase -I../opensshlib -DHAVE_CONFIG_H -O2 -Wall -Wextra  -fno-strict-aliasing  ncrack_pop3.cc -o ncrack_pop3.o</code><br />
-            </span>
-            
-            <span class="none">
-            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_misc.o nbase_misc.c</code><br />
-            </span>
-            
-            <span class="none">
-            <code>nbase_misc.c: In function 'tval_unit':</code><br />
-            </span>
-            
-            <span class="none">
-            <code>nbase_misc.c:317:10: warning: variable 'd' set but not used [-Wunused-but-set-variable]</code><br />
-            </span>
-            
-            <span class="none">
-            <code>   double d;</code><br />
-            </span>
-            
-            <span class="none">
-            <code>          ^</code><br />
-            </span>
-            
-            <span class="none">
-            <code>ncrack_pop3.cc: In function 'int pop3_response_parser(nsock_pool, Connection*)':</code><br />
-            </span>
-            
-            <span class="none">
-            <code>ncrack_pop3.cc:117:9: warning: unused variable 'p' [-Wunused-variable]</code><br />
-            </span>
-            
-            <span class="none">
-            <code>   char *p;</code><br />
-            </span>
-            
-            <span class="none">
-            <code>         ^</code><br />
-            </span>
-            
-            <span class="none">
-            <code>ncrack_pop3.cc:118:7: warning: unused variable 'i' [-Wunused-variable]</code><br />
-            </span>
-            
-            <span class="none">
-            <code>   int i;</code><br />
-            </span>
-            
-            <span class="none">
-            <code>       ^</code><br />
             </span>
             
             <span class="none">
@@ -1539,47 +1562,35 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_memalloc.o nbase_memalloc.c</code><br />
+            <code>ncrack_pop3.cc: In function 'int pop3_response_parser(nsock_pool, Connection*)':</code><br />
+            </span>
+            
+            <span class="none">
+            <code>ncrack_pop3.cc:117:9: warning: unused variable 'p' [-Wunused-variable]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>   char *p;</code><br />
+            </span>
+            
+            <span class="none">
+            <code>         ^</code><br />
+            </span>
+            
+            <span class="none">
+            <code>ncrack_pop3.cc:118:7: warning: unused variable 'i' [-Wunused-variable]</code><br />
+            </span>
+            
+            <span class="none">
+            <code>   int i;</code><br />
+            </span>
+            
+            <span class="none">
+            <code>       ^</code><br />
             </span>
             
             <span class="none">
             <code>make[1]: Leaving directory '/tmp/ncrack/src/ncrack-0.4ALPHA/modules'</code><br />
-            </span>
-            
-            <span class="none">
-            <code>arm-linux-androideabi-gcc -Wall    -DHAVE_CONFIG_H -D_FORTIFY_SOURCE=2    -c -o nbase_rnd.o nbase_rnd.c</code><br />
-            </span>
-            
-            <span class="none">
-            <code>rm -f libnbase.a</code><br />
-            </span>
-            
-            <span class="none">
-            <code>ar cr libnbase.a snprintf.o nbase_str.o nbase_misc.o nbase_memalloc.o nbase_rnd.o</code><br />
-            </span>
-            
-            <span class="error">
-            <code>tuscan: native invocation of 'ar'</code><br />
-            </span>
-            
-            <span class="none">
-            <code>Makefile:32: recipe for target 'libnbase.a' failed</code><br />
-            </span>
-            
-            <span class="none">
-            <code>make[1]: *** [libnbase.a] Error 1</code><br />
-            </span>
-            
-            <span class="none">
-            <code>make[1]: Leaving directory '/tmp/ncrack/src/ncrack-0.4ALPHA/nbase'</code><br />
-            </span>
-            
-            <span class="none">
-            <code>Makefile:74: recipe for target 'nbase_build' failed</code><br />
-            </span>
-            
-            <span class="none">
-            <code>make: *** [nbase_build] Error 2</code><br />
             </span>
             
             <span class="none">
@@ -1661,7 +1672,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>hostname = f2343b4a3735</code><br />
+            <code>hostname = 3c36a182013d</code><br />
             </span>
             
             <span class="none">
@@ -1896,7 +1907,7 @@ a:visited {
             <code>configure:2708: arm-linux-androideabi-gcc -V >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-V'</code><br />
             </span>
             
@@ -1916,7 +1927,7 @@ a:visited {
             <code>configure:2708: arm-linux-androideabi-gcc -qversion >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'</code><br />
             </span>
             
@@ -2160,7 +2171,7 @@ a:visited {
             <code>configure:3542: arm-linux-androideabi-gcc -V >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-V'</code><br />
             </span>
             
@@ -2180,7 +2191,7 @@ a:visited {
             <code>configure:3542: arm-linux-androideabi-gcc -qversion >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'</code><br />
             </span>
             
@@ -2408,7 +2419,7 @@ a:visited {
             <code>configure:4269: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory</code><br />
             </span>
             
@@ -2484,7 +2495,7 @@ a:visited {
             <code>configure:4328: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory</code><br />
             </span>
             
@@ -2808,7 +2819,7 @@ a:visited {
             <code>configure:4619: arm-linux-androideabi-gcc -c   conftest.c >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:54:24: fatal error: sys/sockio.h: No such file or directory</code><br />
             </span>
             
@@ -3060,7 +3071,7 @@ a:visited {
             <code>configure:4619: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:21:24: fatal error: sys/sockio.h: No such file or directory</code><br />
             </span>
             
@@ -4212,7 +4223,7 @@ a:visited {
             <code>configure:5162: arm-linux-androideabi-gcc -c   conftest.c >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:57:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -4476,7 +4487,7 @@ a:visited {
             <code>configure:5162: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:24:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -4673,7 +4684,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>on f2343b4a3735</code><br />
+            <code>on 3c36a182013d</code><br />
             </span>
             
             <span class="none">
@@ -5482,7 +5493,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>hostname = f2343b4a3735</code><br />
+            <code>hostname = 3c36a182013d</code><br />
             </span>
             
             <span class="none">
@@ -5681,7 +5692,7 @@ a:visited {
             <code>configure:2552: arm-linux-androideabi-gcc -V >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-V'</code><br />
             </span>
             
@@ -5701,7 +5712,7 @@ a:visited {
             <code>configure:2552: arm-linux-androideabi-gcc -qversion >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-qversion'</code><br />
             </span>
             
@@ -5921,7 +5932,7 @@ a:visited {
             <code>configure:3328: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory</code><br />
             </span>
             
@@ -5997,7 +6008,7 @@ a:visited {
             <code>configure:3387: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory</code><br />
             </span>
             
@@ -6729,7 +6740,7 @@ a:visited {
             <code>configure:3679: arm-linux-androideabi-gcc -c  -Wall   conftest.c >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:69:25: fatal error: mach-o/dyld.h: No such file or directory</code><br />
             </span>
             
@@ -7041,7 +7052,7 @@ a:visited {
             <code>configure:3679: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:36:25: fatal error: mach-o/dyld.h: No such file or directory</code><br />
             </span>
             
@@ -17498,7 +17509,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>/tmp/ccOFdsTf.o:conftest.c:function main: error: undefined reference to 'asnprintf'</code><br />
+            <code>/tmp/ccGnkT3Z.o:conftest.c:function main: error: undefined reference to 'asnprintf'</code><br />
             </span>
             
             <span class="none">
@@ -17894,7 +17905,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>/tmp/ccCse4Wm.o:conftest.c:function main: error: undefined reference to 'vasnprintf'</code><br />
+            <code>/tmp/cc8z4D8g.o:conftest.c:function main: error: undefined reference to 'vasnprintf'</code><br />
             </span>
             
             <span class="none">
@@ -18613,7 +18624,7 @@ a:visited {
             <code>configure:4917: arm-linux-androideabi-gcc -c  -Wall   conftest.c >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:101:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -19053,7 +19064,7 @@ a:visited {
             <code>configure:4917: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:68:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -19430,7 +19441,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>on f2343b4a3735</code><br />
+            <code>on 3c36a182013d</code><br />
             </span>
             
             <span class="none">
@@ -20467,7 +20478,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>hostname = f2343b4a3735</code><br />
+            <code>hostname = 3c36a182013d</code><br />
             </span>
             
             <span class="none">
@@ -20682,7 +20693,7 @@ a:visited {
             <code>configure:2410: arm-linux-androideabi-gcc -V >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>arm-linux-androideabi-gcc: error: unrecognized command line option '-V'</code><br />
             </span>
             
@@ -20910,7 +20921,7 @@ a:visited {
             <code>configure:3687: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory</code><br />
             </span>
             
@@ -20986,7 +20997,7 @@ a:visited {
             <code>configure:3794: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:9:28: fatal error: ac_nonexistent.h: No such file or directory</code><br />
             </span>
             
@@ -21230,7 +21241,7 @@ a:visited {
             <code>configure:4260: arm-linux-androideabi-gcc -c  -Wall   conftest.c >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:52:21: fatal error: net/bpf.h: No such file or directory</code><br />
             </span>
             
@@ -21474,7 +21485,7 @@ a:visited {
             <code>configure:4300: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:19:21: fatal error: net/bpf.h: No such file or directory</code><br />
             </span>
             
@@ -21634,7 +21645,7 @@ a:visited {
             <code>configure:4425: arm-linux-androideabi-gcc -c  -Wall   conftest.c >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:53:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -21882,7 +21893,7 @@ a:visited {
             <code>configure:4465: arm-linux-androideabi-gcc -E  conftest.c</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:20:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -22026,7 +22037,7 @@ a:visited {
             <code>configure:4830: arm-linux-androideabi-gcc -o conftest  -Wall    conftest.c  >&5</code><br />
             </span>
             
-            <span class="error">
+            <span class="none">
             <code>conftest.c:20:25: fatal error: openssl/ssl.h: No such file or directory</code><br />
             </span>
             
@@ -22223,7 +22234,7 @@ a:visited {
             </span>
             
             <span class="none">
-            <code>on f2343b4a3735</code><br />
+            <code>on 3c36a182013d</code><br />
             </span>
             
             <span class="none">

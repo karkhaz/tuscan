@@ -1,0 +1,4461 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>android</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+          rel='stylesheet' type='text/css'>
+    <link
+    href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+          rel='stylesheet' type='text/css'>
+<style>
+
+body{
+  font-family: 'Roboto', 'sans-serif';
+  background-color: #fff;
+  color: #212121;
+}
+
+table { border-collapse: collapse; }
+table,td {border: 1px solid #212121; }
+td{ padding: 5px; border-radius: 15px; }
+
+.detail-list{
+  display: inline;
+  padding-right: 2em;
+}
+
+.column-list{
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+}
+
+code{
+  white-space: pre;
+  font-family: 'Source Code Pro', ;
+}
+
+a{
+  color: #00bcd4;
+  text-decoration: none;
+}
+a:visited {
+  color: #e91e63;
+  text-decoration: none;
+}
+
+table{
+  margin-left: 20px;
+}
+
+/* Status indicators */
+.yes    {
+  background-color: #2196f3;
+  color: #2196f3;
+  border: 5px solid #fff;
+}
+.no     {
+  background-color: #f44336;
+  color: #f44336;
+  border: 5px solid #fff;
+}
+.maybe  {
+  background-color: #e0e0e0;
+  color: #e0e0e0;
+  border: 5px solid #fff;
+}
+
+</style>
+  </head>
+  <body>
+    <h1>Builds where a header was missing outside the configure script for toolchain
+      &quot;android&quot;</h1>
+
+    <p>[See overview for other toolchains:
+    
+    <a href="../vanilla/index.html">vanilla</a>,
+    
+    <a href="../android/index.html">android</a>,
+    
+    ]</p>
+
+    <table style="margin-bottom: 50px; display: inline-table;">
+      <tr><th colspan="3">Statistics for build of
+          &quot;android&quot;,
+          click links to see applicable builds.
+      </th></tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Basic statistics
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          2766
+        </td>
+        <td>
+          <a href="index.html"
+          >built in total</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          830
+        </td>
+        <td>
+          <a href="success.html"
+          >built successfully</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          1936
+        </td>
+        <td>
+          <a href="fail.html"
+          >failed to build successfully</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          1355
+        </td>
+        <td>
+          <a href="tc_fail.html"
+          >failed but were successful on vanilla</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          58
+        </td>
+        <td>
+          <a href="missing_source.html"
+          >failed because they had no sources</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          625
+        </td>
+        <td>
+          <a href="missing_deps.html"
+          >failed because their dependency didn't build</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          1311
+        </td>
+        <td>
+          <a href="first_fail.html"
+          >failed despite all their deps building</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds below this line built on vanilla but not with this toolchain,<br />and failed for a reason other than no-sources or dep-fail.
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          920
+        </td>
+        <td>
+          <a href="toolchain_fails_only.html"
+          >satisfy the above restriction.</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Configure statistics
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          20
+        </td>
+        <td>
+          <a href="configure_unknown.html"
+          >had a config.log with unknown return code</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          343
+        </td>
+        <td>
+          <a href="configure_no_log.html"
+          >had no config.log</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          298
+        </td>
+        <td>
+          <a href="configure_success.html"
+          >had all their configure checks successful</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          267
+        </td>
+        <td>
+          <a href="configure_failure.html"
+          >had at least one ./configure fail</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Generic errors
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          1
+        </td>
+        <td>
+          <a href="host_flag_unrecognised.html"
+          >failed because their configure doesn't understand --host</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          66
+        </td>
+        <td>
+          <a href="configure_ignores_path.html"
+          >failed when configure ignored our $PATH</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail when executing an unrunnable binary
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          185
+        </td>
+        <td>
+          <a href="exec_error_configure.html"
+          >...in their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          12
+        </td>
+        <td>
+          <a href="exec_error_non_configure.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of an unfound command
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          63
+        </td>
+        <td>
+          <a href="command_not_found.html"
+          >...in their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          10
+        </td>
+        <td>
+          <a href="command_not_found_non.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail by supplying an unknown flag to the compiler
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          186
+        </td>
+        <td>
+          <a href="unknown_compiler_flag.html"
+          >...in their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          5
+        </td>
+        <td>
+          <a href="unknown_compiler_flag_non.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail by invoking anative tool
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          95
+        </td>
+        <td>
+          <a href="native_invocation.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          366
+        </td>
+        <td>
+          <a href="non_native_invocation.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of a missing header
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          140
+        </td>
+        <td>
+          <a href="missing_header.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          121
+        </td>
+        <td>
+          <a href="non_missing_header.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of an assembler error
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          5
+        </td>
+        <td>
+          <a href="assembler_error.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          4
+        </td>
+        <td>
+          <a href="assembler_error.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of a compiler error
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          110
+        </td>
+        <td>
+          <a href="compile_error.html"
+          >...inside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          83
+        </td>
+        <td>
+          <a href="non_compile_error.html"
+          >...outside their configure script</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of a linker error
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          87
+        </td>
+        <td>
+          <a href="link_error.html"
+          >...inside their configure scripts</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          18
+        </td>
+        <td>
+          <a href="non_link_error.html"
+          >...outside their configure scripts</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <th colspan="2">
+          Builds that fail because of an undefined reference
+        </th>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          16
+        </td>
+        <td>
+          <a href="undefined_reference.html"
+          >...during compilation</a>
+        </td>
+        
+      </tr>
+      
+      <tr>
+        
+        <td>
+          51
+        </td>
+        <td>
+          <a href="unknown_fail.html"
+          >failed for some unknown reason</a>
+        </td>
+        
+      </tr>
+      
+    </table>
+
+    <table style="display: inline-table;">
+
+      <tr><th colspan="2">
+          Additional information about this page</th></tr>
+      
+      <tr>
+        <td>
+          header
+        </td>
+        <td>
+          <ul class="column-list">
+          
+          <li>18&#215; gnu/stubs-32.h</li>
+          
+          <li>11&#215; iconv.h</li>
+          
+          <li>10&#215; gmp.h</li>
+          
+          <li>9&#215; sys/fcntl.h</li>
+          
+          <li>8&#215; curses.h</li>
+          
+          <li>6&#215; libintl.h</li>
+          
+          <li>6&#215; gpm.h</li>
+          
+          <li>5&#215; ogg/ogg.h</li>
+          
+          <li>5&#215; glob.h</li>
+          
+          <li>5&#215; gnutls/gnutls.h</li>
+          
+          <li>4&#215; pcre.h</li>
+          
+          <li>4&#215; curl/curl.h</li>
+          
+          <li>3&#215; sys/timeb.h</li>
+          
+          <li>3&#215; openssl/sha.h</li>
+          
+          <li>3&#215; scsi/sg.h</li>
+          
+          <li>3&#215; bzlib.h</li>
+          
+          <li>3&#215; scsi/scsi.h</li>
+          
+          <li>3&#215; png.h</li>
+          
+          <li>3&#215; sndfile.h</li>
+          
+          <li>3&#215; gcrypt.h</li>
+          
+          <li>3&#215; arpa/tftp.h</li>
+          
+          <li>3&#215; sqlite3.h</li>
+          
+          <li>3&#215; ncurses.h</li>
+          
+          <li>2&#215; readline/readline.h</li>
+          
+          <li>2&#215; langinfo.h</li>
+          
+          <li>2&#215; tar.h</li>
+          
+          <li>2&#215; alsa/asoundlib.h</li>
+          
+          <li>2&#215; io.h</li>
+          
+          <li>2&#215; popt.h</li>
+          
+          <li>2&#215; argp.h</li>
+          
+          <li>2&#215; X11/Xfuncproto.h</li>
+          
+          <li>2&#215; pciaccess.h</li>
+          
+          <li>2&#215; sys/soundcard.h</li>
+          
+          <li>2&#215; stdio_ext.h</li>
+          
+          <li>2&#215; gpgme.h</li>
+          
+          <li>2&#215; atomic_ops.h</li>
+          
+          <li>2&#215; X11/Xdefs.h</li>
+          
+          <li>2&#215; netinet/igmp.h</li>
+          
+          <li>2&#215; systemd/sd-journal.h</li>
+          
+          <li>2&#215; sys/syslog.h</li>
+          
+          <li>1&#215; libdaemon/dlog.h</li>
+          
+          <li>1&#215; sys/timepps.h</li>
+          
+          <li>1&#215; sys/io.h</li>
+          
+          <li>1&#215; openssl/aes.h</li>
+          
+          <li>1&#215; sysexits.h</li>
+          
+          <li>1&#215; curl/multi.h</li>
+          
+          <li>1&#215; asm/io.h</li>
+          
+          <li>1&#215; neteconet/ec.h</li>
+          
+          <li>1&#215; timepps.h</li>
+          
+          <li>1&#215; rpc/types.h</li>
+          
+          <li>1&#215; nl_types.h</li>
+          
+          <li>1&#215; editline/readline.h</li>
+          
+          <li>1&#215; FLAC/stream_decoder.h</li>
+          
+          <li>1&#215; idna.h</li>
+          
+          <li>1&#215; gpg-error.h</li>
+          
+          <li>1&#215; tiffio.h</li>
+          
+          <li>1&#215; cpu-features.h</li>
+          
+          <li>1&#215; openssl/x509.h</li>
+          
+          <li>1&#215; shadow.h</li>
+          
+          <li>1&#215; fpu_control.h</li>
+          
+          <li>1&#215; sys/procfs.h</li>
+          
+          <li>1&#215; efivar-guids.h</li>
+          
+          <li>1&#215; openssl/evp.h</li>
+          
+          <li>1&#215; nss.h</li>
+          
+          <li>1&#215; libtasn1.h</li>
+          
+          <li>1&#215; openssl/crypto.h</li>
+          
+          <li>1&#215; wait.h</li>
+          
+          <li>1&#215; tomcrypt.h</li>
+          
+          <ul>
+        </td>
+      </tr>
+      
+
+    </table>
+
+    <table style="margin-bottom: 40px;">
+      <tr><th colspan="2">Key</th></tr>
+      <tr>
+        <td class="yes">y</td>
+        <td>Success</td>
+      </tr>
+      <tr>
+        <td class="no">n</td>
+        <td>Failure</td>
+      </tr>
+      <tr>
+        <td class="maybe">m</td>
+        <td>Don't know / not implemented</td>
+      </tr>
+      <tr>
+        <td>BoV</td>
+        <td>Successfully built with vanilla toolchain (for control)</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>BoV</th>
+        <th>Built</th>
+        <th>Time</th>
+        <th>Build name</th>
+        <th>Identified Errors</th>
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:55
+        </td>
+
+        <td>
+          <a href="quota-tools/index.html">
+            quota-tools
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:51
+        </td>
+
+        <td>
+          <a href="python-systemd/index.html">
+            python-systemd
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:15
+        </td>
+
+        <td>
+          <a href="recoverdm/index.html">
+            recoverdm
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:33
+        </td>
+
+        <td>
+          <a href="liboping/index.html">
+            liboping
+          </a>
+        </td>
+
+        <td>
+          
+          command_not_found (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:39
+        </td>
+
+        <td>
+          <a href="dvtm/index.html">
+            dvtm
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:51
+        </td>
+
+        <td>
+          <a href="igmpproxy/index.html">
+            igmpproxy
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:31
+        </td>
+
+        <td>
+          <a href="twolame/index.html">
+            twolame
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:04
+        </td>
+
+        <td>
+          <a href="xml2/index.html">
+            xml2
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:34
+        </td>
+
+        <td>
+          <a href="dfu-util/index.html">
+            dfu-util
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:51
+        </td>
+
+        <td>
+          <a href="python-systemd/index.html">
+            python-systemd
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:15:25
+        </td>
+
+        <td>
+          <a href="libxslt/index.html">
+            libxslt
+          </a>
+        </td>
+
+        <td>
+          
+          install_error (&#215;3);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:32
+        </td>
+
+        <td>
+          <a href="iptraf-ng/index.html">
+            iptraf-ng
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:06:43
+        </td>
+
+        <td>
+          <a href="liboggz/index.html">
+            liboggz
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:36
+        </td>
+
+        <td>
+          <a href="gdome2/index.html">
+            gdome2
+          </a>
+        </td>
+
+        <td>
+          
+          link_error (&#215;1);
+          
+          unparseable_config (&#215;1);
+          
+          missing_header (&#215;2);
+          
+          compile_error (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:59
+        </td>
+
+        <td>
+          <a href="fonteditfs/index.html">
+            fonteditfs
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:41
+        </td>
+
+        <td>
+          <a href="watchdog/index.html">
+            watchdog
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:47
+        </td>
+
+        <td>
+          <a href="libbsd/index.html">
+            libbsd
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:09
+        </td>
+
+        <td>
+          <a href="fb-client/index.html">
+            fb-client
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:52
+        </td>
+
+        <td>
+          <a href="python-pycurl/index.html">
+            python-pycurl
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:45
+        </td>
+
+        <td>
+          <a href="python-apsw/index.html">
+            python-apsw
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:07:08
+        </td>
+
+        <td>
+          <a href="yaz/index.html">
+            yaz
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          03:23:25
+        </td>
+
+        <td>
+          <a href="gap/index.html">
+            gap
+          </a>
+        </td>
+
+        <td>
+          
+          configure_ignores_path (&#215;2);
+          
+          assembler_error (&#215;1);
+          
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:13
+        </td>
+
+        <td>
+          <a href="libsmf/index.html">
+            libsmf
+          </a>
+        </td>
+
+        <td>
+          
+          link_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:51
+        </td>
+
+        <td>
+          <a href="net6/index.html">
+            net6
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:44
+        </td>
+
+        <td>
+          <a href="sg3_utils/index.html">
+            sg3_utils
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:57
+        </td>
+
+        <td>
+          <a href="libdca/index.html">
+            libdca
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:16:43
+        </td>
+
+        <td>
+          <a href="android-tools/index.html">
+            android-tools
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;9);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:13
+        </td>
+
+        <td>
+          <a href="gc/index.html">
+            gc
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:45
+        </td>
+
+        <td>
+          <a href="isapnptools/index.html">
+            isapnptools
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:52
+        </td>
+
+        <td>
+          <a href="speedtouch/index.html">
+            speedtouch
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:28
+        </td>
+
+        <td>
+          <a href="glyr/index.html">
+            glyr
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:00
+        </td>
+
+        <td>
+          <a href="hashcash/index.html">
+            hashcash
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:06:09
+        </td>
+
+        <td>
+          <a href="siege/index.html">
+            siege
+          </a>
+        </td>
+
+        <td>
+          
+          native_tool_invocation (&#215;6);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:05
+        </td>
+
+        <td>
+          <a href="iperf3/index.html">
+            iperf3
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:09:59
+        </td>
+
+        <td>
+          <a href="pam/index.html">
+            pam
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:25
+        </td>
+
+        <td>
+          <a href="mpop/index.html">
+            mpop
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:46
+        </td>
+
+        <td>
+          <a href="libtar/index.html">
+            libtar
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:41
+        </td>
+
+        <td>
+          <a href="chrony/index.html">
+            chrony
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;8);
+          
+          undefined_reference (&#215;8);
+          
+          unparseable_config (&#215;1);
+          
+          compile_error (&#215;1);
+          
+          link_error (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:57
+        </td>
+
+        <td>
+          <a href="xdg-user-dirs/index.html">
+            xdg-user-dirs
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:41
+        </td>
+
+        <td>
+          <a href="librelp/index.html">
+            librelp
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          03:23:25
+        </td>
+
+        <td>
+          <a href="gap/index.html">
+            gap
+          </a>
+        </td>
+
+        <td>
+          
+          configure_ignores_path (&#215;2);
+          
+          assembler_error (&#215;1);
+          
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:04
+        </td>
+
+        <td>
+          <a href="whois/index.html">
+            whois
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:50
+        </td>
+
+        <td>
+          <a href="libotr/index.html">
+            libotr
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:07
+        </td>
+
+        <td>
+          <a href="sdparm/index.html">
+            sdparm
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:32
+        </td>
+
+        <td>
+          <a href="hd-idle/index.html">
+            hd-idle
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:05:54
+        </td>
+
+        <td>
+          <a href="p11-kit/index.html">
+            p11-kit
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:03
+        </td>
+
+        <td>
+          <a href="nss-mdns/index.html">
+            nss-mdns
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:03
+        </td>
+
+        <td>
+          <a href="gts/index.html">
+            gts
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:51
+        </td>
+
+        <td>
+          <a href="dos2unix/index.html">
+            dos2unix
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:08:24
+        </td>
+
+        <td>
+          <a href="cryptominisat/index.html">
+            cryptominisat
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:25
+        </td>
+
+        <td>
+          <a href="drbd-utils/index.html">
+            drbd-utils
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:20
+        </td>
+
+        <td>
+          <a href="pbzip2/index.html">
+            pbzip2
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:46
+        </td>
+
+        <td>
+          <a href="python-pygpgme/index.html">
+            python-pygpgme
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:01
+        </td>
+
+        <td>
+          <a href="tftp-hpa/index.html">
+            tftp-hpa
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;3);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:12
+        </td>
+
+        <td>
+          <a href="pyogg/index.html">
+            pyogg
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:18
+        </td>
+
+        <td>
+          <a href="celt/index.html">
+            celt
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:31
+        </td>
+
+        <td>
+          <a href="silly/index.html">
+            silly
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:55
+        </td>
+
+        <td>
+          <a href="libxau/index.html">
+            libxau
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:07
+        </td>
+
+        <td>
+          <a href="whitedb/index.html">
+            whitedb
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:38
+        </td>
+
+        <td>
+          <a href="ifplugd/index.html">
+            ifplugd
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:06
+        </td>
+
+        <td>
+          <a href="cpulimit/index.html">
+            cpulimit
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:38:24
+        </td>
+
+        <td>
+          <a href="swig/index.html">
+            swig
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:05
+        </td>
+
+        <td>
+          <a href="tetrinet/index.html">
+            tetrinet
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:12
+        </td>
+
+        <td>
+          <a href="rng-tools/index.html">
+            rng-tools
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:42
+        </td>
+
+        <td>
+          <a href="fbgrab/index.html">
+            fbgrab
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:34
+        </td>
+
+        <td>
+          <a href="incron/index.html">
+            incron
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:07:17
+        </td>
+
+        <td>
+          <a href="openjpeg2/index.html">
+            openjpeg2
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:51
+        </td>
+
+        <td>
+          <a href="hdparm/index.html">
+            hdparm
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:54
+        </td>
+
+        <td>
+          <a href="isomd5sum/index.html">
+            isomd5sum
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:45
+        </td>
+
+        <td>
+          <a href="efivar/index.html">
+            efivar
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:44
+        </td>
+
+        <td>
+          <a href="nrpe/index.html">
+            nrpe
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;5);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:51
+        </td>
+
+        <td>
+          <a href="libclastfm/index.html">
+            libclastfm
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:46
+        </td>
+
+        <td>
+          <a href="libfaketime/index.html">
+            libfaketime
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:48
+        </td>
+
+        <td>
+          <a href="libx86/index.html">
+            libx86
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:52
+        </td>
+
+        <td>
+          <a href="python-pycurl/index.html">
+            python-pycurl
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:59
+        </td>
+
+        <td>
+          <a href="ssmtp/index.html">
+            ssmtp
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:05:51
+        </td>
+
+        <td>
+          <a href="gpm/index.html">
+            gpm
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;13);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:09
+        </td>
+
+        <td>
+          <a href="libgig/index.html">
+            libgig
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:50
+        </td>
+
+        <td>
+          <a href="libsynaptics/index.html">
+            libsynaptics
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:56
+        </td>
+
+        <td>
+          <a href="procinfo-ng/index.html">
+            procinfo-ng
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:19
+        </td>
+
+        <td>
+          <a href="libvorbis/index.html">
+            libvorbis
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:07:41
+        </td>
+
+        <td>
+          <a href="gloox/index.html">
+            gloox
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          03:23:25
+        </td>
+
+        <td>
+          <a href="gap/index.html">
+            gap
+          </a>
+        </td>
+
+        <td>
+          
+          configure_ignores_path (&#215;2);
+          
+          assembler_error (&#215;1);
+          
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:54
+        </td>
+
+        <td>
+          <a href="wildmidi/index.html">
+            wildmidi
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:30
+        </td>
+
+        <td>
+          <a href="python-gmpy2/index.html">
+            python-gmpy2
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:26:53
+        </td>
+
+        <td>
+          <a href="opencollada/index.html">
+            opencollada
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:19
+        </td>
+
+        <td>
+          <a href="idle3-tools/index.html">
+            idle3-tools
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:50
+        </td>
+
+        <td>
+          <a href="bsdiff/index.html">
+            bsdiff
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:59
+        </td>
+
+        <td>
+          <a href="mcelog/index.html">
+            mcelog
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:26
+        </td>
+
+        <td>
+          <a href="zita-alsa-pcmi/index.html">
+            zita-alsa-pcmi
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:22
+        </td>
+
+        <td>
+          <a href="sbc/index.html">
+            sbc
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:46
+        </td>
+
+        <td>
+          <a href="python-pygpgme/index.html">
+            python-pygpgme
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:11:47
+        </td>
+
+        <td>
+          <a href="slang/index.html">
+            slang
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:08
+        </td>
+
+        <td>
+          <a href="openmp/index.html">
+            openmp
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:32
+        </td>
+
+        <td>
+          <a href="progress/index.html">
+            progress
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:45
+        </td>
+
+        <td>
+          <a href="python-apsw/index.html">
+            python-apsw
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:26
+        </td>
+
+        <td>
+          <a href="libzen/index.html">
+            libzen
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:40
+        </td>
+
+        <td>
+          <a href="liblqr/index.html">
+            liblqr
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:54
+        </td>
+
+        <td>
+          <a href="desktop-file-utils/index.html">
+            desktop-file-utils
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:08
+        </td>
+
+        <td>
+          <a href="mktorrent/index.html">
+            mktorrent
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:51
+        </td>
+
+        <td>
+          <a href="fbdump/index.html">
+            fbdump
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:12
+        </td>
+
+        <td>
+          <a href="pixman/index.html">
+            pixman
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:07:34
+        </td>
+
+        <td>
+          <a href="libgcrypt/index.html">
+            libgcrypt
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          03:23:25
+        </td>
+
+        <td>
+          <a href="gap/index.html">
+            gap
+          </a>
+        </td>
+
+        <td>
+          
+          configure_ignores_path (&#215;2);
+          
+          assembler_error (&#215;1);
+          
+          compile_error (&#215;2);
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:30
+        </td>
+
+        <td>
+          <a href="radeontool/index.html">
+            radeontool
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:08:08
+        </td>
+
+        <td>
+          <a href="kyotocabinet/index.html">
+            kyotocabinet
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:49
+        </td>
+
+        <td>
+          <a href="scrypt/index.html">
+            scrypt
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:54
+        </td>
+
+        <td>
+          <a href="isomd5sum/index.html">
+            isomd5sum
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:49
+        </td>
+
+        <td>
+          <a href="net-tools/index.html">
+            net-tools
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:30
+        </td>
+
+        <td>
+          <a href="cscope/index.html">
+            cscope
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:40
+        </td>
+
+        <td>
+          <a href="hexer/index.html">
+            hexer
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:30
+        </td>
+
+        <td>
+          <a href="python-gmpy2/index.html">
+            python-gmpy2
+          </a>
+        </td>
+
+        <td>
+          
+          compile_error (&#215;1);
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:18
+        </td>
+
+        <td>
+          <a href="libcap-ng/index.html">
+            libcap-ng
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:15
+        </td>
+
+        <td>
+          <a href="libaacs/index.html">
+            libaacs
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:26
+        </td>
+
+        <td>
+          <a href="gob2/index.html">
+            gob2
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;2);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:06:25
+        </td>
+
+        <td>
+          <a href="libsndfile/index.html">
+            libsndfile
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:01:57
+        </td>
+
+        <td>
+          <a href="acpid/index.html">
+            acpid
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:02:28
+        </td>
+
+        <td>
+          <a href="vamp-plugin-sdk/index.html">
+            vamp-plugin-sdk
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:00:54
+        </td>
+
+        <td>
+          <a href="dosfstools/index.html">
+            dosfstools
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:03:55
+        </td>
+
+        <td>
+          <a href="libhangul/index.html">
+            libhangul
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+      <tr>
+        <td class=
+        
+          "yes">y
+        
+        </td>
+        <td class=
+        
+          "no">n
+        
+        </td>
+
+        <td>
+          00:04:05
+        </td>
+
+        <td>
+          <a href="pkcs11-helper/index.html">
+            pkcs11-helper
+          </a>
+        </td>
+
+        <td>
+          
+          missing_header (&#215;1);
+          
+        </td>
+
+      </tr>
+      
+    </table>
+  </body>
+</html>
