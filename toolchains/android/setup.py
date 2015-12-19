@@ -18,7 +18,7 @@
 # Arch Linux container for building all dependencies of all Arch Linux
 # packages.
 
-from utilities import log, timestamp
+from utilities import log, timestamp, run_cmd
 
 from os import chdir, listdir, stat, chmod
 from os.path import join
@@ -27,37 +27,8 @@ from stat import S_IXUSR, S_IXGRP, S_IXOTH
 from subprocess import run, STDOUT, PIPE, DEVNULL
 
 
-def run_cmd(cmd, as_root=False, output=True):
-    time = timestamp()
-
-    if output:
-        cmd_out=PIPE
-    else:
-        cmd_out=DEVNULL
-
-    if not as_root:
-        cmd = "sudo -u tuscan " + cmd
-
-    cp = run(cmd.split(), stdout=cmd_out, stderr=STDOUT,
-             universal_newlines=True)
-
-    if output:
-        lines = cp.stdout.splitlines()
-    else:
-        lines = []
-
-    if cp.returncode:
-        log("die", cmd, lines, time)
-        exit(1)
-    else:
-        log("command", cmd, lines, time)
-
-
 def toolchain_specific_setup(args):
     log("info", "Running android-specific setup")
-
-    cmd = "useradd -m -s /bin/bash tuscan"
-    run_cmd(cmd, as_root=True)
 
     cmd = "pacman -S --noconfirm wget sudo"
     run_cmd(cmd, as_root=True)
@@ -70,12 +41,6 @@ def toolchain_specific_setup(args):
     with open("/etc/.curlrc", "a") as f:
         print("silent", file=f)
         print("show-error", file=f)
-
-    # User `tuscan' needs to be able to use sudo without being harassed
-    # for passwords) and so does root (to su into tuscan)
-    with open("/etc/sudoers", "a") as f:
-        print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
-        print("root ALL=(ALL) NOPASSWD: ALL", file=f)
 
     log("info", "Downloading & unpacking NDK")
     chdir("/home/tuscan")
@@ -94,7 +59,6 @@ def toolchain_specific_setup(args):
 
     log("info", "Setting up toolchain")
 
-    chown("/toolchain_root", "tuscan")
     cmd = ("/home/tuscan/android-ndk-r10e/build/tools/"
            "make-standalone-toolchain.sh"
            " --arch=arm --platform=android-21 "
