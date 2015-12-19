@@ -39,6 +39,32 @@ from textwrap import dedent
 from time import sleep
 
 
+def run_cmd(cmd, as_root=False, output=True):
+    time = timestamp()
+
+    if output:
+        cmd_out=PIPE
+    else:
+        cmd_out=DEVNULL
+
+    if not as_root:
+        cmd = "sudo -u tuscan " + cmd
+
+    cp = run(cmd.split(), stdout=cmd_out, stderr=STDOUT,
+             universal_newlines=True)
+
+    if output:
+        lines = cp.stdout.splitlines()
+    else:
+        lines = []
+
+    if cp.returncode:
+        log("die", cmd, lines, time)
+        exit(1)
+    else:
+        log("command", cmd, lines, time)
+
+
 def interpret_bash_array(pkgbuild, array_name):
     """Return the Bash array array_name in the file at path pkgbuild.
 

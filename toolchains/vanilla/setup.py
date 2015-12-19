@@ -33,17 +33,3 @@ def toolchain_specific_setup(args):
     with open("/etc/.curlrc", "a") as f:
         print("silent", file=f)
         print("show-error", file=f)
-
-    # User `tuscan' needs to be able to use sudo without being harassed
-    # for passwords) and so does root (to su into tuscan)
-    with open("/etc/sudoers", "a") as f:
-        print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
-        print("root ALL=(ALL) NOPASSWD: ALL", file=f)
-
-    cmd = "useradd -m -s /bin/bash tuscan"
-    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-            universal_newlines=True)
-
-    log("command", cmd, cp.stdout.splitlines())
-    if cp.returncode:
-        exit(1)
