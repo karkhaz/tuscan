@@ -28,7 +28,7 @@ def package_file(pack_name):
     cp = run(["pacman", "--query", pack_name],
              universal_newlines=True, stdout=PIPE, stderr=STDOUT)
     if cp.returncode:
-        print("Call to pacman -Q failed for package " + pack_name,
+        print("Call to pacman -Q failed for package %s" % pack_name,
               file=stderr)
         exit(1)
 
@@ -36,13 +36,13 @@ def package_file(pack_name):
     assert(name == pack_name)
 
     for arch in ["any", "x86_64"]:
-        pkg_file = ("/var/cache/pacman/pkg/" + pack_name + "-"
-                    + version + "-" + arch + ".pkg.tar.xz")
+        pkg_file = ("/var/cache/pacman/pkg/%s-%s-%s.pkg.tar.xz"
+                    % (pack_name, version, arch))
         if exists(pkg_file):
             return pkg_file
 
-    print("Could not find file '" + pkg_file + "' for package "
-          + pack_name, file=stderr)
+    print("Could not find file '%s' for package '%s'" %
+          (pkg_file, pack_name), file=stderr)
     run(["ls", "/var/cache/pacman/pkg"], stdout=stderr)
     exit(1)
 
@@ -77,11 +77,11 @@ def main():
                + name_data["break_circular"])
         for pack_name in packs:
             path = package_file(pack_name)
-            dst = out_dir + "/" + pack_name + ".pkg.tar.xz"
+            dst = join(out_dir, pack_name + ".pkg.tar.xz")
             copyfile(path, dst)
-            print(pack_name + ".json")
+            print("%s.json" % pack_name)
             stdout.flush()
-            run(["repo-add", out_dir + "/repo.db.tar", dst],
+            run(["repo-add", join(out_dir, "repo.db.tar"), dst],
                 stdout=DEVNULL, stderr=DEVNULL)
 
 
