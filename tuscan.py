@@ -50,7 +50,7 @@ def substitute_vars(data_structure, args):
         ret = {}
         for k, v in data_structure.items():
             ret[k] = substitute_vars(v, args)
-    else: raise RuntimeError("Impossible type with value " +
+    else: raise RuntimeError("Impossible type with value %s" %
                              str(data_structure))
     return ret
 
@@ -116,16 +116,22 @@ class DataContainers(object):
         else:
             devnull = " 2>/dev/null >/dev/null"
         for container in self.containers:
-            command = ("docker create -v " + container["mountpoint"]
-                       + " --name " + container["name"] +
-                       " base/arch /bin/true" + devnull + " || true"
-                       " && touch ${out}")
+            command = ("docker create "
+                       " -v {mountpoint}"
+                       " --name {name}"
+                       " base/arch /bin/true {devnull} || true"
+                       # ${out} is NOT a format string, it needs to be
+                       # written like this in the ninja file. So escape
+                       # with double-curly brackets.
+                       " && touch ${{out}}").format(
+                             mountpoint=container["mountpoint"],
+                             name=container["name"],
+                             devnull=devnull)
 
-            rule_name = "create_data_container_" + container["name"]
+            rule_name = "create_data_container_%s" % container["name"]
 
             self.ninja.rule(rule_name, command, description=
-                "Building data-only container '" + container["name"]
-                + "'")
+                "Building data-only container '%s'" % container["name"])
 
             self.ninja.build(touch("build", container["name"],
                              self.args), rule_name, self.inputs)
@@ -166,15 +172,15 @@ class Stages(object):
         stages = []
         for sta in listdir("stages"):
             try:
-                with open("stages/" + sta + "/deps.yaml") as f:
+                with open(join("stages", sta, "deps.yaml")) as f:
                     data = load(f)
                     data["name"] = sta
                     stages.append(data)
             except:
                 stderr.write("ERROR: could not find deps file in"
-                             " stages directory " + sta + ".\n"
-                             "Each directory under stages/ should"
-                             " contain a deps.yaml file.\n")
+                             " stages directory %s."
+                             " Each directory under stages/ should"
+                             " contain a deps.yaml file.\n" % sta)
                 exit(1)
 
         self.stages = substitute_vars(stages, self.args)
@@ -199,7 +205,7 @@ class Stages(object):
             for dep in sta["run"]["dependencies"]["stages"]:
                 sta_inputs.append(touch("run", dep, self.args))
 
-            build_context = "container_build_dir/" + sta["name"]
+            build_context = "container_build_dir/%s" % sta["name"]
 
             commands = []
 
@@ -210,30 +216,30 @@ class Stages(object):
 
                 for cont in data_containers_needed_by(sta,
                                 self.data_containers):
-                    main_command += "-v " + cont["mountpoint"]
-                    main_command += " --volumes-from " + cont["name"]
+                    main_command += "-v %s" % cont["mountpoint"]
+                    main_command += " --volumes-from %s" % cont["name"]
                     main_command += " "
 
-                main_command += " -t " + sta["name"]
+                main_command += " -t %s" % sta["name"]
                 main_command += " --output-directory "
                 main_command += self.args.touch_dir
-                main_command += " --toolchain " + self.args.toolchain
+                main_command += " --toolchain %s" % self.args.toolchain
 
                 for cont in data_containers_needed_by(sta,
                                 self.data_containers):
                     if "switch" in cont:
-                        main_command += (" --" + cont["switch"] +
-                                         "-directory "
-                                         + cont["mountpoint"])
+                        main_command += (" --%s-directory %s" %
+                                         (cont["switch"],
+                                          cont["mountpoint"]))
 
-                        main_command += (" --" + cont["switch"] +
-                                         "-volume "
-                                         + cont["name"])
+                        main_command += (" --%s-volume %s" %
+                                         (cont["switch"],
+                                          cont["name"]))
 
             if sta["run"]["stdout"]:
-                main_command += " >" + sta["run"]["stdout"]
+                main_command += " >%s" % sta["run"]["stdout"]
             if sta["run"]["stderr"]:
-                main_command += " 2>" + sta["run"]["stderr"]
+                main_command += " 2>%s" % sta["run"]["stderr"]
 
             commands.append(main_command)
 
@@ -246,10 +252,10 @@ class Stages(object):
 
             command = " && ".join(commands)
 
-            rule_name = "run_stage_" + sta["name"]
+            rule_name = "run_stage_%s" % sta["name"]
 
             self.ninja.rule(rule_name, command, description=
-                "Running stage '" + sta["name"] + "'")
+                "Running stage '%s'" % sta["name"])
 
             self.ninja.build(touch("run", sta["name"], self.args),
                         rule_name, sta_inputs)
@@ -272,30 +278,30 @@ class Stages(object):
             for f in listdir(join("stages", sta["name"])):
                 sta_inputs.append(join("stages", sta["name"], f))
 
-            build_context = "container_build_dir/" + sta["name"]
+            build_context = "container_build_dir/%s" % sta["name"]
 
             commands = []
-            commands.append("mkdir -p " + build_context)
-            commands.append("cp stages/" + sta["name"] + "/* "
-                            + build_context)
+            commands.append("mkdir -p %s" % build_context)
+            commands.append("cp stages/%s/* %s" %
+                            (sta["name"], build_context))
 
             copyfiles = sta["build"]["copy_files"]
-            copyfiles = ["cp " + c + " " + build_context
+            copyfiles = [("cp %s %s" % (c, build_context))
                          for c in copyfiles]
             commands += copyfiles
 
-            docker = ("docker build -t " + sta["name"] + " "
-                      + build_context + quiet)
+            docker = ("docker build -t %s %s%s" %
+                        (sta["name"], build_context, quiet))
 
             commands.append(docker)
             commands.append("touch ${out}")
 
             command = " && ".join(commands)
 
-            rule_name = "build_stage_" + sta["name"]
+            rule_name = "build_stage_%s" % sta["name"]
 
             self.ninja.rule(rule_name, command, description=
-                "Building stage '" + sta["name"] + "'")
+                "Building stage '%s'" % sta["name"])
 
             self.ninja.build(touch("build", sta["name"], self.args),
                         rule_name, sta_inputs)
@@ -311,15 +317,15 @@ class Stages(object):
         for sta in self.stages:
 
             if not "build" in sta:
-                raise RuntimeError(sta["name"] + " has no 'build'"
-                                   " attribute.")
+                raise RuntimeError("%s has no 'build' attribute." %
+                                   sta["name"])
 
             if not "copy_files" in sta["build"]:
                 sta["build"]["copy_files"] = []
 
             if not "run" in sta:
-                raise RuntimeError(sta["name"] + " has no 'run'"
-                                   " attribute.")
+                raise RuntimeError("%s has no 'run' attribute." %
+                                   sta["name"])
 
             if not "dependencies" in sta["run"]:
                 sta["run"]["dependencies"] = {}
@@ -345,27 +351,26 @@ class Stages(object):
             for cf in sta["build"]["copy_files"]:
                 if not isfile(cf):
                     raise RuntimeError(
-                        "Stage " + name + " needs to copy file"
-                        " " + cf + " into its working directory in "
-                        "order to build, but that file doesn't exist.")
+                        "Stage '%s' needs to copy file '%s' into its"
+                        " working directory in order to build, but that"
+                        " file doesn't exist." % (name, cf))
 
             for script in sta["run"]["dependencies"]["stages"]:
                 tmp = [e for e in self.stages if e["name"] == script]
                 if not tmp:
                     raise RuntimeError(
-                        "Stage " + name + " depends on stage "
-                        "'" + sta + "' having run, but that stage"
-                        " doesn't exist.")
+                        "Stage '%s' depends on stage '%s' having run,"
+                        " but that stage doesn't exist." % (name, sta))
 
             for cont in sta["run"]["dependencies"]["data_containers"]:
                 tmp = [d for d in self.data_containers
                          if d["name"] == cont]
                 if not tmp:
                     raise RuntimeError(
-                        "Stage " + name + " depends on data "
-                        "container '" + cont + "' having been built, "
-                        "but that container is not defined in "
-                        "data_containers.yaml")
+                        "Stage '%s' depends on data container '%s'"
+                        " having been built, but that container is not"
+                        " defined in data_containers.yaml" %
+                        (name, cont))
 
 
 def touch(kind, stage_name, args):
@@ -379,7 +384,7 @@ def touch(kind, stage_name, args):
     """
     if not (kind == "build" or kind == "run" or kind == "prereq"): raise
     return join(args.touch_dir, "container_markers",
-                stage_name + "_" + kind)
+                "%s_%s" % (stage_name, kind))
 
 
 def prerequisite_touch_files(ninja, args):
@@ -397,10 +402,14 @@ def prerequisite_touch_files(ninja, args):
     touch_file = touch("prereq", "prereq", args)
     rule_name = "prerequisite"
     wd = getcwd()
-    command = ("docker pull karkhaz/arch-tuscan:latest" + devnull +
-               " && mkdir -p " + args.touch_dir + "container_markers"
-               " && ln -fns " + wd + "/" + args.touch_dir + " " + wd +
-               "/" + dirname(dirname(args.touch_dir)) + "/latest")
+    command = ("docker pull karkhaz/arch-tuscan:latest {devnull}"
+               " && mkdir -p {mkdir_dst}"
+               " && ln -fns {ln_dir_src} {ln_dir_dst}").format(
+                    devnull=devnull,
+                    mkdir_dst=join(args.touch_dir, container_markers)
+                    ln_dir_src=join(wd, args.touch_dir),
+                    ln_dir_dst=join(
+                        wd,dirname(dirname(args.touch_dir)), "latest"))
 
     ninja.rule(rule_name, command, description=
         "Performing prerequisite tasks")

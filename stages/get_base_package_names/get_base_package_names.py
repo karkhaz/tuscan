@@ -50,7 +50,7 @@ def package_list(group):
     ret = run(["pacman", "--query", "--groups", group],
               stdout=PIPE, universal_newlines=True)
     if ret.returncode:
-        print("Pacman failed to query group " + group, file=stderr)
+        print("Pacman failed to query group %s" % group, file=stderr)
         exit(1)
 
     lst = []
@@ -58,7 +58,7 @@ def package_list(group):
     for line in ret.stdout.splitlines():
         pair = line.split(" ")
         if not len(pair) == 2:
-            print("Bad output from pacman: " + line, file=stderr)
+            print("Bad output from pacman: %s" % line, file=stderr)
             exit(1)
         lst.append(pair[1])
 
@@ -66,9 +66,9 @@ def package_list(group):
 
 
 def format_as_python(package_list, name):
-    ret = name + " = ["
+    ret = "%s = [" % name
     for pack in package_list:
-        ret += "\"" + pack + "\", "
+        ret += "\"%s\", " % pack
     return ret + "]"
 
 

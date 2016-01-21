@@ -24,18 +24,30 @@ from time import gmtime, mktime
 
 
 def run_container(args):
-    stderr.write("Running container for " + args.target_package)
+    stderr.write("Running container for %s",  args.target_package)
     start_time = mktime(gmtime())
-    command = ("docker run -v " + args.shared_directory
-               + " --volumes-from " + args.data_volume
-               + " -v " + args.sources_directory
-               + " --volumes-from " + args.sources_volume
-               + " -v /var/cache/pacman/pkg"
-               + " --volumes-from " + args.pkg_cache_volume
-               + " -v logs:/logs make_package"
-               + " --sources-directory " + args.sources_directory
-               + " --shared-directory "  + args.shared_directory
-               + " " + args.target_package)
+    command = ("docker run"
+
+               # Arguments to docker:
+               " -v {shared_directory}"
+               " --volumes-from {shared_volume}"
+               " -v {sources_directory}"
+               " --volumes-from {sources_volume}"
+               " -v {/var/cache/pacman/pkg}"
+               " --volumes-from {pkg_cache_volume}"
+               " -v logs:/logs"
+               " make_package"
+
+               # Arguments to the make_package stage inside container:
+               " --sources-directory {sources_directory}"
+               " --shared-directory {shared_directory}"
+               " {target_package}"
+
+               ).format(shared_directory=args.shared_directory,
+                        shared_volume=args.shared_volume,
+                        sources_directory=args.sources_directory,
+                        sources_volume=args.sources_volume)
+
     p = Popen(command.split(), universal_newlines=True, stdout=PIPE,
               stderr=STDOUT)
     out, _ = p.communicate()

@@ -25,7 +25,7 @@ function might be passed by the build environment.
 """
 
 from argparse import ArgumentParser
-from os.path import basename, splitext, lexists
+from os.path import basename, splitext, lexists, join
 from os import makedirs, remove, symlink
 from datetime import datetime
 from sys import stderr
@@ -52,17 +52,17 @@ class OutputDirectory():
                   called 'shared_directory'.
         """
         top_level = splitext(basename(filename))[0]
-        self.top_level = args.shared_directory + "/" + top_level
+        self.top_level = join(args.shared_directory, top_level)
 
         timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        self.path = self.top_level + "/" + timestamp
+        self.path = join(self.top_level, timestamp)
 
     def __enter__(self):
         makedirs(self.path, exist_ok=True)
         return self.path
 
     def __exit__(self, type, value, traceback):
-        latest = self.top_level + "/latest"
+        latest = join(self.top_level, "latest")
         if lexists(latest):
             remove(latest)
         symlink(self.path, latest)

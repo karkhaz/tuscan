@@ -162,14 +162,14 @@ def pkgnames_of(pkgbuild, name_data, provides):
         try:
             proc.wait(5)
         except TimeoutExpired:
-            print(pkgbuild + " took too long to source",
+            print("%s took too long to source" % pkgbuild,
                   file=stderr)
             exit(1)
         names = [p.decode().strip() for p in list(proc.stdout)
                  if p.decode().strip()]
 
         if len(names) == 0:
-            print(pkgbuild + " has no pkgname",
+            print("%s has no pkgname" % pkgbuild,
                   file=stderr)
             exit(1)
 
@@ -227,7 +227,7 @@ def makedepends_of(pkgbuild, name_data, provides):
         try:
             proc.wait(5)
         except TimeoutExpired:
-            print(pkgbuild + " took too long to source",
+            print("%s took too long to source" % pkgbuild,
                   file=stderr)
             exit(1)
 
@@ -239,7 +239,7 @@ def makedepends_of(pkgbuild, name_data, provides):
 
         depends = [canonicalize_pkgname(d, provides) for d in depends]
 
-        depends = [d + ".json" for d in depends]
+        depends = [("%.json" % d) for d in depends]
 
         return depends
 
@@ -252,11 +252,11 @@ def ninja_builds_for(abs_dir, name_data, args,
         abs_dir: Path to an ABS build directory (e.g.
         "/var/abs/core/glibc").
     """
-    pkgbuild = abs_dir + "/PKGBUILD"
+    pkgbuild = "%s/PKGBUILD" % abs_dir
     target_packages = pkgnames_of(pkgbuild, name_data, provides)
     if not target_packages: return
 
-    target_packages = [n + ".json" for n in target_packages]
+    target_packages = [("%s.json" % n) for n in target_packages]
 
     depends = makedepends_of(pkgbuild, name_data, provides)
 
@@ -268,7 +268,7 @@ def ninja_builds_for(abs_dir, name_data, args,
     build(target_packages, "makepkg", build_name, args, global_builds)
     build(build_name, "phony", depends, args, global_builds)
 
-    global_deps.append(build_name + " " + " ".join(depends))
+    global_deps.append("%s %s" % (build_name, " ".join(depends)))
 
 
 def build(outputs, rule, inputs, args, build_list):
@@ -293,7 +293,7 @@ def build(outputs, rule, inputs, args, build_list):
     elif rule == "phony":
         build_list.append((outputs, rule, prefixed_inputs))
     else:
-        raise("Impossible rule '" + rule + "'")
+        raise("Impossible rule '%s'" % rule )
 
 
 def main():
@@ -328,16 +328,24 @@ def main():
 
     ninja  = Writer(stdout, 72)
 
-    ninja.rule("makepkg", "./package_build_wrapper.py"
-         + " --shared-directory " + args.shared_directory
-         + " --shared-volume " + args.shared_volume
-         + " --sources-directory " + args.sources_directory
-         + " --sources-volume " + args.sources_volume
-         + " --pkg-cache-volume " + args.pkg_cache_volume
-         + " --output-directory " + args.output_directory
-         + " --target-package ${in}"
-         + " ${out}"
-    )
+    ninja.rule("makepkg", (
+               "./package_build_wrapper.py"
+               " --shared-directory {shared_directory}"
+               " --shared-volume {shared_volume}"
+               " --sources-directory {sources_directory}"
+               " --sources-volume {sources_volume}"
+               " --pkg-cache-volume {pkg_cache_volume}"
+               " --output-directory {output_directory}"
+               # ${in} and ${out} are NOT format strings, they need
+               # to be written out like this to the ninja file. So
+               # escape by using double-curly brackets
+               " --target-package ${{in}} ${{out}}"
+               ).format(shared_directory=args.shared_directory,
+                   shared_volume=args.shared_volume,
+                   sources_directory=args.sources_directory,
+                   sources_volume=args.sources_volume,
+                   pkg_cache_volume=args.pkg_cache_volume,
+                   output_directory=args.output_directory))
 
     for outs, rule, ins in global_builds:
         ninja.build(outs, rule, ins)
