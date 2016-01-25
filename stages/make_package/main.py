@@ -17,6 +17,7 @@
 
 from utilities import get_argparser, log, create_package, timestamp
 from utilities import toolchain_repo_name, add_package_to_toolchain_repo
+from utilities import strip_version_info, interpret_bash_array
 
 from datetime import datetime
 from enum import Enum
@@ -352,6 +353,27 @@ def create_hybrid_packages(args):
     return hybrid_package_paths
 
 
+def dump_build_information(args):
+    """Log the packages provided by this build
+
+    This function logs all packages that will be built if this build
+    succeeds. This includes 'virtual' packages, i.e. packages like 'sh'
+    that don't really exist but are provided by 'bash'.
+
+    This is so that if this build fails, any build that depends on a
+    package provided by this build knows who to blame when it can't
+    install its dependencies.
+    """
+    pkgbuild = join(args.abs_dir, "PKGBUILD")
+    provides = []
+    provides += [strip_version_info(name)
+        for name in interpret_bash_array(pkgbuild, "pkgname")]
+    provides += [strip_version_info(name)
+        for name in interpret_bash_array(pkgbuild, "provides")]
+
+    log("provide_info", None, output=provides)
+
+
 def main():
     parser = get_argparser()
     parser.add_argument("--abs-dir", dest="abs_dir", required=True)
@@ -364,6 +386,9 @@ def main():
     args.build_dir = join("/tmp", pkg_dir)
 
     sanity_checks(args)
+
+    dump_build_information(args)
+
     initialize_repositories(args)
 
     result = copy_and_build(args)
