@@ -32,9 +32,57 @@ from json import dumps
 from random import random, seed
 from re import search
 from shutil import move
-from subprocess import run, PIPE, Popen, STDOUT
+from subprocess import run, PIPE, Popen, STDOUT, TimeoutExpired
 from sys import stderr
+from tempfile import NamedTemporaryFile as tempfile
+from textwrap import dedent
 from time import sleep
+
+
+def interpret_bash_array(pkgbuild, array_name):
+    """Return the Bash array array_name in the file at path pkgbuild.
+
+    Returns:
+        A list of strings, or an empty string if the array is not
+        defined in the PKGBUILD, or None if there was a problem
+        interpreting the PKGBUILD.
+    """
+    cmd = dedent("""\
+                 #!/bin/bash
+                 . %s
+                 for foo in ${%s[@]}; do
+                    echo ${foo};
+                 done;
+                 """ % (pkgbuild, array_name))
+    with tempfile(mode="w") as temp:
+        temp.write(cmd)
+        temp.flush()
+        try:
+            cp = run(["/bin/bash", temp.name], stdout=PIPE,
+                     universal_newlines=True, timeout=20)
+        except TimeoutExpired:
+            print("Unable to interpret array %s in file %s" %
+                  (array_name, pkgbuild), file=stderr)
+            exit(1)
+
+    if not cp.stdout:
+        return []
+    else:
+        return [line for line in cp.stdout.splitlines() if line]
+
+
+def strip_version_info(package_name):
+    """Return package_name without version numbers.
+
+    Some packages specified as dependencies have a version number, e.g.
+    gcc>=5.1. We shouldn't care about this, we always sync to an
+    up-to-date mirror before building packages, so strip this info.
+    """
+    for pat in [r">=", r"<=", r"=", r"<", r">"]:
+        depth = search(pat, package_name)
+        if depth:
+            package_name = package_name[:depth.start()]
+    return package_name
 
 
 def timestamp():
@@ -42,7 +90,7 @@ def timestamp():
 
 
 def log(kind, string, output=[], start_time=None):
-    if kind not in ["command", "info", "die"]:
+    if kind not in ["command", "info", "die", "provide_info"]:
         raise RuntimeError("Bad kind: %s" % kind)
 
     if not start_time:
