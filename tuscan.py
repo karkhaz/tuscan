@@ -256,10 +256,10 @@ class Stages(object):
                 self.ninja.build("build", "phony",
                                  touch("run", sta["name"], self.args))
                 self.ninja.rule(rule_name, command, description=
-                    "Running stage '%s'", pool="console")
+                    "Running stage '%s'" % sta["name"], pool="console")
             else:
                 self.ninja.rule(rule_name, command, description=
-                    "Running stage '%s'")
+                    "Running stage '%s'" % sta["name"])
 
             self.ninja.build(touch("run", sta["name"], self.args),
                              rule_name, sta_inputs)
