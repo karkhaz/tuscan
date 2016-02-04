@@ -56,6 +56,15 @@ The names of toolchains are subdirectories of `toolchains/`. Currently,
 the only toolchain is `vanilla`, which builds Arch Linux packages using
 the default compiler and standard libraries.
 
+Post-processing the data from a build:
+
+    ./tuscan.py post
+
+The resulting JSON files are dumped in the `post/TOOLCHAIN` directory,
+one file per package. The schema for the resulting JSON file is
+described by the `post_processed_schema` structure in
+`tuscan/schemata.py`.
+
 
 Structure / Contributing
 ------------------------
