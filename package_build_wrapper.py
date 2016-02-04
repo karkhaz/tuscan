@@ -124,6 +124,7 @@ def run_container(args):
     json_result["time"] = int(mktime(gmtime()) - start_time)
     json_result["toolchain"] = args.toolchain
     json_result["errors"] = errors
+    json_result["bootstrap"] = False
 
     for touch_file in args.output_packages:
         with open(touch_file, "w") as f:
