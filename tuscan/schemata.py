@@ -19,6 +19,7 @@
 from datetime import datetime
 from voluptuous import All, Any, Length, Optional, Range, Required
 from voluptuous import Schema
+from yaml import load
 
 
 # We can't merely specify that strings ought to be of type 'str' in the
@@ -113,11 +114,12 @@ make_package_schema = Schema({
 })
 
 
-"""Schema for JSON files dumped out of the post-processing stage
+with open("tuscan/classification_patterns.yaml") as f:
+    _patterns = load(f)
+_categories = [p["category"] for p in _patterns]
 
-This is currently identical to make_package_schema, but will change as
-more features are added to the post-processing pass.
-"""
+
+"""Schema for JSON files dumped out of the post-processing stage"""
 post_processed_schema = Schema({
     Required("build"): _nonempty_string,
     Required("return_code"): All(int, Range(min=0)),
@@ -125,15 +127,54 @@ post_processed_schema = Schema({
     Optional("toolchain"): _nonempty_string,
     Optional("errors"): list,
     Optional("bad_deps"): list,
+    # This counts how many of each kind of error category were
+    # encountered for this build. It is a map error_category =>
+    # frequency, where the keys for error_category must be one of the
+    # categories in tuscan/classification_patterns.yaml.
+    Required("category_counts"): Schema({
+        Any(*_categories): int
+    }),
     Required("log"): [
         Schema({
             Required("head"): _nonempty_string,
             Required("kind"): Any("command", "info", "die"),
             Required("time"): (lambda s:
                 datetime.strptime(s, "%Y-%m-%dT%H:%M:%S")),
-            Required("body"): [
-                Schema(_string)
-            ]
+            # Post-processing looks through the output of commands, and
+            # decorates each line by transforming them from strings into
+            # dictionaries.  For each line in the command output, the
+            # line goes into the "text" key. The "category" key is used
+            # to describe what kind of error that line represents, if
+            # any.
+            Required("body"): [Schema({
+                Required("text"): _string,
+                Required("category"): Any(_string, None),
+                Required("semantics"): Schema({
+                    _nonempty_string: _nonempty_string
+                })
+            })]
         })
     ]
 })
+
+"""Schema for error classification patterns"""
+classification_schema = Schema([Schema({
+    # A regex to match a line from the build log against. If the line
+    # matches the pattern, it will be classified as 'category'. If the
+    # pattern contains one or more _named_ subgroups, then the
+    # post-processed log line will contain a hash as the value of the
+    # 'semantics' key; each key of the hash will be the name of a
+    # subgroup, and the value will be the value of that subgroup.
+    #
+    # E.g. if we have:
+    #     pattern: ": (?P<file>.+?): cannot execute binary file"
+    #     category: "exec_error"
+    # And a line from the log file:
+    #     Horrible error: ./a.out: cannot execute binary file
+    # Then post-processing will turn that line into
+    #    {"text": "Horrible error: ./a.out: cannot execute binary file",
+    #     "category": "exec_error",
+    #     "semantics": {"file": "./a.out"}}
+    Required("pattern"): _nonempty_string,
+    Required("category"): _nonempty_string
+})])
