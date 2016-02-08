@@ -26,6 +26,7 @@ the schemata in tuscan/schemata.py.
 
 
 from tuscan.schemata import make_package_schema, post_processed_schema
+from tuscan.schemata import classification_schema
 
 from functools import partial
 from json import load, dump
@@ -34,15 +35,53 @@ from voluptuous import MultipleInvalid
 from os import listdir, makedirs, unlink
 from os.path import basename, isdir, join
 from signal import signal, SIGINT, SIG_IGN
+from re import search
 from sys import stderr
 from time import sleep
+from yaml import load as yaml_load
 
 
-def process_single_result(data, args):
+def process_log_line(line, patterns):
+    ret = {"text": line, "category": None, "semantics": {}}
+    for err_class in patterns:
+        m = search(err_class["pattern"], line)
+        if m:
+            ret["category"] = err_class["category"]
+            for k, v in m.groupdict().iteritems():
+                ret["semantics"][k] = v
+            break
+    return ret
+
+
+def process_single_result(data, patterns):
+    # Classify errors in each line of the output of commands. The format
+    # is in post_processed_schema["log"]["body"].
+    new_log = []
+    for obj in data["log"]:
+        new_body = []
+        for line in obj["body"]:
+            new_body.append(process_log_line(line, patterns))
+        obj["body"] = new_body
+        new_log.append(obj)
+    data["log"] = new_log
+
+    # Now, count how many of each type of error were accumulated for
+    # this package.
+    category_counts = {}
+    for obj in data["log"]:
+        for line in obj["body"]:
+            cat = line["category"]
+            try:
+                category_counts[cat] += 1
+            except KeyError:
+                category_counts[cat] = 1
+    category_counts.pop(None, None)
+    data["category_counts"] = category_counts
+
     return data
 
 
-def load_and_process(path, out_dir, args):
+def load_and_process(path, out_dir, patterns):
     """Processes a JSON result file at path and dumps it to out_dir."""
     with open(path) as f:
         data = load(f)
@@ -56,7 +95,7 @@ def load_and_process(path, out_dir, args):
         stderr.write("Malformed input at %s\n" % path)
         return
 
-    data = process_single_result(data, args)
+    data = process_single_result(data, patterns)
 
     try:
         post_processed_schema(data)
@@ -69,6 +108,15 @@ def load_and_process(path, out_dir, args):
 
 
 def do_postprocess(args):
+    with open("tuscan/classification_patterns.yaml") as f:
+        patterns = yaml_load(f)
+    try:
+        patterns = classification_schema(patterns)
+    except MultipleInvalid as e:
+        stderr.write("Classification pattern is malformatted: %s\n%s" %
+                     (str(e), str(patterns)))
+        exit(1)
+
     dst_dir = "post"
     src_dir = "results"
     pool = Pool(args.pool_size)
@@ -89,7 +137,7 @@ def do_postprocess(args):
 
         curry = partial(load_and_process,
                         out_dir=toolchain_dst,
-                        args=args)
+                        patterns=patterns)
         try:
             # Pressing Ctrl-C results in unpredictable behaviour of
             # spawned processes. So make all the children ignore the
