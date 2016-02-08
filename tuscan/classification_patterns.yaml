@@ -1,0 +1,64 @@
+---
+- 
+  pattern: ": (?P<file>.+?): cannot execute binary file"
+  category: "exec_error"
+- 
+  pattern: "cannot execute binary file: (?P<file>.+)"
+  category: "exec_error"
+- 
+  pattern: "configure: error: (?P<error>.+)"
+  category: "configure_error"
+- 
+  pattern: "tuscan: configure log has no return code"
+  category: "unparseable_config"
+- 
+  pattern: "[-\\.\\w\\g+]+.(S|s):\\d+: (E|e)rror: (?P<error>.+)"
+  category: "assembler_error"
+- 
+  pattern: "[-\\.\\w\\+\\/]+:\\d+:\\d+: error:"
+  category: "compile_error"
+- 
+  pattern: "ld: error: cannot find (?P<library>.+)"
+  category: "link_error"
+- 
+  pattern: "(?P<header>[-.\\w\\/]+\\.h): No such file or directory"
+  category: "missing_header"
+- 
+  pattern: "==> ERROR: Failure while downloading"
+  category: "missing_source"
+- 
+  pattern: "error: target not found: (?P<dependency>[-\\.\\w]+)"
+  category: "missing_deps"
+- 
+  pattern: "error: undefined reference to '(?P<symbol>.+)'"
+  category: "undefined_reference"
+- 
+  pattern: "tuscan: native invocation of '(?P<tool>\\w+)'"
+  category: "native_tool_invocation"
+- 
+  pattern: "(?P<command>[-\\.\\+\\gw]+): command not found"
+  category: "command_not_found"
+- 
+  pattern: "gcc: error: unrecognized command line option '(?P<flag>.+)'"
+  category: "unknown_compiler_flag"
+- 
+  pattern: "gcc: error: unrecognized argument in option '(?P<flag>.+)'"
+  category: "unknown_compiler_flag"
+- 
+  pattern: "Unrecognized option : ((--host)|(x86_64-unknown-linux))"
+  category: "host_flag_unrecognised"
+- 
+  pattern: "configure: unknown option --host"
+  category: "host_flag_unrecognised"
+- 
+  pattern: "unknown option: --host"
+  category: "host_flag_unrecognised"
+- 
+  pattern: "unrecognized 'configure' option `--host'"
+  category: "host_flag_unrecognised"
+- 
+  pattern: "rm: cannot remove"
+  category: "install_error"
+- 
+  pattern: "mv: cannot stat"
+  category: "install_error"
