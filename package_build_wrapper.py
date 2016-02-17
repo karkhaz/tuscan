@@ -103,7 +103,18 @@ def run_container(args):
     errors = []
     for struct in out.splitlines():
         try:
-            json_result["log"].append(loads(struct))
+            obj = loads(struct)
+
+            if obj["kind"] == "provide_info":
+                # This list is returned by the make_package stage to
+                # tell us what packages are provided by the build. If
+                # the build fails, anybody who depends on those packages
+                # (transitively) can blame this build.
+                json_result["build_provides"] = obj["body"]
+
+            else:
+                json_result["log"].append(obj)
+
         except:
             errors.append(str(struct))
 
