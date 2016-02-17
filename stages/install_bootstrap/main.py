@@ -16,12 +16,13 @@
 # limitations under the License.
 
 from utilities import get_argparser, log, timestamp
-from setup import toolchain_specific_setup
+from setup import toolchain_specific_setup, run_cmd
 
 from os import listdir, mkdir, walk
 from os.path import join
 from re import search
 from subprocess import run, PIPE, STDOUT
+from shutil import chown
 from sys import stderr, stdout
 from json import load
 
@@ -81,7 +82,16 @@ def main():
     if cp.returncode:
         exit(1)
 
+    run_cmd("useradd -m -s /bin/bash tuscan", as_root=True)
+
     mkdir("/toolchain_root")
+    chown("/toolchain_root", "tuscan")
+
+    # User 'tuscan' needs to be able to use sudo without being harassed
+    # for passwords) and so does root (to su into tuscan)
+    with open("/etc/sudoers", "a") as f:
+        print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
+        print("root ALL=(ALL) NOPASSWD: ALL", file=f)
 
     toolchain_specific_setup(args)
 

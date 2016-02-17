@@ -56,9 +56,6 @@ def run_cmd(cmd, as_root=False, output=True):
 def toolchain_specific_setup(args):
     log("info", "Running android-specific setup")
 
-    cmd = "useradd -m -s /bin/bash tuscan"
-    run_cmd(cmd, as_root=True)
-
     cmd = "pacman -S --noconfirm wget sudo"
     run_cmd(cmd, as_root=True)
 
@@ -70,12 +67,6 @@ def toolchain_specific_setup(args):
     with open("/etc/.curlrc", "a") as f:
         print("silent", file=f)
         print("show-error", file=f)
-
-    # User `tuscan' needs to be able to use sudo without being harassed
-    # for passwords) and so does root (to su into tuscan)
-    with open("/etc/sudoers", "a") as f:
-        print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
-        print("root ALL=(ALL) NOPASSWD: ALL", file=f)
 
     log("info", "Downloading & unpacking NDK")
     chdir("/home/tuscan")
@@ -94,7 +85,6 @@ def toolchain_specific_setup(args):
 
     log("info", "Setting up toolchain")
 
-    chown("/toolchain_root", "tuscan")
     cmd = ("/home/tuscan/android-ndk-r10e/build/tools/"
            "make-standalone-toolchain.sh"
            " --arch=arm --platform=android-21 "

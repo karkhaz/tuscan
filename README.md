@@ -10,6 +10,41 @@ programs in various compilation environments:
 * Static vs. dynamic linking
 
 
+Initial setup
+-------------
+
+Tuscan uses a mirror of Arch Linux binaries and sources.
+
+### Binaries
+
+Tuscan expects that a mirror Arch Linux binaries exists in the top-level
+directory, named `mirror`. If you obtain a copy of Arch Linux binaries
+from your local mirror, you may wish to remove i386 binaries to save
+space.
+
+### Sources
+
+By default, Tuscan downloads sources of Arch Linux packages into a data
+container called `sources` as it runs, so you don't need to provide
+this.
+
+If you have atomically downloaded a copy of all Arch sources and wish to
+add it to Tuscan, you will need to add it to the sources data container.
+
+1. Create the data container if it doesn't already exist:
+
+        docker create -v /sources --name sources base/arch /bin/true
+
+1. Spin up a docker container that mounts the data container as well as
+   the local sources directory, and copies the contents of the sources
+   directory into the container:
+
+        docker run --volumes-from sources -v \
+          $(pwd)/tmp_sources:/tmp_sources base/arch \
+          sh -c 'cp /tmp_sources/* /sources'
+
+
+
 Running Tuscan
 --------------
 
@@ -20,6 +55,15 @@ Generating data for a toolchain:
 The names of toolchains are subdirectories of `toolchains/`. Currently,
 the only toolchain is `vanilla`, which builds Arch Linux packages using
 the default compiler and standard libraries.
+
+Post-processing the data from a build:
+
+    ./tuscan.py post
+
+The resulting JSON files are dumped in the `post/TOOLCHAIN` directory,
+one file per package. The schema for the resulting JSON file is
+described by the `post_processed_schema` structure in
+`tuscan/schemata.py`.
 
 
 Structure / Contributing
