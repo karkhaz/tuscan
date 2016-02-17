@@ -15,6 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from tuscan.schemata import data_containers_schema, stage_deps_schema
+
 from datetime import datetime
 from glob import glob
 from ninja_syntax import Writer
@@ -24,6 +26,7 @@ from re import sub
 from string import Template
 from subprocess import call
 from sys import stdout, stderr
+from voluptuous import MultipleInvalid
 from yaml import load, dump
 
 
@@ -107,6 +110,14 @@ class DataContainers(object):
             exit(1)
 
         self.containers = substitute_vars(containers, self.args)
+
+        try:
+            data_containers_schema(self.containers)
+        except MultipleInvalid as e:
+            stderr.write("data_containers.yaml is malformatted: %s\n" %
+                         str(e))
+            exit(1)
+
         self.data_container_sanity_checks()
 
 
@@ -218,6 +229,13 @@ class Stage(object):
         """Argument: a dictionary deserialised from a YAML file"""
         self.name = d["name"]
         d = substitute_vars(d, args)
+        try:
+            stage_deps_schema(d)
+        except MultipleInvalid as e:
+            stderr.write("Schema error for stage '%s': %s\n" %
+                    (d["name"], str(e)))
+            exit(1)
+
         self.build = Stage.Build.load(d["build"])
         self.run = Stage.Run.load(d["run"])
 
@@ -312,13 +330,12 @@ class Stages(object):
 
                 for cont in data_containers_needed_by(stage,
                                 self.data_containers):
-                    if "switch" in cont:
-                        main_command += (" --%s-directory %s" %
-                                         (cont["switch"],
-                                          cont["mountpoint"]))
+                    main_command += (" --%s-directory %s" %
+                                     (cont["switch"],
+                                      cont["mountpoint"]))
 
-                        main_command += (" --%s-volume %s" %
-                                         (cont["switch"],
+                    main_command += (" --%s-volume %s" %
+                                     (cont["switch"],
                                           cont["name"]))
 
                 for mount in stage.run.local_mounts:
