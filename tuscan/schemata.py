@@ -137,6 +137,12 @@ post_processed_schema = Schema({
     Required("toolchain"): _nonempty_string,
     Required("build_provides"): list,
     Required("errors"): list,
+    # Status of all configure checks in this build, combined.
+    # If a single configure check returned non-zero, then False;
+    # If all configure checks returned zero, then True;
+    # If we couldn't figure out the return code of any configure check,
+    #    then None.
+    Required("config_success"): Any(bool, None),
     # This counts how many of each kind of error category were
     # encountered for this build. It is a map error_category =>
     # frequency, where the keys for error_category must be one of the
@@ -148,6 +154,12 @@ post_processed_schema = Schema({
         Schema({
             Required("head"): _nonempty_string,
             Required("kind"): Any("command", "info", "die"),
+            # If this log is a configure log, then this key reports on
+            # whether this invocation of config returned successfully.
+            # True if it did, False if it didn't, None if we weren't
+            # able to tell. This key does not exist in logs that are not
+            # config logs.
+            Optional("config_success"): Any(bool, None),
             Required("time"): (lambda s:
                 datetime.strptime(s, "%Y-%m-%dT%H:%M:%S")),
             # Post-processing looks through the output of commands, and
@@ -162,6 +174,7 @@ post_processed_schema = Schema({
                 Required("text"): _string,
                 Required("id"): int,
                 Required("category"): Any(None, *_categories),
+                Required("severity"): Any("error", "diagnostic", None),
                 Required("semantics"): Schema({
                     _nonempty_string: _nonempty_string
                 })
@@ -189,5 +202,6 @@ classification_schema = Schema([Schema({
     #     "category": "exec_error",
     #     "semantics": {"file": "./a.out"}}
     Required("pattern"): _nonempty_string,
-    Required("category"): _nonempty_string
+    Required("category"): _nonempty_string,
+    Required("severity"): Any("error", "diagnostic")
 })])
