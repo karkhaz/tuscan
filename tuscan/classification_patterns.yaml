@@ -2,63 +2,88 @@
 - 
   pattern: ": (?P<file>.+?): cannot execute binary file"
   category: "exec_error"
+  severity: error
 - 
   pattern: "cannot execute binary file: (?P<file>.+)"
   category: "exec_error"
+  severity: error
 - 
   pattern: "configure: error: (?P<error>.+)"
   category: "configure_error"
+  severity: error
 - 
   pattern: "tuscan: configure log has no return code"
   category: "unparseable_config"
+  severity: error
 - 
   pattern: "[-\\.\\w\\g+]+.(S|s):\\d+: (E|e)rror: (?P<error>.+)"
   category: "assembler_error"
+  severity: error
 - 
   pattern: "[-\\.\\w\\+\\/]+:\\d+:\\d+: error:"
   category: "compile_error"
+  severity: error
 - 
   pattern: "ld: error: cannot find (?P<library>.+)"
   category: "link_error"
+  severity: error
 - 
   pattern: "(?P<header>[-.\\w\\/]+\\.h): No such file or directory"
   category: "missing_header"
+  severity: error
 - 
   pattern: "==> ERROR: Failure while downloading"
   category: "missing_source"
+  severity: error
 - 
   pattern: "error: target not found: (?P<dependency>[-\\.\\w]+)"
   category: "missing_deps"
+  severity: error
 - 
   pattern: "error: undefined reference to '(?P<symbol>.+)'"
   category: "undefined_reference"
+  severity: error
 - 
   pattern: "tuscan: native invocation of '(?P<tool>\\w+)'"
   category: "native_tool_invocation"
+  severity: error
 - 
   pattern: "(?P<command>[-\\.\\+\\gw]+): command not found"
   category: "command_not_found"
+  severity: error
 - 
   pattern: "gcc: error: unrecognized command line option '(?P<flag>.+)'"
   category: "unknown_compiler_flag"
+  severity: error
 - 
   pattern: "gcc: error: unrecognized argument in option '(?P<flag>.+)'"
   category: "unknown_compiler_flag"
+  severity: error
 - 
   pattern: "Unrecognized option : ((--host)|(x86_64-unknown-linux))"
   category: "host_flag_unrecognised"
+  severity: error
 - 
   pattern: "configure: unknown option --host"
   category: "host_flag_unrecognised"
+  severity: error
 - 
   pattern: "unknown option: --host"
   category: "host_flag_unrecognised"
+  severity: error
 - 
   pattern: "unrecognized 'configure' option `--host'"
   category: "host_flag_unrecognised"
+  severity: error
 - 
   pattern: "rm: cannot remove"
   category: "install_error"
+  severity: error
 - 
   pattern: "mv: cannot stat"
   category: "install_error"
+  severity: error
+- 
+  pattern: "configure: exit (?P<return_code>\\d+)"
+  category: "configure_return_code"
+  severity: diagnostic

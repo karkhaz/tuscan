@@ -34,8 +34,8 @@ from multiprocessing import Pool, TimeoutError
 from voluptuous import MultipleInvalid
 from os import listdir, makedirs, unlink
 from os.path import basename, isdir, join
+from re import match, search
 from signal import signal, SIGINT, SIG_IGN
-from re import search
 from sys import stderr
 from time import sleep
 from yaml import load as yaml_load
@@ -43,11 +43,12 @@ from yaml import load as yaml_load
 
 def process_log_line(line, patterns, counter):
     ret = {"text": line, "category": None, "semantics": {},
-           "id": counter}
+           "id": counter, "severity": None}
     for err_class in patterns:
         m = search(err_class["pattern"], line)
         if m:
             ret["category"] = err_class["category"]
+            ret["severity"] = err_class["severity"]
             for k, v in m.groupdict().iteritems():
                 ret["semantics"][k] = v
             break
@@ -66,23 +67,38 @@ def process_single_result(data, patterns):
         new_body = []
         for line in obj["body"]:
             counter += 1
-            new_body.append(process_log_line(line, patterns, counter))
+            new_line = process_log_line(line, patterns, counter)
+            if new_line["category"] == "configure_return_code":
+                rc = int(new_line["semantics"]["return_code"])
+                obj["config_success"] = False if rc else True
+            new_body.append(new_line)
         obj["body"] = new_body
         new_log.append(obj)
     data["log"] = new_log
 
     # Now, count how many of each type of error were accumulated for
-    # this package.
+    # this package. Also figure out if configure invocations were
+    # successful.
+    config_success = None
     category_counts = {}
     for obj in data["log"]:
+
+        if "config_success" in obj:
+            if not obj["config_success"]:
+                config_success = False
+            elif obj["config_success"] and config_success == None:
+                config_success = True
+
         for line in obj["body"]:
-            cat = line["category"]
-            try:
-                category_counts[cat] += 1
-            except KeyError:
-                category_counts[cat] = 1
+            if line["category"] != "configure_return_code":
+                cat = line["category"]
+                try:
+                    category_counts[cat] += 1
+                except KeyError:
+                    category_counts[cat] = 1
     category_counts.pop(None, None)
     data["category_counts"] = category_counts
+    data["config_success"] = config_success
 
     return data
 
