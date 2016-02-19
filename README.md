@@ -65,6 +65,13 @@ one file per package. The schema for the resulting JSON file is
 described by the `post_processed_schema` structure in
 `tuscan/schemata.py`.
 
+Generating a HTML report from post-processed data:
+
+    ./tuscan.py html
+
+The resulting HTML pages are dumped in the `html/TOOLCHAIN` directory,
+one page per package.
+
 
 Structure / Contributing
 ------------------------
@@ -103,6 +110,11 @@ Dependencies
 *   PyYAML
 
     http://pyyaml.org/
+
+
+*   Jinja2
+
+    http://jinja.pocoo.org/docs/dev/
 
 
 Troubleshooting

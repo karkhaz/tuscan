@@ -17,6 +17,7 @@
 
 from tuscan.tuscan_build import do_build
 from tuscan.tuscan_postprocess import do_postprocess
+from tuscan.tuscan_html import do_html
 
 from argparse import ArgumentParser
 from multiprocessing import cpu_count
@@ -64,6 +65,17 @@ def main():
                   " N seconds (default=%d)" % 1200))
 
     postprocess_parser.set_defaults(func=do_postprocess)
+
+    # ./tuscan.py html
+    html_parser = subparsers.add_parser("html",
+            help="Generate HTML reports of post-processed data.")
+
+    html_parser.add_argument("-j", "--jobs", type=int,
+            metavar="N", default=cpu_count(), dest="pool_size",
+            help=("Number of parallel subprocesses to launch"
+                  " (default=%d)" % cpu_count()))
+
+    html_parser.set_defaults(func=do_html)
 
     args = parser.parse_args()
     args.func(args)

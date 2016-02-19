@@ -41,8 +41,9 @@ from time import sleep
 from yaml import load as yaml_load
 
 
-def process_log_line(line, patterns):
-    ret = {"text": line, "category": None, "semantics": {}}
+def process_log_line(line, patterns, counter):
+    ret = {"text": line, "category": None, "semantics": {},
+           "id": counter}
     for err_class in patterns:
         m = search(err_class["pattern"], line)
         if m:
@@ -54,13 +55,18 @@ def process_log_line(line, patterns):
 
 
 def process_single_result(data, patterns):
+    # Each line in the log needs its own ID, so that we can refer to
+    # them in HTML or other reports
+    counter = 0
+
     # Classify errors in each line of the output of commands. The format
     # is in post_processed_schema["log"]["body"].
     new_log = []
     for obj in data["log"]:
         new_body = []
         for line in obj["body"]:
-            new_body.append(process_log_line(line, patterns))
+            counter += 1
+            new_body.append(process_log_line(line, patterns, counter))
         obj["body"] = new_body
         new_log.append(obj)
     data["log"] = new_log
