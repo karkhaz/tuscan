@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<!-- Jinja template for reports of individual builds
+
+  Copyright 2016 Kareem Khazem. All Rights Reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+ 		 http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+  <head>
+    <meta charset="UTF-8">
+    <title>{{data["toolchain"]}}/{{ data["name"] }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+          rel='stylesheet' type='text/css'>
+    <link
+    href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+          rel='stylesheet' type='text/css'>
+    <link href="../style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Build of {{ data["name"] }}
+        with <a href="../index.html">{{ data["toolchain"] }}</a>
+        toolchain</h1>
+    <p>The build took {{ data["time"]}} and was
+    {% if data["return_code"] is equalto 0 %}SUCCESSFUL.
+    {% else %}NOT successful.{% endif %}
+    </p>
+    {% if data["errors"] %}
+    <h2>List of Errors</h2>
+    <ul>
+      {% for cat, errors in data["errors"].iteritems() %}
+      <li>{{ cat }}
+        <ul>
+          {% for error in errors %}
+          <li><a href="#{{ error['id'] }}">{{ error['text'] }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Log</h2>
+    {% for line in data["log"] %}
+      <div class="block">
+        <div class="{{ line["kind"] }}">
+          <code>{% if line["kind"] is equalto "command" %}<span class="prompt">CMD: </span>{% endif %}{{ line["head"] }}</code>
+        </div>
+        {% if line["body"] %}
+          <div class="output">
+            {% for out in line["body"] %}
+            <a class="navhash" href="#{{ out['id'] }}">#</a>
+						{% if out['category'] is not none %}<span class="error">{% endif %}
+              <code id="{{ out['id'] }}">{{ out["text"] }}</code><br />
+						{% if out['category'] is not none %}</span>{% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <br />
+    {% endfor %}
+  </body>
+</html>

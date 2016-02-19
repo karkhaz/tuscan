@@ -155,10 +155,13 @@ post_processed_schema = Schema({
             # dictionaries.  For each line in the command output, the
             # line goes into the "text" key. The "category" key is used
             # to describe what kind of error that line represents, if
-            # any.
+            # any. The valid categories are those defined in
+            # classification_patterns.yaml, or None if the line is not
+            # an error message.
             Required("body"): [Schema({
                 Required("text"): _string,
-                Required("category"): Any(_string, None),
+                Required("id"): int,
+                Required("category"): Any(None, *_categories),
                 Required("semantics"): Schema({
                     _nonempty_string: _nonempty_string
                 })
