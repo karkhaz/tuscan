@@ -85,8 +85,8 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args):
 
 
 def do_html(args):
-    src_dir = "post"
-    dst_dir = "html"
+    src_dir = "output/post"
+    dst_dir = "output/html"
 
     if not isdir(src_dir):
         stderr.write("directory 'post' does not exist; run './tuscan.py"
@@ -95,6 +95,8 @@ def do_html(args):
 
     jinja = Environment(loader=FileSystemLoader(["tuscan"]))
 
+    if not isdir(dst_dir):
+        makedirs(dst_dir)
     copyfile("tuscan/style.css", join(dst_dir, "style.css"))
 
     pool = Pool(args.pool_size)
