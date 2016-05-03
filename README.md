@@ -60,17 +60,17 @@ Post-processing the data from a build:
 
     ./tuscan.py post
 
-The resulting JSON files are dumped in the `post/TOOLCHAIN` directory,
-one file per package. The schema for the resulting JSON file is
-described by the `post_processed_schema` structure in
+The resulting JSON files are dumped in the `output/post/TOOLCHAIN`
+directory, one file per package. The schema for the resulting JSON file
+is described by the `post_processed_schema` structure in
 `tuscan/schemata.py`.
 
 Generating a HTML report from post-processed data:
 
     ./tuscan.py html
 
-The resulting HTML pages are dumped in the `html/TOOLCHAIN` directory,
-one page per package.
+The resulting HTML pages are dumped in the `output/html/TOOLCHAIN`
+directory, one page per package.
 
 
 Structure / Contributing
