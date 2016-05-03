@@ -514,7 +514,7 @@ def do_build(args):
         args.run = True
 
     timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-    args.touch_dir = join("results", args.toolchain, timestamp, "")
+    args.touch_dir = join("output/results", args.toolchain, timestamp, "")
 
     ninja_file = "tuscan.ninja"
     with open(ninja_file, "w") as f:
