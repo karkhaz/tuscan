@@ -139,9 +139,10 @@ def do_postprocess(args):
                      (str(e), str(patterns)))
         exit(1)
 
-    dst_dir = "post"
-    src_dir = "results"
+    dst_dir = "output/post"
+    src_dir = "output/results"
     pool = Pool(args.pool_size)
+
     for toolchain in listdir(src_dir):
         toolchain_dst = join(dst_dir, toolchain)
 
