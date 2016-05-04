@@ -27,7 +27,7 @@ from json import load
 from os import chdir, listdir, walk, makedirs, environ
 from os.path import basename, isdir, isfile, join
 from re import escape, search, sub
-from shutil import chown, copyfile, copytree, rmtree
+from shutil import chown, copyfile, copytree, rmtree, Error
 from subprocess import run, Popen, PIPE, STDOUT
 from sys import stderr
 from tarfile import open as tar_open
@@ -38,9 +38,9 @@ class Status(Enum):
     failure = 2
 
 
-def die(status, message=None):
+def die(status, message=None, output=[]):
     if message:
-        log("die", message)
+        log("die", message, output)
 
     log("info", "Printing config.logs")
     config_logs = []
@@ -117,7 +117,14 @@ def get_package_source_dir(args):
 
 
 def copy_and_build(args):
-    copytree(args.permanent_source_dir, args.build_dir)
+    try:
+        copytree(args.permanent_source_dir, args.build_dir)
+    except Error as e:
+        # e.args will be a list, containing a single list of 3-tuples.
+        # We are interested in the third item of each tuple.
+        errors = [err[2] for err in e.args[0]]
+        die(Status.failure, "No source directory in source volume: %s" %
+                args.permanent_source_dir, output=errors)
     recursive_chown(args.build_dir)
     chdir(args.build_dir)
 
