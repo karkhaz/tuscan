@@ -109,6 +109,13 @@ def run_container(args):
                 # (transitively) can blame this build.
                 json_result["build_provides"] = obj["body"]
 
+            elif obj["kind"] == "dep_info":
+                # This list is returned by the make_package stage to
+                # tell us what packages are depended on by the build. If
+                # the build fails, we can use this list to check if any
+                # of the dependencies have also failed.
+                json_result["build_depends"] = obj["body"]
+
             else:
                 json_result["log"].append(obj)
 
