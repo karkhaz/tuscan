@@ -361,7 +361,7 @@ def create_hybrid_packages(args):
 
 
 def dump_build_information(args):
-    """Log the packages provided by this build
+    """Log the packages provided & depended on by this build
 
     This function logs all packages that will be built if this build
     succeeds. This includes 'virtual' packages, i.e. packages like 'sh'
@@ -370,6 +370,8 @@ def dump_build_information(args):
     This is so that if this build fails, any build that depends on a
     package provided by this build knows who to blame when it can't
     install its dependencies.
+
+    This function also logs what packages are depended on by this build.
     """
     pkgbuild = join(args.abs_dir, "PKGBUILD")
     provides = []
@@ -380,6 +382,16 @@ def dump_build_information(args):
 
     log("provide_info", None, output=provides)
 
+    depends = []
+    depends += [strip_version_info(name)
+        for name in interpret_bash_array(pkgbuild, "depends")]
+    depends += [strip_version_info(name)
+        for name in interpret_bash_array(pkgbuild, "makedepends")]
+
+    log("dep_info", "This build depends on the following packages",
+            output=depends)
+
+
 
 def main():
     parser = get_argparser()
@@ -387,14 +399,14 @@ def main():
     args = parser.parse_args()
     args.mirror_directory = "/mirror"
 
+    dump_build_information(args)
+
     pkg_dir = basename(args.abs_dir)
 
     args.permanent_source_dir = join(args.sources_directory, pkg_dir)
     args.build_dir = join("/tmp", pkg_dir)
 
     sanity_checks(args)
-
-    dump_build_information(args)
 
     initialize_repositories(args)
 
