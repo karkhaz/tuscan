@@ -105,6 +105,10 @@ make_package_schema = Schema({
     # package names, possibly including meta-packages (like 'sh') that
     # don't really exist but are provided by bash.
     Required("build_provides"): list,
+    # What packages are depended on by this build? This will be a list of
+    # package names, possibly including meta-packages (like 'sh') that
+    # don't really exist but are provided by bash.
+    Required("build_depends"): list,
     Required("log"): [
         # Logs have a head and body. Typically, for each command that
         # gets executed by the make_package stage, the head will be the
@@ -136,6 +140,7 @@ post_processed_schema = Schema({
     Required("time"): All(int, Range(min=0)),
     Required("toolchain"): _nonempty_string,
     Required("build_provides"): list,
+    Required("build_depends"): list,
     Required("errors"): list,
     # Status of all configure checks in this build, combined.
     # If a single configure check returned non-zero, then False;
