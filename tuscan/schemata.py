@@ -141,6 +141,18 @@ post_processed_schema = Schema({
     Required("toolchain"): _nonempty_string,
     Required("build_provides"): list,
     Required("build_depends"): list,
+    # Which packages is this build blocking? If this package failed to
+    # build but all its dependencies built successfully, then this
+    # package is said to be a "blocker" and this list will contain all
+    # packages that transitively depend on it.
+    Required("blocks"): [_nonempty_string],
+    # Which builds are blocking this build? If a build of this package
+    # was not attempted because some of its dependencies failed to
+    # build, then this list will contain those dependencies. Note that
+    # if A blocks B from building and C depends on B, then A (but not B)
+    # is said to block C. Note that if a package is a blocker, but it
+    # has no dependencies, then it's "blocks" list will be empty.
+    Required("blocked_by"): [_nonempty_string],
     Required("errors"): list,
     # Status of all configure checks in this build, combined.
     # If a single configure check returned non-zero, then False;
