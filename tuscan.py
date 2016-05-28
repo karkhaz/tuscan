@@ -64,6 +64,10 @@ def main():
             help=("Kill post-processing if it takes longer than"
                   " N seconds (default=%d)" % 1200))
 
+    postprocess_parser.add_argument("-b", "--no-blockers",
+            action="store_true", help=("Don't bother calculating"
+                " blockers (to save RAM)."))
+
     postprocess_parser.set_defaults(func=do_postprocess)
 
     # ./tuscan.py html

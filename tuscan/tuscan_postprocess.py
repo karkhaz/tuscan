@@ -30,7 +30,8 @@ from tuscan.schemata import classification_schema
 
 from functools import partial
 from json import load, dump
-from multiprocessing import Pool, TimeoutError
+from logging import basicConfig, debug, info, error, warning, INFO, DEBUG
+from multiprocessing import Pool, TimeoutError, Manager
 from voluptuous import MultipleInvalid
 from os import listdir, makedirs, unlink
 from os.path import basename, isdir, join
@@ -39,6 +40,11 @@ from signal import signal, SIGINT, SIG_IGN
 from sys import stderr
 from time import sleep
 from yaml import load as yaml_load
+
+
+def dump_result(result):
+    with open(result["file"], "w") as f:
+        dump(result["data"], f)
 
 
 def process_log_line(line, patterns, counter):
@@ -100,11 +106,17 @@ def process_single_result(data, patterns):
     data["category_counts"] = category_counts
     data["config_success"] = config_success
 
+    # Initialise blocker data fields. We need to do a graph iteration
+    # over all builds to fill these fields out, so we need to wait for
+    # all builds to be processed first.
+    data["blocked_by"] = []
+    data["blocks"] = []
+
     return data
 
 
-def load_and_process(path, out_dir, patterns):
-    """Processes a JSON result file at path and dumps it to out_dir."""
+def load_and_process(path, patterns, out_dir, args, results):
+    """Processes a JSON result file at path."""
     with open(path) as f:
         data = load(f)
 
@@ -114,7 +126,7 @@ def load_and_process(path, out_dir, patterns):
     try:
         make_package_schema(data)
     except MultipleInvalid as e:
-        stderr.write("Malformed input at %s\n" % path)
+        error("Malformed input at %s" % path)
         return
 
     data = process_single_result(data, patterns)
@@ -122,28 +134,134 @@ def load_and_process(path, out_dir, patterns):
     try:
         post_processed_schema(data)
     except MultipleInvalid as e:
-        stderr.write("Post-processed data is malformatted: %s\n" % path)
-        return
+        error("Post-processed data is malformatted: %s" % path)
 
-    with open(join(out_dir, basename(path)), "w") as f:
-        dump(data, f)
+    to_dump = {"data": data, "file": join(out_dir,
+                                    "%s.json" % basename(path))}
+    if args.no_blockers:
+        dump_result(to_dump)
+    else:
+        results.append(to_dump)
+
+
+def propagate_blockers(results):
+    """Fill out "blocked_by" and "blocks" fields of data.
+
+    Failing builds can either be "blocked" (failed to build because
+    their dependency FTB), or a "blocker" (FTB but all their
+    dependencies built correctly). After this function returns, blocked
+    builds will have a list of builds that they are blocked by in their
+    "blocked_by" field. Builds that block other builds will have those
+    builds in their "blocks" field.
+
+    Precondition: blocker builds have the "blocker" field set to true.
+    """
+    blockers = [result["data"]["build_name"] for result in results
+                if result["data"]["return_code"] and not ("missing_deps"
+                in result["data"]["category_counts"])]
+    info("%d blockers for this toolchain. Propagating..." % len(blockers))
+
+    iteration = 0
+    blocked_by = {}
+    stop = False
+    while not stop:
+        iteration += 1
+        added = 0
+        stop = True
+        result_counter = 0
+        result_total = len(results)
+        for result in results:
+            result_counter += 1
+            stderr.write("\rIteration %2d, result %5d/%5d,"
+                     " added %d new blocked packages." %
+                    (iteration, result_counter, result_total, added))
+            data = result["data"]
+            if not data["return_code"]:
+                continue
+            if not "missing_deps" in data["category_counts"]:
+                continue
+            if data["build_name"] not in blocked_by:
+                blocked_by[data["build_name"]] = []
+            for dep in data["build_depends"]:
+                # Case: this build is directly blocked by a blocker
+                for blocker in blockers:
+                    pack = basename(blocker)
+                    if dep == pack:
+                        if blocker not in blocked_by[data["build_name"]]:
+                            stop = False
+                            added += 1
+                            blocked_by[data["build_name"]].append(blocker)
+                            debug("%s directly blocked by %s\n" %
+                                    (data["build_name"], blocker))
+                # Case: this build is transitively blocked by a blocker
+                for blocked, directs in blocked_by.items():
+                    pack = basename(blocked)
+                    if pack == dep:
+                        for b in directs:
+                            if b not in blocked_by[data["build_name"]]:
+                                stop = False
+                                added += 1
+                                blocked_by[data["build_name"]].append(b)
+                                debug("%s transitively blocked by %s\n" %
+                                        (data["build_name"], b))
+        stderr.write("\n")
+
+    blocks = {}
+    for blocked, directs in blocked_by.items():
+        for blocker in directs:
+            if not blocker in blocks:
+                blocks[blocker] = []
+            blocks[blocker].append(blocked)
+
+    for result in results:
+        data = result["data"]
+        if data["build_name"] in blockers:
+            if data["build_name"] in blocks:
+                data["blocks"] = blocks[data["build_name"]]
+            # Else, this build is a blocker, but it has no
+            # dependencies so it didn't cause anything else to break.
+        elif data["build_name"] in blocked_by:
+            data["blocked_by"] = blocked_by[data["build_name"]]
+        elif data["return_code"]:
+            warning("Blocked package %s has no blocked_by entry" %
+                    data["build_name"])
+
+        # One or other list should be empty. They might both be empty:
+        # if this build succeeded, or if it is a blocker with no
+        # dependencies.
+        if data["blocked_by"] and data["blocks"]:
+            error("%s is both a blocker and blocked!" % data["build_name"])
+
+    return results
 
 
 def do_postprocess(args):
+    basicConfig(format="%(asctime)s %(message)s", level=INFO)
+
     with open("tuscan/classification_patterns.yaml") as f:
         patterns = yaml_load(f)
     try:
         patterns = classification_schema(patterns)
     except MultipleInvalid as e:
-        stderr.write("Classification pattern is malformatted: %s\n%s" %
+        info("Classification pattern is malformatted: %s\n%s" %
                      (str(e), str(patterns)))
         exit(1)
 
     dst_dir = "output/post"
     src_dir = "output/results"
-    pool = Pool(args.pool_size)
 
+    man = Manager()
+
+    toolchain_counter = 0
+    toolchain_total = len(listdir(src_dir))
     for toolchain in listdir(src_dir):
+        pool = Pool(args.pool_size)
+        results = man.list()
+
+        toolchain_counter += 1
+        info("Post-processing results for toolchain "
+                "%d of %d [%s]" % (toolchain_counter, toolchain_total,
+                    toolchain))
         toolchain_dst = join(dst_dir, toolchain)
 
         if not isdir(toolchain_dst):
@@ -159,8 +277,10 @@ def do_postprocess(args):
 
 
         curry = partial(load_and_process,
+                        patterns=patterns,
+                        results=results,
                         out_dir=toolchain_dst,
-                        patterns=patterns)
+                        args=args)
         try:
             # Pressing Ctrl-C results in unpredictable behaviour of
             # spawned processes. So make all the children ignore the
@@ -179,5 +299,10 @@ def do_postprocess(args):
             pool.terminate()
             pool.join()
             exit(1)
-    pool.close()
-    pool.join()
+        pool.close()
+        pool.join()
+
+        if not args.no_blockers:
+            results = propagate_blockers(results._getvalue())
+            for result in results:
+                dump_result(result)
