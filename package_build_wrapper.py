@@ -116,6 +116,12 @@ def run_container(args):
                 # of the dependencies have also failed.
                 json_result["build_depends"] = obj["body"]
 
+            elif obj["kind"] == "sloc_info":
+                # This will be a dictionary (encoded as a JSON string)
+                # mapping languages to lines-of-code, as reported by
+                # SLOCCount.
+                json_result["sloc_info"] = loads(obj["body"])
+
             else:
                 json_result["log"].append(obj)
 
@@ -132,6 +138,9 @@ def run_container(args):
     json_result["toolchain"] = args.toolchain
     json_result["errors"] = errors
     json_result["bootstrap"] = False
+
+    if not "sloc_info" in json_result:
+        json_result["sloc_info"] = {}
 
     for touch_file in args.output_packages:
         with open(touch_file, "w") as f:
