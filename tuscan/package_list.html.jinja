@@ -24,21 +24,24 @@
       Build Name
     <th>
   </tr>
-  {% for build_name, obj in builds.iteritems() %}<tr>
+  {% for build_name in order %}<tr>
     {% for tc in toolchains %}
-      {% if obj[tc] %}
-        {% if obj[tc]["return_code"] %}
-        <td class="no-build-cell">
-          <a href="../{{ tc }}/{{ build_name }}.html">y</a>
-        </td>
+      {% if build_name in builds %}
+        {% if builds[build_name][tc] %}
+          {% if builds[build_name][tc]["return_code"] %}
+          <td class="no-build-cell">
+            <a href="../{{ tc }}/{{ build_name }}.html">y</a>
+          </td>
+          {% else %}
+          <td class="build-cell">
+            <a href="../{{ tc }}/{{ build_name }}.html">y</a>
+          </td>
+          {% endif %}
         {% else %}
-        <td class="build-cell">
-          <a href="../{{ tc }}/{{ build_name }}.html">y</a>
-        </td>
+          <td class="unknown-cell">
+            .
+          </td>
         {% endif %}
-      {% else %}
-        <td class="unknown-cell">
-        </td>
       {% endif %}
     {% endfor %}
     <td>{{ build_name }}</td>

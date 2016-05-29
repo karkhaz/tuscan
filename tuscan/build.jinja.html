@@ -34,6 +34,33 @@
     {% if data["return_code"] is equalto 0 %}SUCCESSFUL.
     {% else %}NOT successful.{% endif %}
     </p>
+    {% if data["blocks"] %}
+    <p>
+    This build failed despite all of its dependencies building
+    successfully. It is blocking the following {{ data["block_number"] }}
+    packages from building:
+    </p>
+    <ul>
+      {% for blocked in data["blocks"] %}
+      <li>
+        <a href="{{ blocked }}.html">{{ blocked }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if data["blocked_by"] %}
+    <p>
+    This build was not attempted because the following
+    {{ data["block_number"] }} of its dependencies failed to build:
+    </p>
+    <ul>
+      {% for blocker in data["blocked_by"] %}
+      <li>
+        <a href="{{ blocker }}.html">{{ blocker }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     {% if data["errors"] %}
     <h2>List of Errors</h2>
     <ul>
