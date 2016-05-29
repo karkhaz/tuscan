@@ -109,6 +109,11 @@ make_package_schema = Schema({
     # package names, possibly including meta-packages (like 'sh') that
     # don't really exist but are provided by bash.
     Required("build_depends"): list,
+    # Map from languages in this build, to how many LOC are written in
+    # that language.
+    Required("sloc_info"): Schema({
+        _nonempty_string: int
+    }),
     Required("log"): [
         # Logs have a head and body. Typically, for each command that
         # gets executed by the make_package stage, the head will be the
@@ -153,6 +158,7 @@ post_processed_schema = Schema({
     # is said to block C. Note that if a package is a blocker, but it
     # has no dependencies, then it's "blocks" list will be empty.
     Required("blocked_by"): [_nonempty_string],
+    Required("sloc_info"): Schema({ _nonempty_string: int }),
     Required("errors"): list,
     # Status of all configure checks in this build, combined.
     # If a single configure check returned non-zero, then False;

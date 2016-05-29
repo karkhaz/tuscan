@@ -59,7 +59,8 @@ def main():
         name_data = load(f)
     bootstrap_packs = (name_data["base"]
                       + name_data["base_devel"]
-                      + name_data["tools"])
+                      + name_data["tools"]
+                      + ["sloccount"])
 
     vanilla = "file://" + args.mirror_directory + "/$repo/os/$arch"
     log("info", "Printing %s to mirrorlist" % vanilla)

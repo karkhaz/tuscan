@@ -23,10 +23,10 @@ from datetime import datetime
 from enum import Enum
 from glob import glob
 from fnmatch import filter
-from json import load
+from json import dumps, load
 from os import chdir, listdir, walk, makedirs, environ
 from os.path import basename, isdir, isfile, join
-from re import escape, search, sub
+from re import escape, search, sub, match
 from shutil import chown, copyfile, copytree, rmtree, Error
 from subprocess import run, Popen, PIPE, STDOUT
 from sys import stderr
@@ -116,6 +116,24 @@ def get_package_source_dir(args):
     return success
 
 
+def log_sloc(sloc_output):
+    """Parse output of the SLOCCount tool and log relevant information"""
+    locs = {}
+    parsing_locs = False
+    for line in sloc_output:
+        if match("Totals grouped by language", line):
+            parsing_locs = True
+        elif parsing_locs and match("^$", line):
+            parsing_locs = False
+        elif parsing_locs:
+            m = match("(?P<lang>.+):\s+(?P<loc>\d+)", line)
+            if m:
+                locs[m.group("lang")] = int(m.group("loc"))
+            else:
+                log("die", "didn't match LOC line '%s'" % line)
+    log("sloc_info", "sloc_info", dumps(locs))
+
+
 def copy_and_build(args):
     try:
         copytree(args.permanent_source_dir, args.build_dir)
@@ -127,6 +145,13 @@ def copy_and_build(args):
                 args.permanent_source_dir, output=errors)
     recursive_chown(args.build_dir)
     chdir(args.build_dir)
+
+    cp = run(["/usr/bin/sloccount", "src"], stdout=PIPE, stderr=STDOUT,
+             universal_newlines=True)
+    if cp.returncode:
+        log("die", "SLOCCount failed", cp.stdout.splitlines())
+    else:
+        log_sloc(cp.stdout.splitlines())
 
     # Add the --host option to invocations of ./configure
     with open("PKGBUILD", encoding="utf-8") as f:
