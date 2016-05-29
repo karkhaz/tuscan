@@ -67,6 +67,18 @@ def summary_structure(toolchains):
             error_trees.append(obj)
         return error_trees
 
+    def blockers(toolchain):
+        return {
+            "name": "blockers",
+            "filter": (lambda build: build["blocks"]),
+            "description": ("Builds that failed despite all their "
+                "dependencies succeeding on toolchain "
+                "'%s', sorted by how many other builds"
+                " they block."% toolchain),
+            "link_text": "Blockers: {total} builds.",
+            "sort_fun": (lambda build: -1 * len(build["blocks"]))
+        }
+
     toolchain_trees = []
     for toolchain in toolchains:
         obj = {
@@ -87,7 +99,8 @@ def summary_structure(toolchains):
                                 "'%s'" % toolchain),
                 "link_text": "{total} failed. Errors:",
                 "children": list(error_trees(toolchain))
-              }
+              },
+              blockers(toolchain)
             ]
         }
         toolchain_trees.append(obj)
@@ -149,9 +162,17 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
         child_list = ""
 
     if "name" in summary:
+        if "sort_fun" in summary:
+            order = sorted(new_builds, key=summary["sort_fun"])
+        else:
+            order = sorted(new_builds, key=(lambda b: b["build_name"]))
+        order = [basename(build["build_name"]) for build in order]
+
         organised = organise_builds(new_builds, new_toolchains)
+
         template = jinja.get_template("package_list.html.jinja")
-        html = template.render(builds=organised, toolchains=new_toolchains)
+        html = template.render(builds=organised, order=order,
+                    toolchains=new_toolchains)
         ret["pages"].append({
             "name": name,
             "html": html,
@@ -242,6 +263,15 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         data["name"] = basename(data["build_name"])
         data["time"] = s_to_hhmmss(data["time"])
         data["errors"] = get_errors(data["log"])
+
+        if data["blocks"]:
+            data["block_number"] = len(data["blocks"])
+            data["blocks"] = [basename(b) for b in data["blocks"]]
+
+        if data["blocked_by"]:
+            data["block_number"] = len(data["blocked_by"])
+            data["blocked_by"] = [basename(b) for b in data["blocked_by"]]
+
         html = template.render(data=data)
 
         out_path = join(out_dir, "%s.html" % basename(data["build_name"]))
