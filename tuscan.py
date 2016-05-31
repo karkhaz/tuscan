@@ -18,6 +18,7 @@
 from tuscan.tuscan_build import do_build
 from tuscan.tuscan_postprocess import do_postprocess
 from tuscan.tuscan_html import do_html
+from tuscan.tuscan_figures import do_figures
 
 from argparse import ArgumentParser
 from multiprocessing import cpu_count
@@ -81,6 +82,12 @@ def main():
                   " N seconds (default=%d)" % 1200))
 
     html_parser.set_defaults(func=do_html)
+
+    # ./tuscan.py figures
+    figures_parser = subparsers.add_parser("figures",
+            help="Generate figures from post-processed data.")
+
+    figures_parser.set_defaults(func=do_figures)
 
     args = parser.parse_args()
     args.func(args)
