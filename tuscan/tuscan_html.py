@@ -149,6 +149,16 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
         child_list = ""
 
     if "name" in summary:
+        if "sort_fun" in summary:
+            _order = sorted(new_builds, key=summary["sort_fun"])
+        else:
+            _order = sorted(new_builds, key=(lambda b: b["build_name"]))
+        _order = [basename(build["build_name"]) for build in _order]
+        order = []
+        for e in _order:
+            if e not in order:
+                order.append(e)
+
         organised = organise_builds(new_builds, new_toolchains)
         template = jinja.get_template("package_list.html.jinja")
         html = template.render(builds=organised, toolchains=new_toolchains)
