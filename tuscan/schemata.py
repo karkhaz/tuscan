@@ -109,6 +109,24 @@ make_package_schema = Schema({
     # package names, possibly including meta-packages (like 'sh') that
     # don't really exist but are provided by bash.
     Required("build_depends"): list,
+    # Output from the bear tool wrapping the makepkg command.
+    Required("bear_output"): Schema([ Any(
+        Schema({
+            "kind": "exit",
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "return_code": _nonempty_string
+        }),
+        Schema({
+            "kind": "exec",
+            "timestamp": _nonempty_string,
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "directory": _nonempty_string,
+            "function": _nonempty_string,
+            "command": [ _nonempty_string ]
+        })
+    )]),
     Required("log"): [
         # Logs have a head and body. Typically, for each command that
         # gets executed by the make_package stage, the head will be the
@@ -141,6 +159,23 @@ post_processed_schema = Schema({
     Required("toolchain"): _nonempty_string,
     Required("build_provides"): list,
     Required("build_depends"): list,
+    Required("bear_output"): Schema([ Any(
+        Schema({
+            "kind": "exit",
+            "timestamp": _nonempty_string,
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "return_code": _nonempty_string
+        }),
+        Schema({
+            "kind": "exec",
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "directory": _nonempty_string,
+            "function": _nonempty_string,
+            "command": [ _nonempty_string ]
+        })
+    )]),
     # Which packages is this build blocking? If this package failed to
     # build but all its dependencies built successfully, then this
     # package is said to be a "blocker" and this list will contain all
