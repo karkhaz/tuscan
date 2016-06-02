@@ -41,6 +41,7 @@
 #include <unistd.h>
 #include <dlfcn.h>
 #include <pthread.h>
+#include <linux/unistd.h>
 
 #if defined HAVE_POSIX_SPAWN || defined HAVE_POSIX_SPAWNP
 #include <spawn.h>
@@ -87,6 +88,12 @@ static char const **bear_strings_copy(char const **const in);
 static char const **bear_strings_append(char const **in, char const *e);
 static size_t bear_strings_length(char const *const *in);
 static void bear_strings_release(char const **);
+
+static int const GS = 0x1d;
+static int const RS = 0x1e;
+static int const US = 0x1f;
+
+static void log_exit(int rc);
 
 
 static bear_env_t env_names =
@@ -166,6 +173,54 @@ static void on_unload(void) {
 
 /* These are the methods we are try to hijack.
  */
+
+
+__THROW __attribute ((__noreturn__))
+void exit(int status){
+  log_exit(status);
+  typedef void (*func)(int);
+  DLSYM(func, fp, "exit");
+  (*fp)(status);
+}
+
+
+__THROW __attribute ((__noreturn__))
+void _exit(int status){
+  log_exit(status);
+  typedef void (*func)(int);
+  DLSYM(func, fp, "_exit");
+  (*fp)(status);
+}
+
+
+void log_exit(int rc){
+  if (!initialized)
+      return;
+  pthread_mutex_lock(&mutex);
+  char const * const out_dir = initial_env[0];
+  size_t const path_max_length = strlen(out_dir) + 32;
+  char filename[path_max_length];
+  if (-1 == snprintf(filename, path_max_length, "%s/%d.cmd", out_dir, getpid())) {
+      perror("bear: snprintf");
+      exit(EXIT_FAILURE);
+  }
+  FILE * fd = fopen(filename, "a+");
+  if (0 == fd) {
+      perror("bear: fopen");
+      exit(EXIT_FAILURE);
+  }
+  fprintf(fd, "EXIT%c", RS);
+  fprintf(fd, "%d%c", getpid(), RS);
+  fprintf(fd, "%d%c", getppid(), RS);
+  fprintf(fd, "%d%c", rc, RS);
+  fprintf(fd, "%c", GS);
+  if (fclose(fd)) {
+      perror("bear: fclose");
+      exit(EXIT_FAILURE);
+  }
+  pthread_mutex_unlock(&mutex);
+}
+
 
 #ifdef HAVE_EXECVE
 int execve(const char *path, char *const argv[], char *const envp[]) {
@@ -393,10 +448,6 @@ static int call_posix_spawnp(pid_t *restrict pid, const char *restrict file,
 /* this method is to write log about the process creation. */
 
 static void bear_report_call(char const *fun, char const *const argv[]) {
-    static int const GS = 0x1d;
-    static int const RS = 0x1e;
-    static int const US = 0x1f;
-
     if (!initialized)
         return;
 
@@ -418,6 +469,7 @@ static void bear_report_call(char const *fun, char const *const argv[]) {
         perror("bear: fopen");
         exit(EXIT_FAILURE);
     }
+    fprintf(fd, "EXEC%c", RS);
     fprintf(fd, "%d%c", getpid(), RS);
     fprintf(fd, "%d%c", getppid(), RS);
     fprintf(fd, "%s%c", fun, RS);

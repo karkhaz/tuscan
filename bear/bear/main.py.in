@@ -135,13 +135,24 @@ def parse_exec_trace(filename):
         content = handler.read()
         for group in filter(bool, content.split(GS)):
             records = group.split(RS)
-            yield {
-                'pid': records[0],
-                'ppid': records[1],
-                'function': records[2],
-                'directory': records[3],
-                'command': records[4].split(US)[:-1]
-            }
+            if records[0] == "EXEC":
+                yield {
+                    'pid': records[1],
+                    'ppid': records[2],
+                    'function': records[3],
+                    'directory': records[4],
+                    'command': records[5].split(US)[:-1],
+                    'kind': 'exec'
+                }
+            elif records[0] == 'EXIT':
+                yield {
+                    'pid': records[1],
+                    'ppid': records[2],
+                    'return_code': records[3],
+                    'kind': 'exit'
+                }
+            else:
+                raise ValueError("Bad record type '%s'" % records[0])
 
 
 def tempdir():
