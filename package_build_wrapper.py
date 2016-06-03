@@ -116,6 +116,9 @@ def run_container(args):
                 # of the dependencies have also failed.
                 json_result["build_depends"] = obj["body"]
 
+            elif obj["kind"] == "bear":
+                json_result["bear_output"] = obj["body"]
+
             else:
                 json_result["log"].append(obj)
 
