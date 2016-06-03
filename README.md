@@ -72,6 +72,11 @@ Generating a HTML report from post-processed data:
 The resulting HTML pages are dumped in the `output/html/TOOLCHAIN`
 directory, one page per package.
 
+Generating figures from post-processed data:
+
+    ./tuscan.py figures
+
+The resulting figures are dumped in the `output/figures` directory.
 
 Structure / Contributing
 ------------------------
@@ -115,6 +120,10 @@ Dependencies
 *   Jinja2
 
     http://jinja.pocoo.org/docs/dev/
+
+*   gnuplot
+
+    http://gnuplot.info
 
 
 Troubleshooting
