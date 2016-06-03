@@ -137,11 +137,12 @@ def parse_exec_trace(filename):
             records = group.split(RS)
             if records[0] == "EXEC":
                 yield {
-                    'pid': records[1],
-                    'ppid': records[2],
-                    'function': records[3],
-                    'directory': records[4],
-                    'command': records[5].split(US)[:-1],
+                    'timestamp': records[1],
+                    'pid': records[2],
+                    'ppid': records[3],
+                    'function': records[4],
+                    'directory': records[5],
+                    'command': records[6].split(US)[:-1],
                     'kind': 'exec'
                 }
             elif records[0] == 'EXIT':
