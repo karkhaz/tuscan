@@ -10,13 +10,20 @@ experiment.
 
 Summary:
 
-- Add a directory `toolchains/$TOOLCHAIN_NAME`
+- Add a directory `toolchains/install_bootstrap/$TOOLCHAIN_NAME`
 - That directory should contain:
   - `setup.py`, containing method `toolchain_specific_setup(args)`
   - `Dockerfile`
   - `makepkg.conf`
+- Add a directory `toolchains/make_package/$TOOLCHAIN_NAME`
+- That directory should contain:
+  - `Dockerfile`
+  - `makepkg.conf`
 
-### Usage
+### toolchains/install_bootstrap/$TOOLCHAIN_NAME
+
+This directory contains files that will be accessible to the
+`install_bootstrap` stage.
 
 - `setup.py` is used to install the toolchain. You must write a method
   called `toolchain_specific_setup`, which shall be run at the end of
@@ -40,8 +47,19 @@ Summary:
 
   Note that packages are built by the user `tuscan`, not by `root`. So
   any files that need to be accessible to the build should be
-  appropriately chowned or chmodded. See `toolchains/android/setup.py`
-  for an example.
+  appropriately chowned or chmodded. See
+  `toolchains/install_bootstrap/android/setup.py` for an example.
+
+- `Dockerfile` sets up the `install_bootstrap` container. This will be
+  fairly similar across toolchains, as it will just invoke the `main.py`
+  of the `install_bootstrap` stage. One way in which Dockerfiles may
+  vary across toolchains is in what files are copied into the container;
+  for example, the `musl` toolchain runs a separate setup script.
+
+### toolchains/make_package/$TOOLCHAIN_NAME
+
+This directory contains files that will be accessible to the
+`make_package` stage.
 
 - `Dockerfile` is the Dockerfile for the `make_package` stage, i.e. it
   sets up the container where packages are built.
