@@ -342,7 +342,6 @@ def organise_builds(build_list, toolchains):
             ret[build_name] = {}
         toolchain = d["toolchain"]
         d.pop("toolchain", None)
-        assert(not toolchain in ret)
         ret[build_name][toolchain] = d
     return ret
 
