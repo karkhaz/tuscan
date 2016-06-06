@@ -36,7 +36,7 @@ def main():
             help="Build all packages with a particular toolchain.")
     build_parser.set_defaults(func=do_build)
 
-    toolchains = listdir("toolchains")
+    toolchains = listdir("toolchains/make_package")
     build_parser.add_argument("toolchain", choices=toolchains,
             help="a toolchain, configured in a subdirectory of"
                  " toolchains/.")

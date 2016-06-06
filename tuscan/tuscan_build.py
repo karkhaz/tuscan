@@ -177,7 +177,8 @@ class Stage(object):
         def load(data):
             bs = Stage.Build()
             if "copy_files" in data:
-                bs.copy_files = data["copy_files"]
+                lists = [glob(pat) for pat in data["copy_files"]]
+                bs.copy_files = [f for lst in lists for f in lst]
             if "stages" in data:
                 bs.stages = data["stages"]
             return bs
