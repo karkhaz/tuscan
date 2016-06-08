@@ -140,8 +140,17 @@ def summary_structure(toolchains):
           "name": "all",
           "description": "all builds across all toolchains",
           "link_text": "{total} total builds"
+          }, {
+            "name": "cish-programs",
+            "filter": (lambda build: (
+                "ansic" in build["sloc_info"] or
+                "cpp" in build["sloc_info"]
+            )),
+            "description": "Builds that contain C/C++ code",
+            "link_text": "{total} of these contain C(++) code.",
+            "children": [vanilla_tree] + [alternatives]
           }
-      ] + [vanilla_tree] + [alternatives])
+      ])
     }
 
     return top_level_tree
