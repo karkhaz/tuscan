@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+<!-- Jinja template for reports of individual builds
+
+  Copyright 2016 Kareem Khazem. All Rights Reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+ 		 http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+  <head>
+    <meta charset="UTF-8">
+    <title>vanilla/man-pages-it</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+          rel='stylesheet' type='text/css'>
+    <link
+    href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+          rel='stylesheet' type='text/css'>
+    <link href="../style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Build of man-pages-it
+        with <a href="../index.html">vanilla</a>
+        toolchain</h1>
+    <p>The build took 00h 00m 20s and was
+    SUCCESSFUL.
+    
+    </p>
+    
+    
+    
+    <h2>Log</h2>
+    
+      <div class="block">
+        <div class="info">
+          <code>Found permanent source directory in /sources/man-pages-it</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Removed vanilla repositories from pacman.conf and added:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#1">#</a>
+						
+              <code id="1">[tuscan]</code><br />
+						
+            
+            <a class="navhash" href="#2">#</a>
+						
+              <code id="2">Server = file:///var/cache/pacman/pkg/</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman -Syy --noconfirm</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#3">#</a>
+						
+              <code id="3">:: Synchronizing package databases...</code><br />
+						
+            
+            <a class="navhash" href="#4">#</a>
+						
+              <code id="4">downloading tuscan.db...</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>sudo -u tuscan  bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#5">#</a>
+						
+              <code id="5">==> Making package: man-pages-it 4.00-1 (Tue Jun  7 18:56:21 UTC 2016)</code><br />
+						
+            
+            <a class="navhash" href="#6">#</a>
+						
+              <code id="6">==> Checking runtime dependencies...</code><br />
+						
+            
+            <a class="navhash" href="#7">#</a>
+						
+              <code id="7">==> Checking buildtime dependencies...</code><br />
+						
+            
+            <a class="navhash" href="#8">#</a>
+						
+              <code id="8">==> WARNING: Using existing $srcdir/ tree</code><br />
+						
+            
+            <a class="navhash" href="#9">#</a>
+						
+              <code id="9">==> Entering fakeroot environment...</code><br />
+						
+            
+            <a class="navhash" href="#10">#</a>
+						
+              <code id="10">==> Starting package()...</code><br />
+						
+            
+            <a class="navhash" href="#11">#</a>
+						
+              <code id="11">mkdir -p not_installed</code><br />
+						
+            
+            <a class="navhash" href="#12">#</a>
+						
+              <code id="12">for i in man?/*; do \</code><br />
+						
+            
+            <a class="navhash" href="#13">#</a>
+						
+              <code id="13">	rm -f /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i.gz /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i.bz2; \</code><br />
+						
+            
+            <a class="navhash" href="#14">#</a>
+						
+              <code id="14">done</code><br />
+						
+            
+            <a class="navhash" href="#15">#</a>
+						
+              <code id="15">for i in man?/*; do \</code><br />
+						
+            
+            <a class="navhash" href="#16">#</a>
+						
+              <code id="16">	if [ /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i -nt $i ]; then \</code><br />
+						
+            
+            <a class="navhash" href="#17">#</a>
+						
+              <code id="17">		cmp -s /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i $i > /dev/null 2>&1; \</code><br />
+						
+            
+            <a class="navhash" href="#18">#</a>
+						
+              <code id="18">		if [ "$?" != 0 ]; then mv $i not_installed; fi; \</code><br />
+						
+            
+            <a class="navhash" href="#19">#</a>
+						
+              <code id="19">	fi; \</code><br />
+						
+            
+            <a class="navhash" href="#20">#</a>
+						
+              <code id="20">done</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">for d in binutils inetutils man-pages misc util-linux; do \</code><br />
+						
+            
+            <a class="navhash" href="#22">#</a>
+						
+              <code id="22">cd $d; \</code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						
+              <code id="23">	for i in man[1-9]; do \</code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">		install -d -m 755 /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i || exit $?; \</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">		install -m 644 $i/* /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i || exit $?; \</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">	done; \</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">cd ..; \</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">done; \</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29"></code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">for d in binutils inetutils man-pages misc util-linux; do \</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">cd $d; \</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">	for i in man[1-9]; do \</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">		install -d -m 755 /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i || exit $?; \</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">		install -m 644 $i/* /tmp/man-pages-it/pkg/man-pages-it/usr/share/man/it/$i || exit $?; \</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">	done; \</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">cd ..; \</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">done; \</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38"></code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">  -> Removing empty directories...</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">==> Creating package "man-pages-it"...</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">==> Finished making: man-pages-it 4.00-1 (Tue Jun  7 18:56:23 UTC 2016)</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file man-pages-it-4.00-1-any.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">man-pages-it 4.00-1</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'man-pages-it'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'man-pages-it'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/man-pages-it-4.00-1-any.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">man-pages-it 4.00-1</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">/.PKGINFO</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">/.MTREE</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">/usr/share/man/it/man1/addr2line.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">/usr/share/man/it/man1/ar.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">/usr/share/man/it/man1/as.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">/usr/share/man/it/man1/nm.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">/usr/share/man/it/man1/ranlib.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">/usr/share/man/it/man1/readelf.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">/usr/share/man/it/man1/size.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">/usr/share/man/it/man1/strings.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">/usr/share/man/it/man1/strip.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">/usr/share/man/it/man1/ftp.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">/usr/share/man/it/man1/rcp.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">/usr/share/man/it/man1/rlogin.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">/usr/share/man/it/man1/rsh.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">/usr/share/man/it/man1/talk.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">/usr/share/man/it/man1/intro.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">/usr/share/man/it/man1/ldd.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">/usr/share/man/it/man1/time.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">/usr/share/man/it/man1/abc2abc.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">/usr/share/man/it/man1/abc2ly.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">/usr/share/man/it/man1/abc2ps.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">/usr/share/man/it/man1/abcm2ps.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#77">#</a>
+						
+              <code id="77">/usr/share/man/it/man1/bash.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#78">#</a>
+						
+              <code id="78">/usr/share/man/it/man1/bison.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#79">#</a>
+						
+              <code id="79">/usr/share/man/it/man1/gawk.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#80">#</a>
+						
+              <code id="80">/usr/share/man/it/man1/gnumeric.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">/usr/share/man/it/man1/hman.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#82">#</a>
+						
+              <code id="82">/usr/share/man/it/man1/linuxdoc.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#83">#</a>
+						
+              <code id="83">/usr/share/man/it/man1/man2html.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#84">#</a>
+						
+              <code id="84">/usr/share/man/it/man1/manlint.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#85">#</a>
+						
+              <code id="85">/usr/share/man/it/man1/psc.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#86">#</a>
+						
+              <code id="86">/usr/share/man/it/man1/slsc.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#87">#</a>
+						
+              <code id="87">/usr/share/man/it/man1/startx.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#88">#</a>
+						
+              <code id="88">/usr/share/man/it/man1/vprint.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#89">#</a>
+						
+              <code id="89">/usr/share/man/it/man1/xhost.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#90">#</a>
+						
+              <code id="90">/usr/share/man/it/man1/xinit.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#91">#</a>
+						
+              <code id="91">/usr/share/man/it/man8/ftpd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#92">#</a>
+						
+              <code id="92">/usr/share/man/it/man8/inetd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#93">#</a>
+						
+              <code id="93">/usr/share/man/it/man8/ping.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#94">#</a>
+						
+              <code id="94">/usr/share/man/it/man8/rexecd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#95">#</a>
+						
+              <code id="95">/usr/share/man/it/man8/rlogind.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#96">#</a>
+						
+              <code id="96">/usr/share/man/it/man8/rshd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#97">#</a>
+						
+              <code id="97">/usr/share/man/it/man8/syslogd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#98">#</a>
+						
+              <code id="98">/usr/share/man/it/man8/talkd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#99">#</a>
+						
+              <code id="99">/usr/share/man/it/man8/telnetd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#100">#</a>
+						
+              <code id="100">/usr/share/man/it/man8/tftpd.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#101">#</a>
+						
+              <code id="101">/usr/share/man/it/man8/intro.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#102">#</a>
+						
+              <code id="102">/usr/share/man/it/man8/tzselect.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#103">#</a>
+						
+              <code id="103">/usr/share/man/it/man8/zdump.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#104">#</a>
+						
+              <code id="104">/usr/share/man/it/man8/iwconfig.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#105">#</a>
+						
+              <code id="105">/usr/share/man/it/man8/iwevent.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#106">#</a>
+						
+              <code id="106">/usr/share/man/it/man8/iwgetid.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#107">#</a>
+						
+              <code id="107">/usr/share/man/it/man8/iwspy.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#108">#</a>
+						
+              <code id="108">/usr/share/man/it/man8/parted.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#109">#</a>
+						
+              <code id="109">/usr/share/man/it/man8/parted2.8.gz</code><br />
+						
+            
+            <a class="navhash" href="#110">#</a>
+						
+              <code id="110">/usr/share/man/it/man2/_syscall.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#111">#</a>
+						
+              <code id="111">/usr/share/man/it/man2/adjtimex.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#112">#</a>
+						
+              <code id="112">/usr/share/man/it/man2/fork.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#113">#</a>
+						
+              <code id="113">/usr/share/man/it/man2/intro.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#114">#</a>
+						
+              <code id="114">/usr/share/man/it/man2/mount.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#115">#</a>
+						
+              <code id="115">/usr/share/man/it/man2/readv.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#116">#</a>
+						
+              <code id="116">/usr/share/man/it/man2/swapoff.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#117">#</a>
+						
+              <code id="117">/usr/share/man/it/man2/swapon.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#118">#</a>
+						
+              <code id="118">/usr/share/man/it/man2/symlink.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#119">#</a>
+						
+              <code id="119">/usr/share/man/it/man2/symlinkat.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#120">#</a>
+						
+              <code id="120">/usr/share/man/it/man2/sync.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#121">#</a>
+						
+              <code id="121">/usr/share/man/it/man2/sysfs.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#122">#</a>
+						
+              <code id="122">/usr/share/man/it/man2/sysinfo.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#123">#</a>
+						
+              <code id="123">/usr/share/man/it/man2/umask.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#124">#</a>
+						
+              <code id="124">/usr/share/man/it/man2/umount.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#125">#</a>
+						
+              <code id="125">/usr/share/man/it/man2/umount2.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#126">#</a>
+						
+              <code id="126">/usr/share/man/it/man2/uname.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#127">#</a>
+						
+              <code id="127">/usr/share/man/it/man2/unimplemented.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#128">#</a>
+						
+              <code id="128">/usr/share/man/it/man2/unlink.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#129">#</a>
+						
+              <code id="129">/usr/share/man/it/man2/unlinkat.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#130">#</a>
+						
+              <code id="130">/usr/share/man/it/man2/uselib.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#131">#</a>
+						
+              <code id="131">/usr/share/man/it/man2/ustat.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#132">#</a>
+						
+              <code id="132">/usr/share/man/it/man2/utime.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#133">#</a>
+						
+              <code id="133">/usr/share/man/it/man2/utimes.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#134">#</a>
+						
+              <code id="134">/usr/share/man/it/man2/vfork.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#135">#</a>
+						
+              <code id="135">/usr/share/man/it/man2/vhangup.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#136">#</a>
+						
+              <code id="136">/usr/share/man/it/man2/vm86.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#137">#</a>
+						
+              <code id="137">/usr/share/man/it/man2/wait.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#138">#</a>
+						
+              <code id="138">/usr/share/man/it/man2/wait3.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#139">#</a>
+						
+              <code id="139">/usr/share/man/it/man2/wait4.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#140">#</a>
+						
+              <code id="140">/usr/share/man/it/man2/waitpid.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#141">#</a>
+						
+              <code id="141">/usr/share/man/it/man2/write.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#142">#</a>
+						
+              <code id="142">/usr/share/man/it/man2/writev.2.gz</code><br />
+						
+            
+            <a class="navhash" href="#143">#</a>
+						
+              <code id="143">/usr/share/man/it/man3/adjtime.3.gz</code><br />
+						
+            
+            <a class="navhash" href="#144">#</a>
+						
+              <code id="144">/usr/share/man/it/man3/daemon.3.gz</code><br />
+						
+            
+            <a class="navhash" href="#145">#</a>
+						
+              <code id="145">/usr/share/man/it/man3/err.3.gz</code><br />
+						
+            
+            <a class="navhash" href="#146">#</a>
+						
+              <code id="146">/usr/share/man/it/man3/exit.3.gz</code><br />
+						
+            
+            <a class="navhash" href="#147">#</a>
+						
+              <code id="147">/usr/share/man/it/man3/intro.3.gz</code><br />
+						
+            
+            <a class="navhash" href="#148">#</a>
+						
+              <code id="148">/usr/share/man/it/man3/undocumented.3.gz</code><br />
+						
+            
+            <a class="navhash" href="#149">#</a>
+						
+              <code id="149">/usr/share/man/it/man4/console.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#150">#</a>
+						
+              <code id="150">/usr/share/man/it/man4/fd.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#151">#</a>
+						
+              <code id="151">/usr/share/man/it/man4/full.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#152">#</a>
+						
+              <code id="152">/usr/share/man/it/man4/hd.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#153">#</a>
+						
+              <code id="153">/usr/share/man/it/man4/intro.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#154">#</a>
+						
+              <code id="154">/usr/share/man/it/man4/kmem.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#155">#</a>
+						
+              <code id="155">/usr/share/man/it/man4/lp.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#156">#</a>
+						
+              <code id="156">/usr/share/man/it/man4/mem.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#157">#</a>
+						
+              <code id="157">/usr/share/man/it/man4/mouse.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#158">#</a>
+						
+              <code id="158">/usr/share/man/it/man4/null.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#159">#</a>
+						
+              <code id="159">/usr/share/man/it/man4/port.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#160">#</a>
+						
+              <code id="160">/usr/share/man/it/man4/ram.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#161">#</a>
+						
+              <code id="161">/usr/share/man/it/man4/random.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#162">#</a>
+						
+              <code id="162">/usr/share/man/it/man4/sd.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#163">#</a>
+						
+              <code id="163">/usr/share/man/it/man4/tty.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#164">#</a>
+						
+              <code id="164">/usr/share/man/it/man4/ttyS.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#165">#</a>
+						
+              <code id="165">/usr/share/man/it/man4/urandom.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#166">#</a>
+						
+              <code id="166">/usr/share/man/it/man4/vcs.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#167">#</a>
+						
+              <code id="167">/usr/share/man/it/man4/vcsa.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#168">#</a>
+						
+              <code id="168">/usr/share/man/it/man4/zero.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#169">#</a>
+						
+              <code id="169">/usr/share/man/it/man4/ipfw.4.gz</code><br />
+						
+            
+            <a class="navhash" href="#170">#</a>
+						
+              <code id="170">/usr/share/man/it/man5/charmap.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#171">#</a>
+						
+              <code id="171">/usr/share/man/it/man5/filesystems.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#172">#</a>
+						
+              <code id="172">/usr/share/man/it/man5/fs.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#173">#</a>
+						
+              <code id="173">/usr/share/man/it/man5/group.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#174">#</a>
+						
+              <code id="174">/usr/share/man/it/man5/hosts.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#175">#</a>
+						
+              <code id="175">/usr/share/man/it/man5/intro.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#176">#</a>
+						
+              <code id="176">/usr/share/man/it/man5/issue.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#177">#</a>
+						
+              <code id="177">/usr/share/man/it/man5/locale.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#178">#</a>
+						
+              <code id="178">/usr/share/man/it/man5/motd.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#179">#</a>
+						
+              <code id="179">/usr/share/man/it/man5/nologin.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#180">#</a>
+						
+              <code id="180">/usr/share/man/it/man5/protocols.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#181">#</a>
+						
+              <code id="181">/usr/share/man/it/man5/securetty.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#182">#</a>
+						
+              <code id="182">/usr/share/man/it/man5/services.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#183">#</a>
+						
+              <code id="183">/usr/share/man/it/man5/shells.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#184">#</a>
+						
+              <code id="184">/usr/share/man/it/man5/ttytype.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#185">#</a>
+						
+              <code id="185">/usr/share/man/it/man5/utmp.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#186">#</a>
+						
+              <code id="186">/usr/share/man/it/man5/utmpx.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#187">#</a>
+						
+              <code id="187">/usr/share/man/it/man5/wtmp.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#188">#</a>
+						
+              <code id="188">/usr/share/man/it/man5/fstab.5.gz</code><br />
+						
+            
+            <a class="navhash" href="#189">#</a>
+						
+              <code id="189">/usr/share/man/it/man6/intro.6.gz</code><br />
+						
+            
+            <a class="navhash" href="#190">#</a>
+						
+              <code id="190">/usr/share/man/it/man7/ascii.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#191">#</a>
+						
+              <code id="191">/usr/share/man/it/man7/charsets.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#192">#</a>
+						
+              <code id="192">/usr/share/man/it/man7/environ.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#193">#</a>
+						
+              <code id="193">/usr/share/man/it/man7/glob.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#194">#</a>
+						
+              <code id="194">/usr/share/man/it/man7/hier.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#195">#</a>
+						
+              <code id="195">/usr/share/man/it/man7/intro.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#196">#</a>
+						
+              <code id="196">/usr/share/man/it/man7/iso-8859-1.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#197">#</a>
+						
+              <code id="197">/usr/share/man/it/man7/iso-8859-15.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#198">#</a>
+						
+              <code id="198">/usr/share/man/it/man7/iso-8859-2.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#199">#</a>
+						
+              <code id="199">/usr/share/man/it/man7/iso-8859-7.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#200">#</a>
+						
+              <code id="200">/usr/share/man/it/man7/iso_8859-1.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#201">#</a>
+						
+              <code id="201">/usr/share/man/it/man7/iso_8859-15.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#202">#</a>
+						
+              <code id="202">/usr/share/man/it/man7/iso_8859-2.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#203">#</a>
+						
+              <code id="203">/usr/share/man/it/man7/iso_8859-7.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#204">#</a>
+						
+              <code id="204">/usr/share/man/it/man7/iso_8859_1.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#205">#</a>
+						
+              <code id="205">/usr/share/man/it/man7/iso_8859_15.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#206">#</a>
+						
+              <code id="206">/usr/share/man/it/man7/iso_8859_2.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#207">#</a>
+						
+              <code id="207">/usr/share/man/it/man7/iso_8859_7.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#208">#</a>
+						
+              <code id="208">/usr/share/man/it/man7/latin1.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#209">#</a>
+						
+              <code id="209">/usr/share/man/it/man7/latin2.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#210">#</a>
+						
+              <code id="210">/usr/share/man/it/man7/locale.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#211">#</a>
+						
+              <code id="211">/usr/share/man/it/man7/mailaddr.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#212">#</a>
+						
+              <code id="212">/usr/share/man/it/man7/man.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#213">#</a>
+						
+              <code id="213">/usr/share/man/it/man7/regex.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#214">#</a>
+						
+              <code id="214">/usr/share/man/it/man7/signal.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#215">#</a>
+						
+              <code id="215">/usr/share/man/it/man7/standards.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#216">#</a>
+						
+              <code id="216">/usr/share/man/it/man7/suffixes.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#217">#</a>
+						
+              <code id="217">/usr/share/man/it/man7/unicode.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#218">#</a>
+						
+              <code id="218">/usr/share/man/it/man7/utf-8.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#219">#</a>
+						
+              <code id="219">/usr/share/man/it/man7/utf8.7.gz</code><br />
+						
+            
+            <a class="navhash" href="#220">#</a>
+						
+              <code id="220">/usr/share/man/it/man9/ksoftirqd.9.gz</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .PKGINFO usr .MTREE | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf man-pages-it.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#221">#</a>
+						
+              <code id="221">.PKGINFO</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /var/cache/pacman/pkg/man-pages-it.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/man-pages-it.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#222">#</a>
+						
+              <code id="222">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#223">#</a>
+						
+              <code id="223">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#224">#</a>
+						
+              <code id="224">==> Adding package '/var/cache/pacman/pkg/man-pages-it.pkg.tar.xz'</code><br />
+						
+            
+            <a class="navhash" href="#225">#</a>
+						
+              <code id="225">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#226">#</a>
+						
+              <code id="226">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#227">#</a>
+						
+              <code id="227">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#228">#</a>
+						
+              <code id="228">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Printing config.logs</code>
+        </div>
+        
+      </div>
+      <br />
+    
+  </body>
+</html>
