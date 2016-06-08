@@ -278,8 +278,8 @@ def do_postprocess(args):
     man = Manager()
 
     toolchain_counter = 0
-    toolchain_total = len(listdir(src_dir))
-    for toolchain in listdir(src_dir):
+    toolchain_total = len(args.toolchains)
+    for toolchain in args.toolchains:
         pool = Pool(args.pool_size)
 
         toolchain_counter += 1
