@@ -47,6 +47,42 @@ def render_gnuplot(data, jinja, script_name, out_dir):
         f.write(script)
 
 
+def sloc_distribution(results, jinja, out_dir):
+    build_locs = {}
+    for build_name, res_struct in results.items():
+        for tc, results in res_struct.items():
+            build_locs[build_name] = 0
+            for _, loc in results["sloc_info"].items():
+                build_locs[build_name] += loc
+            break
+    dist = {}
+    for build, loc in build_locs.items():
+        bucket = 1
+        added = False
+        while not added:
+            bucket *= 10
+            if bucket not in dist:
+                dist[bucket] = 0
+            if loc < bucket:
+                added = True
+                dist[bucket] += 1
+
+    buckets = sorted(dist.keys())
+    prefixes = ["", " k", " M"]
+    x_label = 1
+    idx = 0
+    data = ""
+    for bucket in buckets:
+        x_label *= 10
+        if x_label == 1000:
+            x_label = 1
+            idx += 1
+        data += '  "< %d%s" %d\n' % (x_label, prefixes[idx],
+                dist[bucket])
+
+    render_gnuplot(data.strip(), jinja, "sloc-distribution", out_dir)
+
+
 def load_results(post_dir):
     results = {}
 
@@ -85,3 +121,5 @@ def do_figures(args):
     results = load_results(src_dir)
 
     jinja = Environment(loader=FileSystemLoader(["tuscan/plots"]))
+
+    sloc_distribution(results, jinja, dst_dir)
