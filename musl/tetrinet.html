@@ -30,26 +30,11 @@
     <h1>Build of tetrinet
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 26s and was
+    <p>The build took 00h 00m 41s and was
     NOT successful.
     </p>
     
     
-    
-    <h2>List of Errors</h2>
-    <ul>
-      
-      <li>ignoring_sysroot
-        <ul>
-          
-          <li><a href="#12">tuscan: ignoring sysroot when invoking 'clang'</a></li>
-          
-          <li><a href="#16">tuscan: ignoring sysroot when invoking 'clang'</a></li>
-          
-        </ul>
-      </li>
-      
-    </ul>
     
     <h2>Log</h2>
     
@@ -107,14 +92,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: tetrinet 0.11-7 (Tue Jun  7 04:25:17 UTC 2016)</code><br />
+              <code id="5">==> Making package: tetrinet 0.11-7 (Thu Jun  9 05:53:40 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -148,48 +133,93 @@
 						
             
             <a class="navhash" href="#12">#</a>
-						<span class="error">
-              <code id="12">tuscan: ignoring sysroot when invoking 'clang'</code><br />
-						</span>
+						
+              <code id="12">tetrinet.c:640:44: warning: passing 'unsigned char [4]' to parameter of type 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
+						
             
             <a class="navhash" href="#13">#</a>
 						
-              <code id="13">Makefile:31: recipe for target 'tetrinet.o' failed</code><br />
+              <code id="13">    if ((server_sock = conn(server, 31457, ip)) < 0) {</code><br />
 						
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">make: *** [tetrinet.o] Error 1</code><br />
+              <code id="14">                                           ^~</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="15">./sockets.h:15:50: note: passing argument to parameter 'ipbuf' here</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
-						<span class="error">
-              <code id="16">tuscan: ignoring sysroot when invoking 'clang'</code><br />
-						</span>
+						
+              <code id="16">extern int conn(const char *host, int port, char ipbuf[4]);</code><br />
+						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">Makefile:31: recipe for target 'sockets.o' failed</code><br />
+              <code id="17">                                                 ^</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">make: *** [sockets.o] Error 1</code><br />
+              <code id="18">clang  -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tetris.c</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">==> ERROR: A failure occurred in build().</code><br />
+              <code id="19">1 warning generated.</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">    Aborting...</code><br />
+              <code id="20">clang  -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tty.c</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">tty.c:14:10: fatal error: 'curses.h' file not found</code><br />
+						
+            
+            <a class="navhash" href="#22">#</a>
+						
+              <code id="22">#include <curses.h></code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						
+              <code id="23">         ^</code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">Makefile:31: recipe for target 'tty.o' failed</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">make: *** [tty.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">make: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">    Aborting...</code><br />
 						
             
           </div>

@@ -30,7 +30,7 @@
     <h1>Build of ebizzy
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 37s and was
+    <p>The build took 00h 00m 51s and was
     NOT successful.
     </p>
     
@@ -39,10 +39,10 @@
     <h2>List of Errors</h2>
     <ul>
       
-      <li>ignoring_sysroot
+      <li>compile_error
         <ul>
           
-          <li><a href="#11">tuscan: ignoring sysroot when invoking 'clang'</a></li>
+          <li><a href="#14">ebizzy.c:223:11: error: use of undeclared identifier 'M_MMAP_MAX'</a></li>
           
         </ul>
       </li>
@@ -105,14 +105,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: ebizzy 0.3-3 (Tue Jun  7 03:40:13 UTC 2016)</code><br />
+              <code id="5">==> Making package: ebizzy 0.3-3 (Thu Jun  9 04:47:18 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -141,28 +141,58 @@
 						
             
             <a class="navhash" href="#11">#</a>
-						<span class="error">
-              <code id="11">tuscan: ignoring sysroot when invoking 'clang'</code><br />
-						</span>
+						
+              <code id="11">ebizzy.c:223:3: warning: implicit declaration of function 'mallopt' is invalid in C99 [-Wimplicit-function-declaration]</code><br />
+						
             
             <a class="navhash" href="#12">#</a>
 						
-              <code id="12"><builtin>: recipe for target 'ebizzy' failed</code><br />
+              <code id="12">                mallopt(M_MMAP_MAX, 0);</code><br />
 						
             
             <a class="navhash" href="#13">#</a>
 						
-              <code id="13">make: *** [ebizzy] Error 1</code><br />
+              <code id="13">                ^</code><br />
 						
             
             <a class="navhash" href="#14">#</a>
-						
-              <code id="14">==> ERROR: A failure occurred in build().</code><br />
-						
+						<span class="error">
+              <code id="14">ebizzy.c:223:11: error: use of undeclared identifier 'M_MMAP_MAX'</code><br />
+						</span>
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">    Aborting...</code><br />
+              <code id="15">                mallopt(M_MMAP_MAX, 0);</code><br />
+						
+            
+            <a class="navhash" href="#16">#</a>
+						
+              <code id="16">                        ^</code><br />
+						
+            
+            <a class="navhash" href="#17">#</a>
+						
+              <code id="17">1 warning and 1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#18">#</a>
+						
+              <code id="18"><builtin>: recipe for target 'ebizzy' failed</code><br />
+						
+            
+            <a class="navhash" href="#19">#</a>
+						
+              <code id="19">make: *** [ebizzy] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#20">#</a>
+						
+              <code id="20">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">    Aborting...</code><br />
 						
             
           </div>

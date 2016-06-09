@@ -30,7 +30,7 @@
     <h1>Build of zita-resampler
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 39s and was
+    <p>The build took 00h 00m 50s and was
     NOT successful.
     </p>
     
@@ -92,14 +92,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: zita-resampler 1.3.0-5 (Tue Jun  7 04:58:50 UTC 2016)</code><br />
+              <code id="5">==> Making package: zita-resampler 1.3.0-5 (Thu Jun  9 06:50:32 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -134,47 +134,157 @@
             
             <a class="navhash" href="#12">#</a>
 						
-              <code id="12">tuscan: ignoring sysroot when invoking 'clang++'</code><br />
+              <code id="12">In file included from vresampler.cc:25:</code><br />
 						
             
             <a class="navhash" href="#13">#</a>
 						
-              <code id="13"><builtin>: recipe for target 'vresampler.o' failed</code><br />
+              <code id="13">./zita-resampler/vresampler.h:79:26: warning: private field '_dummy' is not used [-Wunused-private-field]</code><br />
 						
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">make: *** [vresampler.o] Error 1</code><br />
+              <code id="14">    void                *_dummy [8];</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="15">                         ^</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">tuscan: ignoring sysroot when invoking 'clang++'</code><br />
+              <code id="16">In file included from resampler.cc:25:</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17"><builtin>: recipe for target 'resampler.o' failed</code><br />
+              <code id="17">./zita-resampler/resampler.h:72:26: warning: private field '_dummy' is not used [-Wunused-private-field]</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">make: *** [resampler.o] Error 1</code><br />
+              <code id="18">    void                *_dummy [8];</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">==> ERROR: A failure occurred in build().</code><br />
+              <code id="19">                         ^</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">    Aborting...</code><br />
+              <code id="20">1 warning generated.</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">1 warning generated.</code><br />
+						
+            
+            <a class="navhash" href="#22">#</a>
+						
+              <code id="22">clang++  -Wall -fPIC -O2 -ffast-math  -I. -D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS  -c -o resampler-table.o resampler-table.cc</code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						
+              <code id="23">g++ -shared   -Wl,-soname,libzita-resampler.so.1 -o libzita-resampler.so.1.3.0 resampler.o vresampler.o resampler-table.o </code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">clang++  -I../libs -O3  -ffast-math -Wall  -MMD -MP -DVERSION=\"0.4.0\"  -c -o zresample.o zresample.cc</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">clang++  -I../libs -O3  -ffast-math -Wall  -MMD -MP -DVERSION=\"0.4.0\"  -c -o audiofile.o audiofile.cc</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">In file included from audiofile.cc:23:</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">./audiofile.h:27:10: fatal error: 'sndfile.h' file not found</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">#include <sndfile.h></code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">         ^</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31"><builtin>: recipe for target 'audiofile.o' failed</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">make: *** [audiofile.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">make: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">In file included from zresample.cc:27:</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">./audiofile.h:27:10: fatal error: 'sndfile.h' file not found</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">#include <sndfile.h></code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">         ^</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39"><builtin>: recipe for target 'zresample.o' failed</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">make: *** [zresample.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">    Aborting...</code><br />
 						
             
           </div>

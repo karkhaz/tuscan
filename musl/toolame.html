@@ -30,7 +30,7 @@
     <h1>Build of toolame
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 25s and was
+    <p>The build took 00h 00m 28s and was
     NOT successful.
     </p>
     
@@ -39,12 +39,16 @@
     <h2>List of Errors</h2>
     <ul>
       
-      <li>ignoring_sysroot
+      <li>undefined_reference
         <ul>
           
-          <li><a href="#15">tuscan: ignoring sysroot when invoking 'clang'</a></li>
+          <li><a href="#76">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</a></li>
           
-          <li><a href="#19">tuscan: ignoring sysroot when invoking 'clang'</a></li>
+          <li><a href="#77">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</a></li>
+          
+          <li><a href="#78">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</a></li>
+          
+          <li><a href="#79">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</a></li>
           
         </ul>
       </li>
@@ -107,14 +111,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: toolame 02l-10 (Tue Jun  7 04:21:17 UTC 2016)</code><br />
+              <code id="5">==> Making package: toolame 02l-10 (Thu Jun  9 05:47:52 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -163,48 +167,353 @@
 						
             
             <a class="navhash" href="#15">#</a>
-						<span class="error">
-              <code id="15">tuscan: ignoring sysroot when invoking 'clang'</code><br />
-						</span>
+						
+              <code id="15">In file included from encode.c:6:</code><br />
+						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">Makefile:72: recipe for target 'common.o' failed</code><br />
+              <code id="16">./bitstream.h:12:13: warning: inline function 'putbits' is not defined [-Wundefined-inline]</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">make: *** [common.o] Error 1</code><br />
+              <code id="17">INLINE void putbits (Bit_stream_struc *, unsigned int, int);</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="18">            ^</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
-						<span class="error">
-              <code id="19">tuscan: ignoring sysroot when invoking 'clang'</code><br />
-						</span>
+						
+              <code id="19">encode.c:34:3: note: used here</code><br />
+						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">Makefile:72: recipe for target 'encode.o' failed</code><br />
+              <code id="20">  putbits (bs, 0xfff, 12);      /* syncword 12 bits */</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">make: *** [encode.o] Error 1</code><br />
+              <code id="21">  ^</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">==> ERROR: A failure occurred in build().</code><br />
+              <code id="22">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c ieeefloat.c -o ieeefloat.o</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">    Aborting...</code><br />
+              <code id="23">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c toolame.c -o toolame.o</code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">toolame.c:155:7: warning: variable 'num_samples' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">  if (argc == 1)                /* no command-line args */</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">      ^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">toolame.c:167:38: note: uninitialized use occurs here</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">  while (get_audio (musicin, buffer, num_samples, nch, &header) > 0) {</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">                                     ^~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">toolame.c:155:3: note: remove the 'if' if its condition is always false</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">  if (argc == 1)                /* no command-line args */</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">toolame.c:118:28: note: initialize the variable 'num_samples' to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">  unsigned long num_samples;</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">                            = 0</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">In file included from toolame.c:9:</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">./bitstream.h:12:13: warning: inline function 'putbits' is not defined [-Wundefined-inline]</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">INLINE void putbits (Bit_stream_struc *, unsigned int, int);</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">            ^</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">toolame.c:364:7: note: used here</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">      putbits (&bs, crc, 16);</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">      ^</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">2 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c portableio.c -o portableio.o</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c psycho_n1.c -o psycho_n1.o</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c psycho_0.c -o psycho_0.o</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c psycho_1.c -o psycho_1.o</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">1 warning generated.</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c psycho_2.c -o psycho_2.o</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c psycho_3.c -o psycho_3.o</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">psycho_3.c:75:7: warning: unused variable 'sblimit' [-Wunused-variable]</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">  int sblimit = frame->sblimit;</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">      ^</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">1 warning generated.</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c psycho_4.c -o psycho_4.o</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c fft.c -o fft.o</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c subband.c -o subband.o</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c audio_read.c -o audio_read.o</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c bitstream.c -o bitstream.o</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c mem.c -o mem.o</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c crc.c -o crc.o</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c tables.c -o tables.o</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c availbits.c -o availbits.o</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c ath.c -o ath.o</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">clang -O2 -DNDEBUG -DINLINE=inline -march=x86-64 -pipe  -Wall -DNEWENCODE -DNEWATAN -c encode_new.c -o encode_new.o</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">In file included from encode_new.c:6:</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">./bitstream.h:12:13: warning: inline function 'putbits' is not defined [-Wundefined-inline]</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">INLINE void putbits (Bit_stream_struc *, unsigned int, int);</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">            ^</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">encode_new.c:360:3: note: used here</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">  putbits (bs, 0xfff, 12);      /* syncword 12 bits */</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">  ^</code><br />
+						
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">1 warning generated.</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">clang -o toolame common.o encode.o ieeefloat.o toolame.o portableio.o psycho_n1.o psycho_0.o psycho_1.o psycho_2.o psycho_3.o psycho_4.o fft.o subband.o audio_read.o bitstream.o mem.o crc.o tables.o availbits.o ath.o encode_new.o -lm</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						<span class="error">
+              <code id="76">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</code><br />
+						</span>
+            
+            <a class="navhash" href="#77">#</a>
+						<span class="error">
+              <code id="77">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</code><br />
+						</span>
+            
+            <a class="navhash" href="#78">#</a>
+						<span class="error">
+              <code id="78">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</code><br />
+						</span>
+            
+            <a class="navhash" href="#79">#</a>
+						<span class="error">
+              <code id="79">encode.o:encode.c:function encode_info: error: undefined reference to 'putbits'</code><br />
+						</span>
+            
+            <a class="navhash" href="#80">#</a>
+						
+              <code id="80">clang-3.8: error: linker command failed with exit code 1 (use -v to see invocation)</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">Makefile:75: recipe for target 'toolame' failed</code><br />
+						
+            
+            <a class="navhash" href="#82">#</a>
+						
+              <code id="82">make: *** [toolame] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#83">#</a>
+						
+              <code id="83">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#84">#</a>
+						
+              <code id="84">    Aborting...</code><br />
 						
             
           </div>
