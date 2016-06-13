@@ -69,6 +69,10 @@ def main():
             action="store_true", help=("Calculate which builds are "
                 "blocking which others (recommended: > 80 GB RAM)"))
 
+    postprocess_parser.add_argument("-e", "--treeify-bear",
+            action="store_true", help=("Also treeify bear output "
+                "(recommended timeout: > 24 CPU hours)"))
+
     postprocess_parser.set_defaults(func=do_postprocess)
 
     # ./tuscan.py html

@@ -42,6 +42,161 @@ from time import sleep
 from yaml import load as yaml_load
 
 
+def process_bear(output):
+    for e in output:
+        e["pid"] = int(e["pid"])
+        e["ppid"] = int(e["ppid"])
+        if "return_code" in e:
+            e["return_code"] = int(e["return_code"])
+        if "timestamp" in e:
+            e["timestamp"] = int(e["timestamp"])
+
+    # output is a mixture of exec and exit data structures. We first
+    # homogenise the list by adding the return codes from the exit
+    # objects into the corresponding exec object.
+    execs = [e for e in output if e["kind"] == "exec"]
+    exits = [x for x in output if x["kind"] == "exit"]
+
+    for e in execs:
+        e.pop("kind", None)
+        e.pop("directory", None)
+        e.pop("function", None)
+        e["children"] = []
+
+        exit = [x for x in exits if x["pid"] == e["pid"]]
+        if not exit:
+            e["return_code"] = None
+        elif len(exit) == 1:
+            e["return_code"] = exit[0]["return_code"]
+        else:
+            rcs = [x["return_code"] for x in exit]
+            if len(rcs) != rcs.count(rcs[0]) and rcs.count(0):
+                # There is a mixture of zero and non-zero RCs for this
+                # PID. This is weird; we can conclude nothing here.
+                e["return_code"] = None
+            else:
+                # Either there were several RCs for the PID, but the
+                # return code was the same for all of them (maybe zero,
+                # maybe not). Or there are several different RCs for the
+                # same PID, but they're all non-zero. Either way, just
+                # pick the first one.
+                e["return_code"] = rcs[0]
+
+    new_execs = []
+    for e in execs:
+        if not [n for n in new_execs if n["pid"] == e["pid"]]:
+            new_execs.append(e)
+    execs = sorted(new_execs, key=lambda x: x["timestamp"])
+
+    # execs is now a flat list. The algorithm for treeifying the list
+    # assumes that there is a root process, which won't always be the
+    # case, so we need to synthesise one. It also assumes that each
+    # process has a parent. This isn't the case in general, I've
+    # observed lots of cases where processes have a PPID that doesn't
+    # appear in the process list. Again, synthesise them.
+
+    pids = [e["pid"] for e in execs]
+    absent_parents = []
+    added = []
+    for e in execs:
+        if e["ppid"] not in pids and e["ppid"] not in added:
+            added.append(e["ppid"])
+            absent_parents.append({
+                "pid": e["ppid"],
+                "ppid": 0,
+                "children": [],
+                "timestamp": e["timestamp"],
+                "return_code": e["return_code"],
+                "command": "__unknown__"
+            })
+    execs = execs + absent_parents + [{
+        "pid": 0,
+        "ppid": -1,
+        "children": [],
+        "timestamp": 0,
+        "return_code": 0,
+        "command": ["__root_process__"]
+    }]
+
+    # Now turn execs into a tree showing the parent-child process
+    # relationship.
+
+    def iterate(data):
+        if not data:
+            return []
+        def is_decendent(node, parent):
+            if node["ppid"] == parent["pid"]:
+                parent["children"].append(node)
+                parent["children"] = sorted(parent["children"], key=(
+                    lambda node: node["timestamp"]))
+                return True, parent
+            else:
+                new_children = []
+                added = False
+                for child in parent["children"]:
+                    ret, new_child = is_decendent(node, child)
+                    new_children.append(new_child)
+                    if ret:
+                        added = True
+                parent["children"] = sorted(new_children, key=(
+                    lambda node: node["timestamp"]))
+                return added, parent
+        lst = list(data)
+        passes = len(data)
+        counter = passes
+        total = 0
+        limit = passes * passes + 1
+        while counter:
+            counter -= 1
+            total += 1
+            # If this happens, the implementation is broken & won't
+            # terminate...
+            if total > limit:
+                error("n^2 passes over list")
+                exit(1)
+            head, tail = lst[0], lst[1:]
+            to_append = head
+            new_list = []
+            already_added = False
+            for t in tail:
+                added, new_t = is_decendent(head, t)
+                if added:
+                    assert(not already_added)
+                    already_added = True
+                    counter = passes
+                    to_append = t
+                elif t["ppid"] == head["pid"]:
+                    head["children"].append(t)
+                    counter = passes
+                else:
+                    new_list.append(t)
+            new_list.append(to_append)
+            lst = new_list
+        return lst
+
+    execs = iterate(execs)
+
+    # There should be a single root node with pid of -1.
+    assert(len(execs)) == 1
+    tree = execs[0]
+
+    # Finally, get rid of all the dummy processes that were used during
+    # the iteration.
+
+    def squash_unknowns(node):
+        new_children = []
+        for child in node["children"]:
+            if child["command"] == "__unknown__":
+                for grandchild in child["children"]:
+                    new_children.append(squash_unknowns(grandchild))
+            else:
+                new_children.append(squash_unknowns(child))
+        node["children"] = new_children
+        return node
+
+    return squash_unknowns(tree)
+
+
 def dump_result(result):
     with open(result["file"], "w") as f:
         dump(result["data"], f, indent=2)
@@ -61,7 +216,7 @@ def process_log_line(line, patterns, counter):
     return ret
 
 
-def process_single_result(data, patterns):
+def process_single_result(data, patterns, args):
     # Each line in the log needs its own ID, so that we can refer to
     # them in HTML or other reports
     counter = 0
@@ -112,6 +267,11 @@ def process_single_result(data, patterns):
     data["blocked_by"] = []
     data["blocks"] = []
 
+    if args.treeify_bear:
+        data["bear_output"] = process_bear(data["bear_output"])
+    else:
+        data["bear_output"] = None
+
     return data
 
 
@@ -129,7 +289,7 @@ def load_and_process(path, patterns, out_dir, args, results):
         error("Malformed input at %s\n  %s" % (path, str(e)))
         return
 
-    data = process_single_result(data, patterns)
+    data = process_single_result(data, patterns, args)
 
     try:
         post_processed_schema(data)
