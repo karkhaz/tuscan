@@ -41,6 +41,8 @@ stage_deps_schema = Schema({
         # that are mentioned in the Dockerfile, or are needed for some
         # other reason)
         Optional("copy_files"): [_nonempty_string],
+        # Script that should be run just before the Docker build command
+        Optional("script"): _nonempty_string,
     }),
     # Data needed to run the container
     Required("run"): Schema({
@@ -114,6 +116,11 @@ make_package_schema = Schema({
     Required("sloc_info"): Schema({
         _nonempty_string: int
     }),
+    # Map from the name of a native tool, to how many times the build
+    # invoked that native tool.
+    Required("native_tools"): Schema({
+        _nonempty_string: int
+    }),
     Required("log"): [
         # Logs have a head and body. Typically, for each command that
         # gets executed by the make_package stage, the head will be the
@@ -173,6 +180,7 @@ post_processed_schema = Schema({
     Required("category_counts"): Schema({
         Any(*_categories): int
     }),
+    Required("native_tools"): Schema({ _nonempty_string: int }),
     Required("log"): [
         Schema({
             Required("head"): _nonempty_string,
@@ -228,3 +236,24 @@ classification_schema = Schema([Schema({
     Required("category"): _nonempty_string,
     Required("severity"): Any("error", "diagnostic")
 })])
+
+
+"""binutil_transforms.yaml files for individual toolchains
+
+These are used for specifying what native tools will be overwritten by
+a compiler wrapper that prints an error message and redirects the
+invocation to a toolchain tool.
+"""
+binutil_schema = Schema({
+    # Directory containing toolchain executables, typically under
+    # /toolchain_root
+    Required("bin"): _nonempty_string,
+    # A list of executables E such that /usr/bin/E shall be replaced by a
+    # wrapper that points to B/E, where B is the value of the "bin" field
+    Required("overwrite"): [ _nonempty_string ],
+    # A map from N -> E such that /usr/bin/N shall be replaced by a
+    # wrapper that points to B/E, where B is the value of the "bin" field
+    Required("replacements"): {
+        _nonempty_string: _nonempty_string
+    }
+})
