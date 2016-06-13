@@ -169,9 +169,10 @@ def data_containers_needed_by(stage, data_containers):
 class Stage(object):
 
     class Build(object):
-        def __init__(self, copy_files=[], stages=[]):
+        def __init__(self, copy_files=[], stages=[], script=None):
             self.copy_files = copy_files
             self.stages = stages
+            self.script = script
 
         @staticmethod
         def load(data):
@@ -181,6 +182,8 @@ class Stage(object):
                 bs.copy_files = [f for lst in lists for f in lst]
             if "stages" in data:
                 bs.stages = data["stages"]
+            if "script" in data:
+                bs.script = data["script"]
             return bs
 
 
@@ -418,6 +421,9 @@ class Stages(object):
             copyfiles = [("cp %s %s" % (c, build_context))
                          for c in copyfiles]
             commands += copyfiles
+
+            if stage.build.script:
+                commands.append(stage.build.script)
 
             docker = ("docker build -t %s %s %s" %
                       (stage.name, build_context, quiet))
