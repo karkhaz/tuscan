@@ -198,6 +198,18 @@ def copy_and_build(args):
 
     log("command", command, stdout_data.splitlines(), time)
 
+    native_tools = {}
+    for native in glob("/tmp/tuscan-native-*"):
+        with open(native) as f:
+            tool = f.readlines()
+        if tool:
+            tool = tool[0].strip()
+        if tool not in native_tools:
+            native_tools[tool] = 0
+        native_tools[tool] += 1
+    if native_tools:
+        log("native_tools", "native_tools", native_tools)
+
     return proc.returncode
 
 
