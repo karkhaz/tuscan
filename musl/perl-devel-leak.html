@@ -30,24 +30,12 @@
     <h1>Build of perl-devel-leak
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 55s and was
-    NOT successful.
+    <p>The build took 00h 00m 48s and was
+    SUCCESSFUL.
+    
     </p>
     
     
-    
-    <h2>List of Errors</h2>
-    <ul>
-      
-      <li>native_tool_invocation
-        <ul>
-          
-          <li><a href="#21">tuscan: native invocation of 'cc'</a></li>
-          
-        </ul>
-      </li>
-      
-    </ul>
     
     <h2>Log</h2>
     
@@ -112,7 +100,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: perl-devel-leak 0.03-2 (Thu Jun  9 05:23:57 UTC 2016)</code><br />
+              <code id="5">==> Making package: perl-devel-leak 0.03-2 (Tue Jun 14 02:11:16 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -191,28 +179,448 @@
 						
             
             <a class="navhash" href="#21">#</a>
-						<span class="error">
-              <code id="21">tuscan: native invocation of 'cc'</code><br />
-						</span>
+						
+              <code id="21">Leak.xs:15:9: warning: 'sv_dump' macro redefined [-Wmacro-redefined]</code><br />
+						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">Makefile:330: recipe for target 'Leak.o' failed</code><br />
+              <code id="22">#define sv_dump(sv) PerlIO_printf(PerlIO_stderr(), "\n")</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">make: *** [Leak.o] Error 1</code><br />
+              <code id="23">        ^</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">==> ERROR: A failure occurred in build().</code><br />
+              <code id="24">/usr/lib/perl5/core_perl/CORE/embed.h:617:9: note: previous definition is here</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">    Aborting...</code><br />
+              <code id="25">#define sv_dump(a)              Perl_sv_dump(aTHX_ a)</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">        ^</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">Leak.xs:80:48: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">       warn("Odd SvANY for %p @ %p[%d]",sv,sva,(sv-sva));</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">                                   ~~          ^~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">                                   %ld</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">Leak.xs:102:21: warning: comparison of constant 255 with expression of type 'svtype' is always true [-Wtautological-constant-out-of-range-compare]</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">     if (SvTYPE(sv) != SVTYPEMASK)</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">         ~~~~~~~~~~ ^  ~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">3 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">rm -f blib/arch/auto/Devel/Leak/Leak.so</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Leak.o  -o blib/arch/auto/Devel/Leak/Leak.so 	\</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">     	\</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">  </code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">chmod 755 blib/arch/auto/Devel/Leak/Leak.so</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Leak.bs blib/arch/auto/Devel/Leak/Leak.bs 644</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">Manifying 1 pod document</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">==> Entering fakeroot environment...</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">==> Starting package()...</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">Running Mkbootstrap for Devel::Leak ()</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">chmod 644 "Leak.bs"</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">Manifying 1 pod document</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">Appending installation info to /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/lib/perl5/core_perl/perllocal.pod</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">Installing /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/lib/perl5/vendor_perl/auto/Devel/Leak/Leak.so</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">Installing /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/lib/perl5/vendor_perl/Devel/Leak.pm</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">Installing /tmp/perl-devel-leak/pkg/perl-devel-leak/usr/share/man/man3/Devel::Leak.3pm</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">  -> Removing empty directories...</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">==> Creating package "perl-devel-leak"...</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">==> Finished making: perl-devel-leak 0.03-2 (Tue Jun 14 02:11:20 UTC 2016)</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file perl-devel-leak-0.03-2-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">perl-devel-leak 0.03-2</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'perl-devel-leak'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'perl-devel-leak'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/perl-devel-leak-0.03-2-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">perl-devel-leak 0.03-2</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">/.PKGINFO</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">/.MTREE</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">/usr/lib/perl5/vendor_perl/Devel/Leak.pm</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">/usr/lib/perl5/vendor_perl/auto/Devel/Leak/Leak.so</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">/usr/share/man/man3/Devel::Leak.3pm.gz</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">/toolchain_root/usr/lib/perl5/vendor_perl/Devel/Leak.pm</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">/toolchain_root/usr/lib/perl5/vendor_perl/auto/Devel/Leak/Leak.so</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr toolchain_root</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr toolchain_root .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .PKGINFO usr toolchain_root .MTREE | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf perl-devel-leak.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">.PKGINFO</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /var/cache/pacman/pkg/perl-devel-leak.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/perl-devel-leak.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#77">#</a>
+						
+              <code id="77">==> Adding package '/var/cache/pacman/pkg/perl-devel-leak.pkg.tar.xz'</code><br />
+						
+            
+            <a class="navhash" href="#78">#</a>
+						
+              <code id="78">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#79">#</a>
+						
+              <code id="79">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#80">#</a>
+						
+              <code id="80">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

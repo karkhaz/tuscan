@@ -30,7 +30,7 @@
     <h1>Build of keyutils
         with <a href="../index.html">android</a>
         toolchain</h1>
-    <p>The build took 00h 00m 54s and was
+    <p>The build took 00h 00m 45s and was
     NOT successful.
     </p>
     
@@ -39,10 +39,26 @@
     <h2>List of Errors</h2>
     <ul>
       
-      <li>native_tool_invocation
+      <li>link_error
         <ul>
           
-          <li><a href="#29">tuscan: native invocation of 'ar'</a></li>
+          <li><a href="#30">/toolchain_root/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lresolv</a></li>
+          
+        </ul>
+      </li>
+      
+      <li>undefined_reference
+        <ul>
+          
+          <li><a href="#31">key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_parserr'</a></li>
+          
+          <li><a href="#32">key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_get16'</a></li>
+          
+          <li><a href="#33">key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_name_uncompress'</a></li>
+          
+          <li><a href="#34">key.dns_resolver.o:key.dns_resolver.c:function dns_query_afsdb: error: undefined reference to '__ns_initparse'</a></li>
+          
+          <li><a href="#35">key.dns_resolver.o:key.dns_resolver.c:function main: error: undefined reference to 'rindex'</a></li>
           
         </ul>
       </li>
@@ -112,7 +128,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: keyutils 1.5.9-1 (Tue Jun  7 02:04:25 UTC 2016)</code><br />
+              <code id="5">==> Making package: keyutils 1.5.9-1 (Tue Jun 14 05:08:10 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -142,7 +158,7 @@
             
             <a class="navhash" href="#11">#</a>
 						
-              <code id="11">arm-linux-androideabi-gcc -I. -DPKGBUILD="\"2016-06-07\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -fPIC -o keyutils.os -c keyutils.c</code><br />
+              <code id="11">arm-linux-androideabi-gcc -I. -DPKGBUILD="\"2016-06-14\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -fPIC -o keyutils.os -c keyutils.c</code><br />
 						
             
             <a class="navhash" href="#12">#</a>
@@ -162,42 +178,42 @@
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">arm-linux-androideabi-gcc -I. -DPKGBUILD="\"2016-06-07\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -UNO_GLIBC_KEYERR -o keyutils.o -c keyutils.c</code><br />
+              <code id="15">key.dns_resolver.c: In function 'main':</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">key.dns_resolver.c: In function 'main':</code><br />
+              <code id="16">key.dns_resolver.c:703:11: warning: incompatible implicit declaration of built-in function 'rindex' [enabled by default]</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">key.dns_resolver.c:703:11: warning: incompatible implicit declaration of built-in function 'rindex' [enabled by default]</code><br />
+              <code id="17">  keyend = rindex(keyend, ';');</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">  keyend = rindex(keyend, ';');</code><br />
+              <code id="18">           ^</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">           ^</code><br />
+              <code id="19">key.dns_resolver.c:708:9: warning: incompatible implicit declaration of built-in function 'index' [enabled by default]</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">key.dns_resolver.c:708:9: warning: incompatible implicit declaration of built-in function 'index' [enabled by default]</code><br />
+              <code id="20">  name = index(keyend, ':');</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">  name = index(keyend, ':');</code><br />
+              <code id="21">         ^</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">         ^</code><br />
+              <code id="22">arm-linux-androideabi-gcc -I. -DPKGBUILD="\"2016-06-14\"" -DPKGVERSION="\"keyutils-1.5.9\"" -DAPIVERSION="\"libkeyutils-1.5\""  -UNO_GLIBC_KEYERR -o keyutils.o -c keyutils.c</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
@@ -231,33 +247,98 @@
 						
             
             <a class="navhash" href="#29">#</a>
-						<span class="error">
-              <code id="29">tuscan: native invocation of 'ar'</code><br />
-						</span>
+						
+              <code id="29">arm-linux-androideabi-gcc -L.    -o key.dns_resolver key.dns_resolver.o -lkeyutils -lresolv</code><br />
+						
             
             <a class="navhash" href="#30">#</a>
-						
-              <code id="30">Makefile:110: recipe for target 'libkeyutils.a' failed</code><br />
-						
+						<span class="error">
+              <code id="30">/toolchain_root/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: error: cannot find -lresolv</code><br />
+						</span>
             
             <a class="navhash" href="#31">#</a>
-						
-              <code id="31">make: *** [libkeyutils.a] Error 1</code><br />
-						
+						<span class="error">
+              <code id="31">key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_parserr'</code><br />
+						</span>
             
             <a class="navhash" href="#32">#</a>
-						
-              <code id="32">make: *** Waiting for unfinished jobs....</code><br />
-						
+						<span class="error">
+              <code id="32">key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_get16'</code><br />
+						</span>
             
             <a class="navhash" href="#33">#</a>
-						
-              <code id="33">==> ERROR: A failure occurred in build().</code><br />
-						
+						<span class="error">
+              <code id="33">key.dns_resolver.o:key.dns_resolver.c:function afsdb_hosts_to_addrs: error: undefined reference to '__ns_name_uncompress'</code><br />
+						</span>
             
             <a class="navhash" href="#34">#</a>
+						<span class="error">
+              <code id="34">key.dns_resolver.o:key.dns_resolver.c:function dns_query_afsdb: error: undefined reference to '__ns_initparse'</code><br />
+						</span>
+            
+            <a class="navhash" href="#35">#</a>
+						<span class="error">
+              <code id="35">key.dns_resolver.o:key.dns_resolver.c:function main: error: undefined reference to 'rindex'</code><br />
+						</span>
+            
+            <a class="navhash" href="#36">#</a>
 						
-              <code id="34">    Aborting...</code><br />
+              <code id="36">collect2: error: ld returned 1 exit status</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">Makefile:150: recipe for target 'key.dns_resolver' failed</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">make: *** [key.dns_resolver] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">make: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">Traceback (most recent call last):</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">  File "/usr/sbin/ar", line 15, in <module></code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">    execv(prog, args)</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">FileNotFoundError: [Errno 2] No such file or directory</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">Makefile:110: recipe for target 'libkeyutils.a' failed</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">make: *** [libkeyutils.a] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">    Aborting...</code><br />
 						
             
           </div>

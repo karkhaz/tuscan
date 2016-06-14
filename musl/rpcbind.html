@@ -62,19 +62,17 @@
           
           <li><a href="#102">src/pmap_svc.c:171:1: error: redefinition of 'pmapproc_change' as different kind of symbol</a></li>
           
-          <li><a href="#112">src/check_bound.c:73:26: error: expected ';' after top level declarator</a></li>
+          <li><a href="#108">src/check_bound.c:73:26: error: expected ';' after top level declarator</a></li>
           
-          <li><a href="#116">src/check_bound.c:81:1: error: redefinition of 'check_bound' as different kind of symbol</a></li>
+          <li><a href="#112">src/check_bound.c:81:1: error: redefinition of 'check_bound' as different kind of symbol</a></li>
           
-          <li><a href="#122">src/pmap_svc.c:266:1: error: redefinition of 'pmapproc_getport' as different kind of symbol</a></li>
+          <li><a href="#122">src/check_bound.c:150:21: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</a></li>
           
-          <li><a href="#128">src/pmap_svc.c:297:25: error: called object type 'struct pmaplist *' is not a function or function pointer</a></li>
+          <li><a href="#125">src/check_bound.c:169:17: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</a></li>
           
-          <li><a href="#131">src/check_bound.c:150:21: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</a></li>
+          <li><a href="#134">src/pmap_svc.c:297:25: error: called object type 'struct pmaplist *' is not a function or function pointer</a></li>
           
-          <li><a href="#134">src/check_bound.c:169:17: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</a></li>
-          
-          <li><a href="#137">src/pmap_svc.c:338:1: error: redefinition of 'pmapproc_dump' as different kind of symbol</a></li>
+          <li><a href="#138">src/pmap_svc.c:338:1: error: redefinition of 'pmapproc_dump' as different kind of symbol</a></li>
           
         </ul>
       </li>
@@ -152,7 +150,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: rpcbind 0.2.3-3 (Thu Jun  9 06:53:18 UTC 2016)</code><br />
+              <code id="5">==> Making package: rpcbind 0.2.3-3 (Tue Jun 14 03:35:22 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -666,203 +664,203 @@
 						
             
             <a class="navhash" href="#108">#</a>
-						
-              <code id="108">src/pmap_svc.c:222:8: warning: implicitly declaring library function 'memcmp' with type 'int (const void *, const void *, unsigned long)' [-Wimplicit-function-declaration]</code><br />
-						
+						<span class="error">
+              <code id="108">src/check_bound.c:73:26: error: expected ';' after top level declarator</code><br />
+						</span>
             
             <a class="navhash" href="#109">#</a>
 						
-              <code id="109">                if (!memcmp(rpcbreg.r_netid, "udp6", 4) ||</code><br />
+              <code id="109">static bool_t check_bound __P((struct fdlist *, char *uaddr));</code><br />
 						
             
             <a class="navhash" href="#110">#</a>
 						
-              <code id="110">                     ^</code><br />
+              <code id="110">                         ^</code><br />
 						
             
             <a class="navhash" href="#111">#</a>
 						
-              <code id="111">src/pmap_svc.c:222:8: note: include the header <string.h> or explicitly provide a declaration for 'memcmp'</code><br />
+              <code id="111">                         ;</code><br />
 						
             
             <a class="navhash" href="#112">#</a>
 						<span class="error">
-              <code id="112">src/check_bound.c:73:26: error: expected ';' after top level declarator</code><br />
+              <code id="112">src/check_bound.c:81:1: error: redefinition of 'check_bound' as different kind of symbol</code><br />
 						</span>
             
             <a class="navhash" href="#113">#</a>
 						
-              <code id="113">static bool_t check_bound __P((struct fdlist *, char *uaddr));</code><br />
+              <code id="113">check_bound(struct fdlist *fdl, char *uaddr)</code><br />
 						
             
             <a class="navhash" href="#114">#</a>
 						
-              <code id="114">                         ^</code><br />
+              <code id="114">^</code><br />
 						
             
             <a class="navhash" href="#115">#</a>
 						
-              <code id="115">                         ;</code><br />
+              <code id="115">src/check_bound.c:73:15: note: previous definition is here</code><br />
 						
             
             <a class="navhash" href="#116">#</a>
-						<span class="error">
-              <code id="116">src/check_bound.c:81:1: error: redefinition of 'check_bound' as different kind of symbol</code><br />
-						</span>
+						
+              <code id="116">static bool_t check_bound __P((struct fdlist *, char *uaddr));</code><br />
+						
             
             <a class="navhash" href="#117">#</a>
 						
-              <code id="117">check_bound(struct fdlist *fdl, char *uaddr)</code><br />
+              <code id="117">              ^</code><br />
 						
             
             <a class="navhash" href="#118">#</a>
 						
-              <code id="118">^</code><br />
+              <code id="118">src/pmap_svc.c:222:8: warning: implicitly declaring library function 'memcmp' with type 'int (const void *, const void *, unsigned long)' [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#119">#</a>
 						
-              <code id="119">src/check_bound.c:73:15: note: previous definition is here</code><br />
+              <code id="119">                if (!memcmp(rpcbreg.r_netid, "udp6", 4) ||</code><br />
 						
             
             <a class="navhash" href="#120">#</a>
 						
-              <code id="120">static bool_t check_bound __P((struct fdlist *, char *uaddr));</code><br />
+              <code id="120">                     ^</code><br />
 						
             
             <a class="navhash" href="#121">#</a>
 						
-              <code id="121">              ^</code><br />
+              <code id="121">src/pmap_svc.c:222:8: note: include the header <string.h> or explicitly provide a declaration for 'memcmp'</code><br />
 						
             
             <a class="navhash" href="#122">#</a>
 						<span class="error">
-              <code id="122">src/pmap_svc.c:266:1: error: redefinition of 'pmapproc_getport' as different kind of symbol</code><br />
+              <code id="122">src/check_bound.c:150:21: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</code><br />
 						</span>
             
             <a class="navhash" href="#123">#</a>
 						
-              <code id="123">pmapproc_getport(struct svc_req *rqstp /*__unused*/, SVCXPRT *xprt)</code><br />
+              <code id="123">        return (check_bound(fdl, uaddr));</code><br />
 						
             
             <a class="navhash" href="#124">#</a>
 						
-              <code id="124">^</code><br />
+              <code id="124">                ~~~~~~~~~~~^</code><br />
 						
             
             <a class="navhash" href="#125">#</a>
-						
-              <code id="125">src/pmap_svc.c:66:15: note: previous definition is here</code><br />
-						
+						<span class="error">
+              <code id="125">src/check_bound.c:169:17: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</code><br />
+						</span>
             
             <a class="navhash" href="#126">#</a>
 						
-              <code id="126">static bool_t pmapproc_getport __P((struct svc_req *, SVCXPRT *));</code><br />
+              <code id="126">src/pmap_svc.c:266:1:        if (check_bound(fdl, uaddr) == FALSE) </code><br />
 						
             
             <a class="navhash" href="#127">#</a>
 						
-              <code id="127">              ^</code><br />
+              <code id="127">error            ~~~~~~~~~~~^: </code><br />
 						
             
             <a class="navhash" href="#128">#</a>
-						<span class="error">
-              <code id="128">src/pmap_svc.c:297:25: error: called object type 'struct pmaplist *' is not a function or function pointer</code><br />
-						</span>
+						
+              <code id="128">redefinition of 'pmapproc_getport' as different kind of symbol</code><br />
+						
             
             <a class="navhash" href="#129">#</a>
 						
-              <code id="129">        fnd = find_service_pmap(reg.pm_prog, reg.pm_vers, reg.pm_prot);</code><br />
+              <code id="129">pmapproc_getport(struct svc_req *rqstp /*__unused*/, SVCXPRT *xprt)</code><br />
 						
             
             <a class="navhash" href="#130">#</a>
 						
-              <code id="130">              ~~~~~~~~~~~~~~~~~^</code><br />
+              <code id="130">^</code><br />
 						
             
             <a class="navhash" href="#131">#</a>
-						<span class="error">
-              <code id="131">src/check_bound.c:150:21: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</code><br />
-						</span>
+						
+              <code id="131">src/pmap_svc.c:66:15: note: previous definition is here</code><br />
+						
             
             <a class="navhash" href="#132">#</a>
 						
-              <code id="132">        return (check_bound(fdl, uaddr));</code><br />
+              <code id="132">static bool_t pmapproc_getport __P((struct svc_req *, SVCXPRT *));</code><br />
 						
             
             <a class="navhash" href="#133">#</a>
 						
-              <code id="133">                ~~~~~~~~~~~^</code><br />
+              <code id="133">              ^</code><br />
 						
             
             <a class="navhash" href="#134">#</a>
 						<span class="error">
-              <code id="134">src/check_bound.c:169:17: error: called object type 'bool_t' (aka 'int') is not a function or function pointer</code><br />
+              <code id="134">src/pmap_svc.c:297:25: error: called object type 'struct pmaplist *' is not a function or function pointer</code><br />
 						</span>
             
             <a class="navhash" href="#135">#</a>
 						
-              <code id="135">        if (check_bound(fdl, uaddr) == FALSE)</code><br />
+              <code id="135">        fnd = find_service_pmap(reg.pm_prog, reg.pm_vers, reg.pm_prot);</code><br />
 						
             
             <a class="navhash" href="#136">#</a>
 						
-              <code id="136">            ~~~~~~~~~~~^</code><br />
+              <code id="136">              ~~~~~~~~~~~~~~~~~^</code><br />
 						
             
             <a class="navhash" href="#137">#</a>
-						<span class="error">
-              <code id="137">src/pmap_svc.c:338:1: error: redefinition of 'pmapproc_dump' as different kind of symbol</code><br />
-						</span>
+						
+              <code id="137">4 errors generated.</code><br />
+						
             
             <a class="navhash" href="#138">#</a>
-						
-              <code id="138">pmapproc_dump(struct svc_req *rqstp /*__unused*/, SVCXPRT *xprt)</code><br />
-						
+						<span class="error">
+              <code id="138">src/pmap_svc.c:338:1: error: redefinition of 'pmapproc_dump' as different kind of symbol</code><br />
+						</span>
             
             <a class="navhash" href="#139">#</a>
 						
-              <code id="139">^</code><br />
+              <code id="139">pmapproc_dump(struct svc_req *rqstp /*__unused*/, SVCXPRT *xprt)</code><br />
 						
             
             <a class="navhash" href="#140">#</a>
 						
-              <code id="140">src/pmap_svc.c:67:15: note: previous definition is here</code><br />
+              <code id="140">^</code><br />
 						
             
             <a class="navhash" href="#141">#</a>
 						
-              <code id="141">static bool_t pmapproc_dump __P((struct svc_req *, SVCXPRT *));</code><br />
+              <code id="141">src/pmap_svc.c:67:15: note: previous definition is here</code><br />
 						
             
             <a class="navhash" href="#142">#</a>
 						
-              <code id="142">              ^</code><br />
+              <code id="142">static bool_t pmapproc_dump __P((struct svc_req *, SVCXPRT *));</code><br />
 						
             
             <a class="navhash" href="#143">#</a>
 						
-              <code id="143">src/pmap_svc.c:364:6: warning: implicitly declaring library function 'strcmp' with type 'int (const char *, const char *)' [-Wimplicit-function-declaration]</code><br />
+              <code id="143">              ^</code><br />
 						
             
             <a class="navhash" href="#144">#</a>
 						
-              <code id="144">        if (strcmp(netid, tcptrans) == 0)</code><br />
+              <code id="144">src/pmap_svc.c:364:6: warning: implicitly declaring library function 'strcmp' with type 'int (const char *, const char *)' [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#145">#</a>
 						
-              <code id="145">            ^</code><br />
+              <code id="145">        if (strcmp(netid, tcptrans) == 0)</code><br />
 						
             
             <a class="navhash" href="#146">#</a>
 						
-              <code id="146">src/pmap_svc.c:364:6: note: include the header <string.h> or explicitly provide a declaration for 'strcmp'</code><br />
+              <code id="146">            ^</code><br />
 						
             
             <a class="navhash" href="#147">#</a>
 						
-              <code id="147">4 errors generated.</code><br />
+              <code id="147">src/pmap_svc.c:364:6: note: include the header <string.h> or explicitly provide a declaration for 'strcmp'</code><br />
 						
             
             <a class="navhash" href="#148">#</a>
@@ -987,7 +985,7 @@
             
             <a class="navhash" href="#168">#</a>
 						
-              <code id="168">hostname = b5adfdfdf58d</code><br />
+              <code id="168">hostname = 20e88ae54584</code><br />
 						
             
             <a class="navhash" href="#169">#</a>
@@ -3162,7 +3160,7 @@
             
             <a class="navhash" href="#603">#</a>
 						
-              <code id="603">on b5adfdfdf58d</code><br />
+              <code id="603">on 20e88ae54584</code><br />
 						
             
             <a class="navhash" href="#604">#</a>

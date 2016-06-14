@@ -30,7 +30,7 @@
     <h1>Build of strace
         with <a href="../index.html">vanilla</a>
         toolchain</h1>
-    <p>The build took 00h 01m 05s and was
+    <p>The build took 00h 01m 31s and was
     SUCCESSFUL.
     
     </p>
@@ -275,7 +275,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: strace 4.11-1 (Tue Jun  7 20:04:16 UTC 2016)</code><br />
+              <code id="5">==> Making package: strace 4.11-1 (Tue Jun 14 08:02:37 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -3995,7 +3995,7 @@
             
             <a class="navhash" href="#749">#</a>
 						
-              <code id="749">> mpers-mx32.stamp</code><br />
+              <code id="749">> mpers-m32.stamp</code><br />
 						
             
             <a class="navhash" href="#750">#</a>
@@ -4015,47 +4015,47 @@
             
             <a class="navhash" href="#753">#</a>
 						
-              <code id="753">> mpers-m32.stamp</code><br />
+              <code id="753">echo '#undef MPERS_PRINTER_NAME' >> mx32_type_defs.h-t</code><br />
 						
             
             <a class="navhash" href="#754">#</a>
 						
-              <code id="754">for f in dirent.c fetch_seccomp_fprog.c fetch_struct_flock.c ipc_msgctl.c ipc_shmctl.c print_mq_attr.c print_msgbuf.c print_sigevent.c print_time.c print_timex.c printrusage.c printsiginfo.c sigaltstack.c sysinfo.c times.c utime.c; do \</code><br />
+              <code id="754">echo '#define MPERS_PRINTER_NAME(printer_name) printer_name' >> mx32_type_defs.h-t</code><br />
 						
             
             <a class="navhash" href="#755">#</a>
 						
-              <code id="755">	sed -n 's/^SYS_FUNC(\([^)]\+\))/#undef sys_\1\n#define sys_\1 mx32_sys_\1/p' $f || exit; \</code><br />
+              <code id="755">echo '#include "mx32_printer_decls.h"' >> mx32_type_defs.h-t</code><br />
 						
             
             <a class="navhash" href="#756">#</a>
 						
-              <code id="756">done > mx32_funcs.h-t && \</code><br />
+              <code id="756">mv mx32_type_defs.h-t mx32_type_defs.h</code><br />
 						
             
             <a class="navhash" href="#757">#</a>
 						
-              <code id="757">echo '#include "sys_func.h"' >> mx32_funcs.h-t</code><br />
+              <code id="757">for f in dirent.c fetch_seccomp_fprog.c fetch_struct_flock.c ipc_msgctl.c ipc_shmctl.c print_mq_attr.c print_msgbuf.c print_sigevent.c print_time.c print_timex.c printrusage.c printsiginfo.c sigaltstack.c sysinfo.c times.c utime.c; do \</code><br />
 						
             
             <a class="navhash" href="#758">#</a>
 						
-              <code id="758">echo '#undef MPERS_PRINTER_NAME' >> mx32_type_defs.h-t</code><br />
+              <code id="758">	sed -n 's/^SYS_FUNC(\([^)]\+\))/#undef sys_\1\n#define sys_\1 mx32_sys_\1/p' $f || exit; \</code><br />
 						
             
             <a class="navhash" href="#759">#</a>
 						
-              <code id="759">echo '#define MPERS_PRINTER_NAME(printer_name) printer_name' >> mx32_type_defs.h-t</code><br />
+              <code id="759">done > mx32_funcs.h-t && \</code><br />
 						
             
             <a class="navhash" href="#760">#</a>
 						
-              <code id="760">echo '#include "mx32_printer_decls.h"' >> mx32_type_defs.h-t</code><br />
+              <code id="760">echo '#include "sys_func.h"' >> mx32_funcs.h-t</code><br />
 						
             
             <a class="navhash" href="#761">#</a>
 						
-              <code id="761">mv mx32_type_defs.h-t mx32_type_defs.h</code><br />
+              <code id="761">mv mx32_funcs.h-t mx32_funcs.h</code><br />
 						
             
             <a class="navhash" href="#762">#</a>
@@ -4080,7 +4080,7 @@
             
             <a class="navhash" href="#766">#</a>
 						
-              <code id="766">mv mx32_funcs.h-t mx32_funcs.h</code><br />
+              <code id="766">mv mx32_printer_decls.h-t mx32_printer_decls.h</code><br />
 						
             
             <a class="navhash" href="#767">#</a>
@@ -4105,7 +4105,7 @@
             
             <a class="navhash" href="#771">#</a>
 						
-              <code id="771">mv mx32_printer_decls.h-t mx32_printer_decls.h</code><br />
+              <code id="771">mv mx32_printer_defs.h-t mx32_printer_defs.h</code><br />
 						
             
             <a class="navhash" href="#772">#</a>
@@ -4115,12 +4115,12 @@
             
             <a class="navhash" href="#773">#</a>
 						
-              <code id="773">mv mx32_printer_defs.h-t mx32_printer_defs.h</code><br />
+              <code id="773">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.  -Wall -Wwrite-strings -Wsign-compare -g -O2 -DIOCTLSORT_INC=\"ioctls_all0.h\" -c -o ioctlsort0.o ./ioctlsort.c</code><br />
 						
             
             <a class="navhash" href="#774">#</a>
 						
-              <code id="774">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.  -Wall -Wwrite-strings -Wsign-compare -g -O2 -DIOCTLSORT_INC=\"ioctls_all0.h\" -c -o ioctlsort0.o ./ioctlsort.c</code><br />
+              <code id="774">> mpers-mx32.stamp</code><br />
 						
             
             <a class="navhash" href="#775">#</a>
@@ -4245,7 +4245,7 @@
             
             <a class="navhash" href="#799">#</a>
 						
-              <code id="799">mv -f .deps/libmpers_m32_a-fetch_seccomp_fprog.Tpo .deps/libmpers_m32_a-fetch_seccomp_fprog.Po</code><br />
+              <code id="799">mv -f .deps/libmpers_m32_a-dirent.Tpo .deps/libmpers_m32_a-dirent.Po</code><br />
 						
             
             <a class="navhash" href="#800">#</a>
@@ -4255,7 +4255,7 @@
             
             <a class="navhash" href="#801">#</a>
 						
-              <code id="801">mv -f .deps/libmpers_m32_a-dirent.Tpo .deps/libmpers_m32_a-dirent.Po</code><br />
+              <code id="801">mv -f .deps/libmpers_m32_a-fetch_seccomp_fprog.Tpo .deps/libmpers_m32_a-fetch_seccomp_fprog.Po</code><br />
 						
             
             <a class="navhash" href="#802">#</a>
@@ -4275,7 +4275,7 @@
             
             <a class="navhash" href="#805">#</a>
 						
-              <code id="805">mv -f .deps/libmpers_m32_a-ipc_shmctl.Tpo .deps/libmpers_m32_a-ipc_shmctl.Po</code><br />
+              <code id="805">mv -f .deps/libmpers_m32_a-ipc_msgctl.Tpo .deps/libmpers_m32_a-ipc_msgctl.Po</code><br />
 						
             
             <a class="navhash" href="#806">#</a>
@@ -4285,7 +4285,7 @@
             
             <a class="navhash" href="#807">#</a>
 						
-              <code id="807">mv -f .deps/libmpers_m32_a-ipc_msgctl.Tpo .deps/libmpers_m32_a-ipc_msgctl.Po</code><br />
+              <code id="807">mv -f .deps/libmpers_m32_a-ipc_shmctl.Tpo .deps/libmpers_m32_a-ipc_shmctl.Po</code><br />
 						
             
             <a class="navhash" href="#808">#</a>
@@ -4325,7 +4325,7 @@
             
             <a class="navhash" href="#815">#</a>
 						
-              <code id="815">mv -f .deps/libmpers_m32_a-print_time.Tpo .deps/libmpers_m32_a-print_time.Po</code><br />
+              <code id="815">mv -f .deps/libmpers_m32_a-print_timex.Tpo .deps/libmpers_m32_a-print_timex.Po</code><br />
 						
             
             <a class="navhash" href="#816">#</a>
@@ -4335,7 +4335,7 @@
             
             <a class="navhash" href="#817">#</a>
 						
-              <code id="817">mv -f .deps/libmpers_m32_a-print_timex.Tpo .deps/libmpers_m32_a-print_timex.Po</code><br />
+              <code id="817">mv -f .deps/libmpers_m32_a-print_time.Tpo .deps/libmpers_m32_a-print_time.Po</code><br />
 						
             
             <a class="navhash" href="#818">#</a>
@@ -4365,7 +4365,7 @@
             
             <a class="navhash" href="#823">#</a>
 						
-              <code id="823">mv -f .deps/libmpers_m32_a-sigaltstack.Tpo .deps/libmpers_m32_a-sigaltstack.Po</code><br />
+              <code id="823">mv -f .deps/libmpers_m32_a-sysinfo.Tpo .deps/libmpers_m32_a-sysinfo.Po</code><br />
 						
             
             <a class="navhash" href="#824">#</a>
@@ -4375,7 +4375,7 @@
             
             <a class="navhash" href="#825">#</a>
 						
-              <code id="825">mv -f .deps/libmpers_m32_a-sysinfo.Tpo .deps/libmpers_m32_a-sysinfo.Po</code><br />
+              <code id="825">mv -f .deps/libmpers_m32_a-sigaltstack.Tpo .deps/libmpers_m32_a-sigaltstack.Po</code><br />
 						
             
             <a class="navhash" href="#826">#</a>
@@ -4390,12 +4390,12 @@
             
             <a class="navhash" href="#828">#</a>
 						
-              <code id="828">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I. -DIN_MPERS -DMPERS_IS_mx32 -I./mpers-mx32  -Wall -Wwrite-strings -Wsign-compare  -MT libmpers_mx32_a-dirent.o -MD -MP -MF .deps/libmpers_mx32_a-dirent.Tpo -c -o libmpers_mx32_a-dirent.o `test -f 'dirent.c' || echo './'`dirent.c</code><br />
+              <code id="828">mv -f .deps/libmpers_m32_a-utime.Tpo .deps/libmpers_m32_a-utime.Po</code><br />
 						
             
             <a class="navhash" href="#829">#</a>
 						
-              <code id="829">mv -f .deps/libmpers_m32_a-utime.Tpo .deps/libmpers_m32_a-utime.Po</code><br />
+              <code id="829">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I. -DIN_MPERS -DMPERS_IS_mx32 -I./mpers-mx32  -Wall -Wwrite-strings -Wsign-compare  -MT libmpers_mx32_a-dirent.o -MD -MP -MF .deps/libmpers_mx32_a-dirent.Tpo -c -o libmpers_mx32_a-dirent.o `test -f 'dirent.c' || echo './'`dirent.c</code><br />
 						
             
             <a class="navhash" href="#830">#</a>
@@ -4415,7 +4415,7 @@
             
             <a class="navhash" href="#833">#</a>
 						
-              <code id="833">mv -f .deps/libmpers_mx32_a-fetch_seccomp_fprog.Tpo .deps/libmpers_mx32_a-fetch_seccomp_fprog.Po</code><br />
+              <code id="833">mv -f .deps/libmpers_mx32_a-fetch_struct_flock.Tpo .deps/libmpers_mx32_a-fetch_struct_flock.Po</code><br />
 						
             
             <a class="navhash" href="#834">#</a>
@@ -4425,7 +4425,7 @@
             
             <a class="navhash" href="#835">#</a>
 						
-              <code id="835">mv -f .deps/libmpers_mx32_a-fetch_struct_flock.Tpo .deps/libmpers_mx32_a-fetch_struct_flock.Po</code><br />
+              <code id="835">mv -f .deps/libmpers_mx32_a-fetch_seccomp_fprog.Tpo .deps/libmpers_mx32_a-fetch_seccomp_fprog.Po</code><br />
 						
             
             <a class="navhash" href="#836">#</a>
@@ -4440,12 +4440,12 @@
             
             <a class="navhash" href="#838">#</a>
 						
-              <code id="838">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I. -DIN_MPERS -DMPERS_IS_mx32 -I./mpers-mx32  -Wall -Wwrite-strings -Wsign-compare  -MT libmpers_mx32_a-print_mq_attr.o -MD -MP -MF .deps/libmpers_mx32_a-print_mq_attr.Tpo -c -o libmpers_mx32_a-print_mq_attr.o `test -f 'print_mq_attr.c' || echo './'`print_mq_attr.c</code><br />
+              <code id="838">mv -f .deps/libmpers_mx32_a-ipc_shmctl.Tpo .deps/libmpers_mx32_a-ipc_shmctl.Po</code><br />
 						
             
             <a class="navhash" href="#839">#</a>
 						
-              <code id="839">mv -f .deps/libmpers_mx32_a-ipc_shmctl.Tpo .deps/libmpers_mx32_a-ipc_shmctl.Po</code><br />
+              <code id="839">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I. -DIN_MPERS -DMPERS_IS_mx32 -I./mpers-mx32  -Wall -Wwrite-strings -Wsign-compare  -MT libmpers_mx32_a-print_mq_attr.o -MD -MP -MF .deps/libmpers_mx32_a-print_mq_attr.Tpo -c -o libmpers_mx32_a-print_mq_attr.o `test -f 'print_mq_attr.c' || echo './'`print_mq_attr.c</code><br />
 						
             
             <a class="navhash" href="#840">#</a>
@@ -4455,7 +4455,7 @@
             
             <a class="navhash" href="#841">#</a>
 						
-              <code id="841">mv -f .deps/libmpers_mx32_a-print_mq_attr.Tpo .deps/libmpers_mx32_a-print_mq_attr.Po</code><br />
+              <code id="841">mv -f .deps/libmpers_mx32_a-print_msgbuf.Tpo .deps/libmpers_mx32_a-print_msgbuf.Po</code><br />
 						
             
             <a class="navhash" href="#842">#</a>
@@ -4465,7 +4465,7 @@
             
             <a class="navhash" href="#843">#</a>
 						
-              <code id="843">mv -f .deps/libmpers_mx32_a-print_msgbuf.Tpo .deps/libmpers_mx32_a-print_msgbuf.Po</code><br />
+              <code id="843">mv -f .deps/libmpers_mx32_a-print_mq_attr.Tpo .deps/libmpers_mx32_a-print_mq_attr.Po</code><br />
 						
             
             <a class="navhash" href="#844">#</a>
@@ -4635,7 +4635,7 @@
             
             <a class="navhash" href="#877">#</a>
 						
-              <code id="877">mv -f .deps/strace-capability.Tpo .deps/strace-capability.Po</code><br />
+              <code id="877">mv -f .deps/strace-chdir.Tpo .deps/strace-chdir.Po</code><br />
 						
             
             <a class="navhash" href="#878">#</a>
@@ -4645,7 +4645,7 @@
             
             <a class="navhash" href="#879">#</a>
 						
-              <code id="879">mv -f .deps/strace-chdir.Tpo .deps/strace-chdir.Po</code><br />
+              <code id="879">mv -f .deps/strace-capability.Tpo .deps/strace-capability.Po</code><br />
 						
             
             <a class="navhash" href="#880">#</a>
@@ -4745,7 +4745,7 @@
             
             <a class="navhash" href="#899">#</a>
 						
-              <code id="899">mv -f .deps/strace-execve.Tpo .deps/strace-execve.Po</code><br />
+              <code id="899">mv -f .deps/strace-exit.Tpo .deps/strace-exit.Po</code><br />
 						
             
             <a class="navhash" href="#900">#</a>
@@ -4755,7 +4755,7 @@
             
             <a class="navhash" href="#901">#</a>
 						
-              <code id="901">mv -f .deps/strace-exit.Tpo .deps/strace-exit.Po</code><br />
+              <code id="901">mv -f .deps/strace-execve.Tpo .deps/strace-execve.Po</code><br />
 						
             
             <a class="navhash" href="#902">#</a>
@@ -4765,17 +4765,17 @@
             
             <a class="navhash" href="#903">#</a>
 						
-              <code id="903">mv -f .deps/strace-fadvise.Tpo .deps/strace-fadvise.Po</code><br />
+              <code id="903">mv -f .deps/strace-fallocate.Tpo .deps/strace-fallocate.Po</code><br />
 						
             
             <a class="navhash" href="#904">#</a>
 						
-              <code id="904">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-fanotify.o -MD -MP -MF .deps/strace-fanotify.Tpo -c -o strace-fanotify.o `test -f 'fanotify.c' || echo './'`fanotify.c</code><br />
+              <code id="904">mv -f .deps/strace-fadvise.Tpo .deps/strace-fadvise.Po</code><br />
 						
             
             <a class="navhash" href="#905">#</a>
 						
-              <code id="905">mv -f .deps/strace-fallocate.Tpo .deps/strace-fallocate.Po</code><br />
+              <code id="905">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-fanotify.o -MD -MP -MF .deps/strace-fanotify.Tpo -c -o strace-fanotify.o `test -f 'fanotify.c' || echo './'`fanotify.c</code><br />
 						
             
             <a class="navhash" href="#906">#</a>
@@ -4805,7 +4805,7 @@
             
             <a class="navhash" href="#911">#</a>
 						
-              <code id="911">mv -f .deps/strace-fcntl.Tpo .deps/strace-fcntl.Po</code><br />
+              <code id="911">mv -f .deps/strace-fetch_seccomp_fprog.Tpo .deps/strace-fetch_seccomp_fprog.Po</code><br />
 						
             
             <a class="navhash" href="#912">#</a>
@@ -4815,7 +4815,7 @@
             
             <a class="navhash" href="#913">#</a>
 						
-              <code id="913">mv -f .deps/strace-fetch_seccomp_fprog.Tpo .deps/strace-fetch_seccomp_fprog.Po</code><br />
+              <code id="913">mv -f .deps/strace-fcntl.Tpo .deps/strace-fcntl.Po</code><br />
 						
             
             <a class="navhash" href="#914">#</a>
@@ -4835,7 +4835,7 @@
             
             <a class="navhash" href="#917">#</a>
 						
-              <code id="917">mv -f .deps/strace-file.Tpo .deps/strace-file.Po</code><br />
+              <code id="917">mv -f .deps/strace-file_handle.Tpo .deps/strace-file_handle.Po</code><br />
 						
             
             <a class="navhash" href="#918">#</a>
@@ -4845,7 +4845,7 @@
             
             <a class="navhash" href="#919">#</a>
 						
-              <code id="919">mv -f .deps/strace-file_handle.Tpo .deps/strace-file_handle.Po</code><br />
+              <code id="919">mv -f .deps/strace-file.Tpo .deps/strace-file.Po</code><br />
 						
             
             <a class="navhash" href="#920">#</a>
@@ -4875,7 +4875,7 @@
             
             <a class="navhash" href="#925">#</a>
 						
-              <code id="925">mv -f .deps/strace-getcpu.Tpo .deps/strace-getcpu.Po</code><br />
+              <code id="925">mv -f .deps/strace-get_robust_list.Tpo .deps/strace-get_robust_list.Po</code><br />
 						
             
             <a class="navhash" href="#926">#</a>
@@ -4885,7 +4885,7 @@
             
             <a class="navhash" href="#927">#</a>
 						
-              <code id="927">mv -f .deps/strace-get_robust_list.Tpo .deps/strace-get_robust_list.Po</code><br />
+              <code id="927">mv -f .deps/strace-getcpu.Tpo .deps/strace-getcpu.Po</code><br />
 						
             
             <a class="navhash" href="#928">#</a>
@@ -4895,7 +4895,7 @@
             
             <a class="navhash" href="#929">#</a>
 						
-              <code id="929">mv -f .deps/strace-getrandom.Tpo .deps/strace-getrandom.Po</code><br />
+              <code id="929">mv -f .deps/strace-getcwd.Tpo .deps/strace-getcwd.Po</code><br />
 						
             
             <a class="navhash" href="#930">#</a>
@@ -4905,7 +4905,7 @@
             
             <a class="navhash" href="#931">#</a>
 						
-              <code id="931">mv -f .deps/strace-getcwd.Tpo .deps/strace-getcwd.Po</code><br />
+              <code id="931">mv -f .deps/strace-getrandom.Tpo .deps/strace-getrandom.Po</code><br />
 						
             
             <a class="navhash" href="#932">#</a>
@@ -4920,12 +4920,12 @@
             
             <a class="navhash" href="#934">#</a>
 						
-              <code id="934">mv -f .deps/strace-inotify.Tpo .deps/strace-inotify.Po</code><br />
+              <code id="934">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-io.o -MD -MP -MF .deps/strace-io.Tpo -c -o strace-io.o `test -f 'io.c' || echo './'`io.c</code><br />
 						
             
             <a class="navhash" href="#935">#</a>
 						
-              <code id="935">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-io.o -MD -MP -MF .deps/strace-io.Tpo -c -o strace-io.o `test -f 'io.c' || echo './'`io.c</code><br />
+              <code id="935">mv -f .deps/strace-inotify.Tpo .deps/strace-inotify.Po</code><br />
 						
             
             <a class="navhash" href="#936">#</a>
@@ -4935,17 +4935,17 @@
             
             <a class="navhash" href="#937">#</a>
 						
-              <code id="937">mv -f .deps/strace-ioctl.Tpo .deps/strace-ioctl.Po</code><br />
+              <code id="937">mv -f .deps/strace-io.Tpo .deps/strace-io.Po</code><br />
 						
             
             <a class="navhash" href="#938">#</a>
 						
-              <code id="938">mv -f .deps/strace-io.Tpo .deps/strace-io.Po</code><br />
+              <code id="938">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-ioperm.o -MD -MP -MF .deps/strace-ioperm.Tpo -c -o strace-ioperm.o `test -f 'ioperm.c' || echo './'`ioperm.c</code><br />
 						
             
             <a class="navhash" href="#939">#</a>
 						
-              <code id="939">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-ioperm.o -MD -MP -MF .deps/strace-ioperm.Tpo -c -o strace-ioperm.o `test -f 'ioperm.c' || echo './'`ioperm.c</code><br />
+              <code id="939">mv -f .deps/strace-ioctl.Tpo .deps/strace-ioctl.Po</code><br />
 						
             
             <a class="navhash" href="#940">#</a>
@@ -4960,12 +4960,12 @@
             
             <a class="navhash" href="#942">#</a>
 						
-              <code id="942">mv -f .deps/strace-iopl.Tpo .deps/strace-iopl.Po</code><br />
+              <code id="942">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-ioprio.o -MD -MP -MF .deps/strace-ioprio.Tpo -c -o strace-ioprio.o `test -f 'ioprio.c' || echo './'`ioprio.c</code><br />
 						
             
             <a class="navhash" href="#943">#</a>
 						
-              <code id="943">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-ioprio.o -MD -MP -MF .deps/strace-ioprio.Tpo -c -o strace-ioprio.o `test -f 'ioprio.c' || echo './'`ioprio.c</code><br />
+              <code id="943">mv -f .deps/strace-iopl.Tpo .deps/strace-iopl.Po</code><br />
 						
             
             <a class="navhash" href="#944">#</a>
@@ -5085,7 +5085,7 @@
             
             <a class="navhash" href="#967">#</a>
 						
-              <code id="967">mv -f .deps/strace-loop.Tpo .deps/strace-loop.Po</code><br />
+              <code id="967">mv -f .deps/strace-ldt.Tpo .deps/strace-ldt.Po</code><br />
 						
             
             <a class="navhash" href="#968">#</a>
@@ -5095,7 +5095,7 @@
             
             <a class="navhash" href="#969">#</a>
 						
-              <code id="969">mv -f .deps/strace-ldt.Tpo .deps/strace-ldt.Po</code><br />
+              <code id="969">mv -f .deps/strace-loop.Tpo .deps/strace-loop.Po</code><br />
 						
             
             <a class="navhash" href="#970">#</a>
@@ -5135,7 +5135,7 @@
             
             <a class="navhash" href="#977">#</a>
 						
-              <code id="977">mv -f .deps/strace-mknod.Tpo .deps/strace-mknod.Po</code><br />
+              <code id="977">mv -f .deps/strace-mem.Tpo .deps/strace-mem.Po</code><br />
 						
             
             <a class="navhash" href="#978">#</a>
@@ -5145,7 +5145,7 @@
             
             <a class="navhash" href="#979">#</a>
 						
-              <code id="979">mv -f .deps/strace-mount.Tpo .deps/strace-mount.Po</code><br />
+              <code id="979">mv -f .deps/strace-mknod.Tpo .deps/strace-mknod.Po</code><br />
 						
             
             <a class="navhash" href="#980">#</a>
@@ -5155,7 +5155,7 @@
             
             <a class="navhash" href="#981">#</a>
 						
-              <code id="981">mv -f .deps/strace-mq.Tpo .deps/strace-mq.Po</code><br />
+              <code id="981">mv -f .deps/strace-mount.Tpo .deps/strace-mount.Po</code><br />
 						
             
             <a class="navhash" href="#982">#</a>
@@ -5165,7 +5165,7 @@
             
             <a class="navhash" href="#983">#</a>
 						
-              <code id="983">mv -f .deps/strace-mtd.Tpo .deps/strace-mtd.Po</code><br />
+              <code id="983">mv -f .deps/strace-mq.Tpo .deps/strace-mq.Po</code><br />
 						
             
             <a class="navhash" href="#984">#</a>
@@ -5175,7 +5175,7 @@
             
             <a class="navhash" href="#985">#</a>
 						
-              <code id="985">mv -f .deps/strace-mem.Tpo .deps/strace-mem.Po</code><br />
+              <code id="985">mv -f .deps/strace-mtd.Tpo .deps/strace-mtd.Po</code><br />
 						
             
             <a class="navhash" href="#986">#</a>
@@ -5215,7 +5215,7 @@
             
             <a class="navhash" href="#993">#</a>
 						
-              <code id="993">mv -f .deps/strace-net.Tpo .deps/strace-net.Po</code><br />
+              <code id="993">mv -f .deps/strace-perf.Tpo .deps/strace-perf.Po</code><br />
 						
             
             <a class="navhash" href="#994">#</a>
@@ -5225,17 +5225,17 @@
             
             <a class="navhash" href="#995">#</a>
 						
-              <code id="995">mv -f .deps/strace-perf.Tpo .deps/strace-perf.Po</code><br />
+              <code id="995">mv -f .deps/strace-personality.Tpo .deps/strace-personality.Po</code><br />
 						
             
             <a class="navhash" href="#996">#</a>
 						
-              <code id="996">mv -f .deps/strace-personality.Tpo .deps/strace-personality.Po</code><br />
+              <code id="996">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-poll.o -MD -MP -MF .deps/strace-poll.Tpo -c -o strace-poll.o `test -f 'poll.c' || echo './'`poll.c</code><br />
 						
             
             <a class="navhash" href="#997">#</a>
 						
-              <code id="997">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-poll.o -MD -MP -MF .deps/strace-poll.Tpo -c -o strace-poll.o `test -f 'poll.c' || echo './'`poll.c</code><br />
+              <code id="997">mv -f .deps/strace-net.Tpo .deps/strace-net.Po</code><br />
 						
             
             <a class="navhash" href="#998">#</a>
@@ -5255,7 +5255,7 @@
             
             <a class="navhash" href="#1001">#</a>
 						
-              <code id="1001">mv -f .deps/strace-print_mq_attr.Tpo .deps/strace-print_mq_attr.Po</code><br />
+              <code id="1001">mv -f .deps/strace-prctl.Tpo .deps/strace-prctl.Po</code><br />
 						
             
             <a class="navhash" href="#1002">#</a>
@@ -5265,7 +5265,7 @@
             
             <a class="navhash" href="#1003">#</a>
 						
-              <code id="1003">mv -f .deps/strace-print_msgbuf.Tpo .deps/strace-print_msgbuf.Po</code><br />
+              <code id="1003">mv -f .deps/strace-print_mq_attr.Tpo .deps/strace-print_mq_attr.Po</code><br />
 						
             
             <a class="navhash" href="#1004">#</a>
@@ -5275,7 +5275,7 @@
             
             <a class="navhash" href="#1005">#</a>
 						
-              <code id="1005">mv -f .deps/strace-print_sigevent.Tpo .deps/strace-print_sigevent.Po</code><br />
+              <code id="1005">mv -f .deps/strace-print_msgbuf.Tpo .deps/strace-print_msgbuf.Po</code><br />
 						
             
             <a class="navhash" href="#1006">#</a>
@@ -5285,7 +5285,7 @@
             
             <a class="navhash" href="#1007">#</a>
 						
-              <code id="1007">mv -f .deps/strace-print_time.Tpo .deps/strace-print_time.Po</code><br />
+              <code id="1007">mv -f .deps/strace-print_sigevent.Tpo .deps/strace-print_sigevent.Po</code><br />
 						
             
             <a class="navhash" href="#1008">#</a>
@@ -5295,7 +5295,7 @@
             
             <a class="navhash" href="#1009">#</a>
 						
-              <code id="1009">mv -f .deps/strace-print_timex.Tpo .deps/strace-print_timex.Po</code><br />
+              <code id="1009">mv -f .deps/strace-print_time.Tpo .deps/strace-print_time.Po</code><br />
 						
             
             <a class="navhash" href="#1010">#</a>
@@ -5305,7 +5305,7 @@
             
             <a class="navhash" href="#1011">#</a>
 						
-              <code id="1011">mv -f .deps/strace-printmode.Tpo .deps/strace-printmode.Po</code><br />
+              <code id="1011">mv -f .deps/strace-print_timex.Tpo .deps/strace-print_timex.Po</code><br />
 						
             
             <a class="navhash" href="#1012">#</a>
@@ -5315,7 +5315,7 @@
             
             <a class="navhash" href="#1013">#</a>
 						
-              <code id="1013">mv -f .deps/strace-printrusage.Tpo .deps/strace-printrusage.Po</code><br />
+              <code id="1013">mv -f .deps/strace-printmode.Tpo .deps/strace-printmode.Po</code><br />
 						
             
             <a class="navhash" href="#1014">#</a>
@@ -5325,7 +5325,7 @@
             
             <a class="navhash" href="#1015">#</a>
 						
-              <code id="1015">mv -f .deps/strace-printsiginfo.Tpo .deps/strace-printsiginfo.Po</code><br />
+              <code id="1015">mv -f .deps/strace-printrusage.Tpo .deps/strace-printrusage.Po</code><br />
 						
             
             <a class="navhash" href="#1016">#</a>
@@ -5335,7 +5335,7 @@
             
             <a class="navhash" href="#1017">#</a>
 						
-              <code id="1017">mv -f .deps/strace-process.Tpo .deps/strace-process.Po</code><br />
+              <code id="1017">mv -f .deps/strace-printsiginfo.Tpo .deps/strace-printsiginfo.Po</code><br />
 						
             
             <a class="navhash" href="#1018">#</a>
@@ -5345,7 +5345,7 @@
             
             <a class="navhash" href="#1019">#</a>
 						
-              <code id="1019">mv -f .deps/strace-prctl.Tpo .deps/strace-prctl.Po</code><br />
+              <code id="1019">mv -f .deps/strace-process.Tpo .deps/strace-process.Po</code><br />
 						
             
             <a class="navhash" href="#1020">#</a>
@@ -5375,7 +5375,7 @@
             
             <a class="navhash" href="#1025">#</a>
 						
-              <code id="1025">mv -f .deps/strace-readahead.Tpo .deps/strace-readahead.Po</code><br />
+              <code id="1025">mv -f .deps/strace-quota.Tpo .deps/strace-quota.Po</code><br />
 						
             
             <a class="navhash" href="#1026">#</a>
@@ -5385,7 +5385,7 @@
             
             <a class="navhash" href="#1027">#</a>
 						
-              <code id="1027">mv -f .deps/strace-quota.Tpo .deps/strace-quota.Po</code><br />
+              <code id="1027">mv -f .deps/strace-readahead.Tpo .deps/strace-readahead.Po</code><br />
 						
             
             <a class="navhash" href="#1028">#</a>
@@ -5405,17 +5405,17 @@
             
             <a class="navhash" href="#1031">#</a>
 						
-              <code id="1031">mv -f .deps/strace-reboot.Tpo .deps/strace-reboot.Po</code><br />
+              <code id="1031">mv -f .deps/strace-renameat.Tpo .deps/strace-renameat.Po</code><br />
 						
             
             <a class="navhash" href="#1032">#</a>
 						
-              <code id="1032">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-resource.o -MD -MP -MF .deps/strace-resource.Tpo -c -o strace-resource.o `test -f 'resource.c' || echo './'`resource.c</code><br />
+              <code id="1032">mv -f .deps/strace-reboot.Tpo .deps/strace-reboot.Po</code><br />
 						
             
             <a class="navhash" href="#1033">#</a>
 						
-              <code id="1033">mv -f .deps/strace-renameat.Tpo .deps/strace-renameat.Po</code><br />
+              <code id="1033">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-resource.o -MD -MP -MF .deps/strace-resource.Tpo -c -o strace-resource.o `test -f 'resource.c' || echo './'`resource.c</code><br />
 						
             
             <a class="navhash" href="#1034">#</a>
@@ -5535,7 +5535,7 @@
             
             <a class="navhash" href="#1057">#</a>
 						
-              <code id="1057">mv -f .deps/strace-sram_alloc.Tpo .deps/strace-sram_alloc.Po</code><br />
+              <code id="1057">mv -f .deps/strace-socketutils.Tpo .deps/strace-socketutils.Po</code><br />
 						
             
             <a class="navhash" href="#1058">#</a>
@@ -5545,7 +5545,7 @@
             
             <a class="navhash" href="#1059">#</a>
 						
-              <code id="1059">mv -f .deps/strace-socketutils.Tpo .deps/strace-socketutils.Po</code><br />
+              <code id="1059">mv -f .deps/strace-sram_alloc.Tpo .deps/strace-sram_alloc.Po</code><br />
 						
             
             <a class="navhash" href="#1060">#</a>
@@ -5585,7 +5585,7 @@
             
             <a class="navhash" href="#1067">#</a>
 						
-              <code id="1067">mv -f .deps/strace-syscall.Tpo .deps/strace-syscall.Po</code><br />
+              <code id="1067">mv -f .deps/strace-strace.Tpo .deps/strace-strace.Po</code><br />
 						
             
             <a class="navhash" href="#1068">#</a>
@@ -5635,7 +5635,7 @@
             
             <a class="navhash" href="#1077">#</a>
 						
-              <code id="1077">mv -f .deps/strace-term.Tpo .deps/strace-term.Po</code><br />
+              <code id="1077">mv -f .deps/strace-syscall.Tpo .deps/strace-syscall.Po</code><br />
 						
             
             <a class="navhash" href="#1078">#</a>
@@ -5645,17 +5645,17 @@
             
             <a class="navhash" href="#1079">#</a>
 						
-              <code id="1079">mv -f .deps/strace-strace.Tpo .deps/strace-strace.Po</code><br />
+              <code id="1079">mv -f .deps/strace-time.Tpo .deps/strace-time.Po</code><br />
 						
             
             <a class="navhash" href="#1080">#</a>
 						
-              <code id="1080">mv -f .deps/strace-time.Tpo .deps/strace-time.Po</code><br />
+              <code id="1080">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-times.o -MD -MP -MF .deps/strace-times.Tpo -c -o strace-times.o `test -f 'times.c' || echo './'`times.c</code><br />
 						
             
             <a class="navhash" href="#1081">#</a>
 						
-              <code id="1081">gcc -DHAVE_CONFIG_H   -I./linux/x86_64 -I./linux/x86_64 -I./linux -I./linux -I. -I.   -Wall -Wwrite-strings -Wsign-compare  -MT strace-times.o -MD -MP -MF .deps/strace-times.Tpo -c -o strace-times.o `test -f 'times.c' || echo './'`times.c</code><br />
+              <code id="1081">mv -f .deps/strace-times.Tpo .deps/strace-times.Po</code><br />
 						
             
             <a class="navhash" href="#1082">#</a>
@@ -5665,7 +5665,7 @@
             
             <a class="navhash" href="#1083">#</a>
 						
-              <code id="1083">mv -f .deps/strace-times.Tpo .deps/strace-times.Po</code><br />
+              <code id="1083">mv -f .deps/strace-truncate.Tpo .deps/strace-truncate.Po</code><br />
 						
             
             <a class="navhash" href="#1084">#</a>
@@ -5675,7 +5675,7 @@
             
             <a class="navhash" href="#1085">#</a>
 						
-              <code id="1085">mv -f .deps/strace-truncate.Tpo .deps/strace-truncate.Po</code><br />
+              <code id="1085">mv -f .deps/strace-uid.Tpo .deps/strace-uid.Po</code><br />
 						
             
             <a class="navhash" href="#1086">#</a>
@@ -5685,7 +5685,7 @@
             
             <a class="navhash" href="#1087">#</a>
 						
-              <code id="1087">mv -f .deps/strace-uid.Tpo .deps/strace-uid.Po</code><br />
+              <code id="1087">mv -f .deps/strace-uid16.Tpo .deps/strace-uid16.Po</code><br />
 						
             
             <a class="navhash" href="#1088">#</a>
@@ -5695,7 +5695,7 @@
             
             <a class="navhash" href="#1089">#</a>
 						
-              <code id="1089">mv -f .deps/strace-uid16.Tpo .deps/strace-uid16.Po</code><br />
+              <code id="1089">mv -f .deps/strace-umask.Tpo .deps/strace-umask.Po</code><br />
 						
             
             <a class="navhash" href="#1090">#</a>
@@ -5705,7 +5705,7 @@
             
             <a class="navhash" href="#1091">#</a>
 						
-              <code id="1091">mv -f .deps/strace-umask.Tpo .deps/strace-umask.Po</code><br />
+              <code id="1091">mv -f .deps/strace-umount.Tpo .deps/strace-umount.Po</code><br />
 						
             
             <a class="navhash" href="#1092">#</a>
@@ -5715,7 +5715,7 @@
             
             <a class="navhash" href="#1093">#</a>
 						
-              <code id="1093">mv -f .deps/strace-umount.Tpo .deps/strace-umount.Po</code><br />
+              <code id="1093">mv -f .deps/strace-uname.Tpo .deps/strace-uname.Po</code><br />
 						
             
             <a class="navhash" href="#1094">#</a>
@@ -5725,7 +5725,7 @@
             
             <a class="navhash" href="#1095">#</a>
 						
-              <code id="1095">mv -f .deps/strace-uname.Tpo .deps/strace-uname.Po</code><br />
+              <code id="1095">mv -f .deps/strace-term.Tpo .deps/strace-term.Po</code><br />
 						
             
             <a class="navhash" href="#1096">#</a>
@@ -5765,7 +5765,7 @@
             
             <a class="navhash" href="#1103">#</a>
 						
-              <code id="1103">mv -f .deps/strace-v4l2.Tpo .deps/strace-v4l2.Po</code><br />
+              <code id="1103">mv -f .deps/strace-util.Tpo .deps/strace-util.Po</code><br />
 						
             
             <a class="navhash" href="#1104">#</a>
@@ -5785,7 +5785,7 @@
             
             <a class="navhash" href="#1107">#</a>
 						
-              <code id="1107">mv -f .deps/strace-wait.Tpo .deps/strace-wait.Po</code><br />
+              <code id="1107">mv -f .deps/strace-v4l2.Tpo .deps/strace-v4l2.Po</code><br />
 						
             
             <a class="navhash" href="#1108">#</a>
@@ -5795,7 +5795,7 @@
             
             <a class="navhash" href="#1109">#</a>
 						
-              <code id="1109">mv -f .deps/strace-xattr.Tpo .deps/strace-xattr.Po</code><br />
+              <code id="1109">mv -f .deps/strace-wait.Tpo .deps/strace-wait.Po</code><br />
 						
             
             <a class="navhash" href="#1110">#</a>
@@ -5805,7 +5805,7 @@
             
             <a class="navhash" href="#1111">#</a>
 						
-              <code id="1111">mv -f .deps/strace-xmalloc.Tpo .deps/strace-xmalloc.Po</code><br />
+              <code id="1111">mv -f .deps/strace-xattr.Tpo .deps/strace-xattr.Po</code><br />
 						
             
             <a class="navhash" href="#1112">#</a>
@@ -5815,7 +5815,7 @@
             
             <a class="navhash" href="#1113">#</a>
 						
-              <code id="1113">mv -f .deps/strace-unwind.Tpo .deps/strace-unwind.Po</code><br />
+              <code id="1113">mv -f .deps/strace-xmalloc.Tpo .deps/strace-xmalloc.Po</code><br />
 						
             
             <a class="navhash" href="#1114">#</a>
@@ -5830,37 +5830,37 @@
             
             <a class="navhash" href="#1116">#</a>
 						
-              <code id="1116">mv -f .deps/strace-util.Tpo .deps/strace-util.Po</code><br />
+              <code id="1116">ar: `u' modifier ignored since `D' is the default (see `U')</code><br />
 						
             
             <a class="navhash" href="#1117">#</a>
 						
-              <code id="1117">rm -f libmpers-mx32.a</code><br />
+              <code id="1117">mv -f .deps/strace-unwind.Tpo .deps/strace-unwind.Po</code><br />
 						
             
             <a class="navhash" href="#1118">#</a>
 						
-              <code id="1118">ar cru libmpers-mx32.a libmpers_mx32_a-dirent.o libmpers_mx32_a-fetch_seccomp_fprog.o libmpers_mx32_a-fetch_struct_flock.o libmpers_mx32_a-ipc_msgctl.o libmpers_mx32_a-ipc_shmctl.o libmpers_mx32_a-print_mq_attr.o libmpers_mx32_a-print_msgbuf.o libmpers_mx32_a-print_sigevent.o libmpers_mx32_a-print_time.o libmpers_mx32_a-print_timex.o libmpers_mx32_a-printrusage.o libmpers_mx32_a-printsiginfo.o libmpers_mx32_a-sigaltstack.o libmpers_mx32_a-sysinfo.o libmpers_mx32_a-times.o libmpers_mx32_a-utime.o </code><br />
+              <code id="1118">rm -f libmpers-mx32.a</code><br />
 						
             
             <a class="navhash" href="#1119">#</a>
 						
-              <code id="1119">ar: `u' modifier ignored since `D' is the default (see `U')ar: </code><br />
+              <code id="1119">ar cru libmpers-mx32.a libmpers_mx32_a-dirent.o libmpers_mx32_a-fetch_seccomp_fprog.o libmpers_mx32_a-fetch_struct_flock.o libmpers_mx32_a-ipc_msgctl.o libmpers_mx32_a-ipc_shmctl.o libmpers_mx32_a-print_mq_attr.o libmpers_mx32_a-print_msgbuf.o libmpers_mx32_a-print_sigevent.o libmpers_mx32_a-print_time.o libmpers_mx32_a-print_timex.o libmpers_mx32_a-printrusage.o libmpers_mx32_a-printsiginfo.o libmpers_mx32_a-sigaltstack.o libmpers_mx32_a-sysinfo.o libmpers_mx32_a-times.o libmpers_mx32_a-utime.o </code><br />
 						
             
             <a class="navhash" href="#1120">#</a>
 						
-              <code id="1120">`u' modifier ignored since `D' is the default (see `U')</code><br />
+              <code id="1120">ar: `u' modifier ignored since `D' is the default (see `U')</code><br />
 						
             
             <a class="navhash" href="#1121">#</a>
 						
-              <code id="1121">ranlib libmpers-m32.a</code><br />
+              <code id="1121">ranlib libmpers-mx32.a</code><br />
 						
             
             <a class="navhash" href="#1122">#</a>
 						
-              <code id="1122">ranlib libmpers-mx32.a</code><br />
+              <code id="1122">ranlib libmpers-m32.a</code><br />
 						
             
             <a class="navhash" href="#1123">#</a>
@@ -5980,12 +5980,12 @@
             
             <a class="navhash" href="#1146">#</a>
 						
-              <code id="1146"> /usr/bin/mkdir -p '/tmp/strace/pkg/strace//usr/bin'</code><br />
+              <code id="1146"> /usr/bin/install -c -m 644 strace.1 '/tmp/strace/pkg/strace//usr/share/man/man1'</code><br />
 						
             
             <a class="navhash" href="#1147">#</a>
 						
-              <code id="1147"> /usr/bin/install -c -m 644 strace.1 '/tmp/strace/pkg/strace//usr/share/man/man1'</code><br />
+              <code id="1147"> /usr/bin/mkdir -p '/tmp/strace/pkg/strace//usr/bin'</code><br />
 						
             
             <a class="navhash" href="#1148">#</a>
@@ -6065,7 +6065,7 @@
             
             <a class="navhash" href="#1163">#</a>
 						
-              <code id="1163">==> Finished making: strace 4.11-1 (Tue Jun  7 20:04:51 UTC 2016)</code><br />
+              <code id="1163">==> Finished making: strace 4.11-1 (Tue Jun 14 08:03:33 UTC 2016)</code><br />
 						
             
           </div>
@@ -6397,7 +6397,7 @@
             
             <a class="navhash" href="#1195">#</a>
 						
-              <code id="1195">hostname = d055142a693a</code><br />
+              <code id="1195">hostname = a6183dd3b0f2</code><br />
 						
             
             <a class="navhash" href="#1196">#</a>
@@ -63022,7 +63022,7 @@
             
             <a class="navhash" href="#12520">#</a>
 						
-              <code id="12520">on d055142a693a</code><br />
+              <code id="12520">on a6183dd3b0f2</code><br />
 						
             
             <a class="navhash" href="#12521">#</a>

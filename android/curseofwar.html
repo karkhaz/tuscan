@@ -30,7 +30,7 @@
     <h1>Build of curseofwar
         with <a href="../index.html">android</a>
         toolchain</h1>
-    <p>The build took 00h 00m 39s and was
+    <p>The build took 00h 00m 32s and was
     NOT successful.
     </p>
     
@@ -39,12 +39,28 @@
     <h2>List of Errors</h2>
     <ul>
       
-      <li>native_tool_invocation
+      <li>compile_error
         <ul>
           
-          <li><a href="#13">tuscan: native invocation of 'gcc'</a></li>
+          <li><a href="#16">network.h:38:1: error: unknown type name 'in_port_t'</a></li>
           
-          <li><a href="#17">tuscan: native invocation of 'gcc'</a></li>
+          <li><a href="#20">network.c:25:39: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#23">network.c:27:38: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#27">network.c:31:1: error: unknown type name 'in_port_t'</a></li>
+          
+          <li><a href="#31">network.c:33:38: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#34">network.c:35:37: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#38">network.c:55:34: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#41">network.c:55:80: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#44">network.c:60:37: error: dereferencing pointer to incomplete type</a></li>
+          
+          <li><a href="#47">network.c:61:37: error: dereferencing pointer to incomplete type</a></li>
           
         </ul>
       </li>
@@ -114,7 +130,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: curseofwar 1.2.0-2 (Tue Jun  7 02:22:55 UTC 2016)</code><br />
+              <code id="5">==> Making package: curseofwar 1.2.0-2 (Tue Jun 14 05:25:51 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -153,53 +169,278 @@
 						
             
             <a class="navhash" href="#13">#</a>
-						<span class="error">
-              <code id="13">tuscan: native invocation of 'gcc'</code><br />
-						</span>
+						
+              <code id="13">gcc  -DVERSION="\"1.2.0\""  -Wall -O2 -c king.c</code><br />
+						
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">Makefile:76: recipe for target 'state.o' failed</code><br />
+              <code id="14">gcc  -DVERSION="\"1.2.0\""  -Wall -O2 -c network.c</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">make: *** [state.o] Error 1</code><br />
+              <code id="15">In file included from network.c:21:0:</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
-						
-              <code id="16">make: *** Waiting for unfinished jobs....</code><br />
-						
+						<span class="error">
+              <code id="16">network.h:38:1: error: unknown type name 'in_port_t'</code><br />
+						</span>
             
             <a class="navhash" href="#17">#</a>
-						<span class="error">
-              <code id="17">tuscan: native invocation of 'gcc'</code><br />
-						</span>
+						
+              <code id="17"> in_port_t get_in_port(struct sockaddr *sa);</code><br />
+						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">Makefile:76: recipe for target 'grid.o' failed</code><br />
+              <code id="18"> ^</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">make: *** [grid.o] Error 1</code><br />
+              <code id="19">network.c: In function 'get_in_addr':</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
-						
-              <code id="20">make: Leaving directory '/tmp/curseofwar/src/curseofwar-1.2.0'</code><br />
-						
+						<span class="error">
+              <code id="20">network.c:25:39: error: dereferencing pointer to incomplete type</code><br />
+						</span>
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">==> ERROR: A failure occurred in build().</code><br />
+              <code id="21">     return &(((struct sockaddr_in*)sa)->sin_addr);</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">    Aborting...</code><br />
+              <code id="22">                                       ^</code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						<span class="error">
+              <code id="23">network.c:27:38: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">   return &(((struct sockaddr_in6*)sa)->sin6_addr);</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">                                      ^</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">network.c: At top level:</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						<span class="error">
+              <code id="27">network.c:31:1: error: unknown type name 'in_port_t'</code><br />
+						</span>
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28"> in_port_t get_in_port(struct sockaddr *sa) {</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29"> ^</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">network.c: In function 'get_in_port':</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						<span class="error">
+              <code id="31">network.c:33:38: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">     return (((struct sockaddr_in*)sa)->sin_port);</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">                                      ^</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						<span class="error">
+              <code id="34">network.c:35:37: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">   return (((struct sockaddr_in6*)sa)->sin6_port);</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">                                     ^</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">network.c: In function 'sa_match':</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						<span class="error">
+              <code id="38">network.c:55:34: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">         ((struct sockaddr_in*)s1)->sin_addr.s_addr == ((struct sockaddr_in*)s2)->sin_addr.s_addr ) </code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">                                  ^</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						<span class="error">
+              <code id="41">network.c:55:80: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">         ((struct sockaddr_in*)s1)->sin_addr.s_addr == ((struct sockaddr_in*)s2)->sin_addr.s_addr ) </code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">                                                                                ^</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						<span class="error">
+              <code id="44">network.c:60:37: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">           ((struct sockaddr_in6*)s1)->sin6_addr.s6_addr, </code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">                                     ^</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						<span class="error">
+              <code id="47">network.c:61:37: error: dereferencing pointer to incomplete type</code><br />
+						</span>
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">           ((struct sockaddr_in6*)s2)->sin6_addr.s6_addr ) )</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">                                     ^</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">network.c: In function 'get_in_addr':</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">network.c:28:1: warning: control reaches end of non-void function [-Wreturn-type]</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52"> }</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53"> ^</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">network.c: In function 'get_in_port':</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">network.c:36:1: warning: control reaches end of non-void function [-Wreturn-type]</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56"> }</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57"> ^</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">network.c: In function 'sa_match':</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">network.c:65:1: warning: control reaches end of non-void function [-Wreturn-type]</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60"> }</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61"> ^</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">Makefile:76: recipe for target 'network.o' failed</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">make: *** [network.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">make: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">make: Leaving directory '/tmp/curseofwar/src/curseofwar-1.2.0'</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">    Aborting...</code><br />
 						
             
           </div>

@@ -30,7 +30,7 @@
     <h1>Build of atop
         with <a href="../index.html">android</a>
         toolchain</h1>
-    <p>The build took 00h 01m 00s and was
+    <p>The build took 00h 00m 58s and was
     NOT successful.
     </p>
     
@@ -42,9 +42,9 @@
       <li>compile_error
         <ul>
           
-          <li><a href="#18">acctproc.c:205:2: error: unknown type name 'ushort'</a></li>
+          <li><a href="#17">acctproc.c:205:2: error: unknown type name 'ushort'</a></li>
           
-          <li><a href="#21">acctproc.c:206:8: error: unknown type name 'ushort'</a></li>
+          <li><a href="#20">acctproc.c:206:8: error: unknown type name 'ushort'</a></li>
           
         </ul>
       </li>
@@ -114,7 +114,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: atop 2.2_3-3 (Tue Jun  7 03:27:29 UTC 2016)</code><br />
+              <code id="5">==> Making package: atop 2.2_3-3 (Tue Jun 14 06:27:49 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -169,112 +169,107 @@
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">arm-linux-androideabi-gcc  -O2 -I. -Wall  	    -c -o photoproc.o photoproc.c</code><br />
+              <code id="16">acctproc.c: In function 'acctswon':</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
-						
-              <code id="17">acctproc.c: In function 'acctswon':</code><br />
-						
+						<span class="error">
+              <code id="17">acctproc.c:205:2: error: unknown type name 'ushort'</code><br />
+						</span>
             
             <a class="navhash" href="#18">#</a>
-						<span class="error">
-              <code id="18">acctproc.c:205:2: error: unknown type name 'ushort'</code><br />
-						</span>
+						
+              <code id="18">  static ushort   vals[] = {1, ATOPACCTTOT};</code><br />
+						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">  static ushort   vals[] = {1, ATOPACCTTOT};</code><br />
+              <code id="19">  ^</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
-						
-              <code id="20">  ^</code><br />
-						
+						<span class="error">
+              <code id="20">acctproc.c:206:8: error: unknown type name 'ushort'</code><br />
+						</span>
             
             <a class="navhash" href="#21">#</a>
-						<span class="error">
-              <code id="21">acctproc.c:206:8: error: unknown type name 'ushort'</code><br />
-						</span>
+						
+              <code id="21">  union {ushort *array;} arg = {vals};</code><br />
+						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">  union {ushort *array;} arg = {vals};</code><br />
+              <code id="22">        ^</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">        ^</code><br />
+              <code id="23">acctproc.c:255:2: warning: implicit declaration of function 'semget' [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">acctproc.c:255:2: warning: implicit declaration of function 'semget' [-Wimplicit-function-declaration]</code><br />
+              <code id="24">  if ( (sempacctpubid = semget(PACCTPUBKEY, 0, 0)) != -1)</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">  if ( (sempacctpubid = semget(PACCTPUBKEY, 0, 0)) != -1)</code><br />
+              <code id="25">  ^</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">  ^</code><br />
+              <code id="26">acctproc.c:264:3: warning: implicit declaration of function 'semop' [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#27">#</a>
 						
-              <code id="27">acctproc.c:264:3: warning: implicit declaration of function 'semop' [-Wimplicit-function-declaration]</code><br />
+              <code id="27">   (void) semop(sempacctpubid, &semclaim, 1);</code><br />
 						
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">   (void) semop(sempacctpubid, &semclaim, 1);</code><br />
+              <code id="28">   ^</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">   ^</code><br />
+              <code id="29">acctproc.c:399:3: warning: implicit declaration of function 'semctl' [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">acctproc.c:399:3: warning: implicit declaration of function 'semctl' [-Wimplicit-function-declaration]</code><br />
+              <code id="30">   (void) semctl(sematopid, 0, SETALL, arg);</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">   (void) semctl(sematopid, 0, SETALL, arg);</code><br />
+              <code id="31">   ^</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">   ^</code><br />
+              <code id="32"><builtin>: recipe for target 'acctproc.o' failed</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33"><builtin>: recipe for target 'acctproc.o' failed</code><br />
+              <code id="33">make: *** [acctproc.o] Error 1</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">make: *** [acctproc.o] Error 1</code><br />
+              <code id="34">make: *** Waiting for unfinished jobs....</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="35">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">==> ERROR: A failure occurred in build().</code><br />
-						
-            
-            <a class="navhash" href="#37">#</a>
-						
-              <code id="37">    Aborting...</code><br />
+              <code id="36">    Aborting...</code><br />
 						
             
           </div>
