@@ -65,6 +65,13 @@ def summary_structure(toolchains):
                 "link_text": "%s ({total} builds)" % category
             }
             error_trees.append(obj)
+        error_trees.append({
+            "name": "unclassified",
+            "filter": (lambda b: b["return_code"]
+                         and not b["category_counts"]),
+            "description": ("Failing builds that we failed to classify"),
+            "link_text": "Unclassified ({total} builds)",
+        })
         return error_trees
 
     toolchain_trees = []
