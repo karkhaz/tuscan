@@ -122,6 +122,9 @@ def run_container(args):
                 # SLOCCount.
                 json_result["sloc_info"] = loads(obj["body"])
 
+            elif obj["kind"] == "bear":
+                json_result["bear_output"] = obj["body"]
+
             else:
                 json_result["log"].append(obj)
 
@@ -141,6 +144,9 @@ def run_container(args):
 
     if not "sloc_info" in json_result:
         json_result["sloc_info"] = {}
+
+    if not "bear_output" in json_result:
+        json_result["bear_output"] = []
 
     for touch_file in args.output_packages:
         with open(touch_file, "w") as f:
