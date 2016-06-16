@@ -150,6 +150,18 @@ make_package_schema = Schema({
 })
 
 
+def _bear_tree(v):
+    return bear_tree(v)
+
+bear_tree = Schema({
+    "pid": int,
+    "ppid": int,
+    "children": Any([], [_bear_tree]),
+    "timestamp": int,
+    "return_code": Any(int, None),
+    "command": [ _string ]
+})
+
 with open("tuscan/classification_patterns.yaml") as f:
     _patterns = load(f)
 _categories = [p["category"] for p in _patterns]
@@ -164,23 +176,7 @@ post_processed_schema = Schema({
     Required("toolchain"): _nonempty_string,
     Required("build_provides"): list,
     Required("build_depends"): list,
-    Required("bear_output"): Schema([ Any(
-        Schema({
-            "kind": "exit",
-            "pid": _nonempty_string,
-            "ppid": _nonempty_string,
-            "return_code": _nonempty_string
-        }),
-        Schema({
-            "kind": "exec",
-            "timestamp": _nonempty_string,
-            "pid": _nonempty_string,
-            "ppid": _nonempty_string,
-            "directory": _nonempty_string,
-            "function": _nonempty_string,
-            "command": [ _string ]
-        })
-    )]),
+    Required("bear_output"): Any(bear_tree, None),
     # Which packages is this build blocking? If this package failed to
     # build but all its dependencies built successfully, then this
     # package is said to be a "blocker" and this list will contain all
