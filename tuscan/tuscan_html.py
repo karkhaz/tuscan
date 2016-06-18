@@ -169,7 +169,8 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
             "length": len(organised)
         })
 
-        link_text = summary["link_text"].format(total=len(new_builds))
+        link_text = summary["link_text"].format(
+                total=len(new_builds) / len(new_toolchains))
         list_text = ('<li>\n<a href="{name}.html">{link_text}</a>\n'
                      '\n{child_list}\n</li>').format(
                         name=name, link_text=link_text,
