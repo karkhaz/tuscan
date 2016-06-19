@@ -42,11 +42,6 @@ from time import sleep
 from yaml import load as yaml_load
 
 
-def dump_result(result):
-    with open(result["file"], "w") as f:
-        dump(result["data"], f, indent=2)
-
-
 def process_log_line(line, patterns, counter):
     ret = {"text": line, "category": None, "semantics": {},
            "id": counter, "severity": None}
@@ -115,7 +110,7 @@ def process_single_result(data, patterns):
     return data
 
 
-def load_and_process(path, patterns, out_dir, args, results):
+def load_and_process(path, patterns, out_dir, args):
     """Processes a JSON result file at path."""
     with open(path) as f:
         data = load(f)
@@ -137,15 +132,11 @@ def load_and_process(path, patterns, out_dir, args, results):
         error("Post-processed data is malformatted: %s\n  %s" %
                 (path, str(e)))
 
-    to_dump = {"data": data, "file": join(out_dir,
-                                    "%s" % basename(path))}
-    if args.calculate_blockers:
-        results.append(to_dump)
-    else:
-        dump_result(to_dump)
+    with open(join(out_dir, basename(path)), "w") as fh:
+        dump(data, fh, indent=2)
 
 
-def propagate_blockers(results):
+def propagate_blockers(out_dir):
     """Fill out "blocked_by" and "blocks" fields of data.
 
     Failing builds can either be "blocked" (failed to build because
@@ -157,6 +148,24 @@ def propagate_blockers(results):
 
     Precondition: blocker builds have the "blocker" field set to true.
     """
+    info("Reloading results from disk to calculate blockers")
+    results = []
+    for f in listdir(out_dir):
+        with open(join(out_dir, f)) as fh:
+            j = load(fh)
+        # In order to save RAM, we only copy the fields that we need
+        # from the on-disk JSON result into memory.
+        r = {}
+        r["file"] = join(out_dir, f)
+        r["data"] = {}
+        r["data"]["return_code"] = j["return_code"]
+        r["data"]["build_name"] = j["build_name"]
+        r["data"]["build_depends"] = j["build_depends"]
+        r["data"]["category_counts"] = j["category_counts"]
+        r["data"]["blocks"] = j["blocks"]
+        r["data"]["blocked_by"] = j["blocked_by"]
+        results.append(r)
+
     blockers = [result["data"]["build_name"] for result in results
                 if result["data"]["return_code"] and not ("missing_deps"
                 in result["data"]["category_counts"])]
@@ -233,7 +242,22 @@ def propagate_blockers(results):
         if data["blocked_by"] and data["blocks"]:
             error("%s is both a blocker and blocked!" % data["build_name"])
 
-    return results
+    info("Finished calculating blockers, re-writing to disk...")
+    file_to_result = {}
+    for r in results:
+        file_to_result[r["file"]] = r["data"]
+    for f in listdir(out_dir):
+        f = join(out_dir, f)
+        if not f in file_to_result:
+            error("Could not find result for file '%s'" % f)
+            exit(1)
+        updated = file_to_result[f]
+        with open(f) as fh:
+            original = load(fh)
+        original["blocks"] = updated["blocks"]
+        original["blocked_by"] = updated["blocked_by"]
+        with open(f, "w") as fh:
+            dump(original, fh, indent=2)
 
 
 def do_postprocess(args):
@@ -257,7 +281,6 @@ def do_postprocess(args):
     toolchain_total = len(listdir(src_dir))
     for toolchain in listdir(src_dir):
         pool = Pool(args.pool_size)
-        results = man.list()
 
         toolchain_counter += 1
         info("Post-processing results for toolchain "
@@ -279,7 +302,6 @@ def do_postprocess(args):
 
         curry = partial(load_and_process,
                         patterns=patterns,
-                        results=results,
                         out_dir=toolchain_dst,
                         args=args)
         try:
@@ -303,7 +325,4 @@ def do_postprocess(args):
         pool.close()
         pool.join()
 
-        if args.calculate_blockers:
-            results = propagate_blockers(results._getvalue())
-            for result in results:
-                dump_result(result)
+        propagate_blockers(toolchain_dst)
