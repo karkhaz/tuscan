@@ -16,14 +16,18 @@
 # limitations under the License.
 
 from utilities import get_argparser, log, timestamp, run_cmd
+from utilities import recursive_chown
 from setup import toolchain_specific_setup
 
-from os import listdir, mkdir, walk
-from os.path import join
+from glob import glob
+from os import chdir, listdir, mkdir, walk
+from os.path import basename, isdir, exists, join
 from re import search
 from subprocess import run, PIPE, STDOUT
-from shutil import chown
+from shutil import chown, copy, copytree
 from sys import stderr, stdout
+import tarfile
+import tempfile
 from json import load
 
 
@@ -84,6 +88,43 @@ def main():
         exit(1)
 
     run_cmd("useradd -m -s /bin/bash tuscan", as_root=True)
+
+    # Build and install bear
+    with tempfile.TemporaryDirectory() as d:
+        for f in listdir(args.bear_directory):
+            bear_file = join(args.bear_directory, f)
+            if isdir(bear_file):
+                copytree(bear_file, join(d, f))
+            else:
+                copy(bear_file, d)
+        bear_tar = join(d, "bear.tar.xz")
+        bear_dir = join(d, "bear")
+        if not exists(bear_dir):
+            raise "Did not find bear directory at '%s'" % bear_dir
+        with tarfile.open(bear_tar, "w:xz") as tar:
+            tar.add(bear_dir, arcname=basename(bear_dir))
+        recursive_chown(d)
+        chdir(d)
+
+        cmd = ("sudo -u tuscan makepkg --syncdeps "
+               "--noconfirm --nocolor --noprogressbar --cleanbuild")
+        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+                universal_newlines=True)
+        log("command", cmd, cp.stdout.splitlines())
+        if cp.returncode:
+            exit(1)
+
+        bear_pkg = glob("bear*.pkg.tar.xz")
+        if not len(bear_pkg) == 1:
+            log("die", "Found %d matching bear packages" % len(bear_pkg),
+                    bear_pkg)
+            exit(1)
+        cmd = "pacman -U --noconfirm %s" % bear_pkg[0]
+        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+                universal_newlines=True)
+        log("command", cmd, cp.stdout.splitlines())
+        if cp.returncode:
+            exit(1)
 
     mkdir("/toolchain_root")
     chown("/toolchain_root", "tuscan")
