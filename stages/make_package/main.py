@@ -18,14 +18,15 @@
 from utilities import get_argparser, log, create_package, timestamp
 from utilities import toolchain_repo_name, add_package_to_toolchain_repo
 from utilities import strip_version_info, interpret_bash_array
+from utilities import recursive_chown
 
 from datetime import datetime
 from enum import Enum
 from glob import glob
 from fnmatch import filter
 from json import dumps, load
-from os import chdir, listdir, walk, makedirs, environ
-from os.path import basename, isdir, isfile, join
+from os import chdir, listdir, getcwd, walk, makedirs, environ
+from os.path import basename, exists, isdir, isfile, join
 from re import escape, search, sub, match
 from shutil import chown, copyfile, copytree, rmtree, Error
 from subprocess import run, Popen, PIPE, STDOUT
@@ -62,18 +63,6 @@ def die(status, message=None, output=[]):
         exit(1)
     else:
         raise RuntimeError("Bad call to die with '%s'" % str(status))
-
-
-def recursive_chown(directory):
-    """makepkg cannot be run as root.
-
-    This function changes the owner and group owner of a directory tree
-    rooted at directory to "tuscan".
-    """
-    chown(directory, "tuscan", "tuscan")
-    for path, subdirs, files in walk(directory):
-        for f in subdirs + files:
-            chown(join(path, f), "tuscan", "tuscan")
 
 
 def get_package_source_dir(args):
@@ -184,7 +173,7 @@ def copy_and_build(args):
     command = (
        "sudo -u tuscan " +
        " ".join(args.env_vars) +
-       " makepkg --noextract --syncdeps"
+       " bear makepkg --noextract --syncdeps"
        " --skipinteg --skippgpcheck --skipchecksums"
        " --noconfirm --nocolor --log --noprogressbar"
        " --nocheck"
@@ -197,6 +186,14 @@ def copy_and_build(args):
     stdout_data, _ = proc.communicate()
 
     log("command", command, stdout_data.splitlines(), time)
+
+    # Pick up output left by bear
+    if exists("compile_commands.json"):
+        with open("compile_commands.json") as f:
+            bear_output = load(f)
+        log("bear", "bear", output=bear_output)
+    else:
+        log("die", "No bear output found in dir '%s'" % getcwd())
 
     return proc.returncode
 

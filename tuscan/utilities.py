@@ -27,11 +27,12 @@ function might be passed by the build environment.
 from argparse import ArgumentParser
 from os.path import basename, dirname, isdir, join, lexists
 from os import chdir, makedirs, remove, symlink, getcwd, listdir, unlink
+from os import walk
 from datetime import datetime
 from json import dumps
 from random import random, seed
 from re import search
-from shutil import move
+from shutil import chown, move
 from subprocess import run, PIPE, Popen, STDOUT, TimeoutExpired, DEVNULL
 from sys import stderr
 from tempfile import NamedTemporaryFile as tempfile
@@ -117,7 +118,7 @@ def timestamp():
 
 def log(kind, string, output=[], start_time=None):
     if kind not in ["command", "info", "die", "provide_info",
-            "dep_info", "sloc_info"]:
+            "dep_info", "sloc_info", "bear"]:
         raise RuntimeError("Bad kind: %s" % kind)
 
     if not start_time:
@@ -196,6 +197,8 @@ def get_argparser():
                         dest="mirror_directory", action="store")
     parser.add_argument("--mirror-volume",
                         dest="mirror_volume", action="store")
+
+    parser.add_argument("--bear-directory")
 
     parser.add_argument("--stage-name",
                         dest="stage_name", action="store")
@@ -300,6 +303,18 @@ def create_package(path, pkg_name, args):
 
 
 def toolchain_repo_name(): return "tuscan"
+
+
+def recursive_chown(directory):
+    """makepkg cannot be run as root.
+
+    This function changes the owner and group owner of a directory tree
+    rooted at directory to "tuscan".
+    """
+    chown(directory, "tuscan", "tuscan")
+    for path, subdirs, files in walk(directory):
+        for f in subdirs + files:
+            chown(join(path, f), "tuscan", "tuscan")
 
 
 def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,

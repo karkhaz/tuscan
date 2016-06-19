@@ -114,6 +114,24 @@ make_package_schema = Schema({
     Required("sloc_info"): Schema({
         _nonempty_string: int
     }),
+    # Output from the bear tool wrapping the makepkg command.
+    Required("bear_output"): Schema([ Any(
+        Schema({
+            "kind": "exit",
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "return_code": _nonempty_string
+        }),
+        Schema({
+            "kind": "exec",
+            "timestamp": _nonempty_string,
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "directory": _nonempty_string,
+            "function": _nonempty_string,
+            "command": [ _string ]
+        })
+    )]),
     Required("log"): [
         # Logs have a head and body. Typically, for each command that
         # gets executed by the make_package stage, the head will be the
@@ -159,6 +177,23 @@ post_processed_schema = Schema({
     # has no dependencies, then it's "blocks" list will be empty.
     Required("blocked_by"): [_nonempty_string],
     Required("sloc_info"): Schema({ _nonempty_string: int }),
+    Required("bear_output"): Schema([ Any(
+        Schema({
+            "kind": "exit",
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "return_code": _nonempty_string
+        }),
+        Schema({
+            "kind": "exec",
+            "timestamp": _nonempty_string,
+            "pid": _nonempty_string,
+            "ppid": _nonempty_string,
+            "directory": _nonempty_string,
+            "function": _nonempty_string,
+            "command": [ _string ]
+        })
+    )]),
     Required("errors"): list,
     # Status of all configure checks in this build, combined.
     # If a single configure check returned non-zero, then False;
