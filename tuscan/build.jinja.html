@@ -34,6 +34,28 @@
     {% if data["return_code"] is equalto 0 %}SUCCESSFUL.
     {% else %}NOT successful.{% endif %}
     </p>
+    {% if data["blocked_by"] %}
+    <p>
+    We did not attempt to build this package because some of its
+    dependencies failed to build. These dependencies are:
+    </p>
+    <ul>
+      {% for d in data["blocked_by"] %}
+      <li><a href="{{ d }}.html">{{ d }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if data["blocks"] %}
+    <p>
+    Due to the failure of this package to build, we did not attempt to
+    build several packages that depend on this one. Those packages are:
+    </p>
+    <ul>
+      {% for d in data["blocks"] %}
+      <li><a href="{{ d }}.html">{{ d }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     {% if data["errors"] %}
     <h2>List of Errors</h2>
     <ul>
