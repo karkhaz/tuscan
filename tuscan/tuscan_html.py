@@ -65,6 +65,16 @@ def summary_structure(toolchains):
                 "link_text": "%s ({total} builds)" % category
             }
             error_trees.append(obj)
+        error_trees.append({
+            "name": "blockers",
+            "filter": (lambda build, toolchain=toolchain:
+                build["return_code"] and build["toolchain"] == toolchain
+                and not "missing_deps" in build["category_counts"]),
+            "description": ("Packages whose dependencies all built, "
+                            "but which failed to build on toolchain"
+                            " '%s'" % toolchain),
+            "link_text": "Blockers ({total} builds)"
+        })
         return error_trees
 
     toolchain_trees = []
@@ -247,6 +257,8 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         data["name"] = basename(data["build_name"])
         data["time"] = s_to_hhmmss(data["time"])
         data["errors"] = get_errors(data["log"])
+        data["blocks"] = [basename(b) for b in data["blocks"]]
+        data["blocked_by"] = [basename(b) for b in data["blocked_by"]]
         html = template.render(data=data)
 
         out_path = join(out_dir, "%s.html" % basename(data["build_name"]))
