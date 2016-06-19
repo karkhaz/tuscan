@@ -310,6 +310,7 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         # keep the build log for the summary, and it uses a lot of
         # memory, so remove it from the data structure.
         data.pop("log", None)
+        data.pop("bear_output", None)
         results_list.append(data)
 
     except MultipleInvalid as e:

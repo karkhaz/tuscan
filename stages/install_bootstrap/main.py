@@ -16,14 +16,19 @@
 # limitations under the License.
 
 from utilities import get_argparser, log, timestamp, run_cmd
+from utilities import recursive_chown
 from setup import toolchain_specific_setup
 
-from os import listdir, mkdir, walk
-from os.path import join
+from glob import glob
+from os import chdir, listdir, mkdir, walk
+from os.path import basename, isdir, exists, join
 from re import search
+import urllib.request
 from subprocess import run, PIPE, STDOUT
-from shutil import chown
+from shutil import chown, copy, copytree
 from sys import stderr, stdout
+import tarfile
+import tempfile
 from json import load
 
 
@@ -85,14 +90,31 @@ def main():
 
     run_cmd("useradd -m -s /bin/bash tuscan", as_root=True)
 
-    mkdir("/toolchain_root")
-    chown("/toolchain_root", "tuscan")
-
     # User 'tuscan' needs to be able to use sudo without being harassed
     # for passwords) and so does root (to su into tuscan)
     with open("/etc/sudoers", "a") as f:
         print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
         print("root ALL=(ALL) NOPASSWD: ALL", file=f)
+
+    # Download and install bear
+    with tempfile.TemporaryDirectory() as d:
+        url = ("https://github.com/karkhaz/Bear/blob/master/"
+               "bear-2.1.5-1-x86_64.pkg.tar.xz?raw=true")
+        response = urllib.request.urlopen(url)
+        tar_file = response.read()
+        pkg_name = "bear.pkg.tar.xz"
+        with open(join(d, pkg_name), "wb") as f:
+            f.write(tar_file)
+        chdir(d)
+        cmd = "pacman -U --noconfirm %s" % pkg_name
+        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+                universal_newlines=True)
+        log("command", cmd, cp.stdout.splitlines())
+        if cp.returncode:
+            exit(1)
+
+    mkdir("/toolchain_root")
+    chown("/toolchain_root", "tuscan")
 
     toolchain_specific_setup(args)
 

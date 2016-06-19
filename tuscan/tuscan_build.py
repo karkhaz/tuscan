@@ -319,7 +319,7 @@ class Stages(object):
                     main_command += " "
 
                 for mount in stage.run.local_mounts:
-                    main_command += ("-v %s/%s:/%s:ro" %
+                    main_command += (" -v %s/%s:/%s:ro" %
                                      (getcwd(), mount, mount))
 
                 main_command += (" --name %s %s --output-directory %s"
