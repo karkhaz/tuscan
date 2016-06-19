@@ -65,10 +65,6 @@ def main():
             help=("Kill post-processing if it takes longer than"
                   " N seconds (default=%d)" % 1200))
 
-    postprocess_parser.add_argument("-b", "--calculate-blockers",
-            action="store_true", help=("Calculate which builds are "
-                "blocking which others (recommended: > 80 GB RAM)"))
-
     postprocess_parser.set_defaults(func=do_postprocess)
 
     # ./tuscan.py html
