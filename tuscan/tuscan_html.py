@@ -67,8 +67,26 @@ def summary_structure(toolchains):
             error_trees.append(obj)
         return error_trees
 
+    vanilla_tree = {
+        "title": "vanilla",
+        "filter": (lambda b: b["toolchain"] == "vanilla"),
+        "toolchains_to_display": ["vanilla"],
+        "children": [{
+            "name": "pass",
+            "filter": (lambda b: not b["return_code"]),
+            "description": "Builds that passed on vanilla",
+            "link_text": "{total} passed"
+        }, {
+            "name": "fail",
+            "filter": (lambda b: b["return_code"]),
+            "description": "Builds that failed on vanilla",
+            "link_text": "{total} failed",
+            "children": list(error_trees("vanilla"))
+        }]
+    }
+
     toolchain_trees = []
-    for toolchain in toolchains:
+    for toolchain in [t for t in toolchains if t != "vanilla"]:
         obj = {
             "title": toolchain,
             "filter": (lambda build, toolchain=toolchain:
@@ -92,6 +110,12 @@ def summary_structure(toolchains):
         }
         toolchain_trees.append(obj)
 
+    alternatives = {
+        "title": "Builds below this line passed on vanilla",
+        "filter": (lambda b: b["vanilla_success"]),
+        "children": toolchain_trees
+    }
+
     top_level_tree = {
       "title": "All Builds",
       "toolchains_to_display": toolchains,
@@ -100,7 +124,7 @@ def summary_structure(toolchains):
           "description": "all builds across all toolchains",
           "link_text": "{total} total builds"
           }
-      ] + toolchain_trees)
+      ] + [vanilla_tree] + [alternatives])
     }
 
     return top_level_tree
@@ -295,6 +319,20 @@ def organise_builds(build_list, toolchains):
     return ret
 
 
+def add_vanilla_success(results, toolchains):
+    ret = []
+    results = organise_builds(results, toolchains)
+    for name, build_dict in results.items():
+        success = build_dict["vanilla"]["return_code"] == 0
+        for tc, build in build_dict.items():
+            build = dict(build)
+            build["vanilla_success"] = success
+            build["build_name"] = name
+            build["toolchain"] = tc
+            ret.append(build)
+    return ret
+
+
 def do_html(args):
     src_dir = "output/post"
     dst_dir = "output/html"
@@ -365,4 +403,8 @@ def do_html(args):
     pool.join()
 
     stderr.write("Generating summary pages\n")
-    write_summary_pages(dst_dir, toolchains, results_list._getvalue(), jinja)
+
+    # We need to add an extra key to each build, indicating if the build
+    # was successful on vanilla.
+    results_list = add_vanilla_success(results_list._getvalue(), toolchains)
+    write_summary_pages(dst_dir, toolchains, results_list, jinja)
