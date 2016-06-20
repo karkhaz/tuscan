@@ -3,10 +3,9 @@ build:
   stages:
     - install_bootstrap
   copy_files:
-    - toolchains/${TOOLCHAIN}/makepkg.conf
-    - toolchains/${TOOLCHAIN}/Dockerfile
+    - toolchains/make_package/${TOOLCHAIN}/makepkg.conf
     - tuscan/utilities.py
-    - compiler_wrappers/wrapper.py
+  script: tuscan/wrapper_gen.py ${TOOLCHAIN}
 
 run:
   dependencies:

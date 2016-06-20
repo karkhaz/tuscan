@@ -117,7 +117,7 @@ def timestamp():
 
 def log(kind, string, output=[], start_time=None):
     if kind not in ["command", "info", "die", "provide_info",
-            "dep_info", "sloc_info"]:
+            "dep_info", "sloc_info", "native_tools"]:
         raise RuntimeError("Bad kind: %s" % kind)
 
     if not start_time:
