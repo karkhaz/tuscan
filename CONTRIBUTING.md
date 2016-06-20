@@ -15,6 +15,7 @@ Summary:
   - `setup.py`, containing method `toolchain_specific_setup(args)`
   - `Dockerfile`
   - `makepkg.conf`
+  - `tool_redirect_rules.yaml`
 - Add a directory `toolchains/make_package/$TOOLCHAIN_NAME`
 - That directory should contain:
   - `Dockerfile`
@@ -55,6 +56,29 @@ This directory contains files that will be accessible to the
   of the `install_bootstrap` stage. One way in which Dockerfiles may
   vary across toolchains is in what files are copied into the container;
   for example, the `musl` toolchain runs a separate setup script.
+
+- `tool_redirect_rules.yaml` is a file describing which native tools will
+  be overwritten by a compiler wrapper. Broken build scripts will often
+  hard-code the path to a compiler or other native tool; tuscan thus
+  replaces the native tools with a compiler wrapper that emits an error
+  message and then invokes the toolchain-specific tools. The file format
+  of `tool_redirect_rules.yaml` is described by the `binutil_schema` data
+  structure in `tuscan/schemata.py`.
+
+  - For example, if your toolchain supplies an archiver called `ar`,
+    and you wish to clobber `/usr/bin/ar` so that it points to your
+    toolchain's `ar`, then you would add `ar` to the `overwrite` array
+    of the YAML file.
+
+  - If your toolchain provides a compiler (e.g. `clang`) and you wish to
+    override the default system compiler (`gcc`), then you would add
+    `gcc: clang` (and also `cc: clang`) to the `replacements` dictionary
+    of the YAML file.
+
+  - The directory where all your toolchain's tools reside should be the
+    value of the `bin` key of the YAML file, e.g.
+    `bin: /toolchain_root/my_toolchain/bin`.
+
 
 ### toolchains/make_package/$TOOLCHAIN_NAME
 
