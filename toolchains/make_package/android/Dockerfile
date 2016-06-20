@@ -24,10 +24,6 @@ COPY utilities.py /build/utilities.py
 COPY makepkg.conf /etc/makepkg.conf
 RUN chmod a+r /etc/makepkg.conf
 
-COPY wrapper.py /usr/bin/gcc
-COPY wrapper.py /usr/bin/ld
-COPY wrapper.py /usr/bin/ar
-
 RUN chmod a+x /usr/bin/*
 RUN chmod a+r /usr/bin/*
 

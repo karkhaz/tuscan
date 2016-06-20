@@ -18,6 +18,7 @@ Summary:
 - Add a directory `toolchains/make_package/$TOOLCHAIN_NAME`
 - That directory should contain:
   - `Dockerfile`
+  - `tool_redirect_rules.yaml`
   - `makepkg.conf`
 
 ### toolchains/install_bootstrap/$TOOLCHAIN_NAME
@@ -61,8 +62,29 @@ This directory contains files that will be accessible to the
 This directory contains files that will be accessible to the
 `make_package` stage.
 
-- `Dockerfile` is the Dockerfile for the `make_package` stage, i.e. it
-  sets up the container where packages are built.
+- `tool_redirect_rules.yaml` is a file describing which native tools will
+  be overwritten by a compiler wrapper. Broken build scripts will often
+  hard-code the path to a compiler or other native tool; tuscan thus
+  replaces the native tools with a compiler wrapper that emits an error
+  message and then invokes the toolchain-specific tools. The file format
+  of `tool_redirect_rules.yaml` is described by the `binutil_schema` data
+  structure in `tuscan/schemata.py`.
+
+- `Dockerfile` is  a jinja template for a Dockerfile for the
+  `make_package` stage, i.e. it sets up the container where packages are
+  built.
+
+  - The generated Dockerfile will copy any compiler wrappers specified
+    in the `tool_redirect_rules.yaml` file. You will thus need to have
+    the following Jinja directive somewhere in the Dockerfile:
+
+        {% for wrapper, native in wrappers.items() %}
+        COPY {{ wrapper }} /usr/bin/{{ native }}
+        {% endfor %}
+
+        RUN chmod a+xr /usr/bin/*
+
+    This will be filled out when the `make_package` stage is built.
 
   - The most notable feature in `toolchains/android/Dockerfile` is
     passing environment variables to the stage with the --env-vars

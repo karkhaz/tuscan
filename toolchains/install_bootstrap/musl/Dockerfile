@@ -24,6 +24,8 @@ MAINTAINER Kareem Khazem <khazem@google.com>
 
 COPY main.py /build/main.py
 COPY utilities.py /build/utilities.py
+COPY tool_wrapper.c /build/tool_wrapper.c
+COPY tool_redirect_rules.yaml /build/tool_redirect_rules.yaml
 COPY setup.py /build/setup.py
 COPY setup.sh /build/setup.sh
 

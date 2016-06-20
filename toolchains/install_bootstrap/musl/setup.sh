@@ -29,9 +29,6 @@ die() {
   exit 1
 }
 
-pacman-key --refresh-keys
-pacman -Syy --noconfirm python binutils gcc bison cmake ninja make libunistring patch
-
 mkdir -p ${SRCDIR}/binutils
 curl -s -S http://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.bz2 \
   | tar xj -C ${SRCDIR}/binutils --strip-components=1

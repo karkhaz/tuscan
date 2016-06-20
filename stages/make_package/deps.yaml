@@ -3,10 +3,8 @@ build:
   stages:
     - install_bootstrap
   copy_files:
-    - toolchains/make_package/${TOOLCHAIN}/makepkg.conf
-    - toolchains/make_package/${TOOLCHAIN}/Dockerfile
+    - toolchains/make_package/${TOOLCHAIN}/*
     - tuscan/utilities.py
-    - compiler_wrappers/*
 
 run:
   dependencies:
@@ -14,6 +12,7 @@ run:
       - deps_to_ninja
       - get_base_package_names
       - create_toolchain_repo
+      - install_bootstrap
     data_containers:
       - tuscan_data
       - sources
