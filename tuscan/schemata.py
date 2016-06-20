@@ -40,6 +40,8 @@ stage_deps_schema = voluptuous.Schema({
         # that are mentioned in the Dockerfile, or are needed for some
         # other reason)
         voluptuous.Optional("copy_files"): [_nonempty_string],
+        # Script that should be run just before the Docker build command
+        voluptuous.Optional("script"): _nonempty_string,
     }),
     # Data needed to run the container
     voluptuous.Required("run"): voluptuous.Schema({
@@ -132,6 +134,11 @@ make_package_schema = voluptuous.Schema({
             "command": [ _string ]
         })
     )]),
+    # Map from the name of a native tool, to how many times the build
+    # invoked that native tool.
+    voluptuous.Required("native_tools"): voluptuous.Schema({
+        _nonempty_string: int
+    }),
     voluptuous.Required("log"): [
         # Logs have a head and body. Typically, for each command that
         # gets executed by the make_package stage, the head will be the
@@ -209,6 +216,9 @@ post_processed_schema = voluptuous.Schema({
     voluptuous.Required("category_counts"): voluptuous.Schema({
         voluptuous.Any(*_categories): int
     }),
+    voluptuous.Required("native_tools"): voluptuous.Schema({
+        _nonempty_string: int
+    }),
     voluptuous.Required("log"): [
         voluptuous.Schema({
             voluptuous.Required("head"): _nonempty_string,
@@ -265,3 +275,27 @@ classification_schema = voluptuous.Schema([voluptuous.Schema({
     voluptuous.Required("category"): _nonempty_string,
     voluptuous.Required("severity"): voluptuous.Any("error", "diagnostic")
 })])
+
+
+"""tool_redirect_rules.yaml files for individual toolchains
+
+These are used for specifying what native tools will be overwritten by
+a compiler wrapper that prints an error message and redirects the
+invocation to a toolchain tool.
+"""
+tool_redirect_schema = voluptuous.Schema({
+    # Prefix that is common to all toolchain tools. Will typically be a
+    # directory under /toolchain_root, but may contain trailing
+    # characters also. The tool name will be concatenated to this
+    # prefix, so if the prefix is a directory it MUST have a trailing
+    # slash.
+    voluptuous.Required("prefix"): _nonempty_string,
+    # A list of executables E such that /usr/bin/E shall be replaced by a
+    # wrapper that points to B/E, where B is the value of the "bin" field
+    voluptuous.Required("overwrite"): [ _nonempty_string ],
+    # A map from N -> E such that /usr/bin/N shall be replaced by a
+    # wrapper that points to B/E, where B is the value of the "bin" field
+    voluptuous.Required("replacements"): {
+        _nonempty_string: _nonempty_string
+    }
+})
