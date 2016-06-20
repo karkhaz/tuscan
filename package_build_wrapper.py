@@ -127,6 +127,9 @@ def run_container(args):
                 # This will be an "exec" or "exit" record from libEAR.
                 json_result["bear_output"] = obj["body"]
 
+            elif obj["kind"] == "native_tools":
+                json_result["native_tools"] = obj["body"]
+
             else:
                 json_result["log"].append(obj)
 
@@ -149,6 +152,9 @@ def run_container(args):
 
     if not "bear_output" in json_result:
         json_result["bear_output"] = []
+
+    if not "native_tools" in json_result:
+        json_result["native_tools"] = {}
 
     for touch_file in args.output_packages:
         with open(touch_file, "w") as f:
