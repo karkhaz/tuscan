@@ -75,22 +75,23 @@ packages are not rebuilt unnecessarily.
 [1] http://martine.github.io/ninja/
 """
 
+
 from utilities import OutputDirectory, get_argparser
 from utilities import strip_version_info, interpret_bash_array
 
-from datetime import datetime
-from functools import partial
-from glob import glob
-from json import load
-from multiprocessing import Value, Lock, Pool, cpu_count, Manager
-from ninja_syntax import Writer
-from os.path import dirname, exists, join
-from random import shuffle
-from re import search, sub
-from subprocess import PIPE, Popen, TimeoutExpired, run
-from sys import argv, path, stderr, stdout
-from tempfile import NamedTemporaryFile as tempfile
-from textwrap import dedent
+import datetime
+import functools
+import glob
+import json
+import multiprocessing
+import ninja_syntax
+import os.path
+import random
+import re
+import subprocess
+import sys
+import tempfile
+import textwrap
 
 
 def excluded(info):
@@ -145,22 +146,22 @@ def excluded(info):
 def groups_of(pkgbuild):
     """The groups that a pkgbuild file is part of."""
 
-    cmd = dedent("""\
+    cmd = textwrap.dedent("""\
                  #!/bin/bash
                  . %s
                  for grp in ${groups[@]}; do
                     echo ${grp};
                  done;
                  """ % (pkgbuild))
-    with tempfile(mode="w") as temp:
+    with tempfile.NamedTemporaryFile(mode="w") as temp:
         temp.write(cmd)
         temp.flush()
-        proc = Popen(["/bin/bash", temp.name], stdout=PIPE)
+        proc = subprocess.Popen(["/bin/bash", temp.name], stdout=subprocess.PIPE)
         try:
             proc.wait(40)
         except TimeoutExpired:
             print("%s took too long to source" % pkgbuild,
-                  file=stderr)
+                  file=sys.stderr)
             exit(1)
 
         return [p.decode().strip() for p in list(proc.stdout)
@@ -195,18 +196,18 @@ def build_triples(infos, args):
     suitable for passing to ninja.build().
     """
     triples = []
-    prefix = join(args.output_directory, "pkgbuild_markers", "")
+    prefix = os.path.join(args.output_directory, "pkgbuild_markers", "")
 
     for info in infos:
         # Individual packages depend on makepkg being run on the ABS
-        outs = [join(prefix, name + ".json")
+        outs = [os.path.join(prefix, name + ".json")
                 for name in info["package_names"]]
-        ins  = [dirname(info["pkgbuild"])]
+        ins  = [os.path.dirname(info["pkgbuild"])]
         triples.append((outs, "makepkg", ins))
 
         # makepkg on the abs depends on dependencies
-        outs = [dirname(info["pkgbuild"])]
-        ins = [join(prefix, dep + ".json")
+        outs = [os.path.dirname(info["pkgbuild"])]
+        ins = [os.path.join(prefix, dep + ".json")
                 for dep in info["depends"] + info["makedepends"]]
         triples.append((outs, "phony", ins))
 
@@ -217,12 +218,12 @@ def gather_package_data(abs_dir,
         name_data, args, global_infos, provides):
 
     # These PKGBUILDs take forever to source, due to their use of wget.
-    if (search("libreoffice-fresh-i18n", abs_dir)
-    or  search("libreoffice-still-i18n", abs_dir)):
+    if (re.search("libreoffice-fresh-i18n", abs_dir)
+    or  re.search("libreoffice-still-i18n", abs_dir)):
         return
 
     info = {}
-    pkgbuild = join(abs_dir, "PKGBUILD")
+    pkgbuild = os.path.join(abs_dir, "PKGBUILD")
 
     info["pkgbuild"] = pkgbuild
     info["groups"] = interpret_bash_array(pkgbuild, "groups")
@@ -279,9 +280,9 @@ def resolve_provides(package_infos, provides_dict):
                     provider_of[meta] = info["package_names"][0]
     if errors:
         print("Could not decide what packages provide some meta-"
-              "packages.", file=stderr)
+              "packages.", file=sys.stderr)
         for error in errors:
-            print(error, file=stderr)
+            print(error, file=sys.stderr)
         exit(1)
 
     # Now, go through each package info and do the transformation on its
@@ -342,7 +343,7 @@ def drop_excluded(infos, circulars, name_data):
             #    print("%d %s packages blocked %s" %
             #            (len(blockers), str(blockers),
             #                info["pkgbuild"]),
-            #            file=stderr)
+            #            file=sys.stderr)
         infos = tmp
 
     return infos
@@ -443,26 +444,26 @@ def main():
     parser = get_argparser()
     args = parser.parse_args()
 
-    name_data_file = join(args.shared_directory,
+    name_data_file = os.path.join(args.shared_directory,
             "get_base_package_names", "latest", "names.json")
     with open(name_data_file) as f:
-        name_data = load(f)
+        name_data = json.load(f)
 
     with open("/build/provides.json") as f:
-        provides = load(f)
+        provides = json.load(f)
 
-    abss = glob("/var/abs/*/*")
+    abss = glob.glob("/var/abs/*/*")
 
     # Build a list of package information. This involves interpreting
     # Bash files, so split across multiple processes for speed.
-    man = Manager()
+    man = multiprocessing.Manager()
     global_infos = man.list()
 
-    curry_gather = partial(gather_package_data, name_data=name_data,
-                           args=args, global_infos=global_infos,
-                           provides=provides)
+    curry_gather = functools.partial(gather_package_data,
+            name_data=name_data, args=args, global_infos=global_infos,
+            provides=provides)
 
-    with Pool(cpu_count()) as p:
+    with multiprocessing.Pool(multiprocessing.cpu_count()) as p:
         p.map(curry_gather, abss)
 
     # Back to sequential mode. Do various cleanups on the list of
@@ -478,7 +479,7 @@ def main():
     # Finally, get a list of builds and write them out.
     builds = build_triples(infos, args)
 
-    ninja  = Writer(stdout, 72)
+    ninja  = ninja_syntax.Writer(sys.stdout, 72)
 
     ninja.rule("makepkg",
                ("./package_build_wrapper.py"
@@ -507,7 +508,7 @@ def main():
     for outs, rule, ins in builds:
         ninja.build(outs, rule, ins)
 
-    stdout.flush()
+    sys.stdout.flush()
 
 
 if __name__ == "__main__":

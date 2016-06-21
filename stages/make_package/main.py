@@ -15,26 +15,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from utilities import get_argparser, log, create_package, timestamp
-from utilities import toolchain_repo_name, add_package_to_toolchain_repo
-from utilities import strip_version_info, interpret_bash_array
 from utilities import recursive_chown
+from utilities import strip_version_info, interpret_bash_array
+from utilities import toolchain_repo_name, add_package_to_toolchain_repo
 
-from datetime import datetime
-from enum import Enum
-from glob import glob
-from fnmatch import filter
-from json import dumps, load
-from os import chdir, listdir, getcwd, walk, makedirs, environ
-from os.path import basename, exists, isdir, isfile, join
-from re import escape, search, sub, match
-from shutil import chown, copyfile, copytree, rmtree, Error
-from subprocess import run, Popen, PIPE, STDOUT
-from sys import stderr
-from tarfile import open as tar_open
+import datetime
+import enum
+import fnmatch
+from  glob import glob
+import json
+import os
+import os.path
+import re
+import shutil
+import subprocess
+import tarfile
 
 
-class Status(Enum):
+class Status(enum.Enum):
     success = 1
     failure = 2
 
@@ -45,10 +45,10 @@ def die(status, message=None, output=[]):
 
     log("info", "Printing config.logs")
     config_logs = []
-    for root, dirs, files in walk("/tmp"):
+    for root, dirs, files in os.walk("/tmp"):
         for f in files:
             if f == "config.log" or f == "configure.log":
-                config_logs.append(join(root, f))
+                config_logs.append(os.path.join(root, f))
 
     for l in config_logs:
         lines = []
@@ -62,7 +62,7 @@ def die(status, message=None, output=[]):
     elif status == Status.failure:
         exit(1)
     else:
-        raise RuntimeError("Bad call to die with '%s'" % str(status))
+        raise Runtimeshutil.Error("Bad call to die with '%s'" % str(status))
 
 
 def get_package_source_dir(args):
@@ -78,12 +78,12 @@ def get_package_source_dir(args):
     will have been copied to sources_directory, and the sources for that
     package will have been downloaded into it.
     """
-    if not isdir(args.abs_dir):
+    if not os.path.isdir(args.abs_dir):
         die(Status.failure,
             "Could not find abs directory for dir '%s'" % args.abs_dir)
-    copytree(args.abs_dir, args.permanent_source_dir)
+    shutil.copytree(args.abs_dir, args.permanent_source_dir)
     recursive_chown(args.permanent_source_dir)
-    chdir(args.permanent_source_dir)
+    os.chdir(args.permanent_source_dir)
 
     # The --nobuild flag to makepkg causes it to download sources, but
     # not build them.
@@ -92,13 +92,13 @@ def get_package_source_dir(args):
                "--noconfirm --nocolor --log --noprogressbar "
                "--nocheck --nodeps")
     time = timestamp()
-    cp = run(command.split(), stdout=PIPE, stderr=STDOUT,
-             universal_newlines=True)
+    cp = subprocess.run(command.split(), stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, universal_newlines=True)
     log("command", command, cp.stdout.splitlines(), time)
 
     success = False
     if cp.returncode:
-        rmtree(args.permanent_source_dir)
+        shutil.rmtree(args.permanent_source_dir)
     else:
         success = True
 
@@ -110,22 +110,22 @@ def log_sloc(sloc_output):
     locs = {}
     parsing_locs = False
     for line in sloc_output:
-        if match("Totals grouped by language", line):
+        if re.match("Totals grouped by language", line):
             parsing_locs = True
-        elif parsing_locs and match("^$", line):
+        elif parsing_locs and re.match("^$", line):
             parsing_locs = False
         elif parsing_locs:
-            m = match("(?P<lang>.+):\s+(?P<loc>\d+)", line)
+            m = re.match("(?P<lang>.+):\s+(?P<loc>\d+)", line)
             if m:
                 locs[m.group("lang")] = int(m.group("loc"))
             else:
                 log("die", "didn't match LOC line '%s'" % line)
-    log("sloc_info", "sloc_info", dumps(locs))
+    log("sloc_info", "sloc_info", json.dumps(locs))
 
 
 def copy_and_build(args):
     try:
-        copytree(args.permanent_source_dir, args.build_dir)
+        shutil.copytree(args.permanent_source_dir, args.build_dir)
     except Error as e:
         # e.args will be a list, containing a single list of 3-tuples.
         # We are interested in the third item of each tuple.
@@ -133,10 +133,11 @@ def copy_and_build(args):
         die(Status.failure, "No source directory in source volume: %s" %
                 args.permanent_source_dir, output=errors)
     recursive_chown(args.build_dir)
-    chdir(args.build_dir)
+    os.chdir(args.build_dir)
 
-    cp = run(["/usr/bin/sloccount", "src"], stdout=PIPE, stderr=STDOUT,
-             universal_newlines=True)
+    cp = subprocess.run(["/usr/bin/sloccount", "src"],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            universal_newlines=True)
     if cp.returncode:
         log("die", "SLOCCount failed", cp.stdout.splitlines())
     else:
@@ -146,7 +147,7 @@ def copy_and_build(args):
     with open("PKGBUILD", encoding="utf-8") as f:
         pkgbuild = f.read().splitlines()
 
-    pkgbuild = [sub(r"configure\s",
+    pkgbuild = [re.sub(r"configure\s",
                     "configure --host x86_64-unknown-linux ",
                     line) for line in pkgbuild]
 
@@ -165,7 +166,7 @@ def copy_and_build(args):
     if args.env_vars == None:
         args.env_vars = []
 
-    command_env = environ.copy()
+    command_env = os.environ.copy()
     for pair in args.env_vars:
         var, val = pair.split("=")
         command_env[var] = val
@@ -180,30 +181,31 @@ def copy_and_build(args):
     )
     time = timestamp()
 
-    proc = Popen(command.split(), stdout=PIPE, stderr=STDOUT,
-                 universal_newlines=True, env=command_env)
+    proc = subprocess.Popen(command.split(), stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, universal_newlines=True,
+            env=command_env)
 
     stdout_data, _ = proc.communicate()
 
     log("command", command, stdout_data.splitlines(), time)
 
     # Pick up output left by bear
-    if exists("compile_commands.json"):
+    if os.path.exists("compile_commands.json"):
         with open("compile_commands.json") as f:
-            bear_output = load(f)
+            bear_output = json.load(f)
         log("bear", "bear", output=bear_output)
     else:
-        log("die", "No bear output found in dir '%s'" % getcwd())
+        log("die", "No bear output found in dir '%s'" % os.getcwd())
 
     return proc.returncode
 
 
 def sanity_checks(args):
-    if not isdir(args.sources_directory):
+    if not os.path.isdir(args.sources_directory):
         die(Status.failure, "Could not find source directory '%s'" %
                             args.sources_directory)
 
-    if not isdir(args.permanent_source_dir):
+    if not os.path.isdir(args.permanent_source_dir):
         if not(get_package_source_dir(args)):
             die(Status.failure, "Unable to get sources for dir '%s'" %
                                 args.abs_dir)
@@ -231,7 +233,7 @@ def initialize_repositories(args):
     with open("/etc/pacman.conf") as f:
         appending = True
         for line in f:
-            if search("# REPOSITORIES", line):
+            if re.search("# REPOSITORIES", line):
                 appending = False
             if appending:
                 lines.append(line.strip())
@@ -249,8 +251,9 @@ def initialize_repositories(args):
 
     command = "pacman -Syy --noconfirm"
     time = timestamp()
-    cp = run(command.split(),
-             stdout=PIPE, stderr=STDOUT, universal_newlines=True)
+    cp = subprocess.run(command.split(),
+             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+             universal_newlines=True)
     log("command", command, cp.stdout.splitlines(), time)
     if cp.returncode:
         die(Status.failure)
@@ -264,17 +267,18 @@ def path_to_vanilla_pkg(pkg_name, args):
     the stage if such a package isn't found.
     """
     log("info", "Trying to find vanilla package '%s'..." % pkg_name)
-    for root, dirs, files in walk(args.mirror_directory):
+    for root, dirs, files in os.walk(args.mirror_directory):
         for f in files:
 
-            if search("i686", f): continue
-            if not search(".pkg.tar.xz$", f): continue
+            if re.search("i686", f): continue
+            if not re.search(".pkg.tar.xz$", f): continue
 
-            if search(escape(pkg_name), f):
-                path = join(root, f)
+            if re.search(re.escape(pkg_name), f):
+                path = os.path.join(root, f)
                 cmd = "pacman --query --file " + path
-                cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-                         universal_newlines=True)
+                cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        universal_newlines=True)
                 log("command", cmd, cp.stdout.splitlines())
                 if cp.returncode:
                     exit(1)
@@ -285,7 +289,7 @@ def path_to_vanilla_pkg(pkg_name, args):
 
 
 def create_hybrid_packages(args):
-    chdir(args.build_dir)
+    os.chdir(args.build_dir)
 
     toolchain_packages = glob("*.pkg.tar.xz")
     if not toolchain_packages:
@@ -301,12 +305,12 @@ def create_hybrid_packages(args):
 
     for pkg in toolchain_packages:
         for d in [dir_toolchain, dir_vanilla, dir_hybrid]:
-            rmtree(d, ignore_errors=True)
-            makedirs(d)
+            shutil.rmtree(d, ignore_errors=True)
+            os.makedirs(d)
 
         cmd = "pacman --query --file " + pkg
-        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-                 universal_newlines=True)
+        cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, universal_newlines=True)
         log("command", cmd, cp.stdout.splitlines())
         if cp.returncode:
             exit(1)
@@ -315,9 +319,9 @@ def create_hybrid_packages(args):
 
         vanilla_pkg = path_to_vanilla_pkg(pkg_name, args)
 
-        with tar_open(pkg) as t:
+        with tarfile.open(pkg) as t:
             t.extractall(dir_toolchain)
-        with tar_open(vanilla_pkg) as t:
+        with tarfile.open(vanilla_pkg) as t:
             t.extractall(dir_vanilla)
 
         # Copy various directories from dir_toolchain and dir_vanilla
@@ -350,28 +354,28 @@ def create_hybrid_packages(args):
         #           create_package method in utilities.
 
 
-        for d in listdir(dir_vanilla):
-            src = join(dir_vanilla, d)
-            dst = join(dir_hybrid, d)
+        for d in os.listdir(dir_vanilla):
+            src = os.path.join(dir_vanilla, d)
+            dst = os.path.join(dir_hybrid, d)
             try:
-                copytree(src, dst, symlinks=True)
+                shutil.copytree(src, dst, symlinks=True)
             except NotADirectoryError:
                 # This will be .INSTALL, .MTREE or .PKGINFO, noted above
-                copyfile(src, dst)
+                shutil.copyfile(src, dst)
 
         for d in ["usr/lib", "usr/include"]:
-            src = join(dir_toolchain, d)
-            dst = join(dir_hybrid, "toolchain_root", d)
+            src = os.path.join(dir_toolchain, d)
+            dst = os.path.join(dir_hybrid, "toolchain_root", d)
             try:
-                copytree(src, dst, symlinks=True)
+                shutil.copytree(src, dst, symlinks=True)
             except FileNotFoundError:
                 pass
 
 
         structure = []
-        for root, dirs, files in walk(dir_hybrid):
+        for root, dirs, files in os.walk(dir_hybrid):
             for f in files:
-                path = sub(dir_hybrid, "", join(root, f))
+                path = re.sub(dir_hybrid, "", os.path.join(root, f))
                 structure.append(path)
         log("info", "Package file has the following structure:",
             structure)
@@ -395,7 +399,7 @@ def dump_build_information(args):
 
     This function also logs what packages are depended on by this build.
     """
-    pkgbuild = join(args.abs_dir, "PKGBUILD")
+    pkgbuild = os.path.join(args.abs_dir, "PKGBUILD")
     provides = []
     provides += [strip_version_info(name)
         for name in interpret_bash_array(pkgbuild, "pkgname")]
@@ -414,7 +418,6 @@ def dump_build_information(args):
             output=depends)
 
 
-
 def main():
     parser = get_argparser()
     parser.add_argument("--abs-dir", dest="abs_dir", required=True)
@@ -423,10 +426,10 @@ def main():
 
     dump_build_information(args)
 
-    pkg_dir = basename(args.abs_dir)
+    pkg_dir = os.path.basename(args.abs_dir)
 
-    args.permanent_source_dir = join(args.sources_directory, pkg_dir)
-    args.build_dir = join("/tmp", pkg_dir)
+    args.permanent_source_dir = os.path.join(args.sources_directory, pkg_dir)
+    args.build_dir = os.path.join("/tmp", pkg_dir)
 
     sanity_checks(args)
 

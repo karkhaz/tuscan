@@ -20,20 +20,20 @@
 
 from tuscan.schemata import post_processed_schema
 
-from functools import partial
-from jinja2 import Environment, FileSystemLoader
-from json import load, dumps
-from multiprocessing import Pool, Process, TimeoutError, Manager
-from voluptuous import MultipleInvalid
-from os import listdir, makedirs, symlink, unlink
-from os.path import basename, isdir, join
-from re import sub
-from shutil import copyfile, rmtree
-from signal import signal, SIGINT, SIG_IGN
-from sys import stderr
-from traceback import print_exc
-from Queue import Empty
-from yaml import load as load_yaml
+
+import functools
+import jinja2
+import json
+import multiprocessing
+import os
+import os.path
+import re
+import shutil
+import signal
+import sys
+import traceback
+import voluptuous
+import yaml
 
 
 def summary_structure(toolchains):
@@ -48,7 +48,7 @@ def summary_structure(toolchains):
     """
 
     with open("tuscan/classification_patterns.yaml") as f:
-        _patterns = load_yaml(f)
+        _patterns = yaml.load(f)
     categories = set([p["category"] for p in _patterns])
 
     def error_trees(toolchain):
@@ -183,7 +183,7 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
     if "name" in summary:
         name = "%s-%s" % (parent_name, summary["name"])
     elif "title" in summary:
-        name = "%s-%s" % (parent_name, sub("\s", "-",
+        name = "%s-%s" % (parent_name, re.sub("\s", "-",
             summary["title"]).lower())
 
     if "children" in summary:
@@ -203,7 +203,7 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
             _order = sorted(new_builds, key=summary["sort_fun"])
         else:
             _order = sorted(new_builds, key=(lambda b: b["build_name"]))
-        _order = [basename(build["build_name"]) for build in _order]
+        _order = [os.path.basename(build["build_name"]) for build in _order]
         order = []
         for e in _order:
             if e not in order:
@@ -255,11 +255,11 @@ def write_summary_pages(dst_dir, toolchains, builds, jinja):
                 description=s["description"], build_list=s["html"],
                 length=s["length"], sidebar=summaries["sidebar"])
 
-        with open(join(dst_dir, "%s.html" % s["name"]), "w") as f:
+        with open(os.path.join(dst_dir, "%s.html" % s["name"]), "w") as f:
             f.write(html)
 
-    copyfile(join(dst_dir, "tuscan-all-builds-all.html"),
-             join(dst_dir, "index.html"))
+    shutil.copyfile(os.path.join(dst_dir, "tuscan-all-builds-all.html"),
+             os.path.join(dst_dir, "index.html"))
 
 
 def get_errors(log):
@@ -289,19 +289,19 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         results_list):
     try:
         with open(json_path) as f:
-            data = load(f)
+            data = json.load(f)
         post_processed_schema(data)
 
         template = jinja.get_template("build.jinja.html")
         data["toolchain"] = toolchain
-        data["name"] = basename(data["build_name"])
+        data["name"] = os.path.basename(data["build_name"])
         data["time"] = s_to_hhmmss(data["time"])
         data["errors"] = get_errors(data["log"])
-        data["blocks"] = [basename(b) for b in data["blocks"]]
-        data["blocked_by"] = [basename(b) for b in data["blocked_by"]]
+        data["blocks"] = [os.path.basename(b) for b in data["blocks"]]
+        data["blocked_by"] = [os.path.basename(b) for b in data["blocked_by"]]
         html = template.render(data=data)
 
-        out_path = join(out_dir, "%s.html" % basename(data["build_name"]))
+        out_path = os.path.join(out_dir, "%s.html" % os.path.basename(data["build_name"]))
         with open(out_path, "w") as f:
             f.write(html.encode("utf-8"))
 
@@ -314,13 +314,13 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         results_list.append(data)
 
     except MultipleInvalid as e:
-        stderr.write("%s: Post-processed data is malformed: %s\n" %
+        sys.stderr.write("%s: Post-processed data is malformed: %s\n" %
                      (json_path, str(e)))
         exit(1)
     except Exception as e:
         # Running in a separate process suppresses stack trace dump by
         # default, so do it manually
-        print_exc(file=stderr)
+        traceback.print_exc(file=stderr)
         raise e
 
 
@@ -337,7 +337,7 @@ def organise_builds(build_list, toolchains):
         if d["toolchain"] not in toolchains:
             continue
         build_name = d["build_name"]
-        build_name = basename(build_name)
+        build_name = os.path.basename(build_name)
         d.pop("build_name", None)
         if not build_name in ret:
             ret[build_name] = {}
@@ -365,72 +365,72 @@ def do_html(args):
     src_dir = "output/post"
     dst_dir = "output/html"
 
-    if not isdir(src_dir):
-        stderr.write("directory 'post' does not exist; run './tuscan.py"
+    if not os.path.isdir(src_dir):
+        sys.stderr.write("directory 'post' does not exist; run './tuscan.py"
                      " post' before './tuscan.py html'\n")
         exit(1)
 
-    jinja = Environment(loader=FileSystemLoader(["tuscan"]))
+    jinja = jinja2.Environment(loader=jinja2.FileSystemLoader(["tuscan"]))
 
-    if not isdir(dst_dir):
-        makedirs(dst_dir)
-    for f in listdir(dst_dir):
-        if isdir(join(dst_dir, f)):
-            rmtree(join(dst_dir, f))
+    if not os.path.isdir(dst_dir):
+        os.makedirs(dst_dir)
+    for f in os.listdir(dst_dir):
+        if os.path.isdir(os.path.join(dst_dir, f)):
+            shutil.rmtree(os.path.join(dst_dir, f))
         else:
-            unlink(join(dst_dir, f))
-    copyfile("tuscan/style.css", join(dst_dir, "style.css"))
-    copyfile("tuscan/summary.css", join(dst_dir, "summary.css"))
+            os.unlink(os.path.join(dst_dir, f))
+    shutil.copyfile("tuscan/style.css", os.path.join(dst_dir, "style.css"))
+    shutil.copyfile("tuscan/summary.css", os.path.join(dst_dir, "summary.css"))
 
-    man = Manager()
+    man = multiprocessing.Manager()
     results_list = man.list()
 
-    pool = Pool(args.pool_size)
-    toolchain_total = len(listdir(src_dir))
+    pool = multiprocessing.Pool(args.pool_size)
+    toolchain_total = len(os.listdir(src_dir))
     toolchain_counter = 0
     toolchains = []
-    for toolchain in listdir(src_dir):
+    for toolchain in os.listdir(src_dir):
         toolchains.append(toolchain)
         toolchain_counter += 1
-        stderr.write("Generating individual build reports for "
+        sys.stderr.write("Generating individual build reports for "
                      "toolchain %d of %d [%s]\n" %
                      (toolchain_counter, toolchain_total, toolchain))
 
-        toolchain_src = join(src_dir, toolchain)
-        toolchain_dst = join(dst_dir, toolchain)
+        toolchain_src = os.path.join(src_dir, toolchain)
+        toolchain_dst = os.path.join(dst_dir, toolchain)
 
-        if not isdir(toolchain_dst):
-            makedirs(toolchain_dst)
+        if not os.path.isdir(toolchain_dst):
+            os.makedirs(toolchain_dst)
 
-        for f in listdir(toolchain_dst):
-            unlink(join(toolchain_dst, f))
+        for f in os.listdir(toolchain_dst):
+            os.unlink(os.path.join(toolchain_dst, f))
 
-        jsons = [join(toolchain_src, f) for f in listdir(toolchain_src)]
+        jsons = [os.path.join(toolchain_src, f) for f in os.listdir(toolchain_src)]
 
-        curry = partial(dump_build_page, out_dir=toolchain_dst,
+        curry = functools.partial(dump_build_page, out_dir=toolchain_dst,
                         toolchain=toolchain, args=args, jinja=jinja,
                         results_list=results_list)
 
         try:
-            original = signal(SIGINT, SIG_IGN)
+            original = signal.signal(SIGINT, SIG_IGN)
             # Child processes inherit the 'ignore' signal handler
             res = pool.map_async(curry, jsons)
-            # Parent process listens to SIGINT.
-            signal(SIGINT, original)
+            # Parent process listens to signal.SIGINT.
+            signal.signal(SIGINT, original)
             res.get(args.timeout)
         except KeyboardInterrupt:
             pool.terminate()
-            pool.join()
+            pool.os.path.join()
             exit(0)
         except TimeoutError:
-            stderr.write("Timed out (over %d seconds)\n" % args.timeout)
+            sys.stderr.write("Timed out (over %d seconds)\n" % args.timeout)
             pool.terminate()
-            pool.join()
+            pool.os.path.join()
             exit(1)
     pool.close()
-    pool.join()
+    pool.os.path.join()
 
-    stderr.write("Generating summary pages\n")
+    sys.stderr.write("Generating summary pages\n")
 
     # We need to add an extra key to each build, indicating if the build
     # was successful on vanilla.
