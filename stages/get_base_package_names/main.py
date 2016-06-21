@@ -15,11 +15,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from utilities import OutputDirectory, get_argparser
 
-from subprocess import run, PIPE
-from sys import stderr, stdout
-from json import dump
+import json
+import subprocess
+import sys
 
 
 def tools():
@@ -36,10 +37,10 @@ def tools():
 
 def package_list(group):
     """Get the packages in group 'group'."""
-    ret = run(["pacman", "--query", "--groups", group],
-              stdout=PIPE, universal_newlines=True)
+    ret = subprocess.run(["pacman", "--query", "--groups", group],
+              stdout=subprocess.PIPE, universal_newlines=True)
     if ret.returncode:
-        print("Pacman failed to query group %s" % group, file=stderr)
+        print("Pacman failed to query group %s" % group, file=sys.stderr)
         exit(1)
 
     lst = []
@@ -47,7 +48,7 @@ def package_list(group):
     for line in ret.stdout.splitlines():
         pair = line.split(" ")
         if not len(pair) == 2:
-            print("Bad output from pacman: %s" % line, file=stderr)
+            print("Bad output from pacman: %s" % line, file=sys.stderr)
             exit(1)
         lst.append(pair[1])
 
@@ -73,7 +74,7 @@ def main():
 
     with OutputDirectory(args) as out_dir:
         with open(out_dir + "/names.json", "w") as names:
-            dump(name_data, names)
+            json.dump(name_data, names)
 
 
     # Touch-files need to be created for each of these packages, outside

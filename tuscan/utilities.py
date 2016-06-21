@@ -24,34 +24,33 @@ of their main() method, since the command-line switches defined in that
 function might be passed by the build environment.
 """
 
-from argparse import ArgumentParser
-from os.path import basename, dirname, isdir, join, lexists
-from os import chdir, makedirs, remove, symlink, getcwd, listdir, unlink
-from os import walk
-from datetime import datetime
-from json import dumps
-from random import random, seed
-from re import search
-from shutil import chown, move
-from subprocess import run, PIPE, Popen, STDOUT, TimeoutExpired, DEVNULL
-from sys import stderr
-from tempfile import NamedTemporaryFile as tempfile
-from textwrap import dedent
-from time import sleep
+import argparse
+import datetime
+import json
+import os
+import os.path
+import random
+import re
+import shutil
+import subprocess
+import sys
+import textwrap
+import tempfile
+import time
 
 
 def run_cmd(cmd, as_root=False, output=True):
     time = timestamp()
 
     if output:
-        cmd_out=PIPE
+        cmd_out=subprocess.PIPE
     else:
-        cmd_out=DEVNULL
+        cmd_out=subprocess.DEVNULL
 
     if not as_root:
         cmd = "sudo -u tuscan " + cmd
 
-    cp = run(cmd.split(), stdout=cmd_out, stderr=STDOUT,
+    cp = subprocess.run(cmd.split(), stdout=cmd_out, stderr=subprocess.STDOUT,
              universal_newlines=True)
 
     if output:
@@ -74,22 +73,22 @@ def interpret_bash_array(pkgbuild, array_name):
         defined in the PKGBUILD, or None if there was a problem
         interpreting the PKGBUILD.
     """
-    cmd = dedent("""\
+    cmd = textwrap.dedent("""\
                  #!/bin/bash
                  . %s
                  for foo in ${%s[@]}; do
                     echo ${foo};
                  done;
                  """ % (pkgbuild, array_name))
-    with tempfile(mode="w") as temp:
+    with tempfile.NamedTemporaryFile(mode="w") as temp:
         temp.write(cmd)
         temp.flush()
         try:
-            cp = run(["/bin/bash", temp.name], stdout=PIPE,
+            cp = subprocess.run(["/bin/bash", temp.name], stdout=subprocess.PIPE,
                      universal_newlines=True, timeout=20)
-        except TimeoutExpired:
+        except subprocess.TimeoutExpired:
             print("Unable to interpret array %s in file %s" %
-                  (array_name, pkgbuild), file=stderr)
+                  (array_name, pkgbuild), file=sys.stderr)
             exit(1)
 
     if not cp.stdout:
@@ -106,14 +105,14 @@ def strip_version_info(package_name):
     up-to-date mirror before building packages, so strip this info.
     """
     for pat in [r">=", r"<=", r"=", r"<", r">"]:
-        depth = search(pat, package_name)
+        depth = re.search(pat, package_name)
         if depth:
             package_name = package_name[:depth.start()]
     return package_name
 
 
 def timestamp():
-    return datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+    return datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 
 def log(kind, string, output=[], start_time=None):
@@ -129,7 +128,7 @@ def log(kind, string, output=[], start_time=None):
          "head" : string,
          "body" : output
     }
-    print(dumps(obj), file=stderr)
+    print(json.dumps(obj), file=sys.stderr)
 
 
 class OutputDirectory():
@@ -154,20 +153,20 @@ class OutputDirectory():
                   called 'shared_directory'.
         """
         top_level = args.stage_name
-        self.top_level = join(args.shared_directory,  top_level)
+        self.top_level = os.path.join(args.shared_directory,  top_level)
 
-        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        self.path = join(self.top_level, timestamp)
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        self.path = os.path.join(self.top_level, timestamp)
 
     def __enter__(self):
-        makedirs(self.path, exist_ok=True)
+        os.makedirs(self.path, exist_ok=True)
         return self.path
 
     def __exit__(self, type, value, traceback):
-        latest = join(self.top_level, "latest")
-        if lexists(latest):
-            remove(latest)
-        symlink(self.path, latest)
+        latest = os.path.join(self.top_level, "latest")
+        if os.path.lexists(latest):
+            shutil.remove(latest)
+        os.symlink(self.path, latest)
 
 
 def get_argparser():
@@ -177,7 +176,7 @@ def get_argparser():
         an ArgumentParser, to which arguments can be appended before
         calling parse_args() to process them.
     """
-    parser = ArgumentParser()
+    parser = argparse.ArgumentParser()
     parser.add_argument("--verbose",
                         dest="verbose", action="store_true")
     parser.add_argument("--output-directory",
@@ -229,21 +228,21 @@ def create_package(path, pkg_name, args):
         the path to the new package, which will have extension
         .pkg.tar.xz.
     """
-    if not lexists(join(path, ".PKGINFO")):
+    if not os.path.lexists(os.path.join(path, ".PKGINFO")):
         raise RuntimeError("No .PKGINFO at " + path)
 
-    owd = getcwd()
-    chdir(path)
+    owd = os.getcwd()
+    os.chdir(path)
 
     log("info", "Generating .MTREE")
-    try: unlink(".MTREE")
+    try: os.unlink(".MTREE")
     except FileNotFoundError: pass
-    files = " ".join(listdir("."))
+    files = " ".join(os.listdir("."))
     cmd = ("bsdtar -czf .MTREE --format=mtree"
            " --options=!all,use-set,type,uid,mode"
            ",time,size,md5,sha256,link " + files)
     time = timestamp()
-    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+    cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
              universal_newlines=True)
     log("command", cmd, cp.stdout.splitlines(), time)
     if cp.returncode:
@@ -251,11 +250,11 @@ def create_package(path, pkg_name, args):
 
     log("info", "Tar-ing up files")
     pkg_name = pkg_name + ".pkg.tar.xz"
-    files = " ".join(listdir("."))
+    files = " ".join(os.listdir("."))
 
     tar_cmd = "bsdtar -cf - " + files
     time = timestamp()
-    tar_proc = Popen(tar_cmd.split(), stdout=PIPE, stderr=PIPE,
+    tar_proc = subprocess.Popen(tar_cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                      universal_newlines=False)
 
     tar_data, tar_error = tar_proc.communicate()
@@ -268,8 +267,8 @@ def create_package(path, pkg_name, args):
 
     xz_cmd = "xz -c -z"
     time = timestamp()
-    xz_proc = Popen(xz_cmd.split(), stdin=PIPE, stdout=PIPE,
-                    stderr=PIPE, universal_newlines=False)
+    xz_proc = subprocess.Popen(xz_cmd.split(), stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE, universal_newlines=False)
 
     xz_data, xz_error = xz_proc.communicate(input=tar_data)
 
@@ -285,20 +284,20 @@ def create_package(path, pkg_name, args):
 
     cmd = "bsdtar -tqf " + pkg_name + " .PKGINFO"
     time = timestamp()
-    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
+    cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
              universal_newlines=True)
     log("command", cmd, cp.stdout.splitlines(), time)
     if cp.returncode:
         exit(1)
 
-    pkg_path = join(args.toolchain_directory, pkg_name)
-    try: remove(pkg_path)
+    pkg_path = os.path.join(args.toolchain_directory, pkg_name)
+    try: shutil.remove(pkg_path)
     except: pass
-    move(pkg_name, args.toolchain_directory)
+    shutil.move(pkg_name, args.toolchain_directory)
 
     log("info", "Created package at path %s" % pkg_path)
 
-    chdir(owd)
+    os.chdir(owd)
     return pkg_path
 
 
@@ -311,10 +310,10 @@ def recursive_chown(directory):
     This function changes the owner and group owner of a directory tree
     rooted at directory to "tuscan".
     """
-    chown(directory, "tuscan", "tuscan")
-    for path, subdirs, files in walk(directory):
+    shutil.chown(directory, "tuscan", "tuscan")
+    for path, subdirs, files in os.walk(directory):
         for f in subdirs + files:
-            chown(join(path, f), "tuscan", "tuscan")
+            shutil.chown(os.path.join(path, f), "tuscan", "tuscan")
 
 
 def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,
@@ -340,21 +339,21 @@ def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,
                      empty repository, by adding a 'fake' package and
                      then immediately removing it again.
     """
-    if not isdir(toolchain_repo_dir):
+    if not os.path.isdir(toolchain_repo_dir):
         log("die", "Toolchain directory '%s' doesn't exist. "
                    "Check that the --tolchain-directory "
                    "argument was passed and the data-only "
                    "container was successfully created." %
                    (toolchain_repo_dir))
 
-    repo = join(toolchain_repo_dir, toolchain_repo_name() + ".db.tar")
+    repo = os.path.join(toolchain_repo_dir, toolchain_repo_name() + ".db.tar")
 
     # repo-add and -remove fail if they can't acquire a lock on the
     # database. This will happen quite often, as we're going to be
     # building many packages at once and adding them to the database.
     # So, keep trying to add until it works.
 
-    seed()
+    random.seed()
 
     max_tries = 80
     attempt = 1
@@ -364,7 +363,7 @@ def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,
                 attempt)
 
         attempt = attempt + 1
-        sleep(random() * 3)
+        time.sleep(random.random() * 16)
 
         if attempt == max_tries:
             log("info", "Couldn't add %s to %s after %d tries, dying."
@@ -374,12 +373,12 @@ def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,
         lock_fail = False
 
         cmd = "repo-add %s %s" % (repo, pkg)
-        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-                 universal_newlines=True)
+        cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, universal_newlines=True)
         log("command", cmd, cp.stdout.splitlines())
 
         for line in cp.stdout.splitlines():
-            if search("ERROR: Failed to acquire lockfile", line):
+            if re.search("ERROR: Failed to acquire lockfile", line):
                 lock_fail = True
         if lock_fail:
             continue
@@ -389,12 +388,12 @@ def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,
         if not remove_name: return
 
         cmd = "repo-remove %s %s" % (repo, remove_name)
-        cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-                 universal_newlines=True)
+        cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, universal_newlines=True)
         log("command", cmd, cp.stdout.splitlines())
 
         for line in cp.stdout.splitlines():
-            if search("ERROR: Failed to acquire lockfile", line):
+            if re.search("ERROR: Failed to acquire lockfile", line):
                 lock_fail = True
         if lock_fail:
             continue

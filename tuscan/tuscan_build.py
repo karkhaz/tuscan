@@ -15,19 +15,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from tuscan.schemata import data_containers_schema, stage_deps_schema
 
-from datetime import datetime
+import datetime
 from glob import glob
-from ninja_syntax import Writer
-from os import getcwd, listdir
-from os.path import dirname, isfile, join
-from re import sub
-from string import Template
-from subprocess import call
-from sys import stdout, stderr
-from voluptuous import MultipleInvalid
-from yaml import load, dump
+import ninja_syntax
+import os
+import os.path
+import re
+import string
+import subprocess
+import sys
+import voluptuous
+import yaml
 
 
 def substitute_vars(data_structure, args):
@@ -40,14 +41,14 @@ def substitute_vars(data_structure, args):
     if isinstance(data_structure, bool):
         ret = data_structure
     elif isinstance(data_structure, basestring):
-        ret = Template(data_structure)
-        ret = Template(ret.safe_substitute(TOOLCHAIN=args.toolchain))
-        ret = Template(ret.safe_substitute(TOUCH_DIR=args.touch_dir))
+        ret = string.Template(data_structure)
+        ret = string.Template(ret.safe_substitute(TOOLCHAIN=args.toolchain))
+        ret = string.Template(ret.safe_substitute(TOUCH_DIR=args.touch_dir))
 
         if args.verbose:
-            ret = Template(ret.safe_substitute(VERBOSE="-v"))
+            ret = string.Template(ret.safe_substitute(VERBOSE="-v"))
         else:
-            ret = Template(ret.safe_substitute(VERBOSE=""))
+            ret = string.Template(ret.safe_substitute(VERBOSE=""))
 
         # Up to this point, ret is a Template. Turn it into a string
         # with no-op substitute
@@ -82,7 +83,7 @@ def run_ninja(args, ninja_file):
         cmd.append("-v")
     cmd.append("build")
 
-    rc = call(cmd)
+    rc = subprocess.call(cmd)
     exit(rc)
 
 
@@ -103,9 +104,9 @@ class DataContainers(object):
 
         try:
             with open("data_containers.yaml") as f:
-                containers = load(f)
+                containers = yaml.load(f)
         except:
-            stderr.write("ERROR: could not find data exp description"
+            sys.stderr.write("ERROR: could not find data exp description"
                          " 'data_containers.yaml'.\n")
             exit(1)
 
@@ -113,8 +114,8 @@ class DataContainers(object):
 
         try:
             data_containers_schema(self.containers)
-        except MultipleInvalid as e:
-            stderr.write("data_containers.yaml is malformatted: %s\n" %
+        except voluptuous.MultipleInvalid as e:
+            sys.stderr.write("data_containers.yaml is malformatted: %s\n" %
                          str(e))
             exit(1)
 
@@ -232,8 +233,8 @@ class Stage(object):
         d = substitute_vars(d, args)
         try:
             stage_deps_schema(d)
-        except MultipleInvalid as e:
-            stderr.write("Schema error for stage '%s': %s\n" %
+        except voluptuous.MultipleInvalid as e:
+            sys.stderr.write("Schema error for stage '%s': %s\n" %
                     (d["name"], str(e)))
             exit(1)
 
@@ -241,7 +242,7 @@ class Stage(object):
         self.run = Stage.Run.load(d["run"])
 
     def yaml(self):
-        return dump({"build": self.build, "run": self.run})
+        return yaml.dump({"build": self.build, "run": self.run})
 
 
 
@@ -266,14 +267,14 @@ class Stages(object):
         self.inputs = inputs
 
         stages = []
-        for stage in listdir("stages"):
+        for stage in os.listdir("stages"):
             try:
-                with open(join("stages", stage, "deps.yaml")) as f:
-                    data = load(f)
+                with open(os.path.join("stages", stage, "deps.yaml")) as f:
+                    data = yaml.load(f)
                     data["name"] = stage
                     stages.append(Stage(data, args))
             except OSError:
-                stderr.write("ERROR: could not find deps file in"
+                sys.stderr.write("ERROR: could not find deps file in"
                              " stages directory %s.\n"
                              "Each directory under stages/ should"
                              " contain a deps.yaml file.\n" % stage)
@@ -320,7 +321,7 @@ class Stages(object):
 
                 for mount in stage.run.local_mounts:
                     main_command += (" -v %s/%s:/%s:ro" %
-                                     (getcwd(), mount, mount))
+                                     (os.getcwd(), mount, mount))
 
                 main_command += (" --name %s %s --output-directory %s"
                                  " --toolchain %s --stage-name %s"
@@ -343,7 +344,11 @@ class Stages(object):
                     main_command += (" --%s-directory /%s" %
                                      (mount, mount))
 
-            if stage.run.stdout:
+            if not self.args.top_level and not (
+                    stage.run.stdout or stage.run.stderr):
+                main_command += " >%s.log 2>&1" % os.path.join(
+                        self.args.touch_dir, stage.name)
+            elif stage.run.stdout:
                 main_command += " >" + stage.run.stdout
             if stage.run.stderr:
                 main_command += " 2>" + stage.run.stderr
@@ -358,7 +363,7 @@ class Stages(object):
 
             if stage.run.post_exit:
                 cmd = stage.run.post_exit
-                cmd = sub("\$", "$$", cmd)
+                cmd = re.sub("\$", "$$", cmd)
                 commands.append(cmd.strip())
 
             commands.append("touch ${out}")
@@ -399,20 +404,20 @@ class Stages(object):
 
             # Builds always depend on the files in the stage
             # directory
-            for f in listdir(join("stages", stage.name)):
-                stage_inputs.append(join("stages", stage.name, f))
+            for f in os.listdir(os.path.join("stages", stage.name)):
+                stage_inputs.append(os.path.join("stages", stage.name, f))
 
             # Some builds depend on some other stages having run
             # directory
             for dep in stage.build.stages:
                 stage_inputs.append(touch("run", dep, self.args))
 
-            build_context = join("container_build_dir",  stage.name)
+            build_context = os.path.join("container_build_dir",  stage.name)
 
             commands = []
             commands.append("mkdir -p %s" % build_context)
             commands.append("cp %s/* %s" %
-                            (join("stages", stage.name), build_context))
+                            (os.path.join("stages", stage.name), build_context))
 
             copyfiles = stage.build.copy_files
             copyfiles = [("cp %s %s" % (c, build_context))
@@ -439,7 +444,7 @@ class Stages(object):
     def container_sanity_checks(self):
         for stage in self.stages:
             for cf in stage.build.copy_files:
-                if not isfile(cf):
+                if not os.path.isfile(cf):
                     raise RuntimeError(
                         "Stage %s needs to copy file %s into its"
                         " working directory in order to build, but"
@@ -473,7 +478,7 @@ def touch(kind, stage_name, args):
     consistent.
     """
     if not (kind == "build" or kind == "run" or kind == "prereq"): raise
-    return join(args.touch_dir, "container_markers",
+    return os.path.join(args.touch_dir, "container_markers",
                 "%s_%s" % (stage_name, kind))
 
 
@@ -496,10 +501,10 @@ def prerequisite_touch_files(ninja, args):
                " && cp package_build_wrapper.py container_build_dir"
                " && ln -fns {touch_dir} {latest_dir}").format(
                 devnull=devnull,
-                markers_dir=join(args.touch_dir, "container_markers"),
-                touch_dir=join(getcwd(), args.touch_dir),
-                latest_dir = join(getcwd(),
-                                  dirname(dirname(args.touch_dir)),
+                markers_dir=os.path.join(args.touch_dir, "container_markers"),
+                touch_dir=os.path.join(os.getcwd(), args.touch_dir),
+                latest_dir = os.path.join(os.getcwd(),
+                                  os.path.dirname(os.path.dirname(args.touch_dir)),
                                   "latest"))
 
     ninja.rule(rule_name, command, description=
@@ -514,12 +519,12 @@ def do_build(args):
     if args.run == None:
         args.run = True
 
-    timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-    args.touch_dir = join("output/results", args.toolchain, timestamp, "")
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+    args.touch_dir = os.path.join("output/results", args.toolchain, timestamp, "")
 
     ninja_file = "tuscan.ninja"
     with open(ninja_file, "w") as f:
-        ninja = Writer(f, 72)
+        ninja = ninja_syntax.Writer(f, 72)
         create_build_file(args, ninja)
 
     run_ninja(args, ninja_file)

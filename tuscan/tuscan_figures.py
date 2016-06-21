@@ -17,14 +17,15 @@
 
 """Generation of figures from post-processed data."""
 
-from functools import partial
-from logging import basicConfig, debug, info, error, warning, INFO
-from jinja2 import Environment, FileSystemLoader
-from json import load
-from os import listdir, makedirs
-from os.path import basename, join, isdir, splitext
-from subprocess import Popen, PIPE
-from sys import stderr
+
+import functools
+import jinja2
+import json
+import logging
+import os
+import os.path
+import subprocess
+import sys
 
 
 class Counter:
@@ -34,16 +35,16 @@ class Counter:
 
     def inc(self):
         self.count += 1
-        stderr.write("\r%5d/%5d" % (self.count, self.total))
+        sys.stderr.write("\r%5d/%5d" % (self.count, self.total))
 
     def finish(self):
-        stderr.write("\n")
+        sys.stderr.write("\n")
 
 
 def render_gnuplot(data, jinja, script_name, out_dir):
     template = jinja.get_template("%s.gnu" % script_name)
     script = template.render(data=data, name=script_name)
-    with open(join(out_dir, "%s.gnu" % script_name), "w") as f:
+    with open(os.path.join(out_dir, "%s.gnu" % script_name), "w") as f:
         f.write(script)
 
 
@@ -86,17 +87,17 @@ def sloc_distribution(results, jinja, out_dir):
 def load_results(post_dir):
     results = {}
 
-    info("Loading results...")
-    total = len(listdir(post_dir)) * len(listdir(join(post_dir,
-                                        listdir(post_dir)[0])))
+    logging.info("Loading results...")
+    total = len(os.listdir(post_dir)) * len(os.listdir(os.path.join(post_dir,
+                                        os.listdir(post_dir)[0])))
     counter = Counter(total)
-    for tc in listdir(post_dir):
-        tc_dir = join(post_dir, tc)
-        for result_file in listdir(tc_dir):
+    for tc in os.listdir(post_dir):
+        tc_dir = os.path.join(post_dir, tc)
+        for result_file in os.listdir(tc_dir):
             counter.inc()
-            with open(join(tc_dir, result_file)) as f:
-                result = load(f)
-                build_name = basename(result["build_name"])
+            with open(os.path.join(tc_dir, result_file)) as f:
+                result = json.load(f)
+                build_name = os.path.basename(result["build_name"])
                 if build_name not in results:
                     results[build_name] = {}
                 results[build_name][tc] = result
@@ -105,21 +106,21 @@ def load_results(post_dir):
 
 
 def do_figures(args):
-    basicConfig(format="%(asctime)s %(message)s", level=INFO)
+    logging.basicConfig(format="%(asctime)s %(message)s", level=logging.INFO)
 
     src_dir = "output/post"
     dst_dir = "output/figures"
 
-    if not isdir(src_dir):
-        stderr.write("directory 'post' does not exist; run './tuscan.py"
+    if not os.path.isdir(src_dir):
+        sys.stderr.write("directory 'post' does not exist; run './tuscan.py"
                      " post' before './tuscan.py figures'\n")
         exit(1)
 
-    if not isdir(dst_dir):
-        makedirs(dst_dir)
+    if not os.path.isdir(dst_dir):
+        os.makedirs(dst_dir)
 
     results = load_results(src_dir)
 
-    jinja = Environment(loader=FileSystemLoader(["tuscan/plots"]))
+    jinja = jinja2.Environment(loader=jinja2.FileSystemLoader(["tuscan/plots"]))
 
     sloc_distribution(results, jinja, dst_dir)
