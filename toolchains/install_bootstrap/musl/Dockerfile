@@ -19,7 +19,7 @@
 # USAGE:
 #   docker run container_name
 
-FROM karkhaz/arch-tuscan:latest
+FROM tuscan_base_image:latest
 MAINTAINER Kareem Khazem <khazem@google.com>
 
 COPY main.py /build/main.py

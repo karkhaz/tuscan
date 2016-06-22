@@ -1,0 +1,16 @@
+---
+build:
+  copy_files:
+    - stages/create_base_image/main.sh
+    - stages/create_base_image/getpkgs.py
+    - tuscan/utilities.py
+
+run:
+  dependencies:
+    data_containers:
+      - tuscan_data
+    local_mounts:
+      - mirror
+      - sources
+  rm_container: false
+  post_exit: docker commit create_base_image tuscan_base_image

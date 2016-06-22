@@ -33,9 +33,6 @@ def get_parser():
     parser.add_argument("--shared-directory", required=True)
     parser.add_argument("--shared-volume", required=True)
 
-    parser.add_argument("--sources-directory", required=True)
-    parser.add_argument("--sources-volume", required=True)
-
     parser.add_argument("--toolchain-directory", required=True)
     parser.add_argument("--toolchain-volume", required=True)
 
@@ -57,15 +54,14 @@ def run_container(args):
                " --rm"
                " -v {shared_directory}"
                " --volumes-from {shared_volume}"
-               " -v {sources_directory}"
-               " --volumes-from {sources_volume}"
                " -v {toolchain_directory}"
                " --volumes-from {toolchain_volume}"
                " -v {cwd}/mirror:/mirror:ro"
+               " -v {cwd}/sources:/sources:ro"
                " make_package"
 
                # Arguments to the make_package stage inside container:
-               " --sources-directory {sources_directory}"
+               " --sources-directory /sources"
                " --shared-directory {shared_directory}"
                " --toolchain-directory {toolchain_directory}"
                " --abs-dir {abs_dir}"
@@ -73,8 +69,6 @@ def run_container(args):
 
                ).format(shared_directory=args.shared_directory,
                         shared_volume=args.shared_volume,
-                        sources_directory=args.sources_directory,
-                        sources_volume=args.sources_volume,
                         toolchain_directory=args.toolchain_directory,
                         toolchain_volume=args.toolchain_volume,
                         abs_dir=args.abs_dir,
@@ -169,9 +163,6 @@ def main():
 
     parser.add_argument("--shared-directory", required=True)
     parser.add_argument("--shared-volume", required=True)
-
-    parser.add_argument("--sources-directory", required=True)
-    parser.add_argument("--sources-volume", required=True)
 
     parser.add_argument("--toolchain-directory", required=True)
     parser.add_argument("--toolchain-volume", required=True)

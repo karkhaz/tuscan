@@ -24,6 +24,40 @@ of their main() method, since the command-line switches defined in that
 function might be passed by the build environment.
 """
 
+import enum
+
+class Status(enum.Enum):
+    success = 1
+    failure = 2
+
+
+def die(status, message=None, output=[]):
+    if message:
+        log("die", message, output)
+
+    log("info", "Printing config.logs")
+    config_logs = []
+    for root, dirs, files in os.walk("/tmp"):
+        for f in files:
+            if f == "config.log" or f == "configure.log":
+                config_logs.append(os.path.join(root, f))
+
+    for l in config_logs:
+        lines = []
+        with open(l, encoding="utf-8") as f:
+            for line in f:
+                lines.append(line.strip())
+            log("command", "Config logfile '%s'" % l, lines)
+
+    if status == Status.success:
+        exit(0)
+    elif status == Status.failure:
+        exit(1)
+    else:
+        raise RuntimeError("Bad call to die with '%s'" % str(status))
+
+
+
 import argparse
 import datetime
 import json
@@ -172,7 +206,7 @@ class OutputDirectory():
     def __exit__(self, type, value, traceback):
         latest = os.path.join(self.top_level, "latest")
         if os.path.lexists(latest):
-            shutil.remove(latest)
+            os.remove(latest)
         os.symlink(self.path, latest)
 
 
@@ -298,7 +332,7 @@ def create_package(path, pkg_name, args):
         exit(1)
 
     pkg_path = os.path.join(args.toolchain_directory, pkg_name)
-    try: shutil.remove(pkg_path)
+    try: os.remove(pkg_path)
     except: pass
     shutil.move(pkg_name, args.toolchain_directory)
 
@@ -321,6 +355,61 @@ def recursive_chown(directory):
     for path, subdirs, files in os.walk(directory):
         for f in subdirs + files:
             shutil.chown(os.path.join(path, f), "tuscan", "tuscan")
+
+
+def set_local_repository_location(path, repo_name):
+    """Point pacman to a local repository.
+
+    This function rewrites pacman.conf so that no remote mirrors are
+    used to install packages; instead, the local repository specified
+    will be used.
+
+    Arguments:
+
+        path: the absolute path to the directory where the repository
+              database (and packages themselves) are located.
+
+        repo_name: the name of the repository database file, without
+                   extensions.
+
+    This function will remove all repositories from pacman.conf and add
+    the following directive:
+    [repo_name]
+    Server = file://path
+    """
+
+    # Point pacman to our toolchain repository. This means commenting
+    # out the official repositories in pacman.conf, and creating a new
+    # entry for the local toolchain repository.
+
+    lines = []
+    with open("/etc/pacman.conf") as f:
+        appending = True
+        for line in f:
+            if re.search("# REPOSITORIES", line):
+                lines.append(line.strip())
+                appending = False
+            if appending:
+                lines.append(line.strip())
+
+    lines.append("[%s]" % repo_name)
+    lines.append("Server = file://%s" % path)
+
+    with open("/etc/pacman.conf", "w") as f:
+        f.write("\n".join(lines))
+
+    log("info",
+        "Removed vanilla repositories from pacman.conf and added:",
+        lines[-2:])
+
+    command = "pacman -Syy --noconfirm"
+    time = timestamp()
+    cp = subprocess.run(command.split(),
+             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+             universal_newlines=True)
+    log("command", command, cp.stdout.splitlines(), time)
+    if cp.returncode:
+        die(Status.failure)
 
 
 def add_package_to_toolchain_repo(pkg, toolchain_repo_dir,

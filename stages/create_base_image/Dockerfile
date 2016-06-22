@@ -1,4 +1,4 @@
-# Copyright 2015 Google Inc. All Rights Reserved.
+# Copyright 2016 Kareem Khazem. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,12 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# Arch Linux container for building all dependencies of all Arch Linux
-# packages.
-#
-# USAGE:
-#   docker run container_name
 
-FROM tuscan_base_image:latest
-MAINTAINER Kareem Khazem <khazem@google.com>
+FROM rafaelsoares/archlinux
+MAINTAINER Kareem Khazem <karkhaz@karkhaz.com>
 
-COPY main.py /build/main.py
 COPY utilities.py /build/utilities.py
+COPY getpkgs.py /build/getpkgs.py
+COPY main.sh /build/main.sh
 
-ENTRYPOINT ["/usr/bin/python", "-u", "/build/main.py"]
+ENTRYPOINT ["/usr/bin/bash", "/build/main.sh"]

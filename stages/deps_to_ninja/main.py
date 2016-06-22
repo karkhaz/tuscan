@@ -480,8 +480,6 @@ def main():
                ("container_build_dir/package_build_wrapper.py"
                " --shared-directory {shared_directory}"
                " --shared-volume {shared_volume}"
-               " --sources-directory {sources_directory}"
-               " --sources-volume {sources_volume}"
                " --toolchain-directory {toolchain_directory}"
                " --toolchain-volume {toolchain_volume}"
                " --toolchain {toolchain}"
@@ -493,8 +491,6 @@ def main():
                " ${{out}}"
     ).format(shared_directory=args.shared_directory,
              shared_volume=args.shared_volume,
-             sources_directory=args.sources_directory,
-             sources_volume=args.sources_volume,
              output_directory=args.output_directory,
              toolchain_directory=args.toolchain_directory,
              toolchain_volume=args.toolchain_volume,

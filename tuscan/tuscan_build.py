@@ -19,7 +19,9 @@
 from tuscan.schemata import data_containers_schema, stage_deps_schema
 
 import datetime
+import docker
 from glob import glob
+import logging
 import ninja_syntax
 import os
 import os.path
@@ -29,6 +31,56 @@ import subprocess
 import sys
 import voluptuous
 import yaml
+
+
+def skip_creating_base():
+    """Do we need to create the base tuscan image, sources, and binaries?
+
+    All stages depend on the existence of the base tuscan image, and the
+    experiment depends on Arch Linux sources and binaries which are at
+    the same version numbers as the database in the base tuscan image.
+    It is thus imperative that all three of these components are created
+    at the same time.
+
+    If all three components (image, sources, binaries) exist, then there
+    is no need to run the create_base_image stage; this method returns
+    True, and a trivial build rule is written for that stage. If none
+    of those components exist, then the create_base_image stage is run
+    as normal. If some but not all of them exist, then it is inadvisable
+    to create the rest (because the version numbers will have changed
+    meanwhile). So we bail out and tell the user to sort out the mess.
+    """
+    have_sources = (os.path.isdir("sources")
+                    and os.listdir("sources"))
+    have_binaries = (os.path.isdir("mirror")
+                     and os.listdir("mirror"))
+
+    have_container = False
+    cli = docker.Client()
+    images = cli.images()
+    for image in images:
+        for name in image["RepoTags"]:
+            if re.match("tuscan_base_image", name):
+                have_container = True
+
+    if have_sources and have_binaries and have_container:
+        return True
+    elif have_sources or have_binaries or have_container:
+        logging.error("Creation of one or more of base container,"
+                      " Arch sources, or Arch binaries was not"
+                      " successfully completed. The base container,"
+                      " sources and binaries are thus not in sync with"
+                      " each other. Recommended actions:")
+        if have_sources:
+            logging.error("- Erase the `sources' directory")
+        if have_binaries:
+            logging.error("- Erase the `mirror' directory")
+        if have_container:
+            logging.error("- Remove the `tuscan_base_image' docker"
+                          " image:\n\n    docker rmi tuscan_base_image")
+        exit(1)
+    else:
+        return False
 
 
 def substitute_vars(data_structure, args):
@@ -271,6 +323,16 @@ class Stages(object):
 
         stages = []
         for stage in os.listdir("stages"):
+            # Special case: the create_base_image stage only needs to be
+            # run once, ever. So trivially touch its touchfile without
+            # running it if it needs to be skipped.
+            if stage == "create_base_image" and skip_creating_base():
+                touch_file = touch("run", stage, args)
+                rule_name = "run_stage_create_base_image"
+                self.ninja.rule(rule_name, "touch ${out}",
+                    description="Skipping base image creation")
+                self.ninja.build(touch_file, rule_name, [])
+                continue
             try:
                 with open(os.path.join("stages", stage, "deps.yaml")) as f:
                     data = yaml.load(f)
@@ -323,7 +385,7 @@ class Stages(object):
                     main_command += " "
 
                 for mount in stage.run.local_mounts:
-                    main_command += (" -v %s/%s:/%s:ro" %
+                    main_command += (" -v %s/%s:/%s" %
                                      (os.getcwd(), mount, mount))
 
                 main_command += (" --name %s %s --output-directory %s"
@@ -353,14 +415,12 @@ class Stages(object):
                         self.args.touch_dir, stage.name)
             elif stage.run.stdout:
                 main_command += " >" + stage.run.stdout
-            if stage.run.stderr:
+                main_command += " 2>%s.log" % os.path.join(
+                        self.args.touch_dir, stage.name)
+            elif stage.run.stderr:
                 main_command += " 2>" + stage.run.stderr
-
-            # If we purposely don't delete containers after we exit,
-            # then it's okay if docker run fails because the container
-            # already exists.
-            if not stage.run.rm_container:
-                main_command += " || true"
+                main_command += " >%s.log" % os.path.join(
+                        self.args.touch_dir, stage.name)
 
             commands.append(main_command)
 
@@ -502,7 +562,7 @@ def prerequisite_touch_files(ninja, args):
         devnull = " >/dev/null"
     touch_file = touch("prereq", "prereq", args)
     rule_name = "prerequisite"
-    command = ("docker pull karkhaz/arch-tuscan:latest {devnull}"
+    command = ("docker pull rafaelsoares/archlinux:latest {devnull}"
                " && mkdir -p {markers_dir}"
                " && cp package_build_wrapper.py container_build_dir"
                " && ln -fns {touch_dir} {latest_dir}").format(
@@ -522,6 +582,8 @@ def prerequisite_touch_files(ninja, args):
 
 def do_build(args):
     """Top-level function called when running tuscan.py build."""
+    logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s")
+
     if args.run == None:
         args.run = True
 

@@ -17,13 +17,13 @@
 
 
 from utilities import get_argparser, log, create_package, timestamp
-from utilities import recursive_chown
+from utilities import recursive_chown, set_local_repository_location
 from utilities import strip_version_info, interpret_bash_array
 from utilities import toolchain_repo_name, add_package_to_toolchain_repo
+from utilities import Status, die
 
 import codecs
 import datetime
-import enum
 import fnmatch
 from  glob import glob
 import json
@@ -33,77 +33,6 @@ import re
 import shutil
 import subprocess
 import tarfile
-
-
-class Status(enum.Enum):
-    success = 1
-    failure = 2
-
-
-def die(status, message=None, output=[]):
-    if message:
-        log("die", message, output)
-
-    log("info", "Printing config.logs")
-    config_logs = []
-    for root, dirs, files in os.walk("/tmp"):
-        for f in files:
-            if f == "config.log" or f == "configure.log":
-                config_logs.append(os.path.join(root, f))
-
-    for l in config_logs:
-        lines = []
-        with open(l, encoding="utf-8") as f:
-            for line in f:
-                lines.append(line.strip())
-            log("command", "Config logfile '%s'" % l, lines)
-
-    if status == Status.success:
-        exit(0)
-    elif status == Status.failure:
-        exit(1)
-    else:
-        raise RuntimeError("Bad call to die with '%s'" % str(status))
-
-
-def get_package_source_dir(args):
-    """Get the sources for a package.
-
-    PKGBUILDs contain instructions for downloading sources and then
-    building them. We don't want to download the sources before every
-    build, so this function downloads sources and stores them in a
-    standard location so that they can be copied later rather than
-    re-downloaded.
-
-    If this function returns successfully, the abs directory for package
-    will have been copied to sources_directory, and the sources for that
-    package will have been downloaded into it.
-    """
-    if not os.path.isdir(args.abs_dir):
-        die(Status.failure,
-            "Could not find abs directory for dir '%s'" % args.abs_dir)
-    shutil.copytree(args.abs_dir, args.permanent_source_dir)
-    recursive_chown(args.permanent_source_dir)
-    os.chdir(args.permanent_source_dir)
-
-    # The --nobuild flag to makepkg causes it to download sources, but
-    # not build them.
-    command = ("sudo -u tuscan makepkg --nobuild --syncdeps "
-               "--skipinteg --skippgpcheck --skipchecksums "
-               "--noconfirm --nocolor --log --noprogressbar "
-               "--nocheck --nodeps")
-    time = timestamp()
-    cp = subprocess.run(command.split(), stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT, universal_newlines=True)
-    log("command", command, cp.stdout.splitlines(), time)
-
-    success = False
-    if cp.returncode:
-        shutil.rmtree(args.permanent_source_dir)
-    else:
-        success = True
-
-    return success
 
 
 def log_sloc(sloc_output):
@@ -156,15 +85,16 @@ def copy_and_build(args):
     with open("PKGBUILD", "w", encoding="utf-8") as f:
         f.write("\n".join(pkgbuild))
 
-    # The difference between this invocation and the one in
-    # get_package_source_dir() is the --noextract flag. Sources should
-    # already have been downloaded and extracted by
-    # get_package_source_dir(), so we just want to build them.
+    # This invocation of makepkg has the --noextract flag, because
+    # sources should already have been extracted during the creation of
+    # the base image (see stages/create_base_image/getpkgs.py). We still
+    # need to perform all other stages of package building, including
+    # the prepare() function that is called just before the build()
+    # function.
     #
-    # Also, the invocation in get_package_source_dir has the --nodeps
-    # option, since we just wanted to download sources there. Here, we
-    # do want to install dependencies (from our local toolchain
-    # repository), so don't pass the --nodeps flag.
+    # The invocation also has the --syncdeps flag; this is fine, because
+    # anything that this package depends on should already have been
+    # built and its hybrid package will have been installed.
     if args.env_vars == None:
         args.env_vars = []
 
@@ -212,65 +142,6 @@ def copy_and_build(args):
         log("native_tools", "native_tools", native_tools)
 
     return proc.returncode
-
-
-def sanity_checks(args):
-    if not os.path.isdir(args.sources_directory):
-        die(Status.failure, "Could not find source directory '%s'" %
-                            args.sources_directory)
-
-    if not os.path.isdir(args.permanent_source_dir):
-        if not(get_package_source_dir(args)):
-            die(Status.failure, "Unable to get sources for dir '%s'" %
-                                args.abs_dir)
-        else:
-            log("info", "Copied source directory to " +
-                    args.permanent_source_dir)
-    else:
-        log("info", "Found permanent source directory in "
-              + args.permanent_source_dir)
-
-
-def initialize_repositories(args):
-    """Point pacman to toolchain builds.
-
-    Ensure that pacman only installs toolchain builds of packages during
-    the build process by pointing pacman.conf to the toolchain
-    repository.
-    """
-
-    # Point pacman to our toolchain repository. This means commenting
-    # out the official repositories in pacman.conf, and creating a new
-    # entry for the local toolchain repository.
-
-    lines = []
-    with open("/etc/pacman.conf") as f:
-        appending = True
-        for line in f:
-            if re.search("# REPOSITORIES", line):
-                appending = False
-            if appending:
-                lines.append(line.strip())
-
-    lines.append("[%s]" % toolchain_repo_name())
-    lines.append("Server = file://%s" % args.toolchain_directory)
-
-    with open("/etc/pacman.conf", "w") as f:
-        for line in lines:
-            print(line, file=f)
-
-    log("info",
-        "Removed vanilla repositories from pacman.conf and added:",
-        lines[-2:])
-
-    command = "pacman -Syy --noconfirm"
-    time = timestamp()
-    cp = subprocess.run(command.split(),
-             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-             universal_newlines=True)
-    log("command", command, cp.stdout.splitlines(), time)
-    if cp.returncode:
-        die(Status.failure)
 
 
 def path_to_vanilla_pkg(pkg_name, args):
@@ -442,12 +313,17 @@ def main():
 
     pkg_dir = os.path.basename(args.abs_dir)
 
-    args.permanent_source_dir = os.path.join(args.sources_directory, pkg_dir)
+    if pkg_dir in os.listdir(args.sources_directory):
+        args.permanent_source_dir = os.path.join(
+                args.sources_directory, pkg_dir)
+    else:
+        die(Status.failure, "No source directory in source volume: %s" %
+                args.sources_directory)
+
     args.build_dir = os.path.join("/tmp", pkg_dir)
 
-    sanity_checks(args)
-
-    initialize_repositories(args)
+    set_local_repository_location(args.toolchain_directory,
+            toolchain_repo_name())
 
     result = copy_and_build(args)
     if result:
