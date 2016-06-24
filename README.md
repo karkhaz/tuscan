@@ -13,6 +13,12 @@ programs in various compilation environments:
 Initial setup
 -------------
 
+Tuscan uses a [fork](https://github.com/karkhaz/Bear) of the
+[libEAR](https://github.com/rizsotto/Bear) project as a submodule. You
+will thus need to pass the `--recursive` switch to the `git clone`
+command when cloning Tuscan, or else run `git submodule init; git
+submodule update` after you have cloned it.
+
 Tuscan uses a mirror of Arch Linux binaries and sources.
 
 ### Binaries

@@ -18,13 +18,12 @@
 # Arch Linux container for building all dependencies of all Arch Linux
 # packages.
 
+
 from utilities import log, timestamp, run_cmd
 
-from os import chdir, listdir, stat, chmod
-from os.path import join
-from shutil import chown
-from stat import S_IXUSR, S_IXGRP, S_IXOTH
-from subprocess import run, STDOUT, PIPE, DEVNULL
+import os
+import os.path
+import subprocess
 
 
 def toolchain_specific_setup(args):
@@ -43,7 +42,7 @@ def toolchain_specific_setup(args):
         print("show-error", file=f)
 
     log("info", "Downloading & unpacking NDK")
-    chdir("/home/tuscan")
+    os.chdir("/home/tuscan")
 
     setup_file = "/home/tuscan/ndk.bin"
 
@@ -71,7 +70,7 @@ def toolchain_specific_setup(args):
     cmd = "chown -R tuscan: /home/tuscan/android-ndk-r10e"
     run_cmd(cmd, as_root=True)
 
-    for f in listdir(join("/toolchain_root", "bin")):
-        f = join("/toolchain_root", "bin", f)
+    for f in os.listdir(os.path.join("/toolchain_root", "bin")):
+        f = os.path.join("/toolchain_root", "bin", f)
         cmd = "chmod a+rx %s" % f
         run_cmd(cmd, as_root=True)

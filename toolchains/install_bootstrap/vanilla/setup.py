@@ -18,9 +18,9 @@
 # Arch Linux container for building all dependencies of all Arch Linux
 # packages.
 
+
 from utilities import log
 
-from subprocess import run, STDOUT, PIPE
 
 def toolchain_specific_setup(args):
     log("info", "Running vanilla-specific setup")

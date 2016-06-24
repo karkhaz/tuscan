@@ -15,16 +15,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from utilities import get_argparser, log, timestamp, run_cmd
-from setup import toolchain_specific_setup
 
-from os import listdir, mkdir, walk
-from os.path import join
-from re import search
-from subprocess import run, PIPE, STDOUT
-from shutil import chown
-from sys import stderr, stdout
-from json import load
+from utilities import get_argparser, log, timestamp, run_cmd
+from utilities import recursive_chown
+
+import json
+import os
+import os.path
+import re
+import setup
+import shutil
+import subprocess
+import urllib.request
+import tempfile
 
 
 def main():
@@ -44,7 +47,7 @@ def main():
     lines = []
     with open("/etc/pacman.conf") as f:
         for line in f:
-            if search("SigLevel", line):
+            if re.search("SigLevel", line):
                 lines.append("SigLevel = Never")
             else:
                 lines.append(line.strip())
@@ -52,11 +55,11 @@ def main():
         for line in lines:
             print(line.strip(), file=f)
 
-    name_data_file = join(args.shared_directory,
+    name_data_file = os.path.join(args.shared_directory,
             "get_base_package_names", "latest", "names.json")
 
     with open(name_data_file) as f:
-        name_data = load(f)
+        name_data = json.load(f)
     bootstrap_packs = (name_data["base"]
                       + name_data["base_devel"]
                       + name_data["tools"]
@@ -69,24 +72,21 @@ def main():
 
     cmd = "pacman -Syy --noconfirm"
     time = timestamp()
-    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-             universal_newlines=True)
+    cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, universal_newlines=True)
     log("command", cmd, cp.stdout.splitlines(), time)
     if cp.returncode:
         exit(1)
 
     cmd = "pacman -Su --noconfirm " + " ".join(bootstrap_packs)
     time = timestamp()
-    cp = run(cmd.split(), stdout=PIPE, stderr=STDOUT,
-             universal_newlines=True)
+    cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, universal_newlines=True)
     log("command", cmd, cp.stdout.splitlines(), time)
     if cp.returncode:
         exit(1)
 
     run_cmd("useradd -m -s /bin/bash tuscan", as_root=True)
-
-    mkdir("/toolchain_root")
-    chown("/toolchain_root", "tuscan")
 
     # User 'tuscan' needs to be able to use sudo without being harassed
     # for passwords) and so does root (to su into tuscan)
@@ -94,7 +94,27 @@ def main():
         print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
         print("root ALL=(ALL) NOPASSWD: ALL", file=f)
 
-    toolchain_specific_setup(args)
+    # Download and install bear
+    with tempfile.TemporaryDirectory() as d:
+        url = ("https://github.com/karkhaz/Bear/blob/master/"
+               "bear-2.1.5-1-x86_64.pkg.tar.xz?raw=true")
+        response = urllib.request.urlopen(url)
+        tar_file = response.read()
+        pkg_name = "bear.pkg.tar.xz"
+        with open(os.path.join(d, pkg_name), "wb") as f:
+            f.write(tar_file)
+        os.chdir(d)
+        cmd = "pacman -U --noconfirm %s" % pkg_name
+        cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, universal_newlines=True)
+        log("command", cmd, cp.stdout.splitlines())
+        if cp.returncode:
+            exit(1)
+
+    os.mkdir("/toolchain_root")
+    shutil.chown("/toolchain_root", "tuscan")
+
+    setup.toolchain_specific_setup(args)
 
     exit(0)
 

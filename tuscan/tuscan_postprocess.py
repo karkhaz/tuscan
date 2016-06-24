@@ -28,25 +28,24 @@ the schemata in tuscan/schemata.py.
 from tuscan.schemata import make_package_schema, post_processed_schema
 from tuscan.schemata import classification_schema
 
-from functools import partial
-from json import load, dump
-from logging import basicConfig, debug, info, error, warning, INFO, DEBUG
-from multiprocessing import Pool, TimeoutError, Manager
-from voluptuous import MultipleInvalid
-from os import listdir, makedirs, unlink
-from os.path import basename, isdir, join
-from re import match, search
-from signal import signal, SIGINT, SIG_IGN
-from sys import stderr
-from time import sleep
-from yaml import load as yaml_load
+import functools
+import json
+import logging
+import multiprocessing
+import os
+import os.path
+import re
+import signal
+import sys
+import time
+import voluptuous
 
 
 def process_log_line(line, patterns, counter):
     ret = {"text": line, "category": None, "semantics": {},
            "id": counter, "severity": None}
     for err_class in patterns:
-        m = search(err_class["pattern"], line)
+        m = re.search(err_class["pattern"], line)
         if m:
             ret["category"] = err_class["category"]
             ret["severity"] = err_class["severity"]
@@ -113,7 +112,7 @@ def process_single_result(data, patterns):
 def load_and_process(path, patterns, out_dir, args):
     """Processes a JSON result file at path."""
     with open(path) as f:
-        data = load(f)
+        data = json.load(f)
 
     if data["bootstrap"]:
         return
@@ -121,7 +120,7 @@ def load_and_process(path, patterns, out_dir, args):
     try:
         make_package_schema(data)
     except MultipleInvalid as e:
-        error("Malformed input at %s\n  %s" % (path, str(e)))
+        logging.error("Malformed input at %s\n  %s" % (path, str(e)))
         return
 
     data = process_single_result(data, patterns)
@@ -129,11 +128,11 @@ def load_and_process(path, patterns, out_dir, args):
     try:
         post_processed_schema(data)
     except MultipleInvalid as e:
-        error("Post-processed data is malformatted: %s\n  %s" %
+        logging.error("Post-processed data is malformatted: %s\n  %s" %
                 (path, str(e)))
 
-    with open(join(out_dir, basename(path)), "w") as fh:
-        dump(data, fh, indent=2)
+    with open(os.path.join(out_dir, os.path.basename(path)), "w") as fh:
+        json.dump(data, fh, indent=2)
 
 
 def propagate_blockers(out_dir):
@@ -148,15 +147,15 @@ def propagate_blockers(out_dir):
 
     Precondition: blocker builds have the "blocker" field set to true.
     """
-    info("Reloading results from disk to calculate blockers")
+    logging.info("Reloading results from disk to calculate blockers")
     results = []
-    for f in listdir(out_dir):
-        with open(join(out_dir, f)) as fh:
-            j = load(fh)
+    for f in os.listdir(out_dir):
+        with open(os.path.join(out_dir, f)) as fh:
+            j = json.load(fh)
         # In order to save RAM, we only copy the fields that we need
         # from the on-disk JSON result into memory.
         r = {}
-        r["file"] = join(out_dir, f)
+        r["file"] = os.path.join(out_dir, f)
         r["data"] = {}
         r["data"]["return_code"] = j["return_code"]
         r["data"]["build_name"] = j["build_name"]
@@ -169,7 +168,7 @@ def propagate_blockers(out_dir):
     blockers = [result["data"]["build_name"] for result in results
                 if result["data"]["return_code"] and not ("missing_deps"
                 in result["data"]["category_counts"])]
-    info("%d blockers for this toolchain. Propagating..." % len(blockers))
+    logging.info("%d blockers for this toolchain. Propagating..." % len(blockers))
 
     iteration = 0
     blocked_by = {}
@@ -182,7 +181,7 @@ def propagate_blockers(out_dir):
         result_total = len(results)
         for result in results:
             result_counter += 1
-            stderr.write("\rIteration %2d, result %5d/%5d,"
+            sys.stderr.write("\rIteration %2d, result %5d/%5d,"
                      " added %d new blocked packages." %
                     (iteration, result_counter, result_total, added))
             data = result["data"]
@@ -195,26 +194,26 @@ def propagate_blockers(out_dir):
             for dep in data["build_depends"]:
                 # Case: this build is directly blocked by a blocker
                 for blocker in blockers:
-                    pack = basename(blocker)
+                    pack = os.path.basename(blocker)
                     if dep == pack:
                         if blocker not in blocked_by[data["build_name"]]:
                             stop = False
                             added += 1
                             blocked_by[data["build_name"]].append(blocker)
-                            debug("%s directly blocked by %s\n" %
+                            logging.debug("%s directly blocked by %s\n" %
                                     (data["build_name"], blocker))
                 # Case: this build is transitively blocked by a blocker
                 for blocked, directs in blocked_by.items():
-                    pack = basename(blocked)
+                    pack = os.path.basename(blocked)
                     if pack == dep:
                         for b in directs:
                             if b not in blocked_by[data["build_name"]]:
                                 stop = False
                                 added += 1
                                 blocked_by[data["build_name"]].append(b)
-                                debug("%s transitively blocked by %s\n" %
+                                logging.debug("%s transitively blocked by %s\n" %
                                         (data["build_name"], b))
-        stderr.write("\n")
+        sys.stderr.write("\n")
 
     blocks = {}
     for blocked, directs in blocked_by.items():
@@ -233,74 +232,74 @@ def propagate_blockers(out_dir):
         elif data["build_name"] in blocked_by:
             data["blocked_by"] = blocked_by[data["build_name"]]
         elif data["return_code"]:
-            warning("Blocked package %s has no blocked_by entry" %
+            logging.warning("Blocked package %s has no blocked_by entry" %
                     data["build_name"])
 
         # One or other list should be empty. They might both be empty:
         # if this build succeeded, or if it is a blocker with no
         # dependencies.
         if data["blocked_by"] and data["blocks"]:
-            error("%s is both a blocker and blocked!" % data["build_name"])
+            logging.error("%s is both a blocker and blocked!" % data["build_name"])
 
-    info("Finished calculating blockers, re-writing to disk...")
+    logging.info("Finished calculating blockers, re-writing to disk...")
     file_to_result = {}
     for r in results:
         file_to_result[r["file"]] = r["data"]
-    for f in listdir(out_dir):
-        f = join(out_dir, f)
+    for f in os.listdir(out_dir):
+        f = os.path.join(out_dir, f)
         if not f in file_to_result:
-            error("Could not find result for file '%s'" % f)
+            logging.error("Could not find result for file '%s'" % f)
             exit(1)
         updated = file_to_result[f]
         with open(f) as fh:
-            original = load(fh)
+            original = json.load(fh)
         original["blocks"] = updated["blocks"]
         original["blocked_by"] = updated["blocked_by"]
         with open(f, "w") as fh:
-            dump(original, fh, indent=2)
+            json.dump(original, fh, indent=2)
 
 
 def do_postprocess(args):
-    basicConfig(format="%(asctime)s %(message)s", level=INFO)
+    logging.basicConfig(format="%(asctime)s %(message)s", level=INFO)
 
     with open("tuscan/classification_patterns.yaml") as f:
-        patterns = yaml_load(f)
+        patterns = yaml_json.load(f)
     try:
         patterns = classification_schema(patterns)
     except MultipleInvalid as e:
-        info("Classification pattern is malformatted: %s\n%s" %
+        logging.info("Classification pattern is malformatted: %s\n%s" %
                      (str(e), str(patterns)))
         exit(1)
 
     dst_dir = "output/post"
     src_dir = "output/results"
 
-    man = Manager()
+    man = multiprocessing.Manager()
 
     toolchain_counter = 0
     toolchain_total = len(args.toolchains)
     for toolchain in args.toolchains:
-        pool = Pool(args.pool_size)
+        pool = multiprocessing.Pool(args.pool_size)
 
         toolchain_counter += 1
-        info("Post-processing results for toolchain "
+        logging.info("Post-processing results for toolchain "
                 "%d of %d [%s]" % (toolchain_counter, toolchain_total,
                     toolchain))
-        toolchain_dst = join(dst_dir, toolchain)
+        toolchain_dst = os.path.join(dst_dir, toolchain)
 
-        if not isdir(toolchain_dst):
-            makedirs(toolchain_dst)
+        if not os.path.isdir(toolchain_dst):
+            os.makedirs(toolchain_dst)
 
-        for f in listdir(toolchain_dst):
-            unlink(join(toolchain_dst, f))
+        for f in os.listdir(toolchain_dst):
+            os.unlink(os.path.join(toolchain_dst, f))
 
-        latest_results = sorted(listdir(join(src_dir, toolchain)))[-1]
-        latest_results = join(src_dir, toolchain, latest_results,
+        latest_results = sorted(os.listdir(os.path.join(src_dir, toolchain)))[-1]
+        latest_results = os.path.join(src_dir, toolchain, latest_results,
                               "pkgbuild_markers")
-        paths = [join(latest_results, f) for f in listdir(latest_results)]
+        paths = [os.path.join(latest_results, f) for f in os.listdir(latest_results)]
 
 
-        curry = partial(load_and_process,
+        curry = functools.partial(load_and_process,
                         patterns=patterns,
                         out_dir=toolchain_dst,
                         args=args)
@@ -308,11 +307,11 @@ def do_postprocess(args):
             # Pressing Ctrl-C results in unpredictable behaviour of
             # spawned processes. So make all the children ignore the
             # interrupt; the parent process shall kill them explicitly.
-            original = signal(SIGINT, SIG_IGN)
+            original = signal.signal(SIGINT, SIG_IGN)
             # Child processes will inherit the 'ignore' signal handler
             res = pool.map_async(curry, paths)
             # Restore original handler; parent process listens for SIGINT
-            signal(SIGINT, original)
+            signal.signal(SIGINT, original)
             res.get(args.timeout)
         except KeyboardInterrupt:
             pool.terminate()

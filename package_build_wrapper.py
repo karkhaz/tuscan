@@ -15,18 +15,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from argparse import ArgumentParser
-from json import dumps, load, loads
-from os import getcwd
-from os.path import basename, splitext
-from re import compile, match, sub
-from subprocess import Popen, PIPE, STDOUT
-from sys import stderr
-from time import gmtime, mktime
+
+import argparse
+import json
+import os
+import os.path
+import re
+import subprocess
+import sys
+import time
 
 
 def get_parser():
-    parser = ArgumentParser(
+    parser = argparse.ArgumentParser(
             description="Attempt to build a single package.")
 
     parser.add_argument("--shared-directory", required=True)
@@ -49,7 +50,7 @@ def get_parser():
 
 
 def run_container(args):
-    start_time = mktime(gmtime())
+    start_time = time.mktime(time.gmtime())
     command = ("docker run"
 
                # Arguments to docker:
@@ -78,10 +79,10 @@ def run_container(args):
                         toolchain_volume=args.toolchain_volume,
                         abs_dir=args.abs_dir,
                         toolchain=args.toolchain,
-                        cwd=getcwd())
+                        cwd=os.getcwd())
 
-    p = Popen(command.split(), universal_newlines=True, stdout=PIPE,
-              stderr=STDOUT)
+    p = subprocess.Popen(command.split(), universal_newlines=True,
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out, _ = p.communicate()
     rc = p.returncode
 
@@ -100,7 +101,7 @@ def run_container(args):
     errors = []
     for struct in out.splitlines():
         try:
-            obj = loads(struct)
+            obj = json.loads(struct)
 
             if obj["kind"] == "provide_info":
                 # This list is returned by the make_package stage to
@@ -120,7 +121,14 @@ def run_container(args):
                 # This will be a dictionary (encoded as a JSON string)
                 # mapping languages to lines-of-code, as reported by
                 # SLOCCount.
-                json_result["sloc_info"] = loads(obj["body"])
+                json_result["sloc_info"] = json.loads(obj["body"])
+
+            elif obj["kind"] == "bear":
+                # This will be an "exec" or "exit" record from libEAR.
+                json_result["bear_output"] = obj["body"]
+
+            elif obj["kind"] == "native_tools":
+                json_result["native_tools"] = obj["body"]
 
             else:
                 json_result["log"].append(obj)
@@ -129,12 +137,12 @@ def run_container(args):
             errors.append(str(struct))
 
     if errors:
-        stderr.write("Stage error during build of %s\n" % args.abs_dir)
+        sys.stderr.write("Stage error during build of %s\n" % args.abs_dir)
         for line in errors:
-            stderr.write(line + "\n")
+            sys.stderr.write(line + "\n")
 
     json_result["build_name"] = args.abs_dir
-    json_result["time"] = int(mktime(gmtime()) - start_time)
+    json_result["time"] = int(time.mktime(time.gmtime()) - start_time)
     json_result["toolchain"] = args.toolchain
     json_result["errors"] = errors
     json_result["bootstrap"] = False
@@ -142,15 +150,21 @@ def run_container(args):
     if not "sloc_info" in json_result:
         json_result["sloc_info"] = {}
 
+    if not "bear_output" in json_result:
+        json_result["bear_output"] = []
+
+    if not "native_tools" in json_result:
+        json_result["native_tools"] = {}
+
     for touch_file in args.output_packages:
         with open(touch_file, "w") as f:
-            f.write(dumps(json_result, sort_keys=True, indent=2,
+            f.write(json.dumps(json_result, sort_keys=True, indent=2,
                           separators=(",", ": ")))
             f.flush()
 
 
 def main():
-    parser = ArgumentParser(description=
+    parser = argparse.ArgumentParser(description=
                 "Attempt to build a single package.")
 
     parser.add_argument("--shared-directory", required=True)
