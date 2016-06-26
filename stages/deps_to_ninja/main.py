@@ -339,11 +339,6 @@ def drop_excluded(infos, circulars, name_data):
 
             if not blockers:
                 tmp.append(info)
-            #else:
-            #    print("%d %s packages blocked %s" %
-            #            (len(blockers), str(blockers),
-            #                info["pkgbuild"]),
-            #            file=sys.stderr)
         infos = tmp
 
     return infos
