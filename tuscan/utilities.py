@@ -75,11 +75,14 @@ def interpret_bash_array(pkgbuild, array_name):
     """
     cmd = textwrap.dedent("""\
                  #!/bin/bash
-                 . %s
-                 for foo in ${%s[@]}; do
-                    echo ${foo};
+                 . {pkgbuild}
+                 # This is in case the array is actually an array
+                 for foo in ${{{array_name}[@]}}; do
+                    echo ${{foo}};
                  done;
-                 """ % (pkgbuild, array_name))
+                 # This is in case the array is actually a single string
+                 echo "${{{array_name}}}"
+                 """.format(pkgbuild=pkgbuild, array_name=array_name))
     with tempfile.NamedTemporaryFile(mode="w") as temp:
         temp.write(cmd)
         temp.flush()
@@ -94,7 +97,11 @@ def interpret_bash_array(pkgbuild, array_name):
     if not cp.stdout:
         return []
     else:
-        return [line for line in cp.stdout.splitlines() if line]
+        tmp = [line for line in cp.stdout.splitlines() if line]
+        ret = []
+        for t in tmp:
+            ret += t.split()
+        return list(set(ret))
 
 
 def strip_version_info(package_name):

@@ -339,11 +339,6 @@ def drop_excluded(infos, circulars, name_data):
 
             if not blockers:
                 tmp.append(info)
-            #else:
-            #    print("%d %s packages blocked %s" %
-            #            (len(blockers), str(blockers),
-            #                info["pkgbuild"]),
-            #            file=sys.stderr)
         infos = tmp
 
     return infos
@@ -503,7 +498,8 @@ def main():
              output_directory=args.output_directory,
              toolchain_directory=args.toolchain_directory,
              toolchain_volume=args.toolchain_volume,
-             toolchain=args.toolchain))
+             toolchain=args.toolchain),
+    description="Building '${in}'")
 
     for outs, rule, ins in builds:
         ninja.build(outs, rule, ins)

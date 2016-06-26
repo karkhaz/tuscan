@@ -63,7 +63,7 @@ def die(status, message=None, output=[]):
     elif status == Status.failure:
         exit(1)
     else:
-        raise Runtimeshutil.Error("Bad call to die with '%s'" % str(status))
+        raise RuntimeError("Bad call to die with '%s'" % str(status))
 
 
 def get_package_source_dir(args):
@@ -127,7 +127,7 @@ def log_sloc(sloc_output):
 def copy_and_build(args):
     try:
         shutil.copytree(args.permanent_source_dir, args.build_dir)
-    except Error as e:
+    except shutil.Error as e:
         # e.args will be a list, containing a single list of 3-tuples.
         # We are interested in the third item of each tuple.
         errors = [err[2] for err in e.args[0]]

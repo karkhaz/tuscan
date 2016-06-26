@@ -31,7 +31,8 @@ def tools():
         "libsasl", "qemu", "jdk7-openjdk", "jdk8-openjdk",
         "jre8-openjdk", "jre7-openjdk", "cabal-install",
         "rubygems", "java-runtime-headless", "linux-headers",
-        "libsigc++2.0", "systemd", "gcc-fortran"
+        "libsigc++2.0", "systemd", "gcc-fortran", "ocaml", "rubygems",
+        "mono", "r", "texlive-latexextra", "links"
     ]
 
 

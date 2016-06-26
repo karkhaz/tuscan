@@ -344,7 +344,7 @@ class Stages(object):
                     main_command += (" --%s-directory /%s" %
                                      (mount, mount))
 
-            if not self.args.top_level and not (
+            if not stage.run.top_level and not (
                     stage.run.stdout or stage.run.stderr):
                 main_command += " >%s.log 2>&1" % os.path.join(
                         self.args.touch_dir, stage.name)
