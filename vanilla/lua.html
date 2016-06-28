@@ -30,23 +30,36 @@
     <h1>Build of lua
         with <a href="../index.html">vanilla</a>
         toolchain</h1>
-    <p>The build took 00h 00m 31s and was
-    SUCCESSFUL.
-    
+    <p>The build took 00h 00m 28s and was
+    NOT successful.
     
     </p>
     
     
+    <p>
+    Due to the failure of this package to build, we did not attempt to
+    build several packages that depend on this one. Those packages are:
+    </p>
+    <ul>
+      
+      <li><a href="ldoc.html">ldoc</a></li>
+      
+      <li><a href="lua-alt-getopt.html">lua-alt-getopt</a></li>
+      
+      <li><a href="haproxy.html">haproxy</a></li>
+      
+      <li><a href="vis.html">vis</a></li>
+      
+      <li><a href="vicious.html">vicious</a></li>
+      
+      <li><a href="luarocks.html">luarocks</a></li>
+      
+      <li><a href="lua-zlib.html">lua-zlib</a></li>
+      
+    </ul>
+    
     
     <h2>Log</h2>
-    
-      <div class="block">
-        <div class="info">
-          <code>Found permanent source directory in /sources/lua</code>
-        </div>
-        
-      </div>
-      <br />
     
       <div class="block">
         <div class="info">
@@ -101,7 +114,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: lua 5.3.2-1 (Tue Jun 14 08:02:18 UTC 2016)</code><br />
+              <code id="5">==> Making package: lua 5.3.3-1 (Mon Jun 27 07:20:09 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -126,12 +139,12 @@
             
             <a class="navhash" href="#10">#</a>
 						
-              <code id="10">cd src && make linux V=5.3 R=5.3.2</code><br />
+              <code id="10">cd src && make linux</code><br />
 						
             
             <a class="navhash" href="#11">#</a>
 						
-              <code id="11">make[1]: Entering directory '/tmp/lua/src/lua-5.3.2/src'</code><br />
+              <code id="11">make[1]: Entering directory '/tmp/lua/src/lua-5.3.3/src'</code><br />
 						
             
             <a class="navhash" href="#12">#</a>
@@ -141,7 +154,7 @@
             
             <a class="navhash" href="#13">#</a>
 						
-              <code id="13">make[2]: Entering directory '/tmp/lua/src/lua-5.3.2/src'</code><br />
+              <code id="13">make[2]: Entering directory '/tmp/lua/src/lua-5.3.3/src'</code><br />
 						
             
             <a class="navhash" href="#14">#</a>
@@ -336,1306 +349,82 @@
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">gcc -std=gnu99 -shared -ldl -Wl,-soname,liblua.so.5.3 -o liblua.so.5.3.2 lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o lmathlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o loadlib.o linit.o -lm </code><br />
+              <code id="52">gcc -std=gnu99 -o lua   lua.o liblua.a -lm -Wl,-E -ldl -lreadline </code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">ln -sf liblua.so.5.3.2 liblua.so.5.3</code><br />
+              <code id="53">gcc -std=gnu99 -o luac   luac.o liblua.a -lm -Wl,-E -ldl -lreadline </code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">ln -sf liblua.so.5.3.2 liblua.so</code><br />
+              <code id="54">make[2]: Leaving directory '/tmp/lua/src/lua-5.3.3/src'</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">gcc -std=gnu99 -o lua   lua.o liblua.a -lm -Wl,-E -ldl -lreadline </code><br />
+              <code id="55">make[1]: Leaving directory '/tmp/lua/src/lua-5.3.3/src'</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">gcc -std=gnu99 -o luac   luac.o liblua.a -lm -Wl,-E -ldl -lreadline </code><br />
+              <code id="56">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">make[2]: Leaving directory '/tmp/lua/src/lua-5.3.2/src'</code><br />
+              <code id="57">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">make[1]: Leaving directory '/tmp/lua/src/lua-5.3.2/src'</code><br />
+              <code id="58">cd src && mkdir -p /tmp/lua/pkg/lua/usr/bin /tmp/lua/pkg/lua/usr/include /tmp/lua/pkg/lua/usr/lib /tmp/lua/pkg/lua/usr/share/man/man1 /tmp/lua/pkg/lua/usr/share/lua/5.3 /tmp/lua/pkg/lua/usr/lib/lua/5.3</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">==> Entering fakeroot environment...</code><br />
+              <code id="59">cd src && install -p -m 0755 lua luac /tmp/lua/pkg/lua/usr/bin</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">==> Starting package()...</code><br />
+              <code id="60">cd src && cp -d lua.h luaconf.h lualib.h lauxlib.h lua.hpp /tmp/lua/pkg/lua/usr/include</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">cd src && mkdir -p /tmp/lua/pkg/lua/usr/bin /tmp/lua/pkg/lua/usr/include /tmp/lua/pkg/lua/usr/lib /tmp/lua/pkg/lua/usr/share/man/man1 /tmp/lua/pkg/lua/usr/share/lua/5.3 /tmp/lua/pkg/lua/usr/lib/lua/5.3</code><br />
+              <code id="61">cd src && cp -d liblua.a liblua.so liblua.so.5.3 liblua.so.5.3.3 /tmp/lua/pkg/lua/usr/lib</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">cd src && install -p -m 0755 lua luac /tmp/lua/pkg/lua/usr/bin</code><br />
+              <code id="62">cp: cannot stat 'liblua.so': No such file or directory</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">cd src && cp -d lua.h luaconf.h lualib.h lauxlib.h lua.hpp /tmp/lua/pkg/lua/usr/include</code><br />
+              <code id="63">cp: cannot stat 'liblua.so.5.3': No such file or directory</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">cd src && cp -d liblua.a liblua.so liblua.so.5.3 liblua.so.5.3.2 /tmp/lua/pkg/lua/usr/lib</code><br />
+              <code id="64">cp: cannot stat 'liblua.so.5.3.3': No such file or directory</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">cd doc && cp -d lua.1 luac.1 /tmp/lua/pkg/lua/usr/share/man/man1</code><br />
+              <code id="65">make: *** [Makefile:64: install] Error 1</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">==> Tidying install...</code><br />
+              <code id="66">==> ERROR: A failure occurred in package().</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67">  -> Removing doc files...</code><br />
-						
-            
-            <a class="navhash" href="#68">#</a>
-						
-              <code id="68">  -> Removing empty directories...</code><br />
-						
-            
-            <a class="navhash" href="#69">#</a>
-						
-              <code id="69">  -> Purging unwanted files...</code><br />
-						
-            
-            <a class="navhash" href="#70">#</a>
-						
-              <code id="70">==> Checking for packaging issue...</code><br />
-						
-            
-            <a class="navhash" href="#71">#</a>
-						
-              <code id="71">==> Creating package "lua"...</code><br />
-						
-            
-            <a class="navhash" href="#72">#</a>
-						
-              <code id="72">  -> Generating .PKGINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#73">#</a>
-						
-              <code id="73">  -> Generating .BUILDINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#74">#</a>
-						
-              <code id="74">error: invalid option '--noprogressbar'</code><br />
-						
-            
-            <a class="navhash" href="#75">#</a>
-						
-              <code id="75">  -> Generating .MTREE file...</code><br />
-						
-            
-            <a class="navhash" href="#76">#</a>
-						
-              <code id="76">  -> Compressing package...</code><br />
-						
-            
-            <a class="navhash" href="#77">#</a>
-						
-              <code id="77">==> Leaving fakeroot environment.</code><br />
-						
-            
-            <a class="navhash" href="#78">#</a>
-						
-              <code id="78">==> Finished making: lua 5.3.2-1 (Tue Jun 14 08:02:24 UTC 2016)</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file lua-5.3.2-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#79">#</a>
-						
-              <code id="79">lua 5.3.2-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Creating hybrid package for 'lua'</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Trying to find vanilla package 'lua'...</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/luarocks-2.3.0-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#80">#</a>
-						
-              <code id="80">luarocks 2.3.0-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-sql-postgres-2.3.0-6-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#81">#</a>
-						
-              <code id="81">lua-sql-postgres 2.3.0-6</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-socket-20160311-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#82">#</a>
-						
-              <code id="82">lua52-socket 20160311-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-sdl2-v2.0.3_4.0-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#83">#</a>
-						
-              <code id="83">lua-sdl2 v2.0.3_4.0-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/luajit-2.0.4-2-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#84">#</a>
-						
-              <code id="84">luajit 2.0.4-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-zlib-1:0.4-4-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#85">#</a>
-						
-              <code id="85">lua-zlib 1:0.4-4</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-messagepack-0.3.4-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#86">#</a>
-						
-              <code id="86">lua-messagepack 0.3.4-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/emacs-lua-mode-20151025-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#87">#</a>
-						
-              <code id="87">emacs-lua-mode 20151025-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-sec-2:0.5.1-2-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#88">#</a>
-						
-              <code id="88">lua51-sec 2:0.5.1-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-alt-getopt-0.7.0-7-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#89">#</a>
-						
-              <code id="89">lua51-alt-getopt 0.7.0-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-expat-1.3.0-3-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#90">#</a>
-						
-              <code id="90">lua-expat 1.3.0-3</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-socket-20160311-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#91">#</a>
-						
-              <code id="91">lua51-socket 20160311-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-sec-2:0.5.1-2-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#92">#</a>
-						
-              <code id="92">lua-sec 2:0.5.1-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/luarocks5.2-2.3.0-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#93">#</a>
-						
-              <code id="93">luarocks5.2 2.3.0-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-socket-20160311-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#94">#</a>
-						
-              <code id="94">lua-socket 20160311-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-alt-getopt-0.7.0-7-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#95">#</a>
-						
-              <code id="95">lua52-alt-getopt 0.7.0-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-messagepack-0.3.4-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#96">#</a>
-						
-              <code id="96">lua52-messagepack 0.3.4-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-mpack-1.0.2-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#97">#</a>
-						
-              <code id="97">lua51-mpack 1.0.2-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-penlight-1.3.2-2-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#98">#</a>
-						
-              <code id="98">lua-penlight 1.3.2-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/uwsgi-plugin-lua51-2.0.12-7-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#99">#</a>
-						
-              <code id="99">uwsgi-plugin-lua51 2.0.12-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-filesystem-1.6.3-3-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#100">#</a>
-						
-              <code id="100">lua51-filesystem 1.6.3-3</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/tolua++-1.0.93-2-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#101">#</a>
-						
-              <code id="101">tolua++ 1.0.93-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-testmore-0.3.2-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#102">#</a>
-						
-              <code id="102">lua-testmore 0.3.2-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-messagepack-0.3.4-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#103">#</a>
-						
-              <code id="103">lua51-messagepack 0.3.4-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-zlib-1:0.4-4-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#104">#</a>
-						
-              <code id="104">lua52-zlib 1:0.4-4</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-sql-sqlite-2.3.0-6-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#105">#</a>
-						
-              <code id="105">lua-sql-sqlite 2.3.0-6</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-zlib-1:0.4-4-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#106">#</a>
-						
-              <code id="106">lua51-zlib 1:0.4-4</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-sql-mysql-2.3.0-6-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#107">#</a>
-						
-              <code id="107">lua-sql-mysql 2.3.0-6</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-alt-getopt-0.7.0-7-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#108">#</a>
-						
-              <code id="108">lua-alt-getopt 0.7.0-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-bitop-1.0.2-7-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#109">#</a>
-						
-              <code id="109">lua51-bitop 1.0.2-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-bitop-1.0.2-7-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#110">#</a>
-						
-              <code id="110">lua52-bitop 1.0.2-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/haskell-hslua-0.4.1-2-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#111">#</a>
-						
-              <code id="111">haskell-hslua 0.4.1-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/luakit-2015.07.20-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#112">#</a>
-						
-              <code id="112">luakit 2015.07.20-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-testmore-0.3.2-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#113">#</a>
-						
-              <code id="113">lua52-testmore 0.3.2-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-sec-2:0.5.1-2-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#114">#</a>
-						
-              <code id="114">lua52-sec 2:0.5.1-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-expat-1.3.0-3-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#115">#</a>
-						
-              <code id="115">lua52-expat 1.3.0-3</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/luarocks5.1-2.3.0-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#116">#</a>
-						
-              <code id="116">luarocks5.1 2.3.0-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua52-filesystem-1.6.3-3-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#117">#</a>
-						
-              <code id="117">lua52-filesystem 1.6.3-3</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua-filesystem-1.6.3-3-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#118">#</a>
-						
-              <code id="118">lua-filesystem 1.6.3-3</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-testmore-0.3.2-1-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#119">#</a>
-						
-              <code id="119">lua51-testmore 0.3.2-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/community/os/x86_64/lua51-expat-1.3.0-3-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#120">#</a>
-						
-              <code id="120">lua51-expat 1.3.0-3</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua51-5.1.5-4-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#121">#</a>
-						
-              <code id="121">lua51 5.1.5-4</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua51-luajson-1.3.3-2-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#122">#</a>
-						
-              <code id="122">lua51-luajson 1.3.3-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua52-lpeg-1.0.0-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#123">#</a>
-						
-              <code id="123">lua52-lpeg 1.0.0-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua52-5.2.4-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#124">#</a>
-						
-              <code id="124">lua52 5.2.4-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua51-lpeg-1.0.0-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#125">#</a>
-						
-              <code id="125">lua51-lpeg 1.0.0-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua52-luajson-1.3.3-2-any.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#126">#</a>
-						
-              <code id="126">lua52-luajson 1.3.3-2</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/extra/os/x86_64/lua-5.3.2-1-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#127">#</a>
-						
-              <code id="127">lua 5.3.2-1</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Package file has the following structure:</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#128">#</a>
-						
-              <code id="128">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#129">#</a>
-						
-              <code id="129">/.MTREE</code><br />
-						
-            
-            <a class="navhash" href="#130">#</a>
-						
-              <code id="130">/usr/bin/lua</code><br />
-						
-            
-            <a class="navhash" href="#131">#</a>
-						
-              <code id="131">/usr/bin/lua5.3</code><br />
-						
-            
-            <a class="navhash" href="#132">#</a>
-						
-              <code id="132">/usr/bin/luac5.3</code><br />
-						
-            
-            <a class="navhash" href="#133">#</a>
-						
-              <code id="133">/usr/bin/luac</code><br />
-						
-            
-            <a class="navhash" href="#134">#</a>
-						
-              <code id="134">/usr/share/man/man1/luac.1.gz</code><br />
-						
-            
-            <a class="navhash" href="#135">#</a>
-						
-              <code id="135">/usr/share/man/man1/lua.1.gz</code><br />
-						
-            
-            <a class="navhash" href="#136">#</a>
-						
-              <code id="136">/usr/share/doc/lua/readme.html</code><br />
-						
-            
-            <a class="navhash" href="#137">#</a>
-						
-              <code id="137">/usr/share/doc/lua/osi-certified-72x60.png</code><br />
-						
-            
-            <a class="navhash" href="#138">#</a>
-						
-              <code id="138">/usr/share/doc/lua/manual.css</code><br />
-						
-            
-            <a class="navhash" href="#139">#</a>
-						
-              <code id="139">/usr/share/doc/lua/logo.gif</code><br />
-						
-            
-            <a class="navhash" href="#140">#</a>
-						
-              <code id="140">/usr/share/doc/lua/manual.html</code><br />
-						
-            
-            <a class="navhash" href="#141">#</a>
-						
-              <code id="141">/usr/share/doc/lua/lua.css</code><br />
-						
-            
-            <a class="navhash" href="#142">#</a>
-						
-              <code id="142">/usr/share/doc/lua/index.css</code><br />
-						
-            
-            <a class="navhash" href="#143">#</a>
-						
-              <code id="143">/usr/share/doc/lua/contents.html</code><br />
-						
-            
-            <a class="navhash" href="#144">#</a>
-						
-              <code id="144">/usr/share/licenses/lua/LICENSE</code><br />
-						
-            
-            <a class="navhash" href="#145">#</a>
-						
-              <code id="145">/usr/include/lauxlib.h</code><br />
-						
-            
-            <a class="navhash" href="#146">#</a>
-						
-              <code id="146">/usr/include/luaconf.h</code><br />
-						
-            
-            <a class="navhash" href="#147">#</a>
-						
-              <code id="147">/usr/include/lua.hpp</code><br />
-						
-            
-            <a class="navhash" href="#148">#</a>
-						
-              <code id="148">/usr/include/lua.h</code><br />
-						
-            
-            <a class="navhash" href="#149">#</a>
-						
-              <code id="149">/usr/include/lualib.h</code><br />
-						
-            
-            <a class="navhash" href="#150">#</a>
-						
-              <code id="150">/usr/lib/liblua.so</code><br />
-						
-            
-            <a class="navhash" href="#151">#</a>
-						
-              <code id="151">/usr/lib/liblua.so.5.3</code><br />
-						
-            
-            <a class="navhash" href="#152">#</a>
-						
-              <code id="152">/usr/lib/liblua.so.5.3.2</code><br />
-						
-            
-            <a class="navhash" href="#153">#</a>
-						
-              <code id="153">/usr/lib/pkgconfig/lua.pc</code><br />
-						
-            
-            <a class="navhash" href="#154">#</a>
-						
-              <code id="154">/toolchain_root/usr/lib/liblua.a</code><br />
-						
-            
-            <a class="navhash" href="#155">#</a>
-						
-              <code id="155">/toolchain_root/usr/lib/liblua.so</code><br />
-						
-            
-            <a class="navhash" href="#156">#</a>
-						
-              <code id="156">/toolchain_root/usr/lib/liblua.so.5.3</code><br />
-						
-            
-            <a class="navhash" href="#157">#</a>
-						
-              <code id="157">/toolchain_root/usr/lib/liblua.so.5.3.2</code><br />
-						
-            
-            <a class="navhash" href="#158">#</a>
-						
-              <code id="158">/toolchain_root/usr/lib/pkgconfig/lua.pc</code><br />
-						
-            
-            <a class="navhash" href="#159">#</a>
-						
-              <code id="159">/toolchain_root/usr/include/lua.h</code><br />
-						
-            
-            <a class="navhash" href="#160">#</a>
-						
-              <code id="160">/toolchain_root/usr/include/luaconf.h</code><br />
-						
-            
-            <a class="navhash" href="#161">#</a>
-						
-              <code id="161">/toolchain_root/usr/include/lualib.h</code><br />
-						
-            
-            <a class="navhash" href="#162">#</a>
-						
-              <code id="162">/toolchain_root/usr/include/lauxlib.h</code><br />
-						
-            
-            <a class="navhash" href="#163">#</a>
-						
-              <code id="163">/toolchain_root/usr/include/lua.hpp</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Generating .MTREE</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr toolchain_root</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Tar-ing up files</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr toolchain_root .MTREE</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>xz -c -z</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO usr toolchain_root .MTREE | xz -c -z</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -tqf lua.pkg.tar.xz .PKGINFO</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#164">#</a>
-						
-              <code id="164">.PKGINFO</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Created package at path /var/cache/pacman/pkg/lua.pkg.tar.xz</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 1</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/lua.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#165">#</a>
-						
-              <code id="165">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#166">#</a>
-						
-              <code id="166">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#167">#</a>
-						
-              <code id="167">==> Adding package '/var/cache/pacman/pkg/lua.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#168">#</a>
-						
-              <code id="168">  -> Computing checksums...</code><br />
-						
-            
-            <a class="navhash" href="#169">#</a>
-						
-              <code id="169">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#170">#</a>
-						
-              <code id="170">  -> Creating 'files' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#171">#</a>
-						
-              <code id="171">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="67">    Aborting...</code><br />
 						
             
           </div>

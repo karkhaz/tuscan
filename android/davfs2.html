@@ -30,20 +30,30 @@
     <h1>Build of davfs2
         with <a href="../index.html">android</a>
         toolchain</h1>
-    <p>The build took 00h 00m 46s and was
+    <p>The build took 00h 00m 47s and was
     NOT successful.
     
     </p>
+    
+    <p>
+    We did not attempt to build this package because some of its
+    dependencies failed to build. These dependencies are:
+    </p>
+    <ul>
+      
+      <li><a href="neon.html">neon</a></li>
+      
+    </ul>
     
     
     
     <h2>List of Errors</h2>
     <ul>
       
-      <li>missing_source
+      <li>missing_deps
         <ul>
           
-          <li><a href="#6">==> ERROR: Failure while downloading http://mirrors.zerg.biz/nongnu/davfs2/davfs2-1.5.2.tar.gz</a></li>
+          <li><a href="#8">error: target not found: neon</a></li>
           
         </ul>
       </li>
@@ -53,45 +63,20 @@
     <h2>Log</h2>
     
       <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan makepkg --nobuild --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck --nodeps</code>
+        <div class="info">
+          <code>Removed vanilla repositories from pacman.conf and added:</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#1">#</a>
 						
-              <code id="1">==> Making package: davfs2 1.5.2-1 (Tue Jun 14 06:23:23 UTC 2016)</code><br />
+              <code id="1">[tuscan]</code><br />
 						
             
             <a class="navhash" href="#2">#</a>
 						
-              <code id="2">==> WARNING: Skipping dependency checks.</code><br />
-						
-            
-            <a class="navhash" href="#3">#</a>
-						
-              <code id="3">==> Retrieving sources...</code><br />
-						
-            
-            <a class="navhash" href="#4">#</a>
-						
-              <code id="4">  -> Downloading davfs2-1.5.2.tar.gz...</code><br />
-						
-            
-            <a class="navhash" href="#5">#</a>
-						
-              <code id="5">curl: (7) Failed to connect to mirrors.zerg.biz port 80: Connection refused</code><br />
-						
-            
-            <a class="navhash" href="#6">#</a>
-						<span class="error">
-              <code id="6">==> ERROR: Failure while downloading http://mirrors.zerg.biz/nongnu/davfs2/davfs2-1.5.2.tar.gz</code><br />
-						</span>
-            
-            <a class="navhash" href="#7">#</a>
-						
-              <code id="7">    Aborting...</code><br />
+              <code id="2">Server = file:///var/cache/pacman/pkg/</code><br />
 						
             
           </div>
@@ -100,9 +85,60 @@
       <br />
     
       <div class="block">
-        <div class="die">
-          <code>Unable to get sources for dir '/var/abs/extra/davfs2'</code>
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman -Syy --noconfirm</code>
         </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#3">#</a>
+						
+              <code id="3">:: Synchronizing package databases...</code><br />
+						
+            
+            <a class="navhash" href="#4">#</a>
+						
+              <code id="4">downloading tuscan.db...</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm LIBRARY_PATH=/toolchain_root/usr/lib CPATH=/toolchain_root/usr/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#5">#</a>
+						
+              <code id="5">==> Making package: davfs2 1.5.4-1 (Tue Jun 28 03:29:02 UTC 2016)</code><br />
+						
+            
+            <a class="navhash" href="#6">#</a>
+						
+              <code id="6">==> Checking runtime dependencies...</code><br />
+						
+            
+            <a class="navhash" href="#7">#</a>
+						
+              <code id="7">==> Installing missing dependencies...</code><br />
+						
+            
+            <a class="navhash" href="#8">#</a>
+						<span class="error">
+              <code id="8">error: target not found: neon</code><br />
+						</span>
+            
+            <a class="navhash" href="#9">#</a>
+						
+              <code id="9">==> ERROR: 'pacman' failed to install missing dependencies.</code><br />
+						
+            
+          </div>
         
       </div>
       <br />

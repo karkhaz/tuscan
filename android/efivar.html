@@ -30,7 +30,7 @@
     <h1>Build of efivar
         with <a href="../index.html">android</a>
         toolchain</h1>
-    <p>The build took 00h 00m 34s and was
+    <p>The build took 00h 00m 49s and was
     NOT successful.
     
     </p>
@@ -52,20 +52,12 @@
     <h2>List of Errors</h2>
     <ul>
       
-      <li>missing_header
+      <li>compile_error
         <ul>
           
-          <li><a href="#54">/tmp/efivar/src/efivar/src/include/efivar/efivar.h:39:26: fatal error: efivar-guids.h: No such file or directory</a></li>
+          <li><a href="#15">guid.h:135:2: error: implicit declaration of function '__bswap_16' [-Werror=implicit-function-declaration]</a></li>
           
-        </ul>
-      </li>
-      
-      <li>exec_error
-        <ul>
-          
-          <li><a href="#21">./makeguids: ./makeguids: cannot execute binary file</a></li>
-          
-          <li><a href="#51">./makeguids: ./makeguids: cannot execute binary file</a></li>
+          <li><a href="#21">guid.h:135:2: error: implicit declaration of function '__bswap_16' [-Werror=implicit-function-declaration]</a></li>
           
         </ul>
       </li>
@@ -73,14 +65,6 @@
     </ul>
     
     <h2>Log</h2>
-    
-      <div class="block">
-        <div class="info">
-          <code>Found permanent source directory in /sources/efivar</code>
-        </div>
-        
-      </div>
-      <br />
     
       <div class="block">
         <div class="info">
@@ -135,7 +119,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: efivar 0.21-1 (Tue Jun 14 05:23:56 UTC 2016)</code><br />
+              <code id="5">==> Making package: efivar 0.23.37.g8740389-1 (Tue Jun 28 03:09:47 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -165,272 +149,97 @@
             
             <a class="navhash" href="#11">#</a>
 						
-              <code id="11">make -C src TOPDIR=/tmp/efivar/src/efivar SRCDIR=/tmp/efivar/src/efivar/src/ ARCH=x86_64</code><br />
+              <code id="11">make[1]: Entering directory '/tmp/efivar/src/efivar/src'</code><br />
 						
             
             <a class="navhash" href="#12">#</a>
 						
-              <code id="12">make[1]: Entering directory '/tmp/efivar/src/efivar/src'</code><br />
+              <code id="12">arm-linux-androideabi-gcc  -I/tmp/efivar/src/efivar/src/include/efivar/  -specs=/tmp/efivar/src/efivar/gcc.specs  -L.      -DEFIVAR_BUILD_ENVIRONMENT -o makeguids makeguids.c guid.c -ldl </code><br />
 						
             
             <a class="navhash" href="#13">#</a>
 						
-              <code id="13">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .guid.h.P guid.h</code><br />
+              <code id="13">In file included from makeguids.c:30:0:</code><br />
 						
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .util.h.P util.h</code><br />
+              <code id="14">guid.h: In function 'text_to_guid':</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
-						
-              <code id="15">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/   -DEFIVAR_BUILD_ENVIRONMENT -c -o makeguids.o makeguids.c</code><br />
-						
+						<span class="error">
+              <code id="15">guid.h:135:2: error: implicit declaration of function '__bswap_16' [-Werror=implicit-function-declaration]</code><br />
+						</span>
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/   -DEFIVAR_BUILD_ENVIRONMENT -c -o fakeguid.o guid.c</code><br />
+              <code id="16">  guid->d = cpu_to_be16(guid->d);</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/   -o makeguids makeguids.o fakeguid.o -ldl</code><br />
+              <code id="17">  ^</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">/toolchain_root/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: warning: makeguids.o uses 2-byte wchar_t yet the output is to use 4-byte wchar_t; use of wchar_t values across objects may fail</code><br />
+              <code id="18">cc1: all warnings being treated as errors</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">/toolchain_root/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld: warning: fakeguid.o uses 2-byte wchar_t yet the output is to use 4-byte wchar_t; use of wchar_t values across objects may fail</code><br />
+              <code id="19">In file included from guid.c:26:0:</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">./makeguids guids.txt guids.bin names.bin guid-symbols.S include/efivar/efivar-guids.h</code><br />
+              <code id="20">guid.h: In function 'text_to_guid':</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						<span class="error">
-              <code id="21">./makeguids: ./makeguids: cannot execute binary file</code><br />
+              <code id="21">guid.h:135:2: error: implicit declaration of function '__bswap_16' [-Werror=implicit-function-declaration]</code><br />
 						</span>
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .makeguids.c.P makeguids.c</code><br />
+              <code id="22">  guid->d = cpu_to_be16(guid->d);</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efiboot-loadopt.h.P include/efivar/efiboot-loadopt.h</code><br />
+              <code id="23">  ^</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efiboot-creator.h.P include/efivar/efiboot-creator.h</code><br />
+              <code id="24">cc1: all warnings being treated as errors</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .loadopt.c.P loadopt.c</code><br />
+              <code id="25">make[1]: *** [/tmp/efivar/src/efivar/Make.rules:13: makeguids] Error 1</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .linux.h.P linux.h</code><br />
+              <code id="26">make[1]: Leaving directory '/tmp/efivar/src/efivar/src'</code><br />
 						
             
             <a class="navhash" href="#27">#</a>
 						
-              <code id="27">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .linux.c.P linux.c</code><br />
+              <code id="27">make: *** [Makefile:11: all] Error 2</code><br />
 						
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .gpt.h.P gpt.h</code><br />
+              <code id="28">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .gpt.c.P gpt.c</code><br />
-						
-            
-            <a class="navhash" href="#30">#</a>
-						
-              <code id="30">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .disk.h.P disk.h</code><br />
-						
-            
-            <a class="navhash" href="#31">#</a>
-						
-              <code id="31">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .disk.c.P disk.c</code><br />
-						
-            
-            <a class="navhash" href="#32">#</a>
-						
-              <code id="32">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .creator.c.P creator.c</code><br />
-						
-            
-            <a class="navhash" href="#33">#</a>
-						
-              <code id="33">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .crc32.h.P crc32.h</code><br />
-						
-            
-            <a class="navhash" href="#34">#</a>
-						
-              <code id="34">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .crc32.c.P crc32.c</code><br />
-						
-            
-            <a class="navhash" href="#35">#</a>
-						
-              <code id="35">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF include/efivar/.efivar-dp.h.P include/efivar/efivar-dp.h</code><br />
-						
-            
-            <a class="navhash" href="#36">#</a>
-						
-              <code id="36">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .lib.h.P lib.h</code><br />
-						
-            
-            <a class="navhash" href="#37">#</a>
-						
-              <code id="37">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .generics.h.P generics.h</code><br />
-						
-            
-            <a class="navhash" href="#38">#</a>
-						
-              <code id="38">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp.h.P dp.h</code><br />
-						
-            
-            <a class="navhash" href="#39">#</a>
-						
-              <code id="39">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .vars.c.P vars.c</code><br />
-						
-            
-            <a class="navhash" href="#40">#</a>
-						
-              <code id="40">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .lib.c.P lib.c</code><br />
-						
-            
-            <a class="navhash" href="#41">#</a>
-						
-              <code id="41">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .guid.c.P guid.c</code><br />
-						
-            
-            <a class="navhash" href="#42">#</a>
-						
-              <code id="42">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .export.c.P export.c</code><br />
-						
-            
-            <a class="navhash" href="#43">#</a>
-						
-              <code id="43">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .efivarfs.c.P efivarfs.c</code><br />
-						
-            
-            <a class="navhash" href="#44">#</a>
-						
-              <code id="44">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .efivar.c.P efivar.c</code><br />
-						
-            
-            <a class="navhash" href="#45">#</a>
-						
-              <code id="45">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-message.c.P dp-message.c</code><br />
-						
-            
-            <a class="navhash" href="#46">#</a>
-						
-              <code id="46">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-media.c.P dp-media.c</code><br />
-						
-            
-            <a class="navhash" href="#47">#</a>
-						
-              <code id="47">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-hw.c.P dp-hw.c</code><br />
-						
-            
-            <a class="navhash" href="#48">#</a>
-						
-              <code id="48">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp-acpi.c.P dp-acpi.c</code><br />
-						
-            
-            <a class="navhash" href="#49">#</a>
-						
-              <code id="49">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -DEFIVAR_BUILD_ENVIRONMENT -M -MM -MF .dp.c.P dp.c</code><br />
-						
-            
-            <a class="navhash" href="#50">#</a>
-						
-              <code id="50">./makeguids guids.txt guids.bin names.bin guid-symbols.S include/efivar/efivar-guids.h</code><br />
-						
-            
-            <a class="navhash" href="#51">#</a>
-						<span class="error">
-              <code id="51">./makeguids: ./makeguids: cannot execute binary file</code><br />
-						</span>
-            
-            <a class="navhash" href="#52">#</a>
-						
-              <code id="52">arm-linux-androideabi-gcc  -Werror -Wall -Wsign-compare -Wstrict-aliasing -std=gnu11 -fshort-wchar -fPIC -fvisibility=hidden -D_GNU_SOURCE -I/tmp/efivar/src/efivar/src/include/efivar/    -c -o dp.o dp.c</code><br />
-						
-            
-            <a class="navhash" href="#53">#</a>
-						
-              <code id="53">In file included from dp.c:23:0:</code><br />
-						
-            
-            <a class="navhash" href="#54">#</a>
-						<span class="error">
-              <code id="54">/tmp/efivar/src/efivar/src/include/efivar/efivar.h:39:26: fatal error: efivar-guids.h: No such file or directory</code><br />
-						</span>
-            
-            <a class="navhash" href="#55">#</a>
-						
-              <code id="55"> #include <efivar-guids.h></code><br />
-						
-            
-            <a class="navhash" href="#56">#</a>
-						
-              <code id="56">                          ^</code><br />
-						
-            
-            <a class="navhash" href="#57">#</a>
-						
-              <code id="57">compilation terminated.</code><br />
-						
-            
-            <a class="navhash" href="#58">#</a>
-						
-              <code id="58">/tmp/efivar/src/efivar/Make.rules:17: recipe for target 'dp.o' failed</code><br />
-						
-            
-            <a class="navhash" href="#59">#</a>
-						
-              <code id="59">make[1]: *** [dp.o] Error 1</code><br />
-						
-            
-            <a class="navhash" href="#60">#</a>
-						
-              <code id="60">make[1]: Leaving directory '/tmp/efivar/src/efivar/src'</code><br />
-						
-            
-            <a class="navhash" href="#61">#</a>
-						
-              <code id="61">Makefile:13: recipe for target 'src' failed</code><br />
-						
-            
-            <a class="navhash" href="#62">#</a>
-						
-              <code id="62">make: *** [src] Error 2</code><br />
-						
-            
-            <a class="navhash" href="#63">#</a>
-						
-              <code id="63">==> ERROR: A failure occurred in build().</code><br />
-						
-            
-            <a class="navhash" href="#64">#</a>
-						
-              <code id="64">    Aborting...</code><br />
+              <code id="29">    Aborting...</code><br />
 						
             
           </div>
