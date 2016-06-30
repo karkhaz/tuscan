@@ -51,6 +51,12 @@ def summary_structure(toolchains):
         _patterns = yaml.load(f)
     categories = set([p["category"] for p in _patterns])
 
+    def native_tool_freq(build):
+        total = 0
+        for _, freq in build["native_tools"].items():
+            total += freq
+        return -1 * total
+
     def error_trees(toolchain):
         error_trees = []
         for category in categories:
@@ -65,6 +71,15 @@ def summary_structure(toolchains):
                 "link_text": "%s ({total} builds)" % category
             }
             error_trees.append(obj)
+        error_trees.append({
+            "name": "native-redirect",
+            "filter": (lambda b: b["native_tools"]),
+            "description": ("Builds that failed even after their native"
+                            " tools were redirected to toolchain tools "
+                            "(sorted by number of invocations)"),
+            "link_text": "Builds invoking native tools ({total})",
+            "sort_fun": native_tool_freq
+        })
         error_trees.append({
             "name": "blockers",
             "filter": (lambda build, toolchain=toolchain:
@@ -114,7 +129,18 @@ def summary_structure(toolchains):
                 "filter": (lambda build: build["return_code"] == 0),
                 "description": ("Builds that passed with toolchain "
                                 "'%s'" % toolchain),
-                "link_text": "{total} passed"
+                "link_text": "{total} passed",
+                "children": [{
+                    "name": "native-redirect",
+                    "filter": (lambda b: b["native_tools"]),
+                    "description": ("Builds that passed only after "
+                                    "their native tools were redirected"
+                                    " to toolchain tools (sorted by "
+                                    "number of invocations)"),
+                    "link_text": ("({total} had their native "
+                                  "tools redirected)"),
+                    "sort_fun": native_tool_freq
+                }]
               }, {
                 "name": "fail",
                 "filter": (lambda build: build["return_code"] != 0),

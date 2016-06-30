@@ -33,6 +33,18 @@
     <p>The build took {{ data["time"]}} and was
     {% if data["return_code"] is equalto 0 %}SUCCESSFUL.
     {% else %}NOT successful.{% endif %}
+    {% if data["native_tools"] %}
+    <p>This build attempted to bypass our toolchain by invoking native
+    tools; we intercepted these invocations and sent them to our
+    toolchain. The frequency of each native tool invocation is given
+    here:</p>
+    <table>
+      <tr><th>tool</th><th>frequency</th></tr>
+      {% for tool, freq in data["native_tools"].items() %}
+      <tr><td><code>{{ tool }}</code></td><td>{{ freq }}</td></tr>
+      {% endfor %}
+    </table>
+    {% endif %}
     </p>
     {% if data["blocked_by"] %}
     <p>
