@@ -58,6 +58,7 @@ def run_container(args):
                " --volumes-from {toolchain_volume}"
                " -v {cwd}/mirror:/mirror:ro"
                " -v {cwd}/sources:/sources:ro"
+               " -v {cwd}/sysroots/{toolchain}:/toolchain_root:ro"
                " make_package"
 
                # Arguments to the make_package stage inside container:

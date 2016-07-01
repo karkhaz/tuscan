@@ -24,6 +24,11 @@ SRCDIR=/srcdir
 BUILDDIR=/musl_build
 PKGDIR=/toolchain_root
 
+if [ -d "$PKGDIR/clang+llvm-x86_64-archlinux/bin" ]; then
+  # We've already downloaded and built a toolchain
+  exit 0
+fi
+
 die() {
   echo "die: $*" 1>&2
   exit 1
