@@ -96,9 +96,6 @@ def main():
         if cp.returncode:
             exit(1)
 
-    os.mkdir("/toolchain_root")
-    shutil.chown("/toolchain_root", "tuscan")
-
     # Replace native tools with thin wrappers
     with open("/build/tool_redirect_rules.yaml") as f:
         transforms = yaml.load(f)
@@ -143,7 +140,21 @@ def main():
             shutil.move(os.path.join(tmp_dir, wrapper),
                         os.path.join("/usr/bin", wrapper))
 
-    setup.toolchain_specific_setup(args)
+    if not os.path.isdir("/toolchain_root"):
+        log("error", "/toolchain_root is not mounted")
+        exit(1)
+
+    if os.listdir("/toolchain_root"):
+        log("info", ("Skipping toolchain-specific setup as "
+                     "/toolchain_root contains files. Listing:"),
+                     output=list(os.listdir("/toolchain_root")))
+    else:
+        log("info", ("/toolchain_root is empty, performing "
+                     "toolchain-specific setup"),
+                     output=list(os.listdir("/toolchain_root")))
+        setup.toolchain_specific_setup(args)
+
+    recursive_chown("/toolchain_root")
 
     exit(0)
 

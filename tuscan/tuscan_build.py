@@ -112,7 +112,8 @@ def substitute_vars(data_structure, args):
     elif isinstance(data_structure, dict):
         ret = {}
         for k, v in data_structure.items():
-            ret[k] = substitute_vars(v, args)
+            new_k = substitute_vars(k, args)
+            ret[new_k] = substitute_vars(v, args)
     else: raise RuntimeError("Impossible type with value %s" %
                              str(data_structure))
     return ret
@@ -242,7 +243,7 @@ class Stage(object):
 
     class Run(object):
         def __init__(self, dependencies=[], data_containers=[],
-                     local_mounts=[], stages=[], stdout=None,
+                     local_mounts={}, stages=[], stdout=None,
                      stderr=None,  command_override=None,
                      post_exit=None, top_level=False, rm_container=True):
             self.dependencies = dependencies
@@ -384,9 +385,9 @@ class Stages(object):
                     main_command += " --volumes-from %s" % cont["name"]
                     main_command += " "
 
-                for mount in stage.run.local_mounts:
+                for local, mount in stage.run.local_mounts.items():
                     main_command += (" -v %s/%s:/%s" %
-                                     (os.getcwd(), mount, mount))
+                                     (os.getcwd(), local, mount))
 
                 main_command += (" --name %s %s --output-directory %s"
                                  " --toolchain %s --stage-name %s"
@@ -405,7 +406,7 @@ class Stages(object):
                                      (cont["switch"],
                                           cont["name"]))
 
-                for mount in stage.run.local_mounts:
+                for local, mount in stage.run.local_mounts.items():
                     main_command += (" --%s-directory /%s" %
                                      (mount, mount))
 
@@ -564,11 +565,13 @@ def prerequisite_touch_files(ninja, args):
     rule_name = "prerequisite"
     command = ("docker pull rafaelsoares/archlinux:latest {devnull}"
                " && mkdir -p {markers_dir}"
+               " && mkdir -p sysroots/{toolchain}"
                " && cp package_build_wrapper.py container_build_dir"
                " && ln -fns {touch_dir} {latest_dir}").format(
                 devnull=devnull,
                 markers_dir=os.path.join(args.touch_dir, "container_markers"),
                 touch_dir=os.path.join(os.getcwd(), args.touch_dir),
+                toolchain=args.toolchain,
                 latest_dir = os.path.join(os.getcwd(),
                                   os.path.dirname(os.path.dirname(args.touch_dir)),
                                   "latest"))
