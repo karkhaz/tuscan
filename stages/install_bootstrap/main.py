@@ -21,6 +21,7 @@ from utilities import recursive_chown
 
 import codecs
 import jinja2
+from glob import glob
 import json
 import os
 import os.path
@@ -28,6 +29,7 @@ import re
 import setup
 import shutil
 import subprocess
+import tarfile
 import urllib.request
 import tempfile
 import yaml
@@ -79,22 +81,34 @@ def main():
     else:
         log("command", cmd, out.splitlines())
 
-    # Download and install bear
+    # Build and install bear
     with tempfile.TemporaryDirectory() as d:
-        url = ("https://github.com/karkhaz/Bear/blob/master/"
-               "bear-2.1.5-1-x86_64.pkg.tar.xz?raw=true")
-        response = urllib.request.urlopen(url)
-        tar_file = response.read()
-        pkg_name = "bear.pkg.tar.xz"
-        with open(os.path.join(d, pkg_name), "wb") as f:
-            f.write(tar_file)
+        bear_tar = os.path.join(d, "bear.tar.xz")
+        with tarfile.open(bear_tar, "w:xz") as tar:
+            tar.add("/bear", arcname="bear")
+        shutil.copyfile("/bear/PKGBUILD", os.path.join(d, "PKGBUILD"))
+        shutil.chown(d, user="tuscan")
         os.chdir(d)
-        cmd = "pacman -U --noconfirm %s" % pkg_name
+        cmd = "sudo -u tuscan makepkg --nocolor"
         cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT, universal_newlines=True)
-        log("command", cmd, cp.stdout.splitlines())
         if cp.returncode:
+            log("die", cmd, cp.stdout.splitlines())
             exit(1)
+        else:
+            log("command", cmd, cp.stdout.splitlines())
+        package = glob("bear*.pkg.tar.xz")
+        if not len(package) == 1:
+            log("die", "More than one package found", package)
+            exit(1)
+        cmd = "pacman -U --noconfirm %s" % package[0]
+        cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, universal_newlines=True)
+        if cp.returncode:
+            log("die", cmd, cp.stdout.splitlines())
+            exit(1)
+        else:
+            log("command", cmd, cp.stdout.splitlines())
 
     # Replace native tools with thin wrappers
     with open("/build/tool_redirect_rules.yaml") as f:
@@ -141,7 +155,7 @@ def main():
                         os.path.join("/usr/bin", wrapper))
 
     if not os.path.isdir("/toolchain_root"):
-        log("error", "/toolchain_root is not mounted")
+        log("die", "/toolchain_root is not mounted")
         exit(1)
 
     if os.listdir("/toolchain_root"):
