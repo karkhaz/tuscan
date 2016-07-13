@@ -118,9 +118,9 @@ def run_container(args):
                 # SLOCCount.
                 json_result["sloc_info"] = json.loads(obj["body"])
 
-            elif obj["kind"] == "bear":
-                # This will be an "exec" or "exit" record from libEAR.
-                json_result["bear_output"] = obj["body"]
+            elif obj["kind"] == "red":
+                # This will be an "exec" or "exit" record from libred.
+                json_result["red_output"] = obj["body"]
 
             elif obj["kind"] == "native_tools":
                 json_result["native_tools"] = obj["body"]
@@ -145,8 +145,8 @@ def run_container(args):
     if not "sloc_info" in json_result:
         json_result["sloc_info"] = {}
 
-    if not "bear_output" in json_result:
-        json_result["bear_output"] = []
+    if not "red_output" in json_result:
+        json_result["red_output"] = []
 
     if not "native_tools" in json_result:
         json_result["native_tools"] = {}
