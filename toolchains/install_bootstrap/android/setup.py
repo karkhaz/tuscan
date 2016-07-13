@@ -29,9 +29,6 @@ import subprocess
 def toolchain_specific_setup(args):
     log("info", "Running android-specific setup")
 
-    cmd = "pacman -S --noconfirm wget sudo"
-    run_cmd(cmd, as_root=True)
-
     # wget and curl output unsuitable progress bars even when not
     # connected to a TTY. Turn them off.
     with open("/etc/wgetrc", "a") as f:

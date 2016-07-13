@@ -19,36 +19,38 @@ will thus need to pass the `--recursive` switch to the `git clone`
 command when cloning Tuscan, or else run `git submodule init; git
 submodule update` after you have cloned it.
 
-Tuscan uses a mirror of Arch Linux binaries and sources.
+On the first run, Tuscan will attempt to download a copy of every
+official Arch Linux binary package, as well as their corresponding
+sources. These files are placed in the `mirror` and `sources` directory,
+respectively. During the first run, Tuscan will also create and commit
+an Arch Linux Docker image called `tuscan_base_image`, whose software
+databases are in sync with the downloaded sources and binaries.  _Do not
+remove this image_ from your system; if you do, you will need to
+re-create it and also re-download up-to-date versions of the sources and
+binaries.
 
-### Binaries
+Occasionally, downloads of a source or binary may fail; when this
+happens for a particular package, a `$PACKAGE_NAME.log` file will be
+left in the `sources` or `mirror` directory, containing information on
+the failure.
 
-Tuscan expects that a mirror Arch Linux binaries exists in the top-level
-directory, named `mirror`. If you obtain a copy of Arch Linux binaries
-from your local mirror, you may wish to remove i386 binaries to save
-space.
+- For binaries, you may wish to download the binary yourself and place
+  it in the `mirror` directory. An archive of all Arch Linux binaries is
+  hosted at the [Arch Archive](https://archive.archlinux.org/packages/);
+  make sure that the version number that you're downloading matches the
+  version described in the `.log` file.
 
-### Sources
+- A failed download of a source file usually indicates that the upstream
+  source is broken. It may be appropriate to file a bug about this on
+  the [Arch Linux bug tracker](https://bugs.archlinux.org/). There is
+  not much that can be done about this; Tuscan will fail to build that
+  package and any packages that depend on it.
 
-By default, Tuscan downloads sources of Arch Linux packages into a data
-container called `sources` as it runs, so you don't need to provide
-this.
-
-If you have atomically downloaded a copy of all Arch sources and wish to
-add it to Tuscan, you will need to add it to the sources data container.
-
-1. Create the data container if it doesn't already exist:
-
-        docker create -v /sources --name sources base/arch /bin/true
-
-1. Spin up a docker container that mounts the data container as well as
-   the local sources directory, and copies the contents of the sources
-   directory into the container:
-
-        docker run --volumes-from sources -v \
-          $(pwd)/tmp_sources:/tmp_sources base/arch \
-          sh -c 'cp /tmp_sources/* /sources'
-
+Binaries are downloaded from an Arch Linux mirror. If you don't live in
+the United States, you may wish to replace "United States" in the
+`stages/create_base_image/main.sh` script. The invocation of `reflector`
+in that script finds the fastest and most up-to-date Arch mirrors from
+the specified country.
 
 
 Running Tuscan
@@ -110,9 +112,20 @@ described in the file `stages/$STAGE_NAME/deps.yaml`.
 Dependencies
 ------------
 
+Software:
+
 *   docker
 
     (you should add your user to the 'docker' group)
+
+*   gnuplot
+
+    http://gnuplot.info
+
+Tuscan also requires several Python packages. These can be installed
+with `pip`. Tuscan code that runs on your host machine is written in
+Python 2, so if your operating system uses Python 3 by default you may
+need to install these packages with `pip2`.
 
 *   ninja
 
@@ -122,14 +135,13 @@ Dependencies
 
     http://pyyaml.org/
 
-
 *   Jinja2
 
     http://jinja.pocoo.org/docs/dev/
 
-*   gnuplot
+*   docker-py
 
-    http://gnuplot.info
+    https://github.com/docker/docker-py
 
 
 Troubleshooting

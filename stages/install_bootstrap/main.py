@@ -68,34 +68,16 @@ def main():
                       + name_data["tools"]
                       + ["sloccount"])
 
-    vanilla = "file://" + args.mirror_directory + "/$repo/os/$arch"
-    log("info", "Printing %s to mirrorlist" % vanilla)
-    with open("/etc/pacman.d/mirrorlist", "w") as f:
-        print("Server = " + vanilla, file=f)
-
-    cmd = "pacman -Syy --noconfirm"
-    time = timestamp()
-    cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT, universal_newlines=True)
-    log("command", cmd, cp.stdout.splitlines(), time)
-    if cp.returncode:
+    cmd = "pacman -S --needed --noconfirm %s" % " ".join(set(bootstrap_packs))
+    proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT)
+    out, _ = proc.communicate()
+    out = codecs.decode(out, errors="replace")
+    if proc.returncode:
+        log("die", cmd, out.splitlines())
         exit(1)
-
-    cmd = "pacman -Su --noconfirm " + " ".join(bootstrap_packs)
-    time = timestamp()
-    cp = subprocess.run(cmd.split(), stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT, universal_newlines=True)
-    log("command", cmd, cp.stdout.splitlines(), time)
-    if cp.returncode:
-        exit(1)
-
-    run_cmd("useradd -m -s /bin/bash tuscan", as_root=True)
-
-    # User 'tuscan' needs to be able to use sudo without being harassed
-    # for passwords) and so does root (to su into tuscan)
-    with open("/etc/sudoers", "a") as f:
-        print("tuscan ALL=(ALL) NOPASSWD: ALL", file=f)
-        print("root ALL=(ALL) NOPASSWD: ALL", file=f)
+    else:
+        log("command", cmd, out.splitlines())
 
     # Download and install bear
     with tempfile.TemporaryDirectory() as d:
