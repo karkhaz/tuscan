@@ -81,12 +81,12 @@ def main():
     else:
         log("command", cmd, out.splitlines())
 
-    # Build and install bear
+    # Build and install red
     with tempfile.TemporaryDirectory() as d:
-        bear_tar = os.path.join(d, "bear.tar.xz")
-        with tarfile.open(bear_tar, "w:xz") as tar:
-            tar.add("/bear", arcname="bear")
-        shutil.copyfile("/bear/PKGBUILD", os.path.join(d, "PKGBUILD"))
+        red_tar = os.path.join(d, "red.tar.xz")
+        with tarfile.open(red_tar, "w:xz") as tar:
+            tar.add("/red", arcname="red")
+        shutil.copyfile("/red/PKGBUILD", os.path.join(d, "PKGBUILD"))
         shutil.chown(d, user="tuscan")
         os.chdir(d)
         cmd = "sudo -u tuscan makepkg --nocolor"
@@ -97,7 +97,7 @@ def main():
             exit(1)
         else:
             log("command", cmd, cp.stdout.splitlines())
-        package = glob("bear*.pkg.tar.xz")
+        package = glob("red*.pkg.tar.xz")
         if not len(package) == 1:
             log("die", "More than one package found", package)
             exit(1)

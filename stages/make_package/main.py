@@ -106,7 +106,7 @@ def copy_and_build(args):
     command = (
        "sudo -u tuscan " +
        " ".join(args.env_vars) +
-       " bear makepkg --noextract --syncdeps"
+       " red makepkg --noextract --syncdeps"
        " --skipinteg --skippgpcheck --skipchecksums"
        " --noconfirm --nocolor --log --noprogressbar"
        " --nocheck"
@@ -121,13 +121,13 @@ def copy_and_build(args):
 
     log("command", command, output.splitlines(), time)
 
-    # Pick up output left by bear
+    # Pick up output left by red
     if os.path.exists("compile_commands.json"):
         with open("compile_commands.json") as f:
-            bear_output = json.load(f)
-        log("bear", "bear", output=bear_output)
+            red_output = json.load(f)
+        log("red", "red", output=red_output)
     else:
-        log("die", "No bear output found in dir '%s'" % os.getcwd())
+        log("die", "No red output found in dir '%s'" % os.getcwd())
 
     native_tools = {}
     for native in glob("/tmp/tuscan-native-*"):
