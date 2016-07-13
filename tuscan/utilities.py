@@ -240,6 +240,8 @@ def get_argparser():
 
     parser.add_argument("--bear-directory")
 
+    parser.add_argument("--toolchain_root-directory")
+
     parser.add_argument("--stage-name",
                         dest="stage_name", action="store")
 

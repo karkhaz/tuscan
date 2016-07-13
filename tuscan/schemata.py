@@ -50,8 +50,12 @@ stage_deps_schema = voluptuous.Schema({
             voluptuous.Optional("stages"): [_nonempty_string],
             # Data containers that are used during the run of this stage
             voluptuous.Optional("data_containers"): [_nonempty_string],
-            # Directories that will be mounted in this stage's # container
-            voluptuous.Optional("local_mounts"): [_nonempty_string],
+            # Directories that will be mounted in this stage's
+            # container. This dictionary mounts the local directory to
+            # the directory it will be mounted under in the container.
+            voluptuous.Optional("local_mounts"): {
+                _nonempty_string: _nonempty_string
+            },
         }),
         # Instead of doing 'docker run', run a custom command
         voluptuous.Optional("command_override"): _nonempty_string,
