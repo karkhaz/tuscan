@@ -311,12 +311,57 @@ def s_to_hhmmss(seconds):
     return "%02dh %02dm %02ds" % (hours, mins, secs)
 
 
+def pretty_process(proc):
+    """The HTML list item for a single build process."""
+    if proc["return_code"] is None:
+        rc = '<span class="no-return">?</span>'
+    elif proc["return_code"]:
+        rc = '<span class="bad-return">%s</span>' % proc["return_code"]
+    else:
+        rc = '<span class="good-return">%s</span>' % proc["return_code"]
+    command = "<code>%s</code>" % proc["command"]
+    return "%s %s" % (rc, command)
+
+
+def list_of_process_tree(tree, indent=0):
+    """Generate a nested HTML list from a process tree
+
+    This cannot be implemented in jinja, since the tree is a recursive
+    data structure.
+    """
+    pad = "  " * indent
+    next_pad = "  " * (indent + 1)
+    tree = sorted(tree, key=(lambda item: item["timestamp"]))
+    output = []
+    output.append('%s<ul class="level-%s">' % (pad, indent))
+    for item in tree:
+        output.append("%s<li>%s" % (next_pad, pretty_process(item)))
+        output.append(list_of_process_tree(item["children"], indent+2))
+        output.append("%s</li>" % (next_pad))
+    output.append("%s</ul>" % pad)
+    return "\n".join(output)
+
+
 def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         results_list):
     try:
         with open(json_path) as f:
             data = json.load(f)
         post_processed_schema(data)
+
+        # First, dump the process tree
+
+        tree = list_of_process_tree(data["bear_output"])
+        template = jinja.get_template("build_tree.html.jinja")
+        html = template.render(
+                build_name=os.path.basename(data["build_name"]),
+                tree=tree, toolchain=data["toolchain"])
+        tree_path = os.path.join(out_dir, "%s-tree.html" %
+                os.path.basename(data["build_name"]))
+        with open(tree_path, "w") as f:
+            f.write(html.encode("utf-8"))
+
+        # Now, the build log. Link to the process tree.
 
         template = jinja.get_template("build.jinja.html")
         data["toolchain"] = toolchain
@@ -325,9 +370,11 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         data["errors"] = get_errors(data["log"])
         data["blocks"] = [os.path.basename(b) for b in data["blocks"]]
         data["blocked_by"] = [os.path.basename(b) for b in data["blocked_by"]]
+        data["tree_path"] = os.path.basename(tree_path)
         html = template.render(data=data)
 
-        out_path = os.path.join(out_dir, "%s.html" % os.path.basename(data["build_name"]))
+        out_path = os.path.join(out_dir, "%s.html" %
+                os.path.basename(data["build_name"]))
         with open(out_path, "w") as f:
             f.write(html.encode("utf-8"))
 
