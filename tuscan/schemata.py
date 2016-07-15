@@ -166,6 +166,25 @@ with open("tuscan/classification_patterns.yaml") as f:
 _categories = [p["category"] for p in _patterns]
 
 
+# Voluptuous doesn't support recursive schemata, so we need to use this
+# trick. After post-processing, the process tree shall be a recursive
+# data structure.
+
+def _bear_record_1(v):
+    return _bear_record(v)
+
+_bear_record = voluptuous.Schema({
+    "children": voluptuous.Any([_bear_record_1], []),
+    "timestamp": int,
+    "return_code": voluptuous.Any(int, None),
+    "command": voluptuous.Any(_nonempty_string, None),
+    "pid": int,
+    "ppid": voluptuous.Any(int, None),
+    # How the command was spawned: execve, posix_spawn etc.
+    "function": voluptuous.Any(_nonempty_string, None),
+})
+
+
 """voluptuous.Schema for JSON files dumped out of the post-processing stage"""
 post_processed_schema = voluptuous.Schema({
     voluptuous.Required("build_name"): _nonempty_string,
@@ -189,23 +208,7 @@ post_processed_schema = voluptuous.Schema({
     # has no dependencies, then it's "blocks" list will be empty.
     voluptuous.Required("blocked_by"): [_nonempty_string],
     voluptuous.Required("sloc_info"): voluptuous.Schema({ _nonempty_string: int }),
-    voluptuous.Required("red_output"): voluptuous.Schema([ voluptuous.Any(
-        voluptuous.Schema({
-            "kind": "exit",
-            "pid": _nonempty_string,
-            "ppid": _nonempty_string,
-            "return_code": _nonempty_string
-        }),
-        voluptuous.Schema({
-            "kind": "exec",
-            "timestamp": _nonempty_string,
-            "pid": _nonempty_string,
-            "ppid": _nonempty_string,
-            "directory": _nonempty_string,
-            "function": _nonempty_string,
-            "command": [ _string ]
-        })
-    )]),
+    voluptuous.Required("bear_output"): [ _bear_record ],
     voluptuous.Required("errors"): list,
     # Status of all configure checks in this build, combined.
     # If a single configure check returned non-zero, then False;

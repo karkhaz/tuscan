@@ -42,6 +42,170 @@ import voluptuous
 import yaml
 
 
+def is_boring(cmd, boring_list):
+    """Is cmd an irrelevant part of the build process?
+    See tuscan/boring_commands.yaml for details.
+    """
+    for pat in boring_list:
+        if pat.match(cmd):
+            return True
+    return False
+
+
+def process_bear(bear_output, boring_list):
+    """Turn a flat list of process invocations into a process tree.
+
+    This function treeifies the list of process execs and exits that are
+    output by bear. It also removes uninteresting process invocations.
+
+    In many cases, the exit of a process will appear to have come from a
+    different thread than its exec. This function fixes all instances of
+    that phenomenon.
+    """
+
+    # First, match up execs with exits and put them all into a single
+    # data structure.
+    nodes = {}
+    for item in bear_output:
+        pid = item["pid"]
+        if pid not in nodes:
+            nodes[pid] = {}
+        if item["kind"] == "exit":
+            nodes[pid]["return_code"] = item["return_code"]
+            if "ppid" not in nodes[pid]:
+                nodes[pid]["ppid"] = item["ppid"]
+        else:
+            nodes[pid]["timestamp"] = item["timestamp"]
+            nodes[pid]["command"] = " ".join(item["command"])
+            nodes[pid]["function"] = item["function"]
+
+    for pid, info in nodes.items():
+        for value in ["ppid", "command", "function", "return_code"]:
+            if not value in info:
+                info[value] = "UNKNOWN"
+
+    # We now want to remove uninteresting nodes. Naiively, we might just
+    # remove nodes with UNKNOWN commands or 'boring' commands (like sed
+    # and cd or whatever). However, sometimes boring nodes occur in the
+    # _middle_ of the tree, with interesting nodes on the leafs; eg
+    #   ./configure -> UNKNOWN -> gcc
+    # in this case, we shouldn't (yet) get rid of the UNKNOWN node as it
+    # would break the gcc node away from the tree.  So for now, iterate
+    # until we reach a fixpoint: delete 'boring' leaves, and also any
+    # node such that all of that node's descendants are 'boring'.
+    for pid, info in nodes.items():
+        info["children"] = []
+    for pid, info in nodes.items():
+        if info["ppid"] in nodes:
+            nodes[info["ppid"]]["children"].append(pid)
+
+    to_delete = []
+    for pid, info in nodes.items():
+        if not info["children"]:
+            if ("command" in info and
+                    is_boring(info["command"], boring_list)):
+                to_delete.append(pid)
+
+    repeat = True
+    while repeat:
+        repeat = False
+        for pid, info in nodes.items():
+            if pid in to_delete:
+                continue
+            delete = True
+            for child in info["children"]:
+                if child not in to_delete:
+                    delete = False
+            if delete:
+                if ("command" in info and
+                        is_boring(info["command"], boring_list)):
+                    to_delete.append(pid)
+                    repeat = True
+    new_nodes = {}
+    for pid, node in nodes.items():
+        if pid not in to_delete:
+            new_nodes[pid] = node
+    nodes = new_nodes
+
+    # Now it's time to squash UNKNOWN nodes that are in the middle of
+    # the tree. It often happens that a node with a command has no
+    # return code, but its parent has a return code but no command. This
+    # corresponds to bear reporting a slightly different PID for a
+    # process exec and exit:
+    #
+    #   --- PROCESS ----                       ------- PROCESS ------
+    #   command: UNKNOWN  |--- parent of --->  command: gcc
+    #   return code:  0                        return code:  UNKNOWN
+    #   ----------------                       ---------------------
+    # So: if we have a node with no command and a return code, with only
+    # one child that has a command but no return code, combine them.
+    # Also: if we have a node with no command and a return code, and one
+    # child that has a command and the _same_ return code, combine them.
+    to_delete = []
+    for pid, info in nodes.items():
+        if info["ppid"] not in nodes:
+            continue
+        if nodes[info["ppid"]]["command"] != "UNKNOWN":
+            continue
+        if len(nodes[info["ppid"]]["children"]) != 1:
+            continue
+        if (info["return_code"] != "UNKNOWN" and info["return_code"] !=
+                nodes[info["ppid"]]["return_code"]):
+            continue
+        parent = info["ppid"]
+        grandparent = nodes[info["ppid"]]["ppid"]
+        info["ppid"] = grandparent
+        info["return_code"] = nodes[parent]["return_code"]
+        if not "timestamp" in info and "timestamp" in nodes[parent]:
+            info["timestamp"] = nodes["parent"]["timestamp"]
+        nodes[grandparent]["children"].remove(parent)
+        nodes[grandparent]["children"].append(pid)
+        to_delete.append(parent)
+    new_nodes = {}
+    for pid, node in nodes.items():
+        if pid not in to_delete:
+            new_nodes[pid] = node
+    nodes = new_nodes
+
+    # Convert the fields into sensible types
+    new_nodes = {}
+    for pid, node in nodes.items():
+        for field in ["timestamp", "ppid", "return_code", "command",
+                "function"]:
+            if field not in node or node[field] == "UNKNOWN":
+                node[field] = None
+
+        if node["ppid"]:
+            node["ppid"] = int(node["ppid"])
+
+        if node["return_code"]:
+            node["return_code"] = int(node["return_code"])
+
+        if node["timestamp"]:
+            node["timestamp"] = int(node["timestamp"])
+        else:
+            node["timestamp"] = 0
+
+        pid = int(pid)
+        node["children"] = []
+        node["pid"] = pid
+        new_nodes[pid] = node
+
+    nodes = new_nodes
+
+    # Finally, do the treeification.
+    node_list = list(nodes.values())
+    to_remove = []
+    for node in node_list:
+        if node["ppid"] in nodes:
+            nodes[node["ppid"]]["children"].append(node)
+            to_remove.append(node)
+    for node in to_remove:
+        node_list.remove(node)
+
+    return node_list
+
+
 def process_log_line(line, patterns, counter):
     ret = {"text": line, "category": None, "semantics": {},
            "id": counter, "severity": None}
@@ -56,7 +220,7 @@ def process_log_line(line, patterns, counter):
     return ret
 
 
-def process_single_result(data, patterns):
+def process_single_result(data, patterns, boring_list):
     # Each line in the log needs its own ID, so that we can refer to
     # them in HTML or other reports
     counter = 0
@@ -107,10 +271,12 @@ def process_single_result(data, patterns):
     data["blocked_by"] = []
     data["blocks"] = []
 
+    data["bear_output"] = process_bear(data["bear_output"], boring_list)
+
     return data
 
 
-def load_and_process(path, patterns, out_dir, args):
+def load_and_process(path, patterns, out_dir, args, boring_list):
     """Processes a JSON result file at path."""
     with open(path) as f:
         data = json.load(f)
@@ -124,7 +290,7 @@ def load_and_process(path, patterns, out_dir, args):
         logging.error("Malformed input at %s\n  %s" % (path, str(e)))
         return
 
-    data = process_single_result(data, patterns)
+    data = process_single_result(data, patterns, boring_list)
 
     try:
         post_processed_schema(data)
@@ -272,6 +438,16 @@ def do_postprocess(args):
                      (str(e), str(patterns)))
         exit(1)
 
+    with open("tuscan/boring_commands.yaml") as f:
+        boring_list = yaml.load(f)
+    # Some commands might be invoked as absolute paths
+    boring_list = (boring_list
+        + ["/usr/bin/%s" % cmd for cmd in boring_list]
+        + ["/usr/sbin/%s" % cmd for cmd in boring_list]
+        + ["/bin/%s" % cmd for cmd in boring_list]
+    )
+    boring_list = [re.compile(pat) for pat in boring_list]
+
     dst_dir = "output/post"
     src_dir = "output/results"
 
@@ -303,6 +479,7 @@ def do_postprocess(args):
         curry = functools.partial(load_and_process,
                         patterns=patterns,
                         out_dir=toolchain_dst,
+                        boring_list=boring_list,
                         args=args)
         try:
             # Pressing Ctrl-C results in unpredictable behaviour of
