@@ -32,7 +32,11 @@
         toolchain</h1>
     <p>The build took {{ data["time"]}} and was
     {% if data["return_code"] is equalto 0 %}SUCCESSFUL.
-    {% else %}NOT successful.{% endif %}
+    {% else %}NOT successful.{% endif %}</p>
+    <p>
+      The process tree of the build process is <a
+      href="{{ data['tree_path']}}">here</a>.
+    </p>
     {% if data["native_tools"] %}
     <p>This build attempted to bypass our toolchain by invoking native
     tools; we intercepted these invocations and sent them to our
@@ -45,7 +49,6 @@
       {% endfor %}
     </table>
     {% endif %}
-    </p>
     {% if data["blocked_by"] %}
     <p>
     We did not attempt to build this package because some of its
