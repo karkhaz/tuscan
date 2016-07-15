@@ -158,7 +158,7 @@ def timestamp():
 
 def log(kind, string, output=[], start_time=None):
     if kind not in ["command", "info", "die", "provide_info",
-            "dep_info", "sloc_info", "native_tools", "bear"]:
+            "dep_info", "sloc_info", "native_tools", "red"]:
         raise RuntimeError("Bad kind: %s" % kind)
 
     if not start_time:
@@ -238,7 +238,7 @@ def get_argparser():
     parser.add_argument("--mirror-volume",
                         dest="mirror_volume", action="store")
 
-    parser.add_argument("--bear-directory")
+    parser.add_argument("--red-directory")
 
     parser.add_argument("--toolchain_root-directory")
 

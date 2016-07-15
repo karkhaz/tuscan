@@ -120,8 +120,8 @@ make_package_schema = voluptuous.Schema({
     voluptuous.Required("sloc_info"): voluptuous.Schema({
         _nonempty_string: int
     }),
-    # Output from the bear tool wrapping the makepkg command.
-    voluptuous.Required("bear_output"): voluptuous.Schema([ voluptuous.Any(
+    # Output from the red tool wrapping the makepkg command.
+    voluptuous.Required("red_output"): voluptuous.Schema([ voluptuous.Any(
         voluptuous.Schema({
             "kind": "exit",
             "pid": _nonempty_string,
@@ -189,7 +189,7 @@ post_processed_schema = voluptuous.Schema({
     # has no dependencies, then it's "blocks" list will be empty.
     voluptuous.Required("blocked_by"): [_nonempty_string],
     voluptuous.Required("sloc_info"): voluptuous.Schema({ _nonempty_string: int }),
-    voluptuous.Required("bear_output"): voluptuous.Schema([ voluptuous.Any(
+    voluptuous.Required("red_output"): voluptuous.Schema([ voluptuous.Any(
         voluptuous.Schema({
             "kind": "exit",
             "pid": _nonempty_string,
