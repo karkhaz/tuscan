@@ -68,9 +68,9 @@ def main():
                   " (default=%d)" % cpu_count))
 
     postprocess_parser.add_argument("-t", "--timeout", type=int,
-            metavar="N", default=1200,
+            metavar="N", default=4800,
             help=("Kill post-processing if it takes longer than"
-                  " N seconds (default=%d)" % 1200))
+                  " N seconds (default=%d)" % 4800))
 
     postprocess_parser.set_defaults(func=do_postprocess)
 
