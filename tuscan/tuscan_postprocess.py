@@ -52,11 +52,11 @@ def is_boring(cmd, boring_list):
     return False
 
 
-def process_bear(bear_output, boring_list):
+def process_red(red_output, red_errors, boring_list):
     """Turn a flat list of process invocations into a process tree.
 
     This function treeifies the list of process execs and exits that are
-    output by bear. It also removes uninteresting process invocations.
+    output by red. It also removes uninteresting process invocations.
 
     In many cases, the exit of a process will appear to have come from a
     different thread than its exec. This function fixes all instances of
@@ -66,7 +66,7 @@ def process_bear(bear_output, boring_list):
     # First, match up execs with exits and put them all into a single
     # data structure.
     nodes = {}
-    for item in bear_output:
+    for item in red_output:
         pid = item["pid"]
         if pid not in nodes:
             nodes[pid] = {}
@@ -78,6 +78,7 @@ def process_bear(bear_output, boring_list):
             nodes[pid]["timestamp"] = item["timestamp"]
             nodes[pid]["command"] = " ".join(item["command"])
             nodes[pid]["function"] = item["function"]
+            nodes[pid]["ppid"] = item["ppid"]
 
     for pid, info in nodes.items():
         for value in ["ppid", "command", "function", "return_code"]:
@@ -127,10 +128,11 @@ def process_bear(bear_output, boring_list):
             new_nodes[pid] = node
     nodes = new_nodes
 
+
     # Now it's time to squash UNKNOWN nodes that are in the middle of
     # the tree. It often happens that a node with a command has no
     # return code, but its parent has a return code but no command. This
-    # corresponds to bear reporting a slightly different PID for a
+    # corresponds to red reporting a slightly different PID for a
     # process exec and exit:
     #
     #   --- PROCESS ----                       ------- PROCESS ------
@@ -145,20 +147,23 @@ def process_bear(bear_output, boring_list):
     for pid, info in nodes.items():
         if info["ppid"] not in nodes:
             continue
+
         if nodes[info["ppid"]]["command"] != "UNKNOWN":
             continue
-        if len(nodes[info["ppid"]]["children"]) != 1:
-            continue
+        #if len(nodes[info["ppid"]]["children"]) != 1:
+        #    continue
         if (info["return_code"] != "UNKNOWN" and info["return_code"] !=
                 nodes[info["ppid"]]["return_code"]):
             continue
         parent = info["ppid"]
         grandparent = nodes[info["ppid"]]["ppid"]
+        if not grandparent in nodes:
+            continue
         info["ppid"] = grandparent
         info["return_code"] = nodes[parent]["return_code"]
         if not "timestamp" in info and "timestamp" in nodes[parent]:
             info["timestamp"] = nodes["parent"]["timestamp"]
-        nodes[grandparent]["children"].remove(parent)
+        #nodes[grandparent]["children"].remove(parent)
         nodes[grandparent]["children"].append(pid)
         to_delete.append(parent)
     new_nodes = {}
@@ -189,9 +194,18 @@ def process_bear(bear_output, boring_list):
         pid = int(pid)
         node["children"] = []
         node["pid"] = pid
+        node["errors"] = []
         new_nodes[pid] = node
 
     nodes = new_nodes
+
+    # Match up red_errors with the process dict.
+    for err in red_errors:
+        if int(err["pid"]) in nodes:
+            nodes[int(err["pid"])]["errors"].append({
+                "category": err["category"],
+                "info": err["info"],
+            })
 
     # Finally, do the treeification.
     node_list = list(nodes.values())
@@ -213,14 +227,24 @@ def process_log_line(line, patterns, counter):
         m = re.search(err_class["pattern"], line)
         if m:
             ret["category"] = err_class["category"]
-            ret["severity"] = err_class["severity"]
             for k, v in m.groupdict().iteritems():
                 ret["semantics"][k] = v
             break
     return ret
 
 
-def process_single_result(data, patterns, boring_list):
+def process_red_errors(data):
+    ret = {}
+    for triple in data:
+        if triple["category"] not in ret:
+            ret[triple["category"]] = {}
+        if triple["info"] not in ret[triple["category"]]:
+            ret[triple["category"]][triple["info"]] = 0
+        ret[triple["category"]][triple["info"]] += 1
+    return ret
+
+
+def process_single_result(data, patterns, boring_list, args):
     # Each line in the log needs its own ID, so that we can refer to
     # them in HTML or other reports
     counter = 0
@@ -241,12 +265,16 @@ def process_single_result(data, patterns, boring_list):
         new_log.append(obj)
     data["log"] = new_log
 
+    data["no_source"] = False
+
     # Now, count how many of each type of error were accumulated for
     # this package. Also figure out if configure invocations were
     # successful.
     config_success = None
     category_counts = {}
     for obj in data["log"]:
+        if obj["head"][:36] == "No source directory in source volume":
+            data["no_source"] = True
 
         if "config_success" in obj:
             if not obj["config_success"]:
@@ -271,7 +299,14 @@ def process_single_result(data, patterns, boring_list):
     data["blocked_by"] = []
     data["blocks"] = []
 
-    data["bear_output"] = process_bear(data["bear_output"], boring_list)
+    if args.no_red:
+        data["red_output"] = []
+        data["red_errors"] = {}
+    else:
+        data["red_output"] = process_red(data["red_output"],
+                data["red_errors"], boring_list)
+
+        data["red_errors"] = process_red_errors(data["red_errors"])
 
     return data
 
@@ -284,19 +319,29 @@ def load_and_process(path, patterns, out_dir, args, boring_list):
     if data["bootstrap"]:
         return
 
+    if args.validate:
+        try:
+            make_package_schema(data)
+        except voluptuous.MultipleInvalid as e:
+            logging.error("Malformed input at %s\n  %s" % (path, str(e)))
+            return
+
     try:
-        make_package_schema(data)
-    except voluptuous.MultipleInvalid as e:
-        logging.error("Malformed input at %s\n  %s" % (path, str(e)))
+        data = process_single_result(data, patterns, boring_list, args)
+    except RuntimeError as e:
+        logging.exception("Error for '%s'" % path)
         return
 
-    data = process_single_result(data, patterns, boring_list)
-
-    try:
-        post_processed_schema(data)
-    except voluptuous.MultipleInvalid as e:
-        logging.error("Post-processed data is malformatted: %s\n  %s" %
-                (path, str(e)))
+    if args.validate:
+        try:
+            post_processed_schema(data)
+        except voluptuous.MultipleInvalid as e:
+            logging.error("Post-processed data is malformatted: %s\n  %s" %
+                    (path, str(e)))
+        except RuntimeError as e:
+            # Occasionally the process graph is so huge that it exceeds
+            # Python's recursion depth limit.
+            logging.exception("Error for '%s'" % path)
 
     with open(os.path.join(out_dir, os.path.basename(path)), "w") as fh:
         json.dump(data, fh, indent=2)
@@ -474,7 +519,6 @@ def do_postprocess(args):
         latest_results = os.path.join(src_dir, toolchain, latest_results,
                               "pkgbuild_markers")
         paths = [os.path.join(latest_results, f) for f in os.listdir(latest_results)]
-
 
         curry = functools.partial(load_and_process,
                         patterns=patterns,

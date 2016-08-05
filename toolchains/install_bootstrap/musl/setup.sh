@@ -24,7 +24,7 @@ SRCDIR=/srcdir
 BUILDDIR=/musl_build
 PKGDIR=/toolchain_root
 
-if [ -d "$PKGDIR/clang+llvm-x86_64-archlinux/bin" ]; then
+if [ -d "$PKGDIR/bin" ]; then
   # We've already downloaded and built a toolchain
   exit 0
 fi
@@ -113,18 +113,18 @@ ${SRCDIR}/binutils/configure \
   CXX=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
   CXXFLAGS='-stdlib=libc++ -I${BUILDDIR}/clang+llvm-x86_64-bootstrap/include/c++/v1' \
   LDFLAGS='-L${BUILDDIR}/clang+llvm-x86_64-bootstrap/lib -Wl,-rpath,'"'"'$\\$$\$$\\$$\$$ORIGIN/../lib'"'"' -Wl,-z,origin' \
-  --prefix=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  --prefix=${PKGDIR} \
   --enable-deterministic-archives \
   --enable-gold \
   --enable-plugins \
   --disable-ld \
   --disable-werror \
-  --with-sysroot=${PKGDIR}/clang+llvm-x86_64-archlinux
+  --with-sysroot=${PKGDIR}
 make
 make install
 popd
 
-pushd ${PKGDIR}/clang+llvm-x86_64-archlinux
+pushd ${PKGDIR}
 rm -rf include lib share x86_64-pc-linux-gnu
 popd
 
@@ -135,7 +135,7 @@ cmake -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_C_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
   -DCMAKE_CXX_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
-  -DCMAKE_INSTALL_PREFIX=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  -DCMAKE_INSTALL_PREFIX=${PKGDIR} \
   -DCMAKE_INSTALL_RPATH='$ORIGIN/../lib' \
   -DLLVM_ENABLE_TIMESTAMPS=OFF \
   -DLLVM_ENABLE_LIBCXX=ON \
@@ -145,7 +145,7 @@ cmake -GNinja \
   -DLLVM_USE_HOST_TOOLS=ON \
   -DLIBCXX_HAS_MUSL_LIBC=ON \
   -DLIBCXXABI_USE_LLVM_UNWINDER=ON \
-  -DDEFAULT_SYSROOT=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  -DDEFAULT_SYSROOT=${PKGDIR} \
   ${SRCDIR}/llvm
 ninja install
 popd
@@ -155,8 +155,8 @@ pushd ${BUILDDIR}/build-musl
 ${SRCDIR}/musl/configure \
   CC=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
   LIBCC=-lclang_rt.builtins-x86_64 \
-  LDFLAGS=-L${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/lib/linux \
-  --prefix=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  LDFLAGS=-L${PKGDIR}/lib/clang/3.8.0/lib/linux \
+  --prefix=${PKGDIR} \
   --disable-wrapper
 make install
 popd
@@ -164,14 +164,14 @@ popd
 rm -rf ${BUILDDIR}/build-crt && mkdir -p ${BUILDDIR}/build-crt
 pushd ${BUILDDIR}/build-crt
 touch crtbegin.c crtend.c
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtbegin.c -c -o crtbegin.o
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtend.c -c -o crtend.o
-install crtbegin.o crtend.o ${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/
+${PKGDIR}/bin/clang crtbegin.c -c -o crtbegin.o
+${PKGDIR}/bin/clang crtend.c -c -o crtend.o
+install crtbegin.o crtend.o ${PKGDIR}/lib/clang/3.8.0/
 touch crtbeginS.c crtendS.c
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtbeginS.c -c -o crtbeginS.o
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtendS.c -c -o crtendS.o
-install crtbeginS.o crtendS.o ${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/
+${PKGDIR}/bin/clang crtbeginS.c -c -o crtbeginS.o
+${PKGDIR}/bin/clang crtendS.c -c -o crtendS.o
+install crtbeginS.o crtendS.o ${PKGDIR}/lib/clang/3.8.0/
 popd
 
 chmod -R a+r ${PKGDIR}
-chmod -R a+rx ${PKGDIR}/clang+llvm-x86_64-archlinux/bin
+chmod -R a+rx ${PKGDIR}/bin

@@ -67,7 +67,12 @@ def toolchain_specific_setup(args):
     cmd = "chown -R tuscan: /home/tuscan/android-ndk-r10e"
     run_cmd(cmd, as_root=True)
 
-    for f in os.listdir(os.path.join("/toolchain_root", "bin")):
-        f = os.path.join("/toolchain_root", "bin", f)
-        cmd = "chmod a+rx %s" % f
-        run_cmd(cmd, as_root=True)
+    bindirs = [
+        "/toolchain_root/bin",
+        "/toolchain_root/libexec/gcc/arm-linux-androideabi/4.8"
+    ]
+    for d in bindirs:
+        for f in os.listdir(d):
+            f = os.path.join(d, f)
+            cmd = "chmod a+rx %s" % f
+            run_cmd(cmd, as_root=True)

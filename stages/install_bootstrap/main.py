@@ -81,12 +81,41 @@ def main():
     else:
         log("command", cmd, out.splitlines())
 
+    # When building red, we need to supply it with a list of defines
+    # suitable for this toolchain. Construct those defines here and
+    # write out the PKGBUILD with those defines.
+
+    with open("/build/tool_redirect_rules.yaml") as f:
+        transforms = yaml.load(f)
+
+    for tool in transforms["overwrite"]:
+        transforms["replacements"][tool] = tool
+
+    defines = []
+
+    for tool, replacement in transforms["replacements"].items():
+        path = os.path.join(transforms["bin-dir"],
+                            "%s%s" % (transforms["prefix"], replacement))
+        defines.append('-DRED_%s="%s"' % (tool.upper(), path))
+
+    if transforms["bin-dir"]:
+        defines.append('-DRED_ENSURE_PATH="%s"' % transforms["bin-dir"])
+
+    jinja = jinja2.Environment(loader=jinja2.FileSystemLoader(["/build"]))
+    pkgbuild_temp = jinja.get_template("red-PKGBUILD")
+    pkgbuild = pkgbuild_temp.render(defines=(" ".join(defines)))
+
+    with open("/build/PKGBUILD", "w") as f:
+        f.write(pkgbuild)
+
+    log("info", "Generated PKGBUILD for red", output=pkgbuild.splitlines())
+
     # Build and install red
     with tempfile.TemporaryDirectory() as d:
         red_tar = os.path.join(d, "red.tar.xz")
         with tarfile.open(red_tar, "w:xz") as tar:
             tar.add("/red", arcname="red")
-        shutil.copyfile("/red/PKGBUILD", os.path.join(d, "PKGBUILD"))
+        shutil.copyfile("/build/PKGBUILD", os.path.join(d, "PKGBUILD"))
         shutil.chown(d, user="tuscan")
         os.chdir(d)
         cmd = "sudo -u tuscan makepkg --nocolor"
@@ -111,48 +140,48 @@ def main():
             log("command", cmd, cp.stdout.splitlines())
 
     # Replace native tools with thin wrappers
-    with open("/build/tool_redirect_rules.yaml") as f:
-        transforms = yaml.load(f)
-    execs = transforms["overwrite"] + list(transforms["replacements"].keys())
-    for e in set(execs):
-        execs.remove(e)
-    if execs:
-        log("error", ("The following executables have been specified "
-                      "twice in the tool_redirect_rules.yaml: %s" %
-                      str(execs)))
-        exit(1)
+    #with open("/build/tool_redirect_rules.yaml") as f:
+    #    transforms = yaml.load(f)
+    #execs = transforms["overwrite"] + list(transforms["replacements"].keys())
+    #for e in set(execs):
+    #    execs.remove(e)
+    #if execs:
+    #    log("error", ("The following executables have been specified "
+    #                  "twice in the tool_redirect_rules.yaml: %s" %
+    #                  str(execs)))
+    #    exit(1)
 
-    for e in transforms["overwrite"]:
-        transforms["replacements"][e] = e
-    transforms.pop("overwrite", None)
+    #for e in transforms["overwrite"]:
+    #    transforms["replacements"][e] = e
+    #transforms.pop("overwrite", None)
 
-    jinja = jinja2.Environment(loader=jinja2.FileSystemLoader(["/build"]))
+    #jinja = jinja2.Environment(loader=jinja2.FileSystemLoader(["/build"]))
 
-    wrapper_temp = jinja.get_template("tool_wrapper.c")
+    #wrapper_temp = jinja.get_template("tool_wrapper.c")
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        for native, toolchain in transforms["replacements"].items():
-            wrapper = wrapper_temp.render(
-                    native_program=native,
-                    toolchain_prefix=transforms["prefix"],
-                    toolchain_program=toolchain)
+    #with tempfile.TemporaryDirectory() as tmp_dir:
+    #    for native, toolchain in transforms["replacements"].items():
+    #        wrapper = wrapper_temp.render(
+    #                native_program=native,
+    #                toolchain_prefix=transforms["prefix"],
+    #                toolchain_program=toolchain)
 
-            with tempfile.NamedTemporaryFile("w", suffix=".c") as temp:
-                temp.write(wrapper)
-                temp.flush()
-                cmd = "gcc -o %s %s" % (os.path.join(tmp_dir, native),
-                        temp.name)
-                proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE,
-                        stderr=subprocess.STDOUT, universal_newlines=True)
-                out, _ = proc.communicate()
-                if proc.returncode:
-                    body = "%s\n%s\n%s" % (cmd, out, wrapper)
-                    log("error", "Failed to compile compiler wrapper",
-                            body=body)
-                    exit(1)
-        for wrapper in os.listdir(tmp_dir):
-            shutil.move(os.path.join(tmp_dir, wrapper),
-                        os.path.join("/usr/bin", wrapper))
+    #        with tempfile.NamedTemporaryFile("w", suffix=".c") as temp:
+    #            temp.write(wrapper)
+    #            temp.flush()
+    #            cmd = "gcc -o %s %s" % (os.path.join(tmp_dir, native),
+    #                    temp.name)
+    #            proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE,
+    #                    stderr=subprocess.STDOUT, universal_newlines=True)
+    #            out, _ = proc.communicate()
+    #            if proc.returncode:
+    #                body = "%s\n%s\n%s" % (cmd, out, wrapper)
+    #                log("error", "Failed to compile compiler wrapper",
+    #                        body=body)
+    #                exit(1)
+    #    for wrapper in os.listdir(tmp_dir):
+    #        shutil.move(os.path.join(tmp_dir, wrapper),
+    #                    os.path.join("/usr/bin", wrapper))
 
     if not os.path.isdir("/toolchain_root"):
         log("die", "/toolchain_root is not mounted")

@@ -68,9 +68,17 @@ def main():
                   " (default=%d)" % cpu_count))
 
     postprocess_parser.add_argument("-t", "--timeout", type=int,
-            metavar="N", default=4800,
+            metavar="N", default=None,
             help=("Kill post-processing if it takes longer than"
-                  " N seconds (default=%d)" % 4800))
+                  " N seconds (default=None)"))
+
+    postprocess_parser.add_argument("--validate",
+            action="store_true", default=False,
+            help=("Validate post-processed data"))
+
+    postprocess_parser.add_argument("--no-red",
+            action="store_true", default=False,
+            help=("Don't bother analysing red data"))
 
     postprocess_parser.set_defaults(func=do_postprocess)
 
@@ -84,9 +92,18 @@ def main():
                   " (default=%d)" % cpu_count))
 
     html_parser.add_argument("-t", "--timeout", type=int,
-            metavar="N", default=1200,
+            metavar="N", default=None,
             help=("Kill HTML generation if it takes longer than"
-                  " N seconds (default=%d)" % 1200))
+                  " N seconds (default=None)"))
+
+    html_parser.add_argument("-v", "--validate",
+            action="store_true", default=False,
+            help=("Validate post-processed data"))
+
+    toolchains = os.listdir("output/post")
+    html_parser.add_argument("--toolchains", default=toolchains,
+            nargs="*", choices=toolchains, help="which toolchains to"
+            " generate reports for (default: '%s')" % " ".join(toolchains))
 
     html_parser.set_defaults(func=do_html)
 

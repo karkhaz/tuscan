@@ -49,6 +49,17 @@
       {% endfor %}
     </table>
     {% endif %}
+    {% if data["red_errors"] %}
+      <p>
+      Several sub-process invocations were improper; see the process tree
+      for details. Summary:
+      </p>
+      <ul>{% for category, errors in data["red_errors"].items() %}
+        <li>{{ category }}:<ul>{% for info, freq in errors.items() %}
+            <li>&times;{{ freq }}: {{ info }}</li>
+        {% endfor %}</ul></li>
+      {% endfor %}</ul>
+    {% endif %}
     {% if data["blocked_by"] %}
     <p>
     We did not attempt to build this package because some of its

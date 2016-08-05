@@ -18,7 +18,7 @@
 """Generation of HTML pages from post-processed data."""
 
 
-from tuscan.schemata import post_processed_schema
+from tuscan.schemata import post_processed_schema, red_error_categories
 
 
 import functools
@@ -36,7 +36,27 @@ import voluptuous
 import yaml
 
 
-def summary_structure(toolchains):
+def classification_summary(build_list, category, descriptions):
+    if descriptions[category]["long_description"] is None:
+        return None
+    table = {}
+    for build in build_list:
+        if category not in build["semantics_counts"]:
+            continue
+        for k, v in build["semantics_counts"][category].items():
+            try:
+                table[k] += v
+            except KeyError:
+                table[k] = v
+    ret = dict(descriptions[category])
+    ret["table"] = table
+    pairs = [(k, v) for k, v in table.items()]
+    pairs = sorted(pairs, reverse=True, key=(lambda p: p[1]))
+    ret["order"] = [p[0] for p in pairs]
+    return ret
+
+
+def summary_structure(toolchains, category_descriptions):
     """A dictionary representing the hierarchy of summaries.
 
     The dictionary returned by this function describes what summary
@@ -57,6 +77,51 @@ def summary_structure(toolchains):
             total += freq
         return -1 * total
 
+    def red_error_count(build, category):
+        if category not in build["red_errors"]:
+            return 0
+        count = 0
+        for info, freq in build["red_errors"][category].items():
+            count += freq
+        return -1 * count
+
+    def red_further_info(build, category):
+        pairs = [(info, freq) for info, freq in
+                 build["red_errors"][category].items()]
+        pairs = sorted(pairs, reverse=True, key=lambda p: p[1])
+        ret = '<ul class="further-info-list"'
+        for info, freq in pairs:
+            ret += ("<li><strong>&times;%d</strong>&nbsp;"
+                    "<code>%s</code>;</li>" % (freq, info))
+        return ret + "</ul>"
+
+    def error_further_info(build, category):
+        pairs = [(semantic, freq) for semantic, freq in
+                 build["semantics_counts"][category].items()]
+        pairs = sorted(pairs, reverse=True, key=lambda p: p[1])
+        ret = '<ul class="further-info-list"'
+        for info, freq in pairs:
+            ret += ("<li><strong>&times;%d</strong>&nbsp;"
+                    "<code>%s</code>;</li>" % (freq, info))
+        return ret + "</ul>"
+
+    def red_error_tree(toolchain):
+        ret = []
+        for category in red_error_categories:
+            ret.append({
+                "name": category,
+                "filter": (lambda build, category=category:
+                    category in build["red_errors"]),
+                "description": ("Builds that exhibited error '%s' on "
+                                "toolchain '%s'" % (category, toolchain)),
+                "link_text": "%s ({total} builds)" % category,
+                "sort_fun": functools.partial(red_error_count,
+                                              category=category),
+                "info_fun": functools.partial(red_further_info,
+                                              category=category),
+            })
+        return ret
+
     def error_trees(toolchain):
         error_trees = []
         for category in categories:
@@ -68,18 +133,117 @@ def summary_structure(toolchains):
                 "description": ("Builds that exhibited error '%s' on "
                                 "toolchain '%s'"
                                 % (category, toolchain)),
-                "link_text": "%s ({total} builds)" % category
+                "link_text": "%s ({total} builds)" % category,
+                "summary_fun": functools.partial(classification_summary,
+                    category=category, descriptions=category_descriptions),
+                "info_fun": functools.partial(error_further_info,
+                    category=category)
             }
             error_trees.append(obj)
-        error_trees.append({
-            "name": "native-redirect",
-            "filter": (lambda b: b["native_tools"]),
-            "description": ("Builds that failed even after their native"
-                            " tools were redirected to toolchain tools "
-                            "(sorted by number of invocations)"),
-            "link_text": "Builds invoking native tools ({total})",
-            "sort_fun": native_tool_freq
-        })
+
+        def blocker_info(build):
+            return "Blocking <strong>%d</strong> packages: %s" % (
+                        len(build["blocks"]),
+                        ",&nbsp;".join(build["blocks"])
+                    )
+
+        def configure_tree(toolchain):
+
+            def red_detect(toolchain=toolchain):
+                ret = []
+                ret.append({
+                    "link_text": ("<code>red</code> detected a configure "
+                                  "invocation for {total} of these"),
+                    "description": "",
+                    "filter": (lambda b: b["configure_process_exists"]),
+                    "name": "red-detected-configure",
+                    "children": [{
+                        "link_text": ("{total} had successful configures"),
+                        "description": "",
+                        "filter": (lambda b: b["configure_process_success"]),
+                        "name": "configure-process-successful",
+                    }, {
+                        "link_text": ("{total} had unsuccessful configures"),
+                        "description": "",
+                        "filter": (lambda b:
+                                    b["configure_process_success"] is False),
+                        "name": "configure-process-unsuccessful",
+                    }, {
+                        "link_text": ("{total} had missing return codes"),
+                        "description": "",
+                        "filter": (lambda b:
+                                    b["configure_process_success"] is None),
+                        "name": "configure-process-unknown",
+                    }]
+                })
+                ret.append({
+                    "link_text": ("<code>red</code> did not detect configure"
+                                  " in {total} cases"),
+                    "description": "",
+                    "filter": (lambda b: not b["configure_process_exists"]),
+                    "name": "red-no-detect-configure"
+                })
+                return ret
+
+            ret = []
+            ret.append({
+                "name": "no-configure-log",
+                "filter": (lambda b: not b["configure_log_exists"]),
+                "description": ("Builds that did not produce a "
+                                "configure log on toolchain '%s'" %
+                                toolchain),
+                "link_text": "{total} builds had no configure log",
+                "children": red_detect(toolchain)
+            })
+            ret.append({
+                "name": "have-configure-log",
+                "filter": (lambda b: b["configure_log_exists"]),
+                "description": ("Builds that produced a "
+                                "configure log on toolchain '%s'" %
+                                toolchain),
+                "link_text": "{total} builds had a configure log",
+                "children": [{
+                    "name": "successful-configure-return",
+                    "filter": (lambda b: b["configure_log_success"]),
+                    "description": ("Builds on '%s' whose configure log "
+                                    "indicated configure success" %
+                                    toolchain),
+                    "link_text": "{total} indicated configure success",
+                    "children": red_detect(toolchain)
+                }, {
+                    "name": "fail-configure-return",
+                    "filter": (lambda b: b["configure_log_success"] is False),
+                    "description": ("Builds on '%s' whose configure log "
+                                    "indicated configure failure" %
+                                    toolchain),
+                    "link_text": "{total} indicated configure failure",
+                    "children": red_detect(toolchain)
+                }, {
+                    "name": "unknown-configure-return",
+                    "filter": (lambda b: b["configure_log_success"] is None),
+                    "description": ("Builds on '%s' that produced a "
+                                    "configure log, but no exit code "
+                                    "was detected" % toolchain),
+                    "link_text": "{total} logs did not indicate configure status",
+                    "children": red_detect(toolchain)
+                }, {
+                    "name": "autoconf",
+                    "filter": (lambda b: b["configure_log_autoconf"]),
+                    "description": ("Builds on '%s' whose configure log "
+                                    "was generated by Autoconf" %
+                                    toolchain),
+                    "link_text": "{total} were generated by Autoconf"
+                }, {
+                    "name": "no-autoconf",
+                    "filter": (lambda b: not b["configure_log_autoconf"]),
+                    "description": ("Builds on '%s' whose configure log "
+                                    "was not generated by Autoconf" %
+                                    toolchain),
+                    "link_text": "{total} were not generated by Autoconf"
+                }]
+            })
+            return ret
+
         error_trees.append({
             "name": "blockers",
             "filter": (lambda build, toolchain=toolchain:
@@ -88,7 +252,9 @@ def summary_structure(toolchains):
             "description": ("Packages whose dependencies all built, "
                             "but which failed to build on toolchain"
                             " '%s'" % toolchain),
-            "link_text": "Blockers ({total} builds)"
+            "sort_fun": lambda b: -1 * len(b["blocks"]),
+            "link_text": "Blockers ({total} builds)",
+            "info_fun": blocker_info,
         })
         error_trees.append({
             "name": "unclassified",
@@ -97,6 +263,17 @@ def summary_structure(toolchains):
             "description": ("Failing builds that we failed to classify"),
             "link_text": "Unclassified ({total} builds)",
         })
+        error_trees.append({
+            "title": ("Some builds failed despite us correcting their "
+                      "bad invocations..."),
+            "filter": (lambda b: b["red_errors"]),
+            "children": red_error_tree(toolchain)
+        })
+        error_trees.append({
+            "title": "Data about configure invocations:",
+            "children": configure_tree(toolchain)
+        })
+
         return error_trees
 
     vanilla_tree = {
@@ -131,15 +308,10 @@ def summary_structure(toolchains):
                                 "'%s'" % toolchain),
                 "link_text": "{total} passed",
                 "children": [{
-                    "name": "native-redirect",
-                    "filter": (lambda b: b["native_tools"]),
-                    "description": ("Builds that passed only after "
-                                    "their native tools were redirected"
-                                    " to toolchain tools (sorted by "
-                                    "number of invocations)"),
-                    "link_text": ("({total} had their native "
-                                  "tools redirected)"),
-                    "sort_fun": native_tool_freq
+                    "filter": (lambda build: build["red_errors"]),
+                    "title": ("(some only passed because we fixed their"
+                              " invocations...)"),
+                    "children": red_error_tree(toolchain)
                 }]
               }, {
                 "name": "fail",
@@ -154,9 +326,11 @@ def summary_structure(toolchains):
         toolchain_trees.append(obj)
 
     alternatives = {
-        "title": "Builds below this line passed on vanilla",
+        "name": "passed-on-vanilla",
         "filter": (lambda b: b["vanilla_success"]),
-        "children": toolchain_trees
+        "children": toolchain_trees,
+        "description": "builds that passed on vanilla",
+        "link_text": "Builds below this line passed on vanilla"
     }
 
     top_level_tree = {
@@ -165,7 +339,12 @@ def summary_structure(toolchains):
       "children" : ([{
           "name": "all",
           "description": "all builds across all toolchains",
-          "link_text": "{total} total builds"
+          "link_text": "{total} total build attempts."
+          }, {
+              "name": "no-source",
+              "description": "builds for which source was unavailable",
+              "link_text": "{total} of these had missing source code.",
+              "filter": (lambda build: (build["no_source"]))
           }, {
             "name": "cish-programs",
             "filter": (lambda build: (
@@ -173,7 +352,7 @@ def summary_structure(toolchains):
                 "cpp" in build["sloc_info"]
             )),
             "description": "Builds that contain C/C++ code",
-            "link_text": "{total} of these contain C(++) code.",
+            "link_text": "Of the rest, {total} contain C(++) code.",
             "children": [vanilla_tree] + [alternatives]
           }
       ])
@@ -207,9 +386,9 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
         new_toolchains = summary["toolchains_to_display"]
 
     if "name" in summary:
-        name = "%s-%s" % (parent_name, summary["name"])
+        name = "%s/%s" % (parent_name, summary["name"])
     elif "title" in summary:
-        name = "%s-%s" % (parent_name, re.sub("\s", "-",
+        name = "%s/%s" % (parent_name, re.sub("\s", "-",
             summary["title"]).lower())
 
     if "children" in summary:
@@ -235,9 +414,21 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
             if e not in order:
                 order.append(e)
 
-        organised = organise_builds(new_builds, new_toolchains)
+        if "summary_fun" in summary:
+            summary_table = summary["summary_fun"](new_builds)
+        else:
+            summary_table = None
+
+        if "info_fun" in summary:
+            organised = organise_builds(new_builds, new_toolchains,
+                    info_fun=summary["info_fun"])
+        else:
+            organised = organise_builds(new_builds, new_toolchains)
+
         template = jinja.get_template("package_list.html.jinja")
-        html = template.render(builds=organised, toolchains=new_toolchains)
+        html = template.render(order=order, builds=organised,
+                                toolchains=new_toolchains,
+                                summary_table=summary_table)
         ret["pages"].append({
             "name": name,
             "html": html,
@@ -247,7 +438,7 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
 
         link_text = summary["link_text"].format(
                 total=len(new_builds) / len(new_toolchains))
-        list_text = ('<li>\n<a href="{name}.html">{link_text}</a>\n'
+        list_text = ('<li>\n<a href="/tuscan/{name}">{link_text}</a>\n'
                      '\n{child_list}\n</li>').format(
                         name=name, link_text=link_text,
                         child_list=child_list)
@@ -261,7 +452,8 @@ def create_summary_pages(summary, ret, parent_name, builds, toolchains, jinja):
     return {"sidebar": sidebar, "pages": ret["pages"]}
 
 
-def write_summary_pages(dst_dir, toolchains, builds, jinja):
+def write_summary_pages(dst_dir, toolchains, builds, jinja,
+        category_descriptions):
     """Dumps lists of builds that satisfy certain properties."""
 
     # When building summary pages, we want the toolchains to appear in
@@ -272,7 +464,8 @@ def write_summary_pages(dst_dir, toolchains, builds, jinja):
 
     summary_return = { "sidebar": "", "pages": [] }
     summaries = create_summary_pages(parent_name="tuscan",
-            ret=summary_return, summary=summary_structure(toolchains),
+            ret=summary_return,
+            summary=summary_structure(toolchains, category_descriptions),
             builds=builds, toolchains=toolchains, jinja=jinja)
 
     template = jinja.get_template("package_summary.html.jinja")
@@ -281,10 +474,19 @@ def write_summary_pages(dst_dir, toolchains, builds, jinja):
                 description=s["description"], build_list=s["html"],
                 length=s["length"], sidebar=summaries["sidebar"])
 
-        with open(os.path.join(dst_dir, "%s.html" % s["name"]), "w") as f:
+        dirname = os.path.dirname(s["name"])
+        dirname = os.path.join(dst_dir, dirname)
+        basename = os.path.basename(s["name"])
+        try:
+            os.makedirs(os.path.join(dirname, basename))
+        except OSError:
+            pass
+        basename = "%s/index.html" % basename
+
+        with open(os.path.join(dirname, basename), "w") as f:
             f.write(html)
 
-    shutil.copyfile(os.path.join(dst_dir, "tuscan-all-builds-all.html"),
+    shutil.copyfile(os.path.join(dst_dir, "tuscan/all-builds/all/index.html"),
              os.path.join(dst_dir, "index.html"))
 
 
@@ -320,7 +522,15 @@ def pretty_process(proc):
     else:
         rc = '<span class="good-return">%s</span>' % proc["return_code"]
     command = "<code>%s</code>" % proc["command"]
-    return "%s %s" % (rc, command)
+    errors = ""
+    proc["errors"] = [e for e in proc["errors"] if e["category"] != "ok path"]
+    if proc["errors"]:
+        errors = "<br />\n".join([
+           ("<span class=\"red-error\">%s</span>"
+            "<span class=\"red-error-info\"> (%s)</span>" %
+                (e["category"], e["info"])) for e in proc["errors"]
+        ]) + "<br />\n"
+    return "%s%s&nbsp;%s" % (errors, rc, command)
 
 
 def list_of_process_tree(tree, indent=0):
@@ -347,11 +557,12 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
     try:
         with open(json_path) as f:
             data = json.load(f)
-        post_processed_schema(data)
+        if args.validate:
+            post_processed_schema(data)
 
         # First, dump the process tree
 
-        tree = list_of_process_tree(data["bear_output"])
+        tree = list_of_process_tree(data["red_output"])
         template = jinja.get_template("build_tree.html.jinja")
         html = template.render(
                 build_name=os.path.basename(data["build_name"]),
@@ -397,12 +608,15 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         raise e
 
 
-def organise_builds(build_list, toolchains):
-    """Transform a list of flat dicts into a name -> toolchain -> dict
+def organise_builds(build_list, toolchains, info_fun=None):
+    """Transform a list of flat dicts into a
+        name -> toolchain -> dict
 
     When outputting summary pages, we want the table to be organised by
     name, then toolchain, and then the rest of the data. This function
-    transforms an dict returned by dump_build_page into that form.
+    transforms an dict returned by dump_build_page into that form. There
+    may also be some 'further information text' next to each build; this
+    will be generated from the build using the info_function.
     """
     ret = {}
     for build in build_list:
@@ -417,6 +631,10 @@ def organise_builds(build_list, toolchains):
         toolchain = d["toolchain"]
         d.pop("toolchain", None)
         ret[build_name][toolchain] = d
+        if info_fun is None:
+            ret[build_name][toolchain]["further_info"] = ""
+        else:
+            ret[build_name][toolchain]["further_info"] = info_fun(d)
     return ret
 
 
@@ -462,10 +680,10 @@ def do_html(args):
     results_list = man.list()
 
     pool = multiprocessing.Pool(args.pool_size)
-    toolchain_total = len(os.listdir(src_dir))
+    toolchain_total = len(args.toolchains)
     toolchain_counter = 0
     toolchains = []
-    for toolchain in os.listdir(src_dir):
+    for toolchain in args.toolchains:
         toolchains.append(toolchain)
         toolchain_counter += 1
         sys.stderr.write("Generating individual build reports for "
@@ -511,4 +729,7 @@ def do_html(args):
     # We need to add an extra key to each build, indicating if the build
     # was successful on vanilla.
     results_list = add_vanilla_success(results_list._getvalue(), toolchains)
-    write_summary_pages(dst_dir, toolchains, results_list, jinja)
+    with open("tuscan/category_descriptions.yaml") as f:
+        category_descriptions = yaml.load(f)
+    write_summary_pages(dst_dir, toolchains, results_list, jinja,
+            category_descriptions)

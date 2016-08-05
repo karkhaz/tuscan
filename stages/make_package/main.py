@@ -31,6 +31,7 @@ import os
 import os.path
 import re
 import shutil
+import stat
 import subprocess
 import tarfile
 
@@ -78,9 +79,15 @@ def copy_and_build(args):
     with open("PKGBUILD", encoding="utf-8") as f:
         pkgbuild = f.read().splitlines()
 
-    pkgbuild = [re.sub(r"configure\s",
-                    "configure --host x86_64-unknown-linux ",
-                    line) for line in pkgbuild]
+    if args.toolchain == "android":
+        pkgbuild = [re.sub(r"configure\s",
+                        ("configure --build=x86_64-unknown-linux "
+                         "--host=arm-linux-androideabi "),
+                        line) for line in pkgbuild]
+    else:
+        pkgbuild = [re.sub(r"configure\s",
+                        "configure --host=x86_64-unknown-linux ",
+                        line) for line in pkgbuild]
 
     with open("PKGBUILD", "w", encoding="utf-8") as f:
         f.write("\n".join(pkgbuild))
@@ -122,24 +129,27 @@ def copy_and_build(args):
     log("command", command, output.splitlines(), time)
 
     # Pick up output left by red
-    if os.path.exists("compile_commands.json"):
-        with open("compile_commands.json") as f:
-            red_output = json.load(f)
-        log("red", "red", output=red_output)
-    else:
-        log("die", "No red output found in dir '%s'" % os.getcwd())
+    try:
+        if os.path.exists("compile_commands.json"):
+            with open("compile_commands.json") as f:
+                red_output = json.load(f)
+            log("red", "red", output=red_output)
+        else:
+            log("die", "No red output found in dir '%s'" % os.getcwd())
+    except json.decoder.JSONDecodeError as e:
+        log("red", "red", output=[])
 
-    native_tools = {}
-    for native in glob("/tmp/tuscan-native-*"):
+    red_errors = []
+    for native in glob("/tmp/red-error-*"):
         with open(native) as f:
-            tool = f.readlines()
-        if tool:
-            tool = tool[0].strip()
-        if tool not in native_tools:
-            native_tools[tool] = 0
-        native_tools[tool] += 1
-    if native_tools:
-        log("native_tools", "native_tools", native_tools)
+            lines = f.readlines()
+        red_errors.append({
+            "category": lines[0].strip(),
+            "pid": lines[1].strip(),
+            "info": lines[2].strip()
+        })
+
+    log("red_errors", "red_errors", output=red_errors)
 
     return proc.returncode
 
@@ -250,7 +260,7 @@ def create_hybrid_packages(args):
 
         for d in ["usr/lib", "usr/include"]:
             src = os.path.join(dir_toolchain, d)
-            dst = os.path.join(dir_hybrid, "toolchain_root", d)
+            dst = os.path.join(dir_hybrid, args.sysroot, d)
             try:
                 shutil.copytree(src, dst, symlinks=True)
             except FileNotFoundError:
@@ -306,6 +316,7 @@ def dump_build_information(args):
 def main():
     parser = get_argparser()
     parser.add_argument("--abs-dir", dest="abs_dir", required=True)
+    parser.add_argument("--sysroot", default="sysroot")
     args = parser.parse_args()
     args.mirror_directory = "/mirror"
 
@@ -324,6 +335,20 @@ def main():
 
     set_local_repository_location(args.toolchain_directory,
             toolchain_repo_name())
+
+    os.makedirs("/sysroot")
+    for d in os.listdir("/toolchain_root"):
+        base = os.path.basename(d)
+        src = os.path.join("/toolchain_root", d)
+        dst = os.path.join("/sysroot", base)
+        if os.path.isfile(src):
+            log("info", "Copying file '%s' to '%s'" % (src, dst))
+            shutil.copyfile(src, dst)
+        elif os.path.isdir(src):
+            log("info", "Copying directory '%s' to '%s'" % (src, dst))
+            shutil.copytree(src, dst)
+
+    recursive_chown("/sysroot")
 
     result = copy_and_build(args)
     if result:

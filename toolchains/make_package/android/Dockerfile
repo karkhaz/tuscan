@@ -32,10 +32,11 @@ ENV CURL_HOME /etc
 
 ENTRYPOINT  ["/usr/bin/python", "-u", \
  "/build/main.py", \
+ "--sysroot", "sysroot/sysroot", \
  "--env-vars", \
- "PATH=/toolchain_root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", \
+ "PATH=/sysroot/bin:/sysroot/libexec/gcc/arm-linux-androideabi/4.8:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", \
  "CC=arm-linux-androideabi-gcc", \
  "CXX=arm-linux-androideabi-g++", \
- "SYSROOT=/build/android-ndk-r10e/platforms/android-21/arch-arm", \
- "LIBRARY_PATH=/toolchain_root/usr/lib",\
- "CPATH=/toolchain_root/usr/include" ]
+ "SYSROOT=/sysroot/sysroot", \
+ "LIBRARY_PATH=/sysroot/sysroot/usr/lib",\
+ "CPATH=/sysroot/sysroot/usr/include" ]

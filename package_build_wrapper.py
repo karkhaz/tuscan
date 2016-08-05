@@ -125,6 +125,9 @@ def run_container(args):
             elif obj["kind"] == "native_tools":
                 json_result["native_tools"] = obj["body"]
 
+            elif obj["kind"] == "red_errors":
+                json_result["red_errors"] = obj["body"]
+
             else:
                 json_result["log"].append(obj)
 
@@ -141,6 +144,9 @@ def run_container(args):
     json_result["toolchain"] = args.toolchain
     json_result["errors"] = errors
     json_result["bootstrap"] = False
+
+    if not "red_errors" in json_result:
+        json_result["red_errors"] = []
 
     if not "sloc_info" in json_result:
         json_result["sloc_info"] = {}
