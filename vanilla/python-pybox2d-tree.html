@@ -1,0 +1,744 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/python-pybox2d</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="python-pybox2d.html">python-pybox2d</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>None</code>
+        <ul class="level-4">
+          <li><span class="bad-return">127</span>&nbsp;<code>/usr/sbin/pacman -T git python2 swig</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="no-return">?</span>&nbsp;<code>sudo /usr/sbin/pacman --noconfirm --color never --noprogressbar -S --asdeps swig</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/tty</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T git python2 swig</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py setopt --command=build_ext --option=swig --set-value=swig</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/python2 setup.py -q bdist_egg --dist-dir /tmp/python-pybox2d/src/python-pybox2d</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py build</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>swig -python -c++ -IBox2D -small -O -includeall -ignoremissing -w201 -globals b2Globals -outdir library/Box2D -keyword -w511 -D_SWIG_KWARGS -o Box2D/Box2D_wrap.cpp Box2D/Box2D.i</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Box2D_wrap.cpp -o build/temp.linux-x86_64-2.7/Box2D/Box2D_wrap.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Box2D_wrap.cpp -quiet -dumpbase Box2D_wrap.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Box2D_wrap.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Box2D_wrap.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/b2WorldCallbacks.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2WorldCallbacks.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/b2WorldCallbacks.cpp -quiet -dumpbase b2WorldCallbacks.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2WorldCallbacks.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2WorldCallbacks.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/b2Fixture.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Fixture.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/b2Fixture.cpp -quiet -dumpbase b2Fixture.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Fixture.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Fixture.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/b2World.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2World.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/b2World.cpp -quiet -dumpbase b2World.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2World.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2World.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/b2Body.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Body.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/b2Body.cpp -quiet -dumpbase b2Body.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Body.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Body.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/b2Island.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Island.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/b2Island.cpp -quiet -dumpbase b2Island.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Island.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Island.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/b2ContactManager.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2ContactManager.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/b2ContactManager.cpp -quiet -dumpbase b2ContactManager.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2ContactManager.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2ContactManager.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2Contact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2Contact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2Contact.cpp -quiet -dumpbase b2Contact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2Contact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2Contact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2ContactSolver.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ContactSolver.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2ContactSolver.cpp -quiet -dumpbase b2ContactSolver.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ContactSolver.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ContactSolver.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2PolygonContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2PolygonContact.cpp -quiet -dumpbase b2PolygonContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.cpp -quiet -dumpbase b2PolygonAndCircleContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.cpp -quiet -dumpbase b2EdgeAndPolygonContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.cpp -quiet -dumpbase b2EdgeAndCircleContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2ChainAndCircleContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2ChainAndCircleContact.cpp -quiet -dumpbase b2ChainAndCircleContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2CircleContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2CircleContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2CircleContact.cpp -quiet -dumpbase b2CircleContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2CircleContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2CircleContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.cpp -quiet -dumpbase b2ChainAndPolygonContact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2PrismaticJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PrismaticJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2PrismaticJoint.cpp -quiet -dumpbase b2PrismaticJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PrismaticJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PrismaticJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2PulleyJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PulleyJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2PulleyJoint.cpp -quiet -dumpbase b2PulleyJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PulleyJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PulleyJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2WheelJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WheelJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2WheelJoint.cpp -quiet -dumpbase b2WheelJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WheelJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WheelJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2FrictionJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2FrictionJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2FrictionJoint.cpp -quiet -dumpbase b2FrictionJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2FrictionJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2FrictionJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2Joint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2Joint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2Joint.cpp -quiet -dumpbase b2Joint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2Joint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2Joint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2WeldJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WeldJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2WeldJoint.cpp -quiet -dumpbase b2WeldJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WeldJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WeldJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2RevoluteJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RevoluteJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2RevoluteJoint.cpp -quiet -dumpbase b2RevoluteJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RevoluteJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RevoluteJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2GearJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2GearJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2GearJoint.cpp -quiet -dumpbase b2GearJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2GearJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2GearJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2MouseJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MouseJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2MouseJoint.cpp -quiet -dumpbase b2MouseJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MouseJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MouseJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2DistanceJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2DistanceJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2DistanceJoint.cpp -quiet -dumpbase b2DistanceJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2DistanceJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2DistanceJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2MotorJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MotorJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2MotorJoint.cpp -quiet -dumpbase b2MotorJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MotorJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MotorJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Dynamics/Joints/b2RopeJoint.cpp -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RopeJoint.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Dynamics/Joints/b2RopeJoint.cpp -quiet -dumpbase b2RopeJoint.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RopeJoint.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RopeJoint.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Common/b2Math.cpp -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Math.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Common/b2Math.cpp -quiet -dumpbase b2Math.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Common/b2Math.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Math.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Common/b2Timer.cpp -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Timer.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Common/b2Timer.cpp -quiet -dumpbase b2Timer.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Common/b2Timer.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Timer.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Common/b2BlockAllocator.cpp -o build/temp.linux-x86_64-2.7/Box2D/Common/b2BlockAllocator.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Common/b2BlockAllocator.cpp -quiet -dumpbase b2BlockAllocator.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Common/b2BlockAllocator.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Common/b2BlockAllocator.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Common/b2Draw.cpp -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Draw.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Common/b2Draw.cpp -quiet -dumpbase b2Draw.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Common/b2Draw.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Draw.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Common/b2Settings.cpp -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Settings.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Common/b2Settings.cpp -quiet -dumpbase b2Settings.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Common/b2Settings.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Common/b2Settings.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Common/b2StackAllocator.cpp -o build/temp.linux-x86_64-2.7/Box2D/Common/b2StackAllocator.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Common/b2StackAllocator.cpp -quiet -dumpbase b2StackAllocator.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Common/b2StackAllocator.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Common/b2StackAllocator.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2Collision.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Collision.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2Collision.cpp -quiet -dumpbase b2Collision.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2Collision.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Collision.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2TimeOfImpact.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2TimeOfImpact.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2TimeOfImpact.cpp -quiet -dumpbase b2TimeOfImpact.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2TimeOfImpact.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2TimeOfImpact.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2BroadPhase.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2BroadPhase.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2BroadPhase.cpp -quiet -dumpbase b2BroadPhase.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2BroadPhase.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2BroadPhase.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2CollideEdge.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideEdge.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2CollideEdge.cpp -quiet -dumpbase b2CollideEdge.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideEdge.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideEdge.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2CollidePolygon.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollidePolygon.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2CollidePolygon.cpp -quiet -dumpbase b2CollidePolygon.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollidePolygon.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollidePolygon.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2Distance.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Distance.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2Distance.cpp -quiet -dumpbase b2Distance.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2Distance.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Distance.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2DynamicTree.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2DynamicTree.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2DynamicTree.cpp -quiet -dumpbase b2DynamicTree.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2DynamicTree.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2DynamicTree.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/b2CollideCircle.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideCircle.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/b2CollideCircle.cpp -quiet -dumpbase b2CollideCircle.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideCircle.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideCircle.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/Shapes/b2CircleShape.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2CircleShape.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/Shapes/b2CircleShape.cpp -quiet -dumpbase b2CircleShape.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2CircleShape.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2CircleShape.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/Shapes/b2EdgeShape.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2EdgeShape.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/Shapes/b2EdgeShape.cpp -quiet -dumpbase b2EdgeShape.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2EdgeShape.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2EdgeShape.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/Shapes/b2PolygonShape.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2PolygonShape.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/Shapes/b2PolygonShape.cpp -quiet -dumpbase b2PolygonShape.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2PolygonShape.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2PolygonShape.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC -I/usr/include/python2.7 -c Box2D/Collision/Shapes/b2ChainShape.cpp -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2ChainShape.o -I. -Wno-unused</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -I /usr/include/python2.7 -I . -D_GNU_SOURCE -D_REENTRANT -D NDEBUG Box2D/Collision/Shapes/b2ChainShape.cpp -quiet -dumpbase b2ChainShape.cpp -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2ChainShape.o -O2 -Wno-unused -fstack-protector-strong -fPIC -o -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/python2.7 -I . --64 -o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2ChainShape.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>g++ -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro build/temp.linux-x86_64-2.7/Box2D/Box2D_wrap.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2WorldCallbacks.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Fixture.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2World.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Body.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Island.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2ContactManager.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2Contact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ContactSolver.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2CircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PrismaticJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PulleyJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WheelJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2FrictionJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2Joint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WeldJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RevoluteJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2GearJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MouseJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2DistanceJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MotorJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RopeJoint.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Math.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Timer.o build/temp.linux-x86_64-2.7/Box2D/Common/b2BlockAllocator.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Draw.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Settings.o build/temp.linux-x86_64-2.7/Box2D/Common/b2StackAllocator.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Collision.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2TimeOfImpact.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2BroadPhase.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideEdge.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollidePolygon.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Distance.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2DynamicTree.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideCircle.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2CircleShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2EdgeShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2PolygonShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2ChainShape.o -L/usr/lib -lpython2.7 -o build/lib.linux-x86_64-2.7/Box2D/_Box2D.so</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQRZ6NF.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o build/lib.linux-x86_64-2.7/Box2D/_Box2D.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -O1 --sort-common --as-needed -z relro build/temp.linux-x86_64-2.7/Box2D/Box2D_wrap.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2WorldCallbacks.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Fixture.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2World.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Body.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Island.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2ContactManager.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2Contact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ContactSolver.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2CircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PrismaticJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PulleyJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WheelJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2FrictionJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2Joint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WeldJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RevoluteJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2GearJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MouseJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2DistanceJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MotorJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RopeJoint.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Math.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Timer.o build/temp.linux-x86_64-2.7/Box2D/Common/b2BlockAllocator.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Draw.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Settings.o build/temp.linux-x86_64-2.7/Box2D/Common/b2StackAllocator.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Collision.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2TimeOfImpact.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2BroadPhase.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideEdge.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollidePolygon.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Distance.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2DynamicTree.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideCircle.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2CircleShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2EdgeShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2PolygonShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2ChainShape.o -lpython2.7 -lstdc++ -lm -lgcc_s -lpthread -lc -lgcc_s /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQRZ6NF.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o build/lib.linux-x86_64-2.7/Box2D/_Box2D.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -O1 --sort-common --as-needed -z relro build/temp.linux-x86_64-2.7/Box2D/Box2D_wrap.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2WorldCallbacks.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Fixture.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2World.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Body.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2Island.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/b2ContactManager.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2Contact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ContactSolver.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2CircleContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PrismaticJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2PulleyJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WheelJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2FrictionJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2Joint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2WeldJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RevoluteJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2GearJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MouseJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2DistanceJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2MotorJoint.o build/temp.linux-x86_64-2.7/Box2D/Dynamics/Joints/b2RopeJoint.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Math.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Timer.o build/temp.linux-x86_64-2.7/Box2D/Common/b2BlockAllocator.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Draw.o build/temp.linux-x86_64-2.7/Box2D/Common/b2Settings.o build/temp.linux-x86_64-2.7/Box2D/Common/b2StackAllocator.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Collision.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2TimeOfImpact.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2BroadPhase.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideEdge.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollidePolygon.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2Distance.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2DynamicTree.o build/temp.linux-x86_64-2.7/Box2D/Collision/b2CollideCircle.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2CircleShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2EdgeShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2PolygonShape.o build/temp.linux-x86_64-2.7/Box2D/Collision/Shapes/b2ChainShape.o -lpython2.7 -lstdc++ -lm -lgcc_s -lpthread -lc -lgcc_s /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py install --root=/tmp/python-pybox2d/pkg/python2-pybox2d --optimize=1</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/python2 -O /tmp/tmpV6vrZE.py</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/python-pybox2d/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/python-pybox2d/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/python-pybox2d/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

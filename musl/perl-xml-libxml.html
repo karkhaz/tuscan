@@ -30,10 +30,32 @@
     <h1>Build of perl-xml-libxml
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 01m 01s and was
-    NOT successful.
-    
+    <p>The build took 00h 01m 09s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="perl-xml-libxml-tree.html">here</a>.
     </p>
+    
+    
+      <p>
+      Several sub-process invocations were improper; see the process tree
+      for details. Summary:
+      </p>
+      <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;116: /usr/bin/cc</li>
+        
+            <li>&times;116: /usr/bin/ld</li>
+        </ul></li>
+      
+        <li>malformed path:<ul>
+            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+        
+            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+        </ul></li>
+      </ul>
+    
     
     
     <p>
@@ -102,15 +124,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: perl-xml-libxml 2.0124-3 (Mon Jun 27 04:00:15 UTC 2016)</code><br />
+              <code id="5">==> Making package: perl-xml-libxml 2.0126-1 (Thu Aug 11 00:34:25 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -240,42 +302,42 @@
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">running xml2-config...ok (2.9.4)</code><br />
+              <code id="31">running xml2-config...The installed version of libxml2 VERSION 2.9.4</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">Checking for ability to link against xml2...no</code><br />
+              <code id="32"> is not compatible with XML::LibXML (and probably buggy)!</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">Checking for ability to link against libxml2...libxml2, zlib, and/or the Math library (-lm) have not been found.</code><br />
+              <code id="33"></code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">Try setting LIBS and INC values on the command line</code><br />
+              <code id="34">You may continue at your own risk using 'perl Makefile.PL FORCE=1', but:</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">Or get libxml2 from</code><br />
+              <code id="35"></code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">  http://xmlsoft.org/</code><br />
+              <code id="36">  - don't expect XML::LibXML to build or work correctly!</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">If you install via RPMs, make sure you also install the -devel</code><br />
+              <code id="37">  - don't report errors!</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">RPMs, as this is where the headers (.h files) are.</code><br />
+              <code id="38">  - don't send patches!</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
@@ -285,32 +347,92 @@
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">Also, you may try to run perl Makefile.PL with the DEBUG=1 parameter</code><br />
+              <code id="40">Check the README file for more information on versions</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">to see the exact reason why the detection of libxml2 installation</code><br />
+              <code id="41">that are tested with XML::LibXML</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">failed or why Makefile.PL was not able to compile a test program.</code><br />
+              <code id="42"></code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">make: *** No targets specified and no makefile found.  Stop.</code><br />
+              <code id="43">failed</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">==> ERROR: A failure occurred in build().</code><br />
+              <code id="44">Checking for ability to link against xml2...no</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">    Aborting...</code><br />
+              <code id="45">Checking for ability to link against libxml2...libxml2, zlib, and/or the Math library (-lm) have not been found.</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">Try setting LIBS and INC values on the command line</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">Or get libxml2 from</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">  http://xmlsoft.org/</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">If you install via RPMs, make sure you also install the -devel</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">RPMs, as this is where the headers (.h files) are.</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51"></code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">Also, you may try to run perl Makefile.PL with the DEBUG=1 parameter</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">to see the exact reason why the detection of libxml2 installation</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">failed or why Makefile.PL was not able to compile a test program.</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">make: *** No targets specified and no makefile found.  Stop.</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">    Aborting...</code><br />
 						
             
           </div>

@@ -30,10 +30,28 @@
     <h1>Build of perl-berkeleydb
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 30s and was
-    NOT successful.
-    
+    <p>The build took 00h 00m 53s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="perl-berkeleydb-tree.html">here</a>.
     </p>
+    
+    
+      <p>
+      Several sub-process invocations were improper; see the process tree
+      for details. Summary:
+      </p>
+      <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;1: /usr/sbin/cc</li>
+        </ul></li>
+      
+        <li>empty path:<ul>
+            <li>&times;3: </li>
+        </ul></li>
+      </ul>
+    
     
     
     <p>
@@ -46,6 +64,19 @@
       
     </ul>
     
+    
+    <h2>List of Errors</h2>
+    <ul>
+      
+      <li>missing_header
+        <ul>
+          
+          <li><a href="#53">BerkeleyDB.xs:76:10: fatal error: 'db.h' file not found</a></li>
+          
+        </ul>
+      </li>
+      
+    </ul>
     
     <h2>Log</h2>
     
@@ -94,15 +125,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: perl-berkeleydb 0.55-2 (Mon Jun 27 02:23:53 UTC 2016)</code><br />
+              <code id="5">==> Making package: perl-berkeleydb 0.55-2 (Wed Aug 10 23:50:00 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -177,12 +248,12 @@
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">cp BerkeleyDB.pm blib/lib/BerkeleyDB.pm</code><br />
+              <code id="20">cp scan.pl blib/lib/scan.pl</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">cp BerkeleyDB.pod blib/lib/BerkeleyDB.pod</code><br />
+              <code id="21">cp BerkeleyDB/Hash.pm blib/lib/BerkeleyDB/Hash.pm</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
@@ -192,17 +263,17 @@
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">cp BerkeleyDB/Hash.pm blib/lib/BerkeleyDB/Hash.pm</code><br />
+              <code id="23">cp BerkeleyDB/Btree.pm blib/lib/BerkeleyDB/Btree.pm</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">cp BerkeleyDB/Btree.pm blib/lib/BerkeleyDB/Btree.pm</code><br />
+              <code id="24">cp BerkeleyDB.pod blib/lib/BerkeleyDB.pod</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">cp scan.pl blib/lib/scan.pl</code><br />
+              <code id="25">cp BerkeleyDB.pm blib/lib/BerkeleyDB.pm</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
@@ -222,17 +293,157 @@
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">make: *** [Makefile:363: BerkeleyDB.o] Segmentation fault (core dumped)</code><br />
+              <code id="29">In file included from BerkeleyDB.xs:24:</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">==> ERROR: A failure occurred in build().</code><br />
+              <code id="30">In file included from /usr/lib/perl5/core_perl/CORE/perl.h:689:</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">    Aborting...</code><br />
+              <code id="31">In file included from /sysroot/include/sys/types.h:70:</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">                       ~ ~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">                               ^</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">                         (            )</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">                                       ~ ~~~~~~^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">                                               ^</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">                                         (              )</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">                             ^</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">               (                  )</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						<span class="error">
+              <code id="53">BerkeleyDB.xs:76:10: fatal error: 'db.h' file not found</code><br />
+						</span>
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">#include <db.h></code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">         ^</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">3 warnings and 1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">make: *** [Makefile:363: BerkeleyDB.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">    Aborting...</code><br />
 						
             
           </div>

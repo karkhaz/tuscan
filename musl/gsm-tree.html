@@ -1,0 +1,608 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/gsm</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="gsm.html">gsm</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="no-return">?</span>&nbsp;<code>patch -Np0 -i /tmp/gsm/src/gsm.patch</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make CCFLAGS=-c  -fPIC</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/add.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/add.c -quiet -dumpbase add.c -mtune=generic -march=x86-64 -auxbase add -Wpedantic -ansi -fPIC -o /tmp/ccVGnSDc.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o add.o /tmp/ccVGnSDc.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/code.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/code.c -quiet -dumpbase code.c -mtune=generic -march=x86-64 -auxbase code -Wpedantic -ansi -fPIC -o /tmp/ccNRqi6b.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o code.o /tmp/ccNRqi6b.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/code.o` src/code.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/debug.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/debug.c -quiet -dumpbase debug.c -mtune=generic -march=x86-64 -auxbase debug -Wpedantic -ansi -fPIC -o /tmp/cclnch5u.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o debug.o /tmp/cclnch5u.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/add.o` src/add.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/decode.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/decode.c -quiet -dumpbase decode.c -mtune=generic -march=x86-64 -auxbase decode -Wpedantic -ansi -fPIC -o /tmp/ccsqCPjy.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o decode.o /tmp/ccsqCPjy.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/debug.o` src/debug.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/long_term.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/long_term.c -quiet -dumpbase long_term.c -mtune=generic -march=x86-64 -auxbase long_term -Wpedantic -ansi -fPIC -o /tmp/cc3Q6E2x.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o long_term.o /tmp/cc3Q6E2x.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/decode.o` src/decode.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/lpc.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/lpc.c -quiet -dumpbase lpc.c -mtune=generic -march=x86-64 -auxbase lpc -Wpedantic -ansi -fPIC -o /tmp/cckrLcGA.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o lpc.o /tmp/cckrLcGA.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/long_term.o` src/long_term.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/preprocess.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/preprocess.c -quiet -dumpbase preprocess.c -mtune=generic -march=x86-64 -auxbase preprocess -Wpedantic -ansi -fPIC -o /tmp/ccpSyihD.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o preprocess.o /tmp/ccpSyihD.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/lpc.o` src/lpc.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/preprocess.o` src/preprocess.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/rpe.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/rpe.c -quiet -dumpbase rpe.c -mtune=generic -march=x86-64 -auxbase rpe -Wpedantic -ansi -fPIC -o /tmp/ccxaHwFv.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o rpe.o /tmp/ccxaHwFv.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_destroy.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_destroy.c -quiet -dumpbase gsm_destroy.c -mtune=generic -march=x86-64 -auxbase gsm_destroy -Wpedantic -ansi -fPIC -o /tmp/cc0VeBOv.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_destroy.o /tmp/cc0VeBOv.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_destroy.o` src/gsm_destroy.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_decode.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_decode.c -quiet -dumpbase gsm_decode.c -mtune=generic -march=x86-64 -auxbase gsm_decode -Wpedantic -ansi -fPIC -o /tmp/ccJHqzkx.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_decode.o /tmp/ccJHqzkx.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/rpe.o` src/rpe.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_encode.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_encode.c -quiet -dumpbase gsm_encode.c -mtune=generic -march=x86-64 -auxbase gsm_encode -Wpedantic -ansi -fPIC -o /tmp/ccsLaUFw.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_encode.o /tmp/ccsLaUFw.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_decode.o` src/gsm_decode.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_explode.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_explode.c -quiet -dumpbase gsm_explode.c -mtune=generic -march=x86-64 -auxbase gsm_explode -Wpedantic -ansi -fPIC -o /tmp/cc3KkokC.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_explode.o /tmp/cc3KkokC.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_encode.o` src/gsm_encode.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_implode.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_implode.c -quiet -dumpbase gsm_implode.c -mtune=generic -march=x86-64 -auxbase gsm_implode -Wpedantic -ansi -fPIC -o /tmp/ccKJmWHE.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_implode.o /tmp/ccKJmWHE.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_explode.o` src/gsm_explode.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_create.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_create.c -quiet -dumpbase gsm_create.c -mtune=generic -march=x86-64 -auxbase gsm_create -Wpedantic -ansi -fPIC -o /tmp/ccbSfEBG.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_create.o /tmp/ccbSfEBG.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_create.o` src/gsm_create.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_print.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_print.c -quiet -dumpbase gsm_print.c -mtune=generic -march=x86-64 -auxbase gsm_print -Wpedantic -ansi -fPIC -o /tmp/cchvy53I.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_print.o /tmp/cchvy53I.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_implode.o` src/gsm_implode.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/gsm_option.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/gsm_option.c -quiet -dumpbase gsm_option.c -mtune=generic -march=x86-64 -auxbase gsm_option -Wpedantic -ansi -fPIC -o /tmp/cc5EMTgM.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o gsm_option.o /tmp/cc5EMTgM.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_option.o` src/gsm_option.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/short_term.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/short_term.c -quiet -dumpbase short_term.c -mtune=generic -march=x86-64 -auxbase short_term -Wpedantic -ansi -fPIC -o /tmp/ccJbKaCL.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o short_term.o /tmp/ccJbKaCL.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/gsm_print.o` src/gsm_print.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/table.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/table.c -quiet -dumpbase table.c -mtune=generic -march=x86-64 -auxbase table -Wpedantic -ansi -fPIC -o /tmp/cc9AoqCL.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o table.o /tmp/cc9AoqCL.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/table.o` src/table.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/toast.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/toast.c -quiet -dumpbase toast.c -mtune=generic -march=x86-64 -auxbase toast -Wpedantic -ansi -fPIC -o /tmp/ccmvh9kP.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o toast.o /tmp/ccmvh9kP.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/short_term.o` src/short_term.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/toast_lin.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/toast_lin.c -quiet -dumpbase toast_lin.c -mtune=generic -march=x86-64 -auxbase toast_lin -Wpedantic -ansi -fPIC -o /tmp/ccZr8AMN.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o toast_lin.o /tmp/ccZr8AMN.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/toast_lin.o` src/toast_lin.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/toast_ulaw.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/toast_ulaw.c -quiet -dumpbase toast_ulaw.c -mtune=generic -march=x86-64 -auxbase toast_ulaw -Wpedantic -ansi -fPIC -o /tmp/ccamebDQ.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o toast_ulaw.o /tmp/ccamebDQ.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/toast.o` src/toast.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/toast_alaw.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/toast_alaw.c -quiet -dumpbase toast_alaw.c -mtune=generic -march=x86-64 -auxbase toast_alaw -Wpedantic -ansi -fPIC -o /tmp/cc3lqdVT.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o toast_alaw.o /tmp/cc3lqdVT.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/toast_ulaw.o` src/toast_ulaw.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -c -fPIC -DSASR -DWAV49 -I./inc src/toast_audio.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ./inc -D SASR -D WAV49 src/toast_audio.c -quiet -dumpbase toast_audio.c -mtune=generic -march=x86-64 -auxbase toast_audio -Wpedantic -ansi -fPIC -o /tmp/cckApFKW.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I ./inc --64 -o toast_audio.o /tmp/cckApFKW.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/toast_alaw.o` src/toast_alaw.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -shared -Wl,-soname,libgsm.so.1 -o lib/libgsm.so.1.0.13 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHZkawV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o lib/libgsm.so.1.0.13 /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libgsm.so.1 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /sysroot/lib/../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHZkawV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o lib/libgsm.so.1.0.13 /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libgsm.so.1 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /sysroot/lib/../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mv `basename src/toast_audio.o` src/toast_audio.o > /dev/null 2>&1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -o ./bin/toast ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o ./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.so</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJbgD2W.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o ./bin/toast /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o ./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.so -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJbgD2W.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o ./bin/toast /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o ./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.so -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -m755 -d /tmp/gsm/pkg/gsm/usr/bin /tmp/gsm/pkg/gsm/usr/lib /tmp/gsm/pkg/gsm/usr/include/gsm /tmp/gsm/pkg/gsm/usr/share/licenses/gsm /tmp/gsm/pkg/gsm/usr/share/man/man1 /tmp/gsm/pkg/gsm/usr/share/man/man3</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make -j1 INSTALL_ROOT=/tmp/gsm/pkg/gsm/usr GSM_INSTALL_INC=/tmp/gsm/pkg/gsm/usr/include/gsm GSM_INSTALL_MAN=/tmp/gsm/pkg/gsm/usr/share/man/man3 TOAST_INSTALL_MAN=/tmp/gsm/pkg/gsm/usr/share/man/man1 install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ x"/tmp/gsm/pkg/gsm/usr" != x ]; then	\
+		make /tmp/gsm/pkg/gsm/usr/bin/toast /tmp/gsm/pkg/gsm/usr/bin/tcat /tmp/gsm/pkg/gsm/usr/bin/untoast /tmp/gsm/pkg/gsm/usr/share/man/man1/toast.1;	\
+	fi</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>make /tmp/gsm/pkg/gsm/usr/bin/toast /tmp/gsm/pkg/gsm/usr/bin/tcat /tmp/gsm/pkg/gsm/usr/bin/untoast /tmp/gsm/pkg/gsm/usr/share/man/man1/toast.1</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -shared -Wl,-soname,libgsm.so.1 -o lib/libgsm.so.1.0.13 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJYVc6k.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o lib/libgsm.so.1.0.13 /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libgsm.so.1 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /sysroot/lib/../lib/crtn.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJYVc6k.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o lib/libgsm.so.1.0.13 /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libgsm.so.1 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /sysroot/lib/../lib/crtn.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -o ./bin/toast ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o ./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.so</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccoHLGGm.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o ./bin/toast /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o ./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.so -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccoHLGGm.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o ./bin/toast /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o ./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.so -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ x"/tmp/gsm/pkg/gsm/usr" != x ] ; then	\
+		make /tmp/gsm/pkg/gsm/usr/lib/libgsm.so /tmp/gsm/pkg/gsm/usr/include/gsm/gsm.h /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm.3 /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm_explode.3 /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm_option.3 /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm_print.3 ;	\
+	fi</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>make /tmp/gsm/pkg/gsm/usr/lib/libgsm.so /tmp/gsm/pkg/gsm/usr/include/gsm/gsm.h /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm.3 /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm_explode.3 /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm_option.3 /tmp/gsm/pkg/gsm/usr/share/man/man3/gsm_print.3</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>gcc -ansi -pedantic -shared -Wl,-soname,libgsm.so.1 -o lib/libgsm.so.1.0.13 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccCskhjp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o lib/libgsm.so.1.0.13 /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libgsm.so.1 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /sysroot/lib/../lib/crtn.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccCskhjp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o lib/libgsm.so.1.0.13 /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libgsm.so.1 ./src/add.o ./src/code.o ./src/debug.o ./src/decode.o ./src/long_term.o ./src/lpc.o ./src/preprocess.o ./src/rpe.o ./src/gsm_destroy.o ./src/gsm_decode.o ./src/gsm_encode.o ./src/gsm_explode.o ./src/gsm_implode.o ./src/gsm_create.o ./src/gsm_print.o ./src/gsm_option.o ./src/short_term.o ./src/table.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /sysroot/lib/../lib/crtn.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -m644 COPYRIGHT /tmp/gsm/pkg/gsm/usr/share/licenses/gsm/license.txt</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/gsm/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/gsm/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/gsm/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

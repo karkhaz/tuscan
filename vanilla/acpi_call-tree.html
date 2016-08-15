@@ -1,0 +1,858 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/acpi_call</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="acpi_call.html">acpi_call</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T linux>=4.6 linux<4.7</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make KVERSION=4.6.3-1-ARCH</code>
+        <ul class="level-4">
+          <li><span class="bad-return">2</span>&nbsp;<code>make -C /lib/modules/4.6.3-1-ARCH/build M=/tmp/acpi_call/src/acpi_call-1.1.0 modules</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/ -e s/parisc64/parisc/ -e s/ppc.*/powerpc/ -e s/mips.*/mips/ -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ </code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -x "$BASH" ]; then echo $BASH; else if [ -x /bin/bash ]; then echo /bin/bash; else echo sh; fi ; fi</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -c "clang version"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -m16 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -m16"; else echo " -m32 -Wa,./arch/x86/boot/code16gcc.h"; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m16 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.360.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -m16 -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.360.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/ccIp0Efq.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --32 -o /tmp/acpi_call/src/acpi_call-1.1.0/.360.tmp /tmp/ccIp0Efq.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -ffreestanding -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -ffreestanding"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -ffreestanding -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.365.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.365.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -ffreestanding -o /tmp/ccnHBAts.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.365.tmp /tmp/ccnHBAts.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-stack-protector -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.370.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.370.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -fno-stack-protector -o /tmp/ccFgXEkv.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.370.tmp /tmp/ccFgXEkv.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mpreferred-stack-boundary=2"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.375.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mpreferred-stack-boundary=2 -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.375.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/cc68hshu.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-avx"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.379.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.379.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/ccFfeOQu.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.379.tmp /tmp/ccFfeOQu.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-80387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.384.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.384.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccEsKiqy.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.384.tmp /tmp/ccEsKiqy.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-fp-ret-in-387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.389.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.389.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccI4Lp6w.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.389.tmp /tmp/ccI4Lp6w.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mpreferred-stack-boundary=3"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.394.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.394.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccPX63QA.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.394.tmp /tmp/ccPX63QA.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mskip-rax-setup"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.399.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.399.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/cc2pp5Fz.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.399.tmp /tmp/cc2pp5Fz.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mtune=generic"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.404.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.404.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccs6rsHC.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.404.tmp /tmp/ccs6rsHC.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-funit-at-a-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.409.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.409.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -o /tmp/ccu2i4VB.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.409.tmp /tmp/ccu2i4VB.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-maccumulate-outgoing-args"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.414.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.414.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -o /tmp/cccmLn3B.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.414.tmp /tmp/cccmLn3B.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/gcc-x86_64-has-stack-protector.sh gcc -D__KERNEL__ -m64</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -m64 -S -x c -c -O0 -mcmodel=kernel -fstack-protector - -o -</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ - -quiet -dumpbase - -m64 -mcmodel=kernel -mtune=generic -march=x86-64 -auxbase-strip - -O0 -fstack-protector -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_rel_offset rsp,0\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.424.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.424.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_signal_frame\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SIGNAL_FRAME=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.430.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.430.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" ".cfi_sections .debug_frame" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SECTIONS=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.436.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.436.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "fxsaveq (%rax)" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_FXSAVEQ=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.442.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.442.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "pshufb %xmm0,%xmm0" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SSSE3=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.448.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.448.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "crc32l %eax,%eax" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CRC32=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.454.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.454.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "vxorps %ymm0,%ymm1,%ymm2" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.460.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.460.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "vpbroadcastb %xmm0,%ymm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX2=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.466.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.466.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "sha1msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA1_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.472.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.472.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( printf "%b\n" "sha256msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA256_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o /tmp/acpi_call/src/acpi_call-1.1.0/.478.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.478.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fno-delete-null-pointer-checks"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.484.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.484.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.484.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "--param=allow-store-data-races=0"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.489.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.489.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.489.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wframe-larger-than=2048"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.494.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.494.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.494.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048  -fstack-protector-strong -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fstack-protector-strong"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.499.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.499.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.499.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -q "clang version" && echo clang || echo gcc</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wunused-but-set-variable -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unused-but-set-variable"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wunused-but-set-variable -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.507.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.507.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wunused-but-set-variable -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.507.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wunused-const-variable -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unused-const-variable"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wunused-const-variable -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.512.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.512.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=2 -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.512.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-var-tracking-assignments"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.517.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.517.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.517.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments  -mfentry -DCC_USING_FENTRY -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mfentry -DCC_USING_FENTRY"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -mfentry -DCC_USING_FENTRY -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.522.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.522.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.522.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -print-file-name=include</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wdeclaration-after-statement"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.528.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.528.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.528.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wpointer-sign -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-pointer-sign"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wpointer-sign -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.533.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.533.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wpointer-sign -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.533.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fno-strict-overflow"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.538.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.538.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.538.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fconserve-stack"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.543.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.543.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.543.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=implicit-int"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.548.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.548.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.548.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=strict-prototypes"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.553.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.553.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.553.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=date-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.558.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.558.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.558.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls  -fno-var-tracking-assignments -pg  -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=incompatible-pointer-types"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -c -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.563.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.563.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.563.tmp</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( ar rcD "$TMP") >/dev/null 2>&1; then echo "D"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>ar rcD /tmp/acpi_call/src/acpi_call-1.1.0/.568.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/gcc-goto.sh gcc</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -x c - -c -o /dev/null</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase-strip /dev/null -o /tmp/cc1BGLvY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /dev/null /tmp/cc1BGLvY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -q "clang version" && echo clang || echo gcc</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.tmp"; TMPO="/tmp/acpi_call/src/acpi_call-1.1.0/.$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -Wl,--build-id -nostdlib -x c /dev/null -o /tmp/acpi_call/src/acpi_call-1.1.0/.579.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase null -o /tmp/ccWGiOD1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccSr9MIN.o /tmp/ccWGiOD1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccylxJOz.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /tmp/acpi_call/src/acpi_call-1.1.0/.579.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/ccSr9MIN.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccylxJOz.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /tmp/acpi_call/src/acpi_call-1.1.0/.579.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/ccSr9MIN.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -e include/generated/autoconf.h -a -e include/config/auto.conf || (		\
+echo >&2;							\
+echo >&2 "  ERROR: Kernel configuration is invalid.";		\
+echo >&2 "         include/generated/autoconf.h or include/config/auto.conf are missing.";\
+echo >&2 "         Run 'make oldconfig && make prepare' on kernel src to fix it.";	\
+echo >&2 ;							\
+/bin/false)</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c mkdir -p /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_versions ; rm -f /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_versions/*</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -e ./Module.symvers || ( \
+echo; \
+echo "  WARNING: Symbol version dump ./Module.symvers"; \
+echo "           is missing; modules will have no dependencies and modversions."; \
+echo )</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">2</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=/tmp/acpi_call/src/acpi_call-1.1.0</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (cat /dev/null;   echo kernel//tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.ko;) > /tmp/acpi_call/src/acpi_call-1.1.0/modules.order</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c set -e; 	   echo '  CC [M]  /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o'; gcc -Wp,-MD,/tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I./arch/x86/include -Iarch/x86/include/generated/uapi -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(acpi_call)"  -D"KBUILD_MODNAME=KBUILD_STR(acpi_call)" -c -o /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.c; if objdump -h /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o | grep -q __ksymtab; then gcc -E -D__GENKSYMS__ -Wp,-MD,/tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I./arch/x86/include -Iarch/x86/include/generated/uapi -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(acpi_call)"  -D"KBUILD_MODNAME=KBUILD_STR(acpi_call)" /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.c | scripts/genksyms/genksyms    -r /dev/null > /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.ver; ld -m elf_x86_64 -r -o /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o -T /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.ver; rm -f /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.ver; else mv -f /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o; fi;  ./tools/objtool/objtool check "/tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o";  if [ "-pg" = "-pg" ]; then if [ /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o != "scripts/mod/empty.o" ]; then ./scripts/recordmcount  "/tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o"; fi; fi; scripts/basic/fixdep /tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.o 'gcc -Wp,-MD,/tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I./arch/x86/include -Iarch/x86/include/generated/uapi -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(acpi_call)"  -D"KBUILD_MODNAME=KBUILD_STR(acpi_call)" -c -o /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.c' > /tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.tmp; rm -f /tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d; mv -f /tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.tmp /tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.cmd</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wp,-MD,/tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d -nostdinc -isystem /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I./arch/x86/include -Iarch/x86/include/generated/uapi -Iarch/x86/include/generated -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -DCC_HAVE_ASM_GOTO -DMODULE -DKBUILD_STR(s)=#s -DKBUILD_BASENAME=KBUILD_STR(acpi_call) -DKBUILD_MODNAME=KBUILD_STR(acpi_call) -c -o /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -nostdinc -I ./arch/x86/include -I arch/x86/include/generated/uapi -I arch/x86/include/generated -I include -I ./arch/x86/include/uapi -I arch/x86/include/generated/uapi -I ./include/uapi -I include/generated/uapi -D __KERNEL__ -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -D CC_USING_FENTRY -D CC_HAVE_ASM_GOTO -D MODULE -D KBUILD_STR(s)=#s -D KBUILD_BASENAME=KBUILD_STR(acpi_call) -D KBUILD_MODNAME=KBUILD_STR(acpi_call) -isystem /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -include ./include/linux/kconfig.h -MD /tmp/acpi_call/src/acpi_call-1.1.0/.acpi_call.o.d /tmp/acpi_call/src/acpi_call-1.1.0/acpi_call.c -quiet -dumpbase acpi_call.c -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mfentry -march=x86-64 -auxbase-strip /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wframe-larger-than=2048 -Wno-unused-but-set-variable -Wunused-const-variable=0 -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -std=gnu90 -p -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I ./arch/x86/include -I arch/x86/include/generated/uapi -I arch/x86/include/generated -I include -I ./arch/x86/include/uapi -I arch/x86/include/generated/uapi -I ./include/uapi -I include/generated/uapi --64 -o /tmp/acpi_call/src/acpi_call-1.1.0/.tmp_acpi_call.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T linux-headers>=4.6 linux-headers<4.7</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

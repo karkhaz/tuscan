@@ -30,11 +30,15 @@
     <h1>Build of lynis
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 01m 06s and was
+    <p>The build took 00h 01m 15s and was
     SUCCESSFUL.
-    
-    
     </p>
+    <p>
+      The process tree of the build process is <a
+      href="lynis-tree.html">here</a>.
+    </p>
+    
+    
     
     
     
@@ -85,15 +89,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: lynis 2.2.0-1 (Mon Jun 27 02:11:26 UTC 2016)</code><br />
+              <code id="5">==> Making package: lynis 2.2.0-1 (Wed Aug 10 23:13:37 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -178,7 +222,7 @@
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">==> Finished making: lynis 2.2.0-1 (Mon Jun 27 02:11:28 UTC 2016)</code><br />
+              <code id="22">==> Finished making: lynis 2.2.0-1 (Wed Aug 10 23:13:38 UTC 2016)</code><br />
 						
             
           </div>
@@ -610,12 +654,12 @@
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">/toolchain_root/usr/lib/systemd/system/lynis.service</code><br />
+              <code id="98">/sysroot/usr/lib/systemd/system/lynis.service</code><br />
 						
             
             <a class="navhash" href="#99">#</a>
 						
-              <code id="99">/toolchain_root/usr/lib/systemd/system/lynis.timer</code><br />
+              <code id="99">/sysroot/usr/lib/systemd/system/lynis.timer</code><br />
 						
             
           </div>
@@ -633,7 +677,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO etc usr toolchain_root</code>
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO etc usr sysroot</code>
         </div>
         
       </div>
@@ -649,7 +693,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO .BUILDINFO etc usr toolchain_root .MTREE</code>
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO .BUILDINFO etc usr sysroot .MTREE</code>
         </div>
         
       </div>
@@ -665,7 +709,7 @@
     
       <div class="block">
         <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO .BUILDINFO etc usr toolchain_root .MTREE | xz -c -z</code>
+          <code>Successfully ran bsdtar -cf - .PKGINFO .BUILDINFO etc usr sysroot .MTREE | xz -c -z</code>
         </div>
         
       </div>

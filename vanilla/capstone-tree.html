@@ -1,0 +1,1718 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/capstone</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="capstone.html">capstone</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc -dM -E - < /dev/null | grep __apple_build_version__ | wc -l | tr -d " "</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>cc -dM -E -</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet - -mtune=generic -march=x86-64 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc -dumpmachine | grep -i cygwin | wc -l</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>cc -dumpmachine</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc --version | grep -i mingw | wc -l</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>cc --version</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo `grep -e CS_API_MAJOR include/capstone.h | grep -v = | awk '{print $3}'` | awk '{print $1}'</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "cs.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "utils.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c cs.c -o cs.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE cs.c -quiet -dumpbase cs.c -mtune=generic -march=x86-64 -auxbase-strip cs.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccwPIjP9.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o cs.o /tmp/ccwPIjP9.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c utils.c -o utils.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE utils.c -quiet -dumpbase utils.c -mtune=generic -march=x86-64 -auxbase-strip utils.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccbxJtP9.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o utils.o /tmp/ccbxJtP9.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "SStream.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c SStream.c -o SStream.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE SStream.c -quiet -dumpbase SStream.c -mtune=generic -march=x86-64 -auxbase-strip SStream.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccmpckue.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o SStream.o /tmp/ccmpckue.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "MCInstrDesc.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c MCInstrDesc.c -o MCInstrDesc.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE MCInstrDesc.c -quiet -dumpbase MCInstrDesc.c -mtune=generic -march=x86-64 -auxbase-strip MCInstrDesc.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccKI9J58.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o MCInstrDesc.o /tmp/ccKI9J58.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "MCRegisterInfo.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/ARM/ARMDisassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c MCRegisterInfo.c -o MCRegisterInfo.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE MCRegisterInfo.c -quiet -dumpbase MCRegisterInfo.c -mtune=generic -march=x86-64 -auxbase-strip MCRegisterInfo.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccObv4Wa.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o MCRegisterInfo.o /tmp/ccObv4Wa.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/ARM/ARMDisassembler.c -o arch/ARM/ARMDisassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/ARM/ARMDisassembler.c -quiet -dumpbase ARMDisassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/ARM/ARMDisassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccKfl6Ea.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/ARM/ARMDisassembler.o /tmp/ccKfl6Ea.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/ARM/ARMInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/ARM/ARMInstPrinter.c -o arch/ARM/ARMInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/ARM/ARMInstPrinter.c -quiet -dumpbase ARMInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/ARM/ARMInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccTCZaMc.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/ARM/ARMInstPrinter.o /tmp/ccTCZaMc.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/ARM/ARMMapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/ARM/ARMMapping.c -o arch/ARM/ARMMapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/ARM/ARMMapping.c -quiet -dumpbase ARMMapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/ARM/ARMMapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc9NcvBK.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/ARM/ARMMapping.o /tmp/cc9NcvBK.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/ARM/ARMModule.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/ARM/ARMModule.c -o arch/ARM/ARMModule.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/ARM/ARMModule.c -quiet -dumpbase ARMModule.c -mtune=generic -march=x86-64 -auxbase-strip arch/ARM/ARMModule.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccYzDUfT.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/ARM/ARMModule.o /tmp/ccYzDUfT.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/AArch64/AArch64BaseInfo.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/AArch64/AArch64BaseInfo.c -o arch/AArch64/AArch64BaseInfo.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/AArch64/AArch64BaseInfo.c -quiet -dumpbase AArch64BaseInfo.c -mtune=generic -march=x86-64 -auxbase-strip arch/AArch64/AArch64BaseInfo.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccYNbuKV.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/AArch64/AArch64BaseInfo.o /tmp/ccYNbuKV.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/AArch64/AArch64Disassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/AArch64/AArch64Disassembler.c -o arch/AArch64/AArch64Disassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/AArch64/AArch64Disassembler.c -quiet -dumpbase AArch64Disassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/AArch64/AArch64Disassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccpppQIA.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/AArch64/AArch64Disassembler.o /tmp/ccpppQIA.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/AArch64/AArch64InstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/AArch64/AArch64InstPrinter.c -o arch/AArch64/AArch64InstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/AArch64/AArch64InstPrinter.c -quiet -dumpbase AArch64InstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/AArch64/AArch64InstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccxJt7AB.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/AArch64/AArch64InstPrinter.o /tmp/ccxJt7AB.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/AArch64/AArch64Mapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/AArch64/AArch64Mapping.c -o arch/AArch64/AArch64Mapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/AArch64/AArch64Mapping.c -quiet -dumpbase AArch64Mapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/AArch64/AArch64Mapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccBDhdEi.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/AArch64/AArch64Mapping.o /tmp/ccBDhdEi.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/AArch64/AArch64Module.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/AArch64/AArch64Module.c -o arch/AArch64/AArch64Module.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/AArch64/AArch64Module.c -quiet -dumpbase AArch64Module.c -mtune=generic -march=x86-64 -auxbase-strip arch/AArch64/AArch64Module.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccT6wv6t.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/AArch64/AArch64Module.o /tmp/ccT6wv6t.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Mips/MipsDisassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Mips/MipsDisassembler.c -o arch/Mips/MipsDisassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Mips/MipsDisassembler.c -quiet -dumpbase MipsDisassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/Mips/MipsDisassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccjXZHKw.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Mips/MipsDisassembler.o /tmp/ccjXZHKw.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Mips/MipsInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Mips/MipsInstPrinter.c -o arch/Mips/MipsInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Mips/MipsInstPrinter.c -quiet -dumpbase MipsInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/Mips/MipsInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccFypx4E.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Mips/MipsInstPrinter.o /tmp/ccFypx4E.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Mips/MipsMapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Mips/MipsMapping.c -o arch/Mips/MipsMapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Mips/MipsMapping.c -quiet -dumpbase MipsMapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/Mips/MipsMapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccr9xVBM.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Mips/MipsMapping.o /tmp/ccr9xVBM.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Mips/MipsModule.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Mips/MipsModule.c -o arch/Mips/MipsModule.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Mips/MipsModule.c -quiet -dumpbase MipsModule.c -mtune=generic -march=x86-64 -auxbase-strip arch/Mips/MipsModule.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccdakWdU.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Mips/MipsModule.o /tmp/ccdakWdU.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/PowerPC/PPCDisassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/PowerPC/PPCDisassembler.c -o arch/PowerPC/PPCDisassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/PowerPC/PPCDisassembler.c -quiet -dumpbase PPCDisassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/PowerPC/PPCDisassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccYCcVYV.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/PowerPC/PPCDisassembler.o /tmp/ccYCcVYV.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/PowerPC/PPCInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/PowerPC/PPCInstPrinter.c -o arch/PowerPC/PPCInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/PowerPC/PPCInstPrinter.c -quiet -dumpbase PPCInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/PowerPC/PPCInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/cchPY9u4.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/PowerPC/PPCInstPrinter.o /tmp/cchPY9u4.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/PowerPC/PPCMapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/PowerPC/PPCMapping.c -o arch/PowerPC/PPCMapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/PowerPC/PPCMapping.c -quiet -dumpbase PPCMapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/PowerPC/PPCMapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccdI5sA8.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/PowerPC/PPCMapping.o /tmp/ccdI5sA8.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/PowerPC/PPCModule.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/PowerPC/PPCModule.c -o arch/PowerPC/PPCModule.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/PowerPC/PPCModule.c -quiet -dumpbase PPCModule.c -mtune=generic -march=x86-64 -auxbase-strip arch/PowerPC/PPCModule.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccEDovpj.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/PowerPC/PPCModule.o /tmp/ccEDovpj.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Sparc/SparcDisassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Sparc/SparcDisassembler.c -o arch/Sparc/SparcDisassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Sparc/SparcDisassembler.c -quiet -dumpbase SparcDisassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/Sparc/SparcDisassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccnZq01k.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Sparc/SparcDisassembler.o /tmp/ccnZq01k.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Sparc/SparcInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Sparc/SparcInstPrinter.c -o arch/Sparc/SparcInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Sparc/SparcInstPrinter.c -quiet -dumpbase SparcInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/Sparc/SparcInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccsCc2el.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Sparc/SparcInstPrinter.o /tmp/ccsCc2el.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Sparc/SparcMapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Sparc/SparcMapping.c -o arch/Sparc/SparcMapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Sparc/SparcMapping.c -quiet -dumpbase SparcMapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/Sparc/SparcMapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccpHUPIq.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Sparc/SparcMapping.o /tmp/ccpHUPIq.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/Sparc/SparcModule.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/Sparc/SparcModule.c -o arch/Sparc/SparcModule.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/Sparc/SparcModule.c -quiet -dumpbase SparcModule.c -mtune=generic -march=x86-64 -auxbase-strip arch/Sparc/SparcModule.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccy2uvtx.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/Sparc/SparcModule.o /tmp/ccy2uvtx.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/SystemZ/SystemZDisassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/SystemZ/SystemZDisassembler.c -o arch/SystemZ/SystemZDisassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/SystemZ/SystemZDisassembler.c -quiet -dumpbase SystemZDisassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/SystemZ/SystemZDisassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccneVbCz.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/SystemZ/SystemZDisassembler.o /tmp/ccneVbCz.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/SystemZ/SystemZInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/SystemZ/SystemZInstPrinter.c -o arch/SystemZ/SystemZInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/SystemZ/SystemZInstPrinter.c -quiet -dumpbase SystemZInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/SystemZ/SystemZInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc3DctEP.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/SystemZ/SystemZInstPrinter.o /tmp/cc3DctEP.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/SystemZ/SystemZMapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/SystemZ/SystemZMapping.c -o arch/SystemZ/SystemZMapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/SystemZ/SystemZMapping.c -quiet -dumpbase SystemZMapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/SystemZ/SystemZMapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc75GmNW.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/SystemZ/SystemZMapping.o /tmp/cc75GmNW.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/SystemZ/SystemZModule.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/SystemZ/SystemZModule.c -o arch/SystemZ/SystemZModule.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/SystemZ/SystemZModule.c -quiet -dumpbase SystemZModule.c -mtune=generic -march=x86-64 -auxbase-strip arch/SystemZ/SystemZModule.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccoCrh3Y.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/SystemZ/SystemZModule.o /tmp/ccoCrh3Y.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/SystemZ/SystemZMCTargetDesc.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/SystemZ/SystemZMCTargetDesc.c -o arch/SystemZ/SystemZMCTargetDesc.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/SystemZ/SystemZMCTargetDesc.c -quiet -dumpbase SystemZMCTargetDesc.c -mtune=generic -march=x86-64 -auxbase-strip arch/SystemZ/SystemZMCTargetDesc.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccI4C294.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/SystemZ/SystemZMCTargetDesc.o /tmp/ccI4C294.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/X86/X86DisassemblerDecoder.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/X86/X86DisassemblerDecoder.c -o arch/X86/X86DisassemblerDecoder.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/X86/X86DisassemblerDecoder.c -quiet -dumpbase X86DisassemblerDecoder.c -mtune=generic -march=x86-64 -auxbase-strip arch/X86/X86DisassemblerDecoder.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc2hAmE4.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/X86/X86DisassemblerDecoder.o /tmp/cc2hAmE4.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/X86/X86Disassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/X86/X86Disassembler.c -o arch/X86/X86Disassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/X86/X86Disassembler.c -quiet -dumpbase X86Disassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/X86/X86Disassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/cccvz6g4.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/X86/X86Disassembler.o /tmp/cccvz6g4.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/X86/X86IntelInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/X86/X86IntelInstPrinter.c -o arch/X86/X86IntelInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/X86/X86IntelInstPrinter.c -quiet -dumpbase X86IntelInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/X86/X86IntelInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc0cJEPd.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/X86/X86IntelInstPrinter.o /tmp/cc0cJEPd.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/X86/X86ATTInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/X86/X86ATTInstPrinter.c -o arch/X86/X86ATTInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/X86/X86ATTInstPrinter.c -quiet -dumpbase X86ATTInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/X86/X86ATTInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccS7kwHh.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/X86/X86ATTInstPrinter.o /tmp/ccS7kwHh.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/X86/X86Mapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/X86/X86Mapping.c -o arch/X86/X86Mapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/X86/X86Mapping.c -quiet -dumpbase X86Mapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/X86/X86Mapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccymHJZE.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/X86/X86Mapping.o /tmp/ccymHJZE.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/X86/X86Module.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/X86/X86Module.c -o arch/X86/X86Module.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/X86/X86Module.c -quiet -dumpbase X86Module.c -mtune=generic -march=x86-64 -auxbase-strip arch/X86/X86Module.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccOzAWEE.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/X86/X86Module.o /tmp/ccOzAWEE.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/XCore/XCoreDisassembler.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/XCore/XCoreDisassembler.c -o arch/XCore/XCoreDisassembler.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/XCore/XCoreDisassembler.c -quiet -dumpbase XCoreDisassembler.c -mtune=generic -march=x86-64 -auxbase-strip arch/XCore/XCoreDisassembler.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccq3zi3D.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/XCore/XCoreDisassembler.o /tmp/ccq3zi3D.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/XCore/XCoreInstPrinter.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/XCore/XCoreInstPrinter.c -o arch/XCore/XCoreInstPrinter.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/XCore/XCoreInstPrinter.c -quiet -dumpbase XCoreInstPrinter.c -mtune=generic -march=x86-64 -auxbase-strip arch/XCore/XCoreInstPrinter.o -Wall -fPIC -fvisibility=hidden -o /tmp/cctAjpAN.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/XCore/XCoreInstPrinter.o /tmp/cctAjpAN.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/XCore/XCoreMapping.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "arch/XCore/XCoreModule.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/XCore/XCoreMapping.c -o arch/XCore/XCoreMapping.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/XCore/XCoreMapping.c -quiet -dumpbase XCoreMapping.c -mtune=generic -march=x86-64 -auxbase-strip arch/XCore/XCoreMapping.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc4Q7yZQ.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/XCore/XCoreMapping.o /tmp/cc4Q7yZQ.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c arch/XCore/XCoreModule.c -o arch/XCore/XCoreModule.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE arch/XCore/XCoreModule.c -quiet -dumpbase XCoreModule.c -mtune=generic -march=x86-64 -auxbase-strip arch/XCore/XCoreModule.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccAWH71T.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o arch/XCore/XCoreModule.o /tmp/ccAWH71T.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "MCInst.o"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -c MCInst.c -o MCInst.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE MCInst.c -quiet -dumpbase MCInst.c -mtune=generic -march=x86-64 -auxbase-strip MCInst.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccYKAGMW.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I include --64 -o MCInst.o /tmp/ccYKAGMW.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "GEN" "capstone.pc"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'Name: capstone' > ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'Description: Capstone disassembly engine' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'Version: 3.0.4' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'libdir=/usr/lib' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'includedir=/usr/include/capstone' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'archive=${libdir}/libcapstone.a' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'Libs: -L${libdir} -lcapstone' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo 'Cflags: -I${includedir}' >> ./capstone.pc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo `grep -e CS_API_MAJOR include/capstone.h | grep -v = | awk '{print $3}'` | awk '{print $1}'</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "libcapstone.so"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "AR" "libcapstone.a"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -shared -Wl,-soname,libcapstone.so.3 ./cs.o ./utils.o ./SStream.o ./MCInstrDesc.o ./MCRegisterInfo.o ./arch/ARM/ARMDisassembler.o ./arch/ARM/ARMInstPrinter.o ./arch/ARM/ARMMapping.o ./arch/ARM/ARMModule.o ./arch/AArch64/AArch64BaseInfo.o ./arch/AArch64/AArch64Disassembler.o ./arch/AArch64/AArch64InstPrinter.o ./arch/AArch64/AArch64Mapping.o ./arch/AArch64/AArch64Module.o ./arch/Mips/MipsDisassembler.o ./arch/Mips/MipsInstPrinter.o ./arch/Mips/MipsMapping.o ./arch/Mips/MipsModule.o ./arch/PowerPC/PPCDisassembler.o ./arch/PowerPC/PPCInstPrinter.o ./arch/PowerPC/PPCMapping.o ./arch/PowerPC/PPCModule.o ./arch/Sparc/SparcDisassembler.o ./arch/Sparc/SparcInstPrinter.o ./arch/Sparc/SparcMapping.o ./arch/Sparc/SparcModule.o ./arch/SystemZ/SystemZDisassembler.o ./arch/SystemZ/SystemZInstPrinter.o ./arch/SystemZ/SystemZMapping.o ./arch/SystemZ/SystemZModule.o ./arch/SystemZ/SystemZMCTargetDesc.o ./arch/X86/X86DisassemblerDecoder.o ./arch/X86/X86Disassembler.o ./arch/X86/X86IntelInstPrinter.o ./arch/X86/X86ATTInstPrinter.o ./arch/X86/X86Mapping.o ./arch/X86/X86Module.o ./arch/XCore/XCoreDisassembler.o ./arch/XCore/XCoreInstPrinter.o ./arch/XCore/XCoreMapping.o ./arch/XCore/XCoreModule.o ./MCInst.o -o ./libcapstone.so</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPrNh8T.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o ./libcapstone.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libcapstone.so.3 ./cs.o ./utils.o ./SStream.o ./MCInstrDesc.o ./MCRegisterInfo.o ./arch/ARM/ARMDisassembler.o ./arch/ARM/ARMInstPrinter.o ./arch/ARM/ARMMapping.o ./arch/ARM/ARMModule.o ./arch/AArch64/AArch64BaseInfo.o ./arch/AArch64/AArch64Disassembler.o ./arch/AArch64/AArch64InstPrinter.o ./arch/AArch64/AArch64Mapping.o ./arch/AArch64/AArch64Module.o ./arch/Mips/MipsDisassembler.o ./arch/Mips/MipsInstPrinter.o ./arch/Mips/MipsMapping.o ./arch/Mips/MipsModule.o ./arch/PowerPC/PPCDisassembler.o ./arch/PowerPC/PPCInstPrinter.o ./arch/PowerPC/PPCMapping.o ./arch/PowerPC/PPCModule.o ./arch/Sparc/SparcDisassembler.o ./arch/Sparc/SparcInstPrinter.o ./arch/Sparc/SparcMapping.o ./arch/Sparc/SparcModule.o ./arch/SystemZ/SystemZDisassembler.o ./arch/SystemZ/SystemZInstPrinter.o ./arch/SystemZ/SystemZMapping.o ./arch/SystemZ/SystemZModule.o ./arch/SystemZ/SystemZMCTargetDesc.o ./arch/X86/X86DisassemblerDecoder.o ./arch/X86/X86Disassembler.o ./arch/X86/X86IntelInstPrinter.o ./arch/X86/X86ATTInstPrinter.o ./arch/X86/X86Mapping.o ./arch/X86/X86Module.o ./arch/XCore/XCoreDisassembler.o ./arch/XCore/XCoreInstPrinter.o ./arch/XCore/XCoreMapping.o ./arch/XCore/XCoreModule.o ./MCInst.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPrNh8T.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o ./libcapstone.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname libcapstone.so.3 ./cs.o ./utils.o ./SStream.o ./MCInstrDesc.o ./MCRegisterInfo.o ./arch/ARM/ARMDisassembler.o ./arch/ARM/ARMInstPrinter.o ./arch/ARM/ARMMapping.o ./arch/ARM/ARMModule.o ./arch/AArch64/AArch64BaseInfo.o ./arch/AArch64/AArch64Disassembler.o ./arch/AArch64/AArch64InstPrinter.o ./arch/AArch64/AArch64Mapping.o ./arch/AArch64/AArch64Module.o ./arch/Mips/MipsDisassembler.o ./arch/Mips/MipsInstPrinter.o ./arch/Mips/MipsMapping.o ./arch/Mips/MipsModule.o ./arch/PowerPC/PPCDisassembler.o ./arch/PowerPC/PPCInstPrinter.o ./arch/PowerPC/PPCMapping.o ./arch/PowerPC/PPCModule.o ./arch/Sparc/SparcDisassembler.o ./arch/Sparc/SparcInstPrinter.o ./arch/Sparc/SparcMapping.o ./arch/Sparc/SparcModule.o ./arch/SystemZ/SystemZDisassembler.o ./arch/SystemZ/SystemZInstPrinter.o ./arch/SystemZ/SystemZMapping.o ./arch/SystemZ/SystemZModule.o ./arch/SystemZ/SystemZMCTargetDesc.o ./arch/X86/X86DisassemblerDecoder.o ./arch/X86/X86Disassembler.o ./arch/X86/X86IntelInstPrinter.o ./arch/X86/X86ATTInstPrinter.o ./arch/X86/X86Mapping.o ./arch/X86/X86Module.o ./arch/XCore/XCoreDisassembler.o ./arch/XCore/XCoreInstPrinter.o ./arch/XCore/XCoreMapping.o ./arch/XCore/XCoreModule.o ./MCInst.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>ar q ./libcapstone.a ./cs.o ./utils.o ./SStream.o ./MCInstrDesc.o ./MCRegisterInfo.o ./arch/ARM/ARMDisassembler.o ./arch/ARM/ARMInstPrinter.o ./arch/ARM/ARMMapping.o ./arch/ARM/ARMModule.o ./arch/AArch64/AArch64BaseInfo.o ./arch/AArch64/AArch64Disassembler.o ./arch/AArch64/AArch64InstPrinter.o ./arch/AArch64/AArch64Mapping.o ./arch/AArch64/AArch64Module.o ./arch/Mips/MipsDisassembler.o ./arch/Mips/MipsInstPrinter.o ./arch/Mips/MipsMapping.o ./arch/Mips/MipsModule.o ./arch/PowerPC/PPCDisassembler.o ./arch/PowerPC/PPCInstPrinter.o ./arch/PowerPC/PPCMapping.o ./arch/PowerPC/PPCModule.o ./arch/Sparc/SparcDisassembler.o ./arch/Sparc/SparcInstPrinter.o ./arch/Sparc/SparcMapping.o ./arch/Sparc/SparcModule.o ./arch/SystemZ/SystemZDisassembler.o ./arch/SystemZ/SystemZInstPrinter.o ./arch/SystemZ/SystemZMapping.o ./arch/SystemZ/SystemZModule.o ./arch/SystemZ/SystemZMCTargetDesc.o ./arch/X86/X86DisassemblerDecoder.o ./arch/X86/X86Disassembler.o ./arch/X86/X86IntelInstPrinter.o ./arch/X86/X86ATTInstPrinter.o ./arch/X86/X86Mapping.o ./arch/X86/X86Module.o ./arch/XCore/XCoreDisassembler.o ./arch/XCore/XCoreInstPrinter.o ./arch/XCore/XCoreMapping.o ./arch/XCore/XCoreModule.o ./MCInst.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>ranlib ./libcapstone.a</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd tests && make</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>make</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc -dumpmachine | grep -i cygwin | wc -l</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>cc -dumpmachine</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc --version | grep -i mingw | wc -l</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>cc --version</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_detail.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test.c -o test.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test.c -quiet -dumpbase test.c -mtune=generic -march=x86-64 -auxbase-strip test.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc11f7PK.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test.o /tmp/cc11f7PK.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_detail.c -o test_detail.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_detail.c -quiet -dumpbase test_detail.c -mtune=generic -march=x86-64 -auxbase-strip test_detail.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccxpSUOK.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_detail.o /tmp/ccxpSUOK.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_skipdata.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_skipdata.c -o test_skipdata.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_skipdata.c -quiet -dumpbase test_skipdata.c -mtune=generic -march=x86-64 -auxbase-strip test_skipdata.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccvZSeKL.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_skipdata.o /tmp/ccvZSeKL.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_iter.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_iter.c -o test_iter.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_iter.c -quiet -dumpbase test_iter.c -mtune=generic -march=x86-64 -auxbase-strip test_iter.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc1MrbqP.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_iter.o /tmp/cc1MrbqP.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_arm.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_arm.c -o test_arm.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_arm.c -quiet -dumpbase test_arm.c -mtune=generic -march=x86-64 -auxbase-strip test_arm.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc2g4gXO.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_arm.o /tmp/cc2g4gXO.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_arm64.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_arm64.c -o test_arm64.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_arm64.c -quiet -dumpbase test_arm64.c -mtune=generic -march=x86-64 -auxbase-strip test_arm64.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccTiSpZQ.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_arm64.o /tmp/ccTiSpZQ.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_mips.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_mips.c -o test_mips.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_mips.c -quiet -dumpbase test_mips.c -mtune=generic -march=x86-64 -auxbase-strip test_mips.o -Wall -fPIC -fvisibility=hidden -o /tmp/cccqVozT.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_mips.o /tmp/cccqVozT.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_ppc.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_ppc.c -o test_ppc.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_ppc.c -quiet -dumpbase test_ppc.c -mtune=generic -march=x86-64 -auxbase-strip test_ppc.o -Wall -fPIC -fvisibility=hidden -o /tmp/cc4MWlWT.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_ppc.o /tmp/cc4MWlWT.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_sparc.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_sparc.c -o test_sparc.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_sparc.c -quiet -dumpbase test_sparc.c -mtune=generic -march=x86-64 -auxbase-strip test_sparc.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccA1ryAW.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_sparc.o /tmp/ccA1ryAW.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_systemz.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_systemz.c -o test_systemz.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_systemz.c -quiet -dumpbase test_systemz.c -mtune=generic -march=x86-64 -auxbase-strip test_systemz.o -Wall -fPIC -fvisibility=hidden -o /tmp/cch047gZ.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_systemz.o /tmp/cch047gZ.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_x86.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_x86.c -o test_x86.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_x86.c -quiet -dumpbase test_x86.c -mtune=generic -march=x86-64 -auxbase-strip test_x86.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccIIHJR1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_x86.o /tmp/ccIIHJR1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "CC" "test_xcore.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -fPIC -Wall -Iinclude -DCAPSTONE_USE_SYS_DYN_MEM -DCAPSTONE_HAS_ARM -DCAPSTONE_HAS_ARM64 -DCAPSTONE_HAS_MIPS -DCAPSTONE_HAS_POWERPC -DCAPSTONE_HAS_SPARC -DCAPSTONE_HAS_SYSZ -DCAPSTONE_HAS_X86 -DCAPSTONE_HAS_XCORE -fvisibility=hidden -Wall -I../include -c test_xcore.c -o test_xcore.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I include -I ../include -D CAPSTONE_USE_SYS_DYN_MEM -D CAPSTONE_HAS_ARM -D CAPSTONE_HAS_ARM64 -D CAPSTONE_HAS_MIPS -D CAPSTONE_HAS_POWERPC -D CAPSTONE_HAS_SPARC -D CAPSTONE_HAS_SYSZ -D CAPSTONE_HAS_X86 -D CAPSTONE_HAS_XCORE test_xcore.c -quiet -dumpbase test_xcore.c -mtune=generic -march=x86-64 -auxbase-strip test_xcore.o -Wall -fPIC -fvisibility=hidden -o /tmp/ccbruKH1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I include -I ../include --64 -o test_xcore.o /tmp/ccbruKH1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_detail"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test.o -lcapstone -o test</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cch3mv92.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cch3mv92.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_detail.o -lcapstone -o test_detail</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuLp882.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_detail /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_detail.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuLp882.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_detail /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_detail.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_detail.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_detail.o ../libcapstone.a -o test_detail.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccEivcPQ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_detail.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_detail.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccEivcPQ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_detail.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_detail.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test.o ../libcapstone.a -o test.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPTGiPQ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPTGiPQ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_skipdata"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_skipdata.o -lcapstone -o test_skipdata</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwbC3pU.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_skipdata /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_skipdata.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwbC3pU.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_skipdata /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_skipdata.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_iter"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_iter.o -lcapstone -o test_iter</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLjgM1X.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_iter /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_iter.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLjgM1X.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_iter /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_iter.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_skipdata.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_skipdata.o ../libcapstone.a -o test_skipdata.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPHgZgY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_skipdata.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_skipdata.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPHgZgY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_skipdata.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_skipdata.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_iter.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_iter.o ../libcapstone.a -o test_iter.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBGGhxW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_iter.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_iter.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBGGhxW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_iter.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_iter.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_arm"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_arm.o -lcapstone -o test_arm</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccsyfizZ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccsyfizZ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_arm64"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_arm64.o -lcapstone -o test_arm64</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cciAvbU2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm64 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm64.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cciAvbU2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm64 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm64.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_arm.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_arm64.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_arm.o ../libcapstone.a -o test_arm.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc4jJMx1.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc4jJMx1.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_arm64.o ../libcapstone.a -o test_arm64.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccWuEzM1.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm64.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm64.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccWuEzM1.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_arm64.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_arm64.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_mips"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_mips.o -lcapstone -o test_mips</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccq0dRQ4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_mips /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_mips.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccq0dRQ4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_mips /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_mips.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_ppc"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_ppc.o -lcapstone -o test_ppc</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccCDXvF7.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_ppc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_ppc.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccCDXvF7.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_ppc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_ppc.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_mips.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_mips.o ../libcapstone.a -o test_mips.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJXxHa8.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_mips.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_mips.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJXxHa8.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_mips.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_mips.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_ppc.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_ppc.o ../libcapstone.a -o test_ppc.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxNNy36.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_ppc.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_ppc.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxNNy36.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_ppc.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_ppc.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_sparc"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_sparc.o -lcapstone -o test_sparc</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6ArKNa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_sparc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_sparc.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6ArKNa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_sparc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_sparc.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_sparc.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_sparc.o ../libcapstone.a -o test_sparc.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8noyp9.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_sparc.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_sparc.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8noyp9.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_sparc.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_sparc.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_systemz"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_systemz.o -lcapstone -o test_systemz</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDjDirc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_systemz /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_systemz.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDjDirc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_systemz /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_systemz.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_systemz.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_systemz.o ../libcapstone.a -o test_systemz.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPBkUac.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_systemz.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_systemz.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPBkUac.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_systemz.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_systemz.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_x86"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_x86.o -lcapstone -o test_x86</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccnZPIde.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_x86 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_x86.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccnZPIde.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_x86 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_x86.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_xcore"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_xcore.o -lcapstone -o test_xcore</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAZEWVg.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_xcore /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_xcore.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAZEWVg.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_xcore /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_xcore.o -lcapstone -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_x86.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_x86.o ../libcapstone.a -o test_x86.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6XKA7g.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_x86.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_x86.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6XKA7g.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_x86.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_x86.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c printf "  %-7s %s\n" "LINK" "test_xcore.static"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>cc -L.. test_xcore.o ../libcapstone.a -o test_xcore.static</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBe66tk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_xcore.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_xcore.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBe66tk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test_xcore.static /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L.. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. test_xcore.o ../libcapstone.a -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>install -m0644 ./libcapstone.so ./tests/</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make DESTDIR=/tmp/capstone/pkg/capstone install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc -dM -E - < /dev/null | grep __apple_build_version__ | wc -l | tr -d " "</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>cc -dM -E -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet - -mtune=generic -march=x86-64 -dM</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc -dumpmachine | grep -i cygwin | wc -l</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>cc -dumpmachine</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cc --version | grep -i mingw | wc -l</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>cc --version</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>wc -l</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo `grep -e CS_API_MAJOR include/capstone.h | grep -v = | awk '{print $3}'` | awk '{print $1}'</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo `grep -e CS_API_MAJOR include/capstone.h | grep -v = | awk '{print $3}'` | awk '{print $1}'</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo `grep -e CS_API_MAJOR include/capstone.h | grep -v = | awk '{print $3}'` | awk '{print $1}'</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m0755 ./libcapstone.so /tmp/capstone/pkg/capstone/usr/lib</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd /tmp/capstone/pkg/capstone/usr/lib && \
+mv libcapstone.so libcapstone.so.3 && \
+ln -s libcapstone.so.3 libcapstone.so</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m0644 ./libcapstone.a /tmp/capstone/pkg/capstone/usr/lib</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m0644 include/arm.h include/arm64.h include/capstone.h include/mips.h include/platform.h include/ppc.h include/sparc.h include/systemz.h include/x86.h include/xcore.h /tmp/capstone/pkg/capstone/usr/include/capstone</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m0644 ./capstone.pc /tmp/capstone/pkg/capstone/usr/lib/pkgconfig/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -Dm 644 LICENSE.TXT /tmp/capstone/pkg/capstone/usr/share/licenses/capstone/LICENSE</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/capstone/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/capstone/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/capstone/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>python setup.py install -O1 --root=/tmp/capstone/pkg/python-capstone --prefix=/usr</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/sbin/python -O /tmp/tmp4zjcqmw_.py</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -Dm 644 ../../LICENSE.TXT /tmp/capstone/pkg/python-capstone/usr/share/licenses/python-capstone/LICENSE</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/capstone/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/capstone/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/capstone/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py install -O1 --root=/tmp/capstone/pkg/python2-capstone --prefix=/usr</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/sbin/python2 -O /tmp/tmpt1M7yD.py</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -Dm 644 ../../LICENSE.TXT /tmp/capstone/pkg/python2-capstone/usr/share/licenses/python2-capstone/LICENSE</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/capstone/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/capstone/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/capstone/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc python python2</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

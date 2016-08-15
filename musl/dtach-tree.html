@@ -1,0 +1,460 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/dtach</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="dtach.html">dtach</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>cat</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>/usr/convex/getsysinfo</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang --version</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -v</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o a.out /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-509c2a.o -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">127</span>&nbsp;<code>./a.out</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-01e5f0.o -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-ec45e2.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-2df4fc.o -lsocket -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-df3981.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-5d350e.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-85a78c.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-2fe7e8.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-38b781.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-0b83bd.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-812240.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-d27dbf.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-ca5ef6.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-29aa64.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib /tmp/conftest-66dfab.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>uniq confdefs.h</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.status</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name attach.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/attach.o -resource-dir /sysroot/bin/../lib/clang/3.8.0 -I . -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o attach.o -x c attach.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name master.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/master.o -resource-dir /sysroot/bin/../lib/clang/3.8.0 -I . -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o master.o -x c master.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name main.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/dtach/src/dtach-0.8/main.o -resource-dir /sysroot/bin/../lib/clang/3.8.0 -I . -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -W -Wall -fdebug-compilation-dir /tmp/dtach/src/dtach-0.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o main.o -x c main.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o dtach /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/toolchain_root/lib attach.o master.o main.o -lutil -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -Dm755 dtach /tmp/dtach/pkg/dtach/usr/bin/dtach</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>install -Dm644 dtach.1 /tmp/dtach/pkg/dtach/usr/share/man/man1/dtach.1</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/dtach/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/dtach/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/dtach/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

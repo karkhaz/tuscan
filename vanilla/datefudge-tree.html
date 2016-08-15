@@ -1,0 +1,162 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/datefudge</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="datefudge.html">datefudge</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T sh</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c dpkg-parsechangelog | sed -n 's/^Version: //p'</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sed -e 's,@VERSION@,,g; s,@MULTIARCH_PATTERN@,,g; s,@LIBDIR@,/usr/lib,g;' \
+< datefudge.sh > datefudge</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -Wall -Wextra -D_REENTRANT -fpic -c -o datefudge.o datefudge.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D _REENTRANT datefudge.c -quiet -dumpbase datefudge.c -mtune=generic -march=x86-64 -auxbase-strip datefudge.o -Wall -Wextra -fpic -o /tmp/ccv4w6ZS.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o datefudge.o /tmp/ccv4w6ZS.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sed -e 's,@VERSION@,,g; s,@MULTIARCH_PATTERN@,,g; s,@LIBDIR@,/usr/lib,g;' \
+< datefudge.man > datefudge.1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -o datefudge.so -shared datefudge.o -ldl -lc</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cchoGMsY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o datefudge.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. datefudge.o -ldl -lc -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cchoGMsY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o datefudge.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. datefudge.o -ldl -lc -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="bad-return">2</span>&nbsp;<code>make DESTDIR=/tmp/datefudge/pkg/datefudge/ install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c dpkg-parsechangelog | sed -n 's/^Version: //p'</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/datefudge/pkg/datefudge//usr/lib//datefudge</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -o root -g root -m 644 datefudge.so /tmp/datefudge/pkg/datefudge//usr/lib//datefudge/datefudge.so</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

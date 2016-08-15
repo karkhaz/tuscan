@@ -30,10 +30,14 @@
     <h1>Build of redis
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 01m 08s and was
-    NOT successful.
-    
+    <p>The build took 00h 01m 03s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="redis-tree.html">here</a>.
     </p>
+    
+    
     
     
     
@@ -43,17 +47,19 @@
       <li>configure_error
         <ul>
           
-          <li><a href="#123">checking whether we are cross compiling... configure: error: in `/tmp/redis/src/redis-3.2.1/deps/jemalloc':</a></li>
+          <li><a href="#225">checking whether we are cross compiling... configure: error: in `/tmp/redis/src/redis-3.2.1/deps/jemalloc':</a></li>
           
-          <li><a href="#124">configure: error: cannot run C compiled programs.</a></li>
+          <li><a href="#226">configure: error: cannot run C compiled programs.</a></li>
           
         </ul>
       </li>
       
-      <li>configure_return_code
+      <li>missing_header
         <ul>
           
-          <li><a href="#415">configure: exit 1</a></li>
+          <li><a href="#235">./zmalloc.h:50:10: fatal error: 'jemalloc/jemalloc.h' file not found</a></li>
+          
+          <li><a href="#239">./zmalloc.h:50:10: fatal error: 'jemalloc/jemalloc.h' file not found</a></li>
           
         </ul>
       </li>
@@ -107,15 +113,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: redis 3.2.1-1 (Mon Jun 27 03:21:02 UTC 2016)</code><br />
+              <code id="5">==> Making package: redis 3.2.1-1 (Thu Aug 11 00:08:56 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -315,12 +361,12 @@
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">[32;1mMAKE[0m [37;1mlinenoise[0m</code><br />
+              <code id="45">cd hiredis && make static</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">cd hiredis && make static</code><br />
+              <code id="46">[32;1mMAKE[0m [37;1mlinenoise[0m</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
@@ -350,517 +396,1002 @@
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">clang -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  hiredis.c</code><br />
+              <code id="52">In file included from net.c:34:</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/linenoise'</code><br />
+              <code id="53">In file included from /sysroot/include/sys/types.h:70:</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">[32;1mMAKE[0m [37;1mlua[0m</code><br />
+              <code id="54">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">cd lua/src && make all CFLAGS="-O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC='' " MYLDFLAGS="" AR="ar rcu"</code><br />
+              <code id="55">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">make[3]: Entering directory '/tmp/redis/src/redis-3.2.1/deps/lua/src'</code><br />
+              <code id="56">                       ~ ~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lapi.o lapi.c</code><br />
+              <code id="57">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lcode.o lcode.c</code><br />
+              <code id="58">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldebug.o ldebug.c</code><br />
+              <code id="59">                               ^</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldo.o ldo.c</code><br />
+              <code id="60">                         (            )</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">ldo.c:496:7: warning: unused variable 'c' [-Wunused-variable]</code><br />
+              <code id="61">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">  int c = luaZ_lookahead(p->z);</code><br />
+              <code id="62">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">      ^</code><br />
+              <code id="63">                                       ~ ~~~~~~^~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">1 warning generated.</code><br />
+              <code id="64">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldump.o ldump.c</code><br />
+              <code id="65">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lfunc.o lfunc.c</code><br />
+              <code id="66">                                               ^</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lgc.o lgc.c</code><br />
+              <code id="67">                                         (              )</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o llex.o llex.c</code><br />
+              <code id="68">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lmem.o lmem.c</code><br />
+              <code id="69">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lobject.o lobject.c</code><br />
+              <code id="70">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lopcodes.o lopcodes.c</code><br />
+              <code id="71">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lparser.o lparser.c</code><br />
+              <code id="72">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
 						
-              <code id="73">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lstate.o lstate.c</code><br />
+              <code id="73">                             ^</code><br />
 						
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lstring.o lstring.c</code><br />
+              <code id="74">               (                  )</code><br />
 						
             
             <a class="navhash" href="#75">#</a>
 						
-              <code id="75">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ltable.o ltable.c</code><br />
+              <code id="75">In file included from linenoise.c:114:</code><br />
 						
             
             <a class="navhash" href="#76">#</a>
 						
-              <code id="76">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ltm.o ltm.c</code><br />
+              <code id="76">In file included from /sysroot/include/sys/types.h:70:</code><br />
 						
             
             <a class="navhash" href="#77">#</a>
 						
-              <code id="77">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lundump.o lundump.c</code><br />
+              <code id="77">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#78">#</a>
 						
-              <code id="78">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lvm.o lvm.c</code><br />
+              <code id="78">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#79">#</a>
 						
-              <code id="79">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lzio.o lzio.c</code><br />
+              <code id="79">                       ~ ~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o strbuf.o strbuf.c</code><br />
+              <code id="80">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#81">#</a>
 						
-              <code id="81">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o fpconv.o fpconv.c</code><br />
+              <code id="81">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#82">#</a>
 						
-              <code id="82">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lauxlib.o lauxlib.c</code><br />
+              <code id="82">                               ^</code><br />
 						
             
             <a class="navhash" href="#83">#</a>
 						
-              <code id="83">lauxlib.c:577:61: warning: while loop has empty body [-Wempty-body]</code><br />
+              <code id="83">                         (            )</code><br />
 						
             
             <a class="navhash" href="#84">#</a>
 						
-              <code id="84">   while ((c = getc(lf.f)) != EOF && c != LUA_SIGNATURE[0]) ;</code><br />
+              <code id="84">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#85">#</a>
 						
-              <code id="85">                                                            ^</code><br />
+              <code id="85">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#86">#</a>
 						
-              <code id="86">lauxlib.c:577:61: note: put the semicolon on a separate line to silence this warning</code><br />
+              <code id="86">                                       ~ ~~~~~~^~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#87">#</a>
 						
-              <code id="87">1 warning generated.</code><br />
+              <code id="87">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#88">#</a>
 						
-              <code id="88">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lbaselib.o lbaselib.c</code><br />
+              <code id="88">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#89">#</a>
 						
-              <code id="89">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldblib.o ldblib.c</code><br />
+              <code id="89">                                               ^</code><br />
 						
             
             <a class="navhash" href="#90">#</a>
 						
-              <code id="90">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o liolib.o liolib.c</code><br />
+              <code id="90">                                         (              )</code><br />
 						
             
             <a class="navhash" href="#91">#</a>
 						
-              <code id="91">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lmathlib.o lmathlib.c</code><br />
+              <code id="91">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o loslib.o loslib.c</code><br />
+              <code id="92">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ltablib.o ltablib.c</code><br />
+              <code id="93">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#94">#</a>
 						
-              <code id="94">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lstrlib.o lstrlib.c</code><br />
+              <code id="94">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o loadlib.o loadlib.c</code><br />
+              <code id="95">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#96">#</a>
 						
-              <code id="96">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o linit.o linit.c</code><br />
+              <code id="96">                             ^</code><br />
 						
             
             <a class="navhash" href="#97">#</a>
 						
-              <code id="97">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_cjson.o lua_cjson.c</code><br />
+              <code id="97">               (                  )</code><br />
 						
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_struct.o lua_struct.c</code><br />
+              <code id="98">3 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#99">#</a>
 						
-              <code id="99">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_cmsgpack.o lua_cmsgpack.c</code><br />
+              <code id="99">clang -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  hiredis.c</code><br />
 						
             
             <a class="navhash" href="#100">#</a>
 						
-              <code id="100">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_bit.o lua_bit.c</code><br />
+              <code id="100">In file included from hiredis.c:42:</code><br />
 						
             
             <a class="navhash" href="#101">#</a>
 						
-              <code id="101">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua.o lua.c</code><br />
+              <code id="101">In file included from ./sds.h:38:</code><br />
 						
             
             <a class="navhash" href="#102">#</a>
 						
-              <code id="102">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o luac.o luac.c</code><br />
+              <code id="102">In file included from /sysroot/include/sys/types.h:70:</code><br />
 						
             
             <a class="navhash" href="#103">#</a>
 						
-              <code id="103">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o print.o print.c</code><br />
+              <code id="103">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#104">#</a>
 						
-              <code id="104">ar rcu liblua.a lapi.o lcode.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o strbuf.o fpconv.o lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o lstrlib.o loadlib.o linit.o lua_cjson.o lua_struct.o lua_cmsgpack.o lua_bit.o	# DLL needs all object files</code><br />
+              <code id="104">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#105">#</a>
 						
-              <code id="105">ar: `u' modifier ignored since `D' is the default (see `U')</code><br />
+              <code id="105">                       ~ ~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#106">#</a>
 						
-              <code id="106">ranlib liblua.a</code><br />
+              <code id="106">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#107">#</a>
 						
-              <code id="107">clang -o lua  lua.o liblua.a -lm </code><br />
+              <code id="107">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#108">#</a>
 						
-              <code id="108">clang -o luac  luac.o print.o liblua.a -lm </code><br />
+              <code id="108">                               ^</code><br />
 						
             
             <a class="navhash" href="#109">#</a>
 						
-              <code id="109">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/lua/src'</code><br />
+              <code id="109">                         (            )</code><br />
 						
             
             <a class="navhash" href="#110">#</a>
 						
-              <code id="110">[32;1mMAKE[0m [37;1mgeohash-int[0m</code><br />
+              <code id="110">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#111">#</a>
 						
-              <code id="111">cd geohash-int && make</code><br />
+              <code id="111">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#112">#</a>
 						
-              <code id="112">make[3]: Entering directory '/tmp/redis/src/redis-3.2.1/deps/geohash-int'</code><br />
+              <code id="112">                                       ~ ~~~~~~^~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#113">#</a>
 						
-              <code id="113">clang  -Wall -O2 -g  -c geohash.c</code><br />
+              <code id="113">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#114">#</a>
 						
-              <code id="114">clang  -Wall -O2 -g  -c geohash_helper.c</code><br />
+              <code id="114">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#115">#</a>
 						
-              <code id="115">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/geohash-int'</code><br />
+              <code id="115">                                               ^</code><br />
 						
             
             <a class="navhash" href="#116">#</a>
 						
-              <code id="116">[32;1mMAKE[0m [37;1mjemalloc[0m</code><br />
+              <code id="116">                                         (              )</code><br />
 						
             
             <a class="navhash" href="#117">#</a>
 						
-              <code id="117">cd jemalloc && ./configure --with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS="-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops " LDFLAGS=""</code><br />
+              <code id="117">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#118">#</a>
 						
-              <code id="118">checking for xsltproc... /usr/sbin/xsltproc</code><br />
+              <code id="118">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#119">#</a>
 						
-              <code id="119">checking for gcc... clang</code><br />
+              <code id="119">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#120">#</a>
 						
-              <code id="120">checking whether the C compiler works... yes</code><br />
+              <code id="120">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#121">#</a>
 						
-              <code id="121">checking for C compiler default output file name... a.out</code><br />
+              <code id="121">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#122">#</a>
 						
-              <code id="122">checking for suffix of executables... </code><br />
+              <code id="122">                             ^</code><br />
 						
             
             <a class="navhash" href="#123">#</a>
-						<span class="error">
-              <code id="123">checking whether we are cross compiling... configure: error: in `/tmp/redis/src/redis-3.2.1/deps/jemalloc':</code><br />
-						</span>
+						
+              <code id="123">               (                  )</code><br />
+						
             
             <a class="navhash" href="#124">#</a>
-						<span class="error">
-              <code id="124">configure: error: cannot run C compiled programs.</code><br />
-						</span>
+						
+              <code id="124">3 warnings generated.</code><br />
+						
             
             <a class="navhash" href="#125">#</a>
 						
-              <code id="125">If you meant to cross compile, use `--host'.</code><br />
+              <code id="125">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/linenoise'</code><br />
 						
             
             <a class="navhash" href="#126">#</a>
 						
-              <code id="126">See `config.log' for more details</code><br />
+              <code id="126">[32;1mMAKE[0m [37;1mlua[0m</code><br />
 						
             
             <a class="navhash" href="#127">#</a>
 						
-              <code id="127">make[2]: *** [Makefile:81: jemalloc] Error 1</code><br />
+              <code id="127">cd lua/src && make all CFLAGS="-O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC='' " MYLDFLAGS="" AR="ar rcu"</code><br />
 						
             
             <a class="navhash" href="#128">#</a>
 						
-              <code id="128">make[2]: *** Waiting for unfinished jobs....</code><br />
+              <code id="128">make[3]: Entering directory '/tmp/redis/src/redis-3.2.1/deps/lua/src'</code><br />
 						
             
             <a class="navhash" href="#129">#</a>
 						
-              <code id="129">clang -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  sds.c</code><br />
+              <code id="129">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lapi.o lapi.c</code><br />
 						
             
             <a class="navhash" href="#130">#</a>
 						
-              <code id="130">clang -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  async.c</code><br />
+              <code id="130">3 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#131">#</a>
 						
-              <code id="131">ar rcs libhiredis.a net.o hiredis.o sds.o async.o</code><br />
+              <code id="131">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lcode.o lcode.c</code><br />
 						
             
             <a class="navhash" href="#132">#</a>
 						
-              <code id="132">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/hiredis'</code><br />
+              <code id="132">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldebug.o ldebug.c</code><br />
 						
             
             <a class="navhash" href="#133">#</a>
 						
-              <code id="133">make[2]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps'</code><br />
+              <code id="133">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldo.o ldo.c</code><br />
 						
             
             <a class="navhash" href="#134">#</a>
 						
-              <code id="134">make[1]: [Makefile:156: persist-settings] Error 2 (ignored)</code><br />
+              <code id="134">ldo.c:496:7: warning: unused variable 'c' [-Wunused-variable]</code><br />
 						
             
             <a class="navhash" href="#135">#</a>
 						
-              <code id="135">    [34mCC[0m [33madlist.o[0m</code><br />
+              <code id="135">  int c = luaZ_lookahead(p->z);</code><br />
 						
             
             <a class="navhash" href="#136">#</a>
 						
-              <code id="136">    [34mCC[0m [33mquicklist.o[0m</code><br />
+              <code id="136">      ^</code><br />
 						
             
             <a class="navhash" href="#137">#</a>
 						
-              <code id="137">In file included from quicklist.c:33:</code><br />
+              <code id="137">1 warning generated.</code><br />
 						
             
             <a class="navhash" href="#138">#</a>
 						
-              <code id="138">./zmalloc.h:50:10: fatal error: 'jemalloc/jemalloc.h' file not found</code><br />
+              <code id="138">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldump.o ldump.c</code><br />
 						
             
             <a class="navhash" href="#139">#</a>
 						
-              <code id="139">#include <jemalloc/jemalloc.h></code><br />
+              <code id="139">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lfunc.o lfunc.c</code><br />
 						
             
             <a class="navhash" href="#140">#</a>
 						
-              <code id="140">         ^</code><br />
+              <code id="140">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lgc.o lgc.c</code><br />
 						
             
             <a class="navhash" href="#141">#</a>
 						
-              <code id="141">In file included from adlist.c:34:</code><br />
+              <code id="141">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o llex.o llex.c</code><br />
 						
             
             <a class="navhash" href="#142">#</a>
 						
-              <code id="142">./zmalloc.h:50:10: fatal error: 'jemalloc/jemalloc.h' file not found</code><br />
+              <code id="142">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lmem.o lmem.c</code><br />
 						
             
             <a class="navhash" href="#143">#</a>
 						
-              <code id="143">#include <jemalloc/jemalloc.h></code><br />
+              <code id="143">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lobject.o lobject.c</code><br />
 						
             
             <a class="navhash" href="#144">#</a>
 						
-              <code id="144">         ^</code><br />
+              <code id="144">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lopcodes.o lopcodes.c</code><br />
 						
             
             <a class="navhash" href="#145">#</a>
 						
-              <code id="145">1 error generated.</code><br />
+              <code id="145">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lparser.o lparser.c</code><br />
 						
             
             <a class="navhash" href="#146">#</a>
 						
-              <code id="146">make[1]: *** [Makefile:201: adlist.o] Error 1</code><br />
+              <code id="146">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lstate.o lstate.c</code><br />
 						
             
             <a class="navhash" href="#147">#</a>
 						
-              <code id="147">make[1]: *** Waiting for unfinished jobs....</code><br />
+              <code id="147">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lstring.o lstring.c</code><br />
 						
             
             <a class="navhash" href="#148">#</a>
 						
-              <code id="148">1 error generated.</code><br />
+              <code id="148">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ltable.o ltable.c</code><br />
 						
             
             <a class="navhash" href="#149">#</a>
 						
-              <code id="149">make[1]: *** [Makefile:201: quicklist.o] Error 1</code><br />
+              <code id="149">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ltm.o ltm.c</code><br />
 						
             
             <a class="navhash" href="#150">#</a>
 						
-              <code id="150">make[1]: Leaving directory '/tmp/redis/src/redis-3.2.1/src'</code><br />
+              <code id="150">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lundump.o lundump.c</code><br />
 						
             
             <a class="navhash" href="#151">#</a>
 						
-              <code id="151">make: *** [Makefile:6: all] Error 2</code><br />
+              <code id="151">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lvm.o lvm.c</code><br />
 						
             
             <a class="navhash" href="#152">#</a>
 						
-              <code id="152">make: Leaving directory '/tmp/redis/src/redis-3.2.1'</code><br />
+              <code id="152">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lzio.o lzio.c</code><br />
 						
             
             <a class="navhash" href="#153">#</a>
 						
-              <code id="153">==> ERROR: A failure occurred in build().</code><br />
+              <code id="153">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o strbuf.o strbuf.c</code><br />
 						
             
             <a class="navhash" href="#154">#</a>
 						
-              <code id="154">    Aborting...</code><br />
+              <code id="154">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o fpconv.o fpconv.c</code><br />
+						
+            
+            <a class="navhash" href="#155">#</a>
+						
+              <code id="155">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lauxlib.o lauxlib.c</code><br />
+						
+            
+            <a class="navhash" href="#156">#</a>
+						
+              <code id="156">lauxlib.c:577:61: warning: while loop has empty body [-Wempty-body]</code><br />
+						
+            
+            <a class="navhash" href="#157">#</a>
+						
+              <code id="157">   while ((c = getc(lf.f)) != EOF && c != LUA_SIGNATURE[0]) ;</code><br />
+						
+            
+            <a class="navhash" href="#158">#</a>
+						
+              <code id="158">                                                            ^</code><br />
+						
+            
+            <a class="navhash" href="#159">#</a>
+						
+              <code id="159">lauxlib.c:577:61: note: put the semicolon on a separate line to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#160">#</a>
+						
+              <code id="160">1 warning generated.</code><br />
+						
+            
+            <a class="navhash" href="#161">#</a>
+						
+              <code id="161">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lbaselib.o lbaselib.c</code><br />
+						
+            
+            <a class="navhash" href="#162">#</a>
+						
+              <code id="162">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ldblib.o ldblib.c</code><br />
+						
+            
+            <a class="navhash" href="#163">#</a>
+						
+              <code id="163">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o liolib.o liolib.c</code><br />
+						
+            
+            <a class="navhash" href="#164">#</a>
+						
+              <code id="164">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lmathlib.o lmathlib.c</code><br />
+						
+            
+            <a class="navhash" href="#165">#</a>
+						
+              <code id="165">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o loslib.o loslib.c</code><br />
+						
+            
+            <a class="navhash" href="#166">#</a>
+						
+              <code id="166">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o ltablib.o ltablib.c</code><br />
+						
+            
+            <a class="navhash" href="#167">#</a>
+						
+              <code id="167">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lstrlib.o lstrlib.c</code><br />
+						
+            
+            <a class="navhash" href="#168">#</a>
+						
+              <code id="168">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o loadlib.o loadlib.c</code><br />
+						
+            
+            <a class="navhash" href="#169">#</a>
+						
+              <code id="169">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o linit.o linit.c</code><br />
+						
+            
+            <a class="navhash" href="#170">#</a>
+						
+              <code id="170">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_cjson.o lua_cjson.c</code><br />
+						
+            
+            <a class="navhash" href="#171">#</a>
+						
+              <code id="171">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_struct.o lua_struct.c</code><br />
+						
+            
+            <a class="navhash" href="#172">#</a>
+						
+              <code id="172">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_cmsgpack.o lua_cmsgpack.c</code><br />
+						
+            
+            <a class="navhash" href="#173">#</a>
+						
+              <code id="173">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua_bit.o lua_bit.c</code><br />
+						
+            
+            <a class="navhash" href="#174">#</a>
+						
+              <code id="174">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o lua.o lua.c</code><br />
+						
+            
+            <a class="navhash" href="#175">#</a>
+						
+              <code id="175">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o luac.o luac.c</code><br />
+						
+            
+            <a class="navhash" href="#176">#</a>
+						
+              <code id="176">clang -O2 -Wall -DLUA_ANSI -DENABLE_CJSON_GLOBAL -DREDIS_STATIC=''    -c -o print.o print.c</code><br />
+						
+            
+            <a class="navhash" href="#177">#</a>
+						
+              <code id="177">ar rcu liblua.a lapi.o lcode.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o strbuf.o fpconv.o lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o lstrlib.o loadlib.o linit.o lua_cjson.o lua_struct.o lua_cmsgpack.o lua_bit.o	# DLL needs all object files</code><br />
+						
+            
+            <a class="navhash" href="#178">#</a>
+						
+              <code id="178">ar: `u' modifier ignored since `D' is the default (see `U')</code><br />
+						
+            
+            <a class="navhash" href="#179">#</a>
+						
+              <code id="179">ranlib liblua.a</code><br />
+						
+            
+            <a class="navhash" href="#180">#</a>
+						
+              <code id="180">clang -o lua  lua.o liblua.a -lm </code><br />
+						
+            
+            <a class="navhash" href="#181">#</a>
+						
+              <code id="181">clang -o luac  luac.o print.o liblua.a -lm </code><br />
+						
+            
+            <a class="navhash" href="#182">#</a>
+						
+              <code id="182">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/lua/src'</code><br />
+						
+            
+            <a class="navhash" href="#183">#</a>
+						
+              <code id="183">clang -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  sds.c</code><br />
+						
+            
+            <a class="navhash" href="#184">#</a>
+						
+              <code id="184">clang -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  async.c</code><br />
+						
+            
+            <a class="navhash" href="#185">#</a>
+						
+              <code id="185">In file included from async.c:42:</code><br />
+						
+            
+            <a class="navhash" href="#186">#</a>
+						
+              <code id="186">In file included from ./sds.h:38:</code><br />
+						
+            
+            <a class="navhash" href="#187">#</a>
+						
+              <code id="187">In file included from /sysroot/include/sys/types.h:70:</code><br />
+						
+            
+            <a class="navhash" href="#188">#</a>
+						
+              <code id="188">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#189">#</a>
+						
+              <code id="189">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#190">#</a>
+						
+              <code id="190">                       ~ ~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#191">#</a>
+						
+              <code id="191">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#192">#</a>
+						
+              <code id="192">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#193">#</a>
+						
+              <code id="193">                               ^</code><br />
+						
+            
+            <a class="navhash" href="#194">#</a>
+						
+              <code id="194">                         (            )</code><br />
+						
+            
+            <a class="navhash" href="#195">#</a>
+						
+              <code id="195">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#196">#</a>
+						
+              <code id="196">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#197">#</a>
+						
+              <code id="197">                                       ~ ~~~~~~^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#198">#</a>
+						
+              <code id="198">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#199">#</a>
+						
+              <code id="199">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#200">#</a>
+						
+              <code id="200">                                               ^</code><br />
+						
+            
+            <a class="navhash" href="#201">#</a>
+						
+              <code id="201">                                         (              )</code><br />
+						
+            
+            <a class="navhash" href="#202">#</a>
+						
+              <code id="202">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#203">#</a>
+						
+              <code id="203">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#204">#</a>
+						
+              <code id="204">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#205">#</a>
+						
+              <code id="205">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#206">#</a>
+						
+              <code id="206">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#207">#</a>
+						
+              <code id="207">                             ^</code><br />
+						
+            
+            <a class="navhash" href="#208">#</a>
+						
+              <code id="208">               (                  )</code><br />
+						
+            
+            <a class="navhash" href="#209">#</a>
+						
+              <code id="209">3 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#210">#</a>
+						
+              <code id="210">[32;1mMAKE[0m [37;1mgeohash-int[0m</code><br />
+						
+            
+            <a class="navhash" href="#211">#</a>
+						
+              <code id="211">cd geohash-int && make</code><br />
+						
+            
+            <a class="navhash" href="#212">#</a>
+						
+              <code id="212">make[3]: Entering directory '/tmp/redis/src/redis-3.2.1/deps/geohash-int'</code><br />
+						
+            
+            <a class="navhash" href="#213">#</a>
+						
+              <code id="213">clang  -Wall -O2 -g  -c geohash.c</code><br />
+						
+            
+            <a class="navhash" href="#214">#</a>
+						
+              <code id="214">clang  -Wall -O2 -g  -c geohash_helper.c</code><br />
+						
+            
+            <a class="navhash" href="#215">#</a>
+						
+              <code id="215">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/geohash-int'</code><br />
+						
+            
+            <a class="navhash" href="#216">#</a>
+						
+              <code id="216">[32;1mMAKE[0m [37;1mjemalloc[0m</code><br />
+						
+            
+            <a class="navhash" href="#217">#</a>
+						
+              <code id="217">cd jemalloc && ./configure --with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS="-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops " LDFLAGS=""</code><br />
+						
+            
+            <a class="navhash" href="#218">#</a>
+						
+              <code id="218">ar rcs libhiredis.a net.o hiredis.o sds.o async.o</code><br />
+						
+            
+            <a class="navhash" href="#219">#</a>
+						
+              <code id="219">make[3]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps/hiredis'</code><br />
+						
+            
+            <a class="navhash" href="#220">#</a>
+						
+              <code id="220">checking for xsltproc... /usr/sbin/xsltproc</code><br />
+						
+            
+            <a class="navhash" href="#221">#</a>
+						
+              <code id="221">checking for gcc... clang</code><br />
+						
+            
+            <a class="navhash" href="#222">#</a>
+						
+              <code id="222">checking whether the C compiler works... yes</code><br />
+						
+            
+            <a class="navhash" href="#223">#</a>
+						
+              <code id="223">checking for C compiler default output file name... a.out</code><br />
+						
+            
+            <a class="navhash" href="#224">#</a>
+						
+              <code id="224">checking for suffix of executables... </code><br />
+						
+            
+            <a class="navhash" href="#225">#</a>
+						<span class="error">
+              <code id="225">checking whether we are cross compiling... configure: error: in `/tmp/redis/src/redis-3.2.1/deps/jemalloc':</code><br />
+						</span>
+            
+            <a class="navhash" href="#226">#</a>
+						<span class="error">
+              <code id="226">configure: error: cannot run C compiled programs.</code><br />
+						</span>
+            
+            <a class="navhash" href="#227">#</a>
+						
+              <code id="227">If you meant to cross compile, use `--host'.</code><br />
+						
+            
+            <a class="navhash" href="#228">#</a>
+						
+              <code id="228">See `config.log' for more details</code><br />
+						
+            
+            <a class="navhash" href="#229">#</a>
+						
+              <code id="229">make[2]: *** [Makefile:81: jemalloc] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#230">#</a>
+						
+              <code id="230">make[2]: Leaving directory '/tmp/redis/src/redis-3.2.1/deps'</code><br />
+						
+            
+            <a class="navhash" href="#231">#</a>
+						
+              <code id="231">make[1]: [Makefile:156: persist-settings] Error 2 (ignored)</code><br />
+						
+            
+            <a class="navhash" href="#232">#</a>
+						
+              <code id="232">    [34mCC[0m [33madlist.o[0m</code><br />
+						
+            
+            <a class="navhash" href="#233">#</a>
+						
+              <code id="233">    [34mCC[0m [33mquicklist.o[0m</code><br />
+						
+            
+            <a class="navhash" href="#234">#</a>
+						
+              <code id="234">In file included from adlist.c:34:</code><br />
+						
+            
+            <a class="navhash" href="#235">#</a>
+						<span class="error">
+              <code id="235">./zmalloc.h:50:10: fatal error: 'jemalloc/jemalloc.h' file not found</code><br />
+						</span>
+            
+            <a class="navhash" href="#236">#</a>
+						
+              <code id="236">#include <jemalloc/jemalloc.h></code><br />
+						
+            
+            <a class="navhash" href="#237">#</a>
+						
+              <code id="237">         ^</code><br />
+						
+            
+            <a class="navhash" href="#238">#</a>
+						
+              <code id="238">In file included from quicklist.c:33:</code><br />
+						
+            
+            <a class="navhash" href="#239">#</a>
+						<span class="error">
+              <code id="239">./zmalloc.h:50:10: fatal error: 'jemalloc/jemalloc.h' file not found</code><br />
+						</span>
+            
+            <a class="navhash" href="#240">#</a>
+						
+              <code id="240">#include <jemalloc/jemalloc.h></code><br />
+						
+            
+            <a class="navhash" href="#241">#</a>
+						
+              <code id="241">         ^</code><br />
+						
+            
+            <a class="navhash" href="#242">#</a>
+						
+              <code id="242">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#243">#</a>
+						
+              <code id="243">make[1]: *** [Makefile:201: adlist.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#244">#</a>
+						
+              <code id="244">make[1]: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#245">#</a>
+						
+              <code id="245">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#246">#</a>
+						
+              <code id="246">make[1]: *** [Makefile:201: quicklist.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#247">#</a>
+						
+              <code id="247">make[1]: Leaving directory '/tmp/redis/src/redis-3.2.1/src'</code><br />
+						
+            
+            <a class="navhash" href="#248">#</a>
+						
+              <code id="248">make: *** [Makefile:6: all] Error 2</code><br />
+						
+            
+            <a class="navhash" href="#249">#</a>
+						
+              <code id="249">make: Leaving directory '/tmp/redis/src/redis-3.2.1'</code><br />
+						
+            
+            <a class="navhash" href="#250">#</a>
+						
+              <code id="250">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#251">#</a>
+						
+              <code id="251">    Aborting...</code><br />
 						
             
           </div>
@@ -883,589 +1414,104 @@
         
           <div class="output">
             
-            <a class="navhash" href="#155">#</a>
-						
-              <code id="155">This file contains any messages produced by compilers while</code><br />
-						
-            
-            <a class="navhash" href="#156">#</a>
-						
-              <code id="156">running configure, to aid debugging if configure makes a mistake.</code><br />
-						
-            
-            <a class="navhash" href="#157">#</a>
-						
-              <code id="157"></code><br />
-						
-            
-            <a class="navhash" href="#158">#</a>
-						
-              <code id="158">It was created by configure, which was</code><br />
-						
-            
-            <a class="navhash" href="#159">#</a>
-						
-              <code id="159">generated by GNU Autoconf 2.69.  Invocation command line was</code><br />
-						
-            
-            <a class="navhash" href="#160">#</a>
-						
-              <code id="160"></code><br />
-						
-            
-            <a class="navhash" href="#161">#</a>
-						
-              <code id="161">$ ./configure --with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS=-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops  LDFLAGS=</code><br />
-						
-            
-            <a class="navhash" href="#162">#</a>
-						
-              <code id="162"></code><br />
-						
-            
-            <a class="navhash" href="#163">#</a>
-						
-              <code id="163">## --------- ##</code><br />
-						
-            
-            <a class="navhash" href="#164">#</a>
-						
-              <code id="164">## Platform. ##</code><br />
-						
-            
-            <a class="navhash" href="#165">#</a>
-						
-              <code id="165">## --------- ##</code><br />
-						
-            
-            <a class="navhash" href="#166">#</a>
-						
-              <code id="166"></code><br />
-						
-            
-            <a class="navhash" href="#167">#</a>
-						
-              <code id="167">hostname = 07116bfd82e9</code><br />
-						
-            
-            <a class="navhash" href="#168">#</a>
-						
-              <code id="168">uname -m = x86_64</code><br />
-						
-            
-            <a class="navhash" href="#169">#</a>
-						
-              <code id="169">uname -r = 4.5.4-1-ARCH</code><br />
-						
-            
-            <a class="navhash" href="#170">#</a>
-						
-              <code id="170">uname -s = Linux</code><br />
-						
-            
-            <a class="navhash" href="#171">#</a>
-						
-              <code id="171">uname -v = #1 SMP PREEMPT Wed May 11 22:21:28 CEST 2016</code><br />
-						
-            
-            <a class="navhash" href="#172">#</a>
-						
-              <code id="172"></code><br />
-						
-            
-            <a class="navhash" href="#173">#</a>
-						
-              <code id="173">/usr/bin/uname -p = unknown</code><br />
-						
-            
-            <a class="navhash" href="#174">#</a>
-						
-              <code id="174">/bin/uname -X     = unknown</code><br />
-						
-            
-            <a class="navhash" href="#175">#</a>
-						
-              <code id="175"></code><br />
-						
-            
-            <a class="navhash" href="#176">#</a>
-						
-              <code id="176">/bin/arch              = unknown</code><br />
-						
-            
-            <a class="navhash" href="#177">#</a>
-						
-              <code id="177">/usr/bin/arch -k       = unknown</code><br />
-						
-            
-            <a class="navhash" href="#178">#</a>
-						
-              <code id="178">/usr/convex/getsysinfo = unknown</code><br />
-						
-            
-            <a class="navhash" href="#179">#</a>
-						
-              <code id="179">/usr/bin/hostinfo      = unknown</code><br />
-						
-            
-            <a class="navhash" href="#180">#</a>
-						
-              <code id="180">/bin/machine           = unknown</code><br />
-						
-            
-            <a class="navhash" href="#181">#</a>
-						
-              <code id="181">/usr/bin/oslevel       = unknown</code><br />
-						
-            
-            <a class="navhash" href="#182">#</a>
-						
-              <code id="182">/bin/universe          = unknown</code><br />
-						
-            
-            <a class="navhash" href="#183">#</a>
-						
-              <code id="183"></code><br />
-						
-            
-            <a class="navhash" href="#184">#</a>
-						
-              <code id="184">PATH: /toolchain_root/clang+llvm-x86_64-archlinux/bin</code><br />
-						
-            
-            <a class="navhash" href="#185">#</a>
-						
-              <code id="185">PATH: /usr/local/sbin</code><br />
-						
-            
-            <a class="navhash" href="#186">#</a>
-						
-              <code id="186">PATH: /usr/local/bin</code><br />
-						
-            
-            <a class="navhash" href="#187">#</a>
-						
-              <code id="187">PATH: /usr/sbin</code><br />
-						
-            
-            <a class="navhash" href="#188">#</a>
-						
-              <code id="188">PATH: /usr/bin</code><br />
-						
-            
-            <a class="navhash" href="#189">#</a>
-						
-              <code id="189">PATH: /sbin</code><br />
-						
-            
-            <a class="navhash" href="#190">#</a>
-						
-              <code id="190">PATH: /bin</code><br />
-						
-            
-            <a class="navhash" href="#191">#</a>
-						
-              <code id="191"></code><br />
-						
-            
-            <a class="navhash" href="#192">#</a>
-						
-              <code id="192"></code><br />
-						
-            
-            <a class="navhash" href="#193">#</a>
-						
-              <code id="193">## ----------- ##</code><br />
-						
-            
-            <a class="navhash" href="#194">#</a>
-						
-              <code id="194">## Core tests. ##</code><br />
-						
-            
-            <a class="navhash" href="#195">#</a>
-						
-              <code id="195">## ----------- ##</code><br />
-						
-            
-            <a class="navhash" href="#196">#</a>
-						
-              <code id="196"></code><br />
-						
-            
-            <a class="navhash" href="#197">#</a>
-						
-              <code id="197">configure:2540: checking for xsltproc</code><br />
-						
-            
-            <a class="navhash" href="#198">#</a>
-						
-              <code id="198">configure:2558: found /usr/sbin/xsltproc</code><br />
-						
-            
-            <a class="navhash" href="#199">#</a>
-						
-              <code id="199">configure:2571: result: /usr/sbin/xsltproc</code><br />
-						
-            
-            <a class="navhash" href="#200">#</a>
-						
-              <code id="200">configure:2652: checking for gcc</code><br />
-						
-            
-            <a class="navhash" href="#201">#</a>
-						
-              <code id="201">configure:2679: result: clang</code><br />
-						
-            
-            <a class="navhash" href="#202">#</a>
-						
-              <code id="202">configure:2908: checking for C compiler version</code><br />
-						
-            
-            <a class="navhash" href="#203">#</a>
-						
-              <code id="203">configure:2917: clang --version >&5</code><br />
-						
-            
-            <a class="navhash" href="#204">#</a>
-						
-              <code id="204">clang version 3.8.0 (tags/RELEASE_380/final)</code><br />
-						
-            
-            <a class="navhash" href="#205">#</a>
-						
-              <code id="205">Target: x86_64-unknown-linux-gnu</code><br />
-						
-            
-            <a class="navhash" href="#206">#</a>
-						
-              <code id="206">Thread model: posix</code><br />
-						
-            
-            <a class="navhash" href="#207">#</a>
-						
-              <code id="207">InstalledDir: /toolchain_root/clang+llvm-x86_64-archlinux/bin</code><br />
-						
-            
-            <a class="navhash" href="#208">#</a>
-						
-              <code id="208">configure:2928: $? = 0</code><br />
-						
-            
-            <a class="navhash" href="#209">#</a>
-						
-              <code id="209">configure:2917: clang -v >&5</code><br />
-						
-            
-            <a class="navhash" href="#210">#</a>
-						
-              <code id="210">clang version 3.8.0 (tags/RELEASE_380/final)</code><br />
-						
-            
-            <a class="navhash" href="#211">#</a>
-						
-              <code id="211">Target: x86_64-unknown-linux-gnu</code><br />
-						
-            
-            <a class="navhash" href="#212">#</a>
-						
-              <code id="212">Thread model: posix</code><br />
-						
-            
-            <a class="navhash" href="#213">#</a>
-						
-              <code id="213">InstalledDir: /toolchain_root/clang+llvm-x86_64-archlinux/bin</code><br />
-						
-            
-            <a class="navhash" href="#214">#</a>
-						
-              <code id="214">configure:2928: $? = 0</code><br />
-						
-            
-            <a class="navhash" href="#215">#</a>
-						
-              <code id="215">configure:2917: clang -V >&5</code><br />
-						
-            
-            <a class="navhash" href="#216">#</a>
-						
-              <code id="216">clang-3.8: error: argument to '-V' is missing (expected 1 value)</code><br />
-						
-            
-            <a class="navhash" href="#217">#</a>
-						
-              <code id="217">clang-3.8: error: no input files</code><br />
-						
-            
-            <a class="navhash" href="#218">#</a>
-						
-              <code id="218">configure:2928: $? = 1</code><br />
-						
-            
-            <a class="navhash" href="#219">#</a>
-						
-              <code id="219">configure:2917: clang -qversion >&5</code><br />
-						
-            
-            <a class="navhash" href="#220">#</a>
-						
-              <code id="220">clang-3.8: error: unknown argument: '-qversion'</code><br />
-						
-            
-            <a class="navhash" href="#221">#</a>
-						
-              <code id="221">clang-3.8: error: no input files</code><br />
-						
-            
-            <a class="navhash" href="#222">#</a>
-						
-              <code id="222">configure:2928: $? = 1</code><br />
-						
-            
-            <a class="navhash" href="#223">#</a>
-						
-              <code id="223">configure:2948: checking whether the C compiler works</code><br />
-						
-            
-            <a class="navhash" href="#224">#</a>
-						
-              <code id="224">configure:2970: clang -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5</code><br />
-						
-            
-            <a class="navhash" href="#225">#</a>
-						
-              <code id="225">configure:2974: $? = 0</code><br />
-						
-            
-            <a class="navhash" href="#226">#</a>
-						
-              <code id="226">configure:3022: result: yes</code><br />
-						
-            
-            <a class="navhash" href="#227">#</a>
-						
-              <code id="227">configure:3025: checking for C compiler default output file name</code><br />
-						
-            
-            <a class="navhash" href="#228">#</a>
-						
-              <code id="228">configure:3027: result: a.out</code><br />
-						
-            
-            <a class="navhash" href="#229">#</a>
-						
-              <code id="229">configure:3033: checking for suffix of executables</code><br />
-						
-            
-            <a class="navhash" href="#230">#</a>
-						
-              <code id="230">configure:3040: clang -o conftest -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5</code><br />
-						
-            
-            <a class="navhash" href="#231">#</a>
-						
-              <code id="231">configure:3044: $? = 0</code><br />
-						
-            
-            <a class="navhash" href="#232">#</a>
-						
-              <code id="232">configure:3066: result:</code><br />
-						
-            
-            <a class="navhash" href="#233">#</a>
-						
-              <code id="233">configure:3088: checking whether we are cross compiling</code><br />
-						
-            
-            <a class="navhash" href="#234">#</a>
-						
-              <code id="234">configure:3096: clang -o conftest -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5</code><br />
-						
-            
-            <a class="navhash" href="#235">#</a>
-						
-              <code id="235">configure:3100: $? = 0</code><br />
-						
-            
-            <a class="navhash" href="#236">#</a>
-						
-              <code id="236">configure:3107: ./conftest</code><br />
-						
-            
-            <a class="navhash" href="#237">#</a>
-						
-              <code id="237">./conftest: error while loading shared libraries: /usr/lib/libc.so: invalid ELF header</code><br />
-						
-            
-            <a class="navhash" href="#238">#</a>
-						
-              <code id="238">configure:3111: $? = 127</code><br />
-						
-            
-            <a class="navhash" href="#239">#</a>
-						
-              <code id="239">configure:3118: error: in `/tmp/redis/src/redis-3.2.1/deps/jemalloc':</code><br />
-						
-            
-            <a class="navhash" href="#240">#</a>
-						
-              <code id="240">configure:3120: error: cannot run C compiled programs.</code><br />
-						
-            
-            <a class="navhash" href="#241">#</a>
-						
-              <code id="241">If you meant to cross compile, use `--host'.</code><br />
-						
-            
-            <a class="navhash" href="#242">#</a>
-						
-              <code id="242">See `config.log' for more details</code><br />
-						
-            
-            <a class="navhash" href="#243">#</a>
-						
-              <code id="243"></code><br />
-						
-            
-            <a class="navhash" href="#244">#</a>
-						
-              <code id="244">## ---------------- ##</code><br />
-						
-            
-            <a class="navhash" href="#245">#</a>
-						
-              <code id="245">## Cache variables. ##</code><br />
-						
-            
-            <a class="navhash" href="#246">#</a>
-						
-              <code id="246">## ---------------- ##</code><br />
-						
-            
-            <a class="navhash" href="#247">#</a>
-						
-              <code id="247"></code><br />
-						
-            
-            <a class="navhash" href="#248">#</a>
-						
-              <code id="248">ac_cv_env_CC_set=set</code><br />
-						
-            
-            <a class="navhash" href="#249">#</a>
-						
-              <code id="249">ac_cv_env_CC_value=clang</code><br />
-						
-            
-            <a class="navhash" href="#250">#</a>
-						
-              <code id="250">ac_cv_env_CFLAGS_set=set</code><br />
-						
-            
-            <a class="navhash" href="#251">#</a>
-						
-              <code id="251">ac_cv_env_CFLAGS_value='-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '</code><br />
-						
-            
             <a class="navhash" href="#252">#</a>
 						
-              <code id="252">ac_cv_env_CPPFLAGS_set=set</code><br />
+              <code id="252">This file contains any messages produced by compilers while</code><br />
 						
             
             <a class="navhash" href="#253">#</a>
 						
-              <code id="253">ac_cv_env_CPPFLAGS_value=</code><br />
+              <code id="253">running configure, to aid debugging if configure makes a mistake.</code><br />
 						
             
             <a class="navhash" href="#254">#</a>
 						
-              <code id="254">ac_cv_env_CPP_set=</code><br />
+              <code id="254"></code><br />
 						
             
             <a class="navhash" href="#255">#</a>
 						
-              <code id="255">ac_cv_env_CPP_value=</code><br />
+              <code id="255">It was created by configure, which was</code><br />
 						
             
             <a class="navhash" href="#256">#</a>
 						
-              <code id="256">ac_cv_env_LDFLAGS_set=set</code><br />
+              <code id="256">generated by GNU Autoconf 2.69.  Invocation command line was</code><br />
 						
             
             <a class="navhash" href="#257">#</a>
 						
-              <code id="257">ac_cv_env_LDFLAGS_value=</code><br />
+              <code id="257"></code><br />
 						
             
             <a class="navhash" href="#258">#</a>
 						
-              <code id="258">ac_cv_env_LIBS_set=</code><br />
+              <code id="258">$ ./configure --with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS=-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops  LDFLAGS=</code><br />
 						
             
             <a class="navhash" href="#259">#</a>
 						
-              <code id="259">ac_cv_env_LIBS_value=</code><br />
+              <code id="259"></code><br />
 						
             
             <a class="navhash" href="#260">#</a>
 						
-              <code id="260">ac_cv_env_build_alias_set=</code><br />
+              <code id="260">## --------- ##</code><br />
 						
             
             <a class="navhash" href="#261">#</a>
 						
-              <code id="261">ac_cv_env_build_alias_value=</code><br />
+              <code id="261">## Platform. ##</code><br />
 						
             
             <a class="navhash" href="#262">#</a>
 						
-              <code id="262">ac_cv_env_host_alias_set=</code><br />
+              <code id="262">## --------- ##</code><br />
 						
             
             <a class="navhash" href="#263">#</a>
 						
-              <code id="263">ac_cv_env_host_alias_value=</code><br />
+              <code id="263"></code><br />
 						
             
             <a class="navhash" href="#264">#</a>
 						
-              <code id="264">ac_cv_env_target_alias_set=</code><br />
+              <code id="264">hostname = 325e5fbc0e6a</code><br />
 						
             
             <a class="navhash" href="#265">#</a>
 						
-              <code id="265">ac_cv_env_target_alias_value=</code><br />
+              <code id="265">uname -m = x86_64</code><br />
 						
             
             <a class="navhash" href="#266">#</a>
 						
-              <code id="266">ac_cv_path_XSLTPROC=/usr/sbin/xsltproc</code><br />
+              <code id="266">uname -r = 4.6.4-1-ARCH</code><br />
 						
             
             <a class="navhash" href="#267">#</a>
 						
-              <code id="267">ac_cv_prog_ac_ct_CC=clang</code><br />
+              <code id="267">uname -s = Linux</code><br />
 						
             
             <a class="navhash" href="#268">#</a>
 						
-              <code id="268"></code><br />
+              <code id="268">uname -v = #1 SMP PREEMPT Mon Jul 11 19:12:32 CEST 2016</code><br />
 						
             
             <a class="navhash" href="#269">#</a>
 						
-              <code id="269">## ----------------- ##</code><br />
+              <code id="269"></code><br />
 						
             
             <a class="navhash" href="#270">#</a>
 						
-              <code id="270">## Output variables. ##</code><br />
+              <code id="270">/usr/bin/uname -p = unknown</code><br />
 						
             
             <a class="navhash" href="#271">#</a>
 						
-              <code id="271">## ----------------- ##</code><br />
+              <code id="271">/bin/uname -X     = unknown</code><br />
 						
             
             <a class="navhash" href="#272">#</a>
@@ -1475,718 +1521,1203 @@
             
             <a class="navhash" href="#273">#</a>
 						
-              <code id="273">AR=''</code><br />
+              <code id="273">/bin/arch              = unknown</code><br />
 						
             
             <a class="navhash" href="#274">#</a>
 						
-              <code id="274">ARFLAGS=''</code><br />
+              <code id="274">/usr/bin/arch -k       = unknown</code><br />
 						
             
             <a class="navhash" href="#275">#</a>
 						
-              <code id="275">AROUT=''</code><br />
+              <code id="275">/usr/convex/getsysinfo = unknown</code><br />
 						
             
             <a class="navhash" href="#276">#</a>
 						
-              <code id="276">AUTOCONF=''</code><br />
+              <code id="276">/usr/bin/hostinfo      = unknown</code><br />
 						
             
             <a class="navhash" href="#277">#</a>
 						
-              <code id="277">BINDIR='/usr/local/bin'</code><br />
+              <code id="277">/bin/machine           = unknown</code><br />
 						
             
             <a class="navhash" href="#278">#</a>
 						
-              <code id="278">CC='clang'</code><br />
+              <code id="278">/usr/bin/oslevel       = unknown</code><br />
 						
             
             <a class="navhash" href="#279">#</a>
 						
-              <code id="279">CC_MM=''</code><br />
+              <code id="279">/bin/universe          = unknown</code><br />
 						
             
             <a class="navhash" href="#280">#</a>
 						
-              <code id="280">CFLAGS='-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '</code><br />
+              <code id="280"></code><br />
 						
             
             <a class="navhash" href="#281">#</a>
 						
-              <code id="281">CONFIG='--with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence '\''CFLAGS=-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '\'' LDFLAGS= CC=clang CPPFLAGS='</code><br />
+              <code id="281">PATH: /sysroot/bin</code><br />
 						
             
             <a class="navhash" href="#282">#</a>
 						
-              <code id="282">CPP=''</code><br />
+              <code id="282">PATH: /usr/local/sbin</code><br />
 						
             
             <a class="navhash" href="#283">#</a>
 						
-              <code id="283">CPPFLAGS=''</code><br />
+              <code id="283">PATH: /usr/local/bin</code><br />
 						
             
             <a class="navhash" href="#284">#</a>
 						
-              <code id="284">CTARGET=''</code><br />
+              <code id="284">PATH: /usr/sbin</code><br />
 						
             
             <a class="navhash" href="#285">#</a>
 						
-              <code id="285">DATADIR='/usr/local/share'</code><br />
+              <code id="285">PATH: /usr/bin</code><br />
 						
             
             <a class="navhash" href="#286">#</a>
 						
-              <code id="286">DEFS=''</code><br />
+              <code id="286">PATH: /sbin</code><br />
 						
             
             <a class="navhash" href="#287">#</a>
 						
-              <code id="287">DSO_LDFLAGS=''</code><br />
+              <code id="287">PATH: /bin</code><br />
 						
             
             <a class="navhash" href="#288">#</a>
 						
-              <code id="288">ECHO_C=''</code><br />
+              <code id="288"></code><br />
 						
             
             <a class="navhash" href="#289">#</a>
 						
-              <code id="289">ECHO_N='-n'</code><br />
+              <code id="289"></code><br />
 						
             
             <a class="navhash" href="#290">#</a>
 						
-              <code id="290">ECHO_T=''</code><br />
+              <code id="290">## ----------- ##</code><br />
 						
             
             <a class="navhash" href="#291">#</a>
 						
-              <code id="291">EGREP=''</code><br />
+              <code id="291">## Core tests. ##</code><br />
 						
             
             <a class="navhash" href="#292">#</a>
 						
-              <code id="292">EXEEXT=''</code><br />
+              <code id="292">## ----------- ##</code><br />
 						
             
             <a class="navhash" href="#293">#</a>
 						
-              <code id="293">EXTRA_LDFLAGS=''</code><br />
+              <code id="293"></code><br />
 						
             
             <a class="navhash" href="#294">#</a>
 						
-              <code id="294">GREP=''</code><br />
+              <code id="294">configure:2540: checking for xsltproc</code><br />
 						
             
             <a class="navhash" href="#295">#</a>
 						
-              <code id="295">INCLUDEDIR='/usr/local/include'</code><br />
+              <code id="295">configure:2558: found /usr/sbin/xsltproc</code><br />
 						
             
             <a class="navhash" href="#296">#</a>
 						
-              <code id="296">INSTALL_DATA=''</code><br />
+              <code id="296">configure:2571: result: /usr/sbin/xsltproc</code><br />
 						
             
             <a class="navhash" href="#297">#</a>
 						
-              <code id="297">INSTALL_PROGRAM=''</code><br />
+              <code id="297">configure:2652: checking for gcc</code><br />
 						
             
             <a class="navhash" href="#298">#</a>
 						
-              <code id="298">INSTALL_SCRIPT=''</code><br />
+              <code id="298">configure:2679: result: clang</code><br />
 						
             
             <a class="navhash" href="#299">#</a>
 						
-              <code id="299">JEMALLOC_CPREFIX=''</code><br />
+              <code id="299">configure:2908: checking for C compiler version</code><br />
 						
             
             <a class="navhash" href="#300">#</a>
 						
-              <code id="300">LD=''</code><br />
+              <code id="300">configure:2917: clang --version >&5</code><br />
 						
             
             <a class="navhash" href="#301">#</a>
 						
-              <code id="301">LDFLAGS=''</code><br />
+              <code id="301">clang version 3.8.0 (tags/RELEASE_380/final)</code><br />
 						
             
             <a class="navhash" href="#302">#</a>
 						
-              <code id="302">LDTARGET=''</code><br />
+              <code id="302">Target: x86_64-unknown-linux-gnu</code><br />
 						
             
             <a class="navhash" href="#303">#</a>
 						
-              <code id="303">LD_PRELOAD_VAR=''</code><br />
+              <code id="303">Thread model: posix</code><br />
 						
             
             <a class="navhash" href="#304">#</a>
 						
-              <code id="304">LIBDIR='/usr/local/lib'</code><br />
+              <code id="304">InstalledDir: /sysroot/bin</code><br />
 						
             
             <a class="navhash" href="#305">#</a>
 						
-              <code id="305">LIBOBJS=''</code><br />
+              <code id="305">configure:2928: $? = 0</code><br />
 						
             
             <a class="navhash" href="#306">#</a>
 						
-              <code id="306">LIBS=''</code><br />
+              <code id="306">configure:2917: clang -v >&5</code><br />
 						
             
             <a class="navhash" href="#307">#</a>
 						
-              <code id="307">LTLIBOBJS=''</code><br />
+              <code id="307">clang version 3.8.0 (tags/RELEASE_380/final)</code><br />
 						
             
             <a class="navhash" href="#308">#</a>
 						
-              <code id="308">MANDIR='/usr/local/share/man'</code><br />
+              <code id="308">Target: x86_64-unknown-linux-gnu</code><br />
 						
             
             <a class="navhash" href="#309">#</a>
 						
-              <code id="309">MKLIB=''</code><br />
+              <code id="309">Thread model: posix</code><br />
 						
             
             <a class="navhash" href="#310">#</a>
 						
-              <code id="310">OBJEXT=''</code><br />
+              <code id="310">InstalledDir: /sysroot/bin</code><br />
 						
             
             <a class="navhash" href="#311">#</a>
 						
-              <code id="311">PACKAGE_BUGREPORT=''</code><br />
+              <code id="311">configure:2928: $? = 0</code><br />
 						
             
             <a class="navhash" href="#312">#</a>
 						
-              <code id="312">PACKAGE_NAME=''</code><br />
+              <code id="312">configure:2917: clang -V >&5</code><br />
 						
             
             <a class="navhash" href="#313">#</a>
 						
-              <code id="313">PACKAGE_STRING=''</code><br />
+              <code id="313">clang: error: argument to '-V' is missing (expected 1 value)</code><br />
 						
             
             <a class="navhash" href="#314">#</a>
 						
-              <code id="314">PACKAGE_TARNAME=''</code><br />
+              <code id="314">clang: error: no input files</code><br />
 						
             
             <a class="navhash" href="#315">#</a>
 						
-              <code id="315">PACKAGE_URL=''</code><br />
+              <code id="315">configure:2928: $? = 1</code><br />
 						
             
             <a class="navhash" href="#316">#</a>
 						
-              <code id="316">PACKAGE_VERSION=''</code><br />
+              <code id="316">configure:2917: clang -qversion >&5</code><br />
 						
             
             <a class="navhash" href="#317">#</a>
 						
-              <code id="317">PATH_SEPARATOR=':'</code><br />
+              <code id="317">clang: error: unknown argument: '-qversion'</code><br />
 						
             
             <a class="navhash" href="#318">#</a>
 						
-              <code id="318">PIC_CFLAGS=''</code><br />
+              <code id="318">clang: error: no input files</code><br />
 						
             
             <a class="navhash" href="#319">#</a>
 						
-              <code id="319">PREFIX='/usr/local'</code><br />
+              <code id="319">configure:2928: $? = 1</code><br />
 						
             
             <a class="navhash" href="#320">#</a>
 						
-              <code id="320">RANLIB=''</code><br />
+              <code id="320">configure:2948: checking whether the C compiler works</code><br />
 						
             
             <a class="navhash" href="#321">#</a>
 						
-              <code id="321">RPATH=''</code><br />
+              <code id="321">configure:2970: clang -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5</code><br />
 						
             
             <a class="navhash" href="#322">#</a>
 						
-              <code id="322">RPATH_EXTRA=''</code><br />
+              <code id="322">configure:2974: $? = 0</code><br />
 						
             
             <a class="navhash" href="#323">#</a>
 						
-              <code id="323">SHELL='/bin/sh'</code><br />
+              <code id="323">configure:3022: result: yes</code><br />
 						
             
             <a class="navhash" href="#324">#</a>
 						
-              <code id="324">SOREV=''</code><br />
+              <code id="324">configure:3025: checking for C compiler default output file name</code><br />
 						
             
             <a class="navhash" href="#325">#</a>
 						
-              <code id="325">TESTLIBS=''</code><br />
+              <code id="325">configure:3027: result: a.out</code><br />
 						
             
             <a class="navhash" href="#326">#</a>
 						
-              <code id="326">XSLROOT=''</code><br />
+              <code id="326">configure:3033: checking for suffix of executables</code><br />
 						
             
             <a class="navhash" href="#327">#</a>
 						
-              <code id="327">XSLTPROC='/usr/sbin/xsltproc'</code><br />
+              <code id="327">configure:3040: clang -o conftest -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5</code><br />
 						
             
             <a class="navhash" href="#328">#</a>
 						
-              <code id="328">a=''</code><br />
+              <code id="328">configure:3044: $? = 0</code><br />
 						
             
             <a class="navhash" href="#329">#</a>
 						
-              <code id="329">abi=''</code><br />
+              <code id="329">configure:3066: result:</code><br />
 						
             
             <a class="navhash" href="#330">#</a>
 						
-              <code id="330">abs_objroot='/tmp/redis/src/redis-3.2.1/deps/jemalloc/'</code><br />
+              <code id="330">configure:3088: checking whether we are cross compiling</code><br />
 						
             
             <a class="navhash" href="#331">#</a>
 						
-              <code id="331">abs_srcroot='/tmp/redis/src/redis-3.2.1/deps/jemalloc/'</code><br />
+              <code id="331">configure:3096: clang -o conftest -std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops    conftest.c  >&5</code><br />
 						
             
             <a class="navhash" href="#332">#</a>
 						
-              <code id="332">ac_ct_CC='clang'</code><br />
+              <code id="332">configure:3100: $? = 0</code><br />
 						
             
             <a class="navhash" href="#333">#</a>
 						
-              <code id="333">bindir='${exec_prefix}/bin'</code><br />
+              <code id="333">configure:3107: ./conftest</code><br />
 						
             
             <a class="navhash" href="#334">#</a>
 						
-              <code id="334">build=''</code><br />
+              <code id="334">./conftest: error while loading shared libraries: /usr/lib/libc.so: invalid ELF header</code><br />
 						
             
             <a class="navhash" href="#335">#</a>
 						
-              <code id="335">build_alias=''</code><br />
+              <code id="335">configure:3111: $? = 127</code><br />
 						
             
             <a class="navhash" href="#336">#</a>
 						
-              <code id="336">build_cpu=''</code><br />
+              <code id="336">configure:3118: error: in `/tmp/redis/src/redis-3.2.1/deps/jemalloc':</code><br />
 						
             
             <a class="navhash" href="#337">#</a>
 						
-              <code id="337">build_os=''</code><br />
+              <code id="337">configure:3120: error: cannot run C compiled programs.</code><br />
 						
             
             <a class="navhash" href="#338">#</a>
 						
-              <code id="338">build_vendor=''</code><br />
+              <code id="338">If you meant to cross compile, use `--host'.</code><br />
 						
             
             <a class="navhash" href="#339">#</a>
 						
-              <code id="339">cfghdrs_in=''</code><br />
+              <code id="339">See `config.log' for more details</code><br />
 						
             
             <a class="navhash" href="#340">#</a>
 						
-              <code id="340">cfghdrs_out=''</code><br />
+              <code id="340"></code><br />
 						
             
             <a class="navhash" href="#341">#</a>
 						
-              <code id="341">cfgoutputs_in=''</code><br />
+              <code id="341">## ---------------- ##</code><br />
 						
             
             <a class="navhash" href="#342">#</a>
 						
-              <code id="342">cfgoutputs_out=''</code><br />
+              <code id="342">## Cache variables. ##</code><br />
 						
             
             <a class="navhash" href="#343">#</a>
 						
-              <code id="343">datadir='${datarootdir}'</code><br />
+              <code id="343">## ---------------- ##</code><br />
 						
             
             <a class="navhash" href="#344">#</a>
 						
-              <code id="344">datarootdir='${prefix}/share'</code><br />
+              <code id="344"></code><br />
 						
             
             <a class="navhash" href="#345">#</a>
 						
-              <code id="345">docdir='${datarootdir}/doc/${PACKAGE}'</code><br />
+              <code id="345">ac_cv_env_CC_set=set</code><br />
 						
             
             <a class="navhash" href="#346">#</a>
 						
-              <code id="346">dvidir='${docdir}'</code><br />
+              <code id="346">ac_cv_env_CC_value=clang</code><br />
 						
             
             <a class="navhash" href="#347">#</a>
 						
-              <code id="347">enable_autogen=''</code><br />
+              <code id="347">ac_cv_env_CFLAGS_set=set</code><br />
 						
             
             <a class="navhash" href="#348">#</a>
 						
-              <code id="348">enable_cache_oblivious=''</code><br />
+              <code id="348">ac_cv_env_CFLAGS_value='-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '</code><br />
 						
             
             <a class="navhash" href="#349">#</a>
 						
-              <code id="349">enable_code_coverage=''</code><br />
+              <code id="349">ac_cv_env_CPPFLAGS_set=set</code><br />
 						
             
             <a class="navhash" href="#350">#</a>
 						
-              <code id="350">enable_debug=''</code><br />
+              <code id="350">ac_cv_env_CPPFLAGS_value=</code><br />
 						
             
             <a class="navhash" href="#351">#</a>
 						
-              <code id="351">enable_fill=''</code><br />
+              <code id="351">ac_cv_env_CPP_set=</code><br />
 						
             
             <a class="navhash" href="#352">#</a>
 						
-              <code id="352">enable_lazy_lock=''</code><br />
+              <code id="352">ac_cv_env_CPP_value=</code><br />
 						
             
             <a class="navhash" href="#353">#</a>
 						
-              <code id="353">enable_munmap=''</code><br />
+              <code id="353">ac_cv_env_LDFLAGS_set=set</code><br />
 						
             
             <a class="navhash" href="#354">#</a>
 						
-              <code id="354">enable_prof=''</code><br />
+              <code id="354">ac_cv_env_LDFLAGS_value=</code><br />
 						
             
             <a class="navhash" href="#355">#</a>
 						
-              <code id="355">enable_stats=''</code><br />
+              <code id="355">ac_cv_env_LIBS_set=</code><br />
 						
             
             <a class="navhash" href="#356">#</a>
 						
-              <code id="356">enable_tcache=''</code><br />
+              <code id="356">ac_cv_env_LIBS_value=</code><br />
 						
             
             <a class="navhash" href="#357">#</a>
 						
-              <code id="357">enable_tls=''</code><br />
+              <code id="357">ac_cv_env_build_alias_set=</code><br />
 						
             
             <a class="navhash" href="#358">#</a>
 						
-              <code id="358">enable_utrace=''</code><br />
+              <code id="358">ac_cv_env_build_alias_value=</code><br />
 						
             
             <a class="navhash" href="#359">#</a>
 						
-              <code id="359">enable_valgrind=''</code><br />
+              <code id="359">ac_cv_env_host_alias_set=</code><br />
 						
             
             <a class="navhash" href="#360">#</a>
 						
-              <code id="360">enable_xmalloc=''</code><br />
+              <code id="360">ac_cv_env_host_alias_value=</code><br />
 						
             
             <a class="navhash" href="#361">#</a>
 						
-              <code id="361">enable_zone_allocator=''</code><br />
+              <code id="361">ac_cv_env_target_alias_set=</code><br />
 						
             
             <a class="navhash" href="#362">#</a>
 						
-              <code id="362">exe=''</code><br />
+              <code id="362">ac_cv_env_target_alias_value=</code><br />
 						
             
             <a class="navhash" href="#363">#</a>
 						
-              <code id="363">exec_prefix='/usr/local'</code><br />
+              <code id="363">ac_cv_path_XSLTPROC=/usr/sbin/xsltproc</code><br />
 						
             
             <a class="navhash" href="#364">#</a>
 						
-              <code id="364">host=''</code><br />
+              <code id="364">ac_cv_prog_ac_ct_CC=clang</code><br />
 						
             
             <a class="navhash" href="#365">#</a>
 						
-              <code id="365">host_alias=''</code><br />
+              <code id="365"></code><br />
 						
             
             <a class="navhash" href="#366">#</a>
 						
-              <code id="366">host_cpu=''</code><br />
+              <code id="366">## ----------------- ##</code><br />
 						
             
             <a class="navhash" href="#367">#</a>
 						
-              <code id="367">host_os=''</code><br />
+              <code id="367">## Output variables. ##</code><br />
 						
             
             <a class="navhash" href="#368">#</a>
 						
-              <code id="368">host_vendor=''</code><br />
+              <code id="368">## ----------------- ##</code><br />
 						
             
             <a class="navhash" href="#369">#</a>
 						
-              <code id="369">htmldir='${docdir}'</code><br />
+              <code id="369"></code><br />
 						
             
             <a class="navhash" href="#370">#</a>
 						
-              <code id="370">importlib=''</code><br />
+              <code id="370">AR=''</code><br />
 						
             
             <a class="navhash" href="#371">#</a>
 						
-              <code id="371">includedir='${prefix}/include'</code><br />
+              <code id="371">ARFLAGS=''</code><br />
 						
             
             <a class="navhash" href="#372">#</a>
 						
-              <code id="372">infodir='${datarootdir}/info'</code><br />
+              <code id="372">AROUT=''</code><br />
 						
             
             <a class="navhash" href="#373">#</a>
 						
-              <code id="373">install_suffix=''</code><br />
+              <code id="373">AUTOCONF=''</code><br />
 						
             
             <a class="navhash" href="#374">#</a>
 						
-              <code id="374">je_=''</code><br />
+              <code id="374">BINDIR='/usr/local/bin'</code><br />
 						
             
             <a class="navhash" href="#375">#</a>
 						
-              <code id="375">jemalloc_version=''</code><br />
+              <code id="375">CC='clang'</code><br />
 						
             
             <a class="navhash" href="#376">#</a>
 						
-              <code id="376">jemalloc_version_bugfix=''</code><br />
+              <code id="376">CC_MM=''</code><br />
 						
             
             <a class="navhash" href="#377">#</a>
 						
-              <code id="377">jemalloc_version_gid=''</code><br />
+              <code id="377">CFLAGS='-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '</code><br />
 						
             
             <a class="navhash" href="#378">#</a>
 						
-              <code id="378">jemalloc_version_major=''</code><br />
+              <code id="378">CONFIG='--with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence '\''CFLAGS=-std=gnu99 -Wall -pipe -g3 -O3 -funroll-loops '\'' LDFLAGS= CC=clang CPPFLAGS='</code><br />
 						
             
             <a class="navhash" href="#379">#</a>
 						
-              <code id="379">jemalloc_version_minor=''</code><br />
+              <code id="379">CPP=''</code><br />
 						
             
             <a class="navhash" href="#380">#</a>
 						
-              <code id="380">jemalloc_version_nrev=''</code><br />
+              <code id="380">CPPFLAGS=''</code><br />
 						
             
             <a class="navhash" href="#381">#</a>
 						
-              <code id="381">libdir='${exec_prefix}/lib'</code><br />
+              <code id="381">CTARGET=''</code><br />
 						
             
             <a class="navhash" href="#382">#</a>
 						
-              <code id="382">libexecdir='${exec_prefix}/libexec'</code><br />
+              <code id="382">DATADIR='/usr/local/share'</code><br />
 						
             
             <a class="navhash" href="#383">#</a>
 						
-              <code id="383">libprefix=''</code><br />
+              <code id="383">DEFS=''</code><br />
 						
             
             <a class="navhash" href="#384">#</a>
 						
-              <code id="384">localedir='${datarootdir}/locale'</code><br />
+              <code id="384">DSO_LDFLAGS=''</code><br />
 						
             
             <a class="navhash" href="#385">#</a>
 						
-              <code id="385">localstatedir='${prefix}/var'</code><br />
+              <code id="385">ECHO_C=''</code><br />
 						
             
             <a class="navhash" href="#386">#</a>
 						
-              <code id="386">mandir='${datarootdir}/man'</code><br />
+              <code id="386">ECHO_N='-n'</code><br />
 						
             
             <a class="navhash" href="#387">#</a>
 						
-              <code id="387">o=''</code><br />
+              <code id="387">ECHO_T=''</code><br />
 						
             
             <a class="navhash" href="#388">#</a>
 						
-              <code id="388">objroot=''</code><br />
+              <code id="388">EGREP=''</code><br />
 						
             
             <a class="navhash" href="#389">#</a>
 						
-              <code id="389">oldincludedir='/usr/include'</code><br />
+              <code id="389">EXEEXT=''</code><br />
 						
             
             <a class="navhash" href="#390">#</a>
 						
-              <code id="390">pdfdir='${docdir}'</code><br />
+              <code id="390">EXTRA_LDFLAGS=''</code><br />
 						
             
             <a class="navhash" href="#391">#</a>
 						
-              <code id="391">prefix='/usr/local'</code><br />
+              <code id="391">GREP=''</code><br />
 						
             
             <a class="navhash" href="#392">#</a>
 						
-              <code id="392">private_namespace=''</code><br />
+              <code id="392">INCLUDEDIR='/usr/local/include'</code><br />
 						
             
             <a class="navhash" href="#393">#</a>
 						
-              <code id="393">program_transform_name='s,x,x,'</code><br />
+              <code id="393">INSTALL_DATA=''</code><br />
 						
             
             <a class="navhash" href="#394">#</a>
 						
-              <code id="394">psdir='${docdir}'</code><br />
+              <code id="394">INSTALL_PROGRAM=''</code><br />
 						
             
             <a class="navhash" href="#395">#</a>
 						
-              <code id="395">rev='2'</code><br />
+              <code id="395">INSTALL_SCRIPT=''</code><br />
 						
             
             <a class="navhash" href="#396">#</a>
 						
-              <code id="396">sbindir='${exec_prefix}/sbin'</code><br />
+              <code id="396">JEMALLOC_CPREFIX=''</code><br />
 						
             
             <a class="navhash" href="#397">#</a>
 						
-              <code id="397">sharedstatedir='${prefix}/com'</code><br />
+              <code id="397">LD=''</code><br />
 						
             
             <a class="navhash" href="#398">#</a>
 						
-              <code id="398">so=''</code><br />
+              <code id="398">LDFLAGS=''</code><br />
 						
             
             <a class="navhash" href="#399">#</a>
 						
-              <code id="399">srcroot=''</code><br />
+              <code id="399">LDTARGET=''</code><br />
 						
             
             <a class="navhash" href="#400">#</a>
 						
-              <code id="400">sysconfdir='${prefix}/etc'</code><br />
+              <code id="400">LD_PRELOAD_VAR=''</code><br />
 						
             
             <a class="navhash" href="#401">#</a>
 						
-              <code id="401">target_alias=''</code><br />
+              <code id="401">LIBDIR='/usr/local/lib'</code><br />
 						
             
             <a class="navhash" href="#402">#</a>
 						
-              <code id="402"></code><br />
+              <code id="402">LIBOBJS=''</code><br />
 						
             
             <a class="navhash" href="#403">#</a>
 						
-              <code id="403">## ----------- ##</code><br />
+              <code id="403">LIBS=''</code><br />
 						
             
             <a class="navhash" href="#404">#</a>
 						
-              <code id="404">## confdefs.h. ##</code><br />
+              <code id="404">LTLIBOBJS=''</code><br />
 						
             
             <a class="navhash" href="#405">#</a>
 						
-              <code id="405">## ----------- ##</code><br />
+              <code id="405">MANDIR='/usr/local/share/man'</code><br />
 						
             
             <a class="navhash" href="#406">#</a>
 						
-              <code id="406"></code><br />
+              <code id="406">MKLIB=''</code><br />
 						
             
             <a class="navhash" href="#407">#</a>
 						
-              <code id="407">/* confdefs.h */</code><br />
+              <code id="407">OBJEXT=''</code><br />
 						
             
             <a class="navhash" href="#408">#</a>
 						
-              <code id="408">#define PACKAGE_NAME ""</code><br />
+              <code id="408">PACKAGE_BUGREPORT=''</code><br />
 						
             
             <a class="navhash" href="#409">#</a>
 						
-              <code id="409">#define PACKAGE_TARNAME ""</code><br />
+              <code id="409">PACKAGE_NAME=''</code><br />
 						
             
             <a class="navhash" href="#410">#</a>
 						
-              <code id="410">#define PACKAGE_VERSION ""</code><br />
+              <code id="410">PACKAGE_STRING=''</code><br />
 						
             
             <a class="navhash" href="#411">#</a>
 						
-              <code id="411">#define PACKAGE_STRING ""</code><br />
+              <code id="411">PACKAGE_TARNAME=''</code><br />
 						
             
             <a class="navhash" href="#412">#</a>
 						
-              <code id="412">#define PACKAGE_BUGREPORT ""</code><br />
+              <code id="412">PACKAGE_URL=''</code><br />
 						
             
             <a class="navhash" href="#413">#</a>
 						
-              <code id="413">#define PACKAGE_URL ""</code><br />
+              <code id="413">PACKAGE_VERSION=''</code><br />
 						
             
             <a class="navhash" href="#414">#</a>
 						
-              <code id="414"></code><br />
+              <code id="414">PATH_SEPARATOR=':'</code><br />
 						
             
             <a class="navhash" href="#415">#</a>
-						<span class="error">
-              <code id="415">configure: exit 1</code><br />
-						</span>
+						
+              <code id="415">PIC_CFLAGS=''</code><br />
+						
+            
+            <a class="navhash" href="#416">#</a>
+						
+              <code id="416">PREFIX='/usr/local'</code><br />
+						
+            
+            <a class="navhash" href="#417">#</a>
+						
+              <code id="417">RANLIB=''</code><br />
+						
+            
+            <a class="navhash" href="#418">#</a>
+						
+              <code id="418">RPATH=''</code><br />
+						
+            
+            <a class="navhash" href="#419">#</a>
+						
+              <code id="419">RPATH_EXTRA=''</code><br />
+						
+            
+            <a class="navhash" href="#420">#</a>
+						
+              <code id="420">SHELL='/bin/sh'</code><br />
+						
+            
+            <a class="navhash" href="#421">#</a>
+						
+              <code id="421">SOREV=''</code><br />
+						
+            
+            <a class="navhash" href="#422">#</a>
+						
+              <code id="422">TESTLIBS=''</code><br />
+						
+            
+            <a class="navhash" href="#423">#</a>
+						
+              <code id="423">XSLROOT=''</code><br />
+						
+            
+            <a class="navhash" href="#424">#</a>
+						
+              <code id="424">XSLTPROC='/usr/sbin/xsltproc'</code><br />
+						
+            
+            <a class="navhash" href="#425">#</a>
+						
+              <code id="425">a=''</code><br />
+						
+            
+            <a class="navhash" href="#426">#</a>
+						
+              <code id="426">abi=''</code><br />
+						
+            
+            <a class="navhash" href="#427">#</a>
+						
+              <code id="427">abs_objroot='/tmp/redis/src/redis-3.2.1/deps/jemalloc/'</code><br />
+						
+            
+            <a class="navhash" href="#428">#</a>
+						
+              <code id="428">abs_srcroot='/tmp/redis/src/redis-3.2.1/deps/jemalloc/'</code><br />
+						
+            
+            <a class="navhash" href="#429">#</a>
+						
+              <code id="429">ac_ct_CC='clang'</code><br />
+						
+            
+            <a class="navhash" href="#430">#</a>
+						
+              <code id="430">bindir='${exec_prefix}/bin'</code><br />
+						
+            
+            <a class="navhash" href="#431">#</a>
+						
+              <code id="431">build=''</code><br />
+						
+            
+            <a class="navhash" href="#432">#</a>
+						
+              <code id="432">build_alias=''</code><br />
+						
+            
+            <a class="navhash" href="#433">#</a>
+						
+              <code id="433">build_cpu=''</code><br />
+						
+            
+            <a class="navhash" href="#434">#</a>
+						
+              <code id="434">build_os=''</code><br />
+						
+            
+            <a class="navhash" href="#435">#</a>
+						
+              <code id="435">build_vendor=''</code><br />
+						
+            
+            <a class="navhash" href="#436">#</a>
+						
+              <code id="436">cfghdrs_in=''</code><br />
+						
+            
+            <a class="navhash" href="#437">#</a>
+						
+              <code id="437">cfghdrs_out=''</code><br />
+						
+            
+            <a class="navhash" href="#438">#</a>
+						
+              <code id="438">cfgoutputs_in=''</code><br />
+						
+            
+            <a class="navhash" href="#439">#</a>
+						
+              <code id="439">cfgoutputs_out=''</code><br />
+						
+            
+            <a class="navhash" href="#440">#</a>
+						
+              <code id="440">datadir='${datarootdir}'</code><br />
+						
+            
+            <a class="navhash" href="#441">#</a>
+						
+              <code id="441">datarootdir='${prefix}/share'</code><br />
+						
+            
+            <a class="navhash" href="#442">#</a>
+						
+              <code id="442">docdir='${datarootdir}/doc/${PACKAGE}'</code><br />
+						
+            
+            <a class="navhash" href="#443">#</a>
+						
+              <code id="443">dvidir='${docdir}'</code><br />
+						
+            
+            <a class="navhash" href="#444">#</a>
+						
+              <code id="444">enable_autogen=''</code><br />
+						
+            
+            <a class="navhash" href="#445">#</a>
+						
+              <code id="445">enable_cache_oblivious=''</code><br />
+						
+            
+            <a class="navhash" href="#446">#</a>
+						
+              <code id="446">enable_code_coverage=''</code><br />
+						
+            
+            <a class="navhash" href="#447">#</a>
+						
+              <code id="447">enable_debug=''</code><br />
+						
+            
+            <a class="navhash" href="#448">#</a>
+						
+              <code id="448">enable_fill=''</code><br />
+						
+            
+            <a class="navhash" href="#449">#</a>
+						
+              <code id="449">enable_lazy_lock=''</code><br />
+						
+            
+            <a class="navhash" href="#450">#</a>
+						
+              <code id="450">enable_munmap=''</code><br />
+						
+            
+            <a class="navhash" href="#451">#</a>
+						
+              <code id="451">enable_prof=''</code><br />
+						
+            
+            <a class="navhash" href="#452">#</a>
+						
+              <code id="452">enable_stats=''</code><br />
+						
+            
+            <a class="navhash" href="#453">#</a>
+						
+              <code id="453">enable_tcache=''</code><br />
+						
+            
+            <a class="navhash" href="#454">#</a>
+						
+              <code id="454">enable_tls=''</code><br />
+						
+            
+            <a class="navhash" href="#455">#</a>
+						
+              <code id="455">enable_utrace=''</code><br />
+						
+            
+            <a class="navhash" href="#456">#</a>
+						
+              <code id="456">enable_valgrind=''</code><br />
+						
+            
+            <a class="navhash" href="#457">#</a>
+						
+              <code id="457">enable_xmalloc=''</code><br />
+						
+            
+            <a class="navhash" href="#458">#</a>
+						
+              <code id="458">enable_zone_allocator=''</code><br />
+						
+            
+            <a class="navhash" href="#459">#</a>
+						
+              <code id="459">exe=''</code><br />
+						
+            
+            <a class="navhash" href="#460">#</a>
+						
+              <code id="460">exec_prefix='/usr/local'</code><br />
+						
+            
+            <a class="navhash" href="#461">#</a>
+						
+              <code id="461">host=''</code><br />
+						
+            
+            <a class="navhash" href="#462">#</a>
+						
+              <code id="462">host_alias=''</code><br />
+						
+            
+            <a class="navhash" href="#463">#</a>
+						
+              <code id="463">host_cpu=''</code><br />
+						
+            
+            <a class="navhash" href="#464">#</a>
+						
+              <code id="464">host_os=''</code><br />
+						
+            
+            <a class="navhash" href="#465">#</a>
+						
+              <code id="465">host_vendor=''</code><br />
+						
+            
+            <a class="navhash" href="#466">#</a>
+						
+              <code id="466">htmldir='${docdir}'</code><br />
+						
+            
+            <a class="navhash" href="#467">#</a>
+						
+              <code id="467">importlib=''</code><br />
+						
+            
+            <a class="navhash" href="#468">#</a>
+						
+              <code id="468">includedir='${prefix}/include'</code><br />
+						
+            
+            <a class="navhash" href="#469">#</a>
+						
+              <code id="469">infodir='${datarootdir}/info'</code><br />
+						
+            
+            <a class="navhash" href="#470">#</a>
+						
+              <code id="470">install_suffix=''</code><br />
+						
+            
+            <a class="navhash" href="#471">#</a>
+						
+              <code id="471">je_=''</code><br />
+						
+            
+            <a class="navhash" href="#472">#</a>
+						
+              <code id="472">jemalloc_version=''</code><br />
+						
+            
+            <a class="navhash" href="#473">#</a>
+						
+              <code id="473">jemalloc_version_bugfix=''</code><br />
+						
+            
+            <a class="navhash" href="#474">#</a>
+						
+              <code id="474">jemalloc_version_gid=''</code><br />
+						
+            
+            <a class="navhash" href="#475">#</a>
+						
+              <code id="475">jemalloc_version_major=''</code><br />
+						
+            
+            <a class="navhash" href="#476">#</a>
+						
+              <code id="476">jemalloc_version_minor=''</code><br />
+						
+            
+            <a class="navhash" href="#477">#</a>
+						
+              <code id="477">jemalloc_version_nrev=''</code><br />
+						
+            
+            <a class="navhash" href="#478">#</a>
+						
+              <code id="478">libdir='${exec_prefix}/lib'</code><br />
+						
+            
+            <a class="navhash" href="#479">#</a>
+						
+              <code id="479">libexecdir='${exec_prefix}/libexec'</code><br />
+						
+            
+            <a class="navhash" href="#480">#</a>
+						
+              <code id="480">libprefix=''</code><br />
+						
+            
+            <a class="navhash" href="#481">#</a>
+						
+              <code id="481">localedir='${datarootdir}/locale'</code><br />
+						
+            
+            <a class="navhash" href="#482">#</a>
+						
+              <code id="482">localstatedir='${prefix}/var'</code><br />
+						
+            
+            <a class="navhash" href="#483">#</a>
+						
+              <code id="483">mandir='${datarootdir}/man'</code><br />
+						
+            
+            <a class="navhash" href="#484">#</a>
+						
+              <code id="484">o=''</code><br />
+						
+            
+            <a class="navhash" href="#485">#</a>
+						
+              <code id="485">objroot=''</code><br />
+						
+            
+            <a class="navhash" href="#486">#</a>
+						
+              <code id="486">oldincludedir='/usr/include'</code><br />
+						
+            
+            <a class="navhash" href="#487">#</a>
+						
+              <code id="487">pdfdir='${docdir}'</code><br />
+						
+            
+            <a class="navhash" href="#488">#</a>
+						
+              <code id="488">prefix='/usr/local'</code><br />
+						
+            
+            <a class="navhash" href="#489">#</a>
+						
+              <code id="489">private_namespace=''</code><br />
+						
+            
+            <a class="navhash" href="#490">#</a>
+						
+              <code id="490">program_transform_name='s,x,x,'</code><br />
+						
+            
+            <a class="navhash" href="#491">#</a>
+						
+              <code id="491">psdir='${docdir}'</code><br />
+						
+            
+            <a class="navhash" href="#492">#</a>
+						
+              <code id="492">rev='2'</code><br />
+						
+            
+            <a class="navhash" href="#493">#</a>
+						
+              <code id="493">sbindir='${exec_prefix}/sbin'</code><br />
+						
+            
+            <a class="navhash" href="#494">#</a>
+						
+              <code id="494">sharedstatedir='${prefix}/com'</code><br />
+						
+            
+            <a class="navhash" href="#495">#</a>
+						
+              <code id="495">so=''</code><br />
+						
+            
+            <a class="navhash" href="#496">#</a>
+						
+              <code id="496">srcroot=''</code><br />
+						
+            
+            <a class="navhash" href="#497">#</a>
+						
+              <code id="497">sysconfdir='${prefix}/etc'</code><br />
+						
+            
+            <a class="navhash" href="#498">#</a>
+						
+              <code id="498">target_alias=''</code><br />
+						
+            
+            <a class="navhash" href="#499">#</a>
+						
+              <code id="499"></code><br />
+						
+            
+            <a class="navhash" href="#500">#</a>
+						
+              <code id="500">## ----------- ##</code><br />
+						
+            
+            <a class="navhash" href="#501">#</a>
+						
+              <code id="501">## confdefs.h. ##</code><br />
+						
+            
+            <a class="navhash" href="#502">#</a>
+						
+              <code id="502">## ----------- ##</code><br />
+						
+            
+            <a class="navhash" href="#503">#</a>
+						
+              <code id="503"></code><br />
+						
+            
+            <a class="navhash" href="#504">#</a>
+						
+              <code id="504">/* confdefs.h */</code><br />
+						
+            
+            <a class="navhash" href="#505">#</a>
+						
+              <code id="505">#define PACKAGE_NAME ""</code><br />
+						
+            
+            <a class="navhash" href="#506">#</a>
+						
+              <code id="506">#define PACKAGE_TARNAME ""</code><br />
+						
+            
+            <a class="navhash" href="#507">#</a>
+						
+              <code id="507">#define PACKAGE_VERSION ""</code><br />
+						
+            
+            <a class="navhash" href="#508">#</a>
+						
+              <code id="508">#define PACKAGE_STRING ""</code><br />
+						
+            
+            <a class="navhash" href="#509">#</a>
+						
+              <code id="509">#define PACKAGE_BUGREPORT ""</code><br />
+						
+            
+            <a class="navhash" href="#510">#</a>
+						
+              <code id="510">#define PACKAGE_URL ""</code><br />
+						
+            
+            <a class="navhash" href="#511">#</a>
+						
+              <code id="511"></code><br />
+						
+            
+            <a class="navhash" href="#512">#</a>
+						
+              <code id="512">configure: exit 1</code><br />
+						
             
           </div>
         

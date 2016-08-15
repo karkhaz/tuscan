@@ -30,12 +30,43 @@
     <h1>Build of perl-gssapi
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 35s and was
-    NOT successful.
-    
+    <p>The build took 00h 00m 54s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="perl-gssapi-tree.html">here</a>.
     </p>
     
     
+      <p>
+      Several sub-process invocations were improper; see the process tree
+      for details. Summary:
+      </p>
+      <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;1: /usr/sbin/cc</li>
+        </ul></li>
+      
+        <li>empty path:<ul>
+            <li>&times;3: </li>
+        </ul></li>
+      </ul>
+    
+    
+    
+    
+    <h2>List of Errors</h2>
+    <ul>
+      
+      <li>missing_header
+        <ul>
+          
+          <li><a href="#53">GSSAPI.xs:32:10: fatal error: 'gssapi/gssapi.h' file not found</a></li>
+          
+        </ul>
+      </li>
+      
+    </ul>
     
     <h2>Log</h2>
     
@@ -84,15 +115,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: perl-gssapi 0.28-10 (Mon Jun 27 03:22:18 UTC 2016)</code><br />
+              <code id="5">==> Making package: perl-gssapi 0.28-10 (Thu Aug 11 01:06:52 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -307,22 +378,22 @@
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">cp GSSAPI/OID/Set.pm blib/lib/GSSAPI/OID/Set.pm</code><br />
+              <code id="48">cp GSSAPI/OID.pm blib/lib/GSSAPI/OID.pm</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">cp GSSAPI/Status.pm blib/lib/GSSAPI/Status.pm</code><br />
+              <code id="49">cp GSSAPI.pm blib/lib/GSSAPI.pm</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">cp GSSAPI/OID.pm blib/lib/GSSAPI/OID.pm</code><br />
+              <code id="50">cp GSSAPI/Status.pm blib/lib/GSSAPI/Status.pm</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">cp GSSAPI.pm blib/lib/GSSAPI.pm</code><br />
+              <code id="51">cp GSSAPI/OID/Set.pm blib/lib/GSSAPI/OID/Set.pm</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
@@ -331,18 +402,38 @@
 						
             
             <a class="navhash" href="#53">#</a>
-						
-              <code id="53">make: *** [Makefile:359: GSSAPI.o] Segmentation fault (core dumped)</code><br />
-						
+						<span class="error">
+              <code id="53">GSSAPI.xs:32:10: fatal error: 'gssapi/gssapi.h' file not found</code><br />
+						</span>
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">==> ERROR: A failure occurred in build().</code><br />
+              <code id="54">#include <gssapi/gssapi.h></code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">    Aborting...</code><br />
+              <code id="55">         ^</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">make: *** [Makefile:359: GSSAPI.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">    Aborting...</code><br />
 						
             
           </div>

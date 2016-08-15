@@ -30,12 +30,31 @@
     <h1>Build of figlet
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 32s and was
-    NOT successful.
-    
+    <p>The build took 00h 00m 55s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="figlet-tree.html">here</a>.
     </p>
     
     
+    
+    
+    
+    <h2>List of Errors</h2>
+    <ul>
+      
+      <li>parse_error
+        <ul>
+          
+          <li><a href="#33">utf8.h:32:9: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'utf8_to_wchar'</a></li>
+          
+          <li><a href="#37">zipio.h:76:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'typedef'</a></li>
+          
+        </ul>
+      </li>
+      
+    </ul>
     
     <h2>Log</h2>
     
@@ -84,15 +103,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: figlet 2.2.5-2 (Mon Jun 27 02:36:31 UTC 2016)</code><br />
+              <code id="5">==> Making package: figlet 2.2.5-2 (Wed Aug 10 23:58:03 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -137,27 +196,3547 @@
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">make: *** [Makefile:65: figlet.o] Segmentation fault (core dumped)</code><br />
+              <code id="14">In file included from /sysroot/include/sys/types.h:70:0,</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="15">                 from utf8.h:23,</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">make: *** [Makefile:65: zipio.o] Segmentation fault (core dumped)</code><br />
+              <code id="16">                 from figlet.c:77:</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">==> ERROR: A failure occurred in build().</code><br />
+              <code id="17">/sysroot/include/endian.h: In function '__bswap32':</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">    Aborting...</code><br />
+              <code id="18">/sysroot/include/endian.h:32:25: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]</code><br />
+						
+            
+            <a class="navhash" href="#19">#</a>
+						
+              <code id="19">  return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#20">#</a>
+						
+              <code id="20">                   ~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">/sysroot/include/endian.h:32:41: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]</code><br />
+						
+            
+            <a class="navhash" href="#22">#</a>
+						
+              <code id="22">  return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						
+              <code id="23">                                   ~~~~~~^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">/sysroot/include/endian.h: In function '__bswap64':</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">/sysroot/include/endian.h:37:23: warning: suggest parentheses around '+' inside '<<' [-Wparentheses]</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">  return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">         ~~~~~~~~~~~~~~^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">In file included from figlet.c:77:0:</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">utf8.h: At top level:</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">utf8.h:30:1: error: unknown type name '__BEGIN_DECLS'</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31"> __BEGIN_DECLS</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32"> ^~~~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						<span class="error">
+              <code id="33">utf8.h:32:9: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'utf8_to_wchar'</code><br />
+						</span>
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34"> size_t  utf8_to_wchar(const char *in, size_t insize, wchar_t *out,</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">         ^~~~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">In file included from figlet.c:80:0:</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						<span class="error">
+              <code id="37">zipio.h:76:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'typedef'</code><br />
+						</span>
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38"> typedef struct {</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39"> ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">figlet.c: In function 'skiptoeol':</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">           ^</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">figlet.c:357:16: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">   while (dummy=Zgetc(fp),dummy!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">                ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">figlet.c:357:16: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">   while (dummy=Zgetc(fp),dummy!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">                ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">figlet.c:357:25: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">   while (dummy=Zgetc(fp),dummy!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">                         ^</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">In file included from figlet.c:80:0:</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">           ^</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">figlet.c:360:15: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">       dummy = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">               ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">figlet.c:360:15: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">       dummy = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">               ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">       ^</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">figlet.c:361:42: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">       if (dummy != EOF && dummy != '\n') Zungetc(dummy,fp);</code><br />
+						
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">                                          ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#77">#</a>
+						
+              <code id="77">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#78">#</a>
+						
+              <code id="78">figlet.c:361:42: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#79">#</a>
+						
+              <code id="79">       if (dummy != EOF && dummy != '\n') Zungetc(dummy,fp);</code><br />
+						
+            
+            <a class="navhash" href="#80">#</a>
+						
+              <code id="80">                                          ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#82">#</a>
+						
+              <code id="82">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#83">#</a>
+						
+              <code id="83">              ^</code><br />
+						
+            
+            <a class="navhash" href="#84">#</a>
+						
+              <code id="84">figlet.c:361:42: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#85">#</a>
+						
+              <code id="85">       if (dummy != EOF && dummy != '\n') Zungetc(dummy,fp);</code><br />
+						
+            
+            <a class="navhash" href="#86">#</a>
+						
+              <code id="86">                                          ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#87">#</a>
+						
+              <code id="87">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#88">#</a>
+						
+              <code id="88">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#89">#</a>
+						
+              <code id="89">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#90">#</a>
+						
+              <code id="90">figlet.c:361:42: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#91">#</a>
+						
+              <code id="91">       if (dummy != EOF && dummy != '\n') Zungetc(dummy,fp);</code><br />
+						
+            
+            <a class="navhash" href="#92">#</a>
+						
+              <code id="92">                                          ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#93">#</a>
+						
+              <code id="93">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#94">#</a>
+						
+              <code id="94">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#95">#</a>
+						
+              <code id="95">   ^</code><br />
+						
+            
+            <a class="navhash" href="#96">#</a>
+						
+              <code id="96">figlet.c:361:42: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#97">#</a>
+						
+              <code id="97">       if (dummy != EOF && dummy != '\n') Zungetc(dummy,fp);</code><br />
+						
+            
+            <a class="navhash" href="#98">#</a>
+						
+              <code id="98">                                          ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#99">#</a>
+						
+              <code id="99">figlet.c: In function 'myfgets':</code><br />
+						
+            
+            <a class="navhash" href="#100">#</a>
+						
+              <code id="100">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#101">#</a>
+						
+              <code id="101">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#102">#</a>
+						
+              <code id="102">           ^</code><br />
+						
+            
+            <a class="navhash" href="#103">#</a>
+						
+              <code id="103">figlet.c:385:12: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#104">#</a>
+						
+              <code id="104">   while((c=Zgetc(fp))!=EOF&&maxlen) {</code><br />
+						
+            
+            <a class="navhash" href="#105">#</a>
+						
+              <code id="105">            ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#106">#</a>
+						
+              <code id="106">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#107">#</a>
+						
+              <code id="107">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#108">#</a>
+						
+              <code id="108">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#109">#</a>
+						
+              <code id="109">figlet.c:385:12: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#110">#</a>
+						
+              <code id="110">   while((c=Zgetc(fp))!=EOF&&maxlen) {</code><br />
+						
+            
+            <a class="navhash" href="#111">#</a>
+						
+              <code id="111">            ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#112">#</a>
+						
+              <code id="112">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#113">#</a>
+						
+              <code id="113">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#114">#</a>
+						
+              <code id="114">           ^</code><br />
+						
+            
+            <a class="navhash" href="#115">#</a>
+						
+              <code id="115">figlet.c:390:11: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#116">#</a>
+						
+              <code id="116">       c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#117">#</a>
+						
+              <code id="117">           ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#118">#</a>
+						
+              <code id="118">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#119">#</a>
+						
+              <code id="119">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#120">#</a>
+						
+              <code id="120">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#121">#</a>
+						
+              <code id="121">figlet.c:390:11: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#122">#</a>
+						
+              <code id="122">       c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#123">#</a>
+						
+              <code id="123">           ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#124">#</a>
+						
+              <code id="124">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#125">#</a>
+						
+              <code id="125">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#126">#</a>
+						
+              <code id="126">       ^</code><br />
+						
+            
+            <a class="navhash" href="#127">#</a>
+						
+              <code id="127">figlet.c:391:34: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#128">#</a>
+						
+              <code id="128">       if (c != EOF && c != '\n') Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#129">#</a>
+						
+              <code id="129">                                  ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#130">#</a>
+						
+              <code id="130">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#131">#</a>
+						
+              <code id="131">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#132">#</a>
+						
+              <code id="132">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#133">#</a>
+						
+              <code id="133">figlet.c:391:34: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#134">#</a>
+						
+              <code id="134">       if (c != EOF && c != '\n') Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#135">#</a>
+						
+              <code id="135">                                  ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#136">#</a>
+						
+              <code id="136">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#137">#</a>
+						
+              <code id="137">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#138">#</a>
+						
+              <code id="138">              ^</code><br />
+						
+            
+            <a class="navhash" href="#139">#</a>
+						
+              <code id="139">figlet.c:391:34: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#140">#</a>
+						
+              <code id="140">       if (c != EOF && c != '\n') Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#141">#</a>
+						
+              <code id="141">                                  ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#142">#</a>
+						
+              <code id="142">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#143">#</a>
+						
+              <code id="143">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#144">#</a>
+						
+              <code id="144">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#145">#</a>
+						
+              <code id="145">figlet.c:391:34: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#146">#</a>
+						
+              <code id="146">       if (c != EOF && c != '\n') Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#147">#</a>
+						
+              <code id="147">                                  ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#148">#</a>
+						
+              <code id="148">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#149">#</a>
+						
+              <code id="149">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#150">#</a>
+						
+              <code id="150">   ^</code><br />
+						
+            
+            <a class="navhash" href="#151">#</a>
+						
+              <code id="151">figlet.c:391:34: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#152">#</a>
+						
+              <code id="152">       if (c != EOF && c != '\n') Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#153">#</a>
+						
+              <code id="153">                                  ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#154">#</a>
+						
+              <code id="154">figlet.c: In function 'readmagic':</code><br />
+						
+            
+            <a class="navhash" href="#155">#</a>
+						
+              <code id="155">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#156">#</a>
+						
+              <code id="156">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#157">#</a>
+						
+              <code id="157">           ^</code><br />
+						
+            
+            <a class="navhash" href="#158">#</a>
+						
+              <code id="158">figlet.c:484:16: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#159">#</a>
+						
+              <code id="159">     magic[i] = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#160">#</a>
+						
+              <code id="160">                ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#161">#</a>
+						
+              <code id="161">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#162">#</a>
+						
+              <code id="162">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#163">#</a>
+						
+              <code id="163">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#164">#</a>
+						
+              <code id="164">figlet.c:484:16: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#165">#</a>
+						
+              <code id="165">     magic[i] = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#166">#</a>
+						
+              <code id="166">                ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#167">#</a>
+						
+              <code id="167">figlet.c: In function 'skipws':</code><br />
+						
+            
+            <a class="navhash" href="#168">#</a>
+						
+              <code id="168">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#169">#</a>
+						
+              <code id="169">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#170">#</a>
+						
+              <code id="170">           ^</code><br />
+						
+            
+            <a class="navhash" href="#171">#</a>
+						
+              <code id="171">figlet.c:500:12: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#172">#</a>
+						
+              <code id="172">   while (c=Zgetc(fp),isascii(c)&&isspace(c)) ;</code><br />
+						
+            
+            <a class="navhash" href="#173">#</a>
+						
+              <code id="173">            ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#174">#</a>
+						
+              <code id="174">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#175">#</a>
+						
+              <code id="175">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#176">#</a>
+						
+              <code id="176">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#177">#</a>
+						
+              <code id="177">figlet.c:500:12: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#178">#</a>
+						
+              <code id="178">   while (c=Zgetc(fp),isascii(c)&&isspace(c)) ;</code><br />
+						
+            
+            <a class="navhash" href="#179">#</a>
+						
+              <code id="179">            ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#180">#</a>
+						
+              <code id="180">figlet.c:500:21: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#181">#</a>
+						
+              <code id="181">   while (c=Zgetc(fp),isascii(c)&&isspace(c)) ;</code><br />
+						
+            
+            <a class="navhash" href="#182">#</a>
+						
+              <code id="182">                     ^</code><br />
+						
+            
+            <a class="navhash" href="#183">#</a>
+						
+              <code id="183">In file included from figlet.c:80:0:</code><br />
+						
+            
+            <a class="navhash" href="#184">#</a>
+						
+              <code id="184">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#185">#</a>
+						
+              <code id="185">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#186">#</a>
+						
+              <code id="186">       ^</code><br />
+						
+            
+            <a class="navhash" href="#187">#</a>
+						
+              <code id="187">figlet.c:501:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#188">#</a>
+						
+              <code id="188">   Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#189">#</a>
+						
+              <code id="189">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#190">#</a>
+						
+              <code id="190">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#191">#</a>
+						
+              <code id="191">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#192">#</a>
+						
+              <code id="192">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#193">#</a>
+						
+              <code id="193">figlet.c:501:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#194">#</a>
+						
+              <code id="194">   Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#195">#</a>
+						
+              <code id="195">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#196">#</a>
+						
+              <code id="196">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#197">#</a>
+						
+              <code id="197">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#198">#</a>
+						
+              <code id="198">              ^</code><br />
+						
+            
+            <a class="navhash" href="#199">#</a>
+						
+              <code id="199">figlet.c:501:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#200">#</a>
+						
+              <code id="200">   Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#201">#</a>
+						
+              <code id="201">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#202">#</a>
+						
+              <code id="202">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#203">#</a>
+						
+              <code id="203">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#204">#</a>
+						
+              <code id="204">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#205">#</a>
+						
+              <code id="205">figlet.c:501:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#206">#</a>
+						
+              <code id="206">   Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#207">#</a>
+						
+              <code id="207">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#208">#</a>
+						
+              <code id="208">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#209">#</a>
+						
+              <code id="209">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#210">#</a>
+						
+              <code id="210">   ^</code><br />
+						
+            
+            <a class="navhash" href="#211">#</a>
+						
+              <code id="211">figlet.c:501:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#212">#</a>
+						
+              <code id="212">   Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#213">#</a>
+						
+              <code id="213">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#214">#</a>
+						
+              <code id="214">figlet.c: In function 'readnum':</code><br />
+						
+            
+            <a class="navhash" href="#215">#</a>
+						
+              <code id="215">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#216">#</a>
+						
+              <code id="216">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#217">#</a>
+						
+              <code id="217">           ^</code><br />
+						
+            
+            <a class="navhash" href="#218">#</a>
+						
+              <code id="218">figlet.c:524:7: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#219">#</a>
+						
+              <code id="219">   c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#220">#</a>
+						
+              <code id="220">       ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#221">#</a>
+						
+              <code id="221">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#222">#</a>
+						
+              <code id="222">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#223">#</a>
+						
+              <code id="223">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#224">#</a>
+						
+              <code id="224">figlet.c:524:7: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#225">#</a>
+						
+              <code id="225">   c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#226">#</a>
+						
+              <code id="226">       ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#227">#</a>
+						
+              <code id="227">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#228">#</a>
+						
+              <code id="228">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#229">#</a>
+						
+              <code id="229">       ^</code><br />
+						
+            
+            <a class="navhash" href="#230">#</a>
+						
+              <code id="230">figlet.c:529:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#231">#</a>
+						
+              <code id="231">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#232">#</a>
+						
+              <code id="232">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#233">#</a>
+						
+              <code id="233">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#234">#</a>
+						
+              <code id="234">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#235">#</a>
+						
+              <code id="235">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#236">#</a>
+						
+              <code id="236">figlet.c:529:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#237">#</a>
+						
+              <code id="237">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#238">#</a>
+						
+              <code id="238">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#239">#</a>
+						
+              <code id="239">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#240">#</a>
+						
+              <code id="240">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#241">#</a>
+						
+              <code id="241">              ^</code><br />
+						
+            
+            <a class="navhash" href="#242">#</a>
+						
+              <code id="242">figlet.c:529:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#243">#</a>
+						
+              <code id="243">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#244">#</a>
+						
+              <code id="244">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#245">#</a>
+						
+              <code id="245">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#246">#</a>
+						
+              <code id="246">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#247">#</a>
+						
+              <code id="247">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#248">#</a>
+						
+              <code id="248">figlet.c:529:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#249">#</a>
+						
+              <code id="249">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#250">#</a>
+						
+              <code id="250">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#251">#</a>
+						
+              <code id="251">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#252">#</a>
+						
+              <code id="252">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#253">#</a>
+						
+              <code id="253">   ^</code><br />
+						
+            
+            <a class="navhash" href="#254">#</a>
+						
+              <code id="254">figlet.c:529:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#255">#</a>
+						
+              <code id="255">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#256">#</a>
+						
+              <code id="256">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#257">#</a>
+						
+              <code id="257">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#258">#</a>
+						
+              <code id="258">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#259">#</a>
+						
+              <code id="259">           ^</code><br />
+						
+            
+            <a class="navhash" href="#260">#</a>
+						
+              <code id="260">figlet.c:531:7: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#261">#</a>
+						
+              <code id="261">   c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#262">#</a>
+						
+              <code id="262">       ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#263">#</a>
+						
+              <code id="263">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#264">#</a>
+						
+              <code id="264">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#265">#</a>
+						
+              <code id="265">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#266">#</a>
+						
+              <code id="266">figlet.c:531:7: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#267">#</a>
+						
+              <code id="267">   c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#268">#</a>
+						
+              <code id="268">       ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#269">#</a>
+						
+              <code id="269">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#270">#</a>
+						
+              <code id="270">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#271">#</a>
+						
+              <code id="271">           ^</code><br />
+						
+            
+            <a class="navhash" href="#272">#</a>
+						
+              <code id="272">figlet.c:533:10: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#273">#</a>
+						
+              <code id="273">      c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#274">#</a>
+						
+              <code id="274">          ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#275">#</a>
+						
+              <code id="275">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#276">#</a>
+						
+              <code id="276">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#277">#</a>
+						
+              <code id="277">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#278">#</a>
+						
+              <code id="278">figlet.c:533:10: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#279">#</a>
+						
+              <code id="279">      c = Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#280">#</a>
+						
+              <code id="280">          ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#281">#</a>
+						
+              <code id="281">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#282">#</a>
+						
+              <code id="282">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#283">#</a>
+						
+              <code id="283">       ^</code><br />
+						
+            
+            <a class="navhash" href="#284">#</a>
+						
+              <code id="284">figlet.c:539:8: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#285">#</a>
+						
+              <code id="285">        Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#286">#</a>
+						
+              <code id="286">        ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#287">#</a>
+						
+              <code id="287">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#288">#</a>
+						
+              <code id="288">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#289">#</a>
+						
+              <code id="289">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#290">#</a>
+						
+              <code id="290">figlet.c:539:8: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#291">#</a>
+						
+              <code id="291">        Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#292">#</a>
+						
+              <code id="292">        ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#293">#</a>
+						
+              <code id="293">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#294">#</a>
+						
+              <code id="294">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#295">#</a>
+						
+              <code id="295">              ^</code><br />
+						
+            
+            <a class="navhash" href="#296">#</a>
+						
+              <code id="296">figlet.c:539:8: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#297">#</a>
+						
+              <code id="297">        Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#298">#</a>
+						
+              <code id="298">        ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#299">#</a>
+						
+              <code id="299">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#300">#</a>
+						
+              <code id="300">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#301">#</a>
+						
+              <code id="301">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#302">#</a>
+						
+              <code id="302">figlet.c:539:8: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#303">#</a>
+						
+              <code id="303">        Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#304">#</a>
+						
+              <code id="304">        ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#305">#</a>
+						
+              <code id="305">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#306">#</a>
+						
+              <code id="306">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#307">#</a>
+						
+              <code id="307">   ^</code><br />
+						
+            
+            <a class="navhash" href="#308">#</a>
+						
+              <code id="308">figlet.c:539:8: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#309">#</a>
+						
+              <code id="309">        Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#310">#</a>
+						
+              <code id="310">        ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#311">#</a>
+						
+              <code id="311">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#312">#</a>
+						
+              <code id="312">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#313">#</a>
+						
+              <code id="313">       ^</code><br />
+						
+            
+            <a class="navhash" href="#314">#</a>
+						
+              <code id="314">figlet.c:544:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#315">#</a>
+						
+              <code id="315">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#316">#</a>
+						
+              <code id="316">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#317">#</a>
+						
+              <code id="317">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#318">#</a>
+						
+              <code id="318">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#319">#</a>
+						
+              <code id="319">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#320">#</a>
+						
+              <code id="320">figlet.c:544:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#321">#</a>
+						
+              <code id="321">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#322">#</a>
+						
+              <code id="322">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#323">#</a>
+						
+              <code id="323">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#324">#</a>
+						
+              <code id="324">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#325">#</a>
+						
+              <code id="325">              ^</code><br />
+						
+            
+            <a class="navhash" href="#326">#</a>
+						
+              <code id="326">figlet.c:544:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#327">#</a>
+						
+              <code id="327">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#328">#</a>
+						
+              <code id="328">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#329">#</a>
+						
+              <code id="329">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#330">#</a>
+						
+              <code id="330">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#331">#</a>
+						
+              <code id="331">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#332">#</a>
+						
+              <code id="332">figlet.c:544:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#333">#</a>
+						
+              <code id="333">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#334">#</a>
+						
+              <code id="334">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#335">#</a>
+						
+              <code id="335">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#336">#</a>
+						
+              <code id="336">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#337">#</a>
+						
+              <code id="337">   ^</code><br />
+						
+            
+            <a class="navhash" href="#338">#</a>
+						
+              <code id="338">figlet.c:544:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#339">#</a>
+						
+              <code id="339">     Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#340">#</a>
+						
+              <code id="340">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#341">#</a>
+						
+              <code id="341">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#342">#</a>
+						
+              <code id="342">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#343">#</a>
+						
+              <code id="343">           ^</code><br />
+						
+            
+            <a class="navhash" href="#344">#</a>
+						
+              <code id="344">figlet.c:547:12: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#345">#</a>
+						
+              <code id="345">   while((c=Zgetc(fp))!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#346">#</a>
+						
+              <code id="346">            ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#347">#</a>
+						
+              <code id="347">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#348">#</a>
+						
+              <code id="348">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#349">#</a>
+						
+              <code id="349">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#350">#</a>
+						
+              <code id="350">figlet.c:547:12: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#351">#</a>
+						
+              <code id="351">   while((c=Zgetc(fp))!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#352">#</a>
+						
+              <code id="352">            ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#353">#</a>
+						
+              <code id="353">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#354">#</a>
+						
+              <code id="354">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#355">#</a>
+						
+              <code id="355">       ^</code><br />
+						
+            
+            <a class="navhash" href="#356">#</a>
+						
+              <code id="356">figlet.c:551:7: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#357">#</a>
+						
+              <code id="357">       Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#358">#</a>
+						
+              <code id="358">       ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#359">#</a>
+						
+              <code id="359">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#360">#</a>
+						
+              <code id="360">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#361">#</a>
+						
+              <code id="361">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#362">#</a>
+						
+              <code id="362">figlet.c:551:7: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#363">#</a>
+						
+              <code id="363">       Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#364">#</a>
+						
+              <code id="364">       ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#365">#</a>
+						
+              <code id="365">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#366">#</a>
+						
+              <code id="366">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#367">#</a>
+						
+              <code id="367">              ^</code><br />
+						
+            
+            <a class="navhash" href="#368">#</a>
+						
+              <code id="368">figlet.c:551:7: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#369">#</a>
+						
+              <code id="369">       Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#370">#</a>
+						
+              <code id="370">       ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#371">#</a>
+						
+              <code id="371">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#372">#</a>
+						
+              <code id="372">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#373">#</a>
+						
+              <code id="373">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#374">#</a>
+						
+              <code id="374">figlet.c:551:7: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#375">#</a>
+						
+              <code id="375">       Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#376">#</a>
+						
+              <code id="376">       ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#377">#</a>
+						
+              <code id="377">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#378">#</a>
+						
+              <code id="378">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#379">#</a>
+						
+              <code id="379">   ^</code><br />
+						
+            
+            <a class="navhash" href="#380">#</a>
+						
+              <code id="380">figlet.c:551:7: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#381">#</a>
+						
+              <code id="381">       Zungetc(c,fp);</code><br />
+						
+            
+            <a class="navhash" href="#382">#</a>
+						
+              <code id="382">       ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#383">#</a>
+						
+              <code id="383">figlet.c: In function 'readTchar':</code><br />
+						
+            
+            <a class="navhash" href="#384">#</a>
+						
+              <code id="384">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#385">#</a>
+						
+              <code id="385">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#386">#</a>
+						
+              <code id="386">           ^</code><br />
+						
+            
+            <a class="navhash" href="#387">#</a>
+						
+              <code id="387">figlet.c:577:11: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#388">#</a>
+						
+              <code id="388">   thechar=Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#389">#</a>
+						
+              <code id="389">           ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#390">#</a>
+						
+              <code id="390">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#391">#</a>
+						
+              <code id="391">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#392">#</a>
+						
+              <code id="392">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#393">#</a>
+						
+              <code id="393">figlet.c:577:11: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#394">#</a>
+						
+              <code id="394">   thechar=Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#395">#</a>
+						
+              <code id="395">           ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#396">#</a>
+						
+              <code id="396">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#397">#</a>
+						
+              <code id="397">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#398">#</a>
+						
+              <code id="398">       ^</code><br />
+						
+            
+            <a class="navhash" href="#399">#</a>
+						
+              <code id="399">figlet.c:579:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#400">#</a>
+						
+              <code id="400">     Zungetc(thechar,fp);</code><br />
+						
+            
+            <a class="navhash" href="#401">#</a>
+						
+              <code id="401">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#402">#</a>
+						
+              <code id="402">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#403">#</a>
+						
+              <code id="403">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#404">#</a>
+						
+              <code id="404">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#405">#</a>
+						
+              <code id="405">figlet.c:579:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#406">#</a>
+						
+              <code id="406">     Zungetc(thechar,fp);</code><br />
+						
+            
+            <a class="navhash" href="#407">#</a>
+						
+              <code id="407">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#408">#</a>
+						
+              <code id="408">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#409">#</a>
+						
+              <code id="409">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#410">#</a>
+						
+              <code id="410">              ^</code><br />
+						
+            
+            <a class="navhash" href="#411">#</a>
+						
+              <code id="411">figlet.c:579:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#412">#</a>
+						
+              <code id="412">     Zungetc(thechar,fp);</code><br />
+						
+            
+            <a class="navhash" href="#413">#</a>
+						
+              <code id="413">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#414">#</a>
+						
+              <code id="414">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#415">#</a>
+						
+              <code id="415">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#416">#</a>
+						
+              <code id="416">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#417">#</a>
+						
+              <code id="417">figlet.c:579:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#418">#</a>
+						
+              <code id="418">     Zungetc(thechar,fp);</code><br />
+						
+            
+            <a class="navhash" href="#419">#</a>
+						
+              <code id="419">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#420">#</a>
+						
+              <code id="420">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#421">#</a>
+						
+              <code id="421">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#422">#</a>
+						
+              <code id="422">   ^</code><br />
+						
+            
+            <a class="navhash" href="#423">#</a>
+						
+              <code id="423">figlet.c:579:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#424">#</a>
+						
+              <code id="424">     Zungetc(thechar,fp);</code><br />
+						
+            
+            <a class="navhash" href="#425">#</a>
+						
+              <code id="425">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#426">#</a>
+						
+              <code id="426">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#427">#</a>
+						
+              <code id="427">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#428">#</a>
+						
+              <code id="428">           ^</code><br />
+						
+            
+            <a class="navhash" href="#429">#</a>
+						
+              <code id="429">figlet.c:583:8: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#430">#</a>
+						
+              <code id="430">   next=Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#431">#</a>
+						
+              <code id="431">        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#432">#</a>
+						
+              <code id="432">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#433">#</a>
+						
+              <code id="433">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#434">#</a>
+						
+              <code id="434">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#435">#</a>
+						
+              <code id="435">figlet.c:583:8: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#436">#</a>
+						
+              <code id="436">   next=Zgetc(fp);</code><br />
+						
+            
+            <a class="navhash" href="#437">#</a>
+						
+              <code id="437">        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#438">#</a>
+						
+              <code id="438">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#439">#</a>
+						
+              <code id="439">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#440">#</a>
+						
+              <code id="440">       ^</code><br />
+						
+            
+            <a class="navhash" href="#441">#</a>
+						
+              <code id="441">figlet.c:603:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#442">#</a>
+						
+              <code id="442">         Zungetc(next,fp);</code><br />
+						
+            
+            <a class="navhash" href="#443">#</a>
+						
+              <code id="443">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#444">#</a>
+						
+              <code id="444">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#445">#</a>
+						
+              <code id="445">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#446">#</a>
+						
+              <code id="446">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#447">#</a>
+						
+              <code id="447">figlet.c:603:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#448">#</a>
+						
+              <code id="448">         Zungetc(next,fp);</code><br />
+						
+            
+            <a class="navhash" href="#449">#</a>
+						
+              <code id="449">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#450">#</a>
+						
+              <code id="450">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#451">#</a>
+						
+              <code id="451">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#452">#</a>
+						
+              <code id="452">              ^</code><br />
+						
+            
+            <a class="navhash" href="#453">#</a>
+						
+              <code id="453">figlet.c:603:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#454">#</a>
+						
+              <code id="454">         Zungetc(next,fp);</code><br />
+						
+            
+            <a class="navhash" href="#455">#</a>
+						
+              <code id="455">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#456">#</a>
+						
+              <code id="456">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#457">#</a>
+						
+              <code id="457">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#458">#</a>
+						
+              <code id="458">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#459">#</a>
+						
+              <code id="459">figlet.c:603:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#460">#</a>
+						
+              <code id="460">         Zungetc(next,fp);</code><br />
+						
+            
+            <a class="navhash" href="#461">#</a>
+						
+              <code id="461">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#462">#</a>
+						
+              <code id="462">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#463">#</a>
+						
+              <code id="463">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#464">#</a>
+						
+              <code id="464">   ^</code><br />
+						
+            
+            <a class="navhash" href="#465">#</a>
+						
+              <code id="465">figlet.c:603:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#466">#</a>
+						
+              <code id="466">         Zungetc(next,fp);</code><br />
+						
+            
+            <a class="navhash" href="#467">#</a>
+						
+              <code id="467">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#468">#</a>
+						
+              <code id="468">figlet.c: In function 'charsetname':</code><br />
+						
+            
+            <a class="navhash" href="#469">#</a>
+						
+              <code id="469">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#470">#</a>
+						
+              <code id="470">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#471">#</a>
+						
+              <code id="471">       ^</code><br />
+						
+            
+            <a class="navhash" href="#472">#</a>
+						
+              <code id="472">figlet.c:628:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#473">#</a>
+						
+              <code id="473">     Zungetc(result,fp);</code><br />
+						
+            
+            <a class="navhash" href="#474">#</a>
+						
+              <code id="474">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#475">#</a>
+						
+              <code id="475">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#476">#</a>
+						
+              <code id="476">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#477">#</a>
+						
+              <code id="477">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#478">#</a>
+						
+              <code id="478">figlet.c:628:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#479">#</a>
+						
+              <code id="479">     Zungetc(result,fp);</code><br />
+						
+            
+            <a class="navhash" href="#480">#</a>
+						
+              <code id="480">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#481">#</a>
+						
+              <code id="481">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#482">#</a>
+						
+              <code id="482">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#483">#</a>
+						
+              <code id="483">              ^</code><br />
+						
+            
+            <a class="navhash" href="#484">#</a>
+						
+              <code id="484">figlet.c:628:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#485">#</a>
+						
+              <code id="485">     Zungetc(result,fp);</code><br />
+						
+            
+            <a class="navhash" href="#486">#</a>
+						
+              <code id="486">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#487">#</a>
+						
+              <code id="487">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#488">#</a>
+						
+              <code id="488">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#489">#</a>
+						
+              <code id="489">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#490">#</a>
+						
+              <code id="490">figlet.c:628:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#491">#</a>
+						
+              <code id="491">     Zungetc(result,fp);</code><br />
+						
+            
+            <a class="navhash" href="#492">#</a>
+						
+              <code id="492">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#493">#</a>
+						
+              <code id="493">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#494">#</a>
+						
+              <code id="494">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#495">#</a>
+						
+              <code id="495">   ^</code><br />
+						
+            
+            <a class="navhash" href="#496">#</a>
+						
+              <code id="496">figlet.c:628:5: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#497">#</a>
+						
+              <code id="497">     Zungetc(result,fp);</code><br />
+						
+            
+            <a class="navhash" href="#498">#</a>
+						
+              <code id="498">     ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#499">#</a>
+						
+              <code id="499">figlet.c: In function 'charset':</code><br />
+						
+            
+            <a class="navhash" href="#500">#</a>
+						
+              <code id="500">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#501">#</a>
+						
+              <code id="501">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#502">#</a>
+						
+              <code id="502">           ^</code><br />
+						
+            
+            <a class="navhash" href="#503">#</a>
+						
+              <code id="503">figlet.c:649:7: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#504">#</a>
+						
+              <code id="504">   if (Zgetc(controlfile) != '9') {</code><br />
+						
+            
+            <a class="navhash" href="#505">#</a>
+						
+              <code id="505">       ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#506">#</a>
+						
+              <code id="506">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#507">#</a>
+						
+              <code id="507">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#508">#</a>
+						
+              <code id="508">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#509">#</a>
+						
+              <code id="509">figlet.c:649:7: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#510">#</a>
+						
+              <code id="510">   if (Zgetc(controlfile) != '9') {</code><br />
+						
+            
+            <a class="navhash" href="#511">#</a>
+						
+              <code id="511">       ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#512">#</a>
+						
+              <code id="512">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#513">#</a>
+						
+              <code id="513">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#514">#</a>
+						
+              <code id="514">           ^</code><br />
+						
+            
+            <a class="navhash" href="#515">#</a>
+						
+              <code id="515">figlet.c:653:8: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#516">#</a>
+						
+              <code id="516">   ch = Zgetc(controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#517">#</a>
+						
+              <code id="517">        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#518">#</a>
+						
+              <code id="518">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#519">#</a>
+						
+              <code id="519">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#520">#</a>
+						
+              <code id="520">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#521">#</a>
+						
+              <code id="521">figlet.c:653:8: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#522">#</a>
+						
+              <code id="522">   ch = Zgetc(controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#523">#</a>
+						
+              <code id="523">        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#524">#</a>
+						
+              <code id="524">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#525">#</a>
+						
+              <code id="525">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#526">#</a>
+						
+              <code id="526">           ^</code><br />
+						
+            
+            <a class="navhash" href="#527">#</a>
+						
+              <code id="527">figlet.c:664:8: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#528">#</a>
+						
+              <code id="528">   ch = Zgetc(controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#529">#</a>
+						
+              <code id="529">        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#530">#</a>
+						
+              <code id="530">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#531">#</a>
+						
+              <code id="531">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#532">#</a>
+						
+              <code id="532">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#533">#</a>
+						
+              <code id="533">figlet.c:664:8: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#534">#</a>
+						
+              <code id="534">   ch = Zgetc(controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#535">#</a>
+						
+              <code id="535">        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#536">#</a>
+						
+              <code id="536">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#537">#</a>
+						
+              <code id="537">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#538">#</a>
+						
+              <code id="538">           ^</code><br />
+						
+            
+            <a class="navhash" href="#539">#</a>
+						
+              <code id="539">figlet.c:666:10: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#540">#</a>
+						
+              <code id="540">      if (Zgetc(controlfile) != '9') {</code><br />
+						
+            
+            <a class="navhash" href="#541">#</a>
+						
+              <code id="541">          ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#542">#</a>
+						
+              <code id="542">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#543">#</a>
+						
+              <code id="543">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#544">#</a>
+						
+              <code id="544">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#545">#</a>
+						
+              <code id="545">figlet.c:666:10: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#546">#</a>
+						
+              <code id="546">      if (Zgetc(controlfile) != '9') {</code><br />
+						
+            
+            <a class="navhash" href="#547">#</a>
+						
+              <code id="547">          ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#548">#</a>
+						
+              <code id="548">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#549">#</a>
+						
+              <code id="549">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#550">#</a>
+						
+              <code id="550">           ^</code><br />
+						
+            
+            <a class="navhash" href="#551">#</a>
+						
+              <code id="551">figlet.c:670:10: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#552">#</a>
+						
+              <code id="552">      if (Zgetc(controlfile) != '4') {</code><br />
+						
+            
+            <a class="navhash" href="#553">#</a>
+						
+              <code id="553">          ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#554">#</a>
+						
+              <code id="554">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#555">#</a>
+						
+              <code id="555">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#556">#</a>
+						
+              <code id="556">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#557">#</a>
+						
+              <code id="557">figlet.c:670:10: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#558">#</a>
+						
+              <code id="558">      if (Zgetc(controlfile) != '4') {</code><br />
+						
+            
+            <a class="navhash" href="#559">#</a>
+						
+              <code id="559">          ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#560">#</a>
+						
+              <code id="560">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#561">#</a>
+						
+              <code id="561">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#562">#</a>
+						
+              <code id="562">       ^</code><br />
+						
+            
+            <a class="navhash" href="#563">#</a>
+						
+              <code id="563">figlet.c:680:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#564">#</a>
+						
+              <code id="564">   Zungetc(ch, controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#565">#</a>
+						
+              <code id="565">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#566">#</a>
+						
+              <code id="566">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#567">#</a>
+						
+              <code id="567">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#568">#</a>
+						
+              <code id="568">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#569">#</a>
+						
+              <code id="569">figlet.c:680:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#570">#</a>
+						
+              <code id="570">   Zungetc(ch, controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#571">#</a>
+						
+              <code id="571">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#572">#</a>
+						
+              <code id="572">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#573">#</a>
+						
+              <code id="573">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#574">#</a>
+						
+              <code id="574">              ^</code><br />
+						
+            
+            <a class="navhash" href="#575">#</a>
+						
+              <code id="575">figlet.c:680:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#576">#</a>
+						
+              <code id="576">   Zungetc(ch, controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#577">#</a>
+						
+              <code id="577">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#578">#</a>
+						
+              <code id="578">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#579">#</a>
+						
+              <code id="579">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#580">#</a>
+						
+              <code id="580">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#581">#</a>
+						
+              <code id="581">figlet.c:680:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#582">#</a>
+						
+              <code id="582">   Zungetc(ch, controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#583">#</a>
+						
+              <code id="583">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#584">#</a>
+						
+              <code id="584">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#585">#</a>
+						
+              <code id="585">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#586">#</a>
+						
+              <code id="586">   ^</code><br />
+						
+            
+            <a class="navhash" href="#587">#</a>
+						
+              <code id="587">figlet.c:680:3: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#588">#</a>
+						
+              <code id="588">   Zungetc(ch, controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#589">#</a>
+						
+              <code id="589">   ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#590">#</a>
+						
+              <code id="590">figlet.c: In function 'readcontrol':</code><br />
+						
+            
+            <a class="navhash" href="#591">#</a>
+						
+              <code id="591">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#592">#</a>
+						
+              <code id="592">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#593">#</a>
+						
+              <code id="593">           ^</code><br />
+						
+            
+            <a class="navhash" href="#594">#</a>
+						
+              <code id="594">figlet.c:760:17: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#595">#</a>
+						
+              <code id="595">   while(command=Zgetc(controlfile),command!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#596">#</a>
+						
+              <code id="596">                 ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#597">#</a>
+						
+              <code id="597">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#598">#</a>
+						
+              <code id="598">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#599">#</a>
+						
+              <code id="599">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#600">#</a>
+						
+              <code id="600">figlet.c:760:17: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#601">#</a>
+						
+              <code id="601">   while(command=Zgetc(controlfile),command!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#602">#</a>
+						
+              <code id="602">                 ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#603">#</a>
+						
+              <code id="603">figlet.c:760:35: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#604">#</a>
+						
+              <code id="604">   while(command=Zgetc(controlfile),command!=EOF) {</code><br />
+						
+            
+            <a class="navhash" href="#605">#</a>
+						
+              <code id="605">                                   ^</code><br />
+						
+            
+            <a class="navhash" href="#606">#</a>
+						
+              <code id="606">In file included from figlet.c:80:0:</code><br />
+						
+            
+            <a class="navhash" href="#607">#</a>
+						
+              <code id="607">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#608">#</a>
+						
+              <code id="608">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#609">#</a>
+						
+              <code id="609">           ^</code><br />
+						
+            
+            <a class="navhash" href="#610">#</a>
+						
+              <code id="610">figlet.c:765:24: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#611">#</a>
+						
+              <code id="611">         if ((dashcheck=Zgetc(controlfile))=='-') {</code><br />
+						
+            
+            <a class="navhash" href="#612">#</a>
+						
+              <code id="612">                        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#613">#</a>
+						
+              <code id="613">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#614">#</a>
+						
+              <code id="614">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#615">#</a>
+						
+              <code id="615">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#616">#</a>
+						
+              <code id="616">figlet.c:765:24: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#617">#</a>
+						
+              <code id="617">         if ((dashcheck=Zgetc(controlfile))=='-') {</code><br />
+						
+            
+            <a class="navhash" href="#618">#</a>
+						
+              <code id="618">                        ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#619">#</a>
+						
+              <code id="619">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#620">#</a>
+						
+              <code id="620">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#621">#</a>
+						
+              <code id="621">       ^</code><br />
+						
+            
+            <a class="navhash" href="#622">#</a>
+						
+              <code id="622">figlet.c:769:11: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#623">#</a>
+						
+              <code id="623">           Zungetc(dashcheck,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#624">#</a>
+						
+              <code id="624">           ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#625">#</a>
+						
+              <code id="625">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#626">#</a>
+						
+              <code id="626">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#627">#</a>
+						
+              <code id="627">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#628">#</a>
+						
+              <code id="628">figlet.c:769:11: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#629">#</a>
+						
+              <code id="629">           Zungetc(dashcheck,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#630">#</a>
+						
+              <code id="630">           ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#631">#</a>
+						
+              <code id="631">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#632">#</a>
+						
+              <code id="632">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#633">#</a>
+						
+              <code id="633">              ^</code><br />
+						
+            
+            <a class="navhash" href="#634">#</a>
+						
+              <code id="634">figlet.c:769:11: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#635">#</a>
+						
+              <code id="635">           Zungetc(dashcheck,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#636">#</a>
+						
+              <code id="636">           ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#637">#</a>
+						
+              <code id="637">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#638">#</a>
+						
+              <code id="638">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#639">#</a>
+						
+              <code id="639">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#640">#</a>
+						
+              <code id="640">figlet.c:769:11: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#641">#</a>
+						
+              <code id="641">           Zungetc(dashcheck,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#642">#</a>
+						
+              <code id="642">           ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#643">#</a>
+						
+              <code id="643">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#644">#</a>
+						
+              <code id="644">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#645">#</a>
+						
+              <code id="645">   ^</code><br />
+						
+            
+            <a class="navhash" href="#646">#</a>
+						
+              <code id="646">figlet.c:769:11: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#647">#</a>
+						
+              <code id="647">           Zungetc(dashcheck,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#648">#</a>
+						
+              <code id="648">           ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#649">#</a>
+						
+              <code id="649">zipio.h:87:7: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#650">#</a>
+						
+              <code id="650">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#651">#</a>
+						
+              <code id="651">       ^</code><br />
+						
+            
+            <a class="navhash" href="#652">#</a>
+						
+              <code id="652">figlet.c:787:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#653">#</a>
+						
+              <code id="653">         Zungetc(command,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#654">#</a>
+						
+              <code id="654">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#655">#</a>
+						
+              <code id="655">zipio.h:87:19: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#656">#</a>
+						
+              <code id="656">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#657">#</a>
+						
+              <code id="657">                   ^</code><br />
+						
+            
+            <a class="navhash" href="#658">#</a>
+						
+              <code id="658">figlet.c:787:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#659">#</a>
+						
+              <code id="659">         Zungetc(command,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#660">#</a>
+						
+              <code id="660">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#661">#</a>
+						
+              <code id="661">zipio.h:87:14: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#662">#</a>
+						
+              <code id="662">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#663">#</a>
+						
+              <code id="663">              ^</code><br />
+						
+            
+            <a class="navhash" href="#664">#</a>
+						
+              <code id="664">figlet.c:787:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#665">#</a>
+						
+              <code id="665">         Zungetc(command,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#666">#</a>
+						
+              <code id="666">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#667">#</a>
+						
+              <code id="667">zipio.h:87:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#668">#</a>
+						
+              <code id="668">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#669">#</a>
+						
+              <code id="669">                          ^</code><br />
+						
+            
+            <a class="navhash" href="#670">#</a>
+						
+              <code id="670">figlet.c:787:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#671">#</a>
+						
+              <code id="671">         Zungetc(command,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#672">#</a>
+						
+              <code id="672">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#673">#</a>
+						
+              <code id="673">zipio.h:87:3: warning: statement with no effect [-Wunused-value]</code><br />
+						
+            
+            <a class="navhash" href="#674">#</a>
+						
+              <code id="674">   ((f)->ptr--, (f)->len++, (c))</code><br />
+						
+            
+            <a class="navhash" href="#675">#</a>
+						
+              <code id="675">   ^</code><br />
+						
+            
+            <a class="navhash" href="#676">#</a>
+						
+              <code id="676">figlet.c:787:9: note: in expansion of macro 'Zungetc'</code><br />
+						
+            
+            <a class="navhash" href="#677">#</a>
+						
+              <code id="677">         Zungetc(command,controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#678">#</a>
+						
+              <code id="678">         ^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#679">#</a>
+						
+              <code id="679">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#680">#</a>
+						
+              <code id="680">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#681">#</a>
+						
+              <code id="681">           ^</code><br />
+						
+            
+            <a class="navhash" href="#682">#</a>
+						
+              <code id="682">figlet.c:824:17: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#683">#</a>
+						
+              <code id="683">         command=Zgetc(controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#684">#</a>
+						
+              <code id="684">                 ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#685">#</a>
+						
+              <code id="685">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#686">#</a>
+						
+              <code id="686">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#687">#</a>
+						
+              <code id="687">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#688">#</a>
+						
+              <code id="688">figlet.c:824:17: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#689">#</a>
+						
+              <code id="689">         command=Zgetc(controlfile);</code><br />
+						
+            
+            <a class="navhash" href="#690">#</a>
+						
+              <code id="690">                 ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#691">#</a>
+						
+              <code id="691">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#692">#</a>
+						
+              <code id="692">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#693">#</a>
+						
+              <code id="693">           ^</code><br />
+						
+            
+            <a class="navhash" href="#694">#</a>
+						
+              <code id="694">figlet.c:840:18: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#695">#</a>
+						
+              <code id="695">             gl = Zgetc(controlfile) - '0';</code><br />
+						
+            
+            <a class="navhash" href="#696">#</a>
+						
+              <code id="696">                  ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#697">#</a>
+						
+              <code id="697">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#698">#</a>
+						
+              <code id="698">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#699">#</a>
+						
+              <code id="699">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#700">#</a>
+						
+              <code id="700">figlet.c:840:18: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#701">#</a>
+						
+              <code id="701">             gl = Zgetc(controlfile) - '0';</code><br />
+						
+            
+            <a class="navhash" href="#702">#</a>
+						
+              <code id="702">                  ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#703">#</a>
+						
+              <code id="703">zipio.h:82:11: error: 'ZFILE {aka struct <anonymous>}' has no member named 'len'</code><br />
+						
+            
+            <a class="navhash" href="#704">#</a>
+						
+              <code id="704">   ((--((f)->len) >= 0)             \</code><br />
+						
+            
+            <a class="navhash" href="#705">#</a>
+						
+              <code id="705">           ^</code><br />
+						
+            
+            <a class="navhash" href="#706">#</a>
+						
+              <code id="706">figlet.c:845:18: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#707">#</a>
+						
+              <code id="707">             gr = Zgetc(controlfile) - '0';</code><br />
+						
+            
+            <a class="navhash" href="#708">#</a>
+						
+              <code id="708">                  ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#709">#</a>
+						
+              <code id="709">zipio.h:83:27: error: 'ZFILE {aka struct <anonymous>}' has no member named 'ptr'</code><br />
+						
+            
+            <a class="navhash" href="#710">#</a>
+						
+              <code id="710">     ? (unsigned char)(*(f)->ptr++) \</code><br />
+						
+            
+            <a class="navhash" href="#711">#</a>
+						
+              <code id="711">                           ^</code><br />
+						
+            
+            <a class="navhash" href="#712">#</a>
+						
+              <code id="712">figlet.c:845:18: note: in expansion of macro 'Zgetc'</code><br />
+						
+            
+            <a class="navhash" href="#713">#</a>
+						
+              <code id="713">             gr = Zgetc(controlfile) - '0';</code><br />
+						
+            
+            <a class="navhash" href="#714">#</a>
+						
+              <code id="714">                  ^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#715">#</a>
+						
+              <code id="715">figlet.c: In function 'readfontchar':</code><br />
+						
+            
+            <a class="navhash" href="#716">#</a>
+						
+              <code id="716">figlet.c:1149:5: warning: implicit declaration of function 'utf8_to_wchar' [-Wimplicit-function-declaration]</code><br />
+						
+            
+            <a class="navhash" href="#717">#</a>
+						
+              <code id="717">     utf8_to_wchar(templine,MAXLEN,outline,MAXLEN,0);</code><br />
+						
+            
+            <a class="navhash" href="#718">#</a>
+						
+              <code id="718">     ^~~~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#719">#</a>
+						
+              <code id="719">make: *** [Makefile:65: figlet.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#720">#</a>
+						
+              <code id="720">make: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#721">#</a>
+						
+              <code id="721">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#722">#</a>
+						
+              <code id="722">    Aborting...</code><br />
 						
             
           </div>

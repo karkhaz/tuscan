@@ -1,0 +1,983 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/linux-lts</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="linux-lts.html">linux-lts</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>None</code>
+        <ul class="level-4">
+          <li><span class="bad-return">127</span>&nbsp;<code>/usr/sbin/pacman -T xmlto docbook-xsl kmod inetutils bc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="no-return">?</span>&nbsp;<code>sudo /usr/sbin/pacman --noconfirm --color never --noprogressbar -S --asdeps xmlto bc</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/usr/bin/tty</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)</span><br />
+<span class="bad-return">2</span>&nbsp;<code>make -j2 LOCALVERSION= bzImage modules</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/ -e s/parisc64/parisc/ -e s/ppc.*/powerpc/ -e s/mips.*/mips/ -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ </code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -x "$BASH" ]; then echo $BASH; else if [ -x /bin/bash ]; then echo /bin/bash; else echo sh; fi ; fi</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -c "clang version"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -m16 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -m16"; else echo " -m32 -Wa,./arch/x86/boot/code16gcc.h"; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple i386-unknown-linux-code16 -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -target-cpu pentium4 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13492.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13492.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -ffreestanding -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -ffreestanding"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13496.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -ffreestanding -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13496.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13500.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13500.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mpreferred-stack-boundary=2"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o .13504.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-avx"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13507.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13507.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-80387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o .13511.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1  -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-fp-ret-in-387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-fp-ret-in-387 -c -x c /dev/null -o .13514.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1   -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mpreferred-stack-boundary=3"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mpreferred-stack-boundary=3 -c -x c /dev/null -o .13517.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1    -mskip-rax-setup -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mskip-rax-setup"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mskip-rax-setup -c -x c /dev/null -o .13520.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-funit-at-a-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13523.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13523.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-maccumulate-outgoing-args"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o .13527.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_rel_offset ,0\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13530.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_signal_frame\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SIGNAL_FRAME=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13536.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_sections .debug_frame" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SECTIONS=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13542.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "fxsaveq (%rax)" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_FXSAVEQ=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13548.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "pshufb %xmm0,%xmm0" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SSSE3=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13554.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "crc32l %eax,%eax" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CRC32=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13560.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vxorps %ymm0,%ymm1,%ymm2" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13566.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vpbroadcastb %xmm0,%ymm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX2=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13572.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha1msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA1_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13578.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha256msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA256_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13584.tmp -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fno-delete-null-pointer-checks"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13590.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13590.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "--param=allow-store-data-races=0"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13594.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13594.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than= -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wframe-larger-than="; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mllvm -warn-stack-size= -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13598.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13598.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13602.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13602.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -q "clang version" && echo clang || echo gcc</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Qunused-arguments -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Qunused-arguments"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13609.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13609.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unknown-warning-option -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unknown-warning-option"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13613.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unknown-warning-option -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13613.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wunused-variable -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unused-variable"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13617.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wunused-variable -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13617.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wformat-invalid-specifier -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-format-invalid-specifier"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13621.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wformat-invalid-specifier -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13621.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wgnu -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-gnu"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13625.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wgnu -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13625.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wtautological-compare -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-tautological-compare"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13629.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wtautological-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13629.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mno-global-merge"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13633.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13633.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fcatch-undefined-behavior -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fcatch-undefined-behavior"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -mno-global-merge -fcatch-undefined-behavior -c -x c /dev/null -o .13637.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -fno-var-tracking-assignments -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-var-tracking-assignments"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -mno-global-merge -fomit-frame-pointer -fno-var-tracking-assignments -c -x c /dev/null -o .13640.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -print-file-name=include</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wdeclaration-after-statement"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13644.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13644.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wpointer-sign -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-pointer-sign"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13648.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wpointer-sign -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13648.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fno-strict-overflow"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13652.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13652.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fconserve-stack"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -mno-global-merge -fomit-frame-pointer -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -c -x c /dev/null -o .13656.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=implicit-int"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13659.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13659.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=strict-prototypes"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13663.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13663.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=date-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13667.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13667.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( ar rcD "$TMP") >/dev/null 2>&1; then echo "D"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>ar rcD .13671.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh ./scripts/gcc-goto.sh gcc</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /dev/null -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o /dev/null -x c -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -q "clang version" && echo clang || echo gcc</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Winitializer-overrides -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-initializer-overrides"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13681.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Winitializer-overrides -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13681.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wunused-value -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unused-value"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13685.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wunused-value -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13685.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wformat -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-format"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13689.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wformat -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13689.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wunknown-warning-option -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unknown-warning-option"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13693.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wunknown-warning-option -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13693.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wno-unknown-warning-option -Wsign-compare -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-sign-compare"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13697.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wno-unknown-warning-option -Wsign-compare -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13697.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wno-unknown-warning-option -Wno-sign-compare -Wformat-zero-length -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-format-zero-length"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13701.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wno-unknown-warning-option -Wno-sign-compare -Wformat-zero-length -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13701.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Qunused-arguments -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time   -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare  -mno-global-merge  -fomit-frame-pointer  -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow  -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wno-unknown-warning-option -Wno-sign-compare -Wno-format-zero-length -Wuninitialized -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-uninitialized"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13705.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -O2 -Wno-unknown-warning-option -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-variable -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Wno-initializer-overrides -Wno-unused-value -Wno-format -Wno-unknown-warning-option -Wno-sign-compare -Wno-format-zero-length -Wuninitialized -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fwrapv -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o .13705.tmp -x c /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .13709.tmp -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/toolchain_root/lib --build-id /tmp/null-357f8e.o -L/sysroot/lib</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .13714.tmp -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/toolchain_root/lib --build-id /tmp/null-09a04e.o -L/sysroot/lib</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>make -f ./Makefile silentoldconfig</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/ -e s/parisc64/parisc/ -e s/ppc.*/powerpc/ -e s/mips.*/mips/ -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ </code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -x "$BASH" ]; then echo $BASH; else if [ -x /bin/bash ]; then echo /bin/bash; else echo sh; fi ; fi</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -c "clang version"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -m16 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -m16"; else echo " -m32 -Wa,./arch/x86/boot/code16gcc.h"; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple i386-unknown-linux-code16 -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -target-cpu pentium4 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13734.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13734.tmp -x c /dev/null</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -ffreestanding -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -ffreestanding"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13738.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -ffreestanding -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13738.tmp -x c /dev/null</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13742.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13742.tmp -x c /dev/null</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mpreferred-stack-boundary=2"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o .13746.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-avx"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13749.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13749.tmp -x c /dev/null</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-80387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o .13753.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1  -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-fp-ret-in-387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-fp-ret-in-387 -c -x c /dev/null -o .13756.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1   -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mpreferred-stack-boundary=3"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mpreferred-stack-boundary=3 -c -x c /dev/null -o .13759.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1    -mskip-rax-setup -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mskip-rax-setup"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mskip-rax-setup -c -x c /dev/null -o .13762.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-funit-at-a-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -relaxed-aliasing -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -mcode-model kernel -target-cpu x86-64 -target-feature -sse -target-feature -mmx -target-feature -sse2 -target-feature -3dnow -target-feature -avx -disable-red-zone -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/linux-lts/src/linux-4.4/.13765.tmp -resource-dir /sysroot/bin/../lib/clang/3.8.0 -D __KERNEL__ -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fno-common -fdiagnostics-show-option -o .13765.tmp -x c /dev/null</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1      -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-maccumulate-outgoing-args"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o .13769.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_rel_offset ,0\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13772.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_signal_frame\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SIGNAL_FRAME=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13778.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_sections .debug_frame" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SECTIONS=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13784.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "fxsaveq (%rax)" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_FXSAVEQ=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13790.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "pshufb %xmm0,%xmm0" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SSSE3=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13796.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "crc32l %eax,%eax" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CRC32=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13802.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vxorps %ymm0,%ymm1,%ymm2" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13808.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vpbroadcastb %xmm0,%ymm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX2=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13814.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha1msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA1_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13820.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha256msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA256_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang -cc1as -triple x86_64-unknown-linux-gnu -filetype obj -main-file-name - -target-cpu x86-64 -dwarf-version=4 -fdebug-compilation-dir /tmp/linux-lts/src/linux-4.4 -dwarf-debug-producer clang version 3.8.0 (tags/RELEASE_380/final) -mrelocation-model static -o .13826.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">2</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=scripts/basic</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>/bin/sh -c set -e;  echo '  HOSTCC  scripts/basic/fixdep'; gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -fno-delete-null-pointer-checks     -o scripts/basic/fixdep scripts/basic/fixdep.c  ; scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep 'gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -fno-delete-null-pointer-checks     -o scripts/basic/fixdep scripts/basic/fixdep.c  ' > scripts/basic/.fixdep.tmp; rm -f scripts/basic/.fixdep.d; mv -f scripts/basic/.fixdep.tmp scripts/basic/.fixdep.cmd</code>
+                    <ul class="level-10">
+                      <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o scripts/basic/fixdep /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/toolchain_root/lib /tmp/fixdep-0a8ad1.o -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -fno-delete-null-pointer-checks     -o scripts/basic/fixdep scripts/basic/fixdep.c  </code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .13840.tmp -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/toolchain_root/lib --build-id /tmp/null-401bf2.o -L/sysroot/lib</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=arch/x86/entry/syscalls all</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d 'arch/x86/entry/syscalls/../../include/generated/asm' ] || mkdir -p 'arch/x86/entry/syscalls/../../include/generated/asm'</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d 'arch/x86/entry/syscalls/../../include/generated/uapi/asm' ] || mkdir -p 'arch/x86/entry/syscalls/../../include/generated/uapi/asm'</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSTBL  arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h'; /bin/sh './arch/x86/entry/syscalls/syscalltbl.sh' arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h := /bin/sh '\''./arch/x86/entry/syscalls/syscalltbl.sh'\'' arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h' > arch/x86/entry/syscalls/../../include/generated/asm/.syscalls_32.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscalltbl.sh arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h'; /bin/sh './arch/x86/entry/syscalls/syscallhdr.sh' 'arch/x86/entry/syscalls/syscall_32.tbl' 'arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h' 'i386' '' ''; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h := /bin/sh '\''./arch/x86/entry/syscalls/syscallhdr.sh'\'' '\''arch/x86/entry/syscalls/syscall_32.tbl'\'' '\''arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h'\'' '\''i386'\'' '\'''\'' '\'''\''' > arch/x86/entry/syscalls/../../include/generated/uapi/asm/.unistd_32.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscallhdr.sh arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h i386  </code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h'; /bin/sh './arch/x86/entry/syscalls/syscallhdr.sh' 'arch/x86/entry/syscalls/syscall_64.tbl' 'arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h' 'common,64' '' ''; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h := /bin/sh '\''./arch/x86/entry/syscalls/syscallhdr.sh'\'' '\''arch/x86/entry/syscalls/syscall_64.tbl'\'' '\''arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h'\'' '\''common,64'\'' '\'''\'' '\'''\''' > arch/x86/entry/syscalls/../../include/generated/uapi/asm/.unistd_64.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscallhdr.sh arch/x86/entry/syscalls/syscall_64.tbl arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h common,64  </code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h'; /bin/sh './arch/x86/entry/syscalls/syscallhdr.sh' 'arch/x86/entry/syscalls/syscall_64.tbl' 'arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h' 'common,x32' '' '__X32_SYSCALL_BIT'; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h := /bin/sh '\''./arch/x86/entry/syscalls/syscallhdr.sh'\'' '\''arch/x86/entry/syscalls/syscall_64.tbl'\'' '\''arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h'\'' '\''common,x32'\'' '\'''\'' '\''__X32_SYSCALL_BIT'\''' > arch/x86/entry/syscalls/../../include/generated/uapi/asm/.unistd_x32.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscallhdr.sh arch/x86/entry/syscalls/syscall_64.tbl arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h common,x32  __X32_SYSCALL_BIT</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .13852.tmp -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/toolchain_root/lib --build-id /tmp/null-81607e.o -L/sysroot/lib</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=scripts/basic</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (cat /dev/null; ) > scripts/basic/modules.order</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">127</span>&nbsp;<code>/bin/sh -c set -e;  echo '  HOSTCC  scripts/basic/fixdep'; gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -fno-delete-null-pointer-checks     -o scripts/basic/fixdep scripts/basic/fixdep.c  ; scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep 'gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -fno-delete-null-pointer-checks     -o scripts/basic/fixdep scripts/basic/fixdep.c  ' > scripts/basic/.fixdep.tmp; rm -f scripts/basic/.fixdep.d; mv -f scripts/basic/.fixdep.tmp scripts/basic/.fixdep.cmd</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/gcc)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --sysroot=/toolchain_root --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o scripts/basic/fixdep /toolchain_root/lib/crt1.o /toolchain_root/lib/crti.o /sysroot/bin/../lib/clang/3.8.0/crtbegin.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/toolchain_root/lib /tmp/fixdep-b77a8f.o -L/sysroot/lib /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.0/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.0/crtend.o /toolchain_root/lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -fno-delete-null-pointer-checks     -o scripts/basic/fixdep scripts/basic/fixdep.c  </code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T xmlto docbook-xsl kmod inetutils bc</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

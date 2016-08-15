@@ -30,12 +30,31 @@
     <h1>Build of dvtm
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 52s and was
-    NOT successful.
-    
+    <p>The build took 00h 00m 46s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="dvtm-tree.html">here</a>.
     </p>
     
     
+    
+    
+    
+    <h2>List of Errors</h2>
+    <ul>
+      
+      <li>missing_header
+        <ul>
+          
+          <li><a href="#20">./vt.h:21:10: fatal error: 'curses.h' file not found</a></li>
+          
+          <li><a href="#23">dvtm.c:24:10: fatal error: 'curses.h' file not found</a></li>
+          
+        </ul>
+      </li>
+      
+    </ul>
     
     <h2>Log</h2>
     
@@ -84,15 +103,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: dvtm 0.15-2 (Mon Jun 27 02:52:45 UTC 2016)</code><br />
+              <code id="5">==> Making package: dvtm 0.15-2 (Wed Aug 10 23:35:09 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -132,27 +191,27 @@
             
             <a class="navhash" href="#13">#</a>
 						
-              <code id="13">cp config.def.h config.h</code><br />
+              <code id="13">CFLAGS   =  -std=c99 -I. -DVERSION="0.15" -DNDEBUG -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D_XOPEN_SOURCE_EXTENDED</code><br />
 						
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">CFLAGS   =  -std=c99 -I. -DVERSION="0.15" -DNDEBUG -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D_XOPEN_SOURCE_EXTENDED</code><br />
+              <code id="14">cp config.def.h config.h</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">CC dvtm.c</code><br />
+              <code id="15">LDFLAGS  =  -lc -lutil -lncursesw</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">LDFLAGS  =  -lc -lutil -lncursesw</code><br />
+              <code id="16">CC       = clang</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">CC       = clang</code><br />
+              <code id="17">CC dvtm.c</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
@@ -162,28 +221,28 @@
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">dvtm.c:24:10: fatal error: 'curses.h' file not found</code><br />
+              <code id="19">In file included from vt.c:43:</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
-						
-              <code id="20">#include <curses.h></code><br />
-						
+						<span class="error">
+              <code id="20">./vt.h:21:10: fatal error: 'curses.h' file not found</code><br />
+						</span>
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">         ^</code><br />
+              <code id="21">#include <curses.h></code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">In file included from vt.c:43:</code><br />
+              <code id="22">         ^</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
-						
-              <code id="23">./vt.h:21:10: fatal error: 'curses.h' file not found</code><br />
-						
+						<span class="error">
+              <code id="23">dvtm.c:24:10: fatal error: 'curses.h' file not found</code><br />
+						</span>
             
             <a class="navhash" href="#24">#</a>
 						

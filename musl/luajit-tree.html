@@ -1,0 +1,398 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/luajit</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="luajit.html">luajit</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T gcc-libs</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make amalg PREFIX=/usr</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "Building LuaJIT 2.0.4"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>make -C src amalg</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -o /dev/null -c -x c /dev/null -fno-stack-protector 2>/dev/null || echo 1</code>
+                <ul class="level-8">
+                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /dev/null -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/luajit/src/LuaJIT-2.0.4/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o /dev/null -x c /dev/null</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">2</span>&nbsp;<code>make all LJCORE_O=ljamalg.o</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -o /dev/null -c -x c /dev/null -fno-stack-protector 2>/dev/null || echo 1</code>
+                    <ul class="level-10">
+                      <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/gcc)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name null -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /dev/null -resource-dir /sysroot/bin/../lib/clang/3.8.0 -isysroot /toolchain_root -I/sysroot/include -internal-isystem /toolchain_root/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.0/include -internal-externc-isystem /toolchain_root/include -internal-externc-isystem /toolchain_root/usr/include -fdebug-compilation-dir /tmp/luajit/src/LuaJIT-2.0.4/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o /dev/null -x c /dev/null</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "HOSTCC    host/minilua.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "HOSTCC    host/buildvm_asm.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -I. -DLUAJIT_TARGET=LUAJIT_ARCH_x64 -DLJ_ARCH_HASFPU=1 -DLJ_ABI_SOFTFP=0 -c -o host/minilua.o host/minilua.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I . -D LUAJIT_TARGET=LUAJIT_ARCH_x64 -D LJ_ARCH_HASFPU=1 -D LJ_ABI_SOFTFP=0 host/minilua.c -quiet -dumpbase minilua.c -mtune=generic -march=x86-64 -auxbase-strip host/minilua.o -O2 -Wall -fomit-frame-pointer -o /tmp/ccAviZjY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I . --64 -o host/minilua.o /tmp/ccAviZjY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -I. -DLUAJIT_TARGET=LUAJIT_ARCH_x64 -DLJ_ARCH_HASFPU=1 -DLJ_ABI_SOFTFP=0 -c -o host/buildvm_asm.o host/buildvm_asm.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I . -D LUAJIT_TARGET=LUAJIT_ARCH_x64 -D LJ_ARCH_HASFPU=1 -D LJ_ABI_SOFTFP=0 host/buildvm_asm.c -quiet -dumpbase buildvm_asm.c -mtune=generic -march=x86-64 -auxbase-strip host/buildvm_asm.o -O2 -Wall -fomit-frame-pointer -o /tmp/ccfIaTcV.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I . --64 -o host/buildvm_asm.o /tmp/ccfIaTcV.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "HOSTCC    host/buildvm_peobj.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -I. -DLUAJIT_TARGET=LUAJIT_ARCH_x64 -DLJ_ARCH_HASFPU=1 -DLJ_ABI_SOFTFP=0 -c -o host/buildvm_peobj.o host/buildvm_peobj.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I . -D LUAJIT_TARGET=LUAJIT_ARCH_x64 -D LJ_ARCH_HASFPU=1 -D LJ_ABI_SOFTFP=0 host/buildvm_peobj.c -quiet -dumpbase buildvm_peobj.c -mtune=generic -march=x86-64 -auxbase-strip host/buildvm_peobj.o -O2 -Wall -fomit-frame-pointer -o /tmp/cc0Ymvb3.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I . --64 -o host/buildvm_peobj.o /tmp/cc0Ymvb3.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "HOSTCC    host/buildvm_lib.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -I. -DLUAJIT_TARGET=LUAJIT_ARCH_x64 -DLJ_ARCH_HASFPU=1 -DLJ_ABI_SOFTFP=0 -c -o host/buildvm_lib.o host/buildvm_lib.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I . -D LUAJIT_TARGET=LUAJIT_ARCH_x64 -D LJ_ARCH_HASFPU=1 -D LJ_ABI_SOFTFP=0 host/buildvm_lib.c -quiet -dumpbase buildvm_lib.c -mtune=generic -march=x86-64 -auxbase-strip host/buildvm_lib.o -O2 -Wall -fomit-frame-pointer -o /tmp/ccmtaY44.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I . --64 -o host/buildvm_lib.o /tmp/ccmtaY44.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "HOSTCC    host/buildvm_fold.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -I. -DLUAJIT_TARGET=LUAJIT_ARCH_x64 -DLJ_ARCH_HASFPU=1 -DLJ_ABI_SOFTFP=0 -c -o host/buildvm_fold.o host/buildvm_fold.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I . -D LUAJIT_TARGET=LUAJIT_ARCH_x64 -D LJ_ARCH_HASFPU=1 -D LJ_ABI_SOFTFP=0 host/buildvm_fold.c -quiet -dumpbase buildvm_fold.c -mtune=generic -march=x86-64 -auxbase-strip host/buildvm_fold.o -O2 -Wall -fomit-frame-pointer -o /tmp/cc2kUKgj.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I . --64 -o host/buildvm_fold.o /tmp/cc2kUKgj.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "CC        luajit.o"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -c -o luajit.o luajit.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" luajit.c -quiet -dumpbase luajit.c -mtune=generic -march=x86-64 -auxbase-strip luajit.o -O2 -Wall -fomit-frame-pointer -fno-stack-protector -o /tmp/ccmWgCFp.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o luajit.o /tmp/ccmWgCFp.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "HOSTLINK  host/minilua"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -o host/minilua host/minilua.o -lm</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmetJBf.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o host/minilua /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. host/minilua.o -lm -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmetJBf.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o host/minilua /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. host/minilua.o -lm -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -fomit-frame-pointer -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U_FORTIFY_SOURCE -DLUA_ROOT="/usr" -DLUA_MULTILIB="lib" -fno-stack-protector -E lj_arch.h -dM</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -E -quiet -D _FILE_OFFSET_BITS=64 -D _LARGEFILE_SOURCE -U _FORTIFY_SOURCE -D LUA_ROOT="/usr" -D LUA_MULTILIB="lib" lj_arch.h -mtune=generic -march=x86-64 -Wall -fomit-frame-pointer -fno-stack-protector -O2 -dM</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "DYNASM    host/buildvm_arch.h"</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>host/minilua ../dynasm/dynasm.lua -D P64 -D JIT -D FFI -D FPU -D HFABI -D VER= -o host/buildvm_arch.h vm_x86.dasc</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

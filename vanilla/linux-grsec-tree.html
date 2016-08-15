@@ -1,0 +1,1548 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/linux-grsec</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="linux-grsec.html">linux-grsec</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>None</code>
+        <ul class="level-4">
+          <li><span class="bad-return">127</span>&nbsp;<code>/usr/sbin/pacman -T xmlto docbook-xsl kmod inetutils bc</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="no-return">?</span>&nbsp;<code>sudo /usr/sbin/pacman --noconfirm --color never --noprogressbar -S --asdeps xmlto bc</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/tty</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make -j2 LOCALVERSION= bzImage modules</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/ -e s/parisc64/parisc/ -e s/ppc.*/powerpc/ -e s/mips.*/mips/ -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ </code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -x "$BASH" ]; then echo $BASH; else if [ -x /bin/bash ]; then echo /bin/bash; else echo sh; fi ; fi</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -c "clang version"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -m16 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -m16"; else echo " -m32 -Wa,./arch/x86/boot/code16gcc.h"; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m16 -c -x c /dev/null -o .14579.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -m16 -mtune=generic -march=x86-64 -auxbase-strip .14579.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/cchjelCK.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --32 -o .14579.tmp /tmp/cchjelCK.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -ffreestanding -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -ffreestanding"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -ffreestanding -c -x c /dev/null -o .14584.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase-strip .14584.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -ffreestanding -o /tmp/cciFeZRL.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14584.tmp /tmp/cciFeZRL.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-stack-protector -c -x c /dev/null -o .14589.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase-strip .14589.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -fno-stack-protector -o /tmp/ccI1oiQP.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14589.tmp /tmp/ccI1oiQP.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mpreferred-stack-boundary=2"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o .14594.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mpreferred-stack-boundary=2 -mtune=generic -march=x86-64 -auxbase-strip .14594.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/ccLQUFNO.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-avx"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o .14598.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mtune=generic -march=x86-64 -auxbase-strip .14598.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/ccpcIroP.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14598.tmp /tmp/ccpcIroP.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-80387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o .14603.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mtune=generic -march=x86-64 -auxbase-strip .14603.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccj0DQcR.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14603.tmp /tmp/ccj0DQcR.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-fp-ret-in-387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -c -x c /dev/null -o .14608.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mtune=generic -march=x86-64 -auxbase-strip .14608.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccXQ9GmV.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14608.tmp /tmp/ccXQ9GmV.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mpreferred-stack-boundary=3"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -c -x c /dev/null -o .14613.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -march=x86-64 -auxbase-strip .14613.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccM0kZlT.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14613.tmp /tmp/ccM0kZlT.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mskip-rax-setup"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -c -x c /dev/null -o .14618.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -march=x86-64 -auxbase-strip .14618.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/cc5HAtZW.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14618.tmp /tmp/cc5HAtZW.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-funit-at-a-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o .14623.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -mtune=generic -march=x86-64 -auxbase-strip .14623.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -o /tmp/cc2LqUxW.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14623.tmp /tmp/cc2LqUxW.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-maccumulate-outgoing-args"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o .14628.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14628.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -o /tmp/cchleirY.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14628.tmp /tmp/cchleirY.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_rel_offset ,0\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="bad-return">1</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14633.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>as --64 -o .14633.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_signal_frame\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SIGNAL_FRAME=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14639.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14639.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_sections .debug_frame" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SECTIONS=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14645.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14645.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "fxsaveq (%rax)" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_FXSAVEQ=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14651.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14651.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "pshufb %xmm0,%xmm0" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SSSE3=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14657.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14657.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "crc32l %eax,%eax" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CRC32=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14663.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14663.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vxorps %ymm0,%ymm1,%ymm2" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14669.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14669.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vpbroadcastb %xmm0,%ymm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX2=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14675.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14675.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha1msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA1_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14681.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14681.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha256msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA256_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14687.tmp -</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14687.tmp -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fno-delete-null-pointer-checks"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -c -x c /dev/null -o .14693.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14693.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14693.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "--param=allow-store-data-races=0"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -c -x c /dev/null -o .14698.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14698.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14698.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than= -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wframe-larger-than="; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -Wframe-larger-than= -c -x c /dev/null -o .14703.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -c -x c /dev/null -o .14706.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14706.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14706.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -q "clang version" && echo clang || echo gcc</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wunused-but-set-variable -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-unused-but-set-variable"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wunused-but-set-variable -c -x c /dev/null -o .14714.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14714.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wunused-but-set-variable -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14714.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-var-tracking-assignments"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -c -x c /dev/null -o .14719.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14719.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14719.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>gcc -print-file-name=include</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wdeclaration-after-statement"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -c -x c /dev/null -o .14725.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14725.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14725.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wpointer-sign -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Wno-pointer-sign"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wpointer-sign -c -x c /dev/null -o .14730.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14730.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wpointer-sign -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14730.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fno-strict-overflow"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -c -x c /dev/null -o .14735.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14735.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wno-pointer-sign -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments -fno-strict-overflow --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14735.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-fconserve-stack"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -c -x c /dev/null -o .14740.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14740.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wno-pointer-sign -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14740.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=implicit-int"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -c -x c /dev/null -o .14745.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14745.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14745.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=strict-prototypes"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -c -x c /dev/null -o .14750.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14750.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14750.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=date-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -c -x c /dev/null -o .14755.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14755.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14755.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args  -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables  -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0   -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer  -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-Werror=incompatible-pointer-types"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -c -x c /dev/null -o .14760.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ -D CONFIG_AS_CFI_SIGNAL_FRAME=1 -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1 -D CONFIG_AS_CRC32=1 -D CONFIG_AS_AVX=1 -D CONFIG_AS_AVX2=1 -D CONFIG_AS_SHA1_NI=1 -D CONFIG_AS_SHA256_NI=1 /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14760.tmp -O2 -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -Wno-sign-compare -Wno-unused-but-set-variable -Wdeclaration-after-statement -Wno-pointer-sign -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -fno-stack-protector -fomit-frame-pointer -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0 -o -</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14760.tmp</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( ar rcD "$TMP") >/dev/null 2>&1; then echo "D"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>ar rcD .14765.tmp</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/gcc-goto.sh gcc</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -x c - -c -o /dev/null</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase-strip /dev/null -o /tmp/ccnnyhuu.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /dev/null /tmp/ccnnyhuu.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -q "clang version" && echo clang || echo gcc</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -Wl,--build-id -nostdlib -x c /dev/null -o .14776.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase null -o /tmp/ccBBbJAp.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccqhGnwD.o /tmp/ccBBbJAp.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjAF9sR.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .14776.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/ccqhGnwD.o</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjAF9sR.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .14776.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/ccqhGnwD.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -Wl,--build-id -nostdlib -x c /dev/null -o .14783.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase null -o /tmp/ccpLa47r.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/cc4MufaG.o /tmp/ccpLa47r.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccsuZldU.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .14783.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/cc4MufaG.o</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccsuZldU.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .14783.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/cc4MufaG.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>make -f ./Makefile silentoldconfig</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/s390x/s390/ -e s/parisc64/parisc/ -e s/ppc.*/powerpc/ -e s/mips.*/mips/ -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ </code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -x "$BASH" ]; then echo $BASH; else if [ -x /bin/bash ]; then echo /bin/bash; else echo sh; fi ; fi</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c gcc -v 2>&1 | grep -c "clang version"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -v</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -m16 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -m16"; else echo " -m32 -Wa,./arch/x86/boot/code16gcc.h"; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m16 -c -x c /dev/null -o .14805.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -m16 -mtune=generic -march=x86-64 -auxbase-strip .14805.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/ccg0GR1p.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --32 -o .14805.tmp /tmp/ccg0GR1p.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -ffreestanding -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -ffreestanding"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -ffreestanding -c -x c /dev/null -o .14810.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase-strip .14810.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -ffreestanding -o /tmp/ccMUghkw.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14810.tmp /tmp/ccMUghkw.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -fno-stack-protector -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -fno-stack-protector"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-stack-protector -c -x c /dev/null -o .14815.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase-strip .14815.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -fno-stack-protector -o /tmp/ccHjpdRz.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14815.tmp /tmp/ccHjpdRz.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89  -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -mpreferred-stack-boundary=2"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o .14820.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mpreferred-stack-boundary=2 -mtune=generic -march=x86-64 -auxbase-strip .14820.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/ccTsOUIy.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-avx"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o .14824.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mtune=generic -march=x86-64 -auxbase-strip .14824.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -o /tmp/cc5fPiJB.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14824.tmp /tmp/cc5fPiJB.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-80387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o .14829.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mtune=generic -march=x86-64 -auxbase-strip .14829.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccBrm73A.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14829.tmp /tmp/ccBrm73A.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mno-fp-ret-in-387"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -c -x c /dev/null -o .14834.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mtune=generic -march=x86-64 -auxbase-strip .14834.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccIiXoRE.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14834.tmp /tmp/ccIiXoRE.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mpreferred-stack-boundary=3"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -c -x c /dev/null -o .14839.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -march=x86-64 -auxbase-strip .14839.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/ccAFbnzD.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14839.tmp /tmp/ccAFbnzD.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-mskip-rax-setup"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -c -x c /dev/null -o .14844.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -march=x86-64 -auxbase-strip .14844.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -o /tmp/cc1CgOxH.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14844.tmp /tmp/cc1CgOxH.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-funit-at-a-time"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o .14849.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -mtune=generic -march=x86-64 -auxbase-strip .14849.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -o /tmp/ccmgzaXF.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14849.tmp /tmp/ccmgzaXF.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup  -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo "-maccumulate-outgoing-args"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -c -x c /dev/null -o .14854.tmp</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D __KERNEL__ /dev/null -quiet -dumpbase null -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -mtune=generic -march=x86-64 -auxbase-strip .14854.tmp -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -Werror=implicit-function-declaration -Wno-format-security -std=gnu90 -fno-strict-aliasing -fno-common -falign-jumps=1 -falign-loops=1 -funit-at-a-time -o /tmp/ccLqDWUJ.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14854.tmp /tmp/ccLqDWUJ.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_rel_offset ,0\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14859.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="bad-return">1</span>&nbsp;<code>as --64 -o .14859.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_startproc\n.cfi_signal_frame\n.cfi_endproc" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SIGNAL_FRAME=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14865.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14865.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" ".cfi_sections .debug_frame" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CFI_SECTIONS=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14871.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14871.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "fxsaveq (%rax)" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_FXSAVEQ=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14877.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14877.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "pshufb %xmm0,%xmm0" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SSSE3=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14883.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14883.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "crc32l %eax,%eax" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_CRC32=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14889.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14889.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vxorps %ymm0,%ymm1,%ymm2" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14895.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14895.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "vpbroadcastb %xmm0,%ymm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_AVX2=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14901.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14901.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha1msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA1_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14907.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14907.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( printf "%b\n" "sha256msg1 %xmm0,%xmm1" | gcc -D__ASSEMBLY__ -m64 -c -x assembler -o "$TMP" -) >/dev/null 2>&1; then echo "-DCONFIG_AS_SHA256_NI=1"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>gcc -D__ASSEMBLY__ -m64 -c -x assembler -o .14913.tmp -</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>as --64 -o .14913.tmp -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=scripts/basic</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  HOSTCC  scripts/basic/fixdep'; gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/basic/fixdep scripts/basic/fixdep.c  ; scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep 'gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/basic/fixdep scripts/basic/fixdep.c  ' > scripts/basic/.fixdep.tmp; rm -f scripts/basic/.fixdep.d; mv -f scripts/basic/.fixdep.tmp scripts/basic/.fixdep.cmd</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -o scripts/basic/fixdep scripts/basic/fixdep.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -MD scripts/basic/.fixdep.d scripts/basic/fixdep.c -quiet -dumpbase fixdep.c -mtune=generic -march=x86-64 -auxbase fixdep -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccFSrHTX.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccvP0jJd.o /tmp/ccFSrHTX.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHj9IAt.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o scripts/basic/fixdep /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccvP0jJd.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHj9IAt.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o scripts/basic/fixdep /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccvP0jJd.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/basic/fixdep scripts/basic/fixdep.c  </code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">2</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=scripts/kconfig silentoldconfig</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/cceSYqI8.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccRyPfVo.o /tmp/cceSYqI8.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccj0Dh9E.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccRyPfVo.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccj0Dh9E.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccRyPfVo.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccT5Umyg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccwxclXw.o /tmp/ccT5Umyg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUf6unN.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccwxclXw.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUf6unN.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccwxclXw.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccL051dl.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/cckbwTPB.o /tmp/ccL051dl.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJsyIsS.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/cckbwTPB.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJsyIsS.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/cckbwTPB.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccBM3x5r.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccMRCKRI.o /tmp/ccBM3x5r.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccezDKEZ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccMRCKRI.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccezDKEZ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccMRCKRI.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  HOSTCC  scripts/kconfig/conf.o'; gcc -Wp,-MD,scripts/kconfig/.conf.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1 -DLOCALE   -c -o scripts/kconfig/conf.o scripts/kconfig/conf.c; scripts/basic/fixdep scripts/kconfig/.conf.o.d scripts/kconfig/conf.o 'gcc -Wp,-MD,scripts/kconfig/.conf.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1 -DLOCALE   -c -o scripts/kconfig/conf.o scripts/kconfig/conf.c' > scripts/kconfig/.conf.o.tmp; rm -f scripts/kconfig/.conf.o.d; mv -f scripts/kconfig/.conf.o.tmp scripts/kconfig/.conf.o.cmd</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wp,-MD,scripts/kconfig/.conf.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -D_GNU_SOURCE -DCURSES_LOC=<ncurses.h> -DNCURSES_WIDECHAR=1 -DLOCALE -c -o scripts/kconfig/conf.o scripts/kconfig/conf.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -D _GNU_SOURCE -D CURSES_LOC=<ncurses.h> -D NCURSES_WIDECHAR=1 -D LOCALE -MD scripts/kconfig/.conf.o.d scripts/kconfig/conf.c -quiet -dumpbase conf.c -mtune=generic -march=x86-64 -auxbase-strip scripts/kconfig/conf.o -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccGBYiQs.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o scripts/kconfig/conf.o /tmp/ccGBYiQs.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>scripts/basic/fixdep scripts/kconfig/.conf.o.d scripts/kconfig/conf.o gcc -Wp,-MD,scripts/kconfig/.conf.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1 -DLOCALE   -c -o scripts/kconfig/conf.o scripts/kconfig/conf.c</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo '  SHIPPED scripts/kconfig/zconf.tab.c'; cat scripts/kconfig/zconf.tab.c_shipped > scripts/kconfig/zconf.tab.c</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo '  SHIPPED scripts/kconfig/zconf.lex.c'; cat scripts/kconfig/zconf.lex.c_shipped > scripts/kconfig/zconf.lex.c</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo '  SHIPPED scripts/kconfig/zconf.hash.c'; cat scripts/kconfig/zconf.hash.c_shipped > scripts/kconfig/zconf.hash.c</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccyE6Cpw.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccFutinN.o /tmp/ccyE6Cpw.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cclV6Tl4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccFutinN.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cclV6Tl4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccFutinN.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccOyW5Xy.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccw8kN4P.o /tmp/ccOyW5Xy.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHdzVc7.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccw8kN4P.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHdzVc7.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccw8kN4P.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccLbdGct.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccpNCdtK.o /tmp/ccLbdGct.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVASGK1.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccpNCdtK.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVASGK1.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccpNCdtK.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/lxdialog/check-lxdialog.sh -ccflags</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags ncursesw</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./scripts/kconfig/check.sh gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -x c -o /dev/null -</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet - -quiet -dumpbase - -mtune=generic -march=x86-64 -auxbase - -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccgQP08t.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/ccRCY7xL.o /tmp/ccgQP08t.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKLxeY2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccRCY7xL.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKLxeY2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccRCY7xL.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  HOSTCC  scripts/kconfig/zconf.tab.o'; gcc -Wp,-MD,scripts/kconfig/.zconf.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1 -DLOCALE  -Iscripts/kconfig -c -o scripts/kconfig/zconf.tab.o scripts/kconfig/zconf.tab.c; scripts/basic/fixdep scripts/kconfig/.zconf.tab.o.d scripts/kconfig/zconf.tab.o 'gcc -Wp,-MD,scripts/kconfig/.zconf.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1 -DLOCALE  -Iscripts/kconfig -c -o scripts/kconfig/zconf.tab.o scripts/kconfig/zconf.tab.c' > scripts/kconfig/.zconf.tab.o.tmp; rm -f scripts/kconfig/.zconf.tab.o.d; mv -f scripts/kconfig/.zconf.tab.o.tmp scripts/kconfig/.zconf.tab.o.cmd</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -Wp,-MD,scripts/kconfig/.zconf.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -D_GNU_SOURCE -DCURSES_LOC=<ncurses.h> -DNCURSES_WIDECHAR=1 -DLOCALE -Iscripts/kconfig -c -o scripts/kconfig/zconf.tab.o scripts/kconfig/zconf.tab.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I scripts/kconfig -D _GNU_SOURCE -D CURSES_LOC=<ncurses.h> -D NCURSES_WIDECHAR=1 -D LOCALE -MD scripts/kconfig/.zconf.tab.o.d scripts/kconfig/zconf.tab.c -quiet -dumpbase zconf.tab.c -mtune=generic -march=x86-64 -auxbase-strip scripts/kconfig/zconf.tab.o -O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -std=gnu90 -fomit-frame-pointer -o /tmp/ccvHjA9w.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I scripts/kconfig --64 -o scripts/kconfig/zconf.tab.o /tmp/ccvHjA9w.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>scripts/basic/fixdep scripts/kconfig/.zconf.tab.o.d scripts/kconfig/zconf.tab.o gcc -Wp,-MD,scripts/kconfig/.zconf.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DNCURSES_WIDECHAR=1 -DLOCALE  -Iscripts/kconfig -c -o scripts/kconfig/zconf.tab.o scripts/kconfig/zconf.tab.c</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  HOSTLD  scripts/kconfig/conf'; gcc  -o scripts/kconfig/conf scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o  ; printf '%s\n' 'cmd_scripts/kconfig/conf := gcc  -o scripts/kconfig/conf scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o  ' > scripts/kconfig/.conf.cmd</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o scripts/kconfig/conf scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdNkpoF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o scripts/kconfig/conf /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdNkpoF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o scripts/kconfig/conf /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="bad-return">1</span>&nbsp;<code>scripts/kconfig/conf --silentoldconfig Kconfig</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -Wl,--build-id -nostdlib -x c /dev/null -o .15033.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase null -o /tmp/ccVjaTQR.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/cc6mqwxj.o /tmp/ccVjaTQR.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxMGIfL.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .15033.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/cc6mqwxj.o</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxMGIfL.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .15033.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/cc6mqwxj.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=arch/x86/entry/syscalls all</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d 'arch/x86/entry/syscalls/../../include/generated/asm' ] || mkdir -p 'arch/x86/entry/syscalls/../../include/generated/asm'</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d 'arch/x86/entry/syscalls/../../include/generated/uapi/asm' ] || mkdir -p 'arch/x86/entry/syscalls/../../include/generated/uapi/asm'</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSTBL  arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h'; /bin/sh './arch/x86/entry/syscalls/syscalltbl.sh' arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h := /bin/sh '\''./arch/x86/entry/syscalls/syscalltbl.sh'\'' arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h' > arch/x86/entry/syscalls/../../include/generated/asm/.syscalls_32.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscalltbl.sh arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h'; /bin/sh './arch/x86/entry/syscalls/syscallhdr.sh' 'arch/x86/entry/syscalls/syscall_32.tbl' 'arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h' 'i386' '' ''; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h := /bin/sh '\''./arch/x86/entry/syscalls/syscallhdr.sh'\'' '\''arch/x86/entry/syscalls/syscall_32.tbl'\'' '\''arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h'\'' '\''i386'\'' '\'''\'' '\'''\''' > arch/x86/entry/syscalls/../../include/generated/uapi/asm/.unistd_32.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscallhdr.sh arch/x86/entry/syscalls/syscall_32.tbl arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h i386  </code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h'; /bin/sh './arch/x86/entry/syscalls/syscallhdr.sh' 'arch/x86/entry/syscalls/syscall_64.tbl' 'arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h' 'common,64' '' ''; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h := /bin/sh '\''./arch/x86/entry/syscalls/syscallhdr.sh'\'' '\''arch/x86/entry/syscalls/syscall_64.tbl'\'' '\''arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h'\'' '\''common,64'\'' '\'''\'' '\'''\''' > arch/x86/entry/syscalls/../../include/generated/uapi/asm/.unistd_64.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscallhdr.sh arch/x86/entry/syscalls/syscall_64.tbl arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h common,64  </code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e;  echo '  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h'; /bin/sh './arch/x86/entry/syscalls/syscallhdr.sh' 'arch/x86/entry/syscalls/syscall_64.tbl' 'arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h' 'common,x32' '' '__X32_SYSCALL_BIT'; printf '%s\n' 'cmd_arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h := /bin/sh '\''./arch/x86/entry/syscalls/syscallhdr.sh'\'' '\''arch/x86/entry/syscalls/syscall_64.tbl'\'' '\''arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h'\'' '\''common,x32'\'' '\'''\'' '\''__X32_SYSCALL_BIT'\''' > arch/x86/entry/syscalls/../../include/generated/uapi/asm/.unistd_x32.h.cmd</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./arch/x86/entry/syscalls/syscallhdr.sh arch/x86/entry/syscalls/syscall_64.tbl arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h common,x32  __X32_SYSCALL_BIT</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c set -e; TMP=".$$.tmp"; TMPO=".$$.o"; if ( gcc  -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP") >/dev/null 2>&1; then echo " -Wl,--build-id"; else echo ""; fi; rm -f "$TMP" "$TMPO"</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -Wl,--build-id -nostdlib -x c /dev/null -o .15047.tmp</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet /dev/null -quiet -dumpbase null -mtune=generic -march=x86-64 -auxbase null -o /tmp/cc6SkLhT.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as --64 -o /tmp/cckqgm7k.o /tmp/cc6SkLhT.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZg5QXM.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .15047.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/cckqgm7k.o</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZg5QXM.res --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o .15047.tmp -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. --build-id /tmp/cckqgm7k.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c cat include/config/kernel.release 2> /dev/null</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -f ./scripts/Makefile.build obj=scripts/basic</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (cat /dev/null; ) > scripts/basic/modules.order</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T xmlto docbook-xsl kmod inetutils bc</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

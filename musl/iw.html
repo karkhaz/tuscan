@@ -30,10 +30,14 @@
     <h1>Build of iw
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 48s and was
-    NOT successful.
-    
+    <p>The build took 00h 00m 52s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="iw-tree.html">here</a>.
     </p>
+    
+    
     
     
     <p>
@@ -48,6 +52,21 @@
       
     </ul>
     
+    
+    <h2>List of Errors</h2>
+    <ul>
+      
+      <li>missing_header
+        <ul>
+          
+          <li><a href="#12">genl.c:5:10: fatal error: 'asm/errno.h' file not found</a></li>
+          
+          <li><a href="#40">/usr/include/libnl3/netlink/netlink.h:25:10: fatal error: 'linux/netlink.h' file not found</a></li>
+          
+        </ul>
+      </li>
+      
+    </ul>
     
     <h2>Log</h2>
     
@@ -96,15 +115,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: iw 4.3-1 (Mon Jun 27 02:50:35 UTC 2016)</code><br />
+              <code id="5">==> Making package: iw 4.7-1 (Thu Aug 11 00:09:49 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -138,9 +197,9 @@
 						
             
             <a class="navhash" href="#12">#</a>
-						
+						<span class="error">
               <code id="12">genl.c:5:10: fatal error: 'asm/errno.h' file not found</code><br />
-						
+						</span>
             
             <a class="navhash" href="#13">#</a>
 						
@@ -154,62 +213,177 @@
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">In file included from iw.c:17:</code><br />
+              <code id="15">In file included from iw.c:11:</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">In file included from /usr/include/libnl3/netlink/genl/genl.h:15:</code><br />
+              <code id="16">In file included from /sysroot/include/sys/types.h:70:</code><br />
 						
             
             <a class="navhash" href="#17">#</a>
 						
-              <code id="17">/usr/include/libnl3/netlink/netlink.h:25:10: fatal error: 'linux/netlink.h' file not found</code><br />
+              <code id="17">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">#include <linux/netlink.h></code><br />
+              <code id="18">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">         ^</code><br />
+              <code id="19">                       ~ ~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">1 error generated.</code><br />
+              <code id="20">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">1 error generated.</code><br />
+              <code id="21">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">make: *** [Makefile:101: genl.o] Error 1</code><br />
+              <code id="22">                               ^</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="23">                         (            )</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">make: *** [Makefile:101: iw.o] Error 1</code><br />
+              <code id="24">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">==> ERROR: A failure occurred in build().</code><br />
+              <code id="25">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">    Aborting...</code><br />
+              <code id="26">                                       ~ ~~~~~~^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">                                               ^</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">                                         (              )</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">                             ^</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">               (                  )</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">In file included from iw.c:17:</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">In file included from /usr/include/libnl3/netlink/genl/genl.h:15:</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						<span class="error">
+              <code id="40">/usr/include/libnl3/netlink/netlink.h:25:10: fatal error: 'linux/netlink.h' file not found</code><br />
+						</span>
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">#include <linux/netlink.h></code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">         ^</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">make: *** [Makefile:102: genl.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">make: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">3 warnings and 1 error generated.</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">make: *** [Makefile:102: iw.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">    Aborting...</code><br />
 						
             
           </div>

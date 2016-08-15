@@ -30,11 +30,15 @@
     <h1>Build of libtermkey
         with <a href="../index.html">vanilla</a>
         toolchain</h1>
-    <p>The build took 00h 00m 32s and was
+    <p>The build took 00h 00m 34s and was
     SUCCESSFUL.
-    
-    
     </p>
+    <p>
+      The process tree of the build process is <a
+      href="libtermkey-tree.html">here</a>.
+    </p>
+    
+    
     
     
     
@@ -86,14 +90,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan  bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan  red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: libtermkey 0.18-2 (Mon Jun 27 07:02:30 UTC 2016)</code><br />
+              <code id="5">==> Making package: libtermkey 0.18-2 (Wed Aug 10 16:58:18 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -278,12 +282,12 @@
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">install -m644 termkey.h /tmp/libtermkey/pkg/libtermkey/usr/include</code><br />
+              <code id="42">install -d /tmp/libtermkey/pkg/libtermkey/usr/lib</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">install -d /tmp/libtermkey/pkg/libtermkey/usr/lib</code><br />
+              <code id="43">install -m644 termkey.h /tmp/libtermkey/pkg/libtermkey/usr/include</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
@@ -328,22 +332,22 @@
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">libtool: warning: remember to run 'libtool --finish /usr/lib'</code><br />
+              <code id="52">for F in man/*.7; do \</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">for F in man/*.7; do \</code><br />
+              <code id="53">  gzip <$F >/tmp/libtermkey/pkg/libtermkey/usr/share/man/man7/${F#man/}.gz; \</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">  gzip <$F >/tmp/libtermkey/pkg/libtermkey/usr/share/man/man7/${F#man/}.gz; \</code><br />
+              <code id="54">done</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">done</code><br />
+              <code id="55">libtool: warning: remember to run 'libtool --finish /usr/lib'</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
@@ -468,7 +472,7 @@
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">==> Finished making: libtermkey 0.18-2 (Mon Jun 27 07:02:36 UTC 2016)</code><br />
+              <code id="80">==> Finished making: libtermkey 0.18-2 (Wed Aug 10 16:58:24 UTC 2016)</code><br />
 						
             
           </div>
@@ -695,37 +699,37 @@
             
             <a class="navhash" href="#115">#</a>
 						
-              <code id="115">/toolchain_root/usr/lib/libtermkey.so.1.12.0</code><br />
+              <code id="115">/sysroot/usr/lib/libtermkey.so.1.12.0</code><br />
 						
             
             <a class="navhash" href="#116">#</a>
 						
-              <code id="116">/toolchain_root/usr/lib/libtermkey.so.1</code><br />
+              <code id="116">/sysroot/usr/lib/libtermkey.so.1</code><br />
 						
             
             <a class="navhash" href="#117">#</a>
 						
-              <code id="117">/toolchain_root/usr/lib/libtermkey.so</code><br />
+              <code id="117">/sysroot/usr/lib/libtermkey.so</code><br />
 						
             
             <a class="navhash" href="#118">#</a>
 						
-              <code id="118">/toolchain_root/usr/lib/libtermkey.la</code><br />
+              <code id="118">/sysroot/usr/lib/libtermkey.la</code><br />
 						
             
             <a class="navhash" href="#119">#</a>
 						
-              <code id="119">/toolchain_root/usr/lib/libtermkey.a</code><br />
+              <code id="119">/sysroot/usr/lib/libtermkey.a</code><br />
 						
             
             <a class="navhash" href="#120">#</a>
 						
-              <code id="120">/toolchain_root/usr/lib/pkgconfig/termkey.pc</code><br />
+              <code id="120">/sysroot/usr/lib/pkgconfig/termkey.pc</code><br />
 						
             
             <a class="navhash" href="#121">#</a>
 						
-              <code id="121">/toolchain_root/usr/include/termkey.h</code><br />
+              <code id="121">/sysroot/usr/include/termkey.h</code><br />
 						
             
           </div>
@@ -743,7 +747,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr toolchain_root</code>
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr sysroot</code>
         </div>
         
       </div>
@@ -759,7 +763,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr toolchain_root .MTREE</code>
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr sysroot .MTREE</code>
         </div>
         
       </div>
@@ -775,7 +779,7 @@
     
       <div class="block">
         <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO usr toolchain_root .MTREE | xz -c -z</code>
+          <code>Successfully ran bsdtar -cf - .PKGINFO usr sysroot .MTREE | xz -c -z</code>
         </div>
         
       </div>

@@ -1,0 +1,220 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/libcap</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="libcap.html">libcap</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc attr</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T linux-api-headers</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make -C libcap-2.25 KERNEL_HEADERS=/usr/include</code>
+        <ul class="level-4">
+          <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c which gperf >/dev/null 2>/dev/null && echo yes</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>which gperf</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -f /usr/include/security/pam_modules.h ]; then echo yes ; else echo no ; fi</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -n "$(which indent 2>/dev/null)" ]; then echo "| indent -kr" ; fi</code>
+            <ul class="level-6">
+              <li><span class="bad-return">1</span>&nbsp;<code>which indent</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ ! -d "/tmp/libcap/src/libcap-2.25/.git" ]; then echo yes; fi</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>make -C libcap all</code>
+            <ul class="level-6">
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c which gperf >/dev/null 2>/dev/null && echo yes</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>which gperf</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -f /usr/include/security/pam_modules.h ]; then echo yes ; else echo no ; fi</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -n "$(which indent 2>/dev/null)" ]; then echo "| indent -kr" ; fi</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>which indent</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ ! -d "/tmp/libcap/src/libcap-2.25/libcap/../.git" ]; then echo yes; fi</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "=> making cap_names.list.h from /usr/include/linux/capability.h"</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c ldd /usr/bin/ld|egrep "ld-linux|ld.so"|cut -d/ -f2</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>ldd /usr/bin/ld</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib64/ld-linux-x86-64.so.2 --verify /usr/bin/ld</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c perl -e 'while ($l=<>) { if ($l =~ /^\#define[ \t](CAP[_A-Z]+)[ \t]+([0-9]+)\s+$/) { $tok=$1; $val=$2; $tok =~ tr/A-Z/a-z/; print "{\"$tok\",$val},\n"; } }' /usr/include/linux/capability.h | fgrep -v 0x > cap_names.list.h</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>perl -e while ($l=<>) { if ($l =~ /^\#define[ \t](CAP[_A-Z]+)[ \t]+([0-9]+)\s+$/) { $tok=$1; $val=$2; $tok =~ tr/A-Z/a-z/; print "{\"$tok\",$val},\n"; } } /usr/include/linux/capability.h</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sed -e 's,@prefix@,/usr,' \
+	-e 's,@exec_prefix@,,' \
+	-e 's,@libdir@,/lib64,' \
+	-e 's,@includedir@,/usr/include,' \
+	-e 's,@VERSION@,2.25,' \
+	-e 's,@deps@,,' \
+	libcap.pc.in >libcap.pc</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>gcc -O2 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -fPIC -I/usr/include -I/tmp/libcap/src/libcap-2.25/libcap/../libcap/include _makenames.c -o _makenames</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I /usr/include -I /tmp/libcap/src/libcap-2.25/libcap/../libcap/include -D _LARGEFILE64_SOURCE -D _FILE_OFFSET_BITS=64 _makenames.c -quiet -dumpbase _makenames.c -mtune=generic -march=x86-64 -auxbase _makenames -O2 -fPIC -o /tmp/ccs9TG41.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include -I /tmp/libcap/src/libcap-2.25/libcap/../libcap/include --64 -o /tmp/ccDi3Wtl.o /tmp/ccs9TG41.s</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2gk2TE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o _makenames /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccDi3Wtl.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2gk2TE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o _makenames /sysroot/lib/../lib/crt1.o /sysroot/lib/../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/sysroot/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/sysroot/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccDi3Wtl.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /sysroot/lib/../lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">127</span>&nbsp;<code>/bin/sh -c ./_makenames > cap_names.h</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>./_makenames</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/ld)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/usr/bin/ld</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

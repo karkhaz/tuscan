@@ -1,0 +1,193 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree android/ckermit</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="ckermit.html">ckermit</a>&quot;
+    on toolchain &quot;android&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="bad-return">2</span>&nbsp;<code>make linux</code>
+        <ul class="level-4">
+          <li><span class="bad-return">2</span>&nbsp;<code>/bin/sh -c if test \
+`grep grantpt /usr/include/*.h /usr/include/sys/*.h | wc -l` -gt 0; \
+then if test -c /dev/ptmx; then HAVE_PTMX='-DHAVE_PTMX'; \
+else HAVE_PTMX=''; fi; fi ; \
+if test `grep openpty /usr/include/pty.h | wc -l` -gt 0; \
+then HAVE_OPENPTY='-DHAVE_OPENPTY'; \
+else HAVE_OPENPTY=''; fi ; \
+HAVE_LIBCURSES=''; \
+if test -f /usr/lib64/libncurses.so || \
+   test -f /usr/lib/libncurses.a  || \
+   test -f /usr/lib/libncurses.so; then \
+  HAVE_LIBCURSES='-lncurses'; \
+else if test -f /usr/lib64/libcurses.so || \
+   test -f /usr/lib/libcurses.a || \
+   test -f /usr/lib/libcurses.so; then \
+     HAVE_LIBCURSES='-lcurses'; fi; fi; \
+HAVE_CURSES=''; \
+if test -n '$HAVE_LIBCURSES'; then \
+  if test -f /usr/include/ncurses.h; then \
+    HAVE_CURSES='-DCK_NCURSES  -I/usr/include/ncurses'; \
+  else if test -f /usr/include/curses.h; then \
+    HAVE_CURSES='-DCK_CURSES'; \
+fi; fi; fi; \
+if test -f /usr/include/baudboy.h || test -f /usr/include/ttylock.h; \
+then HAVE_LOCKDEV='-DHAVE_LOCKDEV' ; \
+else HAVE_LOCKDEV='' ; fi ; \
+if test -f /usr/include/baudboy.h ; \
+then HAVE_BAUDBOY='-DHAVE_BAUDBOY' ; \
+else HAVE_BAUDBOY='' ; fi ; \
+make KTARGET=${KTARGET:-linux} \
+"KFLAGS=$HAVE_CURSES $HAVE_PTMX $HAVE_LOCKDEV \
+$HAVE_BAUDBOY $HAVE_OPENPTY \
+`grep __USE_LARGEFILE64 /usr/include/features.h > /dev/null && \
+echo '-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64'` \
+`if test -f /usr/include/crypt.h; then echo -DHAVE_CRYPT_H; fi` \
+" \
+"LIBS= $HAVE_LIBCURSES \
+`if test -n '$HAVE_OPENPTY'; then echo -lutil; fi` \
+`if test -f /usr/lib64/libresolv.a || test -f /usr/lib64/libresolv.so \
+|| test -f /usr/lib/libresolv.a || test -f /usr/lib/libresolv.so \
+|| test -f /usr/lib/i386-linux-gnu/libresolv.a \
+|| test -f /usr/lib/i386-linux-gnu/libresolv.so \
+|| ls /lib/x86_64-linux-gnu/libresolv.* > /dev/null 2> /dev/null; \
+then echo -lresolv; fi` \
+`if test -f /usr/lib64/libcrypt.a || test -f /usr/lib64/libcrypt.so \
+|| test -f /usr/lib/libcrypt.a || test -f /usr/lib/libcrypt.so \
+|| ls /lib/x86_64-linux-gnu/libcrypt.* > /dev/null 2> /dev/null; \
+then echo -lcrypt; fi` \
+`if test -f /usr/lib64/liblockdev.a || \
+test -f /usr/lib64/liblockdev.so || \
+test -f /usr/lib/liblockdev.a || \
+test -f /usr/lib/liblockdev.so; \
+then echo -llockdev; fi`" \
+linuxa</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">2</span>&nbsp;<code>make KTARGET=linux KFLAGS=-DCK_NCURSES  -I/usr/include/ncurses -DHAVE_PTMX   -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H  LIBS= -lncurses -lutil -lresolv -lcrypt  linuxa</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">2</span>&nbsp;<code>make xermit KTARGET=linux CC = gcc CC2 = gcc CFLAGS = -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES  -I/usr/include/ncurses -DHAVE_PTMX   -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H  LNKFLAGS =  LIBS = -lncurses -lutil -lresolv -lcrypt  -lm</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES -I/usr/include/ncurses -DHAVE_PTMX -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H -DKTARGET="linux" -c ckcmai.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I /usr/include/ncurses -D LINUX -D FNFLOAT -D CK_POSIX_SIG -D CK_NEWTERM -D TCPSOCKET -D LINUXFSSTND -D NOCOTFMC -D POSIX -D USE_STRERROR -D CK_NCURSES -D HAVE_PTMX -D HAVE_OPENPTY -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -D HAVE_CRYPT_H -D KTARGET="linux" ckcmai.c -quiet -dumpbase ckcmai.c -mtune=generic -march=x86-64 -auxbase ckcmai -O -funsigned-char -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/ncurses --64 -o ckcmai.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES -I/usr/include/ncurses -DHAVE_PTMX -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H -DKTARGET="linux" -c ckclib.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I /usr/include/ncurses -D LINUX -D FNFLOAT -D CK_POSIX_SIG -D CK_NEWTERM -D TCPSOCKET -D LINUXFSSTND -D NOCOTFMC -D POSIX -D USE_STRERROR -D CK_NCURSES -D HAVE_PTMX -D HAVE_OPENPTY -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -D HAVE_CRYPT_H -D KTARGET="linux" ckclib.c -quiet -dumpbase ckclib.c -mtune=generic -march=x86-64 -auxbase ckclib -O -funsigned-char -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/ncurses --64 -o ckclib.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T ncurses</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

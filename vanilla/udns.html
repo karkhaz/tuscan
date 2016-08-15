@@ -30,11 +30,15 @@
     <h1>Build of udns
         with <a href="../index.html">vanilla</a>
         toolchain</h1>
-    <p>The build took 00h 00m 36s and was
+    <p>The build took 00h 00m 33s and was
     SUCCESSFUL.
-    
-    
     </p>
+    <p>
+      The process tree of the build process is <a
+      href="udns-tree.html">here</a>.
+    </p>
+    
+    
     
     
     
@@ -86,14 +90,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan  bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan  red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: udns 0.4-2 (Mon Jun 27 06:59:06 UTC 2016)</code><br />
+              <code id="5">==> Making package: udns 0.4-2 (Wed Aug 10 16:53:15 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -218,27 +222,27 @@
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_init.c</code><br />
+              <code id="30">udns_resolver.c: In function 'dns_dummy_cb':</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">udns_resolver.c: In function 'dns_dummy_cb':</code><br />
+              <code id="31">udns_resolver.c:868:67: warning: parameter 'data' set but not used [-Wunused-but-set-parameter]</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">udns_resolver.c:868:67: warning: parameter 'data' set but not used [-Wunused-but-set-parameter]</code><br />
+              <code id="32"> static void dns_dummy_cb(struct dns_ctx *ctx, void *result, void *data) {</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33"> static void dns_dummy_cb(struct dns_ctx *ctx, void *result, void *data) {</code><br />
+              <code id="33">                                                                   ^~~~</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">                                                                   ^~~~</code><br />
+              <code id="34">gcc -Wall -W -O2 -pipe -DHAVE_CONFIG_H -c udns_init.c</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
@@ -628,7 +632,7 @@
             
             <a class="navhash" href="#112">#</a>
 						
-              <code id="112">==> Finished making: udns 0.4-2 (Mon Jun 27 06:59:09 UTC 2016)</code><br />
+              <code id="112">==> Finished making: udns 0.4-2 (Wed Aug 10 16:53:19 UTC 2016)</code><br />
 						
             
           </div>
@@ -750,17 +754,17 @@
             
             <a class="navhash" href="#126">#</a>
 						
-              <code id="126">/toolchain_root/usr/lib/libudns.so.0</code><br />
+              <code id="126">/sysroot/usr/lib/libudns.so.0</code><br />
 						
             
             <a class="navhash" href="#127">#</a>
 						
-              <code id="127">/toolchain_root/usr/lib/libudns.so</code><br />
+              <code id="127">/sysroot/usr/lib/libudns.so</code><br />
 						
             
             <a class="navhash" href="#128">#</a>
 						
-              <code id="128">/toolchain_root/usr/include/udns.h</code><br />
+              <code id="128">/sysroot/usr/include/udns.h</code><br />
 						
             
           </div>
@@ -778,7 +782,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr toolchain_root</code>
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr sysroot</code>
         </div>
         
       </div>
@@ -794,7 +798,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr toolchain_root .MTREE</code>
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr sysroot .MTREE</code>
         </div>
         
       </div>
@@ -810,7 +814,7 @@
     
       <div class="block">
         <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO usr toolchain_root .MTREE | xz -c -z</code>
+          <code>Successfully ran bsdtar -cf - .PKGINFO usr sysroot .MTREE | xz -c -z</code>
         </div>
         
       </div>

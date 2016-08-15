@@ -30,10 +30,15 @@
     <h1>Build of vlan
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 40s and was
-    NOT successful.
-    
+    <p>The build took 00h 01m 06s and was
+    SUCCESSFUL.
     </p>
+    <p>
+      The process tree of the build process is <a
+      href="vlan-tree.html">here</a>.
+    </p>
+    
+    
     
     
     
@@ -84,15 +89,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: vlan 1.9-3 (Mon Jun 27 02:48:38 UTC 2016)</code><br />
+              <code id="5">==> Making package: vlan 1.9-3 (Wed Aug 10 23:31:13 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -137,17 +182,362 @@
             
             <a class="navhash" href="#14">#</a>
 						
-              <code id="14">make: *** [Makefile:32: vconfig.o] Segmentation fault (core dumped)</code><br />
+              <code id="14">In file included from /sysroot/include/sys/types.h:70:0,</code><br />
 						
             
             <a class="navhash" href="#15">#</a>
 						
-              <code id="15">==> ERROR: A failure occurred in build().</code><br />
+              <code id="15">                 from vconfig.c:33:</code><br />
 						
             
             <a class="navhash" href="#16">#</a>
 						
-              <code id="16">    Aborting...</code><br />
+              <code id="16">/sysroot/include/endian.h: In function '__bswap32':</code><br />
+						
+            
+            <a class="navhash" href="#17">#</a>
+						
+              <code id="17">/sysroot/include/endian.h:32:25: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]</code><br />
+						
+            
+            <a class="navhash" href="#18">#</a>
+						
+              <code id="18">  return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#19">#</a>
+						
+              <code id="19">                   ~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#20">#</a>
+						
+              <code id="20">/sysroot/include/endian.h:32:41: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">  return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#22">#</a>
+						
+              <code id="22">                                   ~~~~~~^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						
+              <code id="23">/sysroot/include/endian.h: In function '__bswap64':</code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24">/sysroot/include/endian.h:37:23: warning: suggest parentheses around '+' inside '<<' [-Wparentheses]</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">  return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">         ~~~~~~~~~~~~~~^~~~~</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">gcc        -g -D_GNU_SOURCE -Wall -I/home/tuscan/linux/include  -o vconfig                   vconfig.o </code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">strip vconfig                  </code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">==> Entering fakeroot environment...</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">==> Starting package()...</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">==> Creating package "vlan"...</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">==> Finished making: vlan 1.9-3 (Wed Aug 10 23:31:13 UTC 2016)</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file vlan-1.9-3-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">vlan 1.9-3</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'vlan'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'vlan'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/vlan-1.9-3.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">vlan 1.9-3</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">/.PKGINFO</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">/.MTREE</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">/usr/bin/vconfig</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">/usr/bin/macvlan_config</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">/usr/share/man/man8/vconfig.8.gz</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .PKGINFO usr .MTREE | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf vlan.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">.PKGINFO</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /var/cache/pacman/pkg/vlan.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/vlan.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">==> Adding package '/var/cache/pacman/pkg/vlan.pkg.tar.xz'</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

@@ -30,11 +30,15 @@
     <h1>Build of dkms
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 51s and was
+    <p>The build took 00h 01m 25s and was
     SUCCESSFUL.
-    
-    
     </p>
+    <p>
+      The process tree of the build process is <a
+      href="dkms-tree.html">here</a>.
+    </p>
+    
+    
     
     
     
@@ -85,15 +89,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: dkms 2.2.0.3+git151023-11 (Mon Jun 27 02:42:24 UTC 2016)</code><br />
+              <code id="5">==> Making package: dkms 2.2.0.3+git151023-11 (Thu Aug 11 00:12:26 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -263,7 +307,7 @@
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">==> Finished making: dkms 2.2.0.3+git151023-11 (Mon Jun 27 02:42:25 UTC 2016)</code><br />
+              <code id="39">==> Finished making: dkms 2.2.0.3+git151023-11 (Thu Aug 11 00:12:27 UTC 2016)</code><br />
 						
             
           </div>
@@ -400,17 +444,17 @@
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">/toolchain_root/usr/lib/dkms/alpm-hook</code><br />
+              <code id="56">/sysroot/usr/lib/dkms/alpm-hook</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">/toolchain_root/usr/lib/dkms/common.postinst</code><br />
+              <code id="57">/sysroot/usr/lib/dkms/common.postinst</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">/toolchain_root/usr/lib/dkms/dkms_autoinstaller</code><br />
+              <code id="58">/sysroot/usr/lib/dkms/dkms_autoinstaller</code><br />
 						
             
           </div>
@@ -428,7 +472,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO .INSTALL etc usr var toolchain_root</code>
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO .INSTALL etc usr var sysroot</code>
         </div>
         
       </div>
@@ -444,7 +488,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO .BUILDINFO .INSTALL etc usr var toolchain_root .MTREE</code>
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO .BUILDINFO .INSTALL etc usr var sysroot .MTREE</code>
         </div>
         
       </div>
@@ -460,7 +504,7 @@
     
       <div class="block">
         <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO .BUILDINFO .INSTALL etc usr var toolchain_root .MTREE | xz -c -z</code>
+          <code>Successfully ran bsdtar -cf - .PKGINFO .BUILDINFO .INSTALL etc usr var sysroot .MTREE | xz -c -z</code>
         </div>
         
       </div>
@@ -508,37 +552,187 @@
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">==> Extracting database to a temporary location...</code><br />
+              <code id="60">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">==> Extracting database to a temporary location...</code><br />
+              <code id="61">==> ERROR: Held by process 6059</code><br />
 						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 2</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/dkms.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">==> Adding package '/var/cache/pacman/pkg/dkms.pkg.tar.xz'</code><br />
+              <code id="62">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">  -> Computing checksums...</code><br />
+              <code id="63">==> ERROR: Held by process 6059</code><br />
 						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 3</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/dkms.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">  -> Creating 'desc' db entry...</code><br />
+              <code id="64">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">  -> Creating 'files' db entry...</code><br />
+              <code id="65">==> ERROR: Held by process 6059</code><br />
 						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 4</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/dkms.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="66">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">==> ERROR: Held by process 6059</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 5</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/dkms.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">==> ERROR: Held by process 764</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 6</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/dkms.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">==> Adding package '/var/cache/pacman/pkg/dkms.pkg.tar.xz'</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

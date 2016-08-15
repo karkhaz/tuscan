@@ -30,10 +30,32 @@
     <h1>Build of linux-zen
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 05m 24s and was
-    NOT successful.
-    
+    <p>The build took 00h 06m 38s and was
+    NOT successful.</p>
+    <p>
+      The process tree of the build process is <a
+      href="linux-zen-tree.html">here</a>.
     </p>
+    
+    
+      <p>
+      Several sub-process invocations were improper; see the process tree
+      for details. Summary:
+      </p>
+      <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;12: /usr/bin/ld</li>
+        
+            <li>&times;81: /usr/bin/gcc</li>
+        </ul></li>
+      
+        <li>malformed path:<ul>
+            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+        
+            <li>&times;16: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+        </ul></li>
+      </ul>
+    
     
     
     
@@ -84,15 +106,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: linux-zen 4.6.2-1 (Mon Jun 27 04:07:44 UTC 2016)</code><br />
+              <code id="5">==> Making package: linux-zen 4.6.3-1 (Thu Aug 11 00:47:15 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -217,382 +279,332 @@
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">/bin/sh: line 1: 14483 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m16 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="30">  HOSTCC  scripts/basic/fixdep</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">/bin/sh: line 1: 14486 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -ffreestanding -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="31">clang: warning: optimization flag '-fno-delete-null-pointer-checks' is not supported</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">/bin/sh: line 1: 14489 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-stack-protector -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="32">In file included from scripts/basic/fixdep.c:106:</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">/bin/sh: line 1: 14492 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="33">In file included from /sysroot/include/sys/types.h:70:</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">/bin/sh: line 1: 14495 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="34">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">/bin/sh: line 1: 14498 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="35">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">/bin/sh: line 1: 14501 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="36">                       ~ ~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">/bin/sh: line 1: 14504 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="37">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">/bin/sh: line 1: 14507 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mskip-rax-setup -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="38">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">/bin/sh: line 1: 14510 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="39">                               ^</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">/bin/sh: line 1: 14513 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="40">                         (            )</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">/bin/sh: line 1: 14566 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="41">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">/bin/sh: line 1: 14569 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 --param=allow-store-data-races=0 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="42">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">/bin/sh: line 1: 14572 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -Wframe-larger-than= -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="43">                                       ~ ~~~~~~^~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">/bin/sh: line 1: 14575 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fno-stack-protector -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="44">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">/bin/sh: line 1: 14581 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -Wunused-but-set-variable -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="45">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">/bin/sh: line 1: 14584 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -fno-var-tracking-assignments -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="46">                                               ^</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">/bin/sh: line 1: 14588 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -Wdeclaration-after-statement -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="47">                                         (              )</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">/bin/sh: line 1: 14591 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -Wpointer-sign -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="48">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">/bin/sh: line 1: 14594 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -fno-strict-overflow -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="49">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">/bin/sh: line 1: 14597 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -fconserve-stack -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="50">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">/bin/sh: line 1: 14600 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -Werror=implicit-int -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="51">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">/bin/sh: line 1: 14603 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -Werror=strict-prototypes -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="52">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">/bin/sh: line 1: 14606 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -Werror=date-time -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="53">                             ^</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">/bin/sh: line 1: 14609 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -O2 -fomit-frame-pointer -Werror=incompatible-pointer-types -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="54">               (                  )</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">/bin/sh: line 1: 14612 Segmentation fault      (core dumped) ( ar rcD "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="55">3 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">./scripts/gcc-goto.sh: line 21: 14615 Done                    cat  <<'END'</code><br />
+              <code id="56">scripts/basic/fixdep: error while loading shared libraries: /usr/lib/libc.so: invalid ELF header</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">int main(void)</code><br />
+              <code id="57">make[2]: *** [scripts/Makefile.host:91: scripts/basic/fixdep] Error 127</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">{</code><br />
+              <code id="58">make[1]: *** [Makefile:440: scripts_basic] Error 2</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">#if defined(__arm__) || defined(__aarch64__)</code><br />
+              <code id="59">  SYSTBL  arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">	/*</code><br />
+              <code id="60">make: *** No rule to make target 'include/config/auto.conf', needed by 'include/config/kernel.release'.  Stop.</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">	 * Not related to asm goto, but used by jump label</code><br />
+              <code id="61">make: *** Waiting for unfinished jobs....</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">	 * and broken on some ARM GCC versions (see GCC Bug 48637).</code><br />
+              <code id="62">  HOSTCC  scripts/basic/fixdep</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">	 */</code><br />
+              <code id="63">clang: warning: optimization flag '-fno-delete-null-pointer-checks' is not supported</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">	static struct { int dummy; int state; } tp;</code><br />
+              <code id="64">In file included from scripts/basic/fixdep.c:106:</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">	asm (".long %c0" :: "i" (&tp.state));</code><br />
+              <code id="65">In file included from /sysroot/include/sys/types.h:70:</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">#endif</code><br />
+              <code id="66">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67"></code><br />
+              <code id="67">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">entry:</code><br />
+              <code id="68">                       ~ ~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">	asm goto ("" :::: entry);</code><br />
+              <code id="69">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">	return 0;</code><br />
+              <code id="70">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">}</code><br />
+              <code id="71">                               ^</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">END</code><br />
+              <code id="72">                         (            )</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
 						
-              <code id="73"></code><br />
+              <code id="73">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74">     14616 Segmentation fault      (core dumped) | $@ -x c - -c -o /dev/null > /dev/null 2>&1</code><br />
+              <code id="74">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#75">#</a>
 						
-              <code id="75">/bin/sh: line 1: 14621 Segmentation fault      (core dumped) ( gcc -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="75">                                       ~ ~~~~~~^~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#76">#</a>
 						
-              <code id="76">/bin/sh: line 1: 14624 Segmentation fault      (core dumped) ( gcc -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="76">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#77">#</a>
 						
-              <code id="77">/bin/sh: line 1: 14642 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m16 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="77">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
 						
             
             <a class="navhash" href="#78">#</a>
 						
-              <code id="78">/bin/sh: line 1: 14645 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -ffreestanding -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="78">                                               ^</code><br />
 						
             
             <a class="navhash" href="#79">#</a>
 						
-              <code id="79">/bin/sh: line 1: 14648 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-stack-protector -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="79">                                         (              )</code><br />
 						
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">/bin/sh: line 1: 14651 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mpreferred-stack-boundary=2 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="80">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#81">#</a>
 						
-              <code id="81">/bin/sh: line 1: 14654 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="81">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#82">#</a>
 						
-              <code id="82">/bin/sh: line 1: 14657 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="82">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#83">#</a>
 						
-              <code id="83">/bin/sh: line 1: 14660 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-fp-ret-in-387 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="83">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#84">#</a>
 						
-              <code id="84">/bin/sh: line 1: 14663 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mpreferred-stack-boundary=3 -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="84">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
 						
             
             <a class="navhash" href="#85">#</a>
 						
-              <code id="85">/bin/sh: line 1: 14666 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mskip-rax-setup -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="85">                             ^</code><br />
 						
             
             <a class="navhash" href="#86">#</a>
 						
-              <code id="86">/bin/sh: line 1: 14669 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -funit-at-a-time -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="86">               (                  )</code><br />
 						
             
             <a class="navhash" href="#87">#</a>
 						
-              <code id="87">/bin/sh: line 1: 14672 Segmentation fault      (core dumped) ( gcc -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -m64 -falign-jumps=1 -falign-loops=1 -mno-red-zone -mcmodel=kernel -maccumulate-outgoing-args -c -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="87">3 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#88">#</a>
 						
-              <code id="88">  HOSTCC  scripts/basic/fixdep</code><br />
+              <code id="88">scripts/basic/fixdep: error while loading shared libraries: /usr/lib/libc.so: invalid ELF header</code><br />
 						
             
             <a class="navhash" href="#89">#</a>
 						
-              <code id="89">/bin/sh: line 1: 14728 Segmentation fault      (core dumped) gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -o scripts/basic/fixdep scripts/basic/fixdep.c</code><br />
+              <code id="89">make[1]: *** [scripts/Makefile.host:91: scripts/basic/fixdep] Error 127</code><br />
 						
             
             <a class="navhash" href="#90">#</a>
 						
-              <code id="90">make[2]: *** [scripts/Makefile.host:91: scripts/basic/fixdep] Error 139</code><br />
+              <code id="90">make: *** [Makefile:440: scripts_basic] Error 2</code><br />
 						
             
             <a class="navhash" href="#91">#</a>
 						
-              <code id="91">make[1]: *** [Makefile:440: scripts_basic] Error 2</code><br />
+              <code id="91">  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h</code><br />
 						
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">/bin/sh: line 1: 14730 Segmentation fault      (core dumped) ( gcc -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="92">  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">  SYSTBL  arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h</code><br />
+              <code id="93">  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h</code><br />
 						
             
             <a class="navhash" href="#94">#</a>
 						
-              <code id="94">/bin/sh: line 1: 14742 Segmentation fault      (core dumped) ( gcc -Wl,--build-id -nostdlib -x c /dev/null -o "$TMP" ) > /dev/null 2>&1</code><br />
+              <code id="94">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">make: *** No rule to make target 'include/config/auto.conf', needed by 'include/config/kernel.release'.  Stop.</code><br />
-						
-            
-            <a class="navhash" href="#96">#</a>
-						
-              <code id="96">make: *** Waiting for unfinished jobs....</code><br />
-						
-            
-            <a class="navhash" href="#97">#</a>
-						
-              <code id="97">  HOSTCC  scripts/basic/fixdep</code><br />
-						
-            
-            <a class="navhash" href="#98">#</a>
-						
-              <code id="98">/bin/sh: line 1: 15037 Segmentation fault      (core dumped) gcc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -o scripts/basic/fixdep scripts/basic/fixdep.c</code><br />
-						
-            
-            <a class="navhash" href="#99">#</a>
-						
-              <code id="99">make[1]: *** [scripts/Makefile.host:91: scripts/basic/fixdep] Error 139</code><br />
-						
-            
-            <a class="navhash" href="#100">#</a>
-						
-              <code id="100">make: *** [Makefile:440: scripts_basic] Error 2</code><br />
-						
-            
-            <a class="navhash" href="#101">#</a>
-						
-              <code id="101">  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h</code><br />
-						
-            
-            <a class="navhash" href="#102">#</a>
-						
-              <code id="102">  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h</code><br />
-						
-            
-            <a class="navhash" href="#103">#</a>
-						
-              <code id="103">  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h</code><br />
-						
-            
-            <a class="navhash" href="#104">#</a>
-						
-              <code id="104">==> ERROR: A failure occurred in build().</code><br />
-						
-            
-            <a class="navhash" href="#105">#</a>
-						
-              <code id="105">    Aborting...</code><br />
+              <code id="95">    Aborting...</code><br />
 						
             
           </div>

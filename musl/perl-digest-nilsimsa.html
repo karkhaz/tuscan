@@ -30,25 +30,30 @@
     <h1>Build of perl-digest-nilsimsa
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 00m 48s and was
-    NOT successful.
-    
+    <p>The build took 00h 01m 01s and was
+    SUCCESSFUL.
     </p>
-    
-    
     <p>
-    Due to the failure of this package to build, we did not attempt to
-    build several packages that depend on this one. Those packages are:
+      The process tree of the build process is <a
+      href="perl-digest-nilsimsa-tree.html">here</a>.
     </p>
-    <ul>
+    
+    
+      <p>
+      Several sub-process invocations were improper; see the process tree
+      for details. Summary:
+      </p>
+      <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;2: /usr/sbin/cc</li>
+        </ul></li>
       
-      <li><a href="spampd.html">spampd</a></li>
-      
-      <li><a href="razor.html">razor</a></li>
-      
-      <li><a href="spamassassin.html">spamassassin</a></li>
-      
-    </ul>
+        <li>empty path:<ul>
+            <li>&times;6: </li>
+        </ul></li>
+      </ul>
+    
+    
     
     
     <h2>Log</h2>
@@ -98,15 +103,55 @@
       <br />
     
       <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/lib' to '/sysroot/lib'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/share' to '/sysroot/share'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/bin' to '/sysroot/bin'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/include' to '/sysroot/include'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Copying directory '/toolchain_root/libexec' to '/sysroot/libexec'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/toolchain_root/clang+llvm-x86_64-archlinux LIBRARY_PATH=/toolchain_root/clang+llvm-x86_64-archlinux/lib CXXFLAGS=-stdlib-libc++ CPATH=/toolchain_root/clang+llvm-x86_64-archlinux/include bear makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ SYSROOT=/sysroot/ LIBRARY_PATH=/sysroot/lib CXXFLAGS=-stdlib-libc++ CPATH=/sysroot/include red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: perl-digest-nilsimsa 0.06-12 (Mon Jun 27 03:10:03 UTC 2016)</code><br />
+              <code id="5">==> Making package: perl-digest-nilsimsa 0.06-12 (Thu Aug 11 00:46:08 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -181,32 +226,607 @@
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong   -DVERSION=\"0.06\" -DXS_VERSION=\"0.06\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Nilsimsa.c</code><br />
+              <code id="20">_nilsimsa.c:336:9: warning: add explicit braces to avoid dangling else [-Wdangling-else]</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">make: *** [Makefile:339: _nilsimsa.o] Segmentation fault (core dumped)</code><br />
+              <code id="21">        else</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">make: *** Waiting for unfinished jobs....</code><br />
+              <code id="22">        ^</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">make: *** [Makefile:339: Nilsimsa.o] Segmentation fault (core dumped)</code><br />
+              <code id="23">_nilsimsa.c:479:8: warning: unsequenced modification and access to 'ret' [-Wunsequenced]</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">==> ERROR: A failure occurred in build().</code><br />
+              <code id="24"> ret+=!++ret;</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">    Aborting...</code><br />
+              <code id="25">    ~~ ^</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">_nilsimsa.c:509:24: warning: illegal character encoding in string literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">{printf("nilsimsa %s \n<A9> 2001-2002 cmeclax\nDistributed under GNU GPL\n",VERSION);</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">                       ^~~~</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">cc -c   -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong   -DVERSION=\"0.06\" -DXS_VERSION=\"0.06\" -fPIC "-I/usr/lib/perl5/core_perl/CORE"   Nilsimsa.c</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">In file included from Nilsimsa.xs:2:</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">In file included from /usr/lib/perl5/core_perl/CORE/perl.h:689:</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">In file included from /sysroot/include/sys/types.h:70:</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">/sysroot/include/endian.h:32:25: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">                       ~ ~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">/sysroot/include/endian.h:32:25: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">                               ^</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">                         (            )</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">/sysroot/include/endian.h:32:41: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">                                       ~ ~~~~~~^~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">/sysroot/include/endian.h:32:41: note: place parentheses around the '&' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">        return __x>>24 | __x>>8&0xff00 | __x<<8&0xff0000 | __x<<24;</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">                                               ^</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">                                         (              )</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">/sysroot/include/endian.h:37:23: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">               ~~~~~~~~~~~~~~^~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">/sysroot/include/endian.h:37:23: note: place parentheses around the '+' expression to silence this warning</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">        return __bswap32(__x)+0ULL<<32 | __bswap32(__x>>32);</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">                             ^</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">               (                  )</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">3 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">Nilsimsa.xs:71:20: warning: assigning to 'unsigned char *' from 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">          rawbytes = SvPV(text,size);</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">                   ^ ~~~~~~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">Nilsimsa.xs:72:4: warning: implicit declaration of function 'clear' is invalid in C99 [-Wimplicit-function-declaration]</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">          clear(&gunma);</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">          ^</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">Nilsimsa.xs:77:4: warning: implicit declaration of function 'makecode' is invalid in C99 [-Wimplicit-function-declaration]</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">          makecode(&gunma);</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">          ^</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">6 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">rm -f blib/arch/auto/Digest/Nilsimsa/Nilsimsa.so</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong _nilsimsa.o Nilsimsa.o  -o blib/arch/auto/Digest/Nilsimsa/Nilsimsa.so 	\</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">     	\</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">  </code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">chmod 755 blib/arch/auto/Digest/Nilsimsa/Nilsimsa.so</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Nilsimsa.bs blib/arch/auto/Digest/Nilsimsa/Nilsimsa.bs 644</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">Manifying 1 pod document</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">==> Entering fakeroot environment...</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">==> Starting package()...</code><br />
+						
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">Running Mkbootstrap for Digest::Nilsimsa ()</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">chmod 644 "Nilsimsa.bs"</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">Manifying 1 pod document</code><br />
+						
+            
+            <a class="navhash" href="#77">#</a>
+						
+              <code id="77">Appending installation info to /tmp/perl-digest-nilsimsa/pkg/perl-digest-nilsimsa/usr/lib/perl5/core_perl/perllocal.pod</code><br />
+						
+            
+            <a class="navhash" href="#78">#</a>
+						
+              <code id="78">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
+						
+            
+            <a class="navhash" href="#79">#</a>
+						
+              <code id="79">Installing /tmp/perl-digest-nilsimsa/pkg/perl-digest-nilsimsa/usr/lib/perl5/vendor_perl/auto/Digest/Nilsimsa/Nilsimsa.so</code><br />
+						
+            
+            <a class="navhash" href="#80">#</a>
+						
+              <code id="80">Installing /tmp/perl-digest-nilsimsa/pkg/perl-digest-nilsimsa/usr/lib/perl5/vendor_perl/Digest/Nilsimsa.pm</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">Installing /tmp/perl-digest-nilsimsa/pkg/perl-digest-nilsimsa/usr/share/man/man3/Digest::Nilsimsa.3pm</code><br />
+						
+            
+            <a class="navhash" href="#82">#</a>
+						
+              <code id="82">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#83">#</a>
+						
+              <code id="83">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#84">#</a>
+						
+              <code id="84">  -> Removing empty directories...</code><br />
+						
+            
+            <a class="navhash" href="#85">#</a>
+						
+              <code id="85">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#86">#</a>
+						
+              <code id="86">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#87">#</a>
+						
+              <code id="87">==> Creating package "perl-digest-nilsimsa"...</code><br />
+						
+            
+            <a class="navhash" href="#88">#</a>
+						
+              <code id="88">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#89">#</a>
+						
+              <code id="89">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#90">#</a>
+						
+              <code id="90">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#91">#</a>
+						
+              <code id="91">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#92">#</a>
+						
+              <code id="92">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#93">#</a>
+						
+              <code id="93">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#94">#</a>
+						
+              <code id="94">==> Finished making: perl-digest-nilsimsa 0.06-12 (Thu Aug 11 00:46:12 UTC 2016)</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file perl-digest-nilsimsa-0.06-12-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#95">#</a>
+						
+              <code id="95">perl-digest-nilsimsa 0.06-12</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'perl-digest-nilsimsa'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'perl-digest-nilsimsa'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/perl-digest-nilsimsa-0.06-12.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#96">#</a>
+						
+              <code id="96">perl-digest-nilsimsa 0.06-12</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#97">#</a>
+						
+              <code id="97">/.PKGINFO</code><br />
+						
+            
+            <a class="navhash" href="#98">#</a>
+						
+              <code id="98">/.BUILDINFO</code><br />
+						
+            
+            <a class="navhash" href="#99">#</a>
+						
+              <code id="99">/.MTREE</code><br />
+						
+            
+            <a class="navhash" href="#100">#</a>
+						
+              <code id="100">/usr/share/man/man3/Digest::Nilsimsa.3pm.gz</code><br />
+						
+            
+            <a class="navhash" href="#101">#</a>
+						
+              <code id="101">/usr/lib/perl5/vendor_perl/Digest/Nilsimsa.pm</code><br />
+						
+            
+            <a class="navhash" href="#102">#</a>
+						
+              <code id="102">/usr/lib/perl5/vendor_perl/auto/Digest/Nilsimsa/Nilsimsa.so</code><br />
+						
+            
+            <a class="navhash" href="#103">#</a>
+						
+              <code id="103">/sysroot/usr/lib/perl5/vendor_perl/Digest/Nilsimsa.pm</code><br />
+						
+            
+            <a class="navhash" href="#104">#</a>
+						
+              <code id="104">/sysroot/usr/lib/perl5/vendor_perl/auto/Digest/Nilsimsa/Nilsimsa.so</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr sysroot</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO .BUILDINFO usr sysroot .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .PKGINFO .BUILDINFO usr sysroot .MTREE | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf perl-digest-nilsimsa.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#105">#</a>
+						
+              <code id="105">.PKGINFO</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /var/cache/pacman/pkg/perl-digest-nilsimsa.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/perl-digest-nilsimsa.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#106">#</a>
+						
+              <code id="106">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#107">#</a>
+						
+              <code id="107">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#108">#</a>
+						
+              <code id="108">==> Adding package '/var/cache/pacman/pkg/perl-digest-nilsimsa.pkg.tar.xz'</code><br />
+						
+            
+            <a class="navhash" href="#109">#</a>
+						
+              <code id="109">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#110">#</a>
+						
+              <code id="110">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#111">#</a>
+						
+              <code id="111">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#112">#</a>
+						
+              <code id="112">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>
