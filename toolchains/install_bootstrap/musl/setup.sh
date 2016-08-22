@@ -17,6 +17,7 @@
 
 set -e
 set -o pipefail
+set -x
 
 /usr/bin/python -u /build/main.py $@
 
@@ -34,29 +35,33 @@ die() {
   exit 1
 }
 
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 \
+(KHTML, like Gecko) Chrome/12.0.742.112 Safari/534.30"
+CURL_FLAGS="-s -S --connect-timeout 270 -A '$UA'"
+
 mkdir -p ${SRCDIR}/binutils
-curl -s -S http://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.bz2 \
+curl $CURL_FLAGS http://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.bz2 \
   | tar xj -C ${SRCDIR}/binutils --strip-components=1
 mkdir -p ${SRCDIR}/llvm
-curl -s -S http://llvm.org/releases/3.8.0/llvm-3.8.0.src.tar.xz \
+curl $CURL_FLAGS http://llvm.org/releases/3.8.0/llvm-3.8.0.src.tar.xz \
   | tar xJ -C ${SRCDIR}/llvm --strip-components=1
 mkdir -p ${SRCDIR}/llvm/tools/clang
-curl -s -S http://llvm.org/releases/3.8.0/cfe-3.8.0.src.tar.xz \
+curl $CURL_FLAGS http://llvm.org/releases/3.8.0/cfe-3.8.0.src.tar.xz \
   | tar xJ -C ${SRCDIR}/llvm/tools/clang --strip-components=1
 mkdir -p ${SRCDIR}/llvm/projects/compiler-rt
-curl -s -S http://llvm.org/releases/3.8.0/compiler-rt-3.8.0.src.tar.xz \
+curl $CURL_FLAGS http://llvm.org/releases/3.8.0/compiler-rt-3.8.0.src.tar.xz \
   | tar xJ -C ${SRCDIR}/llvm/projects/compiler-rt --strip-components=1
 mkdir -p ${SRCDIR}/llvm/projects/libcxx
-curl -s -S http://llvm.org/releases/3.8.0/libcxx-3.8.0.src.tar.xz \
+curl $CURL_FLAGS http://llvm.org/releases/3.8.0/libcxx-3.8.0.src.tar.xz \
   | tar xJ -C ${SRCDIR}/llvm/projects/libcxx --strip-components=1
 mkdir -p ${SRCDIR}/llvm/projects/libcxxabi
-curl -s -S http://llvm.org/releases/3.8.0/libcxxabi-3.8.0.src.tar.xz \
+curl $CURL_FLAGS http://llvm.org/releases/3.8.0/libcxxabi-3.8.0.src.tar.xz \
   | tar xJ -C ${SRCDIR}/llvm/projects/libcxxabi --strip-components=1
 mkdir -p ${SRCDIR}/llvm/projects/libunwind
-curl -s -S http://llvm.org/releases/3.8.0/libunwind-3.8.0.src.tar.xz \
+curl $CURL_FLAGS http://llvm.org/releases/3.8.0/libunwind-3.8.0.src.tar.xz \
   | tar xJ -C ${SRCDIR}/llvm/projects/libunwind --strip-components=1
 mkdir -p ${SRCDIR}/musl
-curl -s -S http://www.musl-libc.org/releases/musl-1.1.14.tar.gz \
+curl $CURL_FLAGS http://www.musl-libc.org/releases/musl-1.1.14.tar.gz \
   | tar xz -C ${SRCDIR}/musl --strip-components=1
 
 pushd ${SRCDIR}/llvm/tools/clang
@@ -86,7 +91,7 @@ index f940e58..fd4b23e 100644
 +++ b/lib/Driver/ToolChains.h
 @@ -803,0 +804,7 @@ public:
 +  CXXStdlibType GetDefaultCXXStdlibType() const override {
-+    return ToolChain::CST_Libstdcxx;
++    return ToolChain::CST_Libcxx;
 +  }
 +  RuntimeLibType GetDefaultRuntimeLibType() const override {
 +    return ToolChain::RLT_CompilerRT;
@@ -95,31 +100,16 @@ index f940e58..fd4b23e 100644
 EOF
 popd
 
-rm -rf ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap \
-  && mkdir -p ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap
-pushd ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap
-cmake -GNinja \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX=${BUILDDIR}/clang+llvm-x86_64-bootstrap \
-  -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON \
-  ${SRCDIR}/llvm
-ninja install
-popd
-
 rm -rf ${BUILDDIR}/build-binutils && mkdir -p ${BUILDDIR}/build-binutils
 pushd ${BUILDDIR}/build-binutils
 ${SRCDIR}/binutils/configure \
-  CC=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
-  CXX=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
-  CXXFLAGS='-stdlib=libc++ -I${BUILDDIR}/clang+llvm-x86_64-bootstrap/include/c++/v1' \
-  LDFLAGS='-L${BUILDDIR}/clang+llvm-x86_64-bootstrap/lib -Wl,-rpath,'"'"'$\\$$\$$\\$$\$$ORIGIN/../lib'"'"' -Wl,-z,origin' \
-  --prefix=${PKGDIR} \
+  --prefix=${PKGDIR}/clang+llvm-x86_64-archlinux \
   --enable-deterministic-archives \
   --enable-gold \
   --enable-plugins \
   --disable-ld \
   --disable-werror \
-  --with-sysroot=${PKGDIR}
+  --with-sysroot=${PKGDIR}/clang+llvm-x86_64-archlinux
 make
 make install
 popd
@@ -133,10 +123,7 @@ rm -rf ${BUILDDIR}/build-clang+llvm-x86_64-archlinux \
 pushd ${BUILDDIR}/build-clang+llvm-x86_64-archlinux
 cmake -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_C_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
-  -DCMAKE_CXX_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
-  -DCMAKE_INSTALL_PREFIX=${PKGDIR} \
-  -DCMAKE_INSTALL_RPATH='$ORIGIN/../lib' \
+  -DCMAKE_INSTALL_PREFIX=${PKGDIR}/clang+llvm-x86_64-archlinux \
   -DLLVM_ENABLE_TIMESTAMPS=OFF \
   -DLLVM_ENABLE_LIBCXX=ON \
   -DLLVM_ENABLE_LIBCXXABI=ON \
@@ -145,7 +132,7 @@ cmake -GNinja \
   -DLLVM_USE_HOST_TOOLS=ON \
   -DLIBCXX_HAS_MUSL_LIBC=ON \
   -DLIBCXXABI_USE_LLVM_UNWINDER=ON \
-  -DDEFAULT_SYSROOT=${PKGDIR} \
+  -DDEFAULT_SYSROOT=${PKGDIR}/clang+llvm-x86_64-archlinux \
   ${SRCDIR}/llvm
 ninja install
 popd
@@ -153,10 +140,10 @@ popd
 rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
 pushd ${BUILDDIR}/build-musl
 ${SRCDIR}/musl/configure \
-  CC=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
+  CC=${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang \
   LIBCC=-lclang_rt.builtins-x86_64 \
-  LDFLAGS=-L${PKGDIR}/lib/clang/3.8.0/lib/linux \
-  --prefix=${PKGDIR} \
+  LDFLAGS=-L${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/lib/linux \
+  --prefix=${PKGDIR}/clang+llvm-x86_64-archlinux \
   --disable-wrapper
 make install
 popd
@@ -164,14 +151,14 @@ popd
 rm -rf ${BUILDDIR}/build-crt && mkdir -p ${BUILDDIR}/build-crt
 pushd ${BUILDDIR}/build-crt
 touch crtbegin.c crtend.c
-${PKGDIR}/bin/clang crtbegin.c -c -o crtbegin.o
-${PKGDIR}/bin/clang crtend.c -c -o crtend.o
-install crtbegin.o crtend.o ${PKGDIR}/lib/clang/3.8.0/
+${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtbegin.c -c -o crtbegin.o
+${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtend.c -c -o crtend.o
+install crtbegin.o crtend.o ${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/
 touch crtbeginS.c crtendS.c
-${PKGDIR}/bin/clang crtbeginS.c -c -o crtbeginS.o
-${PKGDIR}/bin/clang crtendS.c -c -o crtendS.o
-install crtbeginS.o crtendS.o ${PKGDIR}/lib/clang/3.8.0/
+${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtbeginS.c -c -o crtbeginS.o
+${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtendS.c -c -o crtendS.o
+install crtbeginS.o crtendS.o ${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/
 popd
 
 chmod -R a+r ${PKGDIR}
-chmod -R a+rx ${PKGDIR}/bin
+chmod -R a+rx ${PKGDIR}/clang+llvm-x86_64-archlinux/bin

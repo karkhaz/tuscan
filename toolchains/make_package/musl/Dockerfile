@@ -33,10 +33,7 @@ ENV CURL_HOME /etc
 ENTRYPOINT  ["/usr/bin/python", "-u", \
  "/build/main.py", \
  "--env-vars", \
- "PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", \
+ "PATH=/toolchain_root/clang+llvm-x86_64-archlinux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", \
  "CC=clang", \
- "CXX=clang++", \
- "SYSROOT=/sysroot/", \
- "LIBRARY_PATH=/sysroot/lib",\
- "CXXFLAGS=-stdlib-libc++",\
- "CPATH=/sysroot/include" ]
+ "CXX=clang++" \
+ ]
