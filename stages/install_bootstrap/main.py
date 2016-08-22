@@ -139,50 +139,6 @@ def main():
         else:
             log("command", cmd, cp.stdout.splitlines())
 
-    # Replace native tools with thin wrappers
-    #with open("/build/tool_redirect_rules.yaml") as f:
-    #    transforms = yaml.load(f)
-    #execs = transforms["overwrite"] + list(transforms["replacements"].keys())
-    #for e in set(execs):
-    #    execs.remove(e)
-    #if execs:
-    #    log("error", ("The following executables have been specified "
-    #                  "twice in the tool_redirect_rules.yaml: %s" %
-    #                  str(execs)))
-    #    exit(1)
-
-    #for e in transforms["overwrite"]:
-    #    transforms["replacements"][e] = e
-    #transforms.pop("overwrite", None)
-
-    #jinja = jinja2.Environment(loader=jinja2.FileSystemLoader(["/build"]))
-
-    #wrapper_temp = jinja.get_template("tool_wrapper.c")
-
-    #with tempfile.TemporaryDirectory() as tmp_dir:
-    #    for native, toolchain in transforms["replacements"].items():
-    #        wrapper = wrapper_temp.render(
-    #                native_program=native,
-    #                toolchain_prefix=transforms["prefix"],
-    #                toolchain_program=toolchain)
-
-    #        with tempfile.NamedTemporaryFile("w", suffix=".c") as temp:
-    #            temp.write(wrapper)
-    #            temp.flush()
-    #            cmd = "gcc -o %s %s" % (os.path.join(tmp_dir, native),
-    #                    temp.name)
-    #            proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE,
-    #                    stderr=subprocess.STDOUT, universal_newlines=True)
-    #            out, _ = proc.communicate()
-    #            if proc.returncode:
-    #                body = "%s\n%s\n%s" % (cmd, out, wrapper)
-    #                log("error", "Failed to compile compiler wrapper",
-    #                        body=body)
-    #                exit(1)
-    #    for wrapper in os.listdir(tmp_dir):
-    #        shutil.move(os.path.join(tmp_dir, wrapper),
-    #                    os.path.join("/usr/bin", wrapper))
-
     if not os.path.isdir("/toolchain_root"):
         log("die", "/toolchain_root is not mounted")
         exit(1)
