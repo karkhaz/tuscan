@@ -42,6 +42,12 @@
 
 - 
   pattern: >- 
+           /sysroot/sysroot/usr/include/(?P<header>[-\w/\.\+]+.h):\d+:\d+:
+           note: originally defined here
+  category: conflicting_types
+
+- 
+  pattern: >- 
            flex: error writing output file .+
   category: flex_error
 
@@ -53,6 +59,60 @@
 
 - 
   pattern: >- 
+           [-/\w\.\+]+:\d+: error: undefined reference to
+           '(?P<identifier>.+)'
+  category: undefined_reference
+
+- 
+  pattern: >- 
            [-/\w\.\+]+:\d+:\d+: error: unknown type name
            '(?P<type>.+)'
   category: unknown_type
+
+- 
+  pattern: >- 
+           FATAL ERROR: (?P<header>[-/\w\.\+]+.h) does not exist.
+  category: configure_header_missing
+
+- 
+  pattern: >- 
+           [-/\w\.\+]+:\d+:\d+: error: #error (?P<error>.+)
+  category: preprocessor_error
+
+- 
+  pattern: >- 
+             configure: error while loading shared libraries:
+             (?P<library>[-/\w\.\+]+): invalid ELF header
+  category: configure_load_so
+
+- 
+  pattern: >- 
+           cannot execute binary file: Exec format error
+  category: exec_error
+
+- 
+  pattern: >- 
+           ld: error: (?P<error>.+)
+  category: linker_error
+
+- 
+  pattern: >- 
+           clang.*: error: argument unused during compilation: '(?P<arg>.+)'
+  category: unrecognised_flag
+
+- 
+  pattern: >- 
+             error while loading shared libraries:
+             (?P<library>[-/\w\.\+]+): invalid ELF header
+  category: load_so
+
+- 
+  pattern: >- 
+           error: unrecognized command line option '(?P<arg>)'
+  category: unrecognised_flag
+
+- 
+  pattern: >- 
+           error: unknown warning option '(?P<arg>.+?)';
+  category: unrecognised_flag
+
