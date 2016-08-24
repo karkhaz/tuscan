@@ -34,6 +34,19 @@
     {% if data["return_code"] is equalto 0 %}SUCCESSFUL.
     {% else %}NOT successful.{% endif %}</p>
     <p>
+    The program in this build is written in the following languages,
+    according to <a
+    href="http://www.dwheeler.com/sloccount/">sloccount</a>:
+    </p>
+    <table>
+      <tr><th>SLOC</th><th>Language</th></tr>
+      {% for lang, loc in data["sloc_ordered"] %}
+      <tr><td class="loc"><code>{{ loc }}</code></td>
+          <td class="lang">{{ lang }}</td></tr>{% endfor %}
+      <tr><td><code>{{ data["total_sloc"] }}</code></td>
+          <td><em>total</em></td></tr>
+    </table>
+    <p>
       The process tree of the build process is <a
       href="{{ data['tree_path']}}">here</a>.
     </p>
@@ -96,7 +109,15 @@
       {% endfor %}
     </ul>
     {% endif %}
+    {% if "last_build_log_line" in data %}
     <h2>Log</h2>
+    <p>
+    To avoid scrolling, you may jump to the <a
+    href="#{{ data["last_build_log_line" ]}}">last line</a> of the
+    invocation of <code>makepkg</code> that was used to build this
+    package.
+    </p>
+    {% endif %}
     {% for line in data["log"] %}
       <div class="block">
         <div class="{{ line["kind"] }}">
