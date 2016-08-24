@@ -30,8 +30,23 @@
     <h1>Build of httperf
         with <a href="../index.html">vanilla</a>
         toolchain</h1>
-    <p>The build took 00h 00m 47s and was
+    <p>The build took 00h 00m 58s and was
     NOT successful.</p>
+    <p>
+    The program in this build is written in the following languages,
+    according to <a
+    href="http://www.dwheeler.com/sloccount/">sloccount</a>:
+    </p>
+    <table>
+      <tr><th>SLOC</th><th>Language</th></tr>
+      
+      <tr><td class="loc"><code>8,781</code></td>
+          <td class="lang">sh</td></tr>
+      <tr><td class="loc"><code>6,692</code></td>
+          <td class="lang">ansic</td></tr>
+      <tr><td><code>15,473</code></td>
+          <td><em>total</em></td></tr>
+    </table>
     <p>
       The process tree of the build process is <a
       href="httperf-tree.html">here</a>.
@@ -41,7 +56,15 @@
     
     
     
+    
     <h2>Log</h2>
+    <p>
+    To avoid scrolling, you may jump to the <a
+    href="#389">last line</a> of the
+    invocation of <code>makepkg</code> that was used to build this
+    package.
+    </p>
+    
     
       <div class="block">
         <div class="info">
@@ -96,7 +119,7 @@
             
             <a class="navhash" href="#5">#</a>
 						
-              <code id="5">==> Making package: httperf 0.9.0-7 (Wed Aug 10 17:09:51 UTC 2016)</code><br />
+              <code id="5">==> Making package: httperf 0.9.0-7 (Mon Aug 22 22:34:47 UTC 2016)</code><br />
 						
             
             <a class="navhash" href="#6">#</a>
@@ -1721,132 +1744,132 @@
             
             <a class="navhash" href="#330">#</a>
 						
-              <code id="330">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT call.o -MD -MP -MF ".deps/call.Tpo" -c -o call.o call.c; \</code><br />
+              <code id="330">httperf.c: In function 'main':</code><br />
 						
             
             <a class="navhash" href="#331">#</a>
 						
-              <code id="331">then mv -f ".deps/call.Tpo" ".deps/call.Po"; else rm -f ".deps/call.Tpo"; exit 1; fi</code><br />
+              <code id="331">httperf.c:811:30: warning: implicit declaration of function 'SSLv3_client_method' [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#332">#</a>
 						
-              <code id="332">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT conn.o -MD -MP -MF ".deps/conn.Tpo" -c -o conn.o conn.c; \</code><br />
+              <code id="332">       ssl_ctx = SSL_CTX_new (SSLv3_client_method ());</code><br />
 						
             
             <a class="navhash" href="#333">#</a>
 						
-              <code id="333">then mv -f ".deps/conn.Tpo" ".deps/conn.Po"; else rm -f ".deps/conn.Tpo"; exit 1; fi</code><br />
+              <code id="333">                              ^~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#334">#</a>
 						
-              <code id="334">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT sess.o -MD -MP -MF ".deps/sess.Tpo" -c -o sess.o sess.c; \</code><br />
+              <code id="334">httperf.c:811:30: warning: passing argument 1 of 'SSL_CTX_new' makes pointer from integer without a cast [-Wint-conversion]</code><br />
 						
             
             <a class="navhash" href="#335">#</a>
 						
-              <code id="335">then mv -f ".deps/sess.Tpo" ".deps/sess.Po"; else rm -f ".deps/sess.Tpo"; exit 1; fi</code><br />
+              <code id="335">In file included from ./httperf.h:190:0,</code><br />
 						
             
             <a class="navhash" href="#336">#</a>
 						
-              <code id="336">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT core.o -MD -MP -MF ".deps/core.Tpo" -c -o core.o core.c; \</code><br />
+              <code id="336">                 from ./call.h:40,</code><br />
 						
             
             <a class="navhash" href="#337">#</a>
 						
-              <code id="337">then mv -f ".deps/core.Tpo" ".deps/core.Po"; else rm -f ".deps/core.Tpo"; exit 1; fi</code><br />
+              <code id="337">                 from ./core.h:39,</code><br />
 						
             
             <a class="navhash" href="#338">#</a>
 						
-              <code id="338">httperf.c: In function 'main':</code><br />
+              <code id="338">                 from httperf.c:75:</code><br />
 						
             
             <a class="navhash" href="#339">#</a>
 						
-              <code id="339">httperf.c:811:30: warning: implicit declaration of function 'SSLv3_client_method' [-Wimplicit-function-declaration]</code><br />
+              <code id="339">/usr/include/openssl/ssl.h:2131:10: note: expected 'const SSL_METHOD * {aka const struct ssl_method_st *}' but argument is of type 'int'</code><br />
 						
             
             <a class="navhash" href="#340">#</a>
 						
-              <code id="340">       ssl_ctx = SSL_CTX_new (SSLv3_client_method ());</code><br />
+              <code id="340"> SSL_CTX *SSL_CTX_new(const SSL_METHOD *meth);</code><br />
 						
             
             <a class="navhash" href="#341">#</a>
 						
-              <code id="341">                              ^~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="341">          ^~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#342">#</a>
 						
-              <code id="342">httperf.c:811:30: warning: passing argument 1 of 'SSL_CTX_new' makes pointer from integer without a cast [-Wint-conversion]</code><br />
+              <code id="342">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT call.o -MD -MP -MF ".deps/call.Tpo" -c -o call.o call.c; \</code><br />
 						
             
             <a class="navhash" href="#343">#</a>
 						
-              <code id="343">In file included from ./httperf.h:190:0,</code><br />
+              <code id="343">then mv -f ".deps/call.Tpo" ".deps/call.Po"; else rm -f ".deps/call.Tpo"; exit 1; fi</code><br />
 						
             
             <a class="navhash" href="#344">#</a>
 						
-              <code id="344">                 from ./call.h:40,</code><br />
+              <code id="344">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT conn.o -MD -MP -MF ".deps/conn.Tpo" -c -o conn.o conn.c; \</code><br />
 						
             
             <a class="navhash" href="#345">#</a>
 						
-              <code id="345">                 from ./core.h:39,</code><br />
+              <code id="345">then mv -f ".deps/conn.Tpo" ".deps/conn.Po"; else rm -f ".deps/conn.Tpo"; exit 1; fi</code><br />
 						
             
             <a class="navhash" href="#346">#</a>
 						
-              <code id="346">                 from httperf.c:75:</code><br />
+              <code id="346">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT sess.o -MD -MP -MF ".deps/sess.Tpo" -c -o sess.o sess.c; \</code><br />
 						
             
             <a class="navhash" href="#347">#</a>
 						
-              <code id="347">/usr/include/openssl/ssl.h:2131:10: note: expected 'const SSL_METHOD * {aka const struct ssl_method_st *}' but argument is of type 'int'</code><br />
+              <code id="347">then mv -f ".deps/sess.Tpo" ".deps/sess.Po"; else rm -f ".deps/sess.Tpo"; exit 1; fi</code><br />
 						
             
             <a class="navhash" href="#348">#</a>
 						
-              <code id="348"> SSL_CTX *SSL_CTX_new(const SSL_METHOD *meth);</code><br />
+              <code id="348">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT core.o -MD -MP -MF ".deps/core.Tpo" -c -o core.o core.c; \</code><br />
 						
             
             <a class="navhash" href="#349">#</a>
 						
-              <code id="349">          ^~~~~~~~~~~</code><br />
+              <code id="349">then mv -f ".deps/core.Tpo" ".deps/core.Po"; else rm -f ".deps/core.Tpo"; exit 1; fi</code><br />
 						
             
             <a class="navhash" href="#350">#</a>
 						
-              <code id="350">core.c: In function 'core_ssl_connect':</code><br />
+              <code id="350">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT event.o -MD -MP -MF ".deps/event.Tpo" -c -o event.o event.c; \</code><br />
 						
             
             <a class="navhash" href="#351">#</a>
 						
-              <code id="351">core.c:803:18: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]</code><br />
+              <code id="351">then mv -f ".deps/event.Tpo" ".deps/event.Po"; else rm -f ".deps/event.Tpo"; exit 1; fi</code><br />
 						
             
             <a class="navhash" href="#352">#</a>
 						
-              <code id="352">       ssl_cipher = SSL_get_current_cipher (s->ssl);</code><br />
+              <code id="352">core.c: In function 'core_ssl_connect':</code><br />
 						
             
             <a class="navhash" href="#353">#</a>
 						
-              <code id="353">                  ^</code><br />
+              <code id="353">core.c:803:18: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]</code><br />
 						
             
             <a class="navhash" href="#354">#</a>
 						
-              <code id="354">if cc -DHAVE_CONFIG_H -I. -I. -I..    -I. -I./gen -I./lib -I./stat -DHAVE_SSL -MT event.o -MD -MP -MF ".deps/event.Tpo" -c -o event.o event.c; \</code><br />
+              <code id="354">       ssl_cipher = SSL_get_current_cipher (s->ssl);</code><br />
 						
             
             <a class="navhash" href="#355">#</a>
 						
-              <code id="355">then mv -f ".deps/event.Tpo" ".deps/event.Po"; else rm -f ".deps/event.Tpo"; exit 1; fi</code><br />
+              <code id="355">                  ^</code><br />
 						
             
             <a class="navhash" href="#356">#</a>
@@ -2026,7 +2049,7 @@
     
       <div class="block">
         <div class="info">
-          <code>Printing config.logs</code>
+          <code>Printing config logfiles</code>
         </div>
         
       </div>
@@ -2034,7 +2057,7 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>Config logfile '/tmp/httperf/src/httperf-0.9.0/config.log'</code>
+          <code><span class="prompt">CMD: </span>config logfiles '/tmp/httperf/src/httperf-0.9.0/config.log'</code>
         </div>
         
           <div class="output">
@@ -2101,7 +2124,7 @@
             
             <a class="navhash" href="#402">#</a>
 						
-              <code id="402">hostname = 97d799296636</code><br />
+              <code id="402">hostname = b1d981e4c86e</code><br />
 						
             
             <a class="navhash" href="#403">#</a>
@@ -2111,7 +2134,7 @@
             
             <a class="navhash" href="#404">#</a>
 						
-              <code id="404">uname -r = 4.6.4-1-ARCH</code><br />
+              <code id="404">uname -r = 4.7.1-1-ARCH</code><br />
 						
             
             <a class="navhash" href="#405">#</a>
@@ -2121,7 +2144,7 @@
             
             <a class="navhash" href="#406">#</a>
 						
-              <code id="406">uname -v = #1 SMP PREEMPT Mon Jul 11 19:12:32 CEST 2016</code><br />
+              <code id="406">uname -v = #1 SMP PREEMPT Wed Aug 17 08:13:35 CEST 2016</code><br />
 						
             
             <a class="navhash" href="#407">#</a>
@@ -8316,7 +8339,7 @@
             
             <a class="navhash" href="#1645">#</a>
 						
-              <code id="1645">/tmp/ccGGpnNN.o: In function `main':</code><br />
+              <code id="1645">/tmp/cc3G8DrR.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#1646">#</a>
@@ -9701,7 +9724,7 @@
             
             <a class="navhash" href="#1922">#</a>
 						
-              <code id="1922">on 97d799296636</code><br />
+              <code id="1922">on b1d981e4c86e</code><br />
 						
             
             <a class="navhash" href="#1923">#</a>
