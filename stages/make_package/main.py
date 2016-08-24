@@ -66,15 +66,6 @@ def copy_and_build(args):
     recursive_chown(args.build_dir)
     os.chdir(args.build_dir)
 
-    proc = subprocess.Popen(["/usr/bin/sloccount", "src"],
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    out, _ = proc.communicate()
-    output = codecs.decode(out, errors="replace")
-    if proc.returncode:
-        log("die", "SLOCCount failed", output.splitlines())
-    else:
-        log_sloc(output.splitlines())
-
     # Add the --host option to invocations of ./configure
     with open("PKGBUILD", encoding="utf-8") as f:
         pkgbuild = f.read().splitlines()
@@ -127,6 +118,17 @@ def copy_and_build(args):
     output = codecs.decode(stdout_data, errors="replace")
 
     log("command", command, output.splitlines(), time)
+
+    # Measure LOC
+    loc_proc = subprocess.Popen(["/usr/bin/sloccount", "--addlang",
+        "makefile", "src"],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    out, _ = loc_proc.communicate()
+    output = codecs.decode(out, errors="replace")
+    if loc_proc.returncode:
+        log("die", "SLOCCount failed", output.splitlines())
+    else:
+        log_sloc(output.splitlines())
 
     # Pick up output left by red
     try:
