@@ -35,19 +35,25 @@ def die(status, message=None, output=[]):
     if message:
         log("die", message, output)
 
-    log("info", "Printing config.logs")
-    config_logs = []
-    for root, dirs, files in os.walk("/tmp"):
-        for f in files:
-            if f == "config.log" or f == "configure.log":
-                config_logs.append(os.path.join(root, f))
+    def print_logs(pretty_log_name, real_names):
+        logs = []
+        for root, dirs, files in os.walk("/tmp"):
+            for f in files:
+                for name in real_names:
+                    if f == name:
+                        logs.append(os.path.join(root, f))
+        if logs:
+            log("info", "Printing %s" % pretty_log_name)
+        for l in logs:
+            lines = []
+            with open(l, encoding="utf-8") as f:
+                for line in f:
+                    lines.append(line.strip())
+                log("command", "%s '%s'" % (pretty_log_name, l), lines)
 
-    for l in config_logs:
-        lines = []
-        with open(l, encoding="utf-8") as f:
-            for line in f:
-                lines.append(line.strip())
-            log("command", "Config logfile '%s'" % l, lines)
+    print_logs("config logfiles", ["config.log", "configure.log"])
+    print_logs("Cmake errors", ["CMakeError.log"])
+    print_logs("Cmake output", ["CMakeOutput.log"])
 
     if status == Status.success:
         exit(0)
@@ -158,7 +164,7 @@ def timestamp():
 
 def log(kind, string, output=[], start_time=None):
     if kind not in ["command", "info", "die", "provide_info",
-            "dep_info", "sloc_info", "native_tools", "red", "red_errors"]:
+            "dep_info", "sloc_info", "red", "red_errors"]:
         raise RuntimeError("Bad kind: %s" % kind)
 
     if not start_time:

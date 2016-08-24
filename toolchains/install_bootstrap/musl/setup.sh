@@ -23,7 +23,9 @@ set -x
 
 SRCDIR=/srcdir
 BUILDDIR=/musl_build
-PKGDIR=/toolchain_root
+PKGDIR=/sysroot
+
+mkdir -p ${PKGDIR}
 
 if [ -d "$PKGDIR/bin" ]; then
   # We've already downloaded and built a toolchain
@@ -103,13 +105,13 @@ popd
 rm -rf ${BUILDDIR}/build-binutils && mkdir -p ${BUILDDIR}/build-binutils
 pushd ${BUILDDIR}/build-binutils
 ${SRCDIR}/binutils/configure \
-  --prefix=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  --prefix=${PKGDIR} \
   --enable-deterministic-archives \
   --enable-gold \
   --enable-plugins \
   --disable-ld \
   --disable-werror \
-  --with-sysroot=${PKGDIR}/clang+llvm-x86_64-archlinux
+  --with-sysroot=${PKGDIR}
 make
 make install
 popd
@@ -123,7 +125,7 @@ rm -rf ${BUILDDIR}/build-clang+llvm-x86_64-archlinux \
 pushd ${BUILDDIR}/build-clang+llvm-x86_64-archlinux
 cmake -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  -DCMAKE_INSTALL_PREFIX=${PKGDIR} \
   -DLLVM_ENABLE_TIMESTAMPS=OFF \
   -DLLVM_ENABLE_LIBCXX=ON \
   -DLLVM_ENABLE_LIBCXXABI=ON \
@@ -132,7 +134,7 @@ cmake -GNinja \
   -DLLVM_USE_HOST_TOOLS=ON \
   -DLIBCXX_HAS_MUSL_LIBC=ON \
   -DLIBCXXABI_USE_LLVM_UNWINDER=ON \
-  -DDEFAULT_SYSROOT=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  -DDEFAULT_SYSROOT=${PKGDIR} \
   ${SRCDIR}/llvm
 ninja install
 popd
@@ -140,10 +142,10 @@ popd
 rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
 pushd ${BUILDDIR}/build-musl
 ${SRCDIR}/musl/configure \
-  CC=${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang \
+  CC=${PKGDIR}/bin/clang \
   LIBCC=-lclang_rt.builtins-x86_64 \
-  LDFLAGS=-L${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/lib/linux \
-  --prefix=${PKGDIR}/clang+llvm-x86_64-archlinux \
+  LDFLAGS=-L${PKGDIR}/lib/clang/3.8.0/lib/linux \
+  --prefix=${PKGDIR} \
   --disable-wrapper
 make install
 popd
@@ -151,14 +153,16 @@ popd
 rm -rf ${BUILDDIR}/build-crt && mkdir -p ${BUILDDIR}/build-crt
 pushd ${BUILDDIR}/build-crt
 touch crtbegin.c crtend.c
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtbegin.c -c -o crtbegin.o
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtend.c -c -o crtend.o
-install crtbegin.o crtend.o ${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/
+${PKGDIR}/bin/clang crtbegin.c -c -o crtbegin.o
+${PKGDIR}/bin/clang crtend.c -c -o crtend.o
+install crtbegin.o crtend.o ${PKGDIR}/lib/clang/3.8.0/
 touch crtbeginS.c crtendS.c
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtbeginS.c -c -o crtbeginS.o
-${PKGDIR}/clang+llvm-x86_64-archlinux/bin/clang crtendS.c -c -o crtendS.o
-install crtbeginS.o crtendS.o ${PKGDIR}/clang+llvm-x86_64-archlinux/lib/clang/3.8.0/
+${PKGDIR}/bin/clang crtbeginS.c -c -o crtbeginS.o
+${PKGDIR}/bin/clang crtendS.c -c -o crtendS.o
+install crtbeginS.o crtendS.o ${PKGDIR}/lib/clang/3.8.0/
 popd
 
 chmod -R a+r ${PKGDIR}
-chmod -R a+rx ${PKGDIR}/clang+llvm-x86_64-archlinux/bin
+chmod -R a+rx ${PKGDIR}/bin
+
+cp -r ${PKGDIR}/* /toolchain_root

@@ -19,15 +19,20 @@
 # packages.
 
 
-from utilities import log, timestamp, run_cmd
+from utilities import log, timestamp, run_cmd, recursive_chown
 
 import os
 import os.path
+import shutil
 import subprocess
 
 
 def toolchain_specific_setup(args):
     log("info", "Running android-specific setup")
+
+    if not os.path.isdir("/sysroot"):
+        os.mkdir("/sysroot")
+    recursive_chown("/sysroot")
 
     # wget and curl output unsuitable progress bars even when not
     # connected to a TTY. Turn them off.
@@ -58,21 +63,29 @@ def toolchain_specific_setup(args):
     cmd = ("/home/tuscan/android-ndk-r10e/build/tools/"
            "make-standalone-toolchain.sh"
            " --arch=arm --platform=android-21 "
-           " --install-dir=" + "/toolchain_root")
+           " --install-dir=" + "/sysroot")
     run_cmd(cmd)
 
-    cmd = "chown -R tuscan: " + "/toolchain_root"
+    cmd = "chown -R tuscan: " + "/sysroot"
     run_cmd(cmd, as_root=True)
 
     cmd = "chown -R tuscan: /home/tuscan/android-ndk-r10e"
     run_cmd(cmd, as_root=True)
 
     bindirs = [
-        "/toolchain_root/bin",
-        "/toolchain_root/libexec/gcc/arm-linux-androideabi/4.8"
+        "/sysroot/bin",
+        "/sysroot/libexec/gcc/arm-linux-androideabi/4.8"
     ]
     for d in bindirs:
         for f in os.listdir(d):
             f = os.path.join(d, f)
             cmd = "chmod a+rx %s" % f
             run_cmd(cmd, as_root=True)
+
+    for f in os.listdir("/sysroot"):
+        if os.path.isdir(os.path.join("/sysroot", f)):
+            shutil.copytree(os.path.join("/sysroot", f),
+                            os.path.join("/toolchain_root", f))
+        elif os.path.isfile(os.path.join("/sysroot", f)):
+            shutil.copy(os.path.join("/sysroot", f), "/toolchain_root")
+    recursive_chown("/toolchain_root")

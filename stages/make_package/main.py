@@ -338,17 +338,38 @@ def main():
     set_local_repository_location(args.toolchain_directory,
             toolchain_repo_name())
 
-    os.makedirs("/sysroot")
+    if not os.path.isdir("/sysroot"):
+        os.makedirs("/sysroot")
+
+    copied_files = []
+    existing_files = []
+
     for d in os.listdir("/toolchain_root"):
         base = os.path.basename(d)
         src = os.path.join("/toolchain_root", d)
         dst = os.path.join("/sysroot", base)
+
+        # This can happen if we built the toolchain for the first time
+        # on this run. If we're using a pre-built toolchain, the file
+        # won't exist.
+        if os.path.lexists(dst):
+            existing_files.append(dst)
+            continue
+
         if os.path.isfile(src):
-            log("info", "Copying file '%s' to '%s'" % (src, dst))
+            copied_files.append((src, dst))
             shutil.copyfile(src, dst)
         elif os.path.isdir(src):
-            log("info", "Copying directory '%s' to '%s'" % (src, dst))
+            copied_files.append((src, dst))
             shutil.copytree(src, dst)
+
+    copied_files = ["%s  -->  %s" % (src, dst) for (src, dst) in copied_files]
+    if copied_files:
+        log("info", "Copied permanent toolchain into container-local sysroot",
+                    output=copied_files)
+    if existing_files:
+        log("info", "There were existing files in /sysroot, using those",
+                    output=existing_files)
 
     recursive_chown("/sysroot")
 

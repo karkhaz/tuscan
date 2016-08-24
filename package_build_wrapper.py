@@ -122,9 +122,6 @@ def run_container(args):
                 # This will be an "exec" or "exit" record from libred.
                 json_result["red_output"] = obj["body"]
 
-            elif obj["kind"] == "native_tools":
-                json_result["native_tools"] = obj["body"]
-
             elif obj["kind"] == "red_errors":
                 json_result["red_errors"] = obj["body"]
 
@@ -153,9 +150,6 @@ def run_container(args):
 
     if not "red_output" in json_result:
         json_result["red_output"] = []
-
-    if not "native_tools" in json_result:
-        json_result["native_tools"] = {}
 
     for touch_file in args.output_packages:
         with open(touch_file, "w") as f:
