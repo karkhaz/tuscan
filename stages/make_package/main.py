@@ -67,7 +67,7 @@ def copy_and_build(args):
     os.chdir(args.build_dir)
 
     # Add the --host option to invocations of ./configure
-    with open("PKGBUILD", encoding="utf-8") as f:
+    with open("PKGBUILD", encoding="utf-8", errors="ignore") as f:
         pkgbuild = f.read().splitlines()
 
     if args.toolchain == "android":
