@@ -94,9 +94,19 @@ def main():
     defines = []
 
     for tool, replacement in transforms["replacements"].items():
+        # The tool & replacement will be written just like the name of
+        # the tool binary, e.g. "scan-view", "clang++", etc. These are
+        # not valid identifiers (because they contain - or +), so the
+        # libred cmake define variable will write them as SCAN_VIEW and
+        # CLANGPP. Do that transformation here, but leave the name of
+        # the original tool intact.
+        var_name = re.sub("-", "_", replacement)
+        var_name = re.sub("\+\+", "pp", var_name)
+        var_name = var_name.upper()
+
         path = os.path.join(transforms["bin-dir"],
                             "%s%s" % (transforms["prefix"], replacement))
-        defines.append('-DRED_%s="%s"' % (tool.upper(), path))
+        defines.append('-DRED_%s="%s"' % (var_name, path))
 
     if transforms["bin-dir"]:
         defines.append('-DRED_ENSURE_PATH="%s"' % transforms["bin-dir"])
