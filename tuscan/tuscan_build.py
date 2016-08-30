@@ -156,7 +156,7 @@ class DataContainers(object):
         self.inputs = inputs
 
         try:
-            with open("data_containers.yaml") as f:
+            with open("tuscan/data_containers.yaml") as f:
                 containers = yaml.load(f)
         except:
             sys.stderr.write("ERROR: could not find data exp description"
@@ -566,7 +566,7 @@ def prerequisite_touch_files(ninja, args):
     command = ("docker pull rafaelsoares/archlinux:latest {devnull}"
                " && mkdir -p {markers_dir}"
                " && mkdir -p sysroots/{toolchain}"
-               " && cp package_build_wrapper.py container_build_dir"
+               " && cp tuscan/package_build_wrapper.py container_build_dir"
                " && ln -fns {touch_dir} {latest_dir}").format(
                 devnull=devnull,
                 markers_dir=os.path.join(args.touch_dir, "container_markers"),
