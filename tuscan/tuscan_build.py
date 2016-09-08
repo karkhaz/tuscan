@@ -134,7 +134,10 @@ def run_ninja(args, ninja_file):
     cmd = ["ninja", "-f", ninja_file]
     if args.verbose:
         cmd.append("-v")
-    cmd.append("build")
+    if args.top_level:
+        cmd.append(args.top_level)
+    else:
+        cmd.append("build")
 
     rc = subprocess.call(cmd)
     exit(rc)
@@ -589,6 +592,8 @@ def do_build(args):
 
     if args.run == None:
         args.run = True
+    if args.build == None:
+        args.build = True
 
     timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     args.touch_dir = os.path.join("output/results", args.toolchain, timestamp, "")
@@ -598,4 +603,5 @@ def do_build(args):
         ninja = ninja_syntax.Writer(f, 72)
         create_build_file(args, ninja)
 
-    run_ninja(args, ninja_file)
+    if args.build:
+        run_ninja(args, ninja_file)

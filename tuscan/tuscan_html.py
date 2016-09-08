@@ -604,6 +604,7 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
     except Exception as e:
         # Running in a separate process suppresses stack trace dump by
         # default, so do it manually
+        sys.stderr.write("Exception when processing '%s'\n" % json_path)
         traceback.print_exc(file=sys.stderr)
         raise e
 
@@ -718,6 +719,10 @@ def do_html(args):
             exit(0)
         except multiprocessing.TimeoutError:
             sys.stderr.write("Timed out (over %d seconds)\n" % args.timeout)
+            pool.terminate()
+            pool.join()
+            exit(1)
+        except Exception:
             pool.terminate()
             pool.join()
             exit(1)

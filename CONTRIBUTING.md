@@ -39,7 +39,7 @@ This directory contains files that will be accessible to the
 
   - Packages in the bootstrap set will already have been installed. You
     can also install any additional packages that you need by running
-    `pacman -S` as usual.
+    `pacman -S --noconfirm` as usual.
 
   Things that are expected to be true after `toolchain_specific_setup`
   returns:
