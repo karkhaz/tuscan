@@ -132,7 +132,7 @@ ${SRCDIR}/musl/configure \
   LIBCC=-lclang_rt.builtins-x86_64 \
   LDFLAGS=-L${BUILDDIR}/clang+llvm-x86_64-bootstrap/lib/clang/${REL_NUM}/lib/linux \
   --disable-wrapper \
-  --prefix=${PKGDIR}
+  --prefix=""
 DESTDIR=${PKGDIR} make install
 popd
 
@@ -151,16 +151,27 @@ cmake -GNinja \
   -DCMAKE_C_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
   -DCMAKE_CXX_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
   -DCMAKE_INSTALL_PREFIX="" \
-  -DLLVM_ENABLE_LIBCXX=ON \
-  -DLLVM_ENABLE_TIMESTAMPS=OFF \
   -DLLVM_BINUTILS_INCDIR=/binutils/include \
   -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON \
-  -DLIBCXX_HAS_MUSL_LIBC=ON \
   -DLIBCXXABI_USE_LLVM_UNWINDER=ON \
   -DDEFAULT_SYSROOT=${PKGDIR} \
   ${SRCDIR}/llvm
 DESTDIR=${PKGDIR} ninja install
 popd
+
+echo Building Musl stage 2
+
+rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
+pushd ${BUILDDIR}/build-musl
+${SRCDIR}/musl/configure \
+  CC=${PKGDIR}/bin/clang \
+  LIBCC=-lclang_rt.builtins-x86_64 \
+  LDFLAGS=-L${PKGDIR}/lib/clang/${REL_NUM}/lib/linux \
+  --disable-wrapper \
+  --prefix=""
+DESTDIR=${PKGDIR} make install
+popd
+
 
 rm -rf ${BUILDDIR}/build-crt && mkdir -p ${BUILDDIR}/build-crt
 pushd ${BUILDDIR}/build-crt
