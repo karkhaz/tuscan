@@ -46,7 +46,7 @@ URL=https://codeload.github.com/llvm-mirror
 # tree
 REL=release_39
 # Alternative-format release number
-REL_NUM=3.9.0
+REL_NUM=3.9.1
 
 pushd /tmp
 curl $CURL_FLAGS "${URL}/llvm/zip/${REL}" \
@@ -88,7 +88,7 @@ EOF
 popd
 
 
-echo Building Stage 1 clang
+echo Tuscan: Building Stage 1 clang
 
 rm -rf ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap \
   && mkdir -p ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap
@@ -102,7 +102,7 @@ ninja install
 popd
 
 
-echo Building Binutils
+echo Tuscan: Building Binutils
 
 rm -rf ${BUILDDIR}/build-binutils && mkdir -p ${BUILDDIR}/build-binutils
 pushd ${BUILDDIR}/build-binutils
@@ -123,7 +123,7 @@ DESTDIR=${PKGDIR} make install
 popd
 
 
-echo Building Musl
+echo Tuscan: Building Musl
 
 rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
 pushd ${BUILDDIR}/build-musl
@@ -137,7 +137,7 @@ DESTDIR=${PKGDIR} make install
 popd
 
 
-echo Building Stage 2 Clang
+echo Tuscan: Building Stage 2 Clang
 
 #pushd ${PKGDIR}
 #rm -rf include lib share x86_64-pc-linux-gnu
@@ -159,7 +159,7 @@ cmake -GNinja \
 DESTDIR=${PKGDIR} ninja install
 popd
 
-echo Building Musl stage 2
+echo Tuscan: Building Musl stage 2
 
 rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
 pushd ${BUILDDIR}/build-musl
