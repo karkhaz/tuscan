@@ -27,59 +27,77 @@ PKGDIR=/sysroot
 
 mkdir -p ${PKGDIR}
 
-if [ -d "${PKGDIR}/bin" ]; then
+if [ -d "$PKGDIR/bin" ]; then
   # We've already downloaded and built a toolchain
   exit 0
 fi
 
-CURL_FLAGS="-s -S --connect-timeout 270"
+CURL_FLAGS="-L -s -S --connect-timeout 270"
+
 
 # Binutils
+
 mkdir -p ${SRCDIR}/binutils
 curl $CURL_FLAGS http://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.bz2 \
   | tar xj -C ${SRCDIR}/binutils --strip-components=1
 
-# LLVM stuff
+
+# Compiler
 
 URL=https://codeload.github.com/llvm-mirror
 # Format: 'release_%d%d' for particular release or 'master' for tip of
 # tree
-REL=release_39
+REL=release_38
 # Alternative-format release number
-REL_NUM=3.9.1
+REL_NUM=3.8.1
 
 pushd /tmp
-curl $CURL_FLAGS "${URL}/llvm/zip/${REL}" \
-               > "llvm-${REL}.zip"
+curl $CURL_FLAGS "${URL}/llvm/zip/${REL}" > "llvm-${REL}.zip"
 unzip "llvm-${REL}.zip"
 mv "llvm-${REL}" "${SRCDIR}/llvm"
+
 mkdir -p ${SRCDIR}/llvm/{tools,projects}
 
-curl $CURL_FLAGS "${URL}/clang/zip/${REL}" \
-               > "clang-${REL}.zip"
+curl $CURL_FLAGS "${URL}/clang/zip/${REL}" > "clang-${REL}.zip"
 unzip "clang-${REL}.zip"
 mv "clang-${REL}" "${SRCDIR}/llvm/tools/clang"
 
 for tool in compiler-rt libcxx libcxxabi libunwind; do
-  curl $CURL_FLAGS "${URL}/$tool/zip/${REL}" \
-                 > "$tool-${REL}.zip"
+  curl $CURL_FLAGS "${URL}/$tool/zip/${REL}" > "$tool-${REL}.zip"
   unzip "$tool-${REL}.zip"
   mv "$tool-${REL}" "${SRCDIR}/llvm/projects/$tool"
 done
 popd
 
-# Standard C library
-mkdir -p ${SRCDIR}/musl
-curl $CURL_FLAGS http://www.musl-libc.org/releases/musl-1.1.14.tar.gz \
-  | tar xz -C ${SRCDIR}/musl --strip-components=1
-
 pushd ${SRCDIR}/llvm/tools/clang
 patch -p1 <<EOF
+diff --git a/include/clang/Driver/ToolChain.h b/include/clang/Driver/ToolChain.h
+index 7e68d0a..424d9cc 100644
+--- a/include/clang/Driver/ToolChain.h
++++ b/include/clang/Driver/ToolChain.h
+@@ -258,0 +259,4 @@ public:
++  virtual CXXStdlibType GetDefaultCXXStdlibType() const {
++    return ToolChain::CST_Libcxx;
++  }
++
+diff --git a/lib/Driver/ToolChain.cpp b/lib/Driver/ToolChain.cpp
+index cbbd485..af5332a 100644
+--- a/lib/Driver/ToolChain.cpp
++++ b/lib/Driver/ToolChain.cpp
+@@ -547 +547 @@ ToolChain::CXXStdlibType ToolChain::GetCXXStdlibType(const ArgList &Args) const{
+-  return ToolChain::CST_Libstdcxx;
++  return GetDefaultCXXStdlibType();
+@@ -610,0 +611,2 @@ void ToolChain::AddCXXStdlibLibArgs(const ArgList &Args,
++    CmdArgs.push_back("-lc++abi");
++    CmdArgs.push_back("-lunwind");
 diff --git a/lib/Driver/ToolChains.h b/lib/Driver/ToolChains.h
 index f940e58..fd4b23e 100644
 --- a/lib/Driver/ToolChains.h
 +++ b/lib/Driver/ToolChains.h
-@@ -803,0 +804,4 @@ public:
+@@ -803,0 +804,7 @@ public:
++  CXXStdlibType GetDefaultCXXStdlibType() const override {
++    return ToolChain::CST_Libcxx;
++  }
 +  RuntimeLibType GetDefaultRuntimeLibType() const override {
 +    return ToolChain::RLT_CompilerRT;
 +  }
@@ -88,78 +106,55 @@ EOF
 popd
 
 
-echo Tuscan: Building Stage 1 clang
+# Standard C library
 
-rm -rf ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap \
-  && mkdir -p ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap
-pushd ${BUILDDIR}/build-clang+llvm-x86_64-bootstrap
-cmake -GNinja \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX=${BUILDDIR}/clang+llvm-x86_64-bootstrap \
-  -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON \
-  ${SRCDIR}/llvm
-ninja install
-popd
+mkdir -p ${SRCDIR}/musl
+curl $CURL_FLAGS http://www.musl-libc.org/releases/musl-1.1.14.tar.gz \
+  | tar xz -C ${SRCDIR}/musl --strip-components=1
 
 
-echo Tuscan: Building Binutils
+echo tuscan: Building binutils
 
 rm -rf ${BUILDDIR}/build-binutils && mkdir -p ${BUILDDIR}/build-binutils
 pushd ${BUILDDIR}/build-binutils
 ${SRCDIR}/binutils/configure \
-  CC=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
-  CXX=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
-  CXXFLAGS='-stdlib=libc++ -I${BUILDDIR}/clang+llvm-x86_64-bootstrap/include/c++/v1' \
-  LDFLAGS='-L${BUILDDIR}/clang+llvm-x86_64-bootstrap/lib -Wl,-rpath,'"'"'$\\$$\$$\\$$\$$ORIGIN/../lib'"'"' -Wl,-z,origin' \
-  --prefix="" \
+  --prefix=${PKGDIR} \
   --enable-deterministic-archives \
   --enable-gold \
   --enable-plugins \
   --disable-ld \
   --disable-werror \
-  --with-sysroot=${PKGDIR}/
+  --with-sysroot=${PKGDIR}
 make
-DESTDIR=${PKGDIR} make install
+make install
 popd
 
-
-echo Tuscan: Building Musl
-
-rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
-pushd ${BUILDDIR}/build-musl
-${SRCDIR}/musl/configure \
-  CC=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
-  LIBCC=-lclang_rt.builtins-x86_64 \
-  LDFLAGS=-L${BUILDDIR}/clang+llvm-x86_64-bootstrap/lib/clang/${REL_NUM}/lib/linux \
-  --disable-wrapper \
-  --prefix=""
-DESTDIR=${PKGDIR} make install
+pushd ${PKGDIR}
+rm -rf include lib share x86_64-pc-linux-gnu
 popd
 
-
-echo Tuscan: Building Stage 2 Clang
-
-#pushd ${PKGDIR}
-#rm -rf include lib share x86_64-pc-linux-gnu
-#popd
+echo tuscan: Building compiler
 
 rm -rf ${BUILDDIR}/build-clang+llvm-x86_64-archlinux \
   && mkdir -p ${BUILDDIR}/build-clang+llvm-x86_64-archlinux
 pushd ${BUILDDIR}/build-clang+llvm-x86_64-archlinux
 cmake -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_C_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang \
-  -DCMAKE_CXX_COMPILER=${BUILDDIR}/clang+llvm-x86_64-bootstrap/bin/clang++ \
-  -DCMAKE_INSTALL_PREFIX="" \
+  -DCMAKE_INSTALL_PREFIX=${PKGDIR} \
+  -DLLVM_ENABLE_TIMESTAMPS=OFF \
+  -DLLVM_ENABLE_LIBCXX=ON \
+  -DLLVM_ENABLE_LIBCXXABI=ON \
   -DLLVM_BINUTILS_INCDIR=/binutils/include \
   -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON \
+  -DLLVM_USE_HOST_TOOLS=ON \
+  -DLIBCXX_HAS_MUSL_LIBC=ON \
   -DLIBCXXABI_USE_LLVM_UNWINDER=ON \
   -DDEFAULT_SYSROOT=${PKGDIR} \
   ${SRCDIR}/llvm
-DESTDIR=${PKGDIR} ninja install
+ninja install
 popd
 
-echo Tuscan: Building Musl stage 2
+echo tuscan: Building standard C library
 
 rm -rf ${BUILDDIR}/build-musl && mkdir -p ${BUILDDIR}/build-musl
 pushd ${BUILDDIR}/build-musl
@@ -167,11 +162,12 @@ ${SRCDIR}/musl/configure \
   CC=${PKGDIR}/bin/clang \
   LIBCC=-lclang_rt.builtins-x86_64 \
   LDFLAGS=-L${PKGDIR}/lib/clang/${REL_NUM}/lib/linux \
-  --disable-wrapper \
-  --prefix=""
-DESTDIR=${PKGDIR} make install
+  --prefix=${PKGDIR} \
+  --disable-wrapper
+make install
 popd
 
+echo tuscan: Building crt
 
 rm -rf ${BUILDDIR}/build-crt && mkdir -p ${BUILDDIR}/build-crt
 pushd ${BUILDDIR}/build-crt
@@ -189,3 +185,8 @@ chmod -R a+r ${PKGDIR}
 chmod -R a+rx ${PKGDIR}/bin
 
 cp -r ${PKGDIR}/* /toolchain_root
+
+echo "/sysroot/lib"                     >  /etc/ld.so.conf
+echo "include /etc/ld.so.conf.d/*.conf" >> /etc/ld.so.conf
+
+echo tuscan: Finished toolchain setup
