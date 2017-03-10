@@ -1,0 +1,564 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree android/rubiks</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="rubiks.html">rubiks</a>&quot;
+    on toolchain &quot;android&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T gcc-libs</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="bad-return">2</span>&nbsp;<code>make PREFIX=/tmp/rubiks/pkg/rubiks/usr install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c for dir in dietz/cu2 dietz/mcube dietz/solver dik reid; do \
+	(cd ${dir} && make all)\
+done</code>
+                    <ul class="level-10">
+                      <li><span class="bad-return">2</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -O2 -c cu2.cpp</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -D_GNU_SOURCE cu2.cpp -quiet -dumpbase cu2.cpp -mtune=generic -march=x86-64 -auxbase cu2 -O2 -o /tmp/cceDXqYg.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o cu2.o /tmp/cceDXqYg.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -O2 -c main.cpp</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -D_GNU_SOURCE main.cpp -quiet -dumpbase main.cpp -mtune=generic -march=x86-64 -auxbase main -O2 -o /tmp/ccDAREvq.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o main.o /tmp/ccDAREvq.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -o cu2 cu2.o main.o</code>
+                            <ul class="level-14">
+                              <li><span class="bad-return">1</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccc002QO.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cu2 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. cu2.o main.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccc002QO.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cu2 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. cu2.o main.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="bad-return">2</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -O2 -c mcube.cpp</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -D_GNU_SOURCE mcube.cpp -quiet -dumpbase mcube.cpp -mtune=generic -march=x86-64 -auxbase mcube -O2 -o /tmp/ccs7i0cO.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o mcube.o /tmp/ccs7i0cO.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -O2 -c main.cpp</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -D_GNU_SOURCE main.cpp -quiet -dumpbase main.cpp -mtune=generic -march=x86-64 -auxbase main -O2 -o /tmp/cc9OSoSg.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o main.o /tmp/cc9OSoSg.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -o mcube mcube.o main.o</code>
+                            <ul class="level-14">
+                              <li><span class="bad-return">1</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqWT01B.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o mcube /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. mcube.o main.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqWT01B.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o mcube /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. mcube.o main.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="bad-return">2</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -O2 -c cubex.cpp</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -D_GNU_SOURCE cubex.cpp -quiet -dumpbase cubex.cpp -mtune=generic -march=x86-64 -auxbase cubex -O2 -o /tmp/ccIdBb0D.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o cubex.o /tmp/ccIdBb0D.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -O2 -c main.cpp</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1plus -quiet -D_GNU_SOURCE main.cpp -quiet -dumpbase main.cpp -mtune=generic -march=x86-64 -auxbase main -O2 -o /tmp/cciDVNXa.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>as --64 -o main.o /tmp/cciDVNXa.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>g++ -o cubex cubex.o main.o</code>
+                            <ul class="level-14">
+                              <li><span class="bad-return">1</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbur0TD.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cubex /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. cubex.o main.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                  <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbur0TD.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cubex /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. cubex.o main.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o cube.o cube.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE cube.c -mbionic -fpic -quiet -dumpbase cube.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip cube.o -O -o /tmp/ccMWGzfh.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o cube.o /tmp/ccMWGzfh.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o phase1.o phase1.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE phase1.c -mbionic -fpic -quiet -dumpbase phase1.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip phase1.o -O -o /tmp/ccAHc4Vj.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o phase1.o /tmp/ccAHc4Vj.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o phase2.o phase2.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE phase2.c -mbionic -fpic -quiet -dumpbase phase2.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip phase2.o -O -o /tmp/cczy3kYt.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o phase2.o /tmp/cczy3kYt.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o setcube.o setcube.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE setcube.c -mbionic -fpic -quiet -dumpbase setcube.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip setcube.o -O -o /tmp/ccssMGhI.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o setcube.o /tmp/ccssMGhI.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o permcube.o permcube.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE permcube.c -mbionic -fpic -quiet -dumpbase permcube.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip permcube.o -O -o /tmp/ccPxmyBL.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o permcube.o /tmp/ccPxmyBL.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o prntsol.o prntsol.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE prntsol.c -mbionic -fpic -quiet -dumpbase prntsol.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip prntsol.o -O -o /tmp/ccQ1zhFN.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o prntsol.o /tmp/ccQ1zhFN.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o globals.o globals.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE globals.c -mbionic -fpic -quiet -dumpbase globals.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip globals.o -O -o /tmp/ccTy5IfP.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o globals.o /tmp/ccTy5IfP.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o dikcube cube.o phase1.o phase2.o setcube.o permcube.o prntsol.o globals.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o dikcube /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib cube.o phase1.o phase2.o setcube.o permcube.o prntsol.o globals.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o dikcube /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib cube.o phase1.o phase2.o setcube.o permcube.o prntsol.o globals.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size dikcube</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o size222.o size222.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE size222.c -mbionic -fpic -quiet -dumpbase size222.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip size222.o -O -o /tmp/ccxtlTPa.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o size222.o /tmp/ccxtlTPa.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o size222 size222.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o size222 /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib size222.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o size222 /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib size222.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size size222</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -DCTWIST -c size333c.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE -D CTWIST size333c.c -mbionic -fpic -quiet -dumpbase size333c.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase size333c -O -o /tmp/ccyMmSbr.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o size333c.o /tmp/ccyMmSbr.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o size333c size333c.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o size333c /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib size333c.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o size333c /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib size333c.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size size333c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o sizesquare.o sizesquare.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE sizesquare.c -mbionic -fpic -quiet -dumpbase sizesquare.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip sizesquare.o -O -o /tmp/ccDL1iBI.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o sizesquare.o /tmp/ccDL1iBI.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o sizesquare sizesquare.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizesquare /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizesquare.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizesquare /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizesquare.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size sizesquare</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -DCCPERM -DIPERM -c sizedom.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE -D CCPERM -D IPERM sizedom.c -mbionic -fpic -quiet -dumpbase sizedom.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase sizedom -O -o /tmp/cckgMNYN.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o sizedom.o /tmp/cckgMNYN.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o sizedom sizedom.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizedom /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizedom.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizedom /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizedom.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size sizedom</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -c -o sizekoc1.o sizekoc1.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE sizekoc1.c -mbionic -fpic -quiet -dumpbase sizekoc1.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase-strip sizekoc1.o -O -o /tmp/ccEDndMA.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o sizekoc1.o /tmp/ccEDndMA.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o sizekoc1 sizekoc1.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizekoc1 /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizekoc1.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizekoc1 /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizekoc1.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size sizekoc1</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -DCCPERM -DIPERM -c sizekoc2.c</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot -D LARGE_MEM -D VERBOSE -D CCPERM -D IPERM sizekoc2.c -mbionic -fpic -quiet -dumpbase sizekoc2.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase sizekoc2 -O -o /tmp/cclnifie.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o sizekoc2.o /tmp/cclnifie.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O -DLARGE_MEM -DVERBOSE -o sizekoc2 sizekoc2.o</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizekoc2 /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizekoc2.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o sizekoc2 /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib sizekoc2.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>size sizekoc2</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O2 -g optimal.c -o optimal</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot optimal.c -mbionic -fpic -quiet -dumpbase optimal.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase optimal -g -O2 -o /tmp/ccrTOKEp.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o /tmp/ccbaPvts.o /tmp/ccrTOKEp.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o optimal /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib /tmp/ccbaPvts.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o optimal /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib /tmp/ccbaPvts.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>arm-linux-androideabi-gcc -O2 -g twist.c -o twist</code>
+                            <ul class="level-14">
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/cc1 -quiet -iprefix /sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /sysroot/bin/../sysroot twist.c -mbionic -fpic -quiet -dumpbase twist.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase twist -g -O2 -o /tmp/ccrgm9Nw.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/as -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o /tmp/ccwcMefZ.o /tmp/ccrgm9Nw.s</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/../libexec/gcc/arm-linux-androideabi/4.8/collect2 --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o twist /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib /tmp/ccwcMefZ.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/bin/ld --sysroot=/sysroot/bin/../sysroot --eh-frame-hdr -dynamic-linker /system/bin/linker -X -m armelf_linux_eabi -z noexecstack -z relro -z now -o twist /sysroot/bin/../sysroot/usr/lib/crtbegin_dynamic.o -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8 -L/sysroot/bin/../lib/gcc -L/sysroot/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib -L/sysroot/bin/../sysroot/usr/lib /tmp/ccwcMefZ.o -lgcc -lc -ldl -lgcc /sysroot/bin/../sysroot/usr/lib/crtend_android.o</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install reid/optimal /tmp/rubiks/pkg/rubiks/usr/bin</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install dietz/solver/cubex /tmp/rubiks/pkg/rubiks/usr/bin</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

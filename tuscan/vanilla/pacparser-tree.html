@@ -1,0 +1,1848 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/pacparser</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="pacparser.html">pacparser</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>make all pymod -C src</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>tar xzvf spidermonkey/js-1.7.0.tar.gz -C spidermonkey</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>gzip -d</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd spidermonkey && SMCFLAGS="-fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy" make jsapi</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>make jsapi</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/ | sed s,GNU.*,Linux,</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make -C js/src -f Makefile.ref libjs.a</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/ | sed s,GNU.*,Linux,</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jscpucfg.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jscpucfg.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jscpucfg.c -quiet -dumpbase jscpucfg.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jscpucfg.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc7FwaoX.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jscpucfg.o /tmp/cc7FwaoX.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jscpucfg Linux_All_DBG.OBJ/jscpucfg.o</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBAkvVY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jscpucfg /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. Linux_All_DBG.OBJ/jscpucfg.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBAkvVY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jscpucfg /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. Linux_All_DBG.OBJ/jscpucfg.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c Linux_All_DBG.OBJ/jscpucfg > Linux_All_DBG.OBJ/jsautocfg.h</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>Linux_All_DBG.OBJ/jscpucfg</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsapi.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsapi.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsapi.c -quiet -dumpbase jsapi.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsapi.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccmrqnn3.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsapi.o /tmp/ccmrqnn3.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsarena.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsarena.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsarena.c -quiet -dumpbase jsarena.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsarena.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccTqMdkG.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsarena.o /tmp/ccTqMdkG.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsarray.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsarray.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsarray.c -quiet -dumpbase jsarray.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsarray.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccVonfzK.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsarray.o /tmp/ccVonfzK.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsatom.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsatom.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsatom.c -quiet -dumpbase jsatom.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsatom.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccgSnfYT.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsatom.o /tmp/ccgSnfYT.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsbool.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsbool.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsbool.c -quiet -dumpbase jsbool.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsbool.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccrzBUS2.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsbool.o /tmp/ccrzBUS2.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jscntxt.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jscntxt.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jscntxt.c -quiet -dumpbase jscntxt.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jscntxt.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccnUBru1.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jscntxt.o /tmp/ccnUBru1.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdate.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdate.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdate.c -quiet -dumpbase jsdate.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdate.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccJlg9G9.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdate.o /tmp/ccJlg9G9.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdbgapi.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdbgapi.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdbgapi.c -quiet -dumpbase jsdbgapi.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdbgapi.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccv0uO3t.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdbgapi.o /tmp/ccv0uO3t.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdhash.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdhash.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdhash.c -quiet -dumpbase jsdhash.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdhash.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccbzS8gE.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdhash.o /tmp/ccbzS8gE.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdtoa.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdtoa.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdtoa.c -quiet -dumpbase jsdtoa.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdtoa.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccrsccDl.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdtoa.o /tmp/ccrsccDl.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsemit.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsemit.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsemit.c -quiet -dumpbase jsemit.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsemit.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc7iN5BA.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsemit.o /tmp/cc7iN5BA.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsexn.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsexn.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsexn.c -quiet -dumpbase jsexn.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsexn.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccLXKR54.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsexn.o /tmp/ccLXKR54.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsfun.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsfun.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsfun.c -quiet -dumpbase jsfun.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsfun.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccMObaj7.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsfun.o /tmp/ccMObaj7.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsgc.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsgc.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsgc.c -quiet -dumpbase jsgc.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsgc.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccQTwTSl.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsgc.o /tmp/ccQTwTSl.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jshash.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jshash.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jshash.c -quiet -dumpbase jshash.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jshash.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccLKafSu.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jshash.o /tmp/ccLKafSu.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsinterp.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsinterp.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsinterp.c -quiet -dumpbase jsinterp.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsinterp.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccBTrFZx.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsinterp.o /tmp/ccBTrFZx.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsiter.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsiter.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsiter.c -quiet -dumpbase jsiter.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsiter.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccLRMpM7.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsiter.o /tmp/ccLRMpM7.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jslock.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jslock.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jslock.c -quiet -dumpbase jslock.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jslock.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc34KQvi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jslock.o /tmp/cc34KQvi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jslog2.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jslog2.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jslog2.c -quiet -dumpbase jslog2.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jslog2.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccX2Dbqn.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jslog2.o /tmp/ccX2Dbqn.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jslong.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jslong.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jslong.c -quiet -dumpbase jslong.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jslong.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc32S5Rp.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jslong.o /tmp/cc32S5Rp.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsmath.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsmath.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsmath.c -quiet -dumpbase jsmath.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsmath.o -g -Wall -Wformat=0 -fPIC -o /tmp/cczftcqs.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsmath.o /tmp/cczftcqs.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsnum.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsnum.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsnum.c -quiet -dumpbase jsnum.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsnum.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccyqHCrw.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsnum.o /tmp/ccyqHCrw.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsobj.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsobj.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsobj.c -quiet -dumpbase jsobj.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsobj.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccQBvw9o.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsobj.o /tmp/ccQBvw9o.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsopcode.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsopcode.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsopcode.c -quiet -dumpbase jsopcode.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsopcode.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccCnhndR.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsopcode.o /tmp/ccCnhndR.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsparse.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsparse.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsparse.c -quiet -dumpbase jsparse.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsparse.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccVILwOi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsparse.o /tmp/ccVILwOi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsprf.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsprf.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsprf.c -quiet -dumpbase jsprf.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsprf.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccix6SAw.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsprf.o /tmp/ccix6SAw.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsregexp.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsregexp.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsregexp.c -quiet -dumpbase jsregexp.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsregexp.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc5jnglH.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsregexp.o /tmp/cc5jnglH.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jskwgen.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jskwgen.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jskwgen.c -quiet -dumpbase jskwgen.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jskwgen.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc291fl8.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jskwgen.o /tmp/cc291fl8.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsscope.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsscope.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsscope.c -quiet -dumpbase jsscope.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsscope.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccfFCEfd.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsscope.o /tmp/ccfFCEfd.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsscript.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsscript.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsscript.c -quiet -dumpbase jsscript.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsscript.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccehUcyn.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsscript.o /tmp/ccehUcyn.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsstr.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsstr.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsstr.c -quiet -dumpbase jsstr.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsstr.o -g -Wall -Wformat=0 -fPIC -o /tmp/cccbV6Gg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsstr.o /tmp/cccbV6Gg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsutil.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsutil.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsutil.c -quiet -dumpbase jsutil.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsutil.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccBde4wK.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsutil.o /tmp/ccBde4wK.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsxdrapi.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsxdrapi.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsxdrapi.c -quiet -dumpbase jsxdrapi.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsxdrapi.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccjyWWgN.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsxdrapi.o /tmp/ccjyWWgN.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsxml.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsxml.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsxml.c -quiet -dumpbase jsxml.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsxml.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccHDDraZ.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsxml.o /tmp/ccHDDraZ.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/prmjtime.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ prmjtime.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE prmjtime.c -quiet -dumpbase prmjtime.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/prmjtime.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccnNYxmL.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/prmjtime.o /tmp/ccnNYxmL.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jskwgen -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ -lm Linux_All_DBG.OBJ/jskwgen.o</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccyWBTXE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jskwgen /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -lm Linux_All_DBG.OBJ/jskwgen.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccyWBTXE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jskwgen /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -lm Linux_All_DBG.OBJ/jskwgen.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>Linux_All_DBG.OBJ/jskwgen Linux_All_DBG.OBJ/jsautokw.h</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsscan.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsscan.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsscan.c -quiet -dumpbase jsscan.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsscan.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccfAupMP.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsscan.o /tmp/ccfAupMP.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ar rv Linux_All_DBG.OBJ/libjs.a Linux_All_DBG.OBJ/jsapi.o Linux_All_DBG.OBJ/jsarena.o Linux_All_DBG.OBJ/jsarray.o Linux_All_DBG.OBJ/jsatom.o Linux_All_DBG.OBJ/jsbool.o Linux_All_DBG.OBJ/jscntxt.o Linux_All_DBG.OBJ/jsdate.o Linux_All_DBG.OBJ/jsdbgapi.o Linux_All_DBG.OBJ/jsdhash.o Linux_All_DBG.OBJ/jsdtoa.o Linux_All_DBG.OBJ/jsemit.o Linux_All_DBG.OBJ/jsexn.o Linux_All_DBG.OBJ/jsfun.o Linux_All_DBG.OBJ/jsgc.o Linux_All_DBG.OBJ/jshash.o Linux_All_DBG.OBJ/jsinterp.o Linux_All_DBG.OBJ/jsiter.o Linux_All_DBG.OBJ/jslock.o Linux_All_DBG.OBJ/jslog2.o Linux_All_DBG.OBJ/jslong.o Linux_All_DBG.OBJ/jsmath.o Linux_All_DBG.OBJ/jsnum.o Linux_All_DBG.OBJ/jsobj.o Linux_All_DBG.OBJ/jsopcode.o Linux_All_DBG.OBJ/jsparse.o Linux_All_DBG.OBJ/jsprf.o Linux_All_DBG.OBJ/jsregexp.o Linux_All_DBG.OBJ/jsscan.o Linux_All_DBG.OBJ/jsscope.o Linux_All_DBG.OBJ/jsscript.o Linux_All_DBG.OBJ/jsstr.o Linux_All_DBG.OBJ/jsutil.o Linux_All_DBG.OBJ/jsxdrapi.o Linux_All_DBG.OBJ/jsxml.o Linux_All_DBG.OBJ/prmjtime.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd spidermonkey && SMCFLAGS="-fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy" make jslib</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>make jslib</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/ | sed s,GNU.*,Linux,</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make -C js/src -f Makefile.ref libjs.a</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/ | sed s,GNU.*,Linux,</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jscpucfg.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jscpucfg.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jscpucfg.c -quiet -dumpbase jscpucfg.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jscpucfg.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc0kjcoX.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jscpucfg.o /tmp/cc0kjcoX.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jscpucfg Linux_All_DBG.OBJ/jscpucfg.o</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMvOOJY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jscpucfg /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. Linux_All_DBG.OBJ/jscpucfg.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMvOOJY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jscpucfg /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. Linux_All_DBG.OBJ/jscpucfg.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c Linux_All_DBG.OBJ/jscpucfg > Linux_All_DBG.OBJ/jsautocfg.h</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>Linux_All_DBG.OBJ/jscpucfg</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsapi.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsapi.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsapi.c -quiet -dumpbase jsapi.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsapi.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccXYKni3.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsapi.o /tmp/ccXYKni3.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsarena.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsarena.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsarena.c -quiet -dumpbase jsarena.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsarena.o -g -Wall -Wformat=0 -fPIC -o /tmp/cclbdzFC.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsarena.o /tmp/cclbdzFC.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsarray.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsarray.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsarray.c -quiet -dumpbase jsarray.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsarray.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccFKQCKH.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsarray.o /tmp/ccFKQCKH.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsatom.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsatom.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsatom.c -quiet -dumpbase jsatom.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsatom.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc6o9rKW.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsatom.o /tmp/cc6o9rKW.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsbool.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsbool.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsbool.c -quiet -dumpbase jsbool.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsbool.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccOE8Te1.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsbool.o /tmp/ccOE8Te1.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jscntxt.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jscntxt.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jscntxt.c -quiet -dumpbase jscntxt.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jscntxt.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc9jS1C0.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jscntxt.o /tmp/cc9jS1C0.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdate.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdate.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdate.c -quiet -dumpbase jsdate.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdate.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccAuwVs9.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdate.o /tmp/ccAuwVs9.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdbgapi.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdbgapi.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdbgapi.c -quiet -dumpbase jsdbgapi.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdbgapi.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccAd9e9u.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdbgapi.o /tmp/ccAd9e9u.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdhash.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdhash.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdhash.c -quiet -dumpbase jsdhash.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdhash.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccIOM4OD.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdhash.o /tmp/ccIOM4OD.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsdtoa.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsdtoa.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsdtoa.c -quiet -dumpbase jsdtoa.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsdtoa.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccCfkD2F.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsdtoa.o /tmp/ccCfkD2F.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsemit.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsemit.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsemit.c -quiet -dumpbase jsemit.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsemit.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccdOMOay.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsemit.o /tmp/ccdOMOay.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsexn.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsexn.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsexn.c -quiet -dumpbase jsexn.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsexn.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccO1ulE2.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsexn.o /tmp/ccO1ulE2.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsfun.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsfun.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsfun.c -quiet -dumpbase jsfun.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsfun.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccs4dYA5.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsfun.o /tmp/ccs4dYA5.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsgc.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsgc.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsgc.c -quiet -dumpbase jsgc.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsgc.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccnBGXzg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsgc.o /tmp/ccnBGXzg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jshash.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jshash.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jshash.c -quiet -dumpbase jshash.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jshash.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc43uIss.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jshash.o /tmp/cc43uIss.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsinterp.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsinterp.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsinterp.c -quiet -dumpbase jsinterp.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsinterp.o -g -Wall -Wformat=0 -fPIC -o /tmp/cczDnxxm.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsinterp.o /tmp/cczDnxxm.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsiter.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsiter.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsiter.c -quiet -dumpbase jsiter.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsiter.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccLBCNgg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsiter.o /tmp/ccLBCNgg.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jslock.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jslock.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jslock.c -quiet -dumpbase jslock.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jslock.o -g -Wall -Wformat=0 -fPIC -o /tmp/cctUk0Mi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jslock.o /tmp/cctUk0Mi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jslog2.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jslog2.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jslog2.c -quiet -dumpbase jslog2.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jslog2.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccMXt9Ng.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jslog2.o /tmp/ccMXt9Ng.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jslong.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jslong.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jslong.c -quiet -dumpbase jslong.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jslong.o -g -Wall -Wformat=0 -fPIC -o /tmp/cch9nkmn.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jslong.o /tmp/cch9nkmn.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsmath.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsmath.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsmath.c -quiet -dumpbase jsmath.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsmath.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccKsacgq.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsmath.o /tmp/ccKsacgq.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsnum.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsnum.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsnum.c -quiet -dumpbase jsnum.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsnum.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc3rXU5s.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsnum.o /tmp/cc3rXU5s.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsobj.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsobj.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsobj.c -quiet -dumpbase jsobj.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsobj.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccEtMHMr.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsobj.o /tmp/ccEtMHMr.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsopcode.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsopcode.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsopcode.c -quiet -dumpbase jsopcode.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsopcode.o -g -Wall -Wformat=0 -fPIC -o /tmp/cccKxDYY.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsopcode.o /tmp/cccKxDYY.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsparse.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsparse.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsparse.c -quiet -dumpbase jsparse.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsparse.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccvf2wjh.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsparse.o /tmp/ccvf2wjh.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsprf.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsprf.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsprf.c -quiet -dumpbase jsprf.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsprf.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccb6bhoA.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsprf.o /tmp/ccb6bhoA.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsregexp.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsregexp.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsregexp.c -quiet -dumpbase jsregexp.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsregexp.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccNUHGHL.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsregexp.o /tmp/ccNUHGHL.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jskwgen.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jskwgen.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jskwgen.c -quiet -dumpbase jskwgen.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jskwgen.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccfVQrUi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jskwgen.o /tmp/ccfVQrUi.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsscope.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsscope.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsscope.c -quiet -dumpbase jsscope.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsscope.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccqgKLCo.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsscope.o /tmp/ccqgKLCo.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsscript.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsscript.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsscript.c -quiet -dumpbase jsscript.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsscript.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccJD0A6j.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsscript.o /tmp/ccJD0A6j.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsstr.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsstr.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsstr.c -quiet -dumpbase jsstr.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsstr.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccMxvyUu.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsstr.o /tmp/ccMxvyUu.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsutil.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsutil.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsutil.c -quiet -dumpbase jsutil.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsutil.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccgItRKQ.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsutil.o /tmp/ccgItRKQ.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsxdrapi.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsxdrapi.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsxdrapi.c -quiet -dumpbase jsxdrapi.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsxdrapi.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccuK5QlT.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsxdrapi.o /tmp/ccuK5QlT.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsxml.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsxml.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsxml.c -quiet -dumpbase jsxml.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsxml.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc89mzk2.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsxml.o /tmp/cc89mzk2.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/prmjtime.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ prmjtime.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE prmjtime.c -quiet -dumpbase prmjtime.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/prmjtime.o -g -Wall -Wformat=0 -fPIC -o /tmp/cc4ABdhM.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/prmjtime.o /tmp/cc4ABdhM.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jskwgen -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ -lm Linux_All_DBG.OBJ/jskwgen.o</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMtIheG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jskwgen /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -lm Linux_All_DBG.OBJ/jskwgen.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMtIheG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o Linux_All_DBG.OBJ/jskwgen /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -lm Linux_All_DBG.OBJ/jskwgen.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>Linux_All_DBG.OBJ/jskwgen Linux_All_DBG.OBJ/jsautokw.h</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -d Linux_All_DBG.OBJ; then rm -rf Linux_All_DBG.OBJ; mkdir -p Linux_All_DBG.OBJ; fi</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>gcc -o Linux_All_DBG.OBJ/jsscan.o -c -fPIC -DHAVE_VA_COPY -DVA_COPY=__va_copy -Wall -Wno-format -g -DXP_UNIX -DSVR4 -DSYSV -D_BSD_SOURCE -DPOSIX_SOURCE -DHAVE_LOCALTIME_R -DHAVE_VA_COPY -DVA_COPY=va_copy -DPIC -fPIC -DDEBUG -DDEBUG_tuscan -DEDITLINE -ILinux_All_DBG.OBJ jsscan.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I Linux_All_DBG.OBJ -D HAVE_VA_COPY -D VA_COPY=__va_copy -D XP_UNIX -D SVR4 -D SYSV -D _BSD_SOURCE -D POSIX_SOURCE -D HAVE_LOCALTIME_R -D HAVE_VA_COPY -D VA_COPY=va_copy -D PIC -D DEBUG -D DEBUG_tuscan -D EDITLINE jsscan.c -quiet -dumpbase jsscan.c -mtune=generic -march=x86-64 -auxbase-strip Linux_All_DBG.OBJ/jsscan.o -g -Wall -Wformat=0 -fPIC -o /tmp/ccbuKSOP.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>as -I Linux_All_DBG.OBJ --64 -o Linux_All_DBG.OBJ/jsscan.o /tmp/ccbuKSOP.s</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ar rv Linux_All_DBG.OBJ/libjs.a Linux_All_DBG.OBJ/jsapi.o Linux_All_DBG.OBJ/jsarena.o Linux_All_DBG.OBJ/jsarray.o Linux_All_DBG.OBJ/jsatom.o Linux_All_DBG.OBJ/jsbool.o Linux_All_DBG.OBJ/jscntxt.o Linux_All_DBG.OBJ/jsdate.o Linux_All_DBG.OBJ/jsdbgapi.o Linux_All_DBG.OBJ/jsdhash.o Linux_All_DBG.OBJ/jsdtoa.o Linux_All_DBG.OBJ/jsemit.o Linux_All_DBG.OBJ/jsexn.o Linux_All_DBG.OBJ/jsfun.o Linux_All_DBG.OBJ/jsgc.o Linux_All_DBG.OBJ/jshash.o Linux_All_DBG.OBJ/jsinterp.o Linux_All_DBG.OBJ/jsiter.o Linux_All_DBG.OBJ/jslock.o Linux_All_DBG.OBJ/jslog2.o Linux_All_DBG.OBJ/jslong.o Linux_All_DBG.OBJ/jsmath.o Linux_All_DBG.OBJ/jsnum.o Linux_All_DBG.OBJ/jsobj.o Linux_All_DBG.OBJ/jsopcode.o Linux_All_DBG.OBJ/jsparse.o Linux_All_DBG.OBJ/jsprf.o Linux_All_DBG.OBJ/jsregexp.o Linux_All_DBG.OBJ/jsscan.o Linux_All_DBG.OBJ/jsscope.o Linux_All_DBG.OBJ/jsscript.o Linux_All_DBG.OBJ/jsstr.o Linux_All_DBG.OBJ/jsutil.o Linux_All_DBG.OBJ/jsxdrapi.o Linux_All_DBG.OBJ/jsxml.o Linux_All_DBG.OBJ/prmjtime.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd js/src</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -g -DXP_UNIX -Wall -DVERSION=1.3.6 -Ispidermonkey/js/src -fPIC -c pacparser.c -o pacparser.o</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I spidermonkey/js/src -D XP_UNIX -D VERSION=1.3.6 pacparser.c -quiet -dumpbase pacparser.c -mtune=generic -march=x86-64 -auxbase-strip pacparser.o -g -Wall -fPIC -o /tmp/cclHBc0c.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I spidermonkey/js/src --64 -o pacparser.o /tmp/cclHBc0c.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -shared -g -DXP_UNIX -Wall -DVERSION=1.3.6 -Ispidermonkey/js/src -Wl,-soname=libpacparser.so.1 -Wl,-exclude-libs=libjs.a -o libpacparser.so.1 pacparser.o libjs.a -lm</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOl4Loi.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o libpacparser.so.1 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname=libpacparser.so.1 -exclude-libs=libjs.a pacparser.o libjs.a -lm -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOl4Loi.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o libpacparser.so.1 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -soname=libpacparser.so.1 -exclude-libs=libjs.a pacparser.o libjs.a -lm -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd pymod && ARCHFLAGS="" python2 setup.py build</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py build</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -g -DXP_UNIX -Wall -DVERSION=1.3.6 -Ispidermonkey/js/src -fPIC -I../spidermonkey/js/src -I.. -I/usr/include/python2.7 -c pacparser_py.c -o build/temp.linux-x86_64-2.7/pacparser_py.o</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I spidermonkey/js/src -I ../spidermonkey/js/src -I .. -I /usr/include/python2.7 -D_REENTRANT -D NDEBUG -D XP_UNIX -D VERSION=1.3.6 pacparser_py.c -quiet -dumpbase pacparser_py.c -march=x86-64 -mtune=generic -auxbase-strip build/temp.linux-x86_64-2.7/pacparser_py.o -g -O2 -Wall -fstack-protector-strong -fPIC -o -</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I spidermonkey/js/src -I ../spidermonkey/js/src -I .. -I /usr/include/python2.7 --64 -o build/temp.linux-x86_64-2.7/pacparser_py.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -pthread -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -g -DXP_UNIX -Wall -DVERSION=1.3.6 -Ispidermonkey/js/src build/temp.linux-x86_64-2.7/pacparser_py.o ../pacparser.o ../libjs.a -L/usr/lib -lpython2.7 -o build/lib.linux-x86_64-2.7/pacparser/_pacparser.so</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cccVxXGv.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o build/lib.linux-x86_64-2.7/pacparser/_pacparser.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -O1 --sort-common --as-needed -z relro build/temp.linux-x86_64-2.7/pacparser_py.o ../pacparser.o ../libjs.a -lpython2.7 -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cccVxXGv.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -shared -o build/lib.linux-x86_64-2.7/pacparser/_pacparser.so /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -O1 --sort-common --as-needed -z relro build/temp.linux-x86_64-2.7/pacparser_py.o ../pacparser.o ../libjs.a -lpython2.7 -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -g -DXP_UNIX -Wall -DVERSION=1.3.6 -Ispidermonkey/js/src pactester.c -o pactester -lpacparser -L. -I.</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I spidermonkey/js/src -I . -D XP_UNIX -D VERSION=1.3.6 pactester.c -quiet -dumpbase pactester.c -mtune=generic -march=x86-64 -auxbase pactester -g -Wall -o /tmp/cclkaxfn.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I spidermonkey/js/src -I . --64 -o /tmp/ccXZzF1C.o /tmp/cclkaxfn.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccttVMOS.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o pactester /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccXZzF1C.o -lpacparser -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccttVMOS.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o pactester /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L. -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/ccXZzF1C.o -lpacparser -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "Running tests for pactester."</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>../tests/runtests.sh</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -c 3ffe:8311:ffff:1:0:0:0:0 -u http://www.somehost.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -c 0.0.0.0 -u http://www.google.co.in</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://host1</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://www1.manugarg.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://manugarg.externaldomain.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://www.google.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://www.notresolvabledomainXXX.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u https://www.somehost.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -c 10.10.100.112 -u http://www.somehost.com</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>python2 ../tests/runtests.py</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make -C src DESTDIR=/tmp/pacparser/pkg/pacparser/ install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "Running tests for pactester."</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>../tests/runtests.sh</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -c 3ffe:8311:ffff:1:0:0:0:0 -u http://www.somehost.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -c 0.0.0.0 -u http://www.google.co.in</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://host1</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://www1.manugarg.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://manugarg.externaldomain.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://www.google.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u http://www.notresolvabledomainXXX.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -u https://www.somehost.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/tmp/pacparser/src/pacparser/tests/../src/pactester -p /tmp/pacparser/src/pacparser/tests/proxy.pac -c 10.10.100.112 -u http://www.somehost.com</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/pacparser/pkg/pacparser//usr/lib /tmp/pacparser/pkg/pacparser//usr/include /tmp/pacparser/pkg/pacparser//usr/bin</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 644 libpacparser.so.1 /tmp/pacparser/pkg/pacparser//usr/lib/libpacparser.so.1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 755 pactester /tmp/pacparser/pkg/pacparser//usr/bin/pactester</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 644 pacparser.h /tmp/pacparser/pkg/pacparser//usr/include/pacparser.h</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c # install pactester manpages</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/pacparser/pkg/pacparser//usr/share/man/man1/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (test -d ../docs && install -m 644 ../docs/man/man1/*.1 /tmp/pacparser/pkg/pacparser//usr/share/man/man1/) || true</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>install -m 644 ../docs/man/man1/pactester.1 /tmp/pacparser/pkg/pacparser//usr/share/man/man1/</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c # install pacparser manpages</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/pacparser/pkg/pacparser//usr/share/man/man3/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (test -d ../docs && install -m 644 ../docs/man/man3/*.3 /tmp/pacparser/pkg/pacparser//usr/share/man/man3/) || true</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>install -m 644 ../docs/man/man3/pacparser.3 ../docs/man/man3/pacparser_cleanup.3 ../docs/man/man3/pacparser_enable_microsoft_extensions.3 ../docs/man/man3/pacparser_error_printer.3 ../docs/man/man3/pacparser_find_proxy.3 ../docs/man/man3/pacparser_init.3 ../docs/man/man3/pacparser_just_find_proxy.3 ../docs/man/man3/pacparser_parse_pac.3 ../docs/man/man3/pacparser_parse_pac_file.3 ../docs/man/man3/pacparser_parse_pac_string.3 ../docs/man/man3/pacparser_set_error_printer.3 ../docs/man/man3/pacparser_setmyip.3 ../docs/man/man3/pacparser_version.3 /tmp/pacparser/pkg/pacparser//usr/share/man/man3/</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c # install html docs</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/pacparser/pkg/pacparser//usr/share/doc/pacparser/html/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (test -d ../docs/html && install -m 644 ../docs/html/* /tmp/pacparser/pkg/pacparser//usr/share/doc/pacparser/html/) || true</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>install -m 644 ../docs/html/doxygen.css ../docs/html/pacparser.html ../docs/html/pactester.1.html /tmp/pacparser/pkg/pacparser//usr/share/doc/pacparser/html/</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c # install examples</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/pacparser/pkg/pacparser//usr/share/doc/pacparser/examples/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c (test -d ../examples && install -m 644 ../examples/* /tmp/pacparser/pkg/pacparser//usr/share/doc//pacparser/examples/) || true</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>install -m 644 ../examples/fetchurl.py ../examples/pactest.c ../examples/pactest.py ../examples/wpad.dat /tmp/pacparser/pkg/pacparser//usr/share/doc//pacparser/examples/</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/pacparser/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/pacparser/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/pacparser/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make -C src DESTDIR=/tmp/pacparser/pkg/python2-pacparser/ install-pymod</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c uname -s | sed /\ /s//_/</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd pymod && ARCHFLAGS="" python2 setup.py build</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py build</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>python2 ../tests/runtests.py</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>git describe --always --tags --candidate=100</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd pymod && ARCHFLAGS="" python2 setup.py install --root="/tmp/pacparser/pkg/python2-pacparser//" </code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>python2 setup.py install --root=/tmp/pacparser/pkg/python2-pacparser//</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/pacparser/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/pacparser/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/pacparser/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T python2 git</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

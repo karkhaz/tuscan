@@ -1,0 +1,116 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/paxd</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="paxd.html">paxd</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glib2</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags glib-2.0</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>pkg-config --libs glib-2.0</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-llvm-bc -flto -disable-free -disable-llvm-verifier -main-file-name flags.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/paxd/src/paxd-32/flags.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D _FILE_OFFSET_BITS=64 -D _GNU_SOURCE -I /usr/include/glib-2.0 -I /usr/lib/glib-2.0/include -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O2 -Weverything -Wno-cast-align -Wno-disabled-macro-expansion -Wno-documentation -Wno-padded -Wno-reserved-id-macro -std=c11 -fdebug-compilation-dir /tmp/paxd/src/paxd-32 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o flags.o -x c flags.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-llvm-bc -flto -disable-free -disable-llvm-verifier -main-file-name paxd.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/paxd/src/paxd-32/paxd.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D _FILE_OFFSET_BITS=64 -D _GNU_SOURCE -I /usr/include/glib-2.0 -I /usr/lib/glib-2.0/include -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O2 -Weverything -Wno-cast-align -Wno-disabled-macro-expansion -Wno-documentation -Wno-padded -Wno-reserved-id-macro -std=c11 -fdebug-compilation-dir /tmp/paxd/src/paxd-32 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o paxd.o -x c paxd.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld.gold --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o paxd /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib -plugin /sysroot/bin/../lib/LLVMgold.so -plugin-opt=mcpu=x86-64 -plugin-opt=O2 --as-needed --gc-sections paxd.o flags.o -lglib-2.0 /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

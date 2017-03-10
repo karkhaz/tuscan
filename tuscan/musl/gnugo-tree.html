@@ -1,0 +1,1018 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/gnugo</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="gnugo.html">gnugo</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>cat</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>/usr/convex/getsysinfo</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh /tmp/gnugo/src/gnugo-3.8/missing --run true</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -f conftest.make</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang --version</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -v</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o a.out /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-6c033d.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">127</span>&nbsp;<code>./a.out</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-ec0e60.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -s -f confmf</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./depcomp clang -c -o sub/conftest.o sub/conftest.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.dir/sub/conftest.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file sub/conftest.TPo -sys-header-deps -MP -MT sub/conftest.o -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/conftest.dir -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sub/conftest.o -x c sub/conftest.c</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -s -f confmf</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-12d260.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-0e0e78.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-7756f5.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-2f0e86.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-eb4eb7.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>tail -n 1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c -</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>tail -n 1</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name - -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c -</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-c683ab.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>uniq confdefs.h</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.status</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if test ! -f config.h; then \
+  rm -f stamp-h1; \
+  make stamp-h1; \
+else :; fi</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">2</span>&nbsp;<code>make all-recursive</code>
+            <ul class="level-6">
+              <li><span class="bad-return">1</span>&nbsp;<code>/bin/sh -c failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo all-recursive | sed s/-recursive//`; \
+list='utils sgf engine patterns interface doc regression'; for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..      -MT getopt.o -MD -MP -MF ".deps/getopt.Tpo" -c -o getopt.o getopt.c; \
+then mv -f ".deps/getopt.Tpo" ".deps/getopt.Po"; else rm -f ".deps/getopt.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name getopt.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/utils/getopt.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/getopt.Tpo -sys-header-deps -MP -MT getopt.o -D HAVE_CONFIG_H -I . -I . -I .. -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/utils -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o getopt.o -x c getopt.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..      -MT getopt1.o -MD -MP -MF ".deps/getopt1.Tpo" -c -o getopt1.o getopt1.c; \
+then mv -f ".deps/getopt1.Tpo" ".deps/getopt1.Po"; else rm -f ".deps/getopt1.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name getopt1.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/utils/getopt1.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/getopt1.Tpo -sys-header-deps -MP -MT getopt1.o -D HAVE_CONFIG_H -I . -I . -I .. -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/utils -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o getopt1.o -x c getopt1.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..      -MT random.o -MD -MP -MF ".deps/random.Tpo" -c -o random.o random.c; \
+then mv -f ".deps/random.Tpo" ".deps/random.Po"; else rm -f ".deps/random.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name random.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/utils/random.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/random.Tpo -sys-header-deps -MP -MT random.o -D HAVE_CONFIG_H -I . -I . -I .. -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/utils -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o random.o -x c random.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..      -MT gg_utils.o -MD -MP -MF ".deps/gg_utils.Tpo" -c -o gg_utils.o gg_utils.c; \
+then mv -f ".deps/gg_utils.Tpo" ".deps/gg_utils.Po"; else rm -f ".deps/gg_utils.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name gg_utils.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/utils/gg_utils.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/gg_utils.Tpo -sys-header-deps -MP -MT gg_utils.o -D HAVE_CONFIG_H -I . -I . -I .. -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/utils -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o gg_utils.o -x c gg_utils.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..      -MT winsocket.o -MD -MP -MF ".deps/winsocket.Tpo" -c -o winsocket.o winsocket.c; \
+then mv -f ".deps/winsocket.Tpo" ".deps/winsocket.Po"; else rm -f ".deps/winsocket.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name winsocket.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/utils/winsocket.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/winsocket.Tpo -sys-header-deps -MP -MT winsocket.o -D HAVE_CONFIG_H -I . -I . -I .. -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/utils -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o winsocket.o -x c winsocket.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ar cru libutils.a getopt.o getopt1.o random.o gg_utils.o winsocket.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ranlib libutils.a</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../utils    -MT sgf_utils.o -MD -MP -MF ".deps/sgf_utils.Tpo" -c -o sgf_utils.o sgf_utils.c; \
+then mv -f ".deps/sgf_utils.Tpo" ".deps/sgf_utils.Po"; else rm -f ".deps/sgf_utils.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name sgf_utils.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/sgf/sgf_utils.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/sgf_utils.Tpo -sys-header-deps -MP -MT sgf_utils.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/sgf -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sgf_utils.o -x c sgf_utils.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../utils    -MT sgfnode.o -MD -MP -MF ".deps/sgfnode.Tpo" -c -o sgfnode.o sgfnode.c; \
+then mv -f ".deps/sgfnode.Tpo" ".deps/sgfnode.Po"; else rm -f ".deps/sgfnode.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name sgfnode.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/sgf/sgfnode.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/sgfnode.Tpo -sys-header-deps -MP -MT sgfnode.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/sgf -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sgfnode.o -x c sgfnode.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../utils    -MT sgftree.o -MD -MP -MF ".deps/sgftree.Tpo" -c -o sgftree.o sgftree.c; \
+then mv -f ".deps/sgftree.Tpo" ".deps/sgftree.Po"; else rm -f ".deps/sgftree.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name sgftree.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/sgf/sgftree.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/sgftree.Tpo -sys-header-deps -MP -MT sgftree.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/sgf -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sgftree.o -x c sgftree.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../utils    -MT sgfgen.o -MD -MP -MF ".deps/sgfgen.Tpo" -c -o sgfgen.o sgfgen.c; \
+then mv -f ".deps/sgfgen.Tpo" ".deps/sgfgen.Po"; else rm -f ".deps/sgfgen.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name sgfgen.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/sgf/sgfgen.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/sgfgen.Tpo -sys-header-deps -MP -MT sgfgen.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/sgf -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sgfgen.o -x c sgfgen.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ar cru libsgf.a sgf_utils.o sgfnode.o sgftree.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ranlib libsgf.a</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o sgfgen /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib sgfgen.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT aftermath.o -MD -MP -MF ".deps/aftermath.Tpo" -c -o aftermath.o aftermath.c; \
+then mv -f ".deps/aftermath.Tpo" ".deps/aftermath.Po"; else rm -f ".deps/aftermath.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name aftermath.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/aftermath.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/aftermath.Tpo -sys-header-deps -MP -MT aftermath.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o aftermath.o -x c aftermath.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT board.o -MD -MP -MF ".deps/board.Tpo" -c -o board.o board.c; \
+then mv -f ".deps/board.Tpo" ".deps/board.Po"; else rm -f ".deps/board.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name board.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/board.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/board.Tpo -sys-header-deps -MP -MT board.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o board.o -x c board.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT boardlib.o -MD -MP -MF ".deps/boardlib.Tpo" -c -o boardlib.o boardlib.c; \
+then mv -f ".deps/boardlib.Tpo" ".deps/boardlib.Po"; else rm -f ".deps/boardlib.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name boardlib.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/boardlib.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/boardlib.Tpo -sys-header-deps -MP -MT boardlib.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o boardlib.o -x c boardlib.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT breakin.o -MD -MP -MF ".deps/breakin.Tpo" -c -o breakin.o breakin.c; \
+then mv -f ".deps/breakin.Tpo" ".deps/breakin.Po"; else rm -f ".deps/breakin.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name breakin.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/breakin.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/breakin.Tpo -sys-header-deps -MP -MT breakin.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o breakin.o -x c breakin.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT cache.o -MD -MP -MF ".deps/cache.Tpo" -c -o cache.o cache.c; \
+then mv -f ".deps/cache.Tpo" ".deps/cache.Po"; else rm -f ".deps/cache.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name cache.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/cache.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/cache.Tpo -sys-header-deps -MP -MT cache.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o cache.o -x c cache.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT clock.o -MD -MP -MF ".deps/clock.Tpo" -c -o clock.o clock.c; \
+then mv -f ".deps/clock.Tpo" ".deps/clock.Po"; else rm -f ".deps/clock.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name clock.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/clock.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/clock.Tpo -sys-header-deps -MP -MT clock.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o clock.o -x c clock.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT combination.o -MD -MP -MF ".deps/combination.Tpo" -c -o combination.o combination.c; \
+then mv -f ".deps/combination.Tpo" ".deps/combination.Po"; else rm -f ".deps/combination.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name combination.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/combination.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/combination.Tpo -sys-header-deps -MP -MT combination.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o combination.o -x c combination.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT dragon.o -MD -MP -MF ".deps/dragon.Tpo" -c -o dragon.o dragon.c; \
+then mv -f ".deps/dragon.Tpo" ".deps/dragon.Po"; else rm -f ".deps/dragon.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dragon.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/dragon.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dragon.Tpo -sys-header-deps -MP -MT dragon.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o dragon.o -x c dragon.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT endgame.o -MD -MP -MF ".deps/endgame.Tpo" -c -o endgame.o endgame.c; \
+then mv -f ".deps/endgame.Tpo" ".deps/endgame.Po"; else rm -f ".deps/endgame.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name endgame.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/endgame.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/endgame.Tpo -sys-header-deps -MP -MT endgame.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o endgame.o -x c endgame.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT filllib.o -MD -MP -MF ".deps/filllib.Tpo" -c -o filllib.o filllib.c; \
+then mv -f ".deps/filllib.Tpo" ".deps/filllib.Po"; else rm -f ".deps/filllib.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name filllib.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/filllib.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/filllib.Tpo -sys-header-deps -MP -MT filllib.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o filllib.o -x c filllib.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT fuseki.o -MD -MP -MF ".deps/fuseki.Tpo" -c -o fuseki.o fuseki.c; \
+then mv -f ".deps/fuseki.Tpo" ".deps/fuseki.Po"; else rm -f ".deps/fuseki.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name fuseki.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/fuseki.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/fuseki.Tpo -sys-header-deps -MP -MT fuseki.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o fuseki.o -x c fuseki.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT genmove.o -MD -MP -MF ".deps/genmove.Tpo" -c -o genmove.o genmove.c; \
+then mv -f ".deps/genmove.Tpo" ".deps/genmove.Po"; else rm -f ".deps/genmove.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name genmove.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/genmove.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/genmove.Tpo -sys-header-deps -MP -MT genmove.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o genmove.o -x c genmove.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT globals.o -MD -MP -MF ".deps/globals.Tpo" -c -o globals.o globals.c; \
+then mv -f ".deps/globals.Tpo" ".deps/globals.Po"; else rm -f ".deps/globals.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name globals.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/globals.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/globals.Tpo -sys-header-deps -MP -MT globals.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o globals.o -x c globals.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT handicap.o -MD -MP -MF ".deps/handicap.Tpo" -c -o handicap.o handicap.c; \
+then mv -f ".deps/handicap.Tpo" ".deps/handicap.Po"; else rm -f ".deps/handicap.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name handicap.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/handicap.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/handicap.Tpo -sys-header-deps -MP -MT handicap.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o handicap.o -x c handicap.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT hash.o -MD -MP -MF ".deps/hash.Tpo" -c -o hash.o hash.c; \
+then mv -f ".deps/hash.Tpo" ".deps/hash.Po"; else rm -f ".deps/hash.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name hash.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/hash.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/hash.Tpo -sys-header-deps -MP -MT hash.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o hash.o -x c hash.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT influence.o -MD -MP -MF ".deps/influence.Tpo" -c -o influence.o influence.c; \
+then mv -f ".deps/influence.Tpo" ".deps/influence.Po"; else rm -f ".deps/influence.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name influence.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/influence.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/influence.Tpo -sys-header-deps -MP -MT influence.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o influence.o -x c influence.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT interface.o -MD -MP -MF ".deps/interface.Tpo" -c -o interface.o interface.c; \
+then mv -f ".deps/interface.Tpo" ".deps/interface.Po"; else rm -f ".deps/interface.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name interface.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/interface.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/interface.Tpo -sys-header-deps -MP -MT interface.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o interface.o -x c interface.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT matchpat.o -MD -MP -MF ".deps/matchpat.Tpo" -c -o matchpat.o matchpat.c; \
+then mv -f ".deps/matchpat.Tpo" ".deps/matchpat.Po"; else rm -f ".deps/matchpat.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name matchpat.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/matchpat.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/matchpat.Tpo -sys-header-deps -MP -MT matchpat.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o matchpat.o -x c matchpat.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT montecarlo.o -MD -MP -MF ".deps/montecarlo.Tpo" -c -o montecarlo.o montecarlo.c; \
+then mv -f ".deps/montecarlo.Tpo" ".deps/montecarlo.Po"; else rm -f ".deps/montecarlo.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name montecarlo.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/montecarlo.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/montecarlo.Tpo -sys-header-deps -MP -MT montecarlo.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o montecarlo.o -x c montecarlo.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT move_reasons.o -MD -MP -MF ".deps/move_reasons.Tpo" -c -o move_reasons.o move_reasons.c; \
+then mv -f ".deps/move_reasons.Tpo" ".deps/move_reasons.Po"; else rm -f ".deps/move_reasons.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name move_reasons.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/move_reasons.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/move_reasons.Tpo -sys-header-deps -MP -MT move_reasons.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o move_reasons.o -x c move_reasons.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT movelist.o -MD -MP -MF ".deps/movelist.Tpo" -c -o movelist.o movelist.c; \
+then mv -f ".deps/movelist.Tpo" ".deps/movelist.Po"; else rm -f ".deps/movelist.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name movelist.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/movelist.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/movelist.Tpo -sys-header-deps -MP -MT movelist.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o movelist.o -x c movelist.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT optics.o -MD -MP -MF ".deps/optics.Tpo" -c -o optics.o optics.c; \
+then mv -f ".deps/optics.Tpo" ".deps/optics.Po"; else rm -f ".deps/optics.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name optics.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/optics.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/optics.Tpo -sys-header-deps -MP -MT optics.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o optics.o -x c optics.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT oracle.o -MD -MP -MF ".deps/oracle.Tpo" -c -o oracle.o oracle.c; \
+then mv -f ".deps/oracle.Tpo" ".deps/oracle.Po"; else rm -f ".deps/oracle.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name oracle.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/oracle.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/oracle.Tpo -sys-header-deps -MP -MT oracle.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o oracle.o -x c oracle.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT owl.o -MD -MP -MF ".deps/owl.Tpo" -c -o owl.o owl.c; \
+then mv -f ".deps/owl.Tpo" ".deps/owl.Po"; else rm -f ".deps/owl.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name owl.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/owl.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/owl.Tpo -sys-header-deps -MP -MT owl.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o owl.o -x c owl.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT persistent.o -MD -MP -MF ".deps/persistent.Tpo" -c -o persistent.o persistent.c; \
+then mv -f ".deps/persistent.Tpo" ".deps/persistent.Po"; else rm -f ".deps/persistent.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name persistent.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/persistent.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/persistent.Tpo -sys-header-deps -MP -MT persistent.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o persistent.o -x c persistent.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT printutils.o -MD -MP -MF ".deps/printutils.Tpo" -c -o printutils.o printutils.c; \
+then mv -f ".deps/printutils.Tpo" ".deps/printutils.Po"; else rm -f ".deps/printutils.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name printutils.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/printutils.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/printutils.Tpo -sys-header-deps -MP -MT printutils.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o printutils.o -x c printutils.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT readconnect.o -MD -MP -MF ".deps/readconnect.Tpo" -c -o readconnect.o readconnect.c; \
+then mv -f ".deps/readconnect.Tpo" ".deps/readconnect.Po"; else rm -f ".deps/readconnect.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name readconnect.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/readconnect.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/readconnect.Tpo -sys-header-deps -MP -MT readconnect.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o readconnect.o -x c readconnect.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT reading.o -MD -MP -MF ".deps/reading.Tpo" -c -o reading.o reading.c; \
+then mv -f ".deps/reading.Tpo" ".deps/reading.Po"; else rm -f ".deps/reading.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name reading.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/reading.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/reading.Tpo -sys-header-deps -MP -MT reading.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o reading.o -x c reading.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT semeai.o -MD -MP -MF ".deps/semeai.Tpo" -c -o semeai.o semeai.c; \
+then mv -f ".deps/semeai.Tpo" ".deps/semeai.Po"; else rm -f ".deps/semeai.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name semeai.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/semeai.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/semeai.Tpo -sys-header-deps -MP -MT semeai.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o semeai.o -x c semeai.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT sgfdecide.o -MD -MP -MF ".deps/sgfdecide.Tpo" -c -o sgfdecide.o sgfdecide.c; \
+then mv -f ".deps/sgfdecide.Tpo" ".deps/sgfdecide.Po"; else rm -f ".deps/sgfdecide.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name sgfdecide.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/sgfdecide.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/sgfdecide.Tpo -sys-header-deps -MP -MT sgfdecide.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sgfdecide.o -x c sgfdecide.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT sgffile.o -MD -MP -MF ".deps/sgffile.Tpo" -c -o sgffile.o sgffile.c; \
+then mv -f ".deps/sgffile.Tpo" ".deps/sgffile.Po"; else rm -f ".deps/sgffile.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name sgffile.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/sgffile.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/sgffile.Tpo -sys-header-deps -MP -MT sgffile.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sgffile.o -x c sgffile.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT shapes.o -MD -MP -MF ".deps/shapes.Tpo" -c -o shapes.o shapes.c; \
+then mv -f ".deps/shapes.Tpo" ".deps/shapes.Po"; else rm -f ".deps/shapes.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name shapes.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/shapes.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/shapes.Tpo -sys-header-deps -MP -MT shapes.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o shapes.o -x c shapes.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT showbord.o -MD -MP -MF ".deps/showbord.Tpo" -c -o showbord.o showbord.c; \
+then mv -f ".deps/showbord.Tpo" ".deps/showbord.Po"; else rm -f ".deps/showbord.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name showbord.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/showbord.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/showbord.Tpo -sys-header-deps -MP -MT showbord.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o showbord.o -x c showbord.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT surround.o -MD -MP -MF ".deps/surround.Tpo" -c -o surround.o surround.c; \
+then mv -f ".deps/surround.Tpo" ".deps/surround.Po"; else rm -f ".deps/surround.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name surround.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/surround.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/surround.Tpo -sys-header-deps -MP -MT surround.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o surround.o -x c surround.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT unconditional.o -MD -MP -MF ".deps/unconditional.Tpo" -c -o unconditional.o unconditional.c; \
+then mv -f ".deps/unconditional.Tpo" ".deps/unconditional.Po"; else rm -f ".deps/unconditional.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name unconditional.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/unconditional.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/unconditional.Tpo -sys-header-deps -MP -MT unconditional.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o unconditional.o -x c unconditional.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT utils.o -MD -MP -MF ".deps/utils.Tpo" -c -o utils.o utils.c; \
+then mv -f ".deps/utils.Tpo" ".deps/utils.Po"; else rm -f ".deps/utils.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name utils.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/utils.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/utils.Tpo -sys-header-deps -MP -MT utils.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o utils.o -x c utils.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT value_moves.o -MD -MP -MF ".deps/value_moves.Tpo" -c -o value_moves.o value_moves.c; \
+then mv -f ".deps/value_moves.Tpo" ".deps/value_moves.Po"; else rm -f ".deps/value_moves.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name value_moves.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/value_moves.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/value_moves.Tpo -sys-header-deps -MP -MT value_moves.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o value_moves.o -x c value_moves.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../patterns -I../patterns -I../sgf -I../utils    -MT worm.o -MD -MP -MF ".deps/worm.Tpo" -c -o worm.o worm.c; \
+then mv -f ".deps/worm.Tpo" ".deps/worm.Po"; else rm -f ".deps/worm.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name worm.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/engine/worm.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/worm.Tpo -sys-header-deps -MP -MT worm.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../patterns -I ../patterns -I ../sgf -I ../utils -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/engine -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o worm.o -x c worm.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ar cru libboard.a board.o boardlib.o hash.o printutils.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ranlib libboard.a</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ar cru libengine.a aftermath.o board.o boardlib.o breakin.o cache.o clock.o combination.o dragon.o endgame.o filllib.o fuseki.o genmove.o globals.o handicap.o hash.o influence.o interface.o matchpat.o montecarlo.o move_reasons.o movelist.o optics.o oracle.o owl.o persistent.o printutils.o readconnect.o reading.o semeai.o sgfdecide.o sgffile.o shapes.o showbord.o surround.o unconditional.o utils.o value_moves.o worm.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>ranlib libengine.a</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="bad-return">2</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT connections.o -MD -MP -MF ".deps/connections.Tpo" -c -o connections.o connections.c; \
+then mv -f ".deps/connections.Tpo" ".deps/connections.Po"; else rm -f ".deps/connections.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name connections.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/connections.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/connections.Tpo -sys-header-deps -MP -MT connections.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o connections.o -x c connections.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT helpers.o -MD -MP -MF ".deps/helpers.Tpo" -c -o helpers.o helpers.c; \
+then mv -f ".deps/helpers.Tpo" ".deps/helpers.Po"; else rm -f ".deps/helpers.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name helpers.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/helpers.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/helpers.Tpo -sys-header-deps -MP -MT helpers.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o helpers.o -x c helpers.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT transform.o -MD -MP -MF ".deps/transform.Tpo" -c -o transform.o transform.c; \
+then mv -f ".deps/transform.Tpo" ".deps/transform.Po"; else rm -f ".deps/transform.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name transform.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/transform.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/transform.Tpo -sys-header-deps -MP -MT transform.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o transform.o -x c transform.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT mkpat.o -MD -MP -MF ".deps/mkpat.Tpo" -c -o mkpat.o mkpat.c; \
+then mv -f ".deps/mkpat.Tpo" ".deps/mkpat.Po"; else rm -f ".deps/mkpat.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name mkpat.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/mkpat.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/mkpat.Tpo -sys-header-deps -MP -MT mkpat.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o mkpat.o -x c mkpat.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT dfa.o -MD -MP -MF ".deps/dfa.Tpo" -c -o dfa.o dfa.c; \
+then mv -f ".deps/dfa.Tpo" ".deps/dfa.Po"; else rm -f ".deps/dfa.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dfa.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/dfa.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dfa.Tpo -sys-header-deps -MP -MT dfa.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o dfa.o -x c dfa.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT mkeyes.o -MD -MP -MF ".deps/mkeyes.Tpo" -c -o mkeyes.o mkeyes.c; \
+then mv -f ".deps/mkeyes.Tpo" ".deps/mkeyes.Po"; else rm -f ".deps/mkeyes.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name mkeyes.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/mkeyes.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/mkeyes.Tpo -sys-header-deps -MP -MT mkeyes.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o mkeyes.o -x c mkeyes.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT uncompress_fuseki.o -MD -MP -MF ".deps/uncompress_fuseki.Tpo" -c -o uncompress_fuseki.o uncompress_fuseki.c; \
+then mv -f ".deps/uncompress_fuseki.Tpo" ".deps/uncompress_fuseki.Po"; else rm -f ".deps/uncompress_fuseki.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name uncompress_fuseki.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/uncompress_fuseki.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/uncompress_fuseki.Tpo -sys-header-deps -MP -MT uncompress_fuseki.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o uncompress_fuseki.o -x c uncompress_fuseki.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT joseki.o -MD -MP -MF ".deps/joseki.Tpo" -c -o joseki.o joseki.c; \
+then mv -f ".deps/joseki.Tpo" ".deps/joseki.Po"; else rm -f ".deps/joseki.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name joseki.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/joseki.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/joseki.Tpo -sys-header-deps -MP -MT joseki.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o joseki.o -x c joseki.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT mkmcpat.o -MD -MP -MF ".deps/mkmcpat.Tpo" -c -o mkmcpat.o mkmcpat.c; \
+then mv -f ".deps/mkmcpat.Tpo" ".deps/mkmcpat.Po"; else rm -f ".deps/mkmcpat.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name mkmcpat.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/mkmcpat.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/mkmcpat.Tpo -sys-header-deps -MP -MT mkmcpat.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o mkmcpat.o -x c mkmcpat.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if clang -DHAVE_CONFIG_H -I. -I. -I..  -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -I../engine -I../utils -I../sgf    -MT globals.o -MD -MP -MF ".deps/globals.Tpo" -c -o globals.o `test -f '../engine/globals.c' || echo './'`../engine/globals.c; \
+then mv -f ".deps/globals.Tpo" ".deps/globals.Po"; else rm -f ".deps/globals.Tpo"; exit 1; fi</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name globals.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/gnugo/src/gnugo-3.8/patterns/globals.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/globals.Tpo -sys-header-deps -MP -MT globals.o -D HAVE_CONFIG_H -I . -I . -I .. -I ../engine -I ../utils -I ../sgf -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -Wall -W -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wundef -Wdeclaration-after-statement -fconst-strings -fdebug-compilation-dir /tmp/gnugo/src/gnugo-3.8/patterns -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o globals.o -x c ../engine/globals.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o mkpat /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib mkpat.o transform.o dfa.o ../utils/libutils.a /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o mkeyes /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib mkeyes.o ../utils/libutils.a /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o uncompress_fuseki /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib uncompress_fuseki.o ../utils/libutils.a ../engine/libboard.a ../sgf/libsgf.a /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o joseki /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib joseki.o ../engine/libboard.a ../sgf/libsgf.a ../utils/libutils.a /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="no-return">?</span>&nbsp;<code>./mkpat -b handipat -i ./handicap.db -o handipat.c</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T ncurses</code>
+    <ul class="level-2">
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

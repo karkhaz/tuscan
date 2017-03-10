@@ -1,0 +1,991 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/libdbi</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="libdbi.html">libdbi</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>None</code>
+            <ul class="level-6">
+              <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/nm -B /dev/null</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cat</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>/usr/convex/getsysinfo</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang --version</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -v</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -qversion</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o a.out /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-e9e248.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-60f1cb.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-2f8b1d.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">127</span>&nbsp;<code>./conftest</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c conftest.one conftest.two /tmp/libdbi/src/libdbi-0.9.0/conftest.dir</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh /tmp/libdbi/src/libdbi-0.9.0/missing --run true</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -f conftest.make</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -s -f confmf</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./depcomp clang -c -o sub/conftest.o sub/conftest.c</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.dir/sub/conftest.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file sub/conftest.TPo -sys-header-deps -MP -MT sub/conftest.o -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/conftest.dir -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o sub/conftest.o -x c sub/conftest.c</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -s -f confmf</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.sub sun4</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.guess</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.sub x86_64-unknown-linux-gnu</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.sub x86_64-unknown-linux</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang --version</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -v</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -qversion</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -print-prog-name=ld</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -v</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/nm -B conftest.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>getconf ARG_MAX</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>ar cru libconftest.a @conftest.lst</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>ar cru libconftest.a @conftest.lst</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/nm -B -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/nm -B conftest.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>uniq</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-4197b6.o conftstm.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/nm -B --help</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/file conftest.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-12fcae.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D PIC -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot -m elf_x86_64 -static -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o crtbeginT.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-9685fb.o --start-group /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc --end-group /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest/out/conftest2.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/conftest -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o out/conftest2.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -m elf_x86_64 --help</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -m elf_x86_64 -v</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld -m elf_x86_64 --help</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -shared -o conftest /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbeginS.o -L/sysroot/bin/../lib -L/sysroot/lib conftest.o -soname conftest /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtendS.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>clang -print-search-dirs</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>clang -print-multi-os-directory</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib -rpath /foo /tmp/conftest-2b85f4.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>objdump -p conftest</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-df34dc.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-fb92f9.o -ldld /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-cbe1df.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>strip -V</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -std=gnu99 -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o - -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -std=gnu99 -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="bad-return">1</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -std=gnu99 -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -std=gnu99 -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name conftest.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/conftest.c -resource-dir /sysroot/bin/../lib/clang/3.8.1 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -std=gnu99 -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o conftest.o -x c conftest.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-a2d8d4.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-57e188.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-4f8d65.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-4e1496.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-a71c42.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-749c8d.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-d03746.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-53a2eb.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L/sysroot/bin/../lib -L/sysroot/lib /tmp/conftest-dd75fb.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.status</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make CFLAGS=-fno-fast-math</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>make all-recursive</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c fail= failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo all-recursive | sed s/-recursive//`; \
+case "all-recursive" in \
+  distclean-* | maintainer-clean-*) list='src include doc' ;; \
+  *) list='src include doc' ;; \
+esac; \
+for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (CDPATH="${ZSH_VERSION+.}:" && cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=compile clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../include -DDBI_DRIVER_DIR="/usr/lib/dbd" -fno-fast-math -MT dbi_main.lo -MD -MP -MF .deps/dbi_main.Tpo -c -o dbi_main.lo dbi_main.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dbi_main.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/.libs/dbi_main.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dbi_main.Tpo -sys-header-deps -MP -MT dbi_main.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o .libs/dbi_main.o -x c dbi_main.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dbi_main.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/dbi_main.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dbi_main.Tpo -sys-header-deps -MP -MT dbi_main.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o dbi_main.o -x c dbi_main.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=compile clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../include -DDBI_DRIVER_DIR="/usr/lib/dbd" -fno-fast-math -MT dbi_result.lo -MD -MP -MF .deps/dbi_result.Tpo -c -o dbi_result.lo dbi_result.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dbi_result.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/.libs/dbi_result.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dbi_result.Tpo -sys-header-deps -MP -MT dbi_result.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o .libs/dbi_result.o -x c dbi_result.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dbi_result.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/dbi_result.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dbi_result.Tpo -sys-header-deps -MP -MT dbi_result.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o dbi_result.o -x c dbi_result.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=compile clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../include -DDBI_DRIVER_DIR="/usr/lib/dbd" -fno-fast-math -MT dbd_helper.lo -MD -MP -MF .deps/dbd_helper.Tpo -c -o dbd_helper.lo dbd_helper.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dbd_helper.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/.libs/dbd_helper.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dbd_helper.Tpo -sys-header-deps -MP -MT dbd_helper.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o .libs/dbd_helper.o -x c dbd_helper.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name dbd_helper.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/dbd_helper.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/dbd_helper.Tpo -sys-header-deps -MP -MT dbd_helper.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o dbd_helper.o -x c dbd_helper.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=compile clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../include -DDBI_DRIVER_DIR="/usr/lib/dbd" -fno-fast-math -MT atoll.lo -MD -MP -MF .deps/atoll.Tpo -c -o atoll.lo atoll.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name atoll.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/.libs/atoll.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/atoll.Tpo -sys-header-deps -MP -MT atoll.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o .libs/atoll.o -x c atoll.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name atoll.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/atoll.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/atoll.Tpo -sys-header-deps -MP -MT atoll.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o atoll.o -x c atoll.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=compile clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../include -DDBI_DRIVER_DIR="/usr/lib/dbd" -fno-fast-math -MT asprintf.lo -MD -MP -MF .deps/asprintf.Tpo -c -o asprintf.lo asprintf.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name asprintf.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/.libs/asprintf.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/asprintf.Tpo -sys-header-deps -MP -MT asprintf.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o .libs/asprintf.o -x c asprintf.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name asprintf.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/asprintf.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/asprintf.Tpo -sys-header-deps -MP -MT asprintf.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o asprintf.o -x c asprintf.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=compile clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../include -DDBI_DRIVER_DIR="/usr/lib/dbd" -fno-fast-math -MT timegm.lo -MD -MP -MF .deps/timegm.Tpo -c -o timegm.lo timegm.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name timegm.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/.libs/timegm.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/timegm.Tpo -sys-header-deps -MP -MT timegm.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -D PIC -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o .libs/timegm.o -x c timegm.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name timegm.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/libdbi/src/libdbi-0.9.0/src/timegm.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -dependency-file .deps/timegm.Tpo -sys-header-deps -MP -MT timegm.lo -D HAVE_CONFIG_H -I . -I .. -I .. -I ../include -D DBI_DRIVER_DIR="/usr/lib/dbd" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/libdbi/src/libdbi-0.9.0/src -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o timegm.o -x c timegm.c</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --tag=CC --mode=link clang -fno-fast-math -version-info 2:0:1 -no-undefined -o libdbi.la -rpath /usr/lib dbi_main.lo dbi_result.lo dbd_helper.lo atoll.lo asprintf.lo timegm.lo -lm</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -shared -o .libs/libdbi.so.1.1.0 /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbeginS.o -L/sysroot/bin/../lib -L/sysroot/lib .libs/dbi_main.o .libs/dbi_result.o .libs/dbd_helper.o .libs/atoll.o .libs/asprintf.o .libs/timegm.o -lm -soname libdbi.so.1 /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtendS.o /sysroot/bin/../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>ar cru .libs/libdbi.a dbi_main.o dbi_result.o dbd_helper.o atoll.o asprintf.o timegm.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>ranlib .libs/libdbi.a</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c fail= failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo all-recursive | sed s/-recursive//`; \
+case "all-recursive" in \
+  distclean-* | maintainer-clean-*) list='dbi' ;; \
+  *) list='dbi' ;; \
+esac; \
+for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (CDPATH="${ZSH_VERSION+.}:" && cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>make all-am</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>make all-am</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make DESTDIR=/tmp/libdbi/pkg/libdbi install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c fail= failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo install-recursive | sed s/-recursive//`; \
+case "install-recursive" in \
+  distclean-* | maintainer-clean-*) list='src include doc' ;; \
+  *) list='src include doc' ;; \
+esac; \
+for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (CDPATH="${ZSH_VERSION+.}:" && cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='libdbi.la'; test -n "/usr/lib" || list=; \
+list2=; for p in $list; do \
+  if test -f $p; then \
+    list2="$list2 $p"; \
+  else :; fi; \
+done; \
+test -z "$list2" || { \
+  echo " /usr/sbin/mkdir -p '/tmp/libdbi/pkg/libdbi/usr/lib'"; \
+  /usr/sbin/mkdir -p "/tmp/libdbi/pkg/libdbi/usr/lib" || exit 1; \
+  echo " /bin/sh ../libtool   --mode=install /usr/bin/install -c  $list2 '/tmp/libdbi/pkg/libdbi/usr/lib'"; \
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c  $list2 "/tmp/libdbi/pkg/libdbi/usr/lib"; \
+}</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ../libtool --mode=install /usr/bin/install -c libdbi.la /tmp/libdbi/pkg/libdbi/usr/lib</code>
+                                    <ul class="level-18">
+                                      <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c .libs/libdbi.so.1.1.0 /tmp/libdbi/pkg/libdbi/usr/lib/libdbi.so.1.1.0</code>
+                                        <ul class="level-20">
+                                        </ul>
+                                      </li>
+                                      <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c .libs/libdbi.lai /tmp/libdbi/pkg/libdbi/usr/lib/libdbi.la</code>
+                                        <ul class="level-20">
+                                        </ul>
+                                      </li>
+                                      <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c .libs/libdbi.a /tmp/libdbi/pkg/libdbi/usr/lib/libdbi.a</code>
+                                        <ul class="level-20">
+                                        </ul>
+                                      </li>
+                                      <li><span class="good-return">0</span>&nbsp;<code>ranlib /tmp/libdbi/pkg/libdbi/usr/lib/libdbi.a</code>
+                                        <ul class="level-20">
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c fail= failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo install-recursive | sed s/-recursive//`; \
+case "install-recursive" in \
+  distclean-* | maintainer-clean-*) list='dbi' ;; \
+  *) list='dbi' ;; \
+esac; \
+for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (CDPATH="${ZSH_VERSION+.}:" && cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                                    <ul class="level-18">
+                                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='dbi.h dbi-dev.h dbd.h'; test -n "/usr/include/dbi" || list=; \
+if test -n "$list"; then \
+  echo " /usr/sbin/mkdir -p '/tmp/libdbi/pkg/libdbi/usr/include/dbi'"; \
+  /usr/sbin/mkdir -p "/tmp/libdbi/pkg/libdbi/usr/include/dbi" || exit 1; \
+fi; \
+for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  echo "$d$p"; \
+done | sed '$!N;$!N;$!N;$!N;$!N;$!N;$!N;s/\n/ /g' | sed '$!N;$!N;$!N;$!N;s/\n/ /g' | \
+while read files; do \
+  echo " /usr/bin/install -c -m 644 $files '/tmp/libdbi/pkg/libdbi/usr/include/dbi'"; \
+  /usr/bin/install -c -m 644 $files "/tmp/libdbi/pkg/libdbi/usr/include/dbi" || exit $?; \
+done</code>
+                                        <ul class="level-20">
+                                          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 dbi.h dbi-dev.h dbd.h /tmp/libdbi/pkg/libdbi/usr/include/dbi</code>
+                                            <ul class="level-22">
+                                            </ul>
+                                          </li>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>make install-am</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='programmers-guide.pdf  driver-guide.pdf'; test -n "/usr/share/doc/libdbi-0.9.0" || list=; \
+if test -n "$list"; then \
+  echo " /usr/sbin/mkdir -p '/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0'"; \
+  /usr/sbin/mkdir -p "/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0" || exit 1; \
+fi; \
+for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  echo "$d$p"; \
+done | sed '$!N;$!N;$!N;$!N;$!N;$!N;$!N;s/\n/ /g' | sed '$!N;$!N;$!N;$!N;s/\n/ /g' | \
+while read files; do \
+  echo " /usr/bin/install -c -m 644 $files '/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0'"; \
+  /usr/bin/install -c -m 644 $files "/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0" || exit $?; \
+done</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 programmers-guide.pdf driver-guide.pdf /tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='driver-guide/*'; test -n "/usr/share/doc/libdbi-0.9.0/driver-guide" || list=; \
+if test -n "$list"; then \
+  echo " /usr/sbin/mkdir -p '/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/driver-guide'"; \
+  /usr/sbin/mkdir -p "/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/driver-guide" || exit 1; \
+fi; \
+for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  echo "$d$p"; \
+done | sed '$!N;$!N;$!N;$!N;$!N;$!N;$!N;s/\n/ /g' | sed '$!N;$!N;$!N;$!N;s/\n/ /g' | \
+while read files; do \
+  echo " /usr/bin/install -c -m 644 $files '/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/driver-guide'"; \
+  /usr/bin/install -c -m 644 $files "/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/driver-guide" || exit $?; \
+done</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 driver-guide/contact.html driver-guide/copying-fdl.html driver-guide/databasedirectories.html driver-guide/description.html driver-guide/drivercaps.html driver-guide/driverdata.html driver-guide/driverfuncs-dbquery.html driver-guide/driverfuncs-infrastructure.html driver-guide/driverfuncs-publicdbquery.html driver-guide/driverfuncs.html driver-guide/driverinfrastructure.html driver-guide/gnugpl.html driver-guide/helperfuncs.html driver-guide/index.html driver-guide/intro.html driver-guide/terminology.html /tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/driver-guide</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='programmers-guide/*'; test -n "/usr/share/doc/libdbi-0.9.0/programmers-guide" || list=; \
+if test -n "$list"; then \
+  echo " /usr/sbin/mkdir -p '/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/programmers-guide'"; \
+  /usr/sbin/mkdir -p "/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/programmers-guide" || exit 1; \
+fi; \
+for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  echo "$d$p"; \
+done | sed '$!N;$!N;$!N;$!N;$!N;$!N;$!N;s/\n/ /g' | sed '$!N;$!N;$!N;$!N;s/\n/ /g' | \
+while read files; do \
+  echo " /usr/bin/install -c -m 644 $files '/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/programmers-guide'"; \
+  /usr/bin/install -c -m 644 $files "/tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/programmers-guide" || exit $?; \
+done</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 programmers-guide/addtoproject.html programmers-guide/buildinstall.html programmers-guide/connerrors.html programmers-guide/contact.html programmers-guide/copying-fdl.html programmers-guide/description.html programmers-guide/errorhandling.html programmers-guide/errornumbers.html programmers-guide/gnugpl.html programmers-guide/index.html programmers-guide/intro.html programmers-guide/libdbi-and-drivers-versions.html programmers-guide/loadinglibdbi.html programmers-guide/package-library-version.html programmers-guide/quickstart-code.html programmers-guide/quickstart-debriefing.html programmers-guide/quickstart.html programmers-guide/reference-conn.html programmers-guide/reference-core.html programmers-guide/reference-database.html programmers-guide/reference-driver.html programmers-guide/reference-field-idx.html programmers-guide/reference-field-meta.html programmers-guide/reference-field.html programmers-guide/reference-query.html programmers-guide/reference-results.html programmers-guide/reference.html programmers-guide/savepoints.html programmers-guide/terminology.html programmers-guide/threads.html programmers-guide/transactions-savepoints.html programmers-guide/transactions.html programmers-guide/version-at-runtime.html programmers-guide/versioning.html /tmp/libdbi/pkg/libdbi/usr/share/doc/libdbi-0.9.0/programmers-guide</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make install-am</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='dbi.pc'; test -n "/usr/lib/pkgconfig" || list=; \
+if test -n "$list"; then \
+  echo " /usr/sbin/mkdir -p '/tmp/libdbi/pkg/libdbi/usr/lib/pkgconfig'"; \
+  /usr/sbin/mkdir -p "/tmp/libdbi/pkg/libdbi/usr/lib/pkgconfig" || exit 1; \
+fi; \
+for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  echo "$d$p"; \
+done | sed '$!N;$!N;$!N;$!N;$!N;$!N;$!N;s/\n/ /g' | sed '$!N;$!N;$!N;$!N;s/\n/ /g' | \
+while read files; do \
+  echo " /usr/bin/install -c -m 644 $files '/tmp/libdbi/pkg/libdbi/usr/lib/pkgconfig'"; \
+  /usr/bin/install -c -m 644 $files "/tmp/libdbi/pkg/libdbi/usr/lib/pkgconfig" || exit $?; \
+done</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 dbi.pc /tmp/libdbi/pkg/libdbi/usr/lib/pkgconfig</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/libdbi/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/libdbi/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/libdbi/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO .INSTALL usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .INSTALL .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

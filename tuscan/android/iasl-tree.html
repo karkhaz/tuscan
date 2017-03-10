@@ -1,0 +1,401 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree android/iasl</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="iasl.html">iasl</a>&quot;
+    on toolchain &quot;android&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T flex bison</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make clean</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c for toolname in acpibin acpidump acpiexamples acpiexec acpihelp acpinames acpisrc acpixtract iasl; do \
+	(cd "."/$toolname; \
+	if [ -d "obj" ] ; then \
+		echo "Removing $toolname:"; \
+		pwd; \
+		make clean; \
+		rmdir obj; \
+		echo ""; \
+	fi; \
+	); \
+done;</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="bad-return">2</span>&nbsp;<code>/bin/sh -c cd "."/acpibin; \
+mkdir -p obj; \
+make || exit "$?"; \
+if [ 64 ]; then \
+	echo "64-bit version of acpibin:"; \
+else \
+	echo "32-bit version of acpibin:"; \
+fi; \
+ls -al ../bin/acpibin; \
+echo "";</code>
+            <ul class="level-6">
+              <li><span class="bad-return">2</span>&nbsp;<code>make</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/abcompare.o ../../../source/tools/acpibin/abcompare.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/tools/acpibin/abcompare.c -quiet -dumpbase abcompare.c -mtune=generic -march=x86-64 -auxbase-strip obj/abcompare.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccasDVzl.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/abcompare.o /tmp/ccasDVzl.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/abmain.o ../../../source/tools/acpibin/abmain.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/tools/acpibin/abmain.c -quiet -dumpbase abmain.c -mtune=generic -march=x86-64 -auxbase-strip obj/abmain.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/cc60W2Ov.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/abmain.o /tmp/cc60W2Ov.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/cmfsize.o ../../../source/common/cmfsize.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/common/cmfsize.c -quiet -dumpbase cmfsize.c -mtune=generic -march=x86-64 -auxbase-strip obj/cmfsize.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccnaWaOD.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/cmfsize.o /tmp/ccnaWaOD.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/getopt.o ../../../source/common/getopt.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/common/getopt.c -quiet -dumpbase getopt.c -mtune=generic -march=x86-64 -auxbase-strip obj/getopt.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccSqHNlM.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/getopt.o /tmp/ccSqHNlM.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utalloc.o ../../../source/components/utilities/utalloc.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utalloc.c -quiet -dumpbase utalloc.c -mtune=generic -march=x86-64 -auxbase-strip obj/utalloc.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccLUdr7H.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utalloc.o /tmp/ccLUdr7H.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utbuffer.o ../../../source/components/utilities/utbuffer.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utbuffer.c -quiet -dumpbase utbuffer.c -mtune=generic -march=x86-64 -auxbase-strip obj/utbuffer.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccFnxc4M.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utbuffer.o /tmp/ccFnxc4M.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utcache.o ../../../source/components/utilities/utcache.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utcache.c -quiet -dumpbase utcache.c -mtune=generic -march=x86-64 -auxbase-strip obj/utcache.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/cc0wJxlY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utcache.o /tmp/cc0wJxlY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utdebug.o ../../../source/components/utilities/utdebug.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utdebug.c -quiet -dumpbase utdebug.c -mtune=generic -march=x86-64 -auxbase-strip obj/utdebug.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccTab1U1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utdebug.o /tmp/ccTab1U1.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utdecode.o ../../../source/components/utilities/utdecode.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utdecode.c -quiet -dumpbase utdecode.c -mtune=generic -march=x86-64 -auxbase-strip obj/utdecode.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccmj7Dk6.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utdecode.o /tmp/ccmj7Dk6.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utexcep.o ../../../source/components/utilities/utexcep.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utexcep.c -quiet -dumpbase utexcep.c -mtune=generic -march=x86-64 -auxbase-strip obj/utexcep.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/cciKs22d.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utexcep.o /tmp/cciKs22d.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utglobal.o ../../../source/components/utilities/utglobal.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utglobal.c -quiet -dumpbase utglobal.c -mtune=generic -march=x86-64 -auxbase-strip obj/utglobal.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccUJUcFm.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utglobal.o /tmp/ccUJUcFm.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utlock.o ../../../source/components/utilities/utlock.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utlock.c -quiet -dumpbase utlock.c -mtune=generic -march=x86-64 -auxbase-strip obj/utlock.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccRq4Hln.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utlock.o /tmp/ccRq4Hln.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utmath.o ../../../source/components/utilities/utmath.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utmath.c -quiet -dumpbase utmath.c -mtune=generic -march=x86-64 -auxbase-strip obj/utmath.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/cc6EEHss.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utmath.o /tmp/cc6EEHss.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utmisc.o ../../../source/components/utilities/utmisc.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utmisc.c -quiet -dumpbase utmisc.c -mtune=generic -march=x86-64 -auxbase-strip obj/utmisc.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccRRwcyA.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utmisc.o /tmp/ccRRwcyA.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utmutex.o ../../../source/components/utilities/utmutex.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utmutex.c -quiet -dumpbase utmutex.c -mtune=generic -march=x86-64 -auxbase-strip obj/utmutex.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccyQxUMG.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utmutex.o /tmp/ccyQxUMG.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utprint.o ../../../source/components/utilities/utprint.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utprint.c -quiet -dumpbase utprint.c -mtune=generic -march=x86-64 -auxbase-strip obj/utprint.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccPebreP.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utprint.o /tmp/ccPebreP.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utstate.o ../../../source/components/utilities/utstate.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utstate.c -quiet -dumpbase utstate.c -mtune=generic -march=x86-64 -auxbase-strip obj/utstate.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccwKcvgU.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utstate.o /tmp/ccwKcvgU.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utstring.o ../../../source/components/utilities/utstring.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utstring.c -quiet -dumpbase utstring.c -mtune=generic -march=x86-64 -auxbase-strip obj/utstring.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccAB1ukY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utstring.o /tmp/ccAB1ukY.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/utxferror.o ../../../source/components/utilities/utxferror.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/components/utilities/utxferror.c -quiet -dumpbase utxferror.c -mtune=generic -march=x86-64 -auxbase-strip obj/utxferror.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/ccjstK23.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/utxferror.o /tmp/ccjstK23.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/oslibcfs.o ../../../source/os_specific/service_layers/oslibcfs.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/os_specific/service_layers/oslibcfs.c -quiet -dumpbase oslibcfs.c -mtune=generic -march=x86-64 -auxbase-strip obj/oslibcfs.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/cc9Vvhza.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/oslibcfs.o /tmp/cc9Vvhza.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc -c -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -D_CYGWIN -D_GNU_SOURCE -I../../../source/include -DACPI_BIN_APP -I../../../source/tools/acpibin -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -O2 -D_FORTIFY_SOURCE=2 -o obj/osunixxf.o ../../../source/os_specific/service_layers/osunixxf.c</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin -D _CYGWIN -D _GNU_SOURCE -D _CYGWIN -D _GNU_SOURCE -D ACPI_BIN_APP -D _FORTIFY_SOURCE=2 ../../../source/os_specific/service_layers/osunixxf.c -quiet -dumpbase osunixxf.c -mtune=generic -march=x86-64 -auxbase-strip obj/osunixxf.o -O2 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2 -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration -Wtype-limits -std=c99 -o /tmp/cc7ZoPrc.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>as -I ../../../source/include -I ../../../source/include -I ../../../source/tools/acpibin --64 -o obj/osunixxf.o /tmp/cc7ZoPrc.s</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>gcc obj/abcompare.o obj/abmain.o obj/cmfsize.o obj/getopt.o obj/utalloc.o obj/utbuffer.o obj/utcache.o obj/utdebug.o obj/utdecode.o obj/utexcep.o obj/utglobal.o obj/utlock.o obj/utmath.o obj/utmisc.o obj/utmutex.o obj/utprint.o obj/utstate.o obj/utstring.o obj/utxferror.o obj/oslibcfs.o obj/osunixxf.o -o obj/acpibin</code>
+                    <ul class="level-10">
+                      <li><span class="bad-return">1</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMto14N.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o obj/acpibin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. obj/abcompare.o obj/abmain.o obj/cmfsize.o obj/getopt.o obj/utalloc.o obj/utbuffer.o obj/utcache.o obj/utdebug.o obj/utdecode.o obj/utexcep.o obj/utglobal.o obj/utlock.o obj/utmath.o obj/utmisc.o obj/utmutex.o obj/utprint.o obj/utstate.o obj/utstring.o obj/utxferror.o obj/oslibcfs.o obj/osunixxf.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                        <ul class="level-12">
+                          <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ld)</span><br />
+<span class="bad-return">1</span>&nbsp;<code>/usr/sbin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMto14N.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o obj/acpibin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. obj/abcompare.o obj/abmain.o obj/cmfsize.o obj/getopt.o obj/utalloc.o obj/utbuffer.o obj/utcache.o obj/utdebug.o obj/utdecode.o obj/utexcep.o obj/utglobal.o obj/utlock.o obj/utmath.o obj/utmisc.o obj/utmutex.o obj/utprint.o obj/utstate.o obj/utstring.o obj/utxferror.o obj/oslibcfs.o obj/osunixxf.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

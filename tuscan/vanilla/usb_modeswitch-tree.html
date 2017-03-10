@@ -1,0 +1,327 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree vanilla/usb_modeswitch</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="usb_modeswitch.html">usb_modeswitch</a>&quot;
+    on toolchain &quot;vanilla&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>None</code>
+        <ul class="level-4">
+          <li><span class="bad-return">127</span>&nbsp;<code>/usr/sbin/pacman -T libusb tcl</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="no-return">?</span>&nbsp;<code>sudo /usr/sbin/pacman --noconfirm --color never --noprogressbar -S --asdeps tcl</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/tty</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T libusb tcl</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T gcc make</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make clean</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd jim && ./autosetup/find-tclsh</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>./autosetup/find-tclsh</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>./autosetup/jimsh0 ./autosetup/test-tclsh</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>tclsh ./autosetup/test-tclsh</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make SBINDIR=/usr/bin</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd jim && ./autosetup/find-tclsh</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>./autosetup/find-tclsh</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>./autosetup/jimsh0 ./autosetup/test-tclsh</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>tclsh ./autosetup/test-tclsh</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sed 's_!/usr/bin/tclsh_!'"/usr/bin/tclsh"'_' < usb_modeswitch.tcl > usb_modeswitch_dispatcher</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>cc -o usb_modeswitch usb_modeswitch.c -Wall -I/usr/include/libusb-1.0 -lusb-1.0</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>pkg-config --libs --cflags libusb-1.0</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/cc1 -quiet -I /usr/include/libusb-1.0 usb_modeswitch.c -quiet -dumpbase usb_modeswitch.c -mtune=generic -march=x86-64 -auxbase usb_modeswitch -Wall -o /tmp/cckvJrEX.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>as -I /usr/include/libusb-1.0 --64 -o /tmp/cclQ1zjm.o /tmp/cckvJrEX.s</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIy3P7K.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o usb_modeswitch /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/cclQ1zjm.o -lusb-1.0 -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIy3P7K.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o usb_modeswitch /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. /tmp/cclQ1zjm.o -lusb-1.0 -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make DESTDIR=/tmp/usb_modeswitch/pkg/usb_modeswitch UDEVDIR=/tmp/usb_modeswitch/pkg/usb_modeswitch/usr/lib/udev SBINDIR=/tmp/usb_modeswitch/pkg/usb_modeswitch/usr/bin install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c cd jim && ./autosetup/find-tclsh</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>./autosetup/find-tclsh</code>
+                        <ul class="level-12">
+                          <li><span class="bad-return">127</span>&nbsp;<code>./autosetup/jimsh0 ./autosetup/test-tclsh</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>tclsh ./autosetup/test-tclsh</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sed 's_!/usr/bin/tclsh_!'"/usr/bin/tclsh"'_' < usb_modeswitch.tcl > usb_modeswitch_dispatcher</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=755 usb_modeswitch /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/bin/usb_modeswitch</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=755 usb_modeswitch.sh /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/lib/udev/usb_modeswitch</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=644 usb_modeswitch.conf /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/usb_modeswitch.conf</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=644 usb_modeswitch.1 /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/share/man/man1/usb_modeswitch.1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=644 usb_modeswitch_dispatcher.1 /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/share/man/man1/usb_modeswitch_dispatcher.1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=755 usb_modeswitch_dispatcher /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/bin/usb_modeswitch_dispatcher</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/usb_modeswitch/pkg/usb_modeswitch/var/lib/usb_modeswitch</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -d /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/init -a -e /sbin/initctl && install --mode=644 usb-modeswitch-upstart.conf /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/init || test 1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -d /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/systemd/system -a \( -e /usr/bin/systemctl -o -e /bin/systemctl \) && install --mode=644 usb_modeswitch@.service /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/systemd/system || test 1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make DESTDIR=/tmp/usb_modeswitch/pkg/usb_modeswitch install RULESDIR=/tmp/usb_modeswitch/pkg/usb_modeswitch/usr/lib/udev/rules.d</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/share/usb_modeswitch</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if [ -f /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/issue ]; then \
+	UDEVADM=`which udevadm 2>/dev/null`; \
+	if [ "x$UDEVADM" != "x" ]; then \
+		UDEVADM_VER=`$UDEVADM -V 2>/dev/null`; \
+		if [ -z $UDEVADM_VER ]; then \
+			UDEVADM_VER=`$UDEVADM --version 2>/dev/null`; \
+		fi; \
+		if [ $UDEVADM_VER -gt 127 ]; then \
+			$UDEVADM control --reload-rules; \
+		else \
+			$UDEVADM control --reload_rules; \
+		fi \
+	elif [ `which udevcontrol 2>/dev/null` ]; then \
+	`which udevcontrol` reload_rules; \
+	fi \
+fi</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -d /tmp/usb_modeswitch/pkg/usb_modeswitch/etc/usb_modeswitch.d</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D --mode=644 40-usb_modeswitch.rules /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/lib/udev/rules.d/40-usb_modeswitch.rules</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install --mode=644 -t /tmp/usb_modeswitch/pkg/usb_modeswitch/usr/share/usb_modeswitch ./usb_modeswitch.d/03f0:002a ./usb_modeswitch.d/0408:1000 ./usb_modeswitch.d/0408:ea17 ./usb_modeswitch.d/0408:ea25 ./usb_modeswitch.d/0408:ea43 ./usb_modeswitch.d/0408:f000 ./usb_modeswitch.d/0408:f001 ./usb_modeswitch.d/0421:060c ./usb_modeswitch.d/0421:0610 ./usb_modeswitch.d/0421:0618 ./usb_modeswitch.d/0421:061d ./usb_modeswitch.d/0421:0622 ./usb_modeswitch.d/0421:0627 ./usb_modeswitch.d/0421:062c ./usb_modeswitch.d/0421:0632 ./usb_modeswitch.d/0421:0637 ./usb_modeswitch.d/0471:1210:uMa=Philips ./usb_modeswitch.d/0471:1210:uMa=Wisue ./usb_modeswitch.d/0471:1237 ./usb_modeswitch.d/0482:024d ./usb_modeswitch.d/04bb:bccd ./usb_modeswitch.d/04cc:2251 ./usb_modeswitch.d/04cc:225c ./usb_modeswitch.d/04cc:226e ./usb_modeswitch.d/04cc:226f ./usb_modeswitch.d/04e8:680c ./usb_modeswitch.d/04e8:689a ./usb_modeswitch.d/04e8:f000:sMo=U209 ./usb_modeswitch.d/04fc:2140 ./usb_modeswitch.d/057c:62ff ./usb_modeswitch.d/057c:84ff ./usb_modeswitch.d/05c6:0010 ./usb_modeswitch.d/05c6:1000:sVe=GT ./usb_modeswitch.d/05c6:1000:sVe=Option ./usb_modeswitch.d/05c6:1000:uMa=AnyDATA ./usb_modeswitch.d/05c6:1000:uMa=CELOT ./usb_modeswitch.d/05c6:1000:uMa=Co.,Ltd ./usb_modeswitch.d/05c6:1000:uMa=DGT ./usb_modeswitch.d/05c6:1000:uMa=Option ./usb_modeswitch.d/05c6:1000:uMa=SAMSUNG ./usb_modeswitch.d/05c6:1000:uMa=SSE ./usb_modeswitch.d/05c6:1000:uMa=StrongRising ./usb_modeswitch.d/05c6:1000:uMa=Vertex ./usb_modeswitch.d/05c6:2000 ./usb_modeswitch.d/05c6:2001 ./usb_modeswitch.d/05c6:6503 ./usb_modeswitch.d/05c6:9024 ./usb_modeswitch.d/05c6:f000 ./usb_modeswitch.d/05c7:1000 ./usb_modeswitch.d/0685:2000 ./usb_modeswitch.d/072f:100d ./usb_modeswitch.d/07d1:a800 ./usb_modeswitch.d/07d1:a804 ./usb_modeswitch.d/07d1:f000 ./usb_modeswitch.d/0922:1001 ./usb_modeswitch.d/0922:1003 ./usb_modeswitch.d/0922:1007 ./usb_modeswitch.d/0930:0d46 ./usb_modeswitch.d/0ace:2011 ./usb_modeswitch.d/0ace:20ff ./usb_modeswitch.d/0af0:4007 ./usb_modeswitch.d/0af0:6711 ./usb_modeswitch.d/0af0:6731 ./usb_modeswitch.d/0af0:6751 ./usb_modeswitch.d/0af0:6771 ./usb_modeswitch.d/0af0:6791 ./usb_modeswitch.d/0af0:6811 ./usb_modeswitch.d/0af0:6911 ./usb_modeswitch.d/0af0:6951 ./usb_modeswitch.d/0af0:6971 ./usb_modeswitch.d/0af0:7011 ./usb_modeswitch.d/0af0:7031 ./usb_modeswitch.d/0af0:7051 ./usb_modeswitch.d/0af0:7071 ./usb_modeswitch.d/0af0:7111 ./usb_modeswitch.d/0af0:7211 ./usb_modeswitch.d/0af0:7251 ./usb_modeswitch.d/0af0:7271 ./usb_modeswitch.d/0af0:7301 ./usb_modeswitch.d/0af0:7311 ./usb_modeswitch.d/0af0:7361 ./usb_modeswitch.d/0af0:7381 ./usb_modeswitch.d/0af0:7401 ./usb_modeswitch.d/0af0:7501 ./usb_modeswitch.d/0af0:7601 ./usb_modeswitch.d/0af0:7701 ./usb_modeswitch.d/0af0:7706 ./usb_modeswitch.d/0af0:7801 ./usb_modeswitch.d/0af0:7901 ./usb_modeswitch.d/0af0:7a01 ./usb_modeswitch.d/0af0:7a05 ./usb_modeswitch.d/0af0:8006 ./usb_modeswitch.d/0af0:8200 ./usb_modeswitch.d/0af0:8201 ./usb_modeswitch.d/0af0:8300 ./usb_modeswitch.d/0af0:8302 ./usb_modeswitch.d/0af0:8304 ./usb_modeswitch.d/0af0:8400 ./usb_modeswitch.d/0af0:8600 ./usb_modeswitch.d/0af0:8700 ./usb_modeswitch.d/0af0:8800 ./usb_modeswitch.d/0af0:8900 ./usb_modeswitch.d/0af0:9000 ./usb_modeswitch.d/0af0:9200 ./usb_modeswitch.d/0af0:c031 ./usb_modeswitch.d/0af0:c100 ./usb_modeswitch.d/0af0:d001 ./usb_modeswitch.d/0af0:d013 ./usb_modeswitch.d/0af0:d031 ./usb_modeswitch.d/0af0:d033 ./usb_modeswitch.d/0af0:d035 ./usb_modeswitch.d/0af0:d055 ./usb_modeswitch.d/0af0:d057 ./usb_modeswitch.d/0af0:d058 ./usb_modeswitch.d/0af0:d155 ./usb_modeswitch.d/0af0:d157 ./usb_modeswitch.d/0af0:d255 ./usb_modeswitch.d/0af0:d257 ./usb_modeswitch.d/0af0:d357 ./usb_modeswitch.d/0b3c:c700 ./usb_modeswitch.d/0b3c:f000 ./usb_modeswitch.d/0b3c:f00c ./usb_modeswitch.d/0b3c:f017 ./usb_modeswitch.d/0bdb:190d ./usb_modeswitch.d/0bdb:1910 ./usb_modeswitch.d/0cf3:20ff ./usb_modeswitch.d/0d46:45a1 ./usb_modeswitch.d/0d46:45a5 ./usb_modeswitch.d/0df7:0800 ./usb_modeswitch.d/0e8d:0002:uPr=MT ./usb_modeswitch.d/0e8d:0002:uPr=Product ./usb_modeswitch.d/0e8d:7109 ./usb_modeswitch.d/0fca:8020 ./usb_modeswitch.d/0fce:d0cf ./usb_modeswitch.d/0fce:d0df ./usb_modeswitch.d/0fce:d0e1 ./usb_modeswitch.d/0fce:d103 ./usb_modeswitch.d/0fd1:1000 ./usb_modeswitch.d/1004:1000 ./usb_modeswitch.d/1004:607f ./usb_modeswitch.d/1004:613a ./usb_modeswitch.d/1004:613f ./usb_modeswitch.d/1004:614e ./usb_modeswitch.d/1004:6156 ./usb_modeswitch.d/1004:6190 ./usb_modeswitch.d/1004:61aa ./usb_modeswitch.d/1004:61dd ./usb_modeswitch.d/1004:61e7 ./usb_modeswitch.d/1004:61eb ./usb_modeswitch.d/1004:6327 ./usb_modeswitch.d/1033:0035 ./usb_modeswitch.d/106c:3b03 ./usb_modeswitch.d/106c:3b05 ./usb_modeswitch.d/106c:3b06 ./usb_modeswitch.d/106c:3b11 ./usb_modeswitch.d/106c:3b14 ./usb_modeswitch.d/1076:7f40 ./usb_modeswitch.d/109b:f009 ./usb_modeswitch.d/10a9:606f ./usb_modeswitch.d/10a9:6080 ./usb_modeswitch.d/1199:0fff ./usb_modeswitch.d/1199:9011 ./usb_modeswitch.d/1199:9013 ./usb_modeswitch.d/1199:9017 ./usb_modeswitch.d/1199:901b ./usb_modeswitch.d/1199:901c ./usb_modeswitch.d/1199:901f ./usb_modeswitch.d/1199:9041 ./usb_modeswitch.d/1199:9051 ./usb_modeswitch.d/1199:9053 ./usb_modeswitch.d/1199:9063 ./usb_modeswitch.d/1266:1000 ./usb_modeswitch.d/12d1:#android ./usb_modeswitch.d/12d1:#linux ./usb_modeswitch.d/12d1:1001 ./usb_modeswitch.d/12d1:1003 ./usb_modeswitch.d/12d1:1009 ./usb_modeswitch.d/12d1:1010 ./usb_modeswitch.d/12d1:101e ./usb_modeswitch.d/12d1:1030 ./usb_modeswitch.d/12d1:1031 ./usb_modeswitch.d/12d1:1413 ./usb_modeswitch.d/12d1:1414 ./usb_modeswitch.d/12d1:1446 ./usb_modeswitch.d/12d1:1449 ./usb_modeswitch.d/12d1:14ad ./usb_modeswitch.d/12d1:14b5 ./usb_modeswitch.d/12d1:14b7 ./usb_modeswitch.d/12d1:14ba ./usb_modeswitch.d/12d1:14c1 ./usb_modeswitch.d/12d1:14c3 ./usb_modeswitch.d/12d1:14c4 ./usb_modeswitch.d/12d1:14c5 ./usb_modeswitch.d/12d1:14d1 ./usb_modeswitch.d/12d1:14fe ./usb_modeswitch.d/12d1:1505 ./usb_modeswitch.d/12d1:151a ./usb_modeswitch.d/12d1:1520 ./usb_modeswitch.d/12d1:1521 ./usb_modeswitch.d/12d1:1523 ./usb_modeswitch.d/12d1:1526 ./usb_modeswitch.d/12d1:1553 ./usb_modeswitch.d/12d1:1557 ./usb_modeswitch.d/12d1:155a ./usb_modeswitch.d/12d1:155b ./usb_modeswitch.d/12d1:156a ./usb_modeswitch.d/12d1:1573 ./usb_modeswitch.d/12d1:157c ./usb_modeswitch.d/12d1:157d ./usb_modeswitch.d/12d1:1582 ./usb_modeswitch.d/12d1:1583 ./usb_modeswitch.d/12d1:1597 ./usb_modeswitch.d/12d1:15ca ./usb_modeswitch.d/12d1:15cd ./usb_modeswitch.d/12d1:15ce ./usb_modeswitch.d/12d1:15cf ./usb_modeswitch.d/12d1:15d0 ./usb_modeswitch.d/12d1:15d2 ./usb_modeswitch.d/12d1:15e7 ./usb_modeswitch.d/12d1:1805 ./usb_modeswitch.d/12d1:1c0b ./usb_modeswitch.d/12d1:1c1b ./usb_modeswitch.d/12d1:1c24 ./usb_modeswitch.d/12d1:1d50 ./usb_modeswitch.d/12d1:1da1 ./usb_modeswitch.d/12d1:1f01 ./usb_modeswitch.d/12d1:1f02 ./usb_modeswitch.d/12d1:1f03 ./usb_modeswitch.d/12d1:1f07 ./usb_modeswitch.d/12d1:1f09 ./usb_modeswitch.d/12d1:1f11 ./usb_modeswitch.d/12d1:1f15 ./usb_modeswitch.d/12d1:1f16 ./usb_modeswitch.d/12d1:1f17 ./usb_modeswitch.d/12d1:1f18 ./usb_modeswitch.d/12d1:1f19 ./usb_modeswitch.d/12d1:1f1b ./usb_modeswitch.d/12d1:1f1c ./usb_modeswitch.d/12d1:1f1d ./usb_modeswitch.d/12d1:1f1e ./usb_modeswitch.d/12d1:380b ./usb_modeswitch.d/1307:1169 ./usb_modeswitch.d/1410:5010 ./usb_modeswitch.d/1410:5020 ./usb_modeswitch.d/1410:5023 ./usb_modeswitch.d/1410:5030 ./usb_modeswitch.d/1410:5031 ./usb_modeswitch.d/1410:5041 ./usb_modeswitch.d/1410:5055 ./usb_modeswitch.d/1410:5059 ./usb_modeswitch.d/1410:7001 ./usb_modeswitch.d/1410:9020 ./usb_modeswitch.d/148e:a000 ./usb_modeswitch.d/148f:2578 ./usb_modeswitch.d/15eb:7153 ./usb_modeswitch.d/1614:0800 ./usb_modeswitch.d/1614:0802 ./usb_modeswitch.d/16d8:6281 ./usb_modeswitch.d/16d8:6803 ./usb_modeswitch.d/16d8:6804 ./usb_modeswitch.d/16d8:700a ./usb_modeswitch.d/16d8:700b ./usb_modeswitch.d/16d8:f000 ./usb_modeswitch.d/1726:f00e ./usb_modeswitch.d/1782:0003 ./usb_modeswitch.d/198a:0003 ./usb_modeswitch.d/198f:bccd ./usb_modeswitch.d/19d2:#linux ./usb_modeswitch.d/19d2:0003 ./usb_modeswitch.d/19d2:0026 ./usb_modeswitch.d/19d2:0040 ./usb_modeswitch.d/19d2:0053 ./usb_modeswitch.d/19d2:0083:uPr=WCDMA ./usb_modeswitch.d/19d2:0101 ./usb_modeswitch.d/19d2:0103 ./usb_modeswitch.d/19d2:0110 ./usb_modeswitch.d/19d2:0115 ./usb_modeswitch.d/19d2:0120 ./usb_modeswitch.d/19d2:0146 ./usb_modeswitch.d/19d2:0149 ./usb_modeswitch.d/19d2:0150 ./usb_modeswitch.d/19d2:0154 ./usb_modeswitch.d/19d2:0166 ./usb_modeswitch.d/19d2:0169 ./usb_modeswitch.d/19d2:0198 ./usb_modeswitch.d/19d2:0266 ./usb_modeswitch.d/19d2:0304 ./usb_modeswitch.d/19d2:0318 ./usb_modeswitch.d/19d2:0325 ./usb_modeswitch.d/19d2:0388 ./usb_modeswitch.d/19d2:0413 ./usb_modeswitch.d/19d2:1001 ./usb_modeswitch.d/19d2:1007 ./usb_modeswitch.d/19d2:1009 ./usb_modeswitch.d/19d2:1013 ./usb_modeswitch.d/19d2:1017 ./usb_modeswitch.d/19d2:1030 ./usb_modeswitch.d/19d2:1038 ./usb_modeswitch.d/19d2:1171 ./usb_modeswitch.d/19d2:1175 ./usb_modeswitch.d/19d2:1179 ./usb_modeswitch.d/19d2:1201 ./usb_modeswitch.d/19d2:1207 ./usb_modeswitch.d/19d2:1210 ./usb_modeswitch.d/19d2:1216 ./usb_modeswitch.d/19d2:1219 ./usb_modeswitch.d/19d2:1224 ./usb_modeswitch.d/19d2:1225 ./usb_modeswitch.d/19d2:1227 ./usb_modeswitch.d/19d2:1232 ./usb_modeswitch.d/19d2:1233 ./usb_modeswitch.d/19d2:1237 ./usb_modeswitch.d/19d2:1238 ./usb_modeswitch.d/19d2:1420 ./usb_modeswitch.d/19d2:1511 ./usb_modeswitch.d/19d2:1514 ./usb_modeswitch.d/19d2:1517 ./usb_modeswitch.d/19d2:1520 ./usb_modeswitch.d/19d2:1523 ./usb_modeswitch.d/19d2:1528 ./usb_modeswitch.d/19d2:1536 ./usb_modeswitch.d/19d2:1542 ./usb_modeswitch.d/19d2:1580 ./usb_modeswitch.d/19d2:1588 ./usb_modeswitch.d/19d2:1595 ./usb_modeswitch.d/19d2:2000 ./usb_modeswitch.d/19d2:2004 ./usb_modeswitch.d/19d2:bccd ./usb_modeswitch.d/19d2:ffde ./usb_modeswitch.d/19d2:ffe6 ./usb_modeswitch.d/19d2:fff5 ./usb_modeswitch.d/19d2:fff6 ./usb_modeswitch.d/1a8d:1000 ./usb_modeswitch.d/1a8d:2000 ./usb_modeswitch.d/1ab7:5700 ./usb_modeswitch.d/1b7d:0700 ./usb_modeswitch.d/1bbb:000f ./usb_modeswitch.d/1bbb:00ca ./usb_modeswitch.d/1bbb:011f ./usb_modeswitch.d/1bbb:022c ./usb_modeswitch.d/1bbb:f000 ./usb_modeswitch.d/1bbb:f017 ./usb_modeswitch.d/1bbb:f052 ./usb_modeswitch.d/1c9e:1001 ./usb_modeswitch.d/1c9e:6000 ./usb_modeswitch.d/1c9e:6061:uPr=Storage ./usb_modeswitch.d/1c9e:9101 ./usb_modeswitch.d/1c9e:9200 ./usb_modeswitch.d/1c9e:9401 ./usb_modeswitch.d/1c9e:9800 ./usb_modeswitch.d/1c9e:98ff ./usb_modeswitch.d/1c9e:9bfe ./usb_modeswitch.d/1c9e:9d00 ./usb_modeswitch.d/1c9e:9e00 ./usb_modeswitch.d/1c9e:9e08 ./usb_modeswitch.d/1c9e:f000 ./usb_modeswitch.d/1c9e:f000:uMa=USB_Modem ./usb_modeswitch.d/1d09:1000 ./usb_modeswitch.d/1d09:1021 ./usb_modeswitch.d/1d09:1025 ./usb_modeswitch.d/1da5:f000 ./usb_modeswitch.d/1dbc:0669 ./usb_modeswitch.d/1dd6:1000 ./usb_modeswitch.d/1de1:1101 ./usb_modeswitch.d/1e0e:f000 ./usb_modeswitch.d/1e89:f000 ./usb_modeswitch.d/1edf:6003 ./usb_modeswitch.d/1ee8:0003 ./usb_modeswitch.d/1ee8:0007 ./usb_modeswitch.d/1ee8:0009 ./usb_modeswitch.d/1ee8:0013 ./usb_modeswitch.d/1ee8:0018 ./usb_modeswitch.d/1ee8:0040 ./usb_modeswitch.d/1ee8:0045 ./usb_modeswitch.d/1ee8:0048 ./usb_modeswitch.d/1ee8:004a ./usb_modeswitch.d/1ee8:004f ./usb_modeswitch.d/1ee8:0054 ./usb_modeswitch.d/1ee8:0060 ./usb_modeswitch.d/1ee8:0063 ./usb_modeswitch.d/1ee8:0068 ./usb_modeswitch.d/1f28:0021 ./usb_modeswitch.d/1fac:0032 ./usb_modeswitch.d/1fac:0130 ./usb_modeswitch.d/1fac:0150 ./usb_modeswitch.d/1fac:0151 ./usb_modeswitch.d/2001:00a6 ./usb_modeswitch.d/2001:98ff ./usb_modeswitch.d/2001:a401 ./usb_modeswitch.d/2001:a403 ./usb_modeswitch.d/2001:a405 ./usb_modeswitch.d/2001:a706 ./usb_modeswitch.d/2001:a707 ./usb_modeswitch.d/2001:a708 ./usb_modeswitch.d/2001:a805 ./usb_modeswitch.d/2001:a80b ./usb_modeswitch.d/201e:1023 ./usb_modeswitch.d/201e:2009 ./usb_modeswitch.d/2020:0002 ./usb_modeswitch.d/2020:f00e ./usb_modeswitch.d/2020:f00f ./usb_modeswitch.d/2077:1000 ./usb_modeswitch.d/2077:f000 ./usb_modeswitch.d/20a6:f00a ./usb_modeswitch.d/20a6:f00e ./usb_modeswitch.d/20b9:1682 ./usb_modeswitch.d/21f5:1000 ./usb_modeswitch.d/21f5:3010 ./usb_modeswitch.d/2262:0001 ./usb_modeswitch.d/22de:6801 ./usb_modeswitch.d/22de:6803 ./usb_modeswitch.d/22f4:0021 ./usb_modeswitch.d/230d:0001 ./usb_modeswitch.d/230d:0003 ./usb_modeswitch.d/230d:0007 ./usb_modeswitch.d/230d:000b ./usb_modeswitch.d/230d:000d ./usb_modeswitch.d/230d:0101 ./usb_modeswitch.d/230d:0103 ./usb_modeswitch.d/2357:0200 ./usb_modeswitch.d/2357:f000 ./usb_modeswitch.d/23a2:1010 ./usb_modeswitch.d/257a:a000 ./usb_modeswitch.d/257a:b000 ./usb_modeswitch.d/257a:c000 ./usb_modeswitch.d/257a:d000 ./usb_modeswitch.d/8888:6500 ./usb_modeswitch.d/ed09:1021</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/usb_modeswitch/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/usb_modeswitch/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/usb_modeswitch/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO etc usr var</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE etc usr var</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>

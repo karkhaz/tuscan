@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html>
+<!-- Jinja template for reports of individual builds
+
+  Copyright 2016 Kareem Khazem. All Rights Reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+ 		 http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+  <head>
+    <meta charset="UTF-8">
+    <title>musl/uboot-tools</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+          rel='stylesheet' type='text/css'>
+    <link
+    href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+          rel='stylesheet' type='text/css'>
+    <link href="../style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Build of uboot-tools
+        with <a href="../index.html">musl</a>
+        toolchain</h1>
+    <p>The build took 00h 06m 39s and was
+    SUCCESSFUL.
+    </p>
+    <p>
+    The program in this build is written in the following languages,
+    according to <a
+    href="http://www.dwheeler.com/sloccount/">sloccount</a>:
+    </p>
+    <table>
+      <tr><th>SLOC</th><th>Language</th></tr>
+      
+      <tr><td class="loc"><code>1,180,467</code></td>
+          <td class="lang">ansic</td></tr>
+      <tr><td class="loc"><code>33,778</code></td>
+          <td class="lang">asm</td></tr>
+      <tr><td class="loc"><code>8,830</code></td>
+          <td class="lang">python</td></tr>
+      <tr><td class="loc"><code>8,014</code></td>
+          <td class="lang">perl</td></tr>
+      <tr><td class="loc"><code>6,413</code></td>
+          <td class="lang">makefile</td></tr>
+      <tr><td class="loc"><code>2,453</code></td>
+          <td class="lang">sh</td></tr>
+      <tr><td class="loc"><code>1,829</code></td>
+          <td class="lang">cpp</td></tr>
+      <tr><td class="loc"><code>604</code></td>
+          <td class="lang">yacc</td></tr>
+      <tr><td class="loc"><code>363</code></td>
+          <td class="lang">lex</td></tr>
+      <tr><td class="loc"><code>28</code></td>
+          <td class="lang">tcl</td></tr>
+      <tr><td class="loc"><code>14</code></td>
+          <td class="lang">sed</td></tr>
+      <tr><td class="loc"><code>6</code></td>
+          <td class="lang">awk</td></tr>
+      <tr><td><code>1,242,799</code></td>
+          <td><em>total</em></td></tr>
+    </table>
+    <p>
+      The process tree of the build process is <a
+      href="uboot-tools-tree.html">here</a>.
+    </p>
+    
+    
+    
+    
+    
+    
+    <h2>Log</h2>
+    <p>
+    To avoid scrolling, you may jump to the <a
+    href="#171">last line</a> of the
+    invocation of <code>makepkg</code> that was used to build this
+    package.
+    </p>
+    
+    
+      <div class="block">
+        <div class="info">
+          <code>Removed vanilla repositories from pacman.conf and added:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#1">#</a>
+						
+              <code id="1">[tuscan]</code><br />
+						
+            
+            <a class="navhash" href="#2">#</a>
+						
+              <code id="2">Server = file:///var/cache/pacman/pkg/</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman -Syy --noconfirm</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#3">#</a>
+						
+              <code id="3">:: Synchronizing package databases...</code><br />
+						
+            
+            <a class="navhash" href="#4">#</a>
+						
+              <code id="4">downloading tuscan.db...</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>There were existing files in /sysroot, using those</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#5">#</a>
+						
+              <code id="5">/sysroot/lib</code><br />
+						
+            
+            <a class="navhash" href="#6">#</a>
+						
+              <code id="6">/sysroot/share</code><br />
+						
+            
+            <a class="navhash" href="#7">#</a>
+						
+              <code id="7">/sysroot/bin</code><br />
+						
+            
+            <a class="navhash" href="#8">#</a>
+						
+              <code id="8">/sysroot/include</code><br />
+						
+            
+            <a class="navhash" href="#9">#</a>
+						
+              <code id="9">/sysroot/libexec</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#10">#</a>
+						
+              <code id="10">==> Making package: uboot-tools 2016.03-1 (Tue Mar  7 00:59:14 UTC 2017)</code><br />
+						
+            
+            <a class="navhash" href="#11">#</a>
+						
+              <code id="11">==> Checking runtime dependencies...</code><br />
+						
+            
+            <a class="navhash" href="#12">#</a>
+						
+              <code id="12">==> Checking buildtime dependencies...</code><br />
+						
+            
+            <a class="navhash" href="#13">#</a>
+						
+              <code id="13">==> WARNING: Using existing $srcdir/ tree</code><br />
+						
+            
+            <a class="navhash" href="#14">#</a>
+						
+              <code id="14">==> Starting build()...</code><br />
+						
+            
+            <a class="navhash" href="#15">#</a>
+						
+              <code id="15">  HOSTCC  scripts/basic/fixdep</code><br />
+						
+            
+            <a class="navhash" href="#16">#</a>
+						
+              <code id="16">  HOSTCC  scripts/kconfig/conf.o</code><br />
+						
+            
+            <a class="navhash" href="#17">#</a>
+						
+              <code id="17">  SHIPPED scripts/kconfig/zconf.tab.c</code><br />
+						
+            
+            <a class="navhash" href="#18">#</a>
+						
+              <code id="18">  SHIPPED scripts/kconfig/zconf.lex.c</code><br />
+						
+            
+            <a class="navhash" href="#19">#</a>
+						
+              <code id="19">  SHIPPED scripts/kconfig/zconf.hash.c</code><br />
+						
+            
+            <a class="navhash" href="#20">#</a>
+						
+              <code id="20">  HOSTCC  scripts/kconfig/zconf.tab.o</code><br />
+						
+            
+            <a class="navhash" href="#21">#</a>
+						
+              <code id="21">  HOSTLD  scripts/kconfig/conf</code><br />
+						
+            
+            <a class="navhash" href="#22">#</a>
+						
+              <code id="22">*** Default configuration is based on 'sandbox_defconfig'</code><br />
+						
+            
+            <a class="navhash" href="#23">#</a>
+						
+              <code id="23">#</code><br />
+						
+            
+            <a class="navhash" href="#24">#</a>
+						
+              <code id="24"># configuration written to .config</code><br />
+						
+            
+            <a class="navhash" href="#25">#</a>
+						
+              <code id="25">#</code><br />
+						
+            
+            <a class="navhash" href="#26">#</a>
+						
+              <code id="26">scripts/kconfig/conf  --silentoldconfig Kconfig</code><br />
+						
+            
+            <a class="navhash" href="#27">#</a>
+						
+              <code id="27">  CHK     include/config.h</code><br />
+						
+            
+            <a class="navhash" href="#28">#</a>
+						
+              <code id="28">  UPD     include/config.h</code><br />
+						
+            
+            <a class="navhash" href="#29">#</a>
+						
+              <code id="29">  GEN     include/autoconf.mk</code><br />
+						
+            
+            <a class="navhash" href="#30">#</a>
+						
+              <code id="30">  GEN     include/autoconf.mk.dep</code><br />
+						
+            
+            <a class="navhash" href="#31">#</a>
+						
+              <code id="31">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#32">#</a>
+						
+              <code id="32">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#33">#</a>
+						
+              <code id="33">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#34">#</a>
+						
+              <code id="34">  CHK     include/config/uboot.release</code><br />
+						
+            
+            <a class="navhash" href="#35">#</a>
+						
+              <code id="35">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#36">#</a>
+						
+              <code id="36">  CHK     include/generated/timestamp_autogenerated.h</code><br />
+						
+            
+            <a class="navhash" href="#37">#</a>
+						
+              <code id="37">  UPD     include/generated/timestamp_autogenerated.h</code><br />
+						
+            
+            <a class="navhash" href="#38">#</a>
+						
+              <code id="38">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#39">#</a>
+						
+              <code id="39">  LD      tools/env/built-in.o</code><br />
+						
+            
+            <a class="navhash" href="#40">#</a>
+						
+              <code id="40">  HOSTCC  tools/env/aes.o</code><br />
+						
+            
+            <a class="navhash" href="#41">#</a>
+						
+              <code id="41">  UPD     include/config/uboot.release</code><br />
+						
+            
+            <a class="navhash" href="#42">#</a>
+						
+              <code id="42">  HOSTCC  tools/env/crc32.o</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">  HOSTCC  tools/env/ctype.o</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">  HOSTCC  tools/env/env_attr.o</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						
+              <code id="45">  HOSTCC  tools/env/env_flags.o</code><br />
+						
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46">  HOSTCC  tools/env/fw_env.o</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">  HOSTCC  tools/env/linux_string.o</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">  CHK     include/generated/version_autogenerated.h</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">  UPD     include/generated/version_autogenerated.h</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">  HOSTCC  tools/env/fw_env_main.o</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">  CC      lib/asm-offsets.s</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">  CHK     include/generated/generic-asm-offsets.h</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">  UPD     include/generated/generic-asm-offsets.h</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">make: sdl-config: Command not found</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">  HOSTCC  tools/easylogo/easylogo</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">  AR      tools/env/lib.a</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">  HOSTLD  tools/env/fw_printenv</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">  STRIP   tools/env/fw_printenv</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">  HOSTCC  tools/gdb/gdbsend.o</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">  HOSTCC  tools/gdb/error.o</code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">  HOSTCC  tools/bmp_logo</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">  HOSTCC  tools/gdb/remote.o</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">  HOSTCC  tools/gdb/serial.o</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">  HOSTCC  tools/gen_eth_addr</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">  HOSTCC  tools/gdb/gdbcont.o</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">  HOSTLD  tools/gdb/gdbsend</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">  HOSTLD  tools/gdb/gdbcont</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">  HOSTCC  tools/img2srec</code><br />
+						
+            
+            <a class="navhash" href="#71">#</a>
+						
+              <code id="71">  HOSTCC  tools/xway-swap-bytes</code><br />
+						
+            
+            <a class="navhash" href="#72">#</a>
+						
+              <code id="72">  HOSTCC  tools/mkenvimage.o</code><br />
+						
+            
+            <a class="navhash" href="#73">#</a>
+						
+              <code id="73">  HOSTCC  tools/os_support.o</code><br />
+						
+            
+            <a class="navhash" href="#74">#</a>
+						
+              <code id="74">  WRAP    tools/lib/crc32.c</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">  HOSTCC  tools/aisimage.o</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">  HOSTCC  tools/atmelimage.o</code><br />
+						
+            
+            <a class="navhash" href="#77">#</a>
+						
+              <code id="77">  WRAP    tools/common/image-sig.c</code><br />
+						
+            
+            <a class="navhash" href="#78">#</a>
+						
+              <code id="78">  WRAP    tools/common/bootm.c</code><br />
+						
+            
+            <a class="navhash" href="#79">#</a>
+						
+              <code id="79">  HOSTCC  tools/default_image.o</code><br />
+						
+            
+            <a class="navhash" href="#80">#</a>
+						
+              <code id="80">  WRAP    tools/lib/fdtdec_common.c</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">  WRAP    tools/lib/fdtdec.c</code><br />
+						
+            
+            <a class="navhash" href="#82">#</a>
+						
+              <code id="82">  HOSTCC  tools/fit_common.o</code><br />
+						
+            
+            <a class="navhash" href="#83">#</a>
+						
+              <code id="83">  HOSTCC  tools/fit_image.o</code><br />
+						
+            
+            <a class="navhash" href="#84">#</a>
+						
+              <code id="84">  HOSTCC  tools/gpimage.o</code><br />
+						
+            
+            <a class="navhash" href="#85">#</a>
+						
+              <code id="85">  HOSTCC  tools/gpimage-common.o</code><br />
+						
+            
+            <a class="navhash" href="#86">#</a>
+						
+              <code id="86">  WRAP    tools/common/image-fit.c</code><br />
+						
+            
+            <a class="navhash" href="#87">#</a>
+						
+              <code id="87">  HOSTCC  tools/image-host.o</code><br />
+						
+            
+            <a class="navhash" href="#88">#</a>
+						
+              <code id="88">  WRAP    tools/common/image.c</code><br />
+						
+            
+            <a class="navhash" href="#89">#</a>
+						
+              <code id="89">  HOSTCC  tools/imagetool.o</code><br />
+						
+            
+            <a class="navhash" href="#90">#</a>
+						
+              <code id="90">  HOSTCC  tools/imximage.o</code><br />
+						
+            
+            <a class="navhash" href="#91">#</a>
+						
+              <code id="91">  HOSTCC  tools/kwbimage.o</code><br />
+						
+            
+            <a class="navhash" href="#92">#</a>
+						
+              <code id="92">  WRAP    tools/lib/md5.c</code><br />
+						
+            
+            <a class="navhash" href="#93">#</a>
+						
+              <code id="93">  HOSTCC  tools/lpc32xximage.o</code><br />
+						
+            
+            <a class="navhash" href="#94">#</a>
+						
+              <code id="94">  HOSTCC  tools/mxsimage.o</code><br />
+						
+            
+            <a class="navhash" href="#95">#</a>
+						
+              <code id="95">  HOSTCC  tools/omapimage.o</code><br />
+						
+            
+            <a class="navhash" href="#96">#</a>
+						
+              <code id="96">  HOSTCC  tools/pblimage.o</code><br />
+						
+            
+            <a class="navhash" href="#97">#</a>
+						
+              <code id="97">  HOSTCC  tools/pbl_crc32.o</code><br />
+						
+            
+            <a class="navhash" href="#98">#</a>
+						
+              <code id="98">  WRAP    tools/lib/rc4.c</code><br />
+						
+            
+            <a class="navhash" href="#99">#</a>
+						
+              <code id="99">  HOSTCC  tools/rkcommon.o</code><br />
+						
+            
+            <a class="navhash" href="#100">#</a>
+						
+              <code id="100">  HOSTCC  tools/rkimage.o</code><br />
+						
+            
+            <a class="navhash" href="#101">#</a>
+						
+              <code id="101">  HOSTCC  tools/rksd.o</code><br />
+						
+            
+            <a class="navhash" href="#102">#</a>
+						
+              <code id="102">  HOSTCC  tools/rkspi.o</code><br />
+						
+            
+            <a class="navhash" href="#103">#</a>
+						
+              <code id="103">  HOSTCC  tools/socfpgaimage.o</code><br />
+						
+            
+            <a class="navhash" href="#104">#</a>
+						
+              <code id="104">  WRAP    tools/lib/sha1.c</code><br />
+						
+            
+            <a class="navhash" href="#105">#</a>
+						
+              <code id="105">  WRAP    tools/lib/sha256.c</code><br />
+						
+            
+            <a class="navhash" href="#106">#</a>
+						
+              <code id="106">  WRAP    tools/common/hash.c</code><br />
+						
+            
+            <a class="navhash" href="#107">#</a>
+						
+              <code id="107">  HOSTCC  tools/ublimage.o</code><br />
+						
+            
+            <a class="navhash" href="#108">#</a>
+						
+              <code id="108">  HOSTCC  tools/zynqimage.o</code><br />
+						
+            
+            <a class="navhash" href="#109">#</a>
+						
+              <code id="109">  WRAP    tools/lib/libfdt/fdt.c</code><br />
+						
+            
+            <a class="navhash" href="#110">#</a>
+						
+              <code id="110">  WRAP    tools/lib/libfdt/fdt_ro.c</code><br />
+						
+            
+            <a class="navhash" href="#111">#</a>
+						
+              <code id="111">  WRAP    tools/lib/libfdt/fdt_rw.c</code><br />
+						
+            
+            <a class="navhash" href="#112">#</a>
+						
+              <code id="112">  WRAP    tools/lib/libfdt/fdt_strerror.c</code><br />
+						
+            
+            <a class="navhash" href="#113">#</a>
+						
+              <code id="113">  WRAP    tools/lib/libfdt/fdt_wip.c</code><br />
+						
+            
+            <a class="navhash" href="#114">#</a>
+						
+              <code id="114">  WRAP    tools/lib/libfdt/fdt_region.c</code><br />
+						
+            
+            <a class="navhash" href="#115">#</a>
+						
+              <code id="115">  WRAP    tools/lib/rsa/rsa-sign.c</code><br />
+						
+            
+            <a class="navhash" href="#116">#</a>
+						
+              <code id="116">  WRAP    tools/lib/rsa/rsa-verify.c</code><br />
+						
+            
+            <a class="navhash" href="#117">#</a>
+						
+              <code id="117">  WRAP    tools/lib/rsa/rsa-checksum.c</code><br />
+						
+            
+            <a class="navhash" href="#118">#</a>
+						
+              <code id="118">  WRAP    tools/lib/rsa/rsa-mod-exp.c</code><br />
+						
+            
+            <a class="navhash" href="#119">#</a>
+						
+              <code id="119">  HOSTCC  tools/dumpimage.o</code><br />
+						
+            
+            <a class="navhash" href="#120">#</a>
+						
+              <code id="120">  HOSTCC  tools/mkimage.o</code><br />
+						
+            
+            <a class="navhash" href="#121">#</a>
+						
+              <code id="121">  HOSTCC  tools/fit_info.o</code><br />
+						
+            
+            <a class="navhash" href="#122">#</a>
+						
+              <code id="122">  HOSTCC  tools/fit_check_sign.o</code><br />
+						
+            
+            <a class="navhash" href="#123">#</a>
+						
+              <code id="123">  HOSTCC  tools/ncb</code><br />
+						
+            
+            <a class="navhash" href="#124">#</a>
+						
+              <code id="124">  HOSTCC  tools/ubsha1.o</code><br />
+						
+            
+            <a class="navhash" href="#125">#</a>
+						
+              <code id="125">  HOSTCC  tools/proftool</code><br />
+						
+            
+            <a class="navhash" href="#126">#</a>
+						
+              <code id="126">  HOSTCC  tools/fdtgrep.o</code><br />
+						
+            
+            <a class="navhash" href="#127">#</a>
+						
+              <code id="127">tools/bmp_logo --gen-info ./tools/logos/denx.bmp > include/bmp_logo.h</code><br />
+						
+            
+            <a class="navhash" href="#128">#</a>
+						
+              <code id="128">tools/bmp_logo --gen-data ./tools/logos/denx.bmp > include/bmp_logo_data.h</code><br />
+						
+            
+            <a class="navhash" href="#129">#</a>
+						
+              <code id="129">  HOSTCC  tools/lib/crc32.o</code><br />
+						
+            
+            <a class="navhash" href="#130">#</a>
+						
+              <code id="130">  HOSTCC  tools/common/image-sig.o</code><br />
+						
+            
+            <a class="navhash" href="#131">#</a>
+						
+              <code id="131">  HOSTCC  tools/common/bootm.o</code><br />
+						
+            
+            <a class="navhash" href="#132">#</a>
+						
+              <code id="132">  HOSTCC  tools/lib/fdtdec_common.o</code><br />
+						
+            
+            <a class="navhash" href="#133">#</a>
+						
+              <code id="133">  HOSTCC  tools/lib/fdtdec.o</code><br />
+						
+            
+            <a class="navhash" href="#134">#</a>
+						
+              <code id="134">  HOSTCC  tools/common/image-fit.o</code><br />
+						
+            
+            <a class="navhash" href="#135">#</a>
+						
+              <code id="135">  HOSTCC  tools/common/image.o</code><br />
+						
+            
+            <a class="navhash" href="#136">#</a>
+						
+              <code id="136">  HOSTCC  tools/lib/md5.o</code><br />
+						
+            
+            <a class="navhash" href="#137">#</a>
+						
+              <code id="137">  HOSTCC  tools/lib/rc4.o</code><br />
+						
+            
+            <a class="navhash" href="#138">#</a>
+						
+              <code id="138">  HOSTCC  tools/lib/sha1.o</code><br />
+						
+            
+            <a class="navhash" href="#139">#</a>
+						
+              <code id="139">  HOSTCC  tools/lib/sha256.o</code><br />
+						
+            
+            <a class="navhash" href="#140">#</a>
+						
+              <code id="140">  HOSTCC  tools/common/hash.o</code><br />
+						
+            
+            <a class="navhash" href="#141">#</a>
+						
+              <code id="141">  HOSTCC  tools/lib/libfdt/fdt.o</code><br />
+						
+            
+            <a class="navhash" href="#142">#</a>
+						
+              <code id="142">  HOSTCC  tools/lib/libfdt/fdt_ro.o</code><br />
+						
+            
+            <a class="navhash" href="#143">#</a>
+						
+              <code id="143">  HOSTCC  tools/lib/libfdt/fdt_rw.o</code><br />
+						
+            
+            <a class="navhash" href="#144">#</a>
+						
+              <code id="144">  HOSTCC  tools/lib/libfdt/fdt_strerror.o</code><br />
+						
+            
+            <a class="navhash" href="#145">#</a>
+						
+              <code id="145">  HOSTCC  tools/lib/libfdt/fdt_wip.o</code><br />
+						
+            
+            <a class="navhash" href="#146">#</a>
+						
+              <code id="146">  HOSTCC  tools/lib/libfdt/fdt_region.o</code><br />
+						
+            
+            <a class="navhash" href="#147">#</a>
+						
+              <code id="147">  HOSTCC  tools/lib/rsa/rsa-sign.o</code><br />
+						
+            
+            <a class="navhash" href="#148">#</a>
+						
+              <code id="148">  HOSTCC  tools/lib/rsa/rsa-verify.o</code><br />
+						
+            
+            <a class="navhash" href="#149">#</a>
+						
+              <code id="149">  HOSTCC  tools/lib/rsa/rsa-checksum.o</code><br />
+						
+            
+            <a class="navhash" href="#150">#</a>
+						
+              <code id="150">  HOSTCC  tools/lib/rsa/rsa-mod-exp.o</code><br />
+						
+            
+            <a class="navhash" href="#151">#</a>
+						
+              <code id="151">  HOSTLD  tools/ubsha1</code><br />
+						
+            
+            <a class="navhash" href="#152">#</a>
+						
+              <code id="152">  HOSTLD  tools/fdtgrep</code><br />
+						
+            
+            <a class="navhash" href="#153">#</a>
+						
+              <code id="153">  HOSTLD  tools/mkenvimage</code><br />
+						
+            
+            <a class="navhash" href="#154">#</a>
+						
+              <code id="154">  HOSTLD  tools/dumpimage</code><br />
+						
+            
+            <a class="navhash" href="#155">#</a>
+						
+              <code id="155">  HOSTLD  tools/mkimage</code><br />
+						
+            
+            <a class="navhash" href="#156">#</a>
+						
+              <code id="156">  HOSTLD  tools/fit_info</code><br />
+						
+            
+            <a class="navhash" href="#157">#</a>
+						
+              <code id="157">  HOSTLD  tools/fit_check_sign</code><br />
+						
+            
+            <a class="navhash" href="#158">#</a>
+						
+              <code id="158">==> Entering fakeroot environment...</code><br />
+						
+            
+            <a class="navhash" href="#159">#</a>
+						
+              <code id="159">==> Starting package()...</code><br />
+						
+            
+            <a class="navhash" href="#160">#</a>
+						
+              <code id="160">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#161">#</a>
+						
+              <code id="161">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#162">#</a>
+						
+              <code id="162">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#163">#</a>
+						
+              <code id="163">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#164">#</a>
+						
+              <code id="164">==> Creating package "uboot-tools"...</code><br />
+						
+            
+            <a class="navhash" href="#165">#</a>
+						
+              <code id="165">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#166">#</a>
+						
+              <code id="166">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#167">#</a>
+						
+              <code id="167">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#168">#</a>
+						
+              <code id="168">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#169">#</a>
+						
+              <code id="169">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#170">#</a>
+						
+              <code id="170">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#171">#</a>
+						
+              <code id="171">==> Finished making: uboot-tools 2016.03-1 (Tue Mar  7 00:59:28 UTC 2017)</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file uboot-tools-2016.03-1-x86_64.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#172">#</a>
+						
+              <code id="172">uboot-tools 2016.03-1</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Creating hybrid package for 'uboot-tools'</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Trying to find vanilla package 'uboot-tools'...</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/uboot-tools-2016.03-1.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#173">#</a>
+						
+              <code id="173">uboot-tools 2016.03-1</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Package file has the following structure:</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#174">#</a>
+						
+              <code id="174">/.PKGINFO</code><br />
+						
+            
+            <a class="navhash" href="#175">#</a>
+						
+              <code id="175">/.BUILDINFO</code><br />
+						
+            
+            <a class="navhash" href="#176">#</a>
+						
+              <code id="176">/.MTREE</code><br />
+						
+            
+            <a class="navhash" href="#177">#</a>
+						
+              <code id="177">/usr/bin/mkimage</code><br />
+						
+            
+            <a class="navhash" href="#178">#</a>
+						
+              <code id="178">/usr/bin/img2srec</code><br />
+						
+            
+            <a class="navhash" href="#179">#</a>
+						
+              <code id="179">/usr/bin/fw_printenv</code><br />
+						
+            
+            <a class="navhash" href="#180">#</a>
+						
+              <code id="180">/usr/bin/ncb</code><br />
+						
+            
+            <a class="navhash" href="#181">#</a>
+						
+              <code id="181">/usr/bin/dumpimage</code><br />
+						
+            
+            <a class="navhash" href="#182">#</a>
+						
+              <code id="182">/usr/bin/netconsole</code><br />
+						
+            
+            <a class="navhash" href="#183">#</a>
+						
+              <code id="183">/usr/bin/mkenvimage</code><br />
+						
+            
+            <a class="navhash" href="#184">#</a>
+						
+              <code id="184">/usr/bin/jtagconsole</code><br />
+						
+            
+            <a class="navhash" href="#185">#</a>
+						
+              <code id="185">/usr/bin/fw_setenv</code><br />
+						
+            
+            <a class="navhash" href="#186">#</a>
+						
+              <code id="186">/usr/share/man/man1/mkimage.1.gz</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Generating .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Tar-ing up files</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO .BUILDINFO usr .MTREE</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Successfully ran bsdtar -cf - .PKGINFO .BUILDINFO usr .MTREE | xz -c -z</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>bsdtar -tqf uboot-tools.pkg.tar.xz .PKGINFO</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#187">#</a>
+						
+              <code id="187">.PKGINFO</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Created package at path /var/cache/pacman/pkg/uboot-tools.pkg.tar.xz</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="info">
+          <code>Attempting to access local repository, attempt 1</code>
+        </div>
+        
+      </div>
+      <br />
+    
+      <div class="block">
+        <div class="command">
+          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/uboot-tools.pkg.tar.xz</code>
+        </div>
+        
+          <div class="output">
+            
+            <a class="navhash" href="#188">#</a>
+						
+              <code id="188">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#189">#</a>
+						
+              <code id="189">==> Extracting database to a temporary location...</code><br />
+						
+            
+            <a class="navhash" href="#190">#</a>
+						
+              <code id="190">==> Adding package '/var/cache/pacman/pkg/uboot-tools.pkg.tar.xz'</code><br />
+						
+            
+            <a class="navhash" href="#191">#</a>
+						
+              <code id="191">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#192">#</a>
+						
+              <code id="192">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#193">#</a>
+						
+              <code id="193">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#194">#</a>
+						
+              <code id="194">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+						
+            
+          </div>
+        
+      </div>
+      <br />
+    
+  </body>
+</html>

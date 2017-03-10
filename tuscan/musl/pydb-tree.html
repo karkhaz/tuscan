@@ -1,0 +1,565 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Build tree musl/pydb</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+        rel='stylesheet' type='text/css'>
+  <link
+  href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+        rel='stylesheet' type='text/css'>
+  <link href="../style.css" type="text/css" rel="stylesheet">
+  <style>
+  .good-return {
+    font-weight: bold;
+    color: blue;
+  }
+  .bad-return {
+    font-weight: bold;
+    color: red;
+  }
+  .no-return {
+    font-weight: bold;
+    color: purple;
+  }
+  li {
+    list-style: none;
+  }
+  ul{
+    padding-left: 1em;
+  }
+  .level-0{
+
+  }
+  .level-2{
+    background-color: #eee;
+  }
+  .level-4{
+    background-color: #ddd;
+  }
+  .level-6{
+    background-color: #ccc;
+  }
+  .level-8{
+    background-color: #bbb;
+  }
+  .level-10{
+    background-color: #aaa;
+  }
+  .level-12{
+    background-color: #999;
+  }
+  .level-14{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-16{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-18{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .level-20{
+    background-color: #999;
+    border-left: 1px dotted #222;
+  }
+  .red-error{
+    background-color: #ffcdd2;
+    color: #880e4f;
+  }
+  .red-error-info{
+    background-color: #ffcdd2;
+  }
+  </style>
+  </head>
+  <body>
+    <h1>Build tree for &quot;<a
+    href="pydb.html">pydb</a>&quot;
+    on toolchain &quot;musl&quot;
+    </h1>
+    <ul class="level-0">
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T python2</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr --with-python=/usr/bin/python2</code>
+        <ul class="level-4">
+          <li><span class="no-return">?</span>&nbsp;<code>cat</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">127</span>&nbsp;<code>/usr/convex/getsysinfo</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/python2 -c import sys, string
+# split strings by '.' and convert to numeric.  Append some zeros
+# because we need at least 4 digits for the hex conversion.
+minver = map(int, string.split('2.4.0', '.')) + [0, 0, 0]
+minverhex = 0
+for i in xrange(0, 4): minverhex = (minverhex << 8) + minver[i]
+sys.exit(sys.hexversion < minverhex)</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/python2 -c import sys; print sys.version[:3]</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/python2 -c import sys; print sys.platform</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/python2 -c from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='${prefix}')</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/python2 -c from distutils import sysconfig; print sysconfig.get_python_lib(1,0,prefix='${exec_prefix}')</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/python2 ./site-packages-path.py</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh /tmp/pydb/src/pydb-1.26/missing --run true</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>make -f conftest.make</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh ./config.status</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo all-recursive | sed s/-recursive//`; \
+list='test  '; for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo all-recursive | sed s/-recursive//`; \
+list='data unit'; for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make all</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make all-am</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make all-am</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/sbin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make DESTDIR=/tmp/pydb/pkg/pydb install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo install-recursive | sed s/-recursive//`; \
+list='test  '; for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                    <ul class="level-10">
+                      <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c failcom='exit 1'; \
+for f in x $MAKEFLAGS; do \
+  case $f in \
+    *=* | --[!k]*);; \
+    *k*) failcom='fail=yes';; \
+  esac; \
+done; \
+dot_seen=no; \
+target=`echo install-recursive | sed s/-recursive//`; \
+list='data unit'; for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>make install</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>make install-am</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>make install-am</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>make install-exec-am install-data-am</code>
+                            <ul class="level-14">
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -z "/usr/share/man/man1" || /usr/sbin/mkdir -p "/tmp/pydb/pkg/pydb/usr/share/man/man1"</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -z "/usr/lib/python2.7/site-packages/pydb" || /usr/sbin/mkdir -p "/tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb"</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='pydb/pydb.doc'; for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  f=`echo $p | sed -e 's|^.*/||'`; \
+  echo " /usr/bin/install -c -m 644 '$d$p' '/tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/$f'"; \
+  /usr/bin/install -c -m 644 "$d$p" "/tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/$f"; \
+done</code>
+                                <ul class="level-16">
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/pydb.doc /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/pydb.doc</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='Doc/pydb.1  '; \
+l2='  '; \
+for i in $l2; do \
+  case "$i" in \
+    *.1*) list="$list $i" ;; \
+  esac; \
+done; \
+for i in $list; do \
+  if test -f ./$i; then file=./$i; \
+  else file=$i; fi; \
+  ext=`echo $i | sed -e 's/^.*\\.//'`; \
+  case "$ext" in \
+    1*) ;; \
+    *) ext='1' ;; \
+  esac; \
+  inst=`echo $i | sed -e 's/\\.[0-9a-z]*$//'`; \
+  inst=`echo $inst | sed -e 's/^.*\///'`; \
+  inst=`echo $inst | sed 's,x,x,'`.$ext; \
+  echo " /usr/bin/install -c -m 644 '$file' '/tmp/pydb/pkg/pydb/usr/share/man/man1/$inst'"; \
+  /usr/bin/install -c -m 644 "$file" "/tmp/pydb/pkg/pydb/usr/share/man/man1/$inst"; \
+done</code>
+                                <ul class="level-16">
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 ./Doc/pydb.1 /tmp/pydb/pkg/pydb/usr/share/man/man1/pydb.1</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -z "/usr/lib/python2.7/site-packages/pydb" || /usr/sbin/mkdir -p "/tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb"</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='pydb/__init__.py pydb/pydb.py pydb/bytecode.py pydb/complete.py pydb/connection.py pydb/disassemble.py pydb/display.py pydb/fns.py pydb/gdb.py pydb/info.py pydb/pydb.py pydb/pydbbdb.py pydb/pydbcmd.py pydb/set.py pydb/show.py pydb/sighandler.py pydb/subcmd.py pydb/threaddbg.py pydb/threadinfo.py'; dlist=''; for p in $list; do\
+  if test -f "$p"; then b=; else b="./"; fi; \
+  if test -f $b$p; then \
+    f=`echo $p | sed -e 's|^.*/||'`; \
+    dlist="$dlist $f"; \
+    echo " /usr/bin/install -c -m 644 '$b$p' '/tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/$f'"; \
+    /usr/bin/install -c -m 644 "$b$p" "/tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/$f"; \
+  else :; fi; \
+done; \
+if test -n "$dlist"; then \
+  if test -z "/tmp/pydb/pkg/pydb"; then \
+    PYTHON=/usr/bin/python2 ./py-compile --basedir "/usr/lib/python2.7/site-packages/pydb" $dlist; \
+  else \
+    PYTHON=/usr/bin/python2 ./py-compile --destdir "/tmp/pydb/pkg/pydb" --basedir "/usr/lib/python2.7/site-packages/pydb" $dlist; \
+  fi; \
+else :; fi</code>
+                                <ul class="level-16">
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/__init__.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/__init__.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/pydb.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/pydb.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/bytecode.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/bytecode.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/complete.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/complete.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/connection.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/connection.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/disassemble.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/disassemble.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/display.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/display.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/fns.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/fns.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/gdb.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/gdb.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/info.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/info.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/pydb.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/pydb.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/pydbbdb.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/pydbbdb.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/pydbcmd.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/pydbcmd.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/set.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/set.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/show.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/show.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/sighandler.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/sighandler.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/subcmd.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/subcmd.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/threaddbg.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/threaddbg.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/install -c -m 644 pydb/threadinfo.py /tmp/pydb/pkg/pydb/usr/lib/python2.7/site-packages/pydb/threadinfo.py</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                  <li><span class="good-return">0</span>&nbsp;<code>./py-compile --destdir /tmp/pydb/pkg/pydb --basedir /usr/lib/python2.7/site-packages/pydb __init__.py pydb.py bytecode.py complete.py connection.py disassemble.py display.py fns.py gdb.py info.py pydb.py pydbbdb.py pydbcmd.py set.py show.py sighandler.py subcmd.py threaddbg.py threadinfo.py</code>
+                                    <ul class="level-18">
+                                      <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/python2 -c 
+import sys, os, string, py_compile
+
+files = ''' __init__.py pydb.py bytecode.py complete.py connection.py disassemble.py display.py fns.py gdb.py info.py pydb.py pydbbdb.py pydbcmd.py set.py show.py sighandler.py subcmd.py threaddbg.py threadinfo.py'''
+
+print 'Byte-compiling python modules...'
+for file in string.split(files):
+    path = os.path.join('/usr/lib/python2.7/site-packages/pydb', file)
+    filepath = os.path.normpath('/tmp/pydb/pkg/pydb' + os.sep + path)
+    if not os.path.exists(filepath) or not (len(filepath) >= 3
+                                            and filepath[-3:] == '.py'):
+	continue
+    print file,
+    sys.stdout.flush()
+    py_compile.compile(filepath, filepath + 'c', path)
+print</code>
+                                        <ul class="level-20">
+                                        </ul>
+                                      </li>
+                                      <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/python2 -O -c 
+import sys, os, string, py_compile
+
+files = ''' __init__.py pydb.py bytecode.py complete.py connection.py disassemble.py display.py fns.py gdb.py info.py pydb.py pydbbdb.py pydbcmd.py set.py show.py sighandler.py subcmd.py threaddbg.py threadinfo.py'''
+print 'Byte-compiling python modules (optimized versions) ...'
+for file in string.split(files):
+    path = os.path.join('/usr/lib/python2.7/site-packages/pydb', file)
+    filepath = os.path.normpath('/tmp/pydb/pkg/pydb' + os.sep + path)
+    if not os.path.exists(filepath) or not (len(filepath) >= 3
+                                            and filepath[-3:] == '.py'):
+	continue
+    print file,
+    sys.stdout.flush()
+    py_compile.compile(filepath, filepath + 'o', path)
+print</code>
+                                        <ul class="level-20">
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if ! test -d "/tmp/pydb/pkg/pydb/usr/bin"; then \
+  test -z "/tmp/pydb/pkg/pydb/usr/bin" || /usr/sbin/mkdir -p "/tmp/pydb/pkg/pydb/usr/bin"; \
+fi</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c rm -f "/tmp/pydb/pkg/pydb/usr/bin/pydb" || true;</code>
+                                <ul class="level-16">
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/pydb/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/pydb/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/pydb/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <body>
+<html>
