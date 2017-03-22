@@ -79,13 +79,20 @@
     on toolchain &quot;clang_glibc&quot;
     </h1>
     <ul class="level-0">
-  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
     <ul class="level-2">
-      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T git</code>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
         <ul class="level-4">
         </ul>
       </li>
-      <li><span class="bad-return">2</span>&nbsp;<code>make PREFIX=/usr</code>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T git</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>make PREFIX=/usr</code>
         <ul class="level-4">
           <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test ! -d .git || git describe --tags --dirty=+ | sed 's/^v//;s/-/./g' > version</code>
             <ul class="level-6">
@@ -95,16 +102,81 @@
               </li>
             </ul>
           </li>
-          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.9 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name ioping.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/ioping/src/ioping/ioping.o -resource-dir /sysroot/bin/../lib/clang/3.9.1 -D VERSION="0.9" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.9.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O2 -Wall -Wextra -pedantic -std=gnu99 -fdebug-compilation-dir /tmp/ioping/src/ioping -ferror-limit 19 -fmessage-length 0 -funroll-loops -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o ioping.o -x c ioping.c</code>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name ioping.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/ioping/src/ioping/ioping.o -resource-dir /usr/bin/../lib/clang/3.8.0 -D VERSION="0.9" -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/clang/3.8.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O2 -Wall -Wextra -pedantic -std=gnu99 -fdebug-compilation-dir /tmp/ioping/src/ioping -ferror-limit 19 -fmessage-length 0 -funroll-loops -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o ioping.o -x c ioping.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o ioping /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64 -L/usr/bin/../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -L/usr/bin/../lib -L/lib -L/usr/lib ioping.o -lm -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crtn.o</code>
             <ul class="level-6">
             </ul>
           </li>
         </ul>
       </li>
-    </ul>
-  </li>
-  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
-    <ul class="level-2">
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make PREFIX=/tmp/ioping/pkg/ioping/usr install</code>
+                <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>install -s -m 0755 ioping /tmp/ioping/pkg/ioping/usr/bin</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>strip /tmp/ioping/pkg/ioping/usr/bin/ioping</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 644 ioping.1 /tmp/ioping/pkg/ioping/usr/share/man/man1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/ioping/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/ioping/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/ioping/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>

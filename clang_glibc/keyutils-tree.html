@@ -79,19 +79,24 @@
     on toolchain &quot;clang_glibc&quot;
     </h1>
     <ul class="level-0">
-  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+  <li><span class="good-return">0</span>&nbsp;<code>None</code>
     <ul class="level-2">
-      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc sh</code>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc sh</code>
         <ul class="level-4">
         </ul>
       </li>
-      <li><span class="bad-return">2</span>&nbsp;<code>make CFLAGS= LDFLAGS= SBINDIR=/usr/bin BINDIR=/usr/bin</code>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>make CFLAGS= LDFLAGS= SBINDIR=/usr/bin BINDIR=/usr/bin</code>
         <ul class="level-4">
           <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c ldd /usr/bin/make | grep '\(/libc\)' | sed -e 's!.*\(/.*\)/libc[.].*!\1!'</code>
             <ul class="level-6">
-              <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/sbin/ldd)</span><br />
-<span class="bad-return">126</span>&nbsp;<code>ldd /usr/bin/make</code>
+              <li><span class="good-return">0</span>&nbsp;<code>ldd /usr/bin/make</code>
                 <ul class="level-8">
+                  <li><span class="no-return">?</span>&nbsp;<code>/usr/lib64/ld-linux-x86-64.so.2 --verify /usr/bin/make</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -104,16 +109,167 @@
               </li>
             </ul>
           </li>
-          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.9 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name keyutils.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/keyutils.os -resource-dir /sysroot/bin/../lib/clang/3.9.1 -I . -D PKGBUILD="2017-02-27" -D PKGVERSION="keyutils-1.5.9" -D APIVERSION="libkeyutils-1.5" -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.9.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o keyutils.os -x c keyutils.c</code>
+          <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/clang)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name keyutils.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/keyutils.os -resource-dir /usr/bin/../lib/clang/3.8.0 -I . -D PKGBUILD="2017-03-13" -D PKGVERSION="keyutils-1.5.9" -D APIVERSION="libkeyutils-1.5" -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/clang/3.8.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o keyutils.os -x c keyutils.c</code>
             <ul class="level-6">
             </ul>
           </li>
-          <li><span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.9 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name keyctl.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/keyctl.o -resource-dir /sysroot/bin/../lib/clang/3.9.1 -I . -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.9.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o keyctl.o -x c keyctl.c</code>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name keyctl.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/keyctl.o -resource-dir /usr/bin/../lib/clang/3.8.0 -I . -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/clang/3.8.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o keyctl.o -x c keyctl.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name request-key.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/request-key.o -resource-dir /usr/bin/../lib/clang/3.8.0 -I . -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/clang/3.8.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o request-key.o -x c request-key.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name key.dns_resolver.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/key.dns_resolver.o -resource-dir /usr/bin/../lib/clang/3.8.0 -I . -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/clang/3.8.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o key.dns_resolver.o -x c key.dns_resolver.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation</span><span class="red-error-info"> (/usr/bin/clang)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/usr/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name keyutils.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/keyutils/src/keyutils-1.5.9/keyutils.o -resource-dir /usr/bin/../lib/clang/3.8.0 -I . -D PKGBUILD="2017-03-13" -D PKGVERSION="keyutils-1.5.9" -D APIVERSION="libkeyutils-1.5" -U NO_GLIBC_KEYERR -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/clang/3.8.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir /tmp/keyutils/src/keyutils-1.5.9 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o keyutils.o -x c keyutils.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --eh-frame-hdr -m elf_x86_64 -shared -o libkeyutils.so.1.5 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64 -L/usr/bin/../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -L/usr/bin/../lib -L/lib -L/usr/lib -soname libkeyutils.so.1 --version-script version.lds keyutils.os -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o keyctl /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L. -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64 -L/usr/bin/../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -L/usr/bin/../lib -L/lib -L/usr/lib keyctl.o -lkeyutils -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o request-key /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L. -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64 -L/usr/bin/../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -L/usr/bin/../lib -L/lib -L/usr/lib request-key.o -lkeyutils -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>ar rcs libkeyutils.a keyutils.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="no-return">?</span>&nbsp;<code>/usr/bin/ld --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o key.dns_resolver /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L. -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64 -L/usr/bin/../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. -L/usr/bin/../lib -L/lib -L/usr/lib key.dns_resolver.o -lkeyutils -lresolv -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib64/crtn.o</code>
             <ul class="level-6">
             </ul>
           </li>
         </ul>
       </li>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
+<span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>None</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">1</span>&nbsp;<code>/usr/bin/pacman --noconfirm --color never --noprogressbar -Q</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>make DESTDIR=/tmp/keyutils/pkg/keyutils SBINDIR=/usr/bin BINDIR=/usr/bin LIBDIR=/usr/lib USRLIBDIR=/usr/lib install</code>
+                <ul class="level-8">
+                  <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c file /usr/bin/make | sed -e 's!.*ELF \(32\|64\)-bit.*!\1!'</code>
+                    <ul class="level-10">
+                      <li><span class="no-return">?</span>&nbsp;<code>file /usr/bin/make</code>
+                        <ul class="level-12">
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D -m 0644 libkeyutils.a /tmp/keyutils/pkg/keyutils/usr/lib/libkeyutils.a</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D libkeyutils.so.1.5 /tmp/keyutils/pkg/keyutils/usr/lib/libkeyutils.so.1.5</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D keyctl /tmp/keyutils/pkg/keyutils/usr/bin/keyctl</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D request-key /tmp/keyutils/pkg/keyutils/usr/bin/request-key</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D request-key-debug.sh /tmp/keyutils/pkg/keyutils/usr/share/keyutils/request-key-debug.sh</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D key.dns_resolver /tmp/keyutils/pkg/keyutils/usr/bin/key.dns_resolver</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D -m 0644 request-key.conf /tmp/keyutils/pkg/keyutils/etc/request-key.conf</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 0644 man/keyctl.1 /tmp/keyutils/pkg/keyutils/usr/share/man/man1</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 0644 man/keyctl_get_keyring_ID.3 man/keyctl.3 man/keyctl_chown.3 man/keyctl_revoke.3 man/keyctl_get_security.3 man/keyctl_session_to_parent.3 man/keyctl_describe.3 man/keyctl_set_timeout.3 man/find_key_by_type_and_name.3 man/keyctl_join_session_keyring.3 man/keyctl_invalidate.3 man/keyctl_set_reqkey_keyring.3 man/keyctl_instantiate.3 man/keyctl_clear.3 man/keyctl_link.3 man/keyctl_search.3 man/keyctl_setperm.3 man/keyctl_update.3 man/keyctl_read.3 man/keyctl_get_persistent.3 man/recursive_key_scan.3 /tmp/keyutils/pkg/keyutils/usr/share/man/man3</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 0644 man/request-key.conf.5 /tmp/keyutils/pkg/keyutils/usr/share/man/man5</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 0644 man/persistent-keyring.7 man/process-keyring.7 man/keyutils.7 man/thread-keyring.7 man/keyrings.7 man/user-session-keyring.7 man/session-keyring.7 man/user-keyring.7 /tmp/keyutils/pkg/keyutils/usr/share/man/man7</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -m 0644 man/request-key.8 man/key.dns_resolver.8 /tmp/keyutils/pkg/keyutils/usr/share/man/man8</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                  <li><span class="no-return">?</span>&nbsp;<code>install -D -m 0644 keyutils.h /tmp/keyutils/pkg/keyutils/usr/include/keyutils.h</code>
+                    <ul class="level-10">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/keyutils/src</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">123</span>&nbsp;<code>xargs -0 grep -q -I /tmp/keyutils/pkg</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>fakeroot -v</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>openssl dgst -sha256 /tmp/keyutils/PKGBUILD</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,gid,mode,time,size,md5,sha256,link .PKGINFO .BUILDINFO etc usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="no-return">?</span>&nbsp;<code>bsdtar -cf - .PKGINFO .BUILDINFO .MTREE etc usr</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>xz -c -z -</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/make</code>
+    <ul class="level-2">
     </ul>
   </li>
 </ul>
