@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright 2016 Kareem Khazem. All Rights Reserved.
+# Copyright 2017 Kareem Khazem. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Invoke the musl toolchain setup script. This musl-specific function is
-# called from the generic install_bootstrap script.
+# Invoke the clang-glibc toolchain setup script. This
+# clang-glibc-specific function is called from the generic
+# install_bootstrap script.
 
 def toolchain_specific_setup(args):
     pass

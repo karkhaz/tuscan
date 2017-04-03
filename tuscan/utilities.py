@@ -46,7 +46,7 @@ def die(status, message=None, output=[]):
             log("info", "Printing %s" % pretty_log_name)
         for l in logs:
             lines = []
-            with open(l, encoding="utf-8") as f:
+            with open(l, encoding="utf-8", errors="ignore") as f:
                 for line in f:
                     lines.append(line.strip())
                 log("command", "%s '%s'" % (pretty_log_name, l), lines)

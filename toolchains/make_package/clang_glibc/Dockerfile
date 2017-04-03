@@ -1,4 +1,4 @@
-# Copyright 2015 Google Inc. All Rights Reserved.
+# Copyright 2017 Kareem Khazem. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ ENV CURL_HOME /etc
 ENTRYPOINT  ["/usr/bin/python", "-u", \
  "/build/main.py", \
  "--env-vars", \
- "PATH=/sysroot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", \
  "CC=clang", \
  "CXX=clang++" \
  ]
