@@ -30,7 +30,7 @@
     <h1>Build of libfaketime
         with <a href="../index.html">android</a>
         toolchain</h1>
-    <p>The build took 00h 00m 52s and was
+    <p>The build took 00h 00m 50s and was
     NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
@@ -66,9 +66,9 @@
       <li>missing_header
         <ul>
           
-          <li><a href="#28">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</a></li>
+          <li><a href="#38">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</a></li>
           
-          <li><a href="#31">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</a></li>
+          <li><a href="#45">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</a></li>
           
         </ul>
       </li>
@@ -79,7 +79,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#42">last line</a> of the
+    href="#53">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -220,7 +220,7 @@
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">==> Making package: libfaketime 0.9.6-2 (Mon Aug 29 18:37:58 UTC 2016)</code><br />
+              <code id="19">==> Making package: libfaketime 0.9.6-2 (Tue Apr  4 19:48:28 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#20">#</a>
@@ -264,78 +264,133 @@
 						
             
             <a class="navhash" href="#28">#</a>
-						<span class="error">
-              <code id="28">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</code><br />
-						</span>
+						
+              <code id="28">arm-linux-androideabi-gcc -o faketime  -std=gnu99 -Wall -Wextra -Werror -DFAKE_STAT -DFAKE_SLEEP -DFAKE_TIMERS -DFAKE_INTERNAL_CALLS -fPIC -DPREFIX='"'/usr'"' -DLIBDIRNAME='"'/lib/faketime'"'  faketime.c  -Wl,--version-script=libfaketime.map -lpthread -lrt</code><br />
+						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29"> #include <sys/timeb.h></code><br />
+              <code id="29">faketime.c: In function 'cleanup_shobjs':</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">                       ^</code><br />
+              <code id="30">faketime.c:97:3: error: implicit declaration of function 'shm_unlink' [-Werror=implicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
-						<span class="error">
-              <code id="31">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</code><br />
-						</span>
+						
+              <code id="31">   if (-1 == shm_unlink(shm_name))</code><br />
+						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32"> #include <sys/timeb.h></code><br />
+              <code id="32">   ^</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">                       ^</code><br />
+              <code id="33">faketime.c: In function 'main':</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">compilation terminated.</code><br />
+              <code id="34">faketime.c:214:5: error: implicit declaration of function 'shm_open' [-Werror=implicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">compilation terminated.</code><br />
+              <code id="35">     if (-1 == (shm_fd = shm_open(shm_name, O_CREAT|O_EXCL|O_RDWR, S_IWUSR|S_IRUSR)))</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">make[1]: *** [Makefile:88: libfaketime.o] Error 1</code><br />
+              <code id="36">     ^</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">make[1]: *** Waiting for unfinished jobs....</code><br />
+              <code id="37">cc1: all warnings being treated as errors</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
-						
-              <code id="38">make[1]: *** [Makefile:88: libfaketimeMT.o] Error 1</code><br />
-						
+						<span class="error">
+              <code id="38">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</code><br />
+						</span>
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">make[1]: Leaving directory '/tmp/libfaketime/src/libfaketime-0.9.6/src'</code><br />
+              <code id="39"> #include <sys/timeb.h></code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">make: *** [Makefile:7: all] Error 2</code><br />
+              <code id="40">                       ^</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">==> ERROR: A failure occurred in build().</code><br />
+              <code id="41">compilation terminated.</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">    Aborting...</code><br />
+              <code id="42">make[1]: *** [Makefile:94: faketime] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#43">#</a>
+						
+              <code id="43">make[1]: *** Waiting for unfinished jobs....</code><br />
+						
+            
+            <a class="navhash" href="#44">#</a>
+						
+              <code id="44">make[1]: *** [Makefile:88: libfaketimeMT.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#45">#</a>
+						<span class="error">
+              <code id="45">libfaketime.c:53:23: fatal error: sys/timeb.h: No such file or directory</code><br />
+						</span>
+            
+            <a class="navhash" href="#46">#</a>
+						
+              <code id="46"> #include <sys/timeb.h></code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">                       ^</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">compilation terminated.</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">make[1]: *** [Makefile:88: libfaketime.o] Error 1</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">make[1]: Leaving directory '/tmp/libfaketime/src/libfaketime-0.9.6/src'</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">make: *** [Makefile:7: all] Error 2</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">    Aborting...</code><br />
 						
             
           </div>

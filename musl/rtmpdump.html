@@ -30,7 +30,7 @@
     <h1>Build of rtmpdump
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 04m 43s and was
+    <p>The build took 00h 00m 39s and was
     NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
@@ -61,10 +61,10 @@
     <h2>List of Errors</h2>
     <ul>
       
-      <li>undefined_reference
+      <li>missing_header
         <ul>
           
-          <li><a href="#43">rtmpdump.o:rtmpdump.c:function main: error: undefined reference to 'CleanupSockets'</a></li>
+          <li><a href="#18">rtmp.c:60:10: fatal error: 'openssl/ssl.h' file not found</a></li>
           
         </ul>
       </li>
@@ -75,7 +75,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#47">last line</a> of the
+    href="#26">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -171,7 +171,7 @@
             
             <a class="navhash" href="#10">#</a>
 						
-              <code id="10">==> Making package: rtmpdump 1:2.4.r96.fa8646d-2 (Tue Mar  7 04:47:23 UTC 2017)</code><br />
+              <code id="10">==> Making package: rtmpdump 1:2.4.r96.fa8646d-2 (Wed Apr  5 01:49:09 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#11">#</a>
@@ -210,153 +210,48 @@
 						
             
             <a class="navhash" href="#18">#</a>
-						
-              <code id="18">rtmp.c: In function 'RTMP_ReadPacket':</code><br />
-						
+						<span class="error">
+              <code id="18">rtmp.c:60:10: fatal error: 'openssl/ssl.h' file not found</code><br />
+						</span>
             
             <a class="navhash" href="#19">#</a>
 						
-              <code id="19">rtmp.c:3555:7: warning: variable 'didAlloc' set but not used [-Wunused-but-set-variable]</code><br />
+              <code id="19">#include <openssl/ssl.h></code><br />
 						
             
             <a class="navhash" href="#20">#</a>
 						
-              <code id="20">   int didAlloc = FALSE;</code><br />
+              <code id="20">         ^</code><br />
 						
             
             <a class="navhash" href="#21">#</a>
 						
-              <code id="21">       ^~~~~~~~</code><br />
+              <code id="21">1 error generated.</code><br />
 						
             
             <a class="navhash" href="#22">#</a>
 						
-              <code id="22">At top level:</code><br />
+              <code id="22">make[1]: *** [<builtin>: rtmp.o] Error 1</code><br />
 						
             
             <a class="navhash" href="#23">#</a>
 						
-              <code id="23">rtmp.c:2907:19: warning: 'av_NetConnection_Connect_Rejected' defined but not used [-Wunused-const-variable=]</code><br />
+              <code id="23">make[1]: Leaving directory '/tmp/rtmpdump/src/rtmpdump/librtmp'</code><br />
 						
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24"> static const AVal av_NetConnection_Connect_Rejected =</code><br />
+              <code id="24">make: *** [Makefile:76: librtmp/librtmp.a] Error 2</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="25">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">rtmp.c:1559:35: warning: 'av_record' defined but not used [-Wunused-const-variable=]</code><br />
-						
-            
-            <a class="navhash" href="#27">#</a>
-						
-              <code id="27"> #define SAVC(x) static const AVal av_##x = AVC(#x)</code><br />
-						
-            
-            <a class="navhash" href="#28">#</a>
-						
-              <code id="28">                                   ^</code><br />
-						
-            
-            <a class="navhash" href="#29">#</a>
-						
-              <code id="29">rtmp.c:1905:1: note: in expansion of macro 'SAVC'</code><br />
-						
-            
-            <a class="navhash" href="#30">#</a>
-						
-              <code id="30"> SAVC(record);</code><br />
-						
-            
-            <a class="navhash" href="#31">#</a>
-						
-              <code id="31"> ^~~~</code><br />
-						
-            
-            <a class="navhash" href="#32">#</a>
-						
-              <code id="32">gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o log.o log.c</code><br />
-						
-            
-            <a class="navhash" href="#33">#</a>
-						
-              <code id="33">gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o amf.o amf.c</code><br />
-						
-            
-            <a class="navhash" href="#34">#</a>
-						
-              <code id="34">gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o hashswf.o hashswf.c</code><br />
-						
-            
-            <a class="navhash" href="#35">#</a>
-						
-              <code id="35">gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\" -DUSE_OPENSSL   -fPIC   -c -o parseurl.o parseurl.c</code><br />
-						
-            
-            <a class="navhash" href="#36">#</a>
-						
-              <code id="36">ar rs librtmp.a rtmp.o log.o amf.o hashswf.o parseurl.o</code><br />
-						
-            
-            <a class="navhash" href="#37">#</a>
-						
-              <code id="37">ar: creating librtmp.a</code><br />
-						
-            
-            <a class="navhash" href="#38">#</a>
-						
-              <code id="38">gcc -shared -Wl,-soname,librtmp.so.1  -o librtmp.so.1 rtmp.o log.o amf.o hashswf.o parseurl.o  -lssl -lcrypto -lz </code><br />
-						
-            
-            <a class="navhash" href="#39">#</a>
-						
-              <code id="39">ln -sf librtmp.so.1 librtmp.so</code><br />
-						
-            
-            <a class="navhash" href="#40">#</a>
-						
-              <code id="40">make[1]: Leaving directory '/tmp/rtmpdump/src/rtmpdump/librtmp'</code><br />
-						
-            
-            <a class="navhash" href="#41">#</a>
-						
-              <code id="41">gcc -Wall   -DRTMPDUMP_VERSION=\"v2.4\"      -c -o rtmpdump.o rtmpdump.c</code><br />
-						
-            
-            <a class="navhash" href="#42">#</a>
-						
-              <code id="42">gcc -Wall  -o rtmpdump rtmpdump.o -Llibrtmp -lrtmp -lssl -lcrypto -lz  </code><br />
-						
-            
-            <a class="navhash" href="#43">#</a>
-						<span class="error">
-              <code id="43">rtmpdump.o:rtmpdump.c:function main: error: undefined reference to 'CleanupSockets'</code><br />
-						</span>
-            
-            <a class="navhash" href="#44">#</a>
-						
-              <code id="44">collect2: error: ld returned 1 exit status</code><br />
-						
-            
-            <a class="navhash" href="#45">#</a>
-						
-              <code id="45">make: *** [Makefile:79: rtmpdump] Error 1</code><br />
-						
-            
-            <a class="navhash" href="#46">#</a>
-						
-              <code id="46">==> ERROR: A failure occurred in build().</code><br />
-						
-            
-            <a class="navhash" href="#47">#</a>
-						
-              <code id="47">    Aborting...</code><br />
+              <code id="26">    Aborting...</code><br />
 						
             
           </div>

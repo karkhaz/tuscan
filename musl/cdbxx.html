@@ -30,9 +30,8 @@
     <h1>Build of cdbxx
         with <a href="../index.html">musl</a>
         toolchain</h1>
-    <p>The build took 00h 05m 13s and was
-    SUCCESSFUL.
-    </p>
+    <p>The build took 00h 01m 13s and was
+    NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
     according to <a
@@ -54,26 +53,37 @@
     </p>
     
     
-      <p>
-      Several sub-process invocations were improper; see the process tree
-      for details. Summary:
-      </p>
-      <ul>
-        <li>malformed path:<ul>
-            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
-        
-            <li>&times;19: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
-        </ul></li>
-      </ul>
     
     
+    <p>
+    Due to the failure of this package to build, we did not attempt to
+    build several packages that depend on this one. Those packages are:
+    </p>
+    <ul>
+      
+      <li><a href="osec.html">osec</a></li>
+      
+    </ul>
     
+    
+    <h2>List of Errors</h2>
+    <ul>
+      
+      <li>undefined_reference
+        <ul>
+          
+          <li><a href="#50">test.cc:28: error: undefined reference to '__dso_handle'</a></li>
+          
+        </ul>
+      </li>
+      
+    </ul>
     
     
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#138">last line</a> of the
+    href="#56">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -169,7 +179,7 @@
             
             <a class="navhash" href="#10">#</a>
 						
-              <code id="10">==> Making package: cdbxx 0.0.1rc2-5 (Tue Mar  7 03:55:38 UTC 2017)</code><br />
+              <code id="10">==> Making package: cdbxx 0.0.1rc2-5 (Wed Apr  5 01:27:48 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#11">#</a>
@@ -314,787 +324,92 @@
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">In file included from db.cc:20:0:</code><br />
+              <code id="39">g++ -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG -I../include    -c -o iterator.o iterator.cc</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">../include/cdbxx/db.hh:61:8: warning: 'template<class> class std::auto_ptr' is deprecated [-Wdeprecated-declarations]</code><br />
+              <code id="40">ar rv libcdbxx.a db.o iterator.o</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">   std::auto_ptr<cdb_make> cdbm_; /**< internal database handler */</code><br />
+              <code id="41">g++ -lcdb -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG  -shared -Wl,-soname,libcdbxx.so.0 -lc db.so iterator.so -o libcdbxx.so</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">        ^~~~~~~~</code><br />
+              <code id="42">/r: creating libcdbxx.a</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">In file included from /usr/include/c++/6.1.1/memory:81:0,</code><br />
+              <code id="43">ln -sf libcdbxx.so libcdbxx.so.0</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">                 from ../include/cdbxx/db.hh:14,</code><br />
+              <code id="44">a - db.o</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">                 from db.cc:20:</code><br />
+              <code id="45">a - iterator.o</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">/usr/include/c++/6.1.1/bits/unique_ptr.h:49:28: note: declared here</code><br />
+              <code id="46">ranlib libcdbxx.a</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">   template<typename> class auto_ptr;</code><br />
+              <code id="47">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/src'</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">                            ^~~~~~~~</code><br />
+              <code id="48">make[1]: Entering directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">In file included from db.cc:20:0:</code><br />
+              <code id="49">g++ -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG -I../include  -Wl,-rpath,/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite/../src/ -L../src/ -lcdbxx -lcdb  test.cc   -o test</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
-						
-              <code id="50">../include/cdbxx/db.hh:107:16: warning: 'template<class> class std::auto_ptr' is deprecated [-Wdeprecated-declarations]</code><br />
-						
+						<span class="error">
+              <code id="50">test.cc:28: error: undefined reference to '__dso_handle'</code><br />
+						</span>
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">   mutable std::auto_ptr<cdb> cdbp_; /**< internal database handler, mutable 'cause I want to have const find method */</code><br />
+              <code id="51">clang-3.8: error: linker command failed with exit code 1 (use -v to see invocation)</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">                ^~~~~~~~</code><br />
+              <code id="52">make[1]: *** [<builtin>: test] Error 1</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">In file included from /usr/include/c++/6.1.1/memory:81:0,</code><br />
+              <code id="53">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">                 from ../include/cdbxx/db.hh:14,</code><br />
+              <code id="54">make: *** [Makefile:12: all] Error 1</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">                 from db.cc:20:</code><br />
+              <code id="55">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">/usr/include/c++/6.1.1/bits/unique_ptr.h:49:28: note: declared here</code><br />
-						
-            
-            <a class="navhash" href="#57">#</a>
-						
-              <code id="57">   template<typename> class auto_ptr;</code><br />
-						
-            
-            <a class="navhash" href="#58">#</a>
-						
-              <code id="58">                            ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#59">#</a>
-						
-              <code id="59">g++ -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG -I../include    -c -o iterator.o iterator.cc</code><br />
-						
-            
-            <a class="navhash" href="#60">#</a>
-						
-              <code id="60">In file included from db.cc:20:0:</code><br />
-						
-            
-            <a class="navhash" href="#61">#</a>
-						
-              <code id="61">../include/cdbxx/db.hh:61:8: warning: 'template<class> class std::auto_ptr' is deprecated [-Wdeprecated-declarations]</code><br />
-						
-            
-            <a class="navhash" href="#62">#</a>
-						
-              <code id="62">   std::auto_ptr<cdb_make> cdbm_; /**< internal database handler */</code><br />
-						
-            
-            <a class="navhash" href="#63">#</a>
-						
-              <code id="63">        ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#64">#</a>
-						
-              <code id="64">In file included from /usr/include/c++/6.1.1/memory:81:0,</code><br />
-						
-            
-            <a class="navhash" href="#65">#</a>
-						
-              <code id="65">                 from ../include/cdbxx/db.hh:14,</code><br />
-						
-            
-            <a class="navhash" href="#66">#</a>
-						
-              <code id="66">                 from db.cc:20:</code><br />
-						
-            
-            <a class="navhash" href="#67">#</a>
-						
-              <code id="67">/usr/include/c++/6.1.1/bits/unique_ptr.h:49:28: note: declared here</code><br />
-						
-            
-            <a class="navhash" href="#68">#</a>
-						
-              <code id="68">   template<typename> class auto_ptr;</code><br />
-						
-            
-            <a class="navhash" href="#69">#</a>
-						
-              <code id="69">                            ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#70">#</a>
-						
-              <code id="70">In file included from db.cc:20:0:</code><br />
-						
-            
-            <a class="navhash" href="#71">#</a>
-						
-              <code id="71">../include/cdbxx/db.hh:107:16: warning: 'template<class> class std::auto_ptr' is deprecated [-Wdeprecated-declarations]</code><br />
-						
-            
-            <a class="navhash" href="#72">#</a>
-						
-              <code id="72">   mutable std::auto_ptr<cdb> cdbp_; /**< internal database handler, mutable 'cause I want to have const find method */</code><br />
-						
-            
-            <a class="navhash" href="#73">#</a>
-						
-              <code id="73">                ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#74">#</a>
-						
-              <code id="74">In file included from /usr/include/c++/6.1.1/memory:81:0,</code><br />
-						
-            
-            <a class="navhash" href="#75">#</a>
-						
-              <code id="75">                 from ../include/cdbxx/db.hh:14,</code><br />
-						
-            
-            <a class="navhash" href="#76">#</a>
-						
-              <code id="76">                 from db.cc:20:</code><br />
-						
-            
-            <a class="navhash" href="#77">#</a>
-						
-              <code id="77">/usr/include/c++/6.1.1/bits/unique_ptr.h:49:28: note: declared here</code><br />
-						
-            
-            <a class="navhash" href="#78">#</a>
-						
-              <code id="78">   template<typename> class auto_ptr;</code><br />
-						
-            
-            <a class="navhash" href="#79">#</a>
-						
-              <code id="79">                            ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#80">#</a>
-						
-              <code id="80">g++ -lcdb -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG  -shared -Wl,-soname,libcdbxx.so.0 -lc db.so iterator.so -o libcdbxx.so</code><br />
-						
-            
-            <a class="navhash" href="#81">#</a>
-						
-              <code id="81">ln -sf libcdbxx.so libcdbxx.so.0</code><br />
-						
-            
-            <a class="navhash" href="#82">#</a>
-						
-              <code id="82">ar rv libcdbxx.a db.o iterator.o</code><br />
-						
-            
-            <a class="navhash" href="#83">#</a>
-						
-              <code id="83">ar: creating libcdbxx.a</code><br />
-						
-            
-            <a class="navhash" href="#84">#</a>
-						
-              <code id="84">a - db.o</code><br />
-						
-            
-            <a class="navhash" href="#85">#</a>
-						
-              <code id="85">a - iterator.o</code><br />
-						
-            
-            <a class="navhash" href="#86">#</a>
-						
-              <code id="86">ranlib libcdbxx.a</code><br />
-						
-            
-            <a class="navhash" href="#87">#</a>
-						
-              <code id="87">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/src'</code><br />
-						
-            
-            <a class="navhash" href="#88">#</a>
-						
-              <code id="88">make[1]: Entering directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
-						
-            
-            <a class="navhash" href="#89">#</a>
-						
-              <code id="89">g++ -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG -I../include  -Wl,-rpath,/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite/../src/ -L../src/ -lcdbxx -lcdb  test.cc   -o test</code><br />
-						
-            
-            <a class="navhash" href="#90">#</a>
-						
-              <code id="90">In file included from test.cc:17:0:</code><br />
-						
-            
-            <a class="navhash" href="#91">#</a>
-						
-              <code id="91">../include/cdbxx/db.hh:61:8: warning: 'template<class> class std::auto_ptr' is deprecated [-Wdeprecated-declarations]</code><br />
-						
-            
-            <a class="navhash" href="#92">#</a>
-						
-              <code id="92">   std::auto_ptr<cdb_make> cdbm_; /**< internal database handler */</code><br />
-						
-            
-            <a class="navhash" href="#93">#</a>
-						
-              <code id="93">        ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#94">#</a>
-						
-              <code id="94">In file included from /usr/include/c++/6.1.1/memory:81:0,</code><br />
-						
-            
-            <a class="navhash" href="#95">#</a>
-						
-              <code id="95">                 from ../include/cdbxx/db.hh:14,</code><br />
-						
-            
-            <a class="navhash" href="#96">#</a>
-						
-              <code id="96">                 from test.cc:17:</code><br />
-						
-            
-            <a class="navhash" href="#97">#</a>
-						
-              <code id="97">/usr/include/c++/6.1.1/bits/unique_ptr.h:49:28: note: declared here</code><br />
-						
-            
-            <a class="navhash" href="#98">#</a>
-						
-              <code id="98">   template<typename> class auto_ptr;</code><br />
-						
-            
-            <a class="navhash" href="#99">#</a>
-						
-              <code id="99">                            ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#100">#</a>
-						
-              <code id="100">In file included from test.cc:17:0:</code><br />
-						
-            
-            <a class="navhash" href="#101">#</a>
-						
-              <code id="101">../include/cdbxx/db.hh:107:16: warning: 'template<class> class std::auto_ptr' is deprecated [-Wdeprecated-declarations]</code><br />
-						
-            
-            <a class="navhash" href="#102">#</a>
-						
-              <code id="102">   mutable std::auto_ptr<cdb> cdbp_; /**< internal database handler, mutable 'cause I want to have const find method */</code><br />
-						
-            
-            <a class="navhash" href="#103">#</a>
-						
-              <code id="103">                ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#104">#</a>
-						
-              <code id="104">In file included from /usr/include/c++/6.1.1/memory:81:0,</code><br />
-						
-            
-            <a class="navhash" href="#105">#</a>
-						
-              <code id="105">                 from ../include/cdbxx/db.hh:14,</code><br />
-						
-            
-            <a class="navhash" href="#106">#</a>
-						
-              <code id="106">                 from test.cc:17:</code><br />
-						
-            
-            <a class="navhash" href="#107">#</a>
-						
-              <code id="107">/usr/include/c++/6.1.1/bits/unique_ptr.h:49:28: note: declared here</code><br />
-						
-            
-            <a class="navhash" href="#108">#</a>
-						
-              <code id="108">   template<typename> class auto_ptr;</code><br />
-						
-            
-            <a class="navhash" href="#109">#</a>
-						
-              <code id="109">                            ^~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#110">#</a>
-						
-              <code id="110">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
-						
-            
-            <a class="navhash" href="#111">#</a>
-						
-              <code id="111">==> Entering fakeroot environment...</code><br />
-						
-            
-            <a class="navhash" href="#112">#</a>
-						
-              <code id="112">==> Starting package()...</code><br />
-						
-            
-            <a class="navhash" href="#113">#</a>
-						
-              <code id="113">make[1]: Entering directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/src'</code><br />
-						
-            
-            <a class="navhash" href="#114">#</a>
-						
-              <code id="114">make[1]: Nothing to be done for 'all'.</code><br />
-						
-            
-            <a class="navhash" href="#115">#</a>
-						
-              <code id="115">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/src'</code><br />
-						
-            
-            <a class="navhash" href="#116">#</a>
-						
-              <code id="116">make[1]: Entering directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
-						
-            
-            <a class="navhash" href="#117">#</a>
-						
-              <code id="117">make[1]: Nothing to be done for 'all'.</code><br />
-						
-            
-            <a class="navhash" href="#118">#</a>
-						
-              <code id="118">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
-						
-            
-            <a class="navhash" href="#119">#</a>
-						
-              <code id="119">make[1]: Entering directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/src'</code><br />
-						
-            
-            <a class="navhash" href="#120">#</a>
-						
-              <code id="120">install -d -m755 /tmp/cdbxx/pkg/cdbxx/usr/include/cdbxx</code><br />
-						
-            
-            <a class="navhash" href="#121">#</a>
-						
-              <code id="121">install -pD -m755 libcdbxx.so /tmp/cdbxx/pkg/cdbxx/usr/lib/libcdbxx.so.0.0.1rc2</code><br />
-						
-            
-            <a class="navhash" href="#122">#</a>
-						
-              <code id="122">install -pD -m644 libcdbxx.a /tmp/cdbxx/pkg/cdbxx/usr/lib/libcdbxx.a</code><br />
-						
-            
-            <a class="navhash" href="#123">#</a>
-						
-              <code id="123">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/src'</code><br />
-						
-            
-            <a class="navhash" href="#124">#</a>
-						
-              <code id="124">make[1]: Entering directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
-						
-            
-            <a class="navhash" href="#125">#</a>
-						
-              <code id="125">make[1]: Nothing to be done for 'install'.</code><br />
-						
-            
-            <a class="navhash" href="#126">#</a>
-						
-              <code id="126">make[1]: Leaving directory '/tmp/cdbxx/src/cdbxx-0.0.1rc2/testsuite'</code><br />
-						
-            
-            <a class="navhash" href="#127">#</a>
-						
-              <code id="127">==> Tidying install...</code><br />
-						
-            
-            <a class="navhash" href="#128">#</a>
-						
-              <code id="128">  -> Removing doc files...</code><br />
-						
-            
-            <a class="navhash" href="#129">#</a>
-						
-              <code id="129">  -> Purging unwanted files...</code><br />
-						
-            
-            <a class="navhash" href="#130">#</a>
-						
-              <code id="130">==> Checking for packaging issue...</code><br />
-						
-            
-            <a class="navhash" href="#131">#</a>
-						
-              <code id="131">==> Creating package "cdbxx"...</code><br />
-						
-            
-            <a class="navhash" href="#132">#</a>
-						
-              <code id="132">  -> Generating .PKGINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#133">#</a>
-						
-              <code id="133">  -> Generating .BUILDINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#134">#</a>
-						
-              <code id="134">error: invalid option '--noprogressbar'</code><br />
-						
-            
-            <a class="navhash" href="#135">#</a>
-						
-              <code id="135">  -> Generating .MTREE file...</code><br />
-						
-            
-            <a class="navhash" href="#136">#</a>
-						
-              <code id="136">  -> Compressing package...</code><br />
-						
-            
-            <a class="navhash" href="#137">#</a>
-						
-              <code id="137">==> Leaving fakeroot environment.</code><br />
-						
-            
-            <a class="navhash" href="#138">#</a>
-						
-              <code id="138">==> Finished making: cdbxx 0.0.1rc2-5 (Tue Mar  7 03:55:48 UTC 2017)</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file cdbxx-0.0.1rc2-5-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#139">#</a>
-						
-              <code id="139">cdbxx 0.0.1rc2-5</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Creating hybrid package for 'cdbxx'</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Trying to find vanilla package 'cdbxx'...</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/cdbxx-0.0.1rc2-5.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#140">#</a>
-						
-              <code id="140">cdbxx 0.0.1rc2-5</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Package file has the following structure:</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#141">#</a>
-						
-              <code id="141">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#142">#</a>
-						
-              <code id="142">/.MTREE</code><br />
-						
-            
-            <a class="navhash" href="#143">#</a>
-						
-              <code id="143">/usr/include/cdbxx/data.hh</code><br />
-						
-            
-            <a class="navhash" href="#144">#</a>
-						
-              <code id="144">/usr/include/cdbxx/data_adapters.hh</code><br />
-						
-            
-            <a class="navhash" href="#145">#</a>
-						
-              <code id="145">/usr/include/cdbxx/db.hh</code><br />
-						
-            
-            <a class="navhash" href="#146">#</a>
-						
-              <code id="146">/usr/include/cdbxx/iterator.hh</code><br />
-						
-            
-            <a class="navhash" href="#147">#</a>
-						
-              <code id="147">/usr/include/cdbxx/map.hh</code><br />
-						
-            
-            <a class="navhash" href="#148">#</a>
-						
-              <code id="148">/usr/lib/libcdbxx.so.0</code><br />
-						
-            
-            <a class="navhash" href="#149">#</a>
-						
-              <code id="149">/usr/lib/libcdbxx.so</code><br />
-						
-            
-            <a class="navhash" href="#150">#</a>
-						
-              <code id="150">/usr/lib/libcdbxx.so.0.0.1rc2</code><br />
-						
-            
-            <a class="navhash" href="#151">#</a>
-						
-              <code id="151">/sysroot/usr/lib/libcdbxx.so.0.0.1rc2</code><br />
-						
-            
-            <a class="navhash" href="#152">#</a>
-						
-              <code id="152">/sysroot/usr/lib/libcdbxx.a</code><br />
-						
-            
-            <a class="navhash" href="#153">#</a>
-						
-              <code id="153">/sysroot/usr/lib/libcdbxx.so.0</code><br />
-						
-            
-            <a class="navhash" href="#154">#</a>
-						
-              <code id="154">/sysroot/usr/lib/libcdbxx.so</code><br />
-						
-            
-            <a class="navhash" href="#155">#</a>
-						
-              <code id="155">/sysroot/usr/include/cdbxx/data.hh</code><br />
-						
-            
-            <a class="navhash" href="#156">#</a>
-						
-              <code id="156">/sysroot/usr/include/cdbxx/data_adapters.hh</code><br />
-						
-            
-            <a class="navhash" href="#157">#</a>
-						
-              <code id="157">/sysroot/usr/include/cdbxx/db.hh</code><br />
-						
-            
-            <a class="navhash" href="#158">#</a>
-						
-              <code id="158">/sysroot/usr/include/cdbxx/iterator.hh</code><br />
-						
-            
-            <a class="navhash" href="#159">#</a>
-						
-              <code id="159">/sysroot/usr/include/cdbxx/map.hh</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Generating .MTREE</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr sysroot</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Tar-ing up files</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr sysroot .MTREE</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>xz -c -z</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO usr sysroot .MTREE | xz -c -z</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -tqf cdbxx.pkg.tar.xz .PKGINFO</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#160">#</a>
-						
-              <code id="160">.PKGINFO</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Created package at path /var/cache/pacman/pkg/cdbxx.pkg.tar.xz</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 1</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/cdbxx.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#161">#</a>
-						
-              <code id="161">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#162">#</a>
-						
-              <code id="162">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#163">#</a>
-						
-              <code id="163">==> Adding package '/var/cache/pacman/pkg/cdbxx.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#164">#</a>
-						
-              <code id="164">  -> Computing checksums...</code><br />
-						
-            
-            <a class="navhash" href="#165">#</a>
-						
-              <code id="165">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#166">#</a>
-						
-              <code id="166">  -> Creating 'files' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#167">#</a>
-						
-              <code id="167">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="56">    Aborting...</code><br />
 						
             
           </div>
