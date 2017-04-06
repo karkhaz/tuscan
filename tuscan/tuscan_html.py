@@ -606,7 +606,7 @@ def dump_build_page(json_path, toolchain, jinja, out_dir, args,
         # default, so do it manually
         sys.stderr.write("Exception when processing '%s'\n" % json_path)
         traceback.print_exc(file=sys.stderr)
-        raise e
+        return
 
 
 def organise_builds(build_list, toolchains, info_fun=None):

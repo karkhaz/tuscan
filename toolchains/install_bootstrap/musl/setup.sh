@@ -125,7 +125,7 @@ ${SRCDIR}/binutils/configure \
   --disable-ld \
   --disable-werror \
   --with-sysroot=${PKGDIR}
-make
+make -j 20
 make install
 popd
 

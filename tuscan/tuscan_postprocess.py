@@ -239,11 +239,25 @@ def process_log_line(line, patterns, counter, classify):
 def process_red_errors(data):
     ret = {}
     for triple in data:
-        if triple["category"] not in ret:
-            ret[triple["category"]] = {}
-        if triple["info"] not in ret[triple["category"]]:
-            ret[triple["category"]][triple["info"]] = 0
-        ret[triple["category"]][triple["info"]] += 1
+        category = triple["category"]
+        info = triple["info"]
+
+        # chop off "rel" and "abs"
+        if category[:20] == "hardcoded invocation":
+           category = "hardcoded invocation"
+
+           # it might be the case that a so-called hardcoded invocation
+           # is just a relative invocation of a proper exec, e.g.
+           # calling "clang" instead of /sysroot/bin/clang. Ignore this.
+           invoc, transformed = info.split()
+           if invoc == os.path.basename(transformed):
+               continue
+
+        if category not in ret:
+            ret[category] = {}
+        if info not in ret[category]:
+            ret[category][info] = 0
+        ret[category][info] += 1
     return ret
 
 
@@ -388,8 +402,11 @@ def process_single_result(data, patterns, boring_list, args):
     else:
         data["red_output"] = process_red(data["red_output"],
                 data["red_errors"], boring_list)
-        tool_info_from_red(data["red_output"],
-                                data["tool_information"])
+        try:
+            tool_info_from_red(data["red_output"],
+                               data["tool_information"])
+        # Stack overflow; don't care
+        except RuntimeError: pass
         data["red_errors"] = process_red_errors(data["red_errors"])
 
     return data
@@ -411,13 +428,11 @@ def load_and_process(path, patterns, out_dir, args, boring_list):
                 logging.error("Malformed input at %s\n  %s" % (path,
                                                             str(e)))
                 return
-
         try:
             data = process_single_result(data, patterns, boring_list, args)
         except RuntimeError as e:
             logging.exception("Error for '%s'" % path)
             return
-
         if args.validate:
             try:
                 post_processed_schema(data)
@@ -632,7 +647,7 @@ def do_postprocess(args):
         except multiprocessing.TimeoutError:
             pool.terminate()
             pool.join()
-            exit(1)
+            exit(0)
         pool.close()
         pool.join()
 

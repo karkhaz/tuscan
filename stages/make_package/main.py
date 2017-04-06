@@ -148,7 +148,7 @@ def copy_and_build(args):
         red_errors.append({
             "category": lines[0].strip(),
             "pid": lines[1].strip(),
-            "info": lines[2].strip()
+            "info": "\n".join(lines[2:])
         })
 
     log("red_errors", "red_errors", output=red_errors)

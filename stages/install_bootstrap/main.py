@@ -88,8 +88,12 @@ def main():
     with open("/build/tool_redirect_rules.yaml") as f:
         transforms = yaml.load(f)
 
+    log("info", "Before rules %s" % yaml.dump(transforms, default_flow_style=False))
+
     for tool in transforms["overwrite"]:
         transforms["replacements"][tool] = tool
+
+    log("info", "After rules %s" % yaml.dump(transforms, default_flow_style=False))
 
     defines = []
 
@@ -100,13 +104,15 @@ def main():
         # libred cmake define variable will write them as SCAN_VIEW and
         # CLANGPP. Do that transformation here, but leave the name of
         # the original tool intact.
-        var_name = re.sub("-", "_", replacement)
+        var_name = re.sub("-", "_", tool)
         var_name = re.sub("\+\+", "pp", var_name)
         var_name = var_name.upper()
 
         path = os.path.join(transforms["bin-dir"],
                             "%s%s" % (transforms["prefix"], replacement))
         defines.append('-DRED_%s="%s"' % (var_name, path))
+
+        log("info", "Redirecting %s to %s" % (var_name, path))
 
     if transforms["bin-dir"]:
         defines.append('-DRED_ENSURE_PATH="%s"' % transforms["bin-dir"])
