@@ -79,6 +79,104 @@
     on toolchain &quot;musl&quot;
     </h1>
     <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="bad-return">2</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c pkg-config --libs libpcreposix 2>/dev/null || echo</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>pkg-config --libs libpcreposix</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c pkg-config --cflags libpcreposix 2>/dev/null || echo</code>
+            <ul class="level-6">
+              <li><span class="no-return">?</span>&nbsp;<code>pkg-config --cflags libpcreposix</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c for feat in GETOPT_LONG POSIX_FADVISE XATTR libpcreposix; do \
+	printf "Checking for %s..." "$feat" | tee -a config.log; \
+	if clang    -DHAVE_CONFIG_H  -o /dev/null \
+		-DTEST_$feat configure.c  -lpcreposix 2>>config.log; then \
+		printf "\tOK\n" | tee -a config.log; \
+		echo "#define HAVE_$feat 1" >&3; \
+	else \
+		printf "\tFAIL\n" | tee -a config.log ; \
+		echo "#undef HAVE_$feat" >&3; \
+	fi; \
+done 3> config.h</code>
+            <ul class="level-6">
+              <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L//../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/sysroot/bin/../lib -L/sysroot/lib /tmp/configure-a6033b.o -lpcreposix /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L//../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/sysroot/bin/../lib -L/sysroot/lib /tmp/configure-e01d84.o -lpcreposix /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o /dev/null /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L//../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/sysroot/bin/../lib -L/sysroot/lib /tmp/configure-6e562d.o -lpcreposix /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name configure.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D HAVE_CONFIG_H -D TEST_libpcreposix -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/hardlink/src/hardlink-0.3.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o /tmp/configure-806f04.o -x c configure.c</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -main-file-name hardlink.c -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debugger-tuning=gdb -coverage-file /tmp/hardlink/src/hardlink-0.3.0/hardlink.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D HAVE_CONFIG_H -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -fdebug-compilation-dir /tmp/hardlink/src/hardlink-0.3.0 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o hardlink.o -x c hardlink.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (clang
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o hardlink /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L//../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/sysroot/bin/../lib -L/sysroot/lib hardlink.o -lpcreposix /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc pcre</code>
+    <ul class="level-2">
+    </ul>
+  </li>
 </ul>
   <body>
 <html>

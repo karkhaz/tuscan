@@ -79,6 +79,137 @@
     on toolchain &quot;musl&quot;
     </h1>
     <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T glibc</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="bad-return">2</span>&nbsp;<code>make</code>
+        <ul class="level-4">
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o autoconf_64b /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L//../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/sysroot/bin/../lib -L/sysroot/lib /tmp/autoconf_64b-7842f1.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/ld --sysroot=/sysroot --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o autoconf_vsnprintf /sysroot/bin/../lib/crt1.o /sysroot/bin/../lib/crti.o /sysroot/bin/../lib/clang/3.8.1/crtbegin.o -L//../lib64/gcc/x86_64-pc-linux-gnu/6.1.1 -L/sysroot/bin/../lib -L/sysroot/lib /tmp/autoconf_vsnprintf-07531e.o /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a -lc /sysroot/bin/../lib/clang/3.8.1/lib/linux/libclang_rt.builtins-x86_64.a /sysroot/bin/../lib/clang/3.8.1/crtend.o /sysroot/bin/../lib/crtn.o</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sz64=`./autoconf_64b`; vsnp=`./autoconf_vsnprintf`; \
+	sed -e 's,@INCLUDEDIR@,/usr/include,g' -e 's,@SHRDIR@,/usr/share/ustr-1.0.4,g' -e 's,@VERS@,1.0,g'  -e 's,@VERS_FULL@,1.0.4,g' -e "s,@HAVE_64bit_SIZE_MAX@,$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$vsnp,g" < ustr-import.in > ustr-import</code>
+            <ul class="level-6">
+              <li><span class="bad-return">127</span>&nbsp;<code>./autoconf_64b</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">127</span>&nbsp;<code>./autoconf_vsnprintf</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c have_stdint_h=0; dbg1=0; dbg2=0; \
+                sz64=`./autoconf_64b`; vsnp=`./autoconf_vsnprintf`; \
+                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+	sed -e "s,@HAVE_STDINT_H@,$have_stdint_h,g" -e "s,@USE_ASSERT@,$dbg1,g" -e "s,@USE_EOS_MARK@,$dbg2,g" -e "s,@HAVE_64bit_SIZE_MAX@,$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$vsnp,g" < ustr-conf.h.in > ustr-conf.h</code>
+            <ul class="level-6">
+              <li><span class="bad-return">127</span>&nbsp;<code>./autoconf_64b</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">127</span>&nbsp;<code>./autoconf_vsnprintf</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c have_stdint_h=0; dbg1=1; dbg2=1; \
+                sz64=`./autoconf_64b`; vsnp=`./autoconf_vsnprintf`; \
+                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+                if test -f "/usr/include/stdint.h"; then have_stdint_h=1; fi; \
+	sed -e "s,@HAVE_STDINT_H@,$have_stdint_h,g" -e "s,@USE_ASSERT@,$dbg1,g" -e "s,@USE_EOS_MARK@,$dbg2,g" -e "s,@HAVE_64bit_SIZE_MAX@,$sz64,g" -e "s,@HAVE_RETARDED_VSNPRINTF@,$vsnp,g" < ustr-conf.h.in > ustr-conf-debug.h</code>
+            <ul class="level-6">
+              <li><span class="bad-return">127</span>&nbsp;<code>./autoconf_64b</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">127</span>&nbsp;<code>./autoconf_vsnprintf</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name ustr-cmp-dbg-code.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/ustr/src/ustr-1.0.4/ustr-cmp-code-a-dbg.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O1 -W -Wall -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wno-format-zero-length -Wformat-nonliteral -Wformat-security -fconst-strings -fdebug-compilation-dir /tmp/ustr/src/ustr-1.0.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o ustr-cmp-code-a-dbg.o -x c ustr-cmp-dbg-code.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name ustr-fmt-dbg-code.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/ustr/src/ustr-1.0.4/ustr-fmt-code-a-dbg.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O1 -W -Wall -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wno-format-zero-length -Wformat-nonliteral -Wformat-security -fconst-strings -fdebug-compilation-dir /tmp/ustr/src/ustr-1.0.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o ustr-fmt-code-a-dbg.o -x c ustr-fmt-dbg-code.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name ustr-b-dbg-code.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/ustr/src/ustr-1.0.4/ustr-b-code-a-dbg.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O1 -W -Wall -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wno-format-zero-length -Wformat-nonliteral -Wformat-security -fconst-strings -fdebug-compilation-dir /tmp/ustr/src/ustr-1.0.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o ustr-b-code-a-dbg.o -x c ustr-b-dbg-code.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (cc
+
+/sysroot/bin/clang
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>/sysroot/bin/clang-3.8 -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -main-file-name ustr-io-dbg-code.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -momit-leaf-frame-pointer -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -coverage-file /tmp/ustr/src/ustr-1.0.4/ustr-io-code-a-dbg.o -resource-dir /sysroot/bin/../lib/clang/3.8.1 -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -isysroot /sysroot -internal-isystem /sysroot/usr/local/include -internal-isystem /sysroot/bin/../lib/clang/3.8.1/include -internal-externc-isystem /sysroot/include -internal-externc-isystem /sysroot/usr/include -O1 -W -Wall -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wno-format-zero-length -Wformat-nonliteral -Wformat-security -fconst-strings -fdebug-compilation-dir /tmp/ustr/src/ustr-1.0.4 -ferror-limit 19 -fmessage-length 0 -fobjc-runtime=gcc -fdiagnostics-show-option -o ustr-io-code-a-dbg.o -x c ustr-io-dbg-code.c</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
   <body>
 <html>

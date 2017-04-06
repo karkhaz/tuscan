@@ -79,6 +79,203 @@
     on toolchain &quot;android&quot;
     </h1>
     <ul class="level-0">
+  <li><span class="bad-return">2</span>&nbsp;<code>None</code>
+    <ul class="level-2">
+      <li><span class="bad-return">2</span>&nbsp;<code>make linux</code>
+        <ul class="level-4">
+          <li><span class="bad-return">2</span>&nbsp;<code>/bin/sh -c if test \
+`grep grantpt /usr/include/*.h /usr/include/sys/*.h | wc -l` -gt 0; \
+then if test -c /dev/ptmx; then HAVE_PTMX='-DHAVE_PTMX'; \
+else HAVE_PTMX=''; fi; fi ; \
+if test `grep openpty /usr/include/pty.h | wc -l` -gt 0; \
+then HAVE_OPENPTY='-DHAVE_OPENPTY'; \
+else HAVE_OPENPTY=''; fi ; \
+HAVE_LIBCURSES=''; \
+if test -f /usr/lib64/libncurses.so || \
+   test -f /usr/lib/libncurses.a  || \
+   test -f /usr/lib/libncurses.so; then \
+  HAVE_LIBCURSES='-lncurses'; \
+else if test -f /usr/lib64/libcurses.so || \
+   test -f /usr/lib/libcurses.a || \
+   test -f /usr/lib/libcurses.so; then \
+     HAVE_LIBCURSES='-lcurses'; fi; fi; \
+HAVE_CURSES=''; \
+if test -n '$HAVE_LIBCURSES'; then \
+  if test -f /usr/include/ncurses.h; then \
+    HAVE_CURSES='-DCK_NCURSES  -I/usr/include/ncurses'; \
+  else if test -f /usr/include/curses.h; then \
+    HAVE_CURSES='-DCK_CURSES'; \
+fi; fi; fi; \
+if test -f /usr/include/baudboy.h || test -f /usr/include/ttylock.h; \
+then HAVE_LOCKDEV='-DHAVE_LOCKDEV' ; \
+else HAVE_LOCKDEV='' ; fi ; \
+if test -f /usr/include/baudboy.h ; \
+then HAVE_BAUDBOY='-DHAVE_BAUDBOY' ; \
+else HAVE_BAUDBOY='' ; fi ; \
+make KTARGET=${KTARGET:-linux} \
+"KFLAGS=$HAVE_CURSES $HAVE_PTMX $HAVE_LOCKDEV \
+$HAVE_BAUDBOY $HAVE_OPENPTY \
+`grep __USE_LARGEFILE64 /usr/include/features.h > /dev/null && \
+echo '-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64'` \
+`if test -f /usr/include/crypt.h; then echo -DHAVE_CRYPT_H; fi` \
+" \
+"LIBS= $HAVE_LIBCURSES \
+`if test -n '$HAVE_OPENPTY'; then echo -lutil; fi` \
+`if test -f /usr/lib64/libresolv.a || test -f /usr/lib64/libresolv.so \
+|| test -f /usr/lib/libresolv.a || test -f /usr/lib/libresolv.so \
+|| test -f /usr/lib/i386-linux-gnu/libresolv.a \
+|| test -f /usr/lib/i386-linux-gnu/libresolv.so \
+|| ls /lib/x86_64-linux-gnu/libresolv.* > /dev/null 2> /dev/null; \
+then echo -lresolv; fi` \
+`if test -f /usr/lib64/libcrypt.a || test -f /usr/lib64/libcrypt.so \
+|| test -f /usr/lib/libcrypt.a || test -f /usr/lib/libcrypt.so \
+|| ls /lib/x86_64-linux-gnu/libcrypt.* > /dev/null 2> /dev/null; \
+then echo -lcrypt; fi` \
+`if test -f /usr/lib64/liblockdev.a || \
+test -f /usr/lib64/liblockdev.so || \
+test -f /usr/lib/liblockdev.a || \
+test -f /usr/lib/liblockdev.so; \
+then echo -llockdev; fi`" \
+linuxa</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="good-return">0</span>&nbsp;<code>wc -l</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+              <li><span class="bad-return">2</span>&nbsp;<code>make KTARGET=linux KFLAGS=-DCK_NCURSES  -I/usr/include/ncurses -DHAVE_PTMX   -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H  LIBS= -lncurses -lutil -lresolv -lcrypt  linuxa</code>
+                <ul class="level-8">
+                  <li><span class="bad-return">2</span>&nbsp;<code>make xermit KTARGET=linux CC = gcc CC2 = gcc CFLAGS = -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES  -I/usr/include/ncurses -DHAVE_PTMX   -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H  LNKFLAGS =  LIBS = -lncurses -lutil -lresolv -lcrypt  -lm</code>
+                    <ul class="level-10">
+                      <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES -I/usr/include/ncurses -DHAVE_PTMX -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H -DKTARGET="linux" -c ckcmai.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>cc1 -quiet -I /usr/include/ncurses -iprefix /../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /../sysroot -D LINUX -D FNFLOAT -D CK_POSIX_SIG -D CK_NEWTERM -D TCPSOCKET -D LINUXFSSTND -D NOCOTFMC -D POSIX -D USE_STRERROR -D CK_NCURSES -D HAVE_PTMX -D HAVE_OPENPTY -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -D HAVE_CRYPT_H -D KTARGET="linux" ckcmai.c -mbionic -fpic -quiet -dumpbase ckcmai.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase ckcmai -O -funsigned-char -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="good-return">0</span>&nbsp;<code>as -I /usr/include/ncurses -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o ckcmai.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES -I/usr/include/ncurses -DHAVE_PTMX -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H -DKTARGET="linux" -c ckclib.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>cc1 -quiet -I /usr/include/ncurses -iprefix /../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /../sysroot -D LINUX -D FNFLOAT -D CK_POSIX_SIG -D CK_NEWTERM -D TCPSOCKET -D LINUXFSSTND -D NOCOTFMC -D POSIX -D USE_STRERROR -D CK_NCURSES -D HAVE_PTMX -D HAVE_OPENPTY -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -D HAVE_CRYPT_H -D KTARGET="linux" ckclib.c -mbionic -fpic -quiet -dumpbase ckclib.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase ckclib -O -funsigned-char -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="good-return">0</span>&nbsp;<code>as -I /usr/include/ncurses -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o ckclib.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES -I/usr/include/ncurses -DHAVE_PTMX -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H -DKTARGET="linux" -c ckucmd.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>cc1 -quiet -I /usr/include/ncurses -iprefix /../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /../sysroot -D LINUX -D FNFLOAT -D CK_POSIX_SIG -D CK_NEWTERM -D TCPSOCKET -D LINUXFSSTND -D NOCOTFMC -D POSIX -D USE_STRERROR -D CK_NCURSES -D HAVE_PTMX -D HAVE_OPENPTY -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -D HAVE_CRYPT_H -D KTARGET="linux" ckucmd.c -mbionic -fpic -quiet -dumpbase ckucmd.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase ckucmd -O -funsigned-char -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="good-return">0</span>&nbsp;<code>as -I /usr/include/ncurses -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o ckucmd.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (gcc
+
+/sysroot/bin/arm-linux-androideabi-gcc
+)</span><br />
+<span class="no-return">?</span>&nbsp;<code>gcc -O -DLINUX -pipe -funsigned-char -DFNFLOAT -DCK_POSIX_SIG -DCK_NEWTERM -DTCPSOCKET -DLINUXFSSTND -DNOCOTFMC -DPOSIX -DUSE_STRERROR -DCK_NCURSES -I/usr/include/ncurses -DHAVE_PTMX -DHAVE_OPENPTY -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CRYPT_H -DKTARGET="linux" -c ckuusr.c</code>
+                        <ul class="level-12">
+                          <li><span class="no-return">?</span>&nbsp;<code>cc1 -quiet -I /usr/include/ncurses -iprefix /../lib/gcc/arm-linux-androideabi/4.8/ -isysroot /../sysroot -D LINUX -D FNFLOAT -D CK_POSIX_SIG -D CK_NEWTERM -D TCPSOCKET -D LINUXFSSTND -D NOCOTFMC -D POSIX -D USE_STRERROR -D CK_NCURSES -D HAVE_PTMX -D HAVE_OPENPTY -D _LARGEFILE_SOURCE -D _FILE_OFFSET_BITS=64 -D HAVE_CRYPT_H -D KTARGET="linux" ckuusr.c -mbionic -fpic -quiet -dumpbase ckuusr.c -march=armv5te -mfloat-abi=soft -mfpu=vfp -mtls-dialect=gnu -auxbase ckuusr -O -funsigned-char -o -</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="red-error">hardcoded invocation: rel</span><span class="red-error-info"> (as
+
+/sysroot/bin/arm-linux-androideabi-as
+)</span><br />
+<span class="good-return">0</span>&nbsp;<code>as -I /usr/include/ncurses -march=armv5te -mfloat-abi=soft -mfpu=vfp -meabi=5 --noexecstack -o ckuusr.o</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T ncurses</code>
+    <ul class="level-2">
+    </ul>
+  </li>
 </ul>
   <body>
 <html>
