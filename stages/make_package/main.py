@@ -150,6 +150,7 @@ def copy_and_build(args):
             "pid": lines[1].strip(),
             "info": "\n".join(lines[2:])
         })
+        os.unlink(native)
 
     log("red_errors", "red_errors", output=red_errors)
 
@@ -321,6 +322,8 @@ def main():
     parser.add_argument("--sysroot", default="sysroot")
     args = parser.parse_args()
     args.mirror_directory = "/mirror"
+
+    os.nice(10)
 
     dump_build_information(args)
 

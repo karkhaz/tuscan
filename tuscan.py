@@ -46,6 +46,8 @@ def main():
     build_parser.add_argument("-v", "--verbose", action="store_true",
             help="show Docker output")
 
+    build_parser.add_argument("-j", "--jobs", help="parallel ninja jobs")
+
     build_parser.add_argument("--top-level", dest="top_level",
             metavar="TARGET",
             help="override the top-level target to build.")
@@ -71,9 +73,9 @@ def main():
                   " (default=%d)" % cpu_count))
 
     postprocess_parser.add_argument("-t", "--timeout", type=int,
-            metavar="N", default=None,
+            metavar="N", default=14400,
             help=("Kill post-processing if it takes longer than"
-                  " N seconds (default=None)"))
+                  " N seconds (default=%(default)s)"))
 
     postprocess_parser.add_argument("--validate",
             action="store_true", default=False,

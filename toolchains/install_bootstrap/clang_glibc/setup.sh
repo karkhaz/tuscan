@@ -25,6 +25,8 @@ pacman -S --noconfirm --needed clang
 
 exit 0
 
+#####################################################################
+
 SRCDIR=/srcdir
 BUILDDIR=/clang_glibc_build
 PKGDIR=/sysroot

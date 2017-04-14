@@ -134,13 +134,15 @@ def run_ninja(args, ninja_file):
     cmd = ["ninja", "-f", ninja_file]
     if args.verbose:
         cmd.append("-v")
+    if args.jobs:
+        cmd.append("-j")
+        cmd.append(args.jobs)
     if args.top_level:
         cmd.append(args.top_level)
     else:
         cmd.append("build")
 
-    rc = subprocess.call(cmd)
-    exit(rc)
+    return subprocess.call(cmd)
 
 
 
@@ -604,4 +606,10 @@ def do_build(args):
         create_build_file(args, ninja)
 
     if args.build:
-        run_ninja(args, ninja_file)
+        form = "%Y-%m-%d %H:%M:%S"
+        sys.stderr.write("Started build of toolchain %s at %s\n" % (
+            args.toolchain, datetime.datetime.now().strftime(form)))
+        rc = (run_ninja(args, ninja_file))
+        sys.stderr.write("Finished build of toolchain %s at %s\n" % (
+            args.toolchain, datetime.datetime.now().strftime(form)))
+        exit(rc)
