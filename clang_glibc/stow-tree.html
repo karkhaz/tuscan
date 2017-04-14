@@ -83,24 +83,28 @@
     <ul class="level-2">
       <li><span class="good-return">0</span>&nbsp;<code>None</code>
         <ul class="level-4">
-          <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="bad-return">127</span>&nbsp;<code>/usr/sbin/pacman -T texi2html</code>
+          <li><span class="bad-return">127</span>&nbsp;<code>/usr/bin/pacman -T texi2html</code>
             <ul class="level-6">
             </ul>
           </li>
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="no-return">?</span>&nbsp;<code>sudo /usr/sbin/pacman --noconfirm --color never --noprogressbar -S --asdeps texi2html</code>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/pacman -T perl</code>
         <ul class="level-4">
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin)</span><br />
+      <li><span class="no-return">?</span>&nbsp;<code>sudo /usr/bin/pacman --noconfirm --color never --noprogressbar -S --asdeps texi2html</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
+)</span><br />
 <span class="bad-return">1</span>&nbsp;<code>/usr/bin/tty</code>
         <ul class="level-4">
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)</span><br />
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+)</span><br />
 <span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-pmdir=/usr/lib/perl5/vendor_perl/</code>
         <ul class="level-4">
           <li><span class="no-return">?</span>&nbsp;<code>cat</code>
@@ -150,13 +154,10 @@
           </li>
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)</span><br />
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+)</span><br />
 <span class="good-return">0</span>&nbsp;<code>make</code>
         <ul class="level-4">
-          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d bin ] || mkdir bin # required in vpath mode</code>
-            <ul class="level-6">
-            </ul>
-          </li>
           <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d bin ] || mkdir bin # required in vpath mode</code>
             <ul class="level-6">
             </ul>
@@ -167,6 +168,23 @@
                 <ul class="level-8">
                 </ul>
               </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if PERL5LIB= /usr/bin/perl -V | awk '/@INC/ {p=1; next} p==1 {print $1}' | grep -q "/usr/lib/perl5/vendor_perl/"; then use_lib_pmdir=""; else use_lib_pmdir="use lib \"/usr/lib/perl5/vendor_perl/\";"; fi; \
+sed -e 's|[@]PERL[@]|/usr/bin/perl|g' -e 's|[@]VERSION[@]|2.2.2|g' -e "s|[@]USE_LIB_PMDIR[@]|$use_lib_pmdir|g" < bin/stow.in > bin/stow</code>
+            <ul class="level-6">
+              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/perl -V</code>
+                <ul class="level-8">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "Generated bin/stow from bin/stow.in"</code>
+            <ul class="level-6">
+            </ul>
+          </li>
+          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c [ -d bin ] || mkdir bin # required in vpath mode</code>
+            <ul class="level-6">
             </ul>
           </li>
           <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c sed -e 's|[@]PERL[@]|/usr/bin/perl|g' -e 's|[@]VERSION[@]|2.2.2|g' -e "s|[@]USE_LIB_PMDIR[@]|$use_lib_pmdir|g" < bin/chkstow.in > bin/chkstow</code>
@@ -185,33 +203,21 @@
             <ul class="level-6">
             </ul>
           </li>
-          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if PERL5LIB= /usr/bin/perl -V | awk '/@INC/ {p=1; next} p==1 {print $1}' | grep -q "/usr/lib/perl5/vendor_perl/"; then use_lib_pmdir=""; else use_lib_pmdir="use lib \"/usr/lib/perl5/vendor_perl/\";"; fi; \
-sed -e 's|[@]PERL[@]|/usr/bin/perl|g' -e 's|[@]VERSION[@]|2.2.2|g' -e "s|[@]USE_LIB_PMDIR[@]|$use_lib_pmdir|g" < bin/stow.in > bin/stow</code>
-            <ul class="level-6">
-              <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/perl -V</code>
-                <ul class="level-8">
-                </ul>
-              </li>
-            </ul>
-          </li>
           <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "Generated lib/Stow.pm from lib/Stow.pm.in and ./default-ignore-list"</code>
-            <ul class="level-6">
-            </ul>
-          </li>
-          <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c echo "Generated bin/stow from bin/stow.in"</code>
             <ul class="level-6">
             </ul>
           </li>
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)</span><br />
-<span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+)</span><br />
+<span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/bin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         <ul class="level-4">
           <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
             <ul class="level-6">
             </ul>
           </li>
-          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
             <ul class="level-6">
               <li><span class="good-return">0</span>&nbsp;<code>None</code>
                 <ul class="level-8">
@@ -327,6 +333,25 @@ while read files; do \
                           </li>
                         </ul>
                       </li>
+                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if case $AM_UPDATE_INFO_DIR in n|no|NO) false;; *) (install-info --version) >/dev/null 2>&1;; esac; then \
+  list='./doc/stow.info'; test -n "/usr/share/info" || list=; \
+  for file in $list; do \
+    relfile=`echo "$file" | sed 's|^.*/||'`; \
+    echo " install-info --info-dir='/tmp/stow/pkg/stow/usr/share/info' '/tmp/stow/pkg/stow/usr/share/info/$relfile'";\
+    install-info --info-dir="/tmp/stow/pkg/stow/usr/share/info" "/tmp/stow/pkg/stow/usr/share/info/$relfile" || :;\
+  done; \
+else : ; fi</code>
+                        <ul class="level-12">
+                          <li><span class="good-return">0</span>&nbsp;<code>install-info --version</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                          <li><span class="good-return">0</span>&nbsp;<code>install-info --info-dir=/tmp/stow/pkg/stow/usr/share/info /tmp/stow/pkg/stow/usr/share/info/stow.info</code>
+                            <ul class="level-14">
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
                       <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list1=''; \
 list2='doc/stow.8'; \
 test -n "/usr/share/man/man8" \
@@ -359,29 +384,6 @@ while read files; do \
     /usr/bin/install -c -m 644 $files "/tmp/stow/pkg/stow/usr/share/man/man8" || exit $?; }; \
 done; }</code>
                         <ul class="level-12">
-                          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 doc/stow.8 /tmp/stow/pkg/stow/usr/share/man/man8</code>
-                            <ul class="level-14">
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c if case $AM_UPDATE_INFO_DIR in n|no|NO) false;; *) (install-info --version) >/dev/null 2>&1;; esac; then \
-  list='./doc/stow.info'; test -n "/usr/share/info" || list=; \
-  for file in $list; do \
-    relfile=`echo "$file" | sed 's|^.*/||'`; \
-    echo " install-info --info-dir='/tmp/stow/pkg/stow/usr/share/info' '/tmp/stow/pkg/stow/usr/share/info/$relfile'";\
-    install-info --info-dir="/tmp/stow/pkg/stow/usr/share/info" "/tmp/stow/pkg/stow/usr/share/info/$relfile" || :;\
-  done; \
-else : ; fi</code>
-                        <ul class="level-12">
-                          <li><span class="good-return">0</span>&nbsp;<code>install-info --version</code>
-                            <ul class="level-14">
-                            </ul>
-                          </li>
-                          <li><span class="good-return">0</span>&nbsp;<code>install-info --info-dir=/tmp/stow/pkg/stow/usr/share/info /tmp/stow/pkg/stow/usr/share/info/stow.info</code>
-                            <ul class="level-14">
-                            </ul>
-                          </li>
                         </ul>
                       </li>
                       <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='lib/Stow.pm'; test -n "/usr/lib/perl5/vendor_perl/" || list=; \
@@ -446,13 +448,13 @@ done</code>
       </li>
     </ul>
   </li>
-  <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T perl</code>
+  <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+)</span><br />
+<span class="good-return">0</span>&nbsp;<code>/usr/bin/pacman -T texi2html</code>
     <ul class="level-2">
     </ul>
   </li>
-  <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl)</span><br />
-<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T texi2html</code>
+  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 doc/stow.8 /tmp/stow/pkg/stow/usr/share/man/man8</code>
     <ul class="level-2">
     </ul>
   </li>

@@ -30,7 +30,7 @@
     <h1>Build of nsd
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 08m 23s and was
+    <p>The build took 00h 02m 12s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -59,20 +59,6 @@
       href="nsd-tree.html">here</a>.
     </p>
     
-    
-      <p>
-      Several sub-process invocations were improper; see the process tree
-      for details. Summary:
-      </p>
-      <ul>
-        <li>hardcoded invocation:<ul>
-            <li>&times;210: /usr/bin/clang</li>
-        </ul></li>
-      
-        <li>malformed path:<ul>
-            <li>&times;88: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
-        </ul></li>
-      </ul>
     
     
     
@@ -210,14 +196,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: nsd 4.1.10-1 (Mon Mar 13 03:42:14 UTC 2017)</code><br />
+              <code id="18">==> Making package: nsd 4.1.10-1 (Thu Apr 13 16:53:36 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -1647,112 +1633,112 @@
             
             <a class="navhash" href="#304">#</a>
 						
-              <code id="304">clang -I. -g -O2 -flto -fPIE -c nsd-checkconf.c</code><br />
+              <code id="304">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o xfrd-disk.o xfrd-notify.o xfrd-tcp.o xfrd.o remote.o difffile.o ipc.o mini_event.o netio.o nsd.o server.o dbaccess.o dbcreate.o zlexer.o zonec.o zparser.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lssl -lcrypto -levent </code><br />
 						
             
             <a class="navhash" href="#305">#</a>
 						
-              <code id="305">clang -I. -g -O2 -flto -fPIE -c nsd-checkzone.c</code><br />
+              <code id="305">clang -I. -g -O2 -flto -fPIE -c nsd-checkconf.c</code><br />
 						
             
             <a class="navhash" href="#306">#</a>
 						
-              <code id="306">clang -I. -g -O2 -flto -fPIE -c nsd-control.c</code><br />
+              <code id="306">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd-checkconf answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o nsd-checkconf.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lcrypto -levent </code><br />
 						
             
             <a class="navhash" href="#307">#</a>
 						
-              <code id="307">rm -f nsd.conf.sample</code><br />
+              <code id="307">clang -I. -g -O2 -flto -fPIE -c nsd-checkzone.c</code><br />
 						
             
             <a class="navhash" href="#308">#</a>
 						
-              <code id="308">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd.conf.sample.in | awk '/RRLconfig'xx'/ { while($0 !~ /.*RRLend.*/) { getline; } getline; } {print} ' > nsd.conf.sample</code><br />
+              <code id="308">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd-checkzone answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o xfrd-disk.o xfrd-notify.o xfrd-tcp.o xfrd.o remote.o dbaccess.o dbcreate.o difffile.o ipc.o mini_event.o netio.o server.o zonec.o zparser.o zlexer.o nsd-checkzone.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lssl -lcrypto -levent </code><br />
 						
             
             <a class="navhash" href="#309">#</a>
 						
-              <code id="309">rm -f nsd-control-setup.sh</code><br />
+              <code id="309">clang -I. -g -O2 -flto -fPIE -c nsd-control.c</code><br />
 						
             
             <a class="navhash" href="#310">#</a>
 						
-              <code id="310">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-control-setup.sh.in > nsd-control-setup.sh</code><br />
+              <code id="310">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd-control answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o nsd-control.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lssl -lcrypto -levent </code><br />
 						
             
             <a class="navhash" href="#311">#</a>
 						
-              <code id="311">chmod +x nsd-control-setup.sh</code><br />
+              <code id="311">rm -f nsd.conf.sample</code><br />
 						
             
             <a class="navhash" href="#312">#</a>
 						
-              <code id="312">rm -f nsd.8</code><br />
+              <code id="312">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd.conf.sample.in | awk '/RRLconfig'xx'/ { while($0 !~ /.*RRLend.*/) { getline; } getline; } {print} ' > nsd.conf.sample</code><br />
 						
             
             <a class="navhash" href="#313">#</a>
 						
-              <code id="313">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd.8.in > nsd.8</code><br />
+              <code id="313">rm -f nsd-control-setup.sh</code><br />
 						
             
             <a class="navhash" href="#314">#</a>
 						
-              <code id="314">rm -f nsd-checkconf.8</code><br />
+              <code id="314">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-control-setup.sh.in > nsd-control-setup.sh</code><br />
 						
             
             <a class="navhash" href="#315">#</a>
 						
-              <code id="315">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-checkconf.8.in > nsd-checkconf.8</code><br />
+              <code id="315">chmod +x nsd-control-setup.sh</code><br />
 						
             
             <a class="navhash" href="#316">#</a>
 						
-              <code id="316">rm -f nsd-checkzone.8</code><br />
+              <code id="316">rm -f nsd.8</code><br />
 						
             
             <a class="navhash" href="#317">#</a>
 						
-              <code id="317">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-checkzone.8.in > nsd-checkzone.8</code><br />
+              <code id="317">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd.8.in > nsd.8</code><br />
 						
             
             <a class="navhash" href="#318">#</a>
 						
-              <code id="318">rm -f nsd-control.8</code><br />
+              <code id="318">rm -f nsd-checkconf.8</code><br />
 						
             
             <a class="navhash" href="#319">#</a>
 						
-              <code id="319">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-control.8.in > nsd-control.8</code><br />
+              <code id="319">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-checkconf.8.in > nsd-checkconf.8</code><br />
 						
             
             <a class="navhash" href="#320">#</a>
 						
-              <code id="320">rm -f nsd.conf.5</code><br />
+              <code id="320">rm -f nsd-checkzone.8</code><br />
 						
             
             <a class="navhash" href="#321">#</a>
 						
-              <code id="321">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd.conf.5.in | awk '/rrlstart'xx'/ { while($0 !~ /.*rrlend.*/) { getline; } getline; } {print} ' > nsd.conf.5</code><br />
+              <code id="321">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-checkzone.8.in > nsd-checkzone.8</code><br />
 						
             
             <a class="navhash" href="#322">#</a>
 						
-              <code id="322">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o xfrd-disk.o xfrd-notify.o xfrd-tcp.o xfrd.o remote.o difffile.o ipc.o mini_event.o netio.o nsd.o server.o dbaccess.o dbcreate.o zlexer.o zonec.o zparser.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lssl -lcrypto -levent </code><br />
+              <code id="322">rm -f nsd-control.8</code><br />
 						
             
             <a class="navhash" href="#323">#</a>
 						
-              <code id="323">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd-checkconf answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o nsd-checkconf.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lcrypto -levent </code><br />
+              <code id="323">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd-control.8.in > nsd-control.8</code><br />
 						
             
             <a class="navhash" href="#324">#</a>
 						
-              <code id="324">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd-checkzone answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o xfrd-disk.o xfrd-notify.o xfrd-tcp.o xfrd.o remote.o dbaccess.o dbcreate.o difffile.o ipc.o mini_event.o netio.o server.o zonec.o zparser.o zlexer.o nsd-checkzone.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lssl -lcrypto -levent </code><br />
+              <code id="324">rm -f nsd.conf.5</code><br />
 						
             
             <a class="navhash" href="#325">#</a>
 						
-              <code id="325">clang -g -O2 -flto -fPIE -pie -Wl,-z,relro,-z,now -o nsd-control answer.o axfr.o buffer.o configlexer.o configparser.o dname.o dns.o edns.o iterated_hash.o lookup3.o namedb.o nsec3.o options.o packet.o query.o rbtree.o radtree.o rdata.o region-allocator.o rrl.o tsig.o tsig-openssl.o udb.o udbradtree.o udbzone.o util.o nsd-control.o strlcat.o strlcpy.o b64_pton.o b64_ntop.o reallocarray.o -lssl -lcrypto -levent </code><br />
+              <code id="325">sed -e 's,@prefix\@,/,g' -e 's,@exec_prefix\@,/,g' -e 's,@sbindir\@,/usr/bin,g' -e 's,@configdir\@,//etc/nsd,g' -e 's,@zonesdir\@,//etc/nsd,g' -e 's,@chrootdir\@,,g' -e 's,@pidfile\@,/run/nsd/nsd.pid,g' -e 's,@logfile\@,//var/log/nsd.log,g' -e 's,@dbfile\@,//var/db/nsd/nsd.db,g' -e 's,@xfrdir\@,/tmp,g' -e 's,@xfrdfile\@,//var/db/nsd/xfrd.state,g' -e 's,@zonelistfile\@,//var/db/nsd/zone.list,g' -e 's,@nsdconfigfile\@,//etc/nsd/nsd.conf,g' -e 's,@shell\@,/bin/sh,g' -e 's,@ratelimit_default\@,on,g' -e 's,@user\@,nsd,g' ./nsd.conf.5.in | awk '/rrlstart'xx'/ { while($0 !~ /.*rrlend.*/) { getline; } getline; } {print} ' > nsd.conf.5</code><br />
 						
             
             <a class="navhash" href="#326">#</a>
@@ -1922,7 +1908,7 @@
             
             <a class="navhash" href="#359">#</a>
 						
-              <code id="359">==> Finished making: nsd 4.1.10-1 (Mon Mar 13 03:43:53 UTC 2017)</code><br />
+              <code id="359">==> Finished making: nsd 4.1.10-1 (Thu Apr 13 16:54:42 UTC 2017)</code><br />
 						
             
           </div>
@@ -2404,7 +2390,7 @@
             
             <a class="navhash" href="#421">#</a>
 						
-              <code id="421">hostname = e0d10df2387a</code><br />
+              <code id="421">hostname = b3740d8d3524</code><br />
 						
             
             <a class="navhash" href="#422">#</a>
@@ -2414,7 +2400,7 @@
             
             <a class="navhash" href="#423">#</a>
 						
-              <code id="423">uname -r = 4.4.52-1-lts</code><br />
+              <code id="423">uname -r = 4.10.6-1-ARCH</code><br />
 						
             
             <a class="navhash" href="#424">#</a>
@@ -2424,7 +2410,7 @@
             
             <a class="navhash" href="#425">#</a>
 						
-              <code id="425">uname -v = #1 SMP Sun Feb 26 19:45:38 CET 2017</code><br />
+              <code id="425">uname -v = #1 SMP PREEMPT Mon Mar 27 08:28:22 CEST 2017</code><br />
 						
             
             <a class="navhash" href="#426">#</a>
@@ -6894,7 +6880,7 @@
             
             <a class="navhash" href="#1319">#</a>
 						
-              <code id="1319">/tmp/lto-llvm-74103d.o: In function `main':</code><br />
+              <code id="1319">/tmp/lto-llvm-692d06.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#1320">#</a>
@@ -7279,7 +7265,7 @@
             
             <a class="navhash" href="#1396">#</a>
 						
-              <code id="1396">/tmp/lto-llvm-b8c2d6.o: In function `main':</code><br />
+              <code id="1396">/tmp/lto-llvm-23d58a.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#1397">#</a>
@@ -7709,7 +7695,7 @@
             
             <a class="navhash" href="#1482">#</a>
 						
-              <code id="1482">/tmp/lto-llvm-bbd9e9.o: In function `main':</code><br />
+              <code id="1482">/tmp/lto-llvm-a438a0.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#1483">#</a>
@@ -14114,7 +14100,7 @@
             
             <a class="navhash" href="#2763">#</a>
 						
-              <code id="2763">/tmp/lto-llvm-381e05.o: In function `main':</code><br />
+              <code id="2763">/tmp/lto-llvm-6fa856.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#2764">#</a>
@@ -14739,7 +14725,7 @@
             
             <a class="navhash" href="#2888">#</a>
 						
-              <code id="2888">/tmp/lto-llvm-a31f5b.o: In function `main':</code><br />
+              <code id="2888">/tmp/lto-llvm-914153.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#2889">#</a>
@@ -16059,7 +16045,7 @@
             
             <a class="navhash" href="#3152">#</a>
 						
-              <code id="3152">/tmp/lto-llvm-d49047.o: In function `main':</code><br />
+              <code id="3152">/tmp/lto-llvm-046946.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#3153">#</a>
@@ -17164,7 +17150,7 @@
             
             <a class="navhash" href="#3373">#</a>
 						
-              <code id="3373">/tmp/lto-llvm-e3eebd.o: In function `main':</code><br />
+              <code id="3373">/tmp/lto-llvm-d30240.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#3374">#</a>
@@ -18019,7 +18005,7 @@
             
             <a class="navhash" href="#3544">#</a>
 						
-              <code id="3544">/tmp/lto-llvm-5e0834.o: In function `main':</code><br />
+              <code id="3544">/tmp/lto-llvm-055e21.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#3545">#</a>
@@ -18859,7 +18845,7 @@
             
             <a class="navhash" href="#3712">#</a>
 						
-              <code id="3712">/tmp/lto-llvm-d7c1b2.o: In function `main':</code><br />
+              <code id="3712">/tmp/lto-llvm-b46524.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#3713">#</a>
@@ -19694,7 +19680,7 @@
             
             <a class="navhash" href="#3879">#</a>
 						
-              <code id="3879">/tmp/lto-llvm-bfd1ac.o: In function `main':</code><br />
+              <code id="3879">/tmp/lto-llvm-bf2237.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#3880">#</a>
@@ -20594,7 +20580,7 @@
             
             <a class="navhash" href="#4059">#</a>
 						
-              <code id="4059">/tmp/lto-llvm-b44690.o: In function `main':</code><br />
+              <code id="4059">/tmp/lto-llvm-d32e0c.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#4060">#</a>
@@ -22509,7 +22495,7 @@
             
             <a class="navhash" href="#4442">#</a>
 						
-              <code id="4442">/tmp/lto-llvm-169bb5.o: In function `main':</code><br />
+              <code id="4442">/tmp/lto-llvm-9c6116.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#4443">#</a>
@@ -23479,7 +23465,7 @@
             
             <a class="navhash" href="#4636">#</a>
 						
-              <code id="4636">/tmp/lto-llvm-daa9af.o: In function `main':</code><br />
+              <code id="4636">/tmp/lto-llvm-e1db18.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#4637">#</a>
@@ -24514,7 +24500,7 @@
             
             <a class="navhash" href="#4843">#</a>
 						
-              <code id="4843">on e0d10df2387a</code><br />
+              <code id="4843">on b3740d8d3524</code><br />
 						
             
             <a class="navhash" href="#4844">#</a>

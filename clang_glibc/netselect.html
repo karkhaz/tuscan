@@ -30,7 +30,7 @@
     <h1>Build of netselect
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 07m 01s and was
+    <p>The build took 00h 03m 39s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -61,8 +61,11 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;4: gcc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -73,7 +76,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#46">last line</a> of the
+    href="#45">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -202,14 +205,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: netselect 0.3-3 (Sun Mar 12 22:36:20 UTC 2017)</code><br />
+              <code id="18">==> Making package: netselect 0.3-3 (Thu Apr 13 13:20:34 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -239,117 +242,112 @@
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">netselect.c: In function 'wait_for_reply':</code><br />
+              <code id="24">netselect.c:799:33: warning: incompatible pointer types passing 'size_t *' (aka 'unsigned long *') to parameter of type 'socklen_t *' (aka 'unsigned int *') [-Wincompatible-pointer-types]</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">netselect.c:799:33: warning: passing argument 6 of 'recvfrom' from incompatible pointer type [-Wincompatible-pointer-types]</code><br />
+              <code id="25">                          (struct sockaddr *) &from, &fromlen);</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">      (struct sockaddr *) &from, &fromlen);</code><br />
+              <code id="26">                                                     ^~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#27">#</a>
 						
-              <code id="27">                                 ^</code><br />
+              <code id="27">/usr/include/sys/socket.h:176:27: note: passing argument to parameter '__addr_len' here</code><br />
 						
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">In file included from netselect.c:54:0:</code><br />
+              <code id="28">                         socklen_t *__restrict __addr_len);</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">/usr/include/sys/socket.h:174:16: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'size_t * {aka long unsigned int *}'</code><br />
+              <code id="29">                                               ^</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30"> extern ssize_t recvfrom (int __fd, void *__restrict __buf, size_t __n,</code><br />
+              <code id="30">1 warning generated.</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">                ^~~~~~~~</code><br />
+              <code id="31">gcc -g -o netselect netselect.o </code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">gcc -g -o netselect netselect.o </code><br />
+              <code id="32">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">==> Entering fakeroot environment...</code><br />
+              <code id="33">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">==> Starting package()...</code><br />
+              <code id="34">==> Tidying install...</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">==> Tidying install...</code><br />
+              <code id="35">  -> Removing doc files...</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">  -> Removing doc files...</code><br />
+              <code id="36">  -> Purging unwanted files...</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">  -> Purging unwanted files...</code><br />
+              <code id="37">==> Checking for packaging issue...</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">==> Checking for packaging issue...</code><br />
+              <code id="38">==> Creating package "netselect"...</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">==> Creating package "netselect"...</code><br />
+              <code id="39">  -> Generating .PKGINFO file...</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">  -> Generating .PKGINFO file...</code><br />
+              <code id="40">  -> Generating .BUILDINFO file...</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">  -> Generating .BUILDINFO file...</code><br />
+              <code id="41">error: invalid option '--noprogressbar'</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">error: invalid option '--noprogressbar'</code><br />
+              <code id="42">  -> Generating .MTREE file...</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">  -> Generating .MTREE file...</code><br />
+              <code id="43">  -> Compressing package...</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">  -> Compressing package...</code><br />
+              <code id="44">==> Leaving fakeroot environment.</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">==> Leaving fakeroot environment.</code><br />
-						
-            
-            <a class="navhash" href="#46">#</a>
-						
-              <code id="46">==> Finished making: netselect 0.3-3 (Sun Mar 12 22:36:30 UTC 2017)</code><br />
+              <code id="45">==> Finished making: netselect 0.3-3 (Thu Apr 13 13:20:37 UTC 2017)</code><br />
 						
             
           </div>
@@ -364,9 +362,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#47">#</a>
+            <a class="navhash" href="#46">#</a>
 						
-              <code id="47">netselect 0.3-3</code><br />
+              <code id="46">netselect 0.3-3</code><br />
 						
             
           </div>
@@ -397,9 +395,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#48">#</a>
+            <a class="navhash" href="#47">#</a>
 						
-              <code id="48">netselect 0.3-3</code><br />
+              <code id="47">netselect 0.3-3</code><br />
 						
             
           </div>
@@ -414,24 +412,24 @@
         
           <div class="output">
             
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">/.PKGINFO</code><br />
+						
+            
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">/.PKGINFO</code><br />
+              <code id="49">/.MTREE</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">/.MTREE</code><br />
+              <code id="50">/usr/bin/netselect</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">/usr/bin/netselect</code><br />
-						
-            
-            <a class="navhash" href="#52">#</a>
-						
-              <code id="52">/usr/share/licenses/netselect/LICENSE</code><br />
+              <code id="51">/usr/share/licenses/netselect/LICENSE</code><br />
 						
             
           </div>
@@ -494,9 +492,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#53">#</a>
+            <a class="navhash" href="#52">#</a>
 						
-              <code id="53">.PKGINFO</code><br />
+              <code id="52">.PKGINFO</code><br />
 						
             
           </div>
@@ -527,69 +525,39 @@
         
           <div class="output">
             
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">==> Extracting database to a temporary location...</code><br />
+						
+            
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
+              <code id="54">==> Extracting database to a temporary location...</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">==> ERROR: Held by process 622</code><br />
+              <code id="55">==> Adding package '/var/cache/pacman/pkg/netselect.pkg.tar.xz'</code><br />
 						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 2</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/netselect.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">==> Extracting database to a temporary location...</code><br />
+              <code id="56">  -> Computing checksums...</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">==> Extracting database to a temporary location...</code><br />
+              <code id="57">  -> Creating 'desc' db entry...</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">==> Adding package '/var/cache/pacman/pkg/netselect.pkg.tar.xz'</code><br />
+              <code id="58">  -> Creating 'files' db entry...</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">  -> Computing checksums...</code><br />
-						
-            
-            <a class="navhash" href="#60">#</a>
-						
-              <code id="60">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#61">#</a>
-						
-              <code id="61">  -> Creating 'files' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#62">#</a>
-						
-              <code id="62">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="59">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

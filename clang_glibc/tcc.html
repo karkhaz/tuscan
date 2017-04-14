@@ -30,7 +30,7 @@
     <h1>Build of tcc
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 07m 02s and was
+    <p>The build took 00h 01m 12s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -67,8 +67,16 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;45: gcc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;9: /usr/bin/gcc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -81,11 +89,11 @@
       <li>install_error
         <ul>
           
-          <li><a href="#130">rm: cannot remove 'arm64': No such file or directory</a></li>
+          <li><a href="#118">rm: cannot remove 'arm64': No such file or directory</a></li>
           
-          <li><a href="#133">rm: cannot remove './C:': No such file or directory</a></li>
+          <li><a href="#121">rm: cannot remove './C:': No such file or directory</a></li>
           
-          <li><a href="#136">rm: cannot remove '*-tcc': No such file or directory</a></li>
+          <li><a href="#124">rm: cannot remove '*-tcc': No such file or directory</a></li>
           
         </ul>
       </li>
@@ -96,7 +104,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#190">last line</a> of the
+    href="#178">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -225,14 +233,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: tcc 0.9.26-3 (Mon Mar 13 01:51:43 UTC 2017)</code><br />
+              <code id="18">==> Making package: tcc 0.9.26-3 (Thu Apr 13 15:59:31 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -352,157 +360,157 @@
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">gcc -o x86_64-tcc tcc.c -DONE_SOURCE -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing -lm -ldl </code><br />
+              <code id="42">gcc -o x86_64-tcc tcc.c -DONE_SOURCE -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -lm -ldl </code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">gcc -o libtcc.o -c libtcc.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="43">ln -sf x86_64-tcc tcc</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">In file included from libtcc.c:39:0,</code><br />
+              <code id="44">make -C lib native</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">                 from tcc.c:22:</code><br />
+              <code id="45">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">tccgen.c: In function 'expr_cond':</code><br />
+              <code id="46">mkdir -p x86_64</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">tccgen.c:4592:17: warning: this 'else' clause does not guard... [-Wmisleading-indentation]</code><br />
+              <code id="47">../tcc -B.. -c libtcc1.c -o x86_64/libtcc1.o -I. -I.. -Wall -g -O0 -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">                 else</code><br />
+              <code id="48">../tcc -B.. -c alloca86_64.S -o x86_64/alloca86_64.o -I. -I.. -Wall -g -O0 -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">                 ^~~~</code><br />
+              <code id="49">../tcc -B.. -c alloca86_64-bt.S -o x86_64/alloca86_64-bt.o -I. -I.. -Wall -g -O0 -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">tccgen.c:4594:21: note: ...this statement, but the latter is misleadingly indented as if it is guarded by the 'else'</code><br />
+              <code id="50">../tcc -B.. -c bcheck.c -o x86_64/bcheck.o -I. -I.. -Wall -g -O0 -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">                     gv(rc);</code><br />
+              <code id="51">ar rcs ../libtcc1.a x86_64/libtcc1.o x86_64/alloca86_64.o x86_64/alloca86_64-bt.o x86_64/bcheck.o</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">                     ^~</code><br />
+              <code id="52">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">gcc -o tccpp.o -c tccpp.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="53">if test ! -d x86-64; then mkdir x86-64; fi</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">gcc -o tccgen.o -c tccgen.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="54">if test ! -L x86-64/libtcc1.a; then ln -sf ../libtcc1.a x86-64/libtcc1.a; fi</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">tccgen.c: In function 'expr_cond':</code><br />
+              <code id="55">gcc -o libtcc.o -c libtcc.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">tccgen.c:4592:17: warning: this 'else' clause does not guard... [-Wmisleading-indentation]</code><br />
+              <code id="56">gcc -o tccpp.o -c tccpp.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">                 else</code><br />
+              <code id="57">tccpp.c:839:19: warning: unused function 'tok_size' [-Wunused-function]</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">                 ^~~~</code><br />
+              <code id="58">static inline int tok_size(const int *p)</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">tccgen.c:4594:21: note: ...this statement, but the latter is misleadingly indented as if it is guarded by the 'else'</code><br />
+              <code id="59">                  ^</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">                     gv(rc);</code><br />
+              <code id="60">1 warning generated.</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">                     ^~</code><br />
+              <code id="61">gcc -o tccgen.o -c tccgen.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">gcc -o tccelf.o -c tccelf.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="62">gcc -o tccelf.o -c tccelf.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">gcc -o tccasm.o -c tccasm.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="63">gcc -o tccasm.o -c tccasm.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">gcc -o tccrun.o -c tccrun.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="64">gcc -o tccrun.o -c tccrun.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">gcc -o x86_64-gen.o -c x86_64-gen.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="65">gcc -o x86_64-gen.o -c x86_64-gen.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">gcc -o i386-asm.o -c i386-asm.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing</code><br />
+              <code id="66">gcc -o i386-asm.o -c i386-asm.c -DTCC_TARGET_X86_64  -I.  -Wall -g -O0</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67">./texi2pod.pl tcc-doc.texi tcc.pod</code><br />
+              <code id="67">ar rcs libtcc.a libtcc.o tccpp.o tccgen.o tccelf.o tccasm.o tccrun.o x86_64-gen.o i386-asm.o</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">ln -sf x86_64-tcc tcc</code><br />
+              <code id="68">./texi2pod.pl tcc-doc.texi tcc.pod</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">makeinfo --no-split --html --number-sections -o tcc-doc.html tcc-doc.texi</code><br />
+              <code id="69">pod2man --section=1 --center="Tiny C Compiler" --release=`cat ./VERSION` tcc.pod > tcc.1</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">pod2man --section=1 --center="Tiny C Compiler" --release=`cat ./VERSION` tcc.pod > tcc.1</code><br />
+              <code id="70">/bin/sh: pod2man: command not found</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">/bin/sh: pod2man: command not found</code><br />
+              <code id="71">make: [Makefile:368: tcc.1] Error 127 (ignored)</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">make: [Makefile:368: tcc.1] Error 127 (ignored)</code><br />
+              <code id="72">makeinfo --no-split --html --number-sections -o tcc-doc.html tcc-doc.texi</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
@@ -512,377 +520,377 @@
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74">make -C lib native</code><br />
+              <code id="74">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#75">#</a>
 						
-              <code id="75">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="75">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#76">#</a>
 						
-              <code id="76">mkdir -p x86_64</code><br />
+              <code id="76">make -C lib native</code><br />
 						
             
             <a class="navhash" href="#77">#</a>
 						
-              <code id="77">../tcc -B.. -c libtcc1.c -o x86_64/libtcc1.o -I. -I.. -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="77">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#78">#</a>
 						
-              <code id="78">../tcc -B.. -c alloca86_64.S -o x86_64/alloca86_64.o -I. -I.. -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="78">ar rcs ../libtcc1.a x86_64/libtcc1.o x86_64/alloca86_64.o x86_64/alloca86_64-bt.o x86_64/bcheck.o</code><br />
 						
             
             <a class="navhash" href="#79">#</a>
 						
-              <code id="79">../tcc -B.. -c alloca86_64-bt.S -o x86_64/alloca86_64-bt.o -I. -I.. -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="79">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">../tcc -B.. -c bcheck.c -o x86_64/bcheck.o -I. -I.. -Wall -g -O0 -Wdeclaration-after-statement -Wno-deprecated-declarations -Wno-strict-aliasing -Wno-pointer-sign -Wno-sign-compare -Wno-unused-result -Wno-uninitialized -fno-strict-aliasing -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="80">if test ! -d x86-64; then mkdir x86-64; fi</code><br />
 						
             
             <a class="navhash" href="#81">#</a>
 						
-              <code id="81">ar rcs ../libtcc1.a x86_64/libtcc1.o x86_64/alloca86_64.o x86_64/alloca86_64-bt.o x86_64/bcheck.o</code><br />
+              <code id="81">if test ! -L x86-64/libtcc1.a; then ln -sf ../libtcc1.a x86-64/libtcc1.a; fi</code><br />
 						
             
             <a class="navhash" href="#82">#</a>
 						
-              <code id="82">ar rcs libtcc.a libtcc.o tccpp.o tccgen.o tccelf.o tccasm.o tccrun.o x86_64-gen.o i386-asm.o</code><br />
+              <code id="82">mkdir -p "/tmp/tcc/pkg/tcc/usr/bin"</code><br />
 						
             
             <a class="navhash" href="#83">#</a>
 						
-              <code id="83">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="83">install -m755 x86_64-tcc "/tmp/tcc/pkg/tcc/usr/bin"</code><br />
 						
             
             <a class="navhash" href="#84">#</a>
 						
-              <code id="84">if test ! -d x86-64; then mkdir x86-64; fi</code><br />
+              <code id="84">cp -P tcc "/tmp/tcc/pkg/tcc/usr/bin"</code><br />
 						
             
             <a class="navhash" href="#85">#</a>
 						
-              <code id="85">if test ! -L x86-64/libtcc1.a; then ln -sf ../libtcc1.a x86-64/libtcc1.a; fi</code><br />
+              <code id="85">mkdir -p "/tmp/tcc/pkg/tcc/usr/share/man/man1"</code><br />
 						
             
             <a class="navhash" href="#86">#</a>
 						
-              <code id="86">==> Entering fakeroot environment...</code><br />
+              <code id="86">install -m644 tcc.1 "/tmp/tcc/pkg/tcc/usr/share/man/man1"</code><br />
 						
             
             <a class="navhash" href="#87">#</a>
 						
-              <code id="87">==> Starting package()...</code><br />
+              <code id="87">mkdir -p "/usr/share/info"</code><br />
 						
             
             <a class="navhash" href="#88">#</a>
 						
-              <code id="88">make -C lib native</code><br />
+              <code id="88">install -m644 tcc-doc.info "/usr/share/info"</code><br />
 						
             
             <a class="navhash" href="#89">#</a>
 						
-              <code id="89">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="89">install: cannot create regular file '/usr/share/info/tcc-doc.info': Permission denied</code><br />
 						
             
             <a class="navhash" href="#90">#</a>
 						
-              <code id="90">ar rcs ../libtcc1.a x86_64/libtcc1.o x86_64/alloca86_64.o x86_64/alloca86_64-bt.o x86_64/bcheck.o</code><br />
+              <code id="90">make: [Makefile:287: install] Error 1 (ignored)</code><br />
 						
             
             <a class="navhash" href="#91">#</a>
 						
-              <code id="91">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="91">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib/tcc"</code><br />
 						
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">if test ! -d x86-64; then mkdir x86-64; fi</code><br />
+              <code id="92">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib/tcc/include"</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">if test ! -L x86-64/libtcc1.a; then ln -sf ../libtcc1.a x86-64/libtcc1.a; fi</code><br />
+              <code id="93">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib/tcc/x86-64"</code><br />
 						
             
             <a class="navhash" href="#94">#</a>
 						
-              <code id="94">mkdir -p "/tmp/tcc/pkg/tcc/usr/bin"</code><br />
+              <code id="94">install -m644 libtcc1.a "/tmp/tcc/pkg/tcc/usr/lib/tcc/x86-64"</code><br />
 						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">install -m755 x86_64-tcc "/tmp/tcc/pkg/tcc/usr/bin"</code><br />
+              <code id="95">install -m644 ./include/stdarg.h ./include/stddef.h ./include/stdbool.h ./include/float.h ./include/varargs.h ./tcclib.h "/tmp/tcc/pkg/tcc/usr/lib/tcc/include"</code><br />
 						
             
             <a class="navhash" href="#96">#</a>
 						
-              <code id="96">cp -P tcc "/tmp/tcc/pkg/tcc/usr/bin"</code><br />
+              <code id="96">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib"</code><br />
 						
             
             <a class="navhash" href="#97">#</a>
 						
-              <code id="97">mkdir -p "/tmp/tcc/pkg/tcc/usr/share/man/man1"</code><br />
+              <code id="97">install -m644 libtcc.a "/tmp/tcc/pkg/tcc/usr/lib"</code><br />
 						
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">install -m644 tcc.1 "/tmp/tcc/pkg/tcc/usr/share/man/man1"</code><br />
+              <code id="98">mkdir -p "/tmp/tcc/pkg/tcc/usr/include"</code><br />
 						
             
             <a class="navhash" href="#99">#</a>
 						
-              <code id="99">mkdir -p "/usr/share/info"</code><br />
+              <code id="99">install -m644 ./libtcc.h "/tmp/tcc/pkg/tcc/usr/include"</code><br />
 						
             
             <a class="navhash" href="#100">#</a>
 						
-              <code id="100">install -m644 tcc-doc.info "/usr/share/info"</code><br />
+              <code id="100">mkdir -p "/tmp/tcc/pkg/tcc/usr/share/doc/tcc"</code><br />
 						
             
             <a class="navhash" href="#101">#</a>
 						
-              <code id="101">install: cannot create regular file '/usr/share/info/tcc-doc.info': Permission denied</code><br />
+              <code id="101">install -m644 tcc-doc.html "/tmp/tcc/pkg/tcc/usr/share/doc/tcc"</code><br />
 						
             
             <a class="navhash" href="#102">#</a>
 						
-              <code id="102">make: [Makefile:287: install] Error 1 (ignored)</code><br />
+              <code id="102">rm -vf x86_64-tcc tcc_p tcc.pod *~ *.o *.a *.so* *.out *.log \</code><br />
 						
             
             <a class="navhash" href="#103">#</a>
 						
-              <code id="103">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib/tcc"</code><br />
+              <code id="103">	*.exe a.out tags TAGS libtcc_test tcc</code><br />
 						
             
             <a class="navhash" href="#104">#</a>
 						
-              <code id="104">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib/tcc/include"</code><br />
+              <code id="104">removed 'x86_64-tcc'</code><br />
 						
             
             <a class="navhash" href="#105">#</a>
 						
-              <code id="105">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib/tcc/x86-64"</code><br />
+              <code id="105">removed 'tcc.pod'</code><br />
 						
             
             <a class="navhash" href="#106">#</a>
 						
-              <code id="106">install -m644 libtcc1.a "/tmp/tcc/pkg/tcc/usr/lib/tcc/x86-64"</code><br />
+              <code id="106">removed 'i386-asm.o'</code><br />
 						
             
             <a class="navhash" href="#107">#</a>
 						
-              <code id="107">install -m644 ./include/stdarg.h ./include/stddef.h ./include/stdbool.h ./include/float.h ./include/varargs.h ./tcclib.h "/tmp/tcc/pkg/tcc/usr/lib/tcc/include"</code><br />
+              <code id="107">removed 'libtcc.o'</code><br />
 						
             
             <a class="navhash" href="#108">#</a>
 						
-              <code id="108">mkdir -p "/tmp/tcc/pkg/tcc/usr/lib"</code><br />
+              <code id="108">removed 'tccasm.o'</code><br />
 						
             
             <a class="navhash" href="#109">#</a>
 						
-              <code id="109">install -m644 libtcc.a "/tmp/tcc/pkg/tcc/usr/lib"</code><br />
+              <code id="109">removed 'tccelf.o'</code><br />
 						
             
             <a class="navhash" href="#110">#</a>
 						
-              <code id="110">mkdir -p "/tmp/tcc/pkg/tcc/usr/include"</code><br />
+              <code id="110">removed 'tccgen.o'</code><br />
 						
             
             <a class="navhash" href="#111">#</a>
 						
-              <code id="111">install -m644 ./libtcc.h "/tmp/tcc/pkg/tcc/usr/include"</code><br />
+              <code id="111">removed 'tccpp.o'</code><br />
 						
             
             <a class="navhash" href="#112">#</a>
 						
-              <code id="112">mkdir -p "/tmp/tcc/pkg/tcc/usr/share/doc/tcc"</code><br />
+              <code id="112">removed 'tccrun.o'</code><br />
 						
             
             <a class="navhash" href="#113">#</a>
 						
-              <code id="113">install -m644 tcc-doc.html "/tmp/tcc/pkg/tcc/usr/share/doc/tcc"</code><br />
+              <code id="113">removed 'x86_64-gen.o'</code><br />
 						
             
             <a class="navhash" href="#114">#</a>
 						
-              <code id="114">rm -vf x86_64-tcc tcc_p tcc.pod *~ *.o *.a *.so* *.out *.log \</code><br />
+              <code id="114">removed 'libtcc.a'</code><br />
 						
             
             <a class="navhash" href="#115">#</a>
 						
-              <code id="115">	*.exe a.out tags TAGS libtcc_test tcc</code><br />
+              <code id="115">removed 'libtcc1.a'</code><br />
 						
             
             <a class="navhash" href="#116">#</a>
 						
-              <code id="116">removed 'x86_64-tcc'</code><br />
+              <code id="116">removed 'tcc'</code><br />
 						
             
             <a class="navhash" href="#117">#</a>
 						
-              <code id="117">removed 'tcc.pod'</code><br />
+              <code id="117">rm -r x86-64 arm64</code><br />
 						
             
             <a class="navhash" href="#118">#</a>
-						
-              <code id="118">removed 'i386-asm.o'</code><br />
-						
+						<span class="error">
+              <code id="118">rm: cannot remove 'arm64': No such file or directory</code><br />
+						</span>
             
             <a class="navhash" href="#119">#</a>
 						
-              <code id="119">removed 'libtcc.o'</code><br />
+              <code id="119">make: [Makefile:381: clean] Error 1 (ignored)</code><br />
 						
             
             <a class="navhash" href="#120">#</a>
 						
-              <code id="120">removed 'tccasm.o'</code><br />
+              <code id="120">rm -r ./C:</code><br />
 						
             
             <a class="navhash" href="#121">#</a>
-						
-              <code id="121">removed 'tccelf.o'</code><br />
-						
+						<span class="error">
+              <code id="121">rm: cannot remove './C:': No such file or directory</code><br />
+						</span>
             
             <a class="navhash" href="#122">#</a>
 						
-              <code id="122">removed 'tccgen.o'</code><br />
+              <code id="122">make: [Makefile:382: clean] Error 1 (ignored)</code><br />
 						
             
             <a class="navhash" href="#123">#</a>
 						
-              <code id="123">removed 'tccpp.o'</code><br />
+              <code id="123">rm *-tcc</code><br />
 						
             
             <a class="navhash" href="#124">#</a>
-						
-              <code id="124">removed 'tccrun.o'</code><br />
-						
+						<span class="error">
+              <code id="124">rm: cannot remove '*-tcc': No such file or directory</code><br />
+						</span>
             
             <a class="navhash" href="#125">#</a>
 						
-              <code id="125">removed 'x86_64-gen.o'</code><br />
+              <code id="125">make: [Makefile:383: clean] Error 1 (ignored)</code><br />
 						
             
             <a class="navhash" href="#126">#</a>
 						
-              <code id="126">removed 'libtcc.a'</code><br />
+              <code id="126">make -C tests clean</code><br />
 						
             
             <a class="navhash" href="#127">#</a>
 						
-              <code id="127">removed 'libtcc1.a'</code><br />
+              <code id="127">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/tests'</code><br />
 						
             
             <a class="navhash" href="#128">#</a>
 						
-              <code id="128">removed 'tcc'</code><br />
+              <code id="128">make -C tests2 clean</code><br />
 						
             
             <a class="navhash" href="#129">#</a>
 						
-              <code id="129">rm -r x86-64 arm64</code><br />
+              <code id="129">make[2]: Entering directory '/tmp/tcc/src/tcc-0.9.26/tests/tests2'</code><br />
 						
             
             <a class="navhash" href="#130">#</a>
-						<span class="error">
-              <code id="130">rm: cannot remove 'arm64': No such file or directory</code><br />
-						</span>
+						
+              <code id="130">rm -vf fred.txt *.output a.exe</code><br />
+						
             
             <a class="navhash" href="#131">#</a>
 						
-              <code id="131">make: [Makefile:381: clean] Error 1 (ignored)</code><br />
+              <code id="131">make[2]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/tests/tests2'</code><br />
 						
             
             <a class="navhash" href="#132">#</a>
 						
-              <code id="132">rm -r ./C:</code><br />
+              <code id="132">rm -vf *~ *.o *.a *.bin *.i *.ref *.out *.out? *.out?b *.cc \</code><br />
 						
             
             <a class="navhash" href="#133">#</a>
-						<span class="error">
-              <code id="133">rm: cannot remove './C:': No such file or directory</code><br />
-						</span>
+						
+              <code id="133">	*-cc *-tcc *.exe \</code><br />
+						
             
             <a class="navhash" href="#134">#</a>
 						
-              <code id="134">make: [Makefile:382: clean] Error 1 (ignored)</code><br />
+              <code id="134">	hello libtcc_test vla_test tcctest[1234] ex? tcc_g</code><br />
 						
             
             <a class="navhash" href="#135">#</a>
 						
-              <code id="135">rm *-tcc</code><br />
+              <code id="135">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/tests'</code><br />
 						
             
             <a class="navhash" href="#136">#</a>
-						<span class="error">
-              <code id="136">rm: cannot remove '*-tcc': No such file or directory</code><br />
-						</span>
+						
+              <code id="136">make -C lib clean</code><br />
+						
             
             <a class="navhash" href="#137">#</a>
 						
-              <code id="137">make: [Makefile:383: clean] Error 1 (ignored)</code><br />
+              <code id="137">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#138">#</a>
 						
-              <code id="138">make -C tests clean</code><br />
+              <code id="138">rm -rfv i386-win x86_64-win i386 x86_64 arm64</code><br />
 						
             
             <a class="navhash" href="#139">#</a>
 						
-              <code id="139">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/tests'</code><br />
+              <code id="139">removed 'x86_64/exists'</code><br />
 						
             
             <a class="navhash" href="#140">#</a>
 						
-              <code id="140">make -C tests2 clean</code><br />
+              <code id="140">removed 'x86_64/libtcc1.o'</code><br />
 						
             
             <a class="navhash" href="#141">#</a>
 						
-              <code id="141">make[2]: Entering directory '/tmp/tcc/src/tcc-0.9.26/tests/tests2'</code><br />
+              <code id="141">removed 'x86_64/alloca86_64.o'</code><br />
 						
             
             <a class="navhash" href="#142">#</a>
 						
-              <code id="142">rm -vf fred.txt *.output a.exe</code><br />
+              <code id="142">removed 'x86_64/alloca86_64-bt.o'</code><br />
 						
             
             <a class="navhash" href="#143">#</a>
 						
-              <code id="143">make[2]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/tests/tests2'</code><br />
+              <code id="143">removed 'x86_64/bcheck.o'</code><br />
 						
             
             <a class="navhash" href="#144">#</a>
 						
-              <code id="144">rm -vf *~ *.o *.a *.bin *.i *.ref *.out *.out? *.out?b *.cc \</code><br />
+              <code id="144">removed directory 'x86_64'</code><br />
 						
             
             <a class="navhash" href="#145">#</a>
 						
-              <code id="145">	*-cc *-tcc *.exe \</code><br />
+              <code id="145">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#146">#</a>
 						
-              <code id="146">	hello libtcc_test vla_test tcctest[1234] ex? tcc_g</code><br />
+              <code id="146">gcc -o x86_64-tcc tcc.c -DONE_SOURCE -DTCC_TARGET_X86_64  -I.  -fPIC -lm -ldl </code><br />
 						
             
             <a class="navhash" href="#147">#</a>
 						
-              <code id="147">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/tests'</code><br />
+              <code id="147">ln -sf x86_64-tcc tcc</code><br />
 						
             
             <a class="navhash" href="#148">#</a>
 						
-              <code id="148">make -C lib clean</code><br />
+              <code id="148">make -C lib native</code><br />
 						
             
             <a class="navhash" href="#149">#</a>
@@ -892,47 +900,47 @@
             
             <a class="navhash" href="#150">#</a>
 						
-              <code id="150">rm -rfv i386-win x86_64-win i386 x86_64 arm64</code><br />
+              <code id="150">mkdir -p x86_64</code><br />
 						
             
             <a class="navhash" href="#151">#</a>
 						
-              <code id="151">removed 'x86_64/exists'</code><br />
+              <code id="151">../tcc -B.. -c libtcc1.c -o x86_64/libtcc1.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#152">#</a>
 						
-              <code id="152">removed 'x86_64/libtcc1.o'</code><br />
+              <code id="152">../tcc -B.. -c alloca86_64.S -o x86_64/alloca86_64.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#153">#</a>
 						
-              <code id="153">removed 'x86_64/alloca86_64.o'</code><br />
+              <code id="153">../tcc -B.. -c alloca86_64-bt.S -o x86_64/alloca86_64-bt.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#154">#</a>
 						
-              <code id="154">removed 'x86_64/alloca86_64-bt.o'</code><br />
+              <code id="154">../tcc -B.. -c bcheck.c -o x86_64/bcheck.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
 						
             
             <a class="navhash" href="#155">#</a>
 						
-              <code id="155">removed 'x86_64/bcheck.o'</code><br />
+              <code id="155">ar rcs ../libtcc1.a x86_64/libtcc1.o x86_64/alloca86_64.o x86_64/alloca86_64-bt.o x86_64/bcheck.o</code><br />
 						
             
             <a class="navhash" href="#156">#</a>
 						
-              <code id="156">removed directory 'x86_64'</code><br />
+              <code id="156">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
 						
             
             <a class="navhash" href="#157">#</a>
 						
-              <code id="157">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="157">if test ! -d x86-64; then mkdir x86-64; fi</code><br />
 						
             
             <a class="navhash" href="#158">#</a>
 						
-              <code id="158">gcc -o x86_64-tcc tcc.c -DONE_SOURCE -DTCC_TARGET_X86_64  -I.  -fPIC -lm -ldl </code><br />
+              <code id="158">if test ! -L x86-64/libtcc1.a; then ln -sf ../libtcc1.a x86-64/libtcc1.a; fi</code><br />
 						
             
             <a class="navhash" href="#159">#</a>
@@ -977,122 +985,62 @@
             
             <a class="navhash" href="#167">#</a>
 						
-              <code id="167">ln -sf x86_64-tcc tcc</code><br />
+              <code id="167">ar rcs libtcc.a libtcc.o tccpp.o tccgen.o tccelf.o tccasm.o tccrun.o x86_64-gen.o i386-asm.o</code><br />
 						
             
             <a class="navhash" href="#168">#</a>
 						
-              <code id="168">make -C lib native</code><br />
+              <code id="168">==> Tidying install...</code><br />
 						
             
             <a class="navhash" href="#169">#</a>
 						
-              <code id="169">make[1]: Entering directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="169">  -> Purging unwanted files...</code><br />
 						
             
             <a class="navhash" href="#170">#</a>
 						
-              <code id="170">mkdir -p x86_64</code><br />
+              <code id="170">==> Checking for packaging issue...</code><br />
 						
             
             <a class="navhash" href="#171">#</a>
 						
-              <code id="171">../tcc -B.. -c libtcc1.c -o x86_64/libtcc1.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="171">==> Creating package "tcc"...</code><br />
 						
             
             <a class="navhash" href="#172">#</a>
 						
-              <code id="172">../tcc -B.. -c alloca86_64.S -o x86_64/alloca86_64.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="172">  -> Generating .PKGINFO file...</code><br />
 						
             
             <a class="navhash" href="#173">#</a>
 						
-              <code id="173">../tcc -B.. -c alloca86_64-bt.S -o x86_64/alloca86_64-bt.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="173">  -> Generating .BUILDINFO file...</code><br />
 						
             
             <a class="navhash" href="#174">#</a>
 						
-              <code id="174">../tcc -B.. -c bcheck.c -o x86_64/bcheck.o -I. -I.. -fPIC -fPIC -DTCC_TARGET_X86_64</code><br />
+              <code id="174">error: invalid option '--noprogressbar'</code><br />
 						
             
             <a class="navhash" href="#175">#</a>
 						
-              <code id="175">ar rcs ../libtcc1.a x86_64/libtcc1.o x86_64/alloca86_64.o x86_64/alloca86_64-bt.o x86_64/bcheck.o</code><br />
+              <code id="175">  -> Generating .MTREE file...</code><br />
 						
             
             <a class="navhash" href="#176">#</a>
 						
-              <code id="176">make[1]: Leaving directory '/tmp/tcc/src/tcc-0.9.26/lib'</code><br />
+              <code id="176">  -> Compressing package...</code><br />
 						
             
             <a class="navhash" href="#177">#</a>
 						
-              <code id="177">if test ! -d x86-64; then mkdir x86-64; fi</code><br />
+              <code id="177">==> Leaving fakeroot environment.</code><br />
 						
             
             <a class="navhash" href="#178">#</a>
 						
-              <code id="178">if test ! -L x86-64/libtcc1.a; then ln -sf ../libtcc1.a x86-64/libtcc1.a; fi</code><br />
-						
-            
-            <a class="navhash" href="#179">#</a>
-						
-              <code id="179">ar rcs libtcc.a libtcc.o tccpp.o tccgen.o tccelf.o tccasm.o tccrun.o x86_64-gen.o i386-asm.o</code><br />
-						
-            
-            <a class="navhash" href="#180">#</a>
-						
-              <code id="180">==> Tidying install...</code><br />
-						
-            
-            <a class="navhash" href="#181">#</a>
-						
-              <code id="181">  -> Purging unwanted files...</code><br />
-						
-            
-            <a class="navhash" href="#182">#</a>
-						
-              <code id="182">==> Checking for packaging issue...</code><br />
-						
-            
-            <a class="navhash" href="#183">#</a>
-						
-              <code id="183">==> Creating package "tcc"...</code><br />
-						
-            
-            <a class="navhash" href="#184">#</a>
-						
-              <code id="184">  -> Generating .PKGINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#185">#</a>
-						
-              <code id="185">  -> Generating .BUILDINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#186">#</a>
-						
-              <code id="186">error: invalid option '--noprogressbar'</code><br />
-						
-            
-            <a class="navhash" href="#187">#</a>
-						
-              <code id="187">  -> Generating .MTREE file...</code><br />
-						
-            
-            <a class="navhash" href="#188">#</a>
-						
-              <code id="188">  -> Compressing package...</code><br />
-						
-            
-            <a class="navhash" href="#189">#</a>
-						
-              <code id="189">==> Leaving fakeroot environment.</code><br />
-						
-            
-            <a class="navhash" href="#190">#</a>
-						
-              <code id="190">==> Finished making: tcc 0.9.26-3 (Mon Mar 13 01:52:09 UTC 2017)</code><br />
+              <code id="178">==> Finished making: tcc 0.9.26-3 (Thu Apr 13 15:59:44 UTC 2017)</code><br />
 						
             
           </div>
@@ -1107,9 +1055,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#191">#</a>
+            <a class="navhash" href="#179">#</a>
 						
-              <code id="191">tcc 0.9.26-3</code><br />
+              <code id="179">tcc 0.9.26-3</code><br />
 						
             
           </div>
@@ -1140,9 +1088,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#192">#</a>
+            <a class="navhash" href="#180">#</a>
 						
-              <code id="192">distcc 3.2rc1-2</code><br />
+              <code id="180">distcc 3.2rc1-2</code><br />
 						
             
           </div>
@@ -1157,9 +1105,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#193">#</a>
+            <a class="navhash" href="#181">#</a>
 						
-              <code id="193">tcc 0.9.26-3</code><br />
+              <code id="181">tcc 0.9.26-3</code><br />
 						
             
           </div>
@@ -1174,139 +1122,139 @@
         
           <div class="output">
             
+            <a class="navhash" href="#182">#</a>
+						
+              <code id="182">/.PKGINFO</code><br />
+						
+            
+            <a class="navhash" href="#183">#</a>
+						
+              <code id="183">/.BUILDINFO</code><br />
+						
+            
+            <a class="navhash" href="#184">#</a>
+						
+              <code id="184">/.MTREE</code><br />
+						
+            
+            <a class="navhash" href="#185">#</a>
+						
+              <code id="185">/usr/bin/x86_64-tcc</code><br />
+						
+            
+            <a class="navhash" href="#186">#</a>
+						
+              <code id="186">/usr/bin/tcc</code><br />
+						
+            
+            <a class="navhash" href="#187">#</a>
+						
+              <code id="187">/usr/share/man/man1/tcc.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#188">#</a>
+						
+              <code id="188">/usr/share/doc/tcc/tcc-doc.html</code><br />
+						
+            
+            <a class="navhash" href="#189">#</a>
+						
+              <code id="189">/usr/lib/libtcc.so</code><br />
+						
+            
+            <a class="navhash" href="#190">#</a>
+						
+              <code id="190">/usr/lib/libtcc.a</code><br />
+						
+            
+            <a class="navhash" href="#191">#</a>
+						
+              <code id="191">/usr/lib/tcc/include/stdbool.h</code><br />
+						
+            
+            <a class="navhash" href="#192">#</a>
+						
+              <code id="192">/usr/lib/tcc/include/stdarg.h</code><br />
+						
+            
+            <a class="navhash" href="#193">#</a>
+						
+              <code id="193">/usr/lib/tcc/include/stddef.h</code><br />
+						
+            
             <a class="navhash" href="#194">#</a>
 						
-              <code id="194">/.PKGINFO</code><br />
+              <code id="194">/usr/lib/tcc/include/float.h</code><br />
 						
             
             <a class="navhash" href="#195">#</a>
 						
-              <code id="195">/.BUILDINFO</code><br />
+              <code id="195">/usr/lib/tcc/include/varargs.h</code><br />
 						
             
             <a class="navhash" href="#196">#</a>
 						
-              <code id="196">/.MTREE</code><br />
+              <code id="196">/usr/lib/tcc/include/tcclib.h</code><br />
 						
             
             <a class="navhash" href="#197">#</a>
 						
-              <code id="197">/usr/bin/x86_64-tcc</code><br />
+              <code id="197">/usr/lib/tcc/x86-64/libtcc1.a</code><br />
 						
             
             <a class="navhash" href="#198">#</a>
 						
-              <code id="198">/usr/bin/tcc</code><br />
+              <code id="198">/usr/include/libtcc.h</code><br />
 						
             
             <a class="navhash" href="#199">#</a>
 						
-              <code id="199">/usr/share/man/man1/tcc.1.gz</code><br />
+              <code id="199">/sysroot/usr/lib/libtcc.a</code><br />
 						
             
             <a class="navhash" href="#200">#</a>
 						
-              <code id="200">/usr/share/doc/tcc/tcc-doc.html</code><br />
+              <code id="200">/sysroot/usr/lib/libtcc.so</code><br />
 						
             
             <a class="navhash" href="#201">#</a>
 						
-              <code id="201">/usr/lib/libtcc.so</code><br />
+              <code id="201">/sysroot/usr/lib/tcc/include/stdarg.h</code><br />
 						
             
             <a class="navhash" href="#202">#</a>
 						
-              <code id="202">/usr/lib/libtcc.a</code><br />
+              <code id="202">/sysroot/usr/lib/tcc/include/stddef.h</code><br />
 						
             
             <a class="navhash" href="#203">#</a>
 						
-              <code id="203">/usr/lib/tcc/include/stdbool.h</code><br />
+              <code id="203">/sysroot/usr/lib/tcc/include/stdbool.h</code><br />
 						
             
             <a class="navhash" href="#204">#</a>
 						
-              <code id="204">/usr/lib/tcc/include/stdarg.h</code><br />
+              <code id="204">/sysroot/usr/lib/tcc/include/float.h</code><br />
 						
             
             <a class="navhash" href="#205">#</a>
 						
-              <code id="205">/usr/lib/tcc/include/stddef.h</code><br />
+              <code id="205">/sysroot/usr/lib/tcc/include/varargs.h</code><br />
 						
             
             <a class="navhash" href="#206">#</a>
 						
-              <code id="206">/usr/lib/tcc/include/float.h</code><br />
+              <code id="206">/sysroot/usr/lib/tcc/include/tcclib.h</code><br />
 						
             
             <a class="navhash" href="#207">#</a>
 						
-              <code id="207">/usr/lib/tcc/include/varargs.h</code><br />
+              <code id="207">/sysroot/usr/lib/tcc/x86-64/libtcc1.a</code><br />
 						
             
             <a class="navhash" href="#208">#</a>
 						
-              <code id="208">/usr/lib/tcc/include/tcclib.h</code><br />
-						
-            
-            <a class="navhash" href="#209">#</a>
-						
-              <code id="209">/usr/lib/tcc/x86-64/libtcc1.a</code><br />
-						
-            
-            <a class="navhash" href="#210">#</a>
-						
-              <code id="210">/usr/include/libtcc.h</code><br />
-						
-            
-            <a class="navhash" href="#211">#</a>
-						
-              <code id="211">/sysroot/usr/lib/libtcc.a</code><br />
-						
-            
-            <a class="navhash" href="#212">#</a>
-						
-              <code id="212">/sysroot/usr/lib/libtcc.so</code><br />
-						
-            
-            <a class="navhash" href="#213">#</a>
-						
-              <code id="213">/sysroot/usr/lib/tcc/include/stdarg.h</code><br />
-						
-            
-            <a class="navhash" href="#214">#</a>
-						
-              <code id="214">/sysroot/usr/lib/tcc/include/stddef.h</code><br />
-						
-            
-            <a class="navhash" href="#215">#</a>
-						
-              <code id="215">/sysroot/usr/lib/tcc/include/stdbool.h</code><br />
-						
-            
-            <a class="navhash" href="#216">#</a>
-						
-              <code id="216">/sysroot/usr/lib/tcc/include/float.h</code><br />
-						
-            
-            <a class="navhash" href="#217">#</a>
-						
-              <code id="217">/sysroot/usr/lib/tcc/include/varargs.h</code><br />
-						
-            
-            <a class="navhash" href="#218">#</a>
-						
-              <code id="218">/sysroot/usr/lib/tcc/include/tcclib.h</code><br />
-						
-            
-            <a class="navhash" href="#219">#</a>
-						
-              <code id="219">/sysroot/usr/lib/tcc/x86-64/libtcc1.a</code><br />
-						
-            
-            <a class="navhash" href="#220">#</a>
-						
-              <code id="220">/sysroot/usr/include/libtcc.h</code><br />
+              <code id="208">/sysroot/usr/include/libtcc.h</code><br />
 						
             
           </div>
@@ -1369,9 +1317,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#221">#</a>
+            <a class="navhash" href="#209">#</a>
 						
-              <code id="221">.PKGINFO</code><br />
+              <code id="209">.PKGINFO</code><br />
 						
             
           </div>
@@ -1402,39 +1350,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#222">#</a>
+            <a class="navhash" href="#210">#</a>
 						
-              <code id="222">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#223">#</a>
-						
-              <code id="223">==> Extracting database to a temporary location...</code><br />
+              <code id="210">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#224">#</a>
+            <a class="navhash" href="#211">#</a>
 						
-              <code id="224">==> Adding package '/var/cache/pacman/pkg/tcc.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#225">#</a>
-						
-              <code id="225">  -> Computing checksums...</code><br />
+              <code id="211">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#226">#</a>
+            <a class="navhash" href="#212">#</a>
 						
-              <code id="226">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#227">#</a>
-						
-              <code id="227">  -> Creating 'files' db entry...</code><br />
+              <code id="212">==> Adding package '/var/cache/pacman/pkg/tcc.pkg.tar.xz'</code><br />
 						
             
-            <a class="navhash" href="#228">#</a>
+            <a class="navhash" href="#213">#</a>
 						
-              <code id="228">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="213">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#214">#</a>
+						
+              <code id="214">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#215">#</a>
+						
+              <code id="215">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#216">#</a>
+						
+              <code id="216">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

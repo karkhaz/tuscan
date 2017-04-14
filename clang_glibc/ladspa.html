@@ -30,7 +30,7 @@
     <h1>Build of ladspa
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 37s and was
+    <p>The build took 00h 01m 23s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -61,8 +61,11 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;89: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;26: cc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -202,14 +205,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: ladspa 1.13-6 (Mon Mar 13 06:23:59 UTC 2017)</code><br />
+              <code id="18">==> Making package: ladspa 1.13-6 (Thu Apr 13 18:22:17 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -259,12 +262,12 @@
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">cc -I. -Wall -Werror   -fPIC -o plugins/delay.o -c plugins/delay.c</code><br />
+              <code id="28">ld -o ../plugins/amp.so plugins/amp.o -shared</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">ld -o ../plugins/amp.so plugins/amp.o -shared</code><br />
+              <code id="29">cc -I. -Wall -Werror   -fPIC -o plugins/delay.o -c plugins/delay.c</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
@@ -279,37 +282,37 @@
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">cc -I. -Wall -Werror   -fPIC -o plugins/noise.o -c plugins/noise.c</code><br />
+              <code id="32">ld -o ../plugins/filter.so plugins/filter.o -shared</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">ld -o ../plugins/noise.so plugins/noise.o -shared</code><br />
+              <code id="33">cc -I. -Wall -Werror   -fPIC -o plugins/noise.o -c plugins/noise.c</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">c++ -I. -Wall -Werror   -fPIC -o plugins/sine.o -c plugins/sine.cpp</code><br />
+              <code id="34">ld -o ../plugins/noise.so plugins/noise.o -shared</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">ld -o ../plugins/filter.so plugins/filter.o -shared</code><br />
+              <code id="35">c++ -I. -Wall -Werror   -fPIC -o plugins/sine.o -c plugins/sine.cpp</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">cc -I. -Wall -Werror   -fPIC   -c -o analyseplugin.o analyseplugin.c</code><br />
+              <code id="36">c++ -o ../plugins/sine.so plugins/sine.o -shared</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">cc -I. -Wall -Werror   -fPIC   -c -o load.o load.c</code><br />
+              <code id="37">cc -I. -Wall -Werror   -fPIC   -c -o analyseplugin.o analyseplugin.c</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">c++ -o ../plugins/sine.so plugins/sine.o -shared</code><br />
+              <code id="38">cc -I. -Wall -Werror   -fPIC   -c -o load.o load.c</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
@@ -319,47 +322,47 @@
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">cc -I. -Wall -Werror   -fPIC   -c -o applyplugin.o applyplugin.c</code><br />
+              <code id="40">cc -I. -Wall -Werror   -fPIC -ldl -lm					\</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">cc -I. -Wall -Werror   -fPIC   -c -o listplugins.o listplugins.c</code><br />
+              <code id="41">	-o ../bin/analyseplugin 				\</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">cc -I. -Wall -Werror   -fPIC   -c -o search.o search.c</code><br />
+              <code id="42">	analyseplugin.o load.o default.o</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">cc -I. -Wall -Werror   -fPIC -ldl -lm					\</code><br />
+              <code id="43">cc -I. -Wall -Werror   -fPIC   -c -o applyplugin.o applyplugin.c</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">	-o ../bin/analyseplugin 				\</code><br />
+              <code id="44">cc -I. -Wall -Werror   -fPIC -ldl -lm					\</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">	analyseplugin.o load.o default.o</code><br />
+              <code id="45">	-o ../bin/applyplugin					\</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">cc -I. -Wall -Werror   -fPIC -ldl -lm					\</code><br />
+              <code id="46">	applyplugin.o load.o default.o</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">	-o ../bin/applyplugin					\</code><br />
+              <code id="47">cc -I. -Wall -Werror   -fPIC   -c -o listplugins.o listplugins.c</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">	applyplugin.o load.o default.o</code><br />
+              <code id="48">cc -I. -Wall -Werror   -fPIC   -c -o search.o search.c</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
@@ -474,7 +477,7 @@
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">==> Finished making: ladspa 1.13-6 (Mon Mar 13 06:24:01 UTC 2017)</code><br />
+              <code id="71">==> Finished making: ladspa 1.13-6 (Thu Apr 13 18:22:21 UTC 2017)</code><br />
 						
             
           </div>
@@ -719,97 +722,37 @@
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
+              <code id="92">==> Extracting database to a temporary location...</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">==> ERROR: Held by process 7777</code><br />
+              <code id="93">==> Extracting database to a temporary location...</code><br />
 						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 2</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/ladspa.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
             
             <a class="navhash" href="#94">#</a>
 						
-              <code id="94">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
+              <code id="94">==> Adding package '/var/cache/pacman/pkg/ladspa.pkg.tar.xz'</code><br />
 						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">==> ERROR: Held by process 4184</code><br />
+              <code id="95">  -> Computing checksums...</code><br />
 						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 3</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/ladspa.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
             
             <a class="navhash" href="#96">#</a>
 						
-              <code id="96">==> Extracting database to a temporary location...</code><br />
+              <code id="96">  -> Creating 'desc' db entry...</code><br />
 						
             
             <a class="navhash" href="#97">#</a>
 						
-              <code id="97">==> Extracting database to a temporary location...</code><br />
+              <code id="97">  -> Creating 'files' db entry...</code><br />
 						
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">==> Adding package '/var/cache/pacman/pkg/ladspa.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#99">#</a>
-						
-              <code id="99">  -> Computing checksums...</code><br />
-						
-            
-            <a class="navhash" href="#100">#</a>
-						
-              <code id="100">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#101">#</a>
-						
-              <code id="101">  -> Creating 'files' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#102">#</a>
-						
-              <code id="102">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="98">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

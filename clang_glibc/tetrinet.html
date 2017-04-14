@@ -30,9 +30,8 @@
     <h1>Build of tetrinet
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 07m 23s and was
-    SUCCESSFUL.
-    </p>
+    <p>The build took 00h 00m 59s and was
+    NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
     according to <a
@@ -59,8 +58,11 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;2: cc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -71,7 +73,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#125">last line</a> of the
+    href="#46">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -200,14 +202,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: tetrinet 0.11-7 (Mon Mar 13 03:00:41 UTC 2017)</code><br />
+              <code id="18">==> Making package: tetrinet 0.11-7 (Thu Apr 13 16:33:30 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -237,749 +239,117 @@
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">cc -O2 -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tetrinet.c</code><br />
+              <code id="24">In file included from sockets.c:19:</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">In file included from tetrinet.c:14:0:</code><br />
+              <code id="25">./tetrinet.h:77:12: error: redefinition of 'log' as different kind of symbol</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
+              <code id="26">extern int log;</code><br />
 						
             
             <a class="navhash" href="#27">#</a>
 						
-              <code id="27"> extern int log;</code><br />
+              <code id="27">           ^</code><br />
 						
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">            ^~~</code><br />
+              <code id="28">./tetrinet.h:77:12: note: previous definition is here</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">In file included from sockets.c:19:0:</code><br />
+              <code id="29">sockets.c:69:9: warning: address of function 'log' will always evaluate to 'true' [-Wpointer-bool-conversion]</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
+              <code id="30">    if (log) {</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31"> extern int log;</code><br />
+              <code id="31">    ~~  ^~~</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">            ^~~</code><br />
+              <code id="32">sockets.c:69:9: note: prefix with the address-of operator to silence this warning</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">tetrinet.c: In function 'init':</code><br />
+              <code id="33">    if (log) {</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">tetrinet.c:641:44: warning: pointer targets in passing argument 3 of 'conn' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="34">        ^</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">     if ((server_sock = conn(server, 31457, ip)) < 0) {</code><br />
+              <code id="35">        &</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">                                            ^~</code><br />
+              <code id="36">sockets.c:92:9: warning: address of function 'log' will always evaluate to 'true' [-Wpointer-bool-conversion]</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">In file included from tetrinet.c:17:0:</code><br />
+              <code id="37">    if (log) {</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">sockets.h:15:12: note: expected 'char *' but argument is of type 'unsigned char *'</code><br />
+              <code id="38">    ~~  ^~~</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39"> extern int conn(const char *host, int port, char ipbuf[4]);</code><br />
+              <code id="39">sockets.c:92:9: note: prefix with the address-of operator to silence this warning</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">            ^~~~</code><br />
+              <code id="40">    if (log) {</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">cc -O2 -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tetris.c</code><br />
+              <code id="41">        ^</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">In file included from tetris.c:11:0:</code><br />
+              <code id="42">        &</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
+              <code id="43">2 warnings and 1 error generated.</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44"> extern int log;</code><br />
+              <code id="44">make: *** [Makefile:33: sockets.o] Error 1</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">            ^~~</code><br />
+              <code id="45">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">tetrinet.c: In function 'parse':</code><br />
-						
-            
-            <a class="navhash" href="#47">#</a>
-						
-              <code id="47">tetrinet.c:86:21: warning: array subscript is above array bounds [-Warray-bounds]</code><br />
-						
-            
-            <a class="navhash" href="#48">#</a>
-						
-              <code id="48">      winlist[i].name[sizeof(winlist[i].name)] = 0;</code><br />
-						
-            
-            <a class="navhash" href="#49">#</a>
-						
-              <code id="49">      ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#50">#</a>
-						
-              <code id="50">cc -O2 -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c tty.c</code><br />
-						
-            
-            <a class="navhash" href="#51">#</a>
-						
-              <code id="51">In file included from tty.c:18:0:</code><br />
-						
-            
-            <a class="navhash" href="#52">#</a>
-						
-              <code id="52">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
-						
-            
-            <a class="navhash" href="#53">#</a>
-						
-              <code id="53"> extern int log;</code><br />
-						
-            
-            <a class="navhash" href="#54">#</a>
-						
-              <code id="54">            ^~~</code><br />
-						
-            
-            <a class="navhash" href="#55">#</a>
-						
-              <code id="55">tty.c: In function 'draw_attdef':</code><br />
-						
-            
-            <a class="navhash" href="#56">#</a>
-						
-              <code id="56">tty.c:862:12: warning: variable 'width' set but not used [-Wunused-but-set-variable]</code><br />
-						
-            
-            <a class="navhash" href="#57">#</a>
-						
-              <code id="57">     int i, width;</code><br />
-						
-            
-            <a class="navhash" href="#58">#</a>
-						
-              <code id="58">            ^~~~~</code><br />
-						
-            
-            <a class="navhash" href="#59">#</a>
-						
-              <code id="59">cc -O2 -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -c xwin.c</code><br />
-						
-            
-            <a class="navhash" href="#60">#</a>
-						
-              <code id="60">In file included from xwin.c:18:0:</code><br />
-						
-            
-            <a class="navhash" href="#61">#</a>
-						
-              <code id="61">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
-						
-            
-            <a class="navhash" href="#62">#</a>
-						
-              <code id="62"> extern int log;</code><br />
-						
-            
-            <a class="navhash" href="#63">#</a>
-						
-              <code id="63">            ^~~</code><br />
-						
-            
-            <a class="navhash" href="#64">#</a>
-						
-              <code id="64">xwin.c: In function 'draw_attdef':</code><br />
-						
-            
-            <a class="navhash" href="#65">#</a>
-						
-              <code id="65">xwin.c:802:12: warning: variable 'width' set but not used [-Wunused-but-set-variable]</code><br />
-						
-            
-            <a class="navhash" href="#66">#</a>
-						
-              <code id="66">     int i, width;</code><br />
-						
-            
-            <a class="navhash" href="#67">#</a>
-						
-              <code id="67">            ^~~~~</code><br />
-						
-            
-            <a class="navhash" href="#68">#</a>
-						
-              <code id="68">cc -O2 -I/usr/include/ncurses -DHAVE_IPV6 -g -Wall -o tetrinet-server -DSERVER_ONLY server.c sockets.c tetrinet.c tetris.c</code><br />
-						
-            
-            <a class="navhash" href="#69">#</a>
-						
-              <code id="69">In file included from server.c:22:0:</code><br />
-						
-            
-            <a class="navhash" href="#70">#</a>
-						
-              <code id="70">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
-						
-            
-            <a class="navhash" href="#71">#</a>
-						
-              <code id="71"> extern int log;</code><br />
-						
-            
-            <a class="navhash" href="#72">#</a>
-						
-              <code id="72">            ^~~</code><br />
-						
-            
-            <a class="navhash" href="#73">#</a>
-						
-              <code id="73">server.c: In function 'check_sockets':</code><br />
-						
-            
-            <a class="navhash" href="#74">#</a>
-						
-              <code id="74">server.c:843:52: warning: pointer targets in passing argument 3 of 'accept' differ in signedness [-Wpointer-sign]</code><br />
-						
-            
-            <a class="navhash" href="#75">#</a>
-						
-              <code id="75">  fd = accept(listen_sock, (struct sockaddr *)&sin, &len);</code><br />
-						
-            
-            <a class="navhash" href="#76">#</a>
-						
-              <code id="76">                                                    ^</code><br />
-						
-            
-            <a class="navhash" href="#77">#</a>
-						
-              <code id="77">In file included from /usr/include/netinet/in.h:23:0,</code><br />
-						
-            
-            <a class="navhash" href="#78">#</a>
-						
-              <code id="78">                 from server.c:14:</code><br />
-						
-            
-            <a class="navhash" href="#79">#</a>
-						
-              <code id="79">/usr/include/sys/socket.h:243:12: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'int *'</code><br />
-						
-            
-            <a class="navhash" href="#80">#</a>
-						
-              <code id="80"> extern int accept (int __fd, __SOCKADDR_ARG __addr,</code><br />
-						
-            
-            <a class="navhash" href="#81">#</a>
-						
-              <code id="81">            ^~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#82">#</a>
-						
-              <code id="82">server.c:861:54: warning: pointer targets in passing argument 3 of 'accept' differ in signedness [-Wpointer-sign]</code><br />
-						
-            
-            <a class="navhash" href="#83">#</a>
-						
-              <code id="83">  fd = accept(listen_sock6, (struct sockaddr *)&sin6, &len);</code><br />
-						
-            
-            <a class="navhash" href="#84">#</a>
-						
-              <code id="84">                                                      ^</code><br />
-						
-            
-            <a class="navhash" href="#85">#</a>
-						
-              <code id="85">In file included from /usr/include/netinet/in.h:23:0,</code><br />
-						
-            
-            <a class="navhash" href="#86">#</a>
-						
-              <code id="86">                 from server.c:14:</code><br />
-						
-            
-            <a class="navhash" href="#87">#</a>
-						
-              <code id="87">/usr/include/sys/socket.h:243:12: note: expected 'socklen_t * restrict {aka unsigned int * restrict}' but argument is of type 'int *'</code><br />
-						
-            
-            <a class="navhash" href="#88">#</a>
-						
-              <code id="88"> extern int accept (int __fd, __SOCKADDR_ARG __addr,</code><br />
-						
-            
-            <a class="navhash" href="#89">#</a>
-						
-              <code id="89">            ^~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#90">#</a>
-						
-              <code id="90">cc -o tetrinet sockets.o tetrinet.o tetris.o tty.o xwin.o -lncurses</code><br />
-						
-            
-            <a class="navhash" href="#91">#</a>
-						
-              <code id="91">In file included from sockets.c:19:0:</code><br />
-						
-            
-            <a class="navhash" href="#92">#</a>
-						
-              <code id="92">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
-						
-            
-            <a class="navhash" href="#93">#</a>
-						
-              <code id="93"> extern int log;</code><br />
-						
-            
-            <a class="navhash" href="#94">#</a>
-						
-              <code id="94">            ^~~</code><br />
-						
-            
-            <a class="navhash" href="#95">#</a>
-						
-              <code id="95">In file included from tetrinet.c:14:0:</code><br />
-						
-            
-            <a class="navhash" href="#96">#</a>
-						
-              <code id="96">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
-						
-            
-            <a class="navhash" href="#97">#</a>
-						
-              <code id="97"> extern int log;</code><br />
-						
-            
-            <a class="navhash" href="#98">#</a>
-						
-              <code id="98">            ^~~</code><br />
-						
-            
-            <a class="navhash" href="#99">#</a>
-						
-              <code id="99">In file included from tetris.c:11:0:</code><br />
-						
-            
-            <a class="navhash" href="#100">#</a>
-						
-              <code id="100">tetrinet.h:77:12: warning: built-in function 'log' declared as non-function</code><br />
-						
-            
-            <a class="navhash" href="#101">#</a>
-						
-              <code id="101"> extern int log;</code><br />
-						
-            
-            <a class="navhash" href="#102">#</a>
-						
-              <code id="102">            ^~~</code><br />
-						
-            
-            <a class="navhash" href="#103">#</a>
-						
-              <code id="103">tetris.c:42:12: warning: 'last_special' defined but not used [-Wunused-variable]</code><br />
-						
-            
-            <a class="navhash" href="#104">#</a>
-						
-              <code id="104"> static int last_special; /* Last line for which we added a special */</code><br />
-						
-            
-            <a class="navhash" href="#105">#</a>
-						
-              <code id="105">            ^~~~~~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#106">#</a>
-						
-              <code id="106">tetris.c:40:12: warning: 'piece_waiting' defined but not used [-Wunused-variable]</code><br />
-						
-            
-            <a class="navhash" href="#107">#</a>
-						
-              <code id="107"> static int piece_waiting; /* Are we waiting for a new piece to start? */</code><br />
-						
-            
-            <a class="navhash" href="#108">#</a>
-						
-              <code id="108">            ^~~~~~~~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#109">#</a>
-						
-              <code id="109">tetris.c:35:23: warning: 'timeout' defined but not used [-Wunused-variable]</code><br />
-						
-            
-            <a class="navhash" href="#110">#</a>
-						
-              <code id="110"> static struct timeval timeout; /* Time of next action */</code><br />
-						
-            
-            <a class="navhash" href="#111">#</a>
-						
-              <code id="111">                       ^~~~~~~</code><br />
-						
-            
-            <a class="navhash" href="#112">#</a>
-						
-              <code id="112">==> Entering fakeroot environment...</code><br />
-						
-            
-            <a class="navhash" href="#113">#</a>
-						
-              <code id="113">==> Starting package()...</code><br />
-						
-            
-            <a class="navhash" href="#114">#</a>
-						
-              <code id="114">==> Tidying install...</code><br />
-						
-            
-            <a class="navhash" href="#115">#</a>
-						
-              <code id="115">  -> Removing doc files...</code><br />
-						
-            
-            <a class="navhash" href="#116">#</a>
-						
-              <code id="116">  -> Purging unwanted files...</code><br />
-						
-            
-            <a class="navhash" href="#117">#</a>
-						
-              <code id="117">==> Checking for packaging issue...</code><br />
-						
-            
-            <a class="navhash" href="#118">#</a>
-						
-              <code id="118">==> Creating package "tetrinet"...</code><br />
-						
-            
-            <a class="navhash" href="#119">#</a>
-						
-              <code id="119">  -> Generating .PKGINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#120">#</a>
-						
-              <code id="120">  -> Generating .BUILDINFO file...</code><br />
-						
-            
-            <a class="navhash" href="#121">#</a>
-						
-              <code id="121">error: invalid option '--noprogressbar'</code><br />
-						
-            
-            <a class="navhash" href="#122">#</a>
-						
-              <code id="122">  -> Generating .MTREE file...</code><br />
-						
-            
-            <a class="navhash" href="#123">#</a>
-						
-              <code id="123">  -> Compressing package...</code><br />
-						
-            
-            <a class="navhash" href="#124">#</a>
-						
-              <code id="124">==> Leaving fakeroot environment.</code><br />
-						
-            
-            <a class="navhash" href="#125">#</a>
-						
-              <code id="125">==> Finished making: tetrinet 0.11-7 (Mon Mar 13 03:00:55 UTC 2017)</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file tetrinet-0.11-7-x86_64.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#126">#</a>
-						
-              <code id="126">tetrinet 0.11-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Creating hybrid package for 'tetrinet'</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Trying to find vanilla package 'tetrinet'...</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/gtetrinet-0.7.11-5.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#127">#</a>
-						
-              <code id="127">gtetrinet 0.7.11-5</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>pacman --query --file /mirror/tetrinet-0.11-7.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#128">#</a>
-						
-              <code id="128">tetrinet 0.11-7</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Package file has the following structure:</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#129">#</a>
-						
-              <code id="129">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#130">#</a>
-						
-              <code id="130">/.MTREE</code><br />
-						
-            
-            <a class="navhash" href="#131">#</a>
-						
-              <code id="131">/usr/bin/tetrinet</code><br />
-						
-            
-            <a class="navhash" href="#132">#</a>
-						
-              <code id="132">/usr/bin/tetrinet-server</code><br />
-						
-            
-            <a class="navhash" href="#133">#</a>
-						
-              <code id="133">/usr/share/doc/tetrinet/README</code><br />
-						
-            
-            <a class="navhash" href="#134">#</a>
-						
-              <code id="134">/usr/share/doc/tetrinet/tetrinet.txt</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Generating .MTREE</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -czf .MTREE --format=mtree --options=!all,use-set,type,uid,mode,time,size,md5,sha256,link .PKGINFO usr</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Tar-ing up files</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -cf - .PKGINFO usr .MTREE</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>xz -c -z</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Successfully ran bsdtar -cf - .PKGINFO usr .MTREE | xz -c -z</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>bsdtar -tqf tetrinet.pkg.tar.xz .PKGINFO</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#135">#</a>
-						
-              <code id="135">.PKGINFO</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Created package at path /var/cache/pacman/pkg/tetrinet.pkg.tar.xz</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 1</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/tetrinet.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#136">#</a>
-						
-              <code id="136">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#137">#</a>
-						
-              <code id="137">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#138">#</a>
-						
-              <code id="138">==> Adding package '/var/cache/pacman/pkg/tetrinet.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#139">#</a>
-						
-              <code id="139">  -> Computing checksums...</code><br />
-						
-            
-            <a class="navhash" href="#140">#</a>
-						
-              <code id="140">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#141">#</a>
-						
-              <code id="141">  -> Creating 'files' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#142">#</a>
-						
-              <code id="142">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="46">    Aborting...</code><br />
 						
             
           </div>

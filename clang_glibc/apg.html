@@ -30,7 +30,7 @@
     <h1>Build of apg
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 09s and was
+    <p>The build took 00h 03m 10s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -65,8 +65,11 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;4: gcc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -77,7 +80,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#46">last line</a> of the
+    href="#53">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -206,14 +209,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: apg 2.2.3-4 (Sun Mar 12 20:01:16 UTC 2017)</code><br />
+              <code id="18">==> Making package: apg 2.2.3-4 (Thu Apr 13 11:57:42 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -243,117 +246,152 @@
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">gcc -Wall -DAPGBFM -o apgbfm apgbfm.c bloom.c sha/sha.c errors.c getopt.c convert.c -lm</code><br />
+              <code id="24">apg.c:451:33: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">apgbfm.c: In function 'main':</code><br />
+              <code id="25">     if ( (restrictions_present == TRUE))</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">apgbfm.c:82:7: warning: variable 'case_insensitive_flag' set but not used [-Wunused-but-set-variable]</code><br />
+              <code id="26">           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#27">#</a>
 						
-              <code id="27">  flag case_insensitive_flag = FALSE; /* -q */</code><br />
+              <code id="27">apg.c:451:33: note: remove extraneous parentheses around the comparison to silence this warning</code><br />
 						
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">       ^~~~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="28">     if ( (restrictions_present == TRUE))</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">apg.c: In function 'get_user_seq':</code><br />
+              <code id="29">          ~                     ^      ~</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">apg.c:574:56: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long unsigned int' [-Wformat=]</code><br />
+              <code id="30">apg.c:451:33: note: use '=' to turn this equality comparison into an assignment</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">  printf ("\nPlease enter some random data (only first %d are significant)\n", sizeof(prom));</code><br />
+              <code id="31">     if ( (restrictions_present == TRUE))</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">                                                        ^</code><br />
+              <code id="32">                                ^~</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">==> Entering fakeroot environment...</code><br />
+              <code id="33">                                =</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">==> Starting package()...</code><br />
+              <code id="34">apg.c:574:79: warning: format specifies type 'int' but the argument has type 'unsigned long' [-Wformat]</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">==> Tidying install...</code><br />
+              <code id="35"> printf ("\nPlease enter some random data (only first %d are significant)\n", sizeof(prom));</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">  -> Removing doc files...</code><br />
+              <code id="36">                                                      ~~                      ^~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">  -> Purging unwanted files...</code><br />
+              <code id="37">                                                      %lu</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">==> Checking for packaging issue...</code><br />
+              <code id="38">2 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">==> Creating package "apg"...</code><br />
+              <code id="39">gcc -Wall -DAPGBFM -o apgbfm apgbfm.c bloom.c sha/sha.c errors.c getopt.c convert.c -lm</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">  -> Generating .PKGINFO file...</code><br />
+              <code id="40">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">  -> Generating .BUILDINFO file...</code><br />
+              <code id="41">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">error: invalid option '--noprogressbar'</code><br />
+              <code id="42">==> Tidying install...</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">  -> Generating .MTREE file...</code><br />
+              <code id="43">  -> Removing doc files...</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">  -> Compressing package...</code><br />
+              <code id="44">  -> Purging unwanted files...</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">==> Leaving fakeroot environment.</code><br />
+              <code id="45">==> Checking for packaging issue...</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">==> Finished making: apg 2.2.3-4 (Sun Mar 12 20:01:25 UTC 2017)</code><br />
+              <code id="46">==> Creating package "apg"...</code><br />
+						
+            
+            <a class="navhash" href="#47">#</a>
+						
+              <code id="47">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#48">#</a>
+						
+              <code id="48">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#49">#</a>
+						
+              <code id="49">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#50">#</a>
+						
+              <code id="50">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#51">#</a>
+						
+              <code id="51">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#52">#</a>
+						
+              <code id="52">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#53">#</a>
+						
+              <code id="53">==> Finished making: apg 2.2.3-4 (Thu Apr 13 11:57:55 UTC 2017)</code><br />
 						
             
           </div>
@@ -368,9 +406,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#47">#</a>
+            <a class="navhash" href="#54">#</a>
 						
-              <code id="47">apg 2.2.3-4</code><br />
+              <code id="54">apg 2.2.3-4</code><br />
 						
             
           </div>
@@ -401,9 +439,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#48">#</a>
+            <a class="navhash" href="#55">#</a>
 						
-              <code id="48">apg 2.2.3-4</code><br />
+              <code id="55">apg 2.2.3-4</code><br />
 						
             
           </div>
@@ -418,39 +456,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#49">#</a>
+            <a class="navhash" href="#56">#</a>
 						
-              <code id="49">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#50">#</a>
-						
-              <code id="50">/.MTREE</code><br />
+              <code id="56">/.PKGINFO</code><br />
 						
             
-            <a class="navhash" href="#51">#</a>
+            <a class="navhash" href="#57">#</a>
 						
-              <code id="51">/usr/bin/apgbfm</code><br />
-						
-            
-            <a class="navhash" href="#52">#</a>
-						
-              <code id="52">/usr/bin/apg</code><br />
+              <code id="57">/.MTREE</code><br />
 						
             
-            <a class="navhash" href="#53">#</a>
+            <a class="navhash" href="#58">#</a>
 						
-              <code id="53">/usr/share/man/man1/apg.1.gz</code><br />
-						
-            
-            <a class="navhash" href="#54">#</a>
-						
-              <code id="54">/usr/share/man/man1/apgbfm.1.gz</code><br />
+              <code id="58">/usr/bin/apgbfm</code><br />
 						
             
-            <a class="navhash" href="#55">#</a>
+            <a class="navhash" href="#59">#</a>
 						
-              <code id="55">/usr/share/licenses/apg/COPYING</code><br />
+              <code id="59">/usr/bin/apg</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">/usr/share/man/man1/apg.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">/usr/share/man/man1/apgbfm.1.gz</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">/usr/share/licenses/apg/COPYING</code><br />
 						
             
           </div>
@@ -513,9 +551,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#56">#</a>
+            <a class="navhash" href="#63">#</a>
 						
-              <code id="56">.PKGINFO</code><br />
+              <code id="63">.PKGINFO</code><br />
 						
             
           </div>
@@ -546,39 +584,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#57">#</a>
+            <a class="navhash" href="#64">#</a>
 						
-              <code id="57">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#58">#</a>
-						
-              <code id="58">==> Extracting database to a temporary location...</code><br />
+              <code id="64">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#59">#</a>
+            <a class="navhash" href="#65">#</a>
 						
-              <code id="59">==> Adding package '/var/cache/pacman/pkg/apg.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#60">#</a>
-						
-              <code id="60">  -> Computing checksums...</code><br />
+              <code id="65">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#61">#</a>
+            <a class="navhash" href="#66">#</a>
 						
-              <code id="61">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#62">#</a>
-						
-              <code id="62">  -> Creating 'files' db entry...</code><br />
+              <code id="66">==> Adding package '/var/cache/pacman/pkg/apg.pkg.tar.xz'</code><br />
 						
             
-            <a class="navhash" href="#63">#</a>
+            <a class="navhash" href="#67">#</a>
 						
-              <code id="63">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="67">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#69">#</a>
+						
+              <code id="69">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#70">#</a>
+						
+              <code id="70">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

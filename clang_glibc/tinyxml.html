@@ -30,7 +30,7 @@
     <h1>Build of tinyxml
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 04s and was
+    <p>The build took 00h 01m 20s and was
     NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
@@ -60,12 +60,24 @@
       for details. Summary:
       </p>
       <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;13: g++
+
+/usr/bin/clang++
+</li>
+        
+            <li>&times;1: /usr/bin/g++
+
+/usr/bin/clang++
+</li>
+        </ul></li>
+      
         <li>malformed path:<ul>
-            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+            <li>&times;19: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+</li>
         
-            <li>&times;73: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
-        
-            <li>&times;19: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
+</li>
         </ul></li>
       </ul>
     
@@ -76,7 +88,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#53">last line</a> of the
+    href="#67">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -205,14 +217,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: tinyxml 2.6.2-5 (Mon Mar 13 03:07:05 UTC 2017)</code><br />
+              <code id="18">==> Making package: tinyxml 2.6.2-5 (Thu Apr 13 16:43:59 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -342,52 +354,122 @@
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">xmltest.cpp: In function 'int main()':</code><br />
+              <code id="44">xmltest.cpp:1141:27: warning: illegal character encoding in string literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">xmltest.cpp:944:8: warning: variable 'loadOkay' set but not used [-Wunused-but-set-variable]</code><br />
+              <code id="45">                        "<<E4>>"</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">   bool loadOkay = doc.LoadFile();</code><br />
+              <code id="46">                          ^~~~</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">        ^~~~~~~~</code><br />
+              <code id="47">xmltest.cpp:1142:27: warning: illegal character encoding in string literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">g++ -c -Wall -Wno-unknown-pragmas -Wno-format -O3   tinyxmlerror.cpp -o tinyxmlerror.o</code><br />
+              <code id="48">                        "C<F6>nt<E4>nt<DF><E4><F6><FC><C4><D6><DC>"</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">g++ -c -Wall -Wno-unknown-pragmas -Wno-format -O3   tinystr.cpp -o tinystr.o</code><br />
+              <code id="49">                          ^~~~  ~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">g++ -o xmltest  tinyxml.o tinyxmlparser.o xmltest.o tinyxmlerror.o tinystr.o  </code><br />
+              <code id="50">xmltest.cpp:1143:28: warning: illegal character encoding in string literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">g++: error: : No such file or directory</code><br />
+              <code id="51">                        "</<E4>>";</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">==> ERROR: A failure occurred in build().</code><br />
+              <code id="52">                           ^~~~</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">    Aborting...</code><br />
+              <code id="53">xmltest.cpp:1149:65: warning: illegal character encoding in string literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#54">#</a>
+						
+              <code id="54">            TiXmlHandle aHandle = docHandle.FirstChildElement( "<E4>" );</code><br />
+						
+            
+            <a class="navhash" href="#55">#</a>
+						
+              <code id="55">                                                                ^~~~</code><br />
+						
+            
+            <a class="navhash" href="#56">#</a>
+						
+              <code id="56">xmltest.cpp:1153:47: warning: illegal character encoding in string literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#57">#</a>
+						
+              <code id="57">            XmlTest( "ISO-8859-1 Parsing.", "C<F6>nt<E4>nt<DF><E4><F6><FC><C4><D6><DC>", tHandle.Text()->Value() );</code><br />
+						
+            
+            <a class="navhash" href="#58">#</a>
+						
+              <code id="58">                                              ^~~~  ~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
+						
+            
+            <a class="navhash" href="#59">#</a>
+						
+              <code id="59">5 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#60">#</a>
+						
+              <code id="60">g++ -c -Wall -Wno-unknown-pragmas -Wno-format -O3   tinyxmlerror.cpp -o tinyxmlerror.o</code><br />
+						
+            
+            <a class="navhash" href="#61">#</a>
+						
+              <code id="61">g++ -c -Wall -Wno-unknown-pragmas -Wno-format -O3   tinystr.cpp -o tinystr.o</code><br />
+						
+            
+            <a class="navhash" href="#62">#</a>
+						
+              <code id="62">g++ -o xmltest  tinyxml.o tinyxmlparser.o xmltest.o tinyxmlerror.o tinystr.o  </code><br />
+						
+            
+            <a class="navhash" href="#63">#</a>
+						
+              <code id="63">/usr/bin/ld: tinystr.o: relocation R_X86_64_32 against `_ZN11TiXmlString8nullrep_E' can not be used when making a shared object; recompile with -fPIC</code><br />
+						
+            
+            <a class="navhash" href="#64">#</a>
+						
+              <code id="64">tinystr.o: error adding symbols: Bad value</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">clang-3.8: error: linker command failed with exit code 1 (use -v to see invocation)</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">==> ERROR: A failure occurred in build().</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">    Aborting...</code><br />
 						
             
           </div>

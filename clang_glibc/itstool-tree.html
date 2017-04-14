@@ -81,8 +81,11 @@
     <ul class="level-0">
   <li><span class="good-return">0</span>&nbsp;<code>None</code>
     <ul class="level-2">
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr PYTHON=/usr/bin/python2</code>
+      <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/pacman -T python2 libxml2</code>
+        <ul class="level-4">
+        </ul>
+      </li>
+      <li><span class="good-return">0</span>&nbsp;<code>./configure --host=x86_64-unknown-linux --prefix=/usr PYTHON=/usr/bin/python2</code>
         <ul class="level-4">
           <li><span class="no-return">?</span>&nbsp;<code>cat</code>
             <ul class="level-6">
@@ -146,8 +149,7 @@ sys.exit(sys.hexversion < minverhex)</code>
           </li>
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="good-return">0</span>&nbsp;<code>make</code>
+      <li><span class="good-return">0</span>&nbsp;<code>make</code>
         <ul class="level-4">
           <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c fail= failcom='exit 1'; \
 for f in x $MAKEFLAGS; do \
@@ -185,14 +187,13 @@ fi; test -z "$fail"</code>
           </li>
         </ul>
       </li>
-      <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+      <li><span class="good-return">0</span>&nbsp;<code>fakeroot -- /usr/bin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         <ul class="level-4">
           <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/faked</code>
             <ul class="level-6">
             </ul>
           </li>
-          <li><span class="good-return">0</span>&nbsp;<code>/usr/sbin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/makepkg -F --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
             <ul class="level-6">
               <li><span class="good-return">0</span>&nbsp;<code>None</code>
                 <ul class="level-8">
@@ -264,6 +265,35 @@ done</code>
                                 <ul class="level-16">
                                 </ul>
                               </li>
+                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='itstool'; test -n "/usr/bin" || list=; \
+for p in $list; do \
+  if test -f "$p"; then d=; else d="./"; fi; \
+  if test -f "$d$p"; then echo "$d$p"; echo "$p"; else :; fi; \
+done | \
+sed -e 'p;s,.*/,,;n' \
+    -e 'h;s|.*|.|' \
+    -e 'p;x;s,.*/,,;s,x,x,' | sed 'N;N;N;s,\n, ,g' | \
+gawk 'BEGIN { files["."] = ""; dirs["."] = 1; } \
+  { d=$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
+    if ($2 == $4) { files[d] = files[d] " " $1; \
+      if (++n[d] == 40) { \
+	print "f", d, files[d]; n[d] = 0; files[d] = "" } } \
+    else { print "f", d "/" $4, $1 } } \
+  END { for (d in files) print "f", d, files[d] }' | \
+while read type dir files; do \
+     if test "$dir" = .; then dir=; else dir=/$dir; fi; \
+     test -z "$files" || { \
+       echo " /usr/bin/install -c $files '/tmp/itstool/pkg/itstool/usr/bin$dir'"; \
+       /usr/bin/install -c $files "/tmp/itstool/pkg/itstool/usr/bin$dir" || exit $?; \
+     } \
+; done</code>
+                                <ul class="level-16">
+                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c itstool /tmp/itstool/pkg/itstool/usr/bin</code>
+                                    <ul class="level-18">
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
                               <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c test -z "/usr/share/man/man1" || /usr/bin/mkdir -p "/tmp/itstool/pkg/itstool/usr/share/man/man1"</code>
                                 <ul class="level-16">
                                 </ul>
@@ -292,32 +322,7 @@ while read files; do \
     /usr/bin/install -c -m 644 $files "/tmp/itstool/pkg/itstool/usr/share/man/man1" || exit $?; }; \
 done; }</code>
                                 <ul class="level-16">
-                                </ul>
-                              </li>
-                              <li><span class="good-return">0</span>&nbsp;<code>/bin/sh -c list='itstool'; test -n "/usr/bin" || list=; \
-for p in $list; do \
-  if test -f "$p"; then d=; else d="./"; fi; \
-  if test -f "$d$p"; then echo "$d$p"; echo "$p"; else :; fi; \
-done | \
-sed -e 'p;s,.*/,,;n' \
-    -e 'h;s|.*|.|' \
-    -e 'p;x;s,.*/,,;s,x,x,' | sed 'N;N;N;s,\n, ,g' | \
-gawk 'BEGIN { files["."] = ""; dirs["."] = 1; } \
-  { d=$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
-    if ($2 == $4) { files[d] = files[d] " " $1; \
-      if (++n[d] == 40) { \
-	print "f", d, files[d]; n[d] = 0; files[d] = "" } } \
-    else { print "f", d "/" $4, $1 } } \
-  END { for (d in files) print "f", d, files[d] }' | \
-while read type dir files; do \
-     if test "$dir" = .; then dir=; else dir=/$dir; fi; \
-     test -z "$files" || { \
-       echo " /usr/bin/install -c $files '/tmp/itstool/pkg/itstool/usr/bin$dir'"; \
-       /usr/bin/install -c $files "/tmp/itstool/pkg/itstool/usr/bin$dir" || exit $?; \
-     } \
-; done</code>
-                                <ul class="level-16">
-                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c itstool /tmp/itstool/pkg/itstool/usr/bin</code>
+                                  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 itstool.1 /tmp/itstool/pkg/itstool/usr/share/man/man1</code>
                                     <ul class="level-18">
                                     </ul>
                                   </li>
@@ -363,15 +368,6 @@ while read type dir files; do \
           </li>
         </ul>
       </li>
-    </ul>
-  </li>
-  <li><span class="red-error">malformed path</span><span class="red-error-info"> (PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)</span><br />
-<span class="good-return">0</span>&nbsp;<code>/usr/sbin/pacman -T python2 libxml2</code>
-    <ul class="level-2">
-    </ul>
-  </li>
-  <li><span class="good-return">0</span>&nbsp;<code>/usr/bin/install -c -m 644 itstool.1 /tmp/itstool/pkg/itstool/usr/share/man/man1</code>
-    <ul class="level-2">
     </ul>
   </li>
 </ul>

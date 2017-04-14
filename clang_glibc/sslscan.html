@@ -30,7 +30,7 @@
     <h1>Build of sslscan
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 05m 09s and was
+    <p>The build took 00h 00m 43s and was
     NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
@@ -58,8 +58,11 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;85: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;2: gcc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -199,14 +202,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: sslscan 1.10.2-3 (Mon Mar 13 03:36:34 UTC 2017)</code><br />
+              <code id="18">==> Making package: sslscan 1.10.2-3 (Thu Apr 13 16:53:36 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -236,242 +239,242 @@
             
             <a class="navhash" href="#24">#</a>
 						
-              <code id="24">sslscan.c: In function 'testCipher':</code><br />
+              <code id="24">sslscan.c:1098:56: warning: implicit declaration of function 'SSLv3_client_method' is invalid in C99 [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#25">#</a>
 						
-              <code id="25">sslscan.c:1098:56: warning: implicit declaration of function 'SSLv3_client_method' [-Wimplicit-function-declaration]</code><br />
+              <code id="25">                    if (sslCipherPointer->sslMethod == SSLv3_client_method())</code><br />
 						
             
             <a class="navhash" href="#26">#</a>
 						
-              <code id="26">                     if (sslCipherPointer->sslMethod == SSLv3_client_method())</code><br />
+              <code id="26">                                                       ^</code><br />
 						
             
             <a class="navhash" href="#27">#</a>
 						
-              <code id="27">                                                        ^~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="27">sslscan.c:1098:53: warning: comparison between pointer and integer ('const SSL_METHOD *' (aka 'const struct ssl_method_st *') and 'int')</code><br />
 						
             
             <a class="navhash" href="#28">#</a>
 						
-              <code id="28">sslscan.c:1098:53: warning: comparison between pointer and integer</code><br />
+              <code id="28">                    if (sslCipherPointer->sslMethod == SSLv3_client_method())</code><br />
 						
             
             <a class="navhash" href="#29">#</a>
 						
-              <code id="29">                     if (sslCipherPointer->sslMethod == SSLv3_client_method())</code><br />
+              <code id="29">                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">                                                     ^~</code><br />
+              <code id="30">sslscan.c:1193:58: warning: duplicate 'const' declaration specifier [-Wduplicate-decl-specifier]</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">sslscan.c: In function 'defaultCipher':</code><br />
+              <code id="31">int defaultCipher(struct sslCheckOptions *options, const const SSL_METHOD *sslMethod)</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">sslscan.c:1253:43: warning: comparison between pointer and integer</code><br />
+              <code id="32">                                                         ^</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">                             if (sslMethod == SSLv3_client_method())</code><br />
+              <code id="33">sslscan.c:1253:43: warning: comparison between pointer and integer ('const SSL_METHOD *' (aka 'const struct ssl_method_st *') and 'int')</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">                                           ^~</code><br />
+              <code id="34">                            if (sslMethod == SSLv3_client_method())</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">sslscan.c: In function 'testHost':</code><br />
+              <code id="35">                                ~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">sslscan.c:1941:53: warning: passing argument 2 of 'defaultCipher' makes pointer from integer without a cast [-Wint-conversion]</code><br />
+              <code id="36">sslscan.c:1941:53: warning: incompatible integer to pointer conversion passing 'int' to parameter of type 'const SSL_METHOD *' (aka 'const struct ssl_method_st *') [-Wint-conversion]</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">                     status = defaultCipher(options, SSLv3_client_method());</code><br />
+              <code id="37">                    status = defaultCipher(options, SSLv3_client_method());</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">                                                     ^~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="38">                                                    ^~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">sslscan.c:1193:5: note: expected 'const SSL_METHOD * {aka const struct ssl_method_st *}' but argument is of type 'int'</code><br />
+              <code id="39">sslscan.c:1193:76: note: passing argument to parameter 'sslMethod' here</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40"> int defaultCipher(struct sslCheckOptions *options, const const SSL_METHOD *sslMethod)</code><br />
+              <code id="40">int defaultCipher(struct sslCheckOptions *options, const const SSL_METHOD *sslMethod)</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">     ^~~~~~~~~~~~~</code><br />
+              <code id="41">                                                                           ^</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">sslscan.c:1960:49: warning: passing argument 2 of 'defaultCipher' makes pointer from integer without a cast [-Wint-conversion]</code><br />
+              <code id="42">sslscan.c:1960:49: warning: incompatible integer to pointer conversion passing 'int' to parameter of type 'const SSL_METHOD *' (aka 'const struct ssl_method_st *') [-Wint-conversion]</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">                 status = defaultCipher(options, SSLv3_client_method());</code><br />
+              <code id="43">                status = defaultCipher(options, SSLv3_client_method());</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">                                                 ^~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="44">                                                ^~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">sslscan.c:1193:5: note: expected 'const SSL_METHOD * {aka const struct ssl_method_st *}' but argument is of type 'int'</code><br />
+              <code id="45">sslscan.c:1193:76: note: passing argument to parameter 'sslMethod' here</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46"> int defaultCipher(struct sslCheckOptions *options, const const SSL_METHOD *sslMethod)</code><br />
+              <code id="46">int defaultCipher(struct sslCheckOptions *options, const const SSL_METHOD *sslMethod)</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">     ^~~~~~~~~~~~~</code><br />
+              <code id="47">                                                                           ^</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">sslscan.c: In function 'main':</code><br />
+              <code id="48">sslscan.c:2302:50: warning: incompatible integer to pointer conversion passing 'int' to parameter of type 'const SSL_METHOD *' (aka 'const struct ssl_method_st *') [-Wint-conversion]</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">sslscan.c:2302:50: warning: passing argument 2 of 'populateCipherList' makes pointer from integer without a cast [-Wint-conversion]</code><br />
+              <code id="49">                    populateCipherList(&options, SSLv3_client_method());</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">                     populateCipherList(&options, SSLv3_client_method());</code><br />
+              <code id="50">                                                 ^~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">                                                  ^~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="51">sslscan.c:189:75: note: passing argument to parameter 'sslMethod' here</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">sslscan.c:189:5: note: expected 'const SSL_METHOD * {aka const struct ssl_method_st *}' but argument is of type 'int'</code><br />
+              <code id="52">int populateCipherList(struct sslCheckOptions *options, const SSL_METHOD *sslMethod)</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53"> int populateCipherList(struct sslCheckOptions *options, const SSL_METHOD *sslMethod)</code><br />
+              <code id="53">                                                                          ^</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">     ^~~~~~~~~~~~~~~~~~</code><br />
+              <code id="54">sslscan.c:2317:50: warning: incompatible integer to pointer conversion passing 'int' to parameter of type 'const SSL_METHOD *' (aka 'const struct ssl_method_st *') [-Wint-conversion]</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">sslscan.c:2317:50: warning: passing argument 2 of 'populateCipherList' makes pointer from integer without a cast [-Wint-conversion]</code><br />
+              <code id="55">                    populateCipherList(&options, SSLv3_client_method());</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">                     populateCipherList(&options, SSLv3_client_method());</code><br />
+              <code id="56">                                                 ^~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">                                                  ^~~~~~~~~~~~~~~~~~~</code><br />
+              <code id="57">sslscan.c:189:75: note: passing argument to parameter 'sslMethod' here</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">sslscan.c:189:5: note: expected 'const SSL_METHOD * {aka const struct ssl_method_st *}' but argument is of type 'int'</code><br />
+              <code id="58">int populateCipherList(struct sslCheckOptions *options, const SSL_METHOD *sslMethod)</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59"> int populateCipherList(struct sslCheckOptions *options, const SSL_METHOD *sslMethod)</code><br />
+              <code id="59">                                                                          ^</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">     ^~~~~~~~~~~~~~~~~~</code><br />
+              <code id="60">8 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">/tmp/ccu3FS2e.o: In function `testCipher':</code><br />
+              <code id="61">/tmp/sslscan-e74f5b.o: In function `testCipher':</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">sslscan.c:(.text+0x1fcb): undefined reference to `SSLv3_client_method'</code><br />
+              <code id="62">sslscan.c:(.text+0x24a8): undefined reference to `SSLv3_client_method'</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">/tmp/ccu3FS2e.o: In function `defaultCipher':</code><br />
+              <code id="63">/tmp/sslscan-e74f5b.o: In function `defaultCipher':</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">sslscan.c:(.text+0x24ed): undefined reference to `SSLv3_client_method'</code><br />
+              <code id="64">sslscan.c:(.text+0x2a95): undefined reference to `SSLv3_client_method'</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">/tmp/ccu3FS2e.o: In function `testHost':</code><br />
+              <code id="65">/tmp/sslscan-e74f5b.o: In function `testHost':</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">sslscan.c:(.text+0x4044): undefined reference to `SSLv3_client_method'</code><br />
+              <code id="66">sslscan.c:(.text+0x49ea): undefined reference to `SSLv3_client_method'</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67">sslscan.c:(.text+0x40cb): undefined reference to `SSLv3_client_method'</code><br />
+              <code id="67">sslscan.c:(.text+0x4a9c): undefined reference to `SSLv3_client_method'</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">/tmp/ccu3FS2e.o: In function `main':</code><br />
+              <code id="68">/tmp/sslscan-e74f5b.o: In function `main':</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">sslscan.c:(.text+0x51b2): undefined reference to `SSLv3_client_method'</code><br />
+              <code id="69">sslscan.c:(.text+0x5dd5): undefined reference to `SSLv3_client_method'</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">/tmp/ccu3FS2e.o:sslscan.c:(.text+0x5223): more undefined references to `SSLv3_client_method' follow</code><br />
+              <code id="70">/tmp/sslscan-e74f5b.o:sslscan.c:(.text+0x5e44): more undefined references to `SSLv3_client_method' follow</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">collect2: error: ld returned 1 exit status</code><br />
+              <code id="71">clang-3.8: error: linker command failed with exit code 1 (use -v to see invocation)</code><br />
 						
             
             <a class="navhash" href="#72">#</a>

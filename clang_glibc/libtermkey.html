@@ -30,7 +30,7 @@
     <h1>Build of libtermkey
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 01s and was
+    <p>The build took 00h 01m 02s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -60,15 +60,23 @@
       </p>
       <ul>
         <li>hardcoded invocation:<ul>
-            <li>&times;15: /usr/bin/clang</li>
+            <li>&times;1: gcc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;1: /usr/bin/gcc
+
+/usr/bin/clang
+</li>
         </ul></li>
       
         <li>malformed path:<ul>
-            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+</li>
         
-            <li>&times;71: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
-        
-            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
+</li>
         </ul></li>
       </ul>
     
@@ -208,14 +216,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: libtermkey 0.18-2 (Mon Mar 13 02:26:37 UTC 2017)</code><br />
+              <code id="18">==> Making package: libtermkey 0.18-2 (Thu Apr 13 16:12:43 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -345,37 +353,37 @@
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">libtool --quiet --mode=compile --tag=CC clang  -Wall -std=c99  -DHAVE_UNIBILIUM -o demo.lo -c demo.c</code><br />
+              <code id="44">libtool --quiet --mode=link --tag=CC clang -rpath /usr/lib -version-info 13:0:12  -lunibilium -o libtermkey.la termkey.lo driver-csi.lo driver-ti.lo</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">libtool --quiet --mode=compile --tag=CC clang  -Wall -std=c99  -DHAVE_UNIBILIUM -o demo-async.lo -c demo-async.c</code><br />
+              <code id="45">ar: `u' modifier ignored since `D' is the default (see `U')</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">libtool --quiet --mode=compile --tag=CC clang -o demo-glib.lo -c demo-glib.c -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include</code><br />
+              <code id="46">libtool --quiet --mode=compile --tag=CC clang  -Wall -std=c99  -DHAVE_UNIBILIUM -o demo.lo -c demo.c</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">libtool --quiet --mode=link --tag=CC clang -rpath /usr/lib -version-info 13:0:12  -lunibilium -o libtermkey.la termkey.lo driver-csi.lo driver-ti.lo</code><br />
+              <code id="47">libtool --quiet --mode=link --tag=CC clang -o demo libtermkey.la demo.lo</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">ar: `u' modifier ignored since `D' is the default (see `U')</code><br />
+              <code id="48">libtool --quiet --mode=compile --tag=CC clang  -Wall -std=c99  -DHAVE_UNIBILIUM -o demo-async.lo -c demo-async.c</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">libtool --quiet --mode=link --tag=CC clang -o demo libtermkey.la demo.lo</code><br />
+              <code id="49">libtool --quiet --mode=link --tag=CC clang -o demo-async libtermkey.la demo-async.lo</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">libtool --quiet --mode=link --tag=CC clang -o demo-async libtermkey.la demo-async.lo</code><br />
+              <code id="50">libtool --quiet --mode=compile --tag=CC clang -o demo-glib.lo -c demo-glib.c -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
@@ -400,22 +408,22 @@
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">install -d /tmp/libtermkey/pkg/libtermkey/usr/lib</code><br />
+              <code id="55">install -m644 termkey.h /tmp/libtermkey/pkg/libtermkey/usr/include</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">install -m644 termkey.h /tmp/libtermkey/pkg/libtermkey/usr/include</code><br />
+              <code id="56">install -d /tmp/libtermkey/pkg/libtermkey/usr/lib/pkgconfig</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">install -d /tmp/libtermkey/pkg/libtermkey/usr/lib/pkgconfig</code><br />
+              <code id="57">sed "s,@LIBDIR@,/usr/lib,;s,@INCDIR@,/usr/include," <termkey.pc.in >/tmp/libtermkey/pkg/libtermkey/usr/lib/pkgconfig/termkey.pc</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">sed "s,@LIBDIR@,/usr/lib,;s,@INCDIR@,/usr/include," <termkey.pc.in >/tmp/libtermkey/pkg/libtermkey/usr/lib/pkgconfig/termkey.pc</code><br />
+              <code id="58">install -d /tmp/libtermkey/pkg/libtermkey/usr/lib</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
@@ -425,107 +433,107 @@
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">install -d /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3</code><br />
+              <code id="60">libtool: warning: remember to run 'libtool --finish /usr/lib'</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">install -d /tmp/libtermkey/pkg/libtermkey/usr/share/man/man7</code><br />
+              <code id="61">install -d /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">for F in man/*.3; do \</code><br />
+              <code id="62">install -d /tmp/libtermkey/pkg/libtermkey/usr/share/man/man7</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">  gzip <$F >/tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/${F#man/}.gz; \</code><br />
+              <code id="63">for F in man/*.3; do \</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">done</code><br />
+              <code id="64">  gzip <$F >/tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/${F#man/}.gz; \</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">for F in man/*.7; do \</code><br />
+              <code id="65">done</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">  gzip <$F >/tmp/libtermkey/pkg/libtermkey/usr/share/man/man7/${F#man/}.gz; \</code><br />
+              <code id="66">for F in man/*.7; do \</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67">done</code><br />
+              <code id="67">  gzip <$F >/tmp/libtermkey/pkg/libtermkey/usr/share/man/man7/${F#man/}.gz; \</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">while read FROM EQ TO; do \</code><br />
+              <code id="68">done</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">  echo ln -sf $TO.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/$FROM.gz; \</code><br />
+              <code id="69">while read FROM EQ TO; do \</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">done < man/also</code><br />
+              <code id="70">  echo ln -sf $TO.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/$FROM.gz; \</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">ln -sf termkey_new.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_destroy.3.gz</code><br />
+              <code id="71">done < man/also</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">ln -sf termkey_new.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_new_abstract.3.gz</code><br />
+              <code id="72">ln -sf termkey_new.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_destroy.3.gz</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
 						
-              <code id="73">ln -sf termkey_set_flags.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_flags.3.gz</code><br />
+              <code id="73">ln -sf termkey_new.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_new_abstract.3.gz</code><br />
 						
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74">ln -sf termkey_set_canonflags.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_canonflags.3.gz</code><br />
+              <code id="74">ln -sf termkey_set_flags.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_flags.3.gz</code><br />
 						
             
             <a class="navhash" href="#75">#</a>
 						
-              <code id="75">ln -sf termkey_set_buffer_size.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_buffer_size.3.gz</code><br />
+              <code id="75">ln -sf termkey_set_canonflags.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_canonflags.3.gz</code><br />
 						
             
             <a class="navhash" href="#76">#</a>
 						
-              <code id="76">ln -sf termkey_set_waittime.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_waittime.3.gz</code><br />
+              <code id="76">ln -sf termkey_set_buffer_size.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_buffer_size.3.gz</code><br />
 						
             
             <a class="navhash" href="#77">#</a>
 						
-              <code id="77">ln -sf termkey_getkey.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_getkey_force.3.gz</code><br />
+              <code id="77">ln -sf termkey_set_waittime.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_get_waittime.3.gz</code><br />
 						
             
             <a class="navhash" href="#78">#</a>
 						
-              <code id="78">ln -sf termkey_start.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_stop.3.gz</code><br />
+              <code id="78">ln -sf termkey_getkey.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_getkey_force.3.gz</code><br />
 						
             
             <a class="navhash" href="#79">#</a>
 						
-              <code id="79">ln -sf termkey_start.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_is_started.3.gz</code><br />
+              <code id="79">ln -sf termkey_start.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_stop.3.gz</code><br />
 						
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">libtool: warning: remember to run 'libtool --finish /usr/lib'</code><br />
+              <code id="80">ln -sf termkey_start.3.gz /tmp/libtermkey/pkg/libtermkey/usr/share/man/man3/termkey_is_started.3.gz</code><br />
 						
             
             <a class="navhash" href="#81">#</a>
@@ -590,7 +598,7 @@
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">==> Finished making: libtermkey 0.18-2 (Mon Mar 13 02:26:39 UTC 2017)</code><br />
+              <code id="93">==> Finished making: libtermkey 0.18-2 (Thu Apr 13 16:12:54 UTC 2017)</code><br />
 						
             
           </div>

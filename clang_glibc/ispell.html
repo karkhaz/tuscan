@@ -30,7 +30,7 @@
     <h1>Build of ispell
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 03s and was
+    <p>The build took 00h 01m 01s and was
     NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
@@ -68,8 +68,16 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;88: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;5: cc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;5: /usr/bin/cc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -94,7 +102,7 @@
           
           <li><a href="#88">mv: cannot stat 'y.tab.c': No such file or directory</a></li>
           
-          <li><a href="#94">mv: cannot stat 'y_tab.o': No such file or directory</a></li>
+          <li><a href="#93">mv: cannot stat 'y_tab.o': No such file or directory</a></li>
           
         </ul>
       </li>
@@ -105,7 +113,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#100">last line</a> of the
+    href="#99">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -234,14 +242,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: ispell 3.3.02-7 (Mon Mar 13 04:39:01 UTC 2017)</code><br />
+              <code id="18">==> Making package: ispell 3.3.02-7 (Thu Apr 13 17:28:16 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -576,7 +584,7 @@
             
             <a class="navhash" href="#85">#</a>
 						
-              <code id="85">/bin/sh: line 6:   434 Segmentation fault      (core dumped) $YACC parse.y</code><br />
+              <code id="85">/bin/sh: line 6:   431 Segmentation fault      (core dumped) $YACC parse.y</code><br />
 						
             
             <a class="navhash" href="#86">#</a>
@@ -601,57 +609,52 @@
             
             <a class="navhash" href="#90">#</a>
 						
-              <code id="90">cc: error: y_tab.c: No such file or directory</code><br />
+              <code id="90">clang-3.8: error: no such file or directory: 'y_tab.c'</code><br />
 						
             
             <a class="navhash" href="#91">#</a>
 						
-              <code id="91">cc: fatal error: no input files</code><br />
+              <code id="91">clang-3.8: error: no input files</code><br />
 						
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">compilation terminated.</code><br />
+              <code id="92">+ mv y_tab.o parse.o</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
-						
-              <code id="93">+ mv y_tab.o parse.o</code><br />
-						
+						<span class="error">
+              <code id="93">mv: cannot stat 'y_tab.o': No such file or directory</code><br />
+						</span>
             
             <a class="navhash" href="#94">#</a>
-						<span class="error">
-              <code id="94">mv: cannot stat 'y_tab.o': No such file or directory</code><br />
-						</span>
+						
+              <code id="94">+ rm -f y_tab.c</code><br />
+						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">+ rm -f y_tab.c</code><br />
+              <code id="95">+ cc -O -o buildhash buildhash.o hash.o makedent.o parse.o</code><br />
 						
             
             <a class="navhash" href="#96">#</a>
 						
-              <code id="96">+ cc -O -o buildhash buildhash.o hash.o makedent.o parse.o</code><br />
+              <code id="96">clang-3.8: error: no such file or directory: 'parse.o'</code><br />
 						
             
             <a class="navhash" href="#97">#</a>
 						
-              <code id="97">cc: error: parse.o: No such file or directory</code><br />
+              <code id="97">make: *** [Makefile:455: buildhash] Error 1</code><br />
 						
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">make: *** [Makefile:455: buildhash] Error 1</code><br />
+              <code id="98">==> ERROR: A failure occurred in build().</code><br />
 						
             
             <a class="navhash" href="#99">#</a>
 						
-              <code id="99">==> ERROR: A failure occurred in build().</code><br />
-						
-            
-            <a class="navhash" href="#100">#</a>
-						
-              <code id="100">    Aborting...</code><br />
+              <code id="99">    Aborting...</code><br />
 						
             
           </div>

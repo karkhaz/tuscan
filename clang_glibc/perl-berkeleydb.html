@@ -30,7 +30,7 @@
     <h1>Build of perl-berkeleydb
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 44s and was
+    <p>The build took 00h 01m 29s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -61,12 +61,21 @@
       for details. Summary:
       </p>
       <ul>
-        <li>empty path:<ul>
-            <li>&times;12: </li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;2: cc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;2: /usr/bin/cc
+
+/usr/bin/clang
+</li>
         </ul></li>
       
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>empty path:<ul>
+            <li>&times;12: 
+</li>
         </ul></li>
       </ul>
     
@@ -77,7 +86,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#80">last line</a> of the
+    href="#87">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -206,14 +215,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: perl-berkeleydb 0.55-2 (Mon Mar 13 04:02:16 UTC 2017)</code><br />
+              <code id="18">==> Making package: perl-berkeleydb 0.55-2 (Thu Apr 13 17:01:33 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -273,47 +282,47 @@
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">Running Mkbootstrap for BerkeleyDB ()</code><br />
+              <code id="30">cp mkconsts.pl blib/lib/mkconsts.pl</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">chmod 644 "BerkeleyDB.bs"</code><br />
+              <code id="31">cp BerkeleyDB/Hash.pm blib/lib/BerkeleyDB/Hash.pm</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp" -noprototypes -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  BerkeleyDB.xs > BerkeleyDB.xsc && mv BerkeleyDB.xsc BerkeleyDB.c</code><br />
+              <code id="32">cp BerkeleyDB.pod blib/lib/BerkeleyDB.pod</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">cp BerkeleyDB/Hash.pm blib/lib/BerkeleyDB/Hash.pm</code><br />
+              <code id="33">cp BerkeleyDB.pm blib/lib/BerkeleyDB.pm</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
 						
-              <code id="34">cp mkconsts.pl blib/lib/mkconsts.pl</code><br />
+              <code id="34">cp scan.pl blib/lib/scan.pl</code><br />
 						
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">cp scan.pl blib/lib/scan.pl</code><br />
+              <code id="35">cp BerkeleyDB/Btree.pm blib/lib/BerkeleyDB/Btree.pm</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">cp BerkeleyDB.pm blib/lib/BerkeleyDB.pm</code><br />
+              <code id="36">Running Mkbootstrap for BerkeleyDB ()</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">cp BerkeleyDB/Btree.pm blib/lib/BerkeleyDB/Btree.pm</code><br />
+              <code id="37">chmod 644 "BerkeleyDB.bs"</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">cp BerkeleyDB.pod blib/lib/BerkeleyDB.pod</code><br />
+              <code id="38">"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp" -noprototypes -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  BerkeleyDB.xs > BerkeleyDB.xsc && mv BerkeleyDB.xsc BerkeleyDB.c</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
@@ -333,197 +342,232 @@
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">BerkeleyDB.xs: In function 'XS_BerkeleyDB_has_heap':</code><br />
+              <code id="42">BerkeleyDB.xs:2337:18: warning: implicit declaration of function '__heap_exist' is invalid in C99 [-Wimplicit-function-declaration]</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">BerkeleyDB.xs:2337:18: warning: implicit declaration of function '__heap_exist' [-Wimplicit-function-declaration]</code><br />
+              <code id="43">        RETVAL = __heap_exist() ;</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">         RETVAL = __heap_exist() ;</code><br />
+              <code id="44">                 ^</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">                  ^~~~~~~~~~~~</code><br />
+              <code id="45">BerkeleyDB.xs:6069:74: warning: operator '<<' has lower precedence than '+'; '+' will be evaluated first [-Wshift-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">rm -f blib/arch/auto/BerkeleyDB/BerkeleyDB.so</code><br />
+              <code id="46">        RETVAL = seq->seq->initial_value(seq->seq, (db_seq_t)(high << 32 + low));</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">LD_RUN_PATH="/usr/lib" cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong BerkeleyDB.o  -o blib/arch/auto/BerkeleyDB/BerkeleyDB.so 	\</code><br />
+              <code id="47">                                                                   ~~ ~~~^~~~~</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">   -ldb  	\</code><br />
+              <code id="48">BerkeleyDB.xs:6069:74: note: place parentheses around the '+' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">  </code><br />
+              <code id="49">        RETVAL = seq->seq->initial_value(seq->seq, (db_seq_t)(high << 32 + low));</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">chmod 755 blib/arch/auto/BerkeleyDB/BerkeleyDB.so</code><br />
+              <code id="50">                                                                         ^</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- BerkeleyDB.bs blib/arch/auto/BerkeleyDB/BerkeleyDB.bs 644</code><br />
+              <code id="51">                                                                      (       )</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">Manifying 1 pod document</code><br />
+              <code id="52">2 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">==> Entering fakeroot environment...</code><br />
+              <code id="53">rm -f blib/arch/auto/BerkeleyDB/BerkeleyDB.so</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">==> Starting package()...</code><br />
+              <code id="54">LD_RUN_PATH="/usr/lib" cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong BerkeleyDB.o  -o blib/arch/auto/BerkeleyDB/BerkeleyDB.so 	\</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">Running Mkbootstrap for BerkeleyDB ()</code><br />
+              <code id="55">   -ldb  	\</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">chmod 644 "BerkeleyDB.bs"</code><br />
+              <code id="56">  </code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">Manifying 1 pod document</code><br />
+              <code id="57">chmod 755 blib/arch/auto/BerkeleyDB/BerkeleyDB.so</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">Appending installation info to /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/core_perl/perllocal.pod</code><br />
+              <code id="58">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- BerkeleyDB.bs blib/arch/auto/BerkeleyDB/BerkeleyDB.bs 644</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
+              <code id="59">Manifying 1 pod document</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/auto/BerkeleyDB/BerkeleyDB.so</code><br />
+              <code id="60">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/mkconsts.pl</code><br />
+              <code id="61">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/scan.pl</code><br />
+              <code id="62">Running Mkbootstrap for BerkeleyDB ()</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB.pm</code><br />
+              <code id="63">chmod 644 "BerkeleyDB.bs"</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB.pod</code><br />
+              <code id="64">Manifying 1 pod document</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB/Hash.pm</code><br />
+              <code id="65">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB/Btree.pm</code><br />
+              <code id="66">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/auto/BerkeleyDB/BerkeleyDB.so</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/share/man/man3/BerkeleyDB.3pm</code><br />
+              <code id="67">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/mkconsts.pl</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">==> Tidying install...</code><br />
+              <code id="68">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB.pod</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">  -> Removing doc files...</code><br />
+              <code id="69">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB.pm</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">  -> Removing empty directories...</code><br />
+              <code id="70">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/scan.pl</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">  -> Purging unwanted files...</code><br />
+              <code id="71">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB/Hash.pm</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">==> Checking for packaging issue...</code><br />
+              <code id="72">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/vendor_perl/BerkeleyDB/Btree.pm</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
 						
-              <code id="73">==> Creating package "perl-berkeleydb"...</code><br />
+              <code id="73">Installing /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/share/man/man3/BerkeleyDB.3pm</code><br />
 						
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74">  -> Generating .PKGINFO file...</code><br />
+              <code id="74">Appending installation info to /tmp/perl-berkeleydb/pkg/perl-berkeleydb/usr/lib/perl5/core_perl/perllocal.pod</code><br />
 						
             
             <a class="navhash" href="#75">#</a>
 						
-              <code id="75">  -> Generating .BUILDINFO file...</code><br />
+              <code id="75">==> Tidying install...</code><br />
 						
             
             <a class="navhash" href="#76">#</a>
 						
-              <code id="76">error: invalid option '--noprogressbar'</code><br />
+              <code id="76">  -> Removing doc files...</code><br />
 						
             
             <a class="navhash" href="#77">#</a>
 						
-              <code id="77">  -> Generating .MTREE file...</code><br />
+              <code id="77">  -> Removing empty directories...</code><br />
 						
             
             <a class="navhash" href="#78">#</a>
 						
-              <code id="78">  -> Compressing package...</code><br />
+              <code id="78">  -> Purging unwanted files...</code><br />
 						
             
             <a class="navhash" href="#79">#</a>
 						
-              <code id="79">==> Leaving fakeroot environment.</code><br />
+              <code id="79">==> Checking for packaging issue...</code><br />
 						
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">==> Finished making: perl-berkeleydb 0.55-2 (Mon Mar 13 04:02:36 UTC 2017)</code><br />
+              <code id="80">==> Creating package "perl-berkeleydb"...</code><br />
+						
+            
+            <a class="navhash" href="#81">#</a>
+						
+              <code id="81">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#82">#</a>
+						
+              <code id="82">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#83">#</a>
+						
+              <code id="83">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#84">#</a>
+						
+              <code id="84">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#85">#</a>
+						
+              <code id="85">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#86">#</a>
+						
+              <code id="86">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#87">#</a>
+						
+              <code id="87">==> Finished making: perl-berkeleydb 0.55-2 (Thu Apr 13 17:02:04 UTC 2017)</code><br />
 						
             
           </div>
@@ -538,9 +582,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#81">#</a>
+            <a class="navhash" href="#88">#</a>
 						
-              <code id="81">perl-berkeleydb 0.55-2</code><br />
+              <code id="88">perl-berkeleydb 0.55-2</code><br />
 						
             
           </div>
@@ -571,9 +615,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#82">#</a>
+            <a class="navhash" href="#89">#</a>
 						
-              <code id="82">perl-berkeleydb 0.55-2</code><br />
+              <code id="89">perl-berkeleydb 0.55-2</code><br />
 						
             
           </div>
@@ -588,84 +632,84 @@
         
           <div class="output">
             
-            <a class="navhash" href="#83">#</a>
-						
-              <code id="83">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#84">#</a>
-						
-              <code id="84">/.BUILDINFO</code><br />
-						
-            
-            <a class="navhash" href="#85">#</a>
-						
-              <code id="85">/.MTREE</code><br />
-						
-            
-            <a class="navhash" href="#86">#</a>
-						
-              <code id="86">/usr/share/man/man3/BerkeleyDB.3pm.gz</code><br />
-						
-            
-            <a class="navhash" href="#87">#</a>
-						
-              <code id="87">/usr/lib/perl5/vendor_perl/mkconsts.pl</code><br />
-						
-            
-            <a class="navhash" href="#88">#</a>
-						
-              <code id="88">/usr/lib/perl5/vendor_perl/scan.pl</code><br />
-						
-            
-            <a class="navhash" href="#89">#</a>
-						
-              <code id="89">/usr/lib/perl5/vendor_perl/BerkeleyDB.pm</code><br />
-						
-            
             <a class="navhash" href="#90">#</a>
 						
-              <code id="90">/usr/lib/perl5/vendor_perl/BerkeleyDB/Btree.pm</code><br />
+              <code id="90">/.PKGINFO</code><br />
 						
             
             <a class="navhash" href="#91">#</a>
 						
-              <code id="91">/usr/lib/perl5/vendor_perl/BerkeleyDB/Hash.pm</code><br />
+              <code id="91">/.BUILDINFO</code><br />
 						
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">/usr/lib/perl5/vendor_perl/auto/BerkeleyDB/BerkeleyDB.so</code><br />
+              <code id="92">/.MTREE</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">/sysroot/usr/lib/perl5/vendor_perl/mkconsts.pl</code><br />
+              <code id="93">/usr/share/man/man3/BerkeleyDB.3pm.gz</code><br />
 						
             
             <a class="navhash" href="#94">#</a>
 						
-              <code id="94">/sysroot/usr/lib/perl5/vendor_perl/scan.pl</code><br />
+              <code id="94">/usr/lib/perl5/vendor_perl/mkconsts.pl</code><br />
 						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">/sysroot/usr/lib/perl5/vendor_perl/BerkeleyDB.pm</code><br />
+              <code id="95">/usr/lib/perl5/vendor_perl/scan.pl</code><br />
 						
             
             <a class="navhash" href="#96">#</a>
 						
-              <code id="96">/sysroot/usr/lib/perl5/vendor_perl/BerkeleyDB/Hash.pm</code><br />
+              <code id="96">/usr/lib/perl5/vendor_perl/BerkeleyDB.pm</code><br />
 						
             
             <a class="navhash" href="#97">#</a>
 						
-              <code id="97">/sysroot/usr/lib/perl5/vendor_perl/BerkeleyDB/Btree.pm</code><br />
+              <code id="97">/usr/lib/perl5/vendor_perl/BerkeleyDB/Btree.pm</code><br />
 						
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">/sysroot/usr/lib/perl5/vendor_perl/auto/BerkeleyDB/BerkeleyDB.so</code><br />
+              <code id="98">/usr/lib/perl5/vendor_perl/BerkeleyDB/Hash.pm</code><br />
+						
+            
+            <a class="navhash" href="#99">#</a>
+						
+              <code id="99">/usr/lib/perl5/vendor_perl/auto/BerkeleyDB/BerkeleyDB.so</code><br />
+						
+            
+            <a class="navhash" href="#100">#</a>
+						
+              <code id="100">/sysroot/usr/lib/perl5/vendor_perl/mkconsts.pl</code><br />
+						
+            
+            <a class="navhash" href="#101">#</a>
+						
+              <code id="101">/sysroot/usr/lib/perl5/vendor_perl/BerkeleyDB.pm</code><br />
+						
+            
+            <a class="navhash" href="#102">#</a>
+						
+              <code id="102">/sysroot/usr/lib/perl5/vendor_perl/scan.pl</code><br />
+						
+            
+            <a class="navhash" href="#103">#</a>
+						
+              <code id="103">/sysroot/usr/lib/perl5/vendor_perl/BerkeleyDB/Hash.pm</code><br />
+						
+            
+            <a class="navhash" href="#104">#</a>
+						
+              <code id="104">/sysroot/usr/lib/perl5/vendor_perl/BerkeleyDB/Btree.pm</code><br />
+						
+            
+            <a class="navhash" href="#105">#</a>
+						
+              <code id="105">/sysroot/usr/lib/perl5/vendor_perl/auto/BerkeleyDB/BerkeleyDB.so</code><br />
 						
             
           </div>
@@ -728,9 +772,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#99">#</a>
+            <a class="navhash" href="#106">#</a>
 						
-              <code id="99">.PKGINFO</code><br />
+              <code id="106">.PKGINFO</code><br />
 						
             
           </div>
@@ -761,39 +805,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#100">#</a>
+            <a class="navhash" href="#107">#</a>
 						
-              <code id="100">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#101">#</a>
-						
-              <code id="101">==> Extracting database to a temporary location...</code><br />
+              <code id="107">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#102">#</a>
+            <a class="navhash" href="#108">#</a>
 						
-              <code id="102">==> Adding package '/var/cache/pacman/pkg/perl-berkeleydb.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#103">#</a>
-						
-              <code id="103">  -> Computing checksums...</code><br />
+              <code id="108">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#104">#</a>
+            <a class="navhash" href="#109">#</a>
 						
-              <code id="104">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#105">#</a>
-						
-              <code id="105">  -> Creating 'files' db entry...</code><br />
+              <code id="109">==> Adding package '/var/cache/pacman/pkg/perl-berkeleydb.pkg.tar.xz'</code><br />
 						
             
-            <a class="navhash" href="#106">#</a>
+            <a class="navhash" href="#110">#</a>
 						
-              <code id="106">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="110">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#111">#</a>
+						
+              <code id="111">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#112">#</a>
+						
+              <code id="112">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#113">#</a>
+						
+              <code id="113">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

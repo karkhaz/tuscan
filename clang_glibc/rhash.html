@@ -30,7 +30,7 @@
     <h1>Build of rhash
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 31s and was
+    <p>The build took 00h 01m 07s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -63,8 +63,11 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;86: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;84: gcc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -204,14 +207,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: rhash 1.3.3-1 (Mon Mar 13 01:33:06 UTC 2017)</code><br />
+              <code id="18">==> Making package: rhash 1.3.3-1 (Thu Apr 13 15:53:53 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -346,12 +349,12 @@
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">install -d /tmp/rhash/pkg/rhash/usr/share/man/man1</code><br />
+              <code id="45">install -m 755 rhash_shared /tmp/rhash/pkg/rhash/usr/bin/rhash</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">install -d /tmp/rhash/pkg/rhash/etc</code><br />
+              <code id="46">install -d /tmp/rhash/pkg/rhash/usr/share/man/man1</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
@@ -361,22 +364,22 @@
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">sed -e 's/\x0D//g' dist/rhashrc.sample > rc.tmp && install -m 644 rc.tmp /tmp/rhash/pkg/rhash/etc/rhashrc</code><br />
+              <code id="48">install -d /tmp/rhash/pkg/rhash/etc</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">install -m 755 rhash_shared /tmp/rhash/pkg/rhash/usr/bin/rhash</code><br />
+              <code id="49">sed -e 's/\x0D//g' dist/rhashrc.sample > rc.tmp && install -m 644 rc.tmp /tmp/rhash/pkg/rhash/etc/rhashrc</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">for f in sfv-hash tiger-hash tth-hash whirlpool-hash has160-hash gost-hash ed2k-link magnet-link; do ln -fs rhash /tmp/rhash/pkg/rhash/usr/bin/$f; done</code><br />
+              <code id="50">rm -f rc.tmp</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">rm -f rc.tmp</code><br />
+              <code id="51">for f in sfv-hash tiger-hash tth-hash whirlpool-hash has160-hash gost-hash ed2k-link magnet-link; do ln -fs rhash /tmp/rhash/pkg/rhash/usr/bin/$f; done</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
@@ -406,12 +409,12 @@
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations algorithms.c -o algorithms.o</code><br />
+              <code id="57">install -m 644 librhash.so.0 /tmp/rhash/pkg/rhash/usr/lib/</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">install -m 644 librhash.so.0 /tmp/rhash/pkg/rhash/usr/lib/</code><br />
+              <code id="58">gcc -c  -pipe -DIN_RHASH  -O2 -DNDEBUG -fomit-frame-pointer -ffunction-sections -fdata-sections -Wall -W -Wstrict-prototypes -Wnested-externs -Winline -Wpointer-arith -Wbad-function-cast -Wmissing-prototypes -Wmissing-declarations algorithms.c -o algorithms.o</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
@@ -631,7 +634,7 @@
             
             <a class="navhash" href="#102">#</a>
 						
-              <code id="102">==> Finished making: rhash 1.3.3-1 (Mon Mar 13 01:33:31 UTC 2017)</code><br />
+              <code id="102">==> Finished making: rhash 1.3.3-1 (Thu Apr 13 15:54:06 UTC 2017)</code><br />
 						
             
           </div>

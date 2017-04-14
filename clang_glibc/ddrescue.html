@@ -30,7 +30,7 @@
     <h1>Build of ddrescue
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 22s and was
+    <p>The build took 00h 01m 23s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -61,8 +61,16 @@
       for details. Summary:
       </p>
       <ul>
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;31: g++
+
+/usr/bin/clang++
+</li>
+        
+            <li>&times;1: /usr/bin/g++
+
+/usr/bin/clang++
+</li>
         </ul></li>
       </ul>
     
@@ -202,14 +210,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: ddrescue 1.21-1 (Mon Mar 13 04:30:26 UTC 2017)</code><br />
+              <code id="18">==> Making package: ddrescue 1.21-1 (Thu Apr 13 17:26:55 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -374,12 +382,12 @@
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">g++  -Wall -W -O2 -DPROGVERSION=\"1.21\" -c -o ddrescuelog.o ddrescuelog.cc</code><br />
+              <code id="51">g++  -Wall -W -O2 -o ddrescue arg_parser.o rational.o non_posix.o loggers.o block.o mapfile.o mapbook.o fillbook.o genbook.o io.o rescuebook.o main.o</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">g++  -Wall -W -O2 -o ddrescue arg_parser.o rational.o non_posix.o loggers.o block.o mapfile.o mapbook.o fillbook.o genbook.o io.o rescuebook.o main.o</code><br />
+              <code id="52">g++  -Wall -W -O2 -DPROGVERSION=\"1.21\" -c -o ddrescuelog.o ddrescuelog.cc</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
@@ -404,22 +412,22 @@
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">if [ ! -d "/tmp/ddrescue/pkg/ddrescue/usr/share/info" ] ; then install -d -m 755 "/tmp/ddrescue/pkg/ddrescue/usr/share/info" ; fi</code><br />
+              <code id="57">install -m 755 ./ddrescue "/tmp/ddrescue/pkg/ddrescue/usr/bin/ddrescue"</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">install -m 755 ./ddrescue "/tmp/ddrescue/pkg/ddrescue/usr/bin/ddrescue"</code><br />
+              <code id="58">install -m 755 ./ddrescuelog "/tmp/ddrescue/pkg/ddrescue/usr/bin/ddrescuelog"</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">rm -f "/tmp/ddrescue/pkg/ddrescue/usr/share/info/ddrescue.info"*</code><br />
+              <code id="59">if [ ! -d "/tmp/ddrescue/pkg/ddrescue/usr/share/info" ] ; then install -d -m 755 "/tmp/ddrescue/pkg/ddrescue/usr/share/info" ; fi</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">install -m 755 ./ddrescuelog "/tmp/ddrescue/pkg/ddrescue/usr/bin/ddrescuelog"</code><br />
+              <code id="60">rm -f "/tmp/ddrescue/pkg/ddrescue/usr/share/info/ddrescue.info"*</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
@@ -429,22 +437,22 @@
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">if [ ! -d "/tmp/ddrescue/pkg/ddrescue/usr/share/man/man1" ] ; then install -d -m 755 "/tmp/ddrescue/pkg/ddrescue/usr/share/man/man1" ; fi</code><br />
+              <code id="62">if /bin/sh -c "install-info --version" > /dev/null 2>&1 ; then \</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">if /bin/sh -c "install-info --version" > /dev/null 2>&1 ; then \</code><br />
+              <code id="63">	install-info --info-dir="/tmp/ddrescue/pkg/ddrescue/usr/share/info" "/tmp/ddrescue/pkg/ddrescue/usr/share/info/ddrescue.info" ; \</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">	install-info --info-dir="/tmp/ddrescue/pkg/ddrescue/usr/share/info" "/tmp/ddrescue/pkg/ddrescue/usr/share/info/ddrescue.info" ; \</code><br />
+              <code id="64">fi</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">fi</code><br />
+              <code id="65">if [ ! -d "/tmp/ddrescue/pkg/ddrescue/usr/share/man/man1" ] ; then install -d -m 755 "/tmp/ddrescue/pkg/ddrescue/usr/share/man/man1" ; fi</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
@@ -529,7 +537,7 @@
             
             <a class="navhash" href="#82">#</a>
 						
-              <code id="82">==> Finished making: ddrescue 1.21-1 (Mon Mar 13 04:30:52 UTC 2017)</code><br />
+              <code id="82">==> Finished making: ddrescue 1.21-1 (Thu Apr 13 17:27:16 UTC 2017)</code><br />
 						
             
           </div>

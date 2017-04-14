@@ -30,7 +30,7 @@
     <h1>Build of banner
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 05m 31s and was
+    <p>The build took 00h 01m 12s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -59,12 +59,24 @@
       for details. Summary:
       </p>
       <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;11: gcc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;1: /usr/bin/gcc
+
+/usr/bin/clang
+</li>
+        </ul></li>
+      
         <li>malformed path:<ul>
-            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+</li>
         
-            <li>&times;73: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
-        
-            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
+</li>
         </ul></li>
       </ul>
     
@@ -75,7 +87,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#121">last line</a> of the
+    href="#152">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -204,14 +216,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: banner 1.3.2-5 (Mon Mar 13 02:33:00 UTC 2017)</code><br />
+              <code id="18">==> Making package: banner 1.3.2-5 (Thu Apr 13 16:16:11 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -331,402 +343,557 @@
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">gcc -o letters.o -c -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  letters.c</code><br />
+              <code id="42">banner.c:119:71: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">banner.c: In function 'bufAddWord':</code><br />
+              <code id="43">    addlen = getLetterWidth(' ') + getInterCharWidth() + getTextWidth(s);</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">banner.c:119:71: warning: pointer targets in passing argument 1 of 'getTextWidth' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="44">                                                                      ^</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">     addlen = getLetterWidth(' ') + getInterCharWidth() + getTextWidth(s);</code><br />
+              <code id="45">./banner.h:16:31: note: passing argument to parameter 's' here</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">                                                                       ^</code><br />
+              <code id="46">int  getTextWidth(const char *s);</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">In file included from banner.c:18:0:</code><br />
+              <code id="47">                              ^</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">banner.h:16:6: note: expected 'const char *' but argument is of type 'const unsigned char *'</code><br />
+              <code id="48">banner.c:144:41: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49"> int  getTextWidth(const char *s);</code><br />
+              <code id="49">    if ((copy = (char *) malloc((strlen(s) + 1) * sizeof(char))) == NULL)</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">      ^~~~~~~~~~~~</code><br />
+              <code id="50">                                        ^</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">banner.c: In function 'bufAddLetters':</code><br />
+              <code id="51">/usr/include/string.h:394:35: note: passing argument to parameter '__s' here</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">banner.c:144:41: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="52">extern size_t strlen (const char *__s)</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">     if ((copy = (char *) malloc((strlen(s) + 1) * sizeof(char))) == NULL)</code><br />
+              <code id="53">                                  ^</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">                                         ^</code><br />
+              <code id="54">banner.c:144:15: warning: assigning to 'unsigned char *' from 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">In file included from banner.c:13:0:</code><br />
+              <code id="55">    if ((copy = (char *) malloc((strlen(s) + 1) * sizeof(char))) == NULL)</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'const unsigned char *'</code><br />
+              <code id="56">              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57"> extern size_t strlen (const char *__s)</code><br />
+              <code id="57">banner.c:146:12: warning: passing 'unsigned char *' to parameter of type 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">               ^~~~~~</code><br />
+              <code id="58">    strcpy(copy, s);</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">banner.c:144:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]</code><br />
+              <code id="59">           ^~~~</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">     if ((copy = (char *) malloc((strlen(s) + 1) * sizeof(char))) == NULL)</code><br />
+              <code id="60">/usr/include/string.h:125:39: note: passing argument to parameter '__dest' here</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">               ^</code><br />
+              <code id="61">extern char *strcpy (char *__restrict __dest, const char *__restrict __src)</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">banner.c:146:12: warning: pointer targets in passing argument 1 of 'strcpy' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="62">                                      ^</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">     strcpy(copy, s);</code><br />
+              <code id="63">banner.c:146:18: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">            ^~~~</code><br />
+              <code id="64">    strcpy(copy, s);</code><br />
 						
             
             <a class="navhash" href="#65">#</a>
 						
-              <code id="65">In file included from banner.c:13:0:</code><br />
+              <code id="65">                 ^</code><br />
 						
             
             <a class="navhash" href="#66">#</a>
 						
-              <code id="66">/usr/include/string.h:125:14: note: expected 'char * restrict' but argument is of type 'unsigned char *'</code><br />
+              <code id="66">/usr/include/string.h:125:70: note: passing argument to parameter '__src' here</code><br />
 						
             
             <a class="navhash" href="#67">#</a>
 						
-              <code id="67"> extern char *strcpy (char *__restrict __dest, const char *__restrict __src)</code><br />
+              <code id="67">extern char *strcpy (char *__restrict __dest, const char *__restrict __src)</code><br />
 						
             
             <a class="navhash" href="#68">#</a>
 						
-              <code id="68">              ^~~~~~</code><br />
+              <code id="68">                                                                     ^</code><br />
 						
             
             <a class="navhash" href="#69">#</a>
 						
-              <code id="69">banner.c:146:18: warning: pointer targets in passing argument 2 of 'strcpy' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="69">banner.c:163:13: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#70">#</a>
 						
-              <code id="70">     strcpy(copy, s);</code><br />
+              <code id="70">        if (strlen(word))</code><br />
 						
             
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">                  ^</code><br />
+              <code id="71">                   ^~~~</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">In file included from banner.c:13:0:</code><br />
+              <code id="72">/usr/include/string.h:394:35: note: passing argument to parameter '__s' here</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
 						
-              <code id="73">/usr/include/string.h:125:14: note: expected 'const char * restrict' but argument is of type 'const unsigned char *'</code><br />
+              <code id="73">extern size_t strlen (const char *__s)</code><br />
 						
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74"> extern char *strcpy (char *__restrict __dest, const char *__restrict __src)</code><br />
+              <code id="74">                                  ^</code><br />
 						
             
             <a class="navhash" href="#75">#</a>
 						
-              <code id="75">              ^~~~~~</code><br />
+              <code id="75">banner.c:270:20: warning: passing 'char *' to parameter of type 'const unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#76">#</a>
 						
-              <code id="76">banner.c:163:13: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="76">            bufAddLetters(argv[q]);</code><br />
 						
             
             <a class="navhash" href="#77">#</a>
 						
-              <code id="77">  if (strlen(word))</code><br />
+              <code id="77">                          ^~~~~~~</code><br />
 						
             
             <a class="navhash" href="#78">#</a>
 						
-              <code id="78">             ^~~~</code><br />
+              <code id="78">banner.c:139:48: note: passing argument to parameter 's' here</code><br />
 						
             
             <a class="navhash" href="#79">#</a>
 						
-              <code id="79">In file included from banner.c:13:0:</code><br />
+              <code id="79">static void bufAddLetters(const unsigned char *s)</code><br />
 						
             
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">/usr/include/string.h:394:15: note: expected 'const char *' but argument is of type 'unsigned char *'</code><br />
+              <code id="80">                                               ^</code><br />
 						
             
             <a class="navhash" href="#81">#</a>
 						
-              <code id="81"> extern size_t strlen (const char *__s)</code><br />
+              <code id="81">banner.c:272:17: warning: passing 'char [2]' to parameter of type 'const unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#82">#</a>
 						
-              <code id="82">               ^~~~~~</code><br />
+              <code id="82">                bufAddLetters(" ");</code><br />
 						
             
             <a class="navhash" href="#83">#</a>
 						
-              <code id="83">banner.c: In function 'main':</code><br />
+              <code id="83">                              ^~~</code><br />
 						
             
             <a class="navhash" href="#84">#</a>
 						
-              <code id="84">banner.c:270:20: warning: pointer targets in passing argument 1 of 'bufAddLetters' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="84">banner.c:139:48: note: passing argument to parameter 's' here</code><br />
 						
             
             <a class="navhash" href="#85">#</a>
 						
-              <code id="85">      bufAddLetters(argv[q]);</code><br />
+              <code id="85">static void bufAddLetters(const unsigned char *s)</code><br />
 						
             
             <a class="navhash" href="#86">#</a>
 						
-              <code id="86">                    ^~~~</code><br />
+              <code id="86">                                               ^</code><br />
 						
             
             <a class="navhash" href="#87">#</a>
 						
-              <code id="87">banner.c:139:13: note: expected 'const unsigned char *' but argument is of type 'char *'</code><br />
+              <code id="87">banner.c:279:20: warning: passing 'char [81]' to parameter of type 'const unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#88">#</a>
 						
-              <code id="88"> static void bufAddLetters(const unsigned char *s)</code><br />
+              <code id="88">            bufAddLetters(line);</code><br />
 						
             
             <a class="navhash" href="#89">#</a>
 						
-              <code id="89">             ^~~~~~~~~~~~~</code><br />
+              <code id="89">                          ^~~~</code><br />
 						
             
             <a class="navhash" href="#90">#</a>
 						
-              <code id="90">banner.c:272:17: warning: pointer targets in passing argument 1 of 'bufAddLetters' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="90">banner.c:139:48: note: passing argument to parameter 's' here</code><br />
 						
             
             <a class="navhash" href="#91">#</a>
 						
-              <code id="91">   bufAddLetters(" ");</code><br />
+              <code id="91">static void bufAddLetters(const unsigned char *s)</code><br />
 						
             
             <a class="navhash" href="#92">#</a>
 						
-              <code id="92">                 ^~~</code><br />
+              <code id="92">                                               ^</code><br />
 						
             
             <a class="navhash" href="#93">#</a>
 						
-              <code id="93">banner.c:139:13: note: expected 'const unsigned char *' but argument is of type 'char *'</code><br />
+              <code id="93">9 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#94">#</a>
 						
-              <code id="94"> static void bufAddLetters(const unsigned char *s)</code><br />
+              <code id="94">gcc -o letters.o -c -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  letters.c</code><br />
 						
             
             <a class="navhash" href="#95">#</a>
 						
-              <code id="95">             ^~~~~~~~~~~~~</code><br />
+              <code id="95">gcc -o font1.o -c -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  font1.c</code><br />
 						
             
             <a class="navhash" href="#96">#</a>
 						
-              <code id="96">banner.c:279:20: warning: pointer targets in passing argument 1 of 'bufAddLetters' differ in signedness [-Wpointer-sign]</code><br />
+              <code id="96">font1.c:315:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#97">#</a>
 						
-              <code id="97">      bufAddLetters(line);</code><br />
+              <code id="97">    { '<E6>', { "      ",</code><br />
 						
             
             <a class="navhash" href="#98">#</a>
 						
-              <code id="98">                    ^~~~</code><br />
+              <code id="98">      ^</code><br />
 						
             
             <a class="navhash" href="#99">#</a>
 						
-              <code id="99">banner.c:139:13: note: expected 'const unsigned char *' but argument is of type 'char *'</code><br />
+              <code id="99">font1.c:326:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#100">#</a>
 						
-              <code id="100"> static void bufAddLetters(const unsigned char *s)</code><br />
+              <code id="100">    { '<F8>', { "      ",</code><br />
 						
             
             <a class="navhash" href="#101">#</a>
 						
-              <code id="101">             ^~~~~~~~~~~~~</code><br />
+              <code id="101">      ^</code><br />
 						
             
             <a class="navhash" href="#102">#</a>
 						
-              <code id="102">gcc -o font1.o -c -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  font1.c</code><br />
+              <code id="102">font1.c:337:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#103">#</a>
 						
-              <code id="103">gcc -o font2.o -c -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  font2.c</code><br />
+              <code id="103">    { '<E5>', { "  **  ",</code><br />
 						
             
             <a class="navhash" href="#104">#</a>
 						
-              <code id="104">gcc -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  -o banner banner.o letters.o font1.o font2.o -s -L/usr/local/lib  -lshhmsg -lshhopt </code><br />
+              <code id="104">      ^</code><br />
 						
             
             <a class="navhash" href="#105">#</a>
 						
-              <code id="105">==> Entering fakeroot environment...</code><br />
+              <code id="105">font1.c:634:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#106">#</a>
 						
-              <code id="106">==> Starting package()...</code><br />
+              <code id="106">    { '<C6>', { " ** ***",</code><br />
 						
             
             <a class="navhash" href="#107">#</a>
 						
-              <code id="107">install -d -m 755 /tmp/banner/pkg/banner/usr//bin /tmp/banner/pkg/banner/usr/share/man/man1/</code><br />
+              <code id="107">      ^</code><br />
 						
             
             <a class="navhash" href="#108">#</a>
 						
-              <code id="108">install -s -m 755 banner /tmp/banner/pkg/banner/usr//bin</code><br />
+              <code id="108">font1.c:645:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#109">#</a>
 						
-              <code id="109">install -m 644 banner.1 /tmp/banner/pkg/banner/usr/share/man/man1/</code><br />
+              <code id="109">    { '<D8>', { " *** ",</code><br />
 						
             
             <a class="navhash" href="#110">#</a>
 						
-              <code id="110">==> Tidying install...</code><br />
+              <code id="110">      ^</code><br />
 						
             
             <a class="navhash" href="#111">#</a>
 						
-              <code id="111">  -> Removing doc files...</code><br />
+              <code id="111">font1.c:656:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#112">#</a>
 						
-              <code id="112">  -> Purging unwanted files...</code><br />
+              <code id="112">    { '<C5>', { "  **  ",</code><br />
 						
             
             <a class="navhash" href="#113">#</a>
 						
-              <code id="113">==> Checking for packaging issue...</code><br />
+              <code id="113">      ^</code><br />
 						
             
             <a class="navhash" href="#114">#</a>
 						
-              <code id="114">==> Creating package "banner"...</code><br />
+              <code id="114">6 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#115">#</a>
 						
-              <code id="115">  -> Generating .PKGINFO file...</code><br />
+              <code id="115">gcc -o font2.o -c -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  font2.c</code><br />
 						
             
             <a class="navhash" href="#116">#</a>
 						
-              <code id="116">  -> Generating .BUILDINFO file...</code><br />
+              <code id="116">font2.c:207:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#117">#</a>
 						
-              <code id="117">error: invalid option '--noprogressbar'</code><br />
+              <code id="117">    { '<E6>', { "     ",</code><br />
 						
             
             <a class="navhash" href="#118">#</a>
 						
-              <code id="118">  -> Generating .MTREE file...</code><br />
+              <code id="118">      ^</code><br />
 						
             
             <a class="navhash" href="#119">#</a>
 						
-              <code id="119">  -> Compressing package...</code><br />
+              <code id="119">font2.c:214:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
 						
             
             <a class="navhash" href="#120">#</a>
 						
-              <code id="120">==> Leaving fakeroot environment.</code><br />
+              <code id="120">    { '<F8>', { "     ",</code><br />
 						
             
             <a class="navhash" href="#121">#</a>
 						
-              <code id="121">==> Finished making: banner 1.3.2-5 (Mon Mar 13 02:33:07 UTC 2017)</code><br />
+              <code id="121">      ^</code><br />
+						
+            
+            <a class="navhash" href="#122">#</a>
+						
+              <code id="122">font2.c:221:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#123">#</a>
+						
+              <code id="123">    { '<E5>', { "  *  ",</code><br />
+						
+            
+            <a class="navhash" href="#124">#</a>
+						
+              <code id="124">      ^</code><br />
+						
+            
+            <a class="navhash" href="#125">#</a>
+						
+              <code id="125">font2.c:410:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#126">#</a>
+						
+              <code id="126">    { '<C6>', { " ** **",</code><br />
+						
+            
+            <a class="navhash" href="#127">#</a>
+						
+              <code id="127">      ^</code><br />
+						
+            
+            <a class="navhash" href="#128">#</a>
+						
+              <code id="128">font2.c:417:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#129">#</a>
+						
+              <code id="129">    { '<D8>', { " *** ",</code><br />
+						
+            
+            <a class="navhash" href="#130">#</a>
+						
+              <code id="130">      ^</code><br />
+						
+            
+            <a class="navhash" href="#131">#</a>
+						
+              <code id="131">font2.c:424:7: warning: illegal character encoding in character literal [-Winvalid-source-encoding]</code><br />
+						
+            
+            <a class="navhash" href="#132">#</a>
+						
+              <code id="132">    { '<C5>', { "  *  ",</code><br />
+						
+            
+            <a class="navhash" href="#133">#</a>
+						
+              <code id="133">      ^</code><br />
+						
+            
+            <a class="navhash" href="#134">#</a>
+						
+              <code id="134">6 warnings generated.</code><br />
+						
+            
+            <a class="navhash" href="#135">#</a>
+						
+              <code id="135">gcc -Wall  -I/usr/local/include -DVERSION=\"1.3.2\"  -o banner banner.o letters.o font1.o font2.o -s -L/usr/local/lib  -lshhmsg -lshhopt </code><br />
+						
+            
+            <a class="navhash" href="#136">#</a>
+						
+              <code id="136">==> Entering fakeroot environment...</code><br />
+						
+            
+            <a class="navhash" href="#137">#</a>
+						
+              <code id="137">==> Starting package()...</code><br />
+						
+            
+            <a class="navhash" href="#138">#</a>
+						
+              <code id="138">install -d -m 755 /tmp/banner/pkg/banner/usr//bin /tmp/banner/pkg/banner/usr/share/man/man1/</code><br />
+						
+            
+            <a class="navhash" href="#139">#</a>
+						
+              <code id="139">install -s -m 755 banner /tmp/banner/pkg/banner/usr//bin</code><br />
+						
+            
+            <a class="navhash" href="#140">#</a>
+						
+              <code id="140">install -m 644 banner.1 /tmp/banner/pkg/banner/usr/share/man/man1/</code><br />
+						
+            
+            <a class="navhash" href="#141">#</a>
+						
+              <code id="141">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#142">#</a>
+						
+              <code id="142">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#143">#</a>
+						
+              <code id="143">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#144">#</a>
+						
+              <code id="144">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#145">#</a>
+						
+              <code id="145">==> Creating package "banner"...</code><br />
+						
+            
+            <a class="navhash" href="#146">#</a>
+						
+              <code id="146">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#147">#</a>
+						
+              <code id="147">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#148">#</a>
+						
+              <code id="148">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#149">#</a>
+						
+              <code id="149">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#150">#</a>
+						
+              <code id="150">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#151">#</a>
+						
+              <code id="151">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#152">#</a>
+						
+              <code id="152">==> Finished making: banner 1.3.2-5 (Thu Apr 13 16:16:14 UTC 2017)</code><br />
 						
             
           </div>
@@ -741,9 +908,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#122">#</a>
+            <a class="navhash" href="#153">#</a>
 						
-              <code id="122">banner 1.3.2-5</code><br />
+              <code id="153">banner 1.3.2-5</code><br />
 						
             
           </div>
@@ -774,9 +941,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#123">#</a>
+            <a class="navhash" href="#154">#</a>
 						
-              <code id="123">sysvbanner 1.0.15-2</code><br />
+              <code id="154">sysvbanner 1.0.15-2</code><br />
 						
             
           </div>
@@ -791,9 +958,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#124">#</a>
+            <a class="navhash" href="#155">#</a>
 						
-              <code id="124">banner 1.3.2-5</code><br />
+              <code id="155">banner 1.3.2-5</code><br />
 						
             
           </div>
@@ -808,24 +975,24 @@
         
           <div class="output">
             
-            <a class="navhash" href="#125">#</a>
+            <a class="navhash" href="#156">#</a>
 						
-              <code id="125">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#126">#</a>
-						
-              <code id="126">/.MTREE</code><br />
+              <code id="156">/.PKGINFO</code><br />
 						
             
-            <a class="navhash" href="#127">#</a>
+            <a class="navhash" href="#157">#</a>
 						
-              <code id="127">/usr/bin/banner</code><br />
+              <code id="157">/.MTREE</code><br />
 						
             
-            <a class="navhash" href="#128">#</a>
+            <a class="navhash" href="#158">#</a>
 						
-              <code id="128">/usr/share/man/man1/banner.1.gz</code><br />
+              <code id="158">/usr/bin/banner</code><br />
+						
+            
+            <a class="navhash" href="#159">#</a>
+						
+              <code id="159">/usr/share/man/man1/banner.1.gz</code><br />
 						
             
           </div>
@@ -888,9 +1055,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#129">#</a>
+            <a class="navhash" href="#160">#</a>
 						
-              <code id="129">.PKGINFO</code><br />
+              <code id="160">.PKGINFO</code><br />
 						
             
           </div>
@@ -921,39 +1088,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#130">#</a>
+            <a class="navhash" href="#161">#</a>
 						
-              <code id="130">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#131">#</a>
-						
-              <code id="131">==> Extracting database to a temporary location...</code><br />
+              <code id="161">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#132">#</a>
+            <a class="navhash" href="#162">#</a>
 						
-              <code id="132">==> Adding package '/var/cache/pacman/pkg/banner.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#133">#</a>
-						
-              <code id="133">  -> Computing checksums...</code><br />
+              <code id="162">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#134">#</a>
+            <a class="navhash" href="#163">#</a>
 						
-              <code id="134">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#135">#</a>
-						
-              <code id="135">  -> Creating 'files' db entry...</code><br />
+              <code id="163">==> Adding package '/var/cache/pacman/pkg/banner.pkg.tar.xz'</code><br />
 						
             
-            <a class="navhash" href="#136">#</a>
+            <a class="navhash" href="#164">#</a>
 						
-              <code id="136">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="164">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#165">#</a>
+						
+              <code id="165">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#166">#</a>
+						
+              <code id="166">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#167">#</a>
+						
+              <code id="167">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

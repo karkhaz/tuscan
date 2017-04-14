@@ -30,7 +30,7 @@
     <h1>Build of perl-variable-magic
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 07m 20s and was
+    <p>The build took 00h 04m 02s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -61,12 +61,21 @@
       for details. Summary:
       </p>
       <ul>
-        <li>empty path:<ul>
-            <li>&times;6: </li>
+        <li>hardcoded invocation:<ul>
+            <li>&times;3: cc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;1: /usr/bin/cc
+
+/usr/bin/clang
+</li>
         </ul></li>
       
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+        <li>empty path:<ul>
+            <li>&times;6: 
+</li>
         </ul></li>
       </ul>
     
@@ -77,7 +86,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#64">last line</a> of the
+    href="#68">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -206,14 +215,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: perl-variable-magic 0.59-2 (Sun Mar 12 23:33:41 UTC 2017)</code><br />
+              <code id="18">==> Making package: perl-variable-magic 0.59-2 (Thu Apr 13 13:48:21 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -273,22 +282,22 @@
             
             <a class="navhash" href="#30">#</a>
 						
-              <code id="30">Running Mkbootstrap for Variable::Magic ()</code><br />
+              <code id="30">cp lib/Variable/Magic.pm blib/lib/Variable/Magic.pm</code><br />
 						
             
             <a class="navhash" href="#31">#</a>
 						
-              <code id="31">chmod 644 "Magic.bs"</code><br />
+              <code id="31">Running Mkbootstrap for Variable::Magic ()</code><br />
 						
             
             <a class="navhash" href="#32">#</a>
 						
-              <code id="32">"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap"  Magic.xs > Magic.xsc && mv Magic.xsc Magic.c</code><br />
+              <code id="32">chmod 644 "Magic.bs"</code><br />
 						
             
             <a class="navhash" href="#33">#</a>
 						
-              <code id="33">cp lib/Variable/Magic.pm blib/lib/Variable/Magic.pm</code><br />
+              <code id="33">"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap"  Magic.xs > Magic.xsc && mv Magic.xsc Magic.c</code><br />
 						
             
             <a class="navhash" href="#34">#</a>
@@ -298,152 +307,172 @@
             
             <a class="navhash" href="#35">#</a>
 						
-              <code id="35">rm -f blib/arch/auto/Variable/Magic/Magic.so</code><br />
+              <code id="35">Magic.xs:1353:12: warning: initializing 'const U8 *' (aka 'const unsigned char *') with an expression of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]</code><br />
 						
             
             <a class="navhash" href="#36">#</a>
 						
-              <code id="36">cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Magic.o  -o blib/arch/auto/Variable/Magic/Magic.so 	\</code><br />
+              <code id="36"> const U8 *s = VOID2(const U8 *, VOID2(const void *, SvPV_const(sv, len)));</code><br />
 						
             
             <a class="navhash" href="#37">#</a>
 						
-              <code id="37">     	\</code><br />
+              <code id="37">           ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code><br />
 						
             
             <a class="navhash" href="#38">#</a>
 						
-              <code id="38">  </code><br />
+              <code id="38">1 warning generated.</code><br />
 						
             
             <a class="navhash" href="#39">#</a>
 						
-              <code id="39">chmod 755 blib/arch/auto/Variable/Magic/Magic.so</code><br />
+              <code id="39">rm -f blib/arch/auto/Variable/Magic/Magic.so</code><br />
 						
             
             <a class="navhash" href="#40">#</a>
 						
-              <code id="40">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Magic.bs blib/arch/auto/Variable/Magic/Magic.bs 644</code><br />
+              <code id="40">cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong Magic.o  -o blib/arch/auto/Variable/Magic/Magic.so 	\</code><br />
 						
             
             <a class="navhash" href="#41">#</a>
 						
-              <code id="41">Manifying 1 pod document</code><br />
+              <code id="41">     	\</code><br />
 						
             
             <a class="navhash" href="#42">#</a>
 						
-              <code id="42">==> Entering fakeroot environment...</code><br />
+              <code id="42">  </code><br />
 						
             
             <a class="navhash" href="#43">#</a>
 						
-              <code id="43">==> Starting package()...</code><br />
+              <code id="43">chmod 755 blib/arch/auto/Variable/Magic/Magic.so</code><br />
 						
             
             <a class="navhash" href="#44">#</a>
 						
-              <code id="44">Running Mkbootstrap for Variable::Magic ()</code><br />
+              <code id="44">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- Magic.bs blib/arch/auto/Variable/Magic/Magic.bs 644</code><br />
 						
             
             <a class="navhash" href="#45">#</a>
 						
-              <code id="45">chmod 644 "Magic.bs"</code><br />
+              <code id="45">Manifying 1 pod document</code><br />
 						
             
             <a class="navhash" href="#46">#</a>
 						
-              <code id="46">Manifying 1 pod document</code><br />
+              <code id="46">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#47">#</a>
 						
-              <code id="47">Appending installation info to /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/lib/perl5/core_perl/perllocal.pod</code><br />
+              <code id="47">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#48">#</a>
 						
-              <code id="48">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
+              <code id="48">Running Mkbootstrap for Variable::Magic ()</code><br />
 						
             
             <a class="navhash" href="#49">#</a>
 						
-              <code id="49">Installing /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/lib/perl5/vendor_perl/auto/Variable/Magic/Magic.so</code><br />
+              <code id="49">chmod 644 "Magic.bs"</code><br />
 						
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">Installing /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/lib/perl5/vendor_perl/Variable/Magic.pm</code><br />
+              <code id="50">Manifying 1 pod document</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">Installing /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/share/man/man3/Variable::Magic.3pm</code><br />
+              <code id="51">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
 						
             
             <a class="navhash" href="#52">#</a>
 						
-              <code id="52">==> Tidying install...</code><br />
+              <code id="52">Installing /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/lib/perl5/vendor_perl/auto/Variable/Magic/Magic.so</code><br />
 						
             
             <a class="navhash" href="#53">#</a>
 						
-              <code id="53">  -> Removing doc files...</code><br />
+              <code id="53">Installing /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/lib/perl5/vendor_perl/Variable/Magic.pm</code><br />
 						
             
             <a class="navhash" href="#54">#</a>
 						
-              <code id="54">  -> Removing empty directories...</code><br />
+              <code id="54">Installing /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/share/man/man3/Variable::Magic.3pm</code><br />
 						
             
             <a class="navhash" href="#55">#</a>
 						
-              <code id="55">  -> Purging unwanted files...</code><br />
+              <code id="55">Appending installation info to /tmp/perl-variable-magic/pkg/perl-variable-magic/usr/lib/perl5/core_perl/perllocal.pod</code><br />
 						
             
             <a class="navhash" href="#56">#</a>
 						
-              <code id="56">==> Checking for packaging issue...</code><br />
+              <code id="56">==> Tidying install...</code><br />
 						
             
             <a class="navhash" href="#57">#</a>
 						
-              <code id="57">==> Creating package "perl-variable-magic"...</code><br />
+              <code id="57">  -> Removing doc files...</code><br />
 						
             
             <a class="navhash" href="#58">#</a>
 						
-              <code id="58">  -> Generating .PKGINFO file...</code><br />
+              <code id="58">  -> Removing empty directories...</code><br />
 						
             
             <a class="navhash" href="#59">#</a>
 						
-              <code id="59">  -> Generating .BUILDINFO file...</code><br />
+              <code id="59">  -> Purging unwanted files...</code><br />
 						
             
             <a class="navhash" href="#60">#</a>
 						
-              <code id="60">error: invalid option '--noprogressbar'</code><br />
+              <code id="60">==> Checking for packaging issue...</code><br />
 						
             
             <a class="navhash" href="#61">#</a>
 						
-              <code id="61">  -> Generating .MTREE file...</code><br />
+              <code id="61">==> Creating package "perl-variable-magic"...</code><br />
 						
             
             <a class="navhash" href="#62">#</a>
 						
-              <code id="62">  -> Compressing package...</code><br />
+              <code id="62">  -> Generating .PKGINFO file...</code><br />
 						
             
             <a class="navhash" href="#63">#</a>
 						
-              <code id="63">==> Leaving fakeroot environment.</code><br />
+              <code id="63">  -> Generating .BUILDINFO file...</code><br />
 						
             
             <a class="navhash" href="#64">#</a>
 						
-              <code id="64">==> Finished making: perl-variable-magic 0.59-2 (Sun Mar 12 23:34:12 UTC 2017)</code><br />
+              <code id="64">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#65">#</a>
+						
+              <code id="65">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#66">#</a>
+						
+              <code id="66">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#67">#</a>
+						
+              <code id="67">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#68">#</a>
+						
+              <code id="68">==> Finished making: perl-variable-magic 0.59-2 (Thu Apr 13 13:48:30 UTC 2017)</code><br />
 						
             
           </div>
@@ -458,9 +487,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#65">#</a>
+            <a class="navhash" href="#69">#</a>
 						
-              <code id="65">perl-variable-magic 0.59-2</code><br />
+              <code id="69">perl-variable-magic 0.59-2</code><br />
 						
             
           </div>
@@ -491,9 +520,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#66">#</a>
+            <a class="navhash" href="#70">#</a>
 						
-              <code id="66">perl-variable-magic 0.59-2</code><br />
+              <code id="70">perl-variable-magic 0.59-2</code><br />
 						
             
           </div>
@@ -508,44 +537,44 @@
         
           <div class="output">
             
-            <a class="navhash" href="#67">#</a>
-						
-              <code id="67">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#68">#</a>
-						
-              <code id="68">/.BUILDINFO</code><br />
-						
-            
-            <a class="navhash" href="#69">#</a>
-						
-              <code id="69">/.MTREE</code><br />
-						
-            
-            <a class="navhash" href="#70">#</a>
-						
-              <code id="70">/usr/share/man/man3/Variable::Magic.3pm.gz</code><br />
-						
-            
             <a class="navhash" href="#71">#</a>
 						
-              <code id="71">/usr/lib/perl5/vendor_perl/auto/Variable/Magic/Magic.so</code><br />
+              <code id="71">/.PKGINFO</code><br />
 						
             
             <a class="navhash" href="#72">#</a>
 						
-              <code id="72">/usr/lib/perl5/vendor_perl/Variable/Magic.pm</code><br />
+              <code id="72">/.BUILDINFO</code><br />
 						
             
             <a class="navhash" href="#73">#</a>
 						
-              <code id="73">/sysroot/usr/lib/perl5/vendor_perl/Variable/Magic.pm</code><br />
+              <code id="73">/.MTREE</code><br />
 						
             
             <a class="navhash" href="#74">#</a>
 						
-              <code id="74">/sysroot/usr/lib/perl5/vendor_perl/auto/Variable/Magic/Magic.so</code><br />
+              <code id="74">/usr/share/man/man3/Variable::Magic.3pm.gz</code><br />
+						
+            
+            <a class="navhash" href="#75">#</a>
+						
+              <code id="75">/usr/lib/perl5/vendor_perl/auto/Variable/Magic/Magic.so</code><br />
+						
+            
+            <a class="navhash" href="#76">#</a>
+						
+              <code id="76">/usr/lib/perl5/vendor_perl/Variable/Magic.pm</code><br />
+						
+            
+            <a class="navhash" href="#77">#</a>
+						
+              <code id="77">/sysroot/usr/lib/perl5/vendor_perl/Variable/Magic.pm</code><br />
+						
+            
+            <a class="navhash" href="#78">#</a>
+						
+              <code id="78">/sysroot/usr/lib/perl5/vendor_perl/auto/Variable/Magic/Magic.so</code><br />
 						
             
           </div>
@@ -608,9 +637,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#75">#</a>
+            <a class="navhash" href="#79">#</a>
 						
-              <code id="75">.PKGINFO</code><br />
+              <code id="79">.PKGINFO</code><br />
 						
             
           </div>
@@ -641,69 +670,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#76">#</a>
-						
-              <code id="76">==> ERROR: Failed to acquire lockfile: /var/cache/pacman/pkg/tuscan.db.tar.lck.</code><br />
-						
-            
-            <a class="navhash" href="#77">#</a>
-						
-              <code id="77">==> ERROR: Held by process 556</code><br />
-						
-            
-          </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="info">
-          <code>Attempting to access local repository, attempt 2</code>
-        </div>
-        
-      </div>
-      <br />
-    
-      <div class="block">
-        <div class="command">
-          <code><span class="prompt">CMD: </span>repo-add /var/cache/pacman/pkg/tuscan.db.tar /var/cache/pacman/pkg/perl-variable-magic.pkg.tar.xz</code>
-        </div>
-        
-          <div class="output">
-            
-            <a class="navhash" href="#78">#</a>
-						
-              <code id="78">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#79">#</a>
-						
-              <code id="79">==> Extracting database to a temporary location...</code><br />
-						
-            
             <a class="navhash" href="#80">#</a>
 						
-              <code id="80">==> Adding package '/var/cache/pacman/pkg/perl-variable-magic.pkg.tar.xz'</code><br />
+              <code id="80">==> Extracting database to a temporary location...</code><br />
 						
             
             <a class="navhash" href="#81">#</a>
 						
-              <code id="81">  -> Computing checksums...</code><br />
+              <code id="81">==> Extracting database to a temporary location...</code><br />
 						
             
             <a class="navhash" href="#82">#</a>
 						
-              <code id="82">  -> Creating 'desc' db entry...</code><br />
+              <code id="82">==> Adding package '/var/cache/pacman/pkg/perl-variable-magic.pkg.tar.xz'</code><br />
 						
             
             <a class="navhash" href="#83">#</a>
 						
-              <code id="83">  -> Creating 'files' db entry...</code><br />
+              <code id="83">  -> Computing checksums...</code><br />
 						
             
             <a class="navhash" href="#84">#</a>
 						
-              <code id="84">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="84">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#85">#</a>
+						
+              <code id="85">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#86">#</a>
+						
+              <code id="86">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

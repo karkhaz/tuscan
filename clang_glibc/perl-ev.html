@@ -30,7 +30,7 @@
     <h1>Build of perl-ev
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 07m 23s and was
+    <p>The build took 00h 01m 26s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -61,16 +61,29 @@
       for details. Summary:
       </p>
       <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;3: cc
+
+/usr/bin/clang
+</li>
+        
+            <li>&times;1: /usr/bin/cc
+
+/usr/bin/clang
+</li>
+        </ul></li>
+      
         <li>empty path:<ul>
-            <li>&times;13: </li>
+            <li>&times;13: 
+</li>
         </ul></li>
       
         <li>malformed path:<ul>
-            <li>&times;2: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+            <li>&times;23: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+</li>
         
-            <li>&times;71: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
-        
-            <li>&times;23: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+            <li>&times;2: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
+</li>
         </ul></li>
       </ul>
     
@@ -81,7 +94,7 @@
     <h2>Log</h2>
     <p>
     To avoid scrolling, you may jump to the <a
-    href="#346">last line</a> of the
+    href="#358">last line</a> of the
     invocation of <code>makepkg</code> that was used to build this
     package.
     </p>
@@ -210,14 +223,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: perl-ev 4.22-2 (Mon Mar 13 09:24:44 UTC 2017)</code><br />
+              <code id="18">==> Making package: perl-ev 4.22-2 (Thu Apr 13 20:08:07 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -1637,22 +1650,22 @@
             
             <a class="navhash" href="#302">#</a>
 						
-              <code id="302">Running Mkbootstrap for EV ()</code><br />
+              <code id="302">cp libev/ev.pod blib/lib/EV/libev.pod</code><br />
 						
             
             <a class="navhash" href="#303">#</a>
 						
-              <code id="303">chmod 644 "EV.bs"</code><br />
+              <code id="303">cp libev/ev.h blib/lib/EV/ev.h</code><br />
 						
             
             <a class="navhash" href="#304">#</a>
 						
-              <code id="304">"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  EV.xs > EV.xsc && mv EV.xsc EV.c</code><br />
+              <code id="304">cp EV/EVAPI.h blib/lib/EV/EVAPI.h</code><br />
 						
             
             <a class="navhash" href="#305">#</a>
 						
-              <code id="305">cp EV/EVAPI.h blib/lib/EV/EVAPI.h</code><br />
+              <code id="305">cp EV.pm blib/lib/EV.pm</code><br />
 						
             
             <a class="navhash" href="#306">#</a>
@@ -1662,17 +1675,17 @@
             
             <a class="navhash" href="#307">#</a>
 						
-              <code id="307">cp libev/ev.pod blib/lib/EV/libev.pod</code><br />
+              <code id="307">Running Mkbootstrap for EV ()</code><br />
 						
             
             <a class="navhash" href="#308">#</a>
 						
-              <code id="308">cp libev/ev.h blib/lib/EV/ev.h</code><br />
+              <code id="308">chmod 644 "EV.bs"</code><br />
 						
             
             <a class="navhash" href="#309">#</a>
 						
-              <code id="309">cp EV.pm blib/lib/EV.pm</code><br />
+              <code id="309">"/usr/bin/perl" "/usr/share/perl5/core_perl/ExtUtils/xsubpp"  -typemap "/usr/share/perl5/core_perl/ExtUtils/typemap" -typemap "typemap"  EV.xs > EV.xsc && mv EV.xsc EV.c</code><br />
 						
             
             <a class="navhash" href="#310">#</a>
@@ -1682,182 +1695,242 @@
             
             <a class="navhash" href="#311">#</a>
 						
-              <code id="311">rm -f blib/arch/auto/EV/EV.so</code><br />
+              <code id="311">In file included from EV.xs:40:</code><br />
 						
             
             <a class="navhash" href="#312">#</a>
 						
-              <code id="312">cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong EV.o  -o blib/arch/auto/EV/EV.so 	\</code><br />
+              <code id="312">./libev/ev.c:483:48: warning: '/*' within block comment [-Wcomment]</code><br />
 						
             
             <a class="navhash" href="#313">#</a>
 						
-              <code id="313">     	\</code><br />
+              <code id="313">/*#define MIN_INTERVAL  0.00000095367431640625 /* 1/2**20, good till 2200 */</code><br />
 						
             
             <a class="navhash" href="#314">#</a>
 						
-              <code id="314">  </code><br />
+              <code id="314">                                               ^</code><br />
 						
             
             <a class="navhash" href="#315">#</a>
 						
-              <code id="315">chmod 755 blib/arch/auto/EV/EV.so</code><br />
+              <code id="315">./libev/ev.c:3848:34: warning: '&' within '|' [-Wbitwise-op-parentheses]</code><br />
 						
             
             <a class="navhash" href="#316">#</a>
 						
-              <code id="316">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- EV.bs blib/arch/auto/EV/EV.bs 644</code><br />
+              <code id="316">  fd_change (EV_A_ fd, w->events & EV__IOFDSET | EV_ANFD_REIFY);</code><br />
 						
             
             <a class="navhash" href="#317">#</a>
 						
-              <code id="317">Manifying 3 pod documents</code><br />
+              <code id="317">                       ~~~~~~~~~~^~~~~~~~~~~~~ ~</code><br />
 						
             
             <a class="navhash" href="#318">#</a>
 						
-              <code id="318">==> Entering fakeroot environment...</code><br />
+              <code id="318">./libev/ev.c:3848:34: note: place parentheses around the '&' expression to silence this warning</code><br />
 						
             
             <a class="navhash" href="#319">#</a>
 						
-              <code id="319">==> Starting package()...</code><br />
+              <code id="319">  fd_change (EV_A_ fd, w->events & EV__IOFDSET | EV_ANFD_REIFY);</code><br />
 						
             
             <a class="navhash" href="#320">#</a>
 						
-              <code id="320">Running Mkbootstrap for EV ()</code><br />
+              <code id="320">                                 ^</code><br />
 						
             
             <a class="navhash" href="#321">#</a>
 						
-              <code id="321">chmod 644 "EV.bs"</code><br />
+              <code id="321">                       (                      )</code><br />
 						
             
             <a class="navhash" href="#322">#</a>
 						
-              <code id="322">Manifying 3 pod documents</code><br />
+              <code id="322">2 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#323">#</a>
 						
-              <code id="323">Appending installation info to /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/core_perl/perllocal.pod</code><br />
+              <code id="323">rm -f blib/arch/auto/EV/EV.so</code><br />
 						
             
             <a class="navhash" href="#324">#</a>
 						
-              <code id="324">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
+              <code id="324">cc  -shared -Wl,-O1,--sort-common,--as-needed,-z,relro -L/usr/local/lib -fstack-protector-strong EV.o  -o blib/arch/auto/EV/EV.so 	\</code><br />
 						
             
             <a class="navhash" href="#325">#</a>
 						
-              <code id="325">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/auto/EV/EV.so</code><br />
+              <code id="325">     	\</code><br />
 						
             
             <a class="navhash" href="#326">#</a>
 						
-              <code id="326">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV.pm</code><br />
+              <code id="326">  </code><br />
 						
             
             <a class="navhash" href="#327">#</a>
 						
-              <code id="327">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/EVAPI.h</code><br />
+              <code id="327">chmod 755 blib/arch/auto/EV/EV.so</code><br />
 						
             
             <a class="navhash" href="#328">#</a>
 						
-              <code id="328">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm</code><br />
+              <code id="328">"/usr/bin/perl" -MExtUtils::Command::MM -e 'cp_nonempty' -- EV.bs blib/arch/auto/EV/EV.bs 644</code><br />
 						
             
             <a class="navhash" href="#329">#</a>
 						
-              <code id="329">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/libev.pod</code><br />
+              <code id="329">Manifying 3 pod documents</code><br />
 						
             
             <a class="navhash" href="#330">#</a>
 						
-              <code id="330">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/ev.h</code><br />
+              <code id="330">==> Entering fakeroot environment...</code><br />
 						
             
             <a class="navhash" href="#331">#</a>
 						
-              <code id="331">Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV.3pm</code><br />
+              <code id="331">==> Starting package()...</code><br />
 						
             
             <a class="navhash" href="#332">#</a>
 						
-              <code id="332">Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV::MakeMaker.3pm</code><br />
+              <code id="332">Running Mkbootstrap for EV ()</code><br />
 						
             
             <a class="navhash" href="#333">#</a>
 						
-              <code id="333">Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV::libev.3pm</code><br />
+              <code id="333">chmod 644 "EV.bs"</code><br />
 						
             
             <a class="navhash" href="#334">#</a>
 						
-              <code id="334">==> Tidying install...</code><br />
+              <code id="334">Manifying 3 pod documents</code><br />
 						
             
             <a class="navhash" href="#335">#</a>
 						
-              <code id="335">  -> Removing doc files...</code><br />
+              <code id="335">Files found in blib/arch: installing files in blib/lib into architecture dependent library tree</code><br />
 						
             
             <a class="navhash" href="#336">#</a>
 						
-              <code id="336">  -> Removing empty directories...</code><br />
+              <code id="336">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/auto/EV/EV.so</code><br />
 						
             
             <a class="navhash" href="#337">#</a>
 						
-              <code id="337">  -> Purging unwanted files...</code><br />
+              <code id="337">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV.pm</code><br />
 						
             
             <a class="navhash" href="#338">#</a>
 						
-              <code id="338">==> Checking for packaging issue...</code><br />
+              <code id="338">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/libev.pod</code><br />
 						
             
             <a class="navhash" href="#339">#</a>
 						
-              <code id="339">==> Creating package "perl-ev"...</code><br />
+              <code id="339">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/ev.h</code><br />
 						
             
             <a class="navhash" href="#340">#</a>
 						
-              <code id="340">  -> Generating .PKGINFO file...</code><br />
+              <code id="340">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/EVAPI.h</code><br />
 						
             
             <a class="navhash" href="#341">#</a>
 						
-              <code id="341">  -> Generating .BUILDINFO file...</code><br />
+              <code id="341">Installing /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm</code><br />
 						
             
             <a class="navhash" href="#342">#</a>
 						
-              <code id="342">error: invalid option '--noprogressbar'</code><br />
+              <code id="342">Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV.3pm</code><br />
 						
             
             <a class="navhash" href="#343">#</a>
 						
-              <code id="343">  -> Generating .MTREE file...</code><br />
+              <code id="343">Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV::MakeMaker.3pm</code><br />
 						
             
             <a class="navhash" href="#344">#</a>
 						
-              <code id="344">  -> Compressing package...</code><br />
+              <code id="344">Installing /tmp/perl-ev/pkg/perl-ev/usr/share/man/man3/EV::libev.3pm</code><br />
 						
             
             <a class="navhash" href="#345">#</a>
 						
-              <code id="345">==> Leaving fakeroot environment.</code><br />
+              <code id="345">Appending installation info to /tmp/perl-ev/pkg/perl-ev/usr/lib/perl5/core_perl/perllocal.pod</code><br />
 						
             
             <a class="navhash" href="#346">#</a>
 						
-              <code id="346">==> Finished making: perl-ev 4.22-2 (Mon Mar 13 09:25:29 UTC 2017)</code><br />
+              <code id="346">==> Tidying install...</code><br />
+						
+            
+            <a class="navhash" href="#347">#</a>
+						
+              <code id="347">  -> Removing doc files...</code><br />
+						
+            
+            <a class="navhash" href="#348">#</a>
+						
+              <code id="348">  -> Removing empty directories...</code><br />
+						
+            
+            <a class="navhash" href="#349">#</a>
+						
+              <code id="349">  -> Purging unwanted files...</code><br />
+						
+            
+            <a class="navhash" href="#350">#</a>
+						
+              <code id="350">==> Checking for packaging issue...</code><br />
+						
+            
+            <a class="navhash" href="#351">#</a>
+						
+              <code id="351">==> Creating package "perl-ev"...</code><br />
+						
+            
+            <a class="navhash" href="#352">#</a>
+						
+              <code id="352">  -> Generating .PKGINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#353">#</a>
+						
+              <code id="353">  -> Generating .BUILDINFO file...</code><br />
+						
+            
+            <a class="navhash" href="#354">#</a>
+						
+              <code id="354">error: invalid option '--noprogressbar'</code><br />
+						
+            
+            <a class="navhash" href="#355">#</a>
+						
+              <code id="355">  -> Generating .MTREE file...</code><br />
+						
+            
+            <a class="navhash" href="#356">#</a>
+						
+              <code id="356">  -> Compressing package...</code><br />
+						
+            
+            <a class="navhash" href="#357">#</a>
+						
+              <code id="357">==> Leaving fakeroot environment.</code><br />
+						
+            
+            <a class="navhash" href="#358">#</a>
+						
+              <code id="358">==> Finished making: perl-ev 4.22-2 (Thu Apr 13 20:08:35 UTC 2017)</code><br />
 						
             
           </div>
@@ -1872,9 +1945,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#347">#</a>
+            <a class="navhash" href="#359">#</a>
 						
-              <code id="347">perl-ev 4.22-2</code><br />
+              <code id="359">perl-ev 4.22-2</code><br />
 						
             
           </div>
@@ -1905,9 +1978,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#348">#</a>
+            <a class="navhash" href="#360">#</a>
 						
-              <code id="348">perl-event-execflow 0.64-4</code><br />
+              <code id="360">perl-event-execflow 0.64-4</code><br />
 						
             
           </div>
@@ -1922,9 +1995,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#349">#</a>
+            <a class="navhash" href="#361">#</a>
 						
-              <code id="349">perl-ev 4.22-2</code><br />
+              <code id="361">perl-ev 4.22-2</code><br />
 						
             
           </div>
@@ -1939,84 +2012,84 @@
         
           <div class="output">
             
-            <a class="navhash" href="#350">#</a>
-						
-              <code id="350">/.PKGINFO</code><br />
-						
-            
-            <a class="navhash" href="#351">#</a>
-						
-              <code id="351">/.BUILDINFO</code><br />
-						
-            
-            <a class="navhash" href="#352">#</a>
-						
-              <code id="352">/.MTREE</code><br />
-						
-            
-            <a class="navhash" href="#353">#</a>
-						
-              <code id="353">/usr/share/man/man3/EV::libev.3pm.gz</code><br />
-						
-            
-            <a class="navhash" href="#354">#</a>
-						
-              <code id="354">/usr/share/man/man3/EV::MakeMaker.3pm.gz</code><br />
-						
-            
-            <a class="navhash" href="#355">#</a>
-						
-              <code id="355">/usr/share/man/man3/EV.3pm.gz</code><br />
-						
-            
-            <a class="navhash" href="#356">#</a>
-						
-              <code id="356">/usr/lib/perl5/vendor_perl/EV.pm</code><br />
-						
-            
-            <a class="navhash" href="#357">#</a>
-						
-              <code id="357">/usr/lib/perl5/vendor_perl/auto/EV/EV.so</code><br />
-						
-            
-            <a class="navhash" href="#358">#</a>
-						
-              <code id="358">/usr/lib/perl5/vendor_perl/EV/EVAPI.h</code><br />
-						
-            
-            <a class="navhash" href="#359">#</a>
-						
-              <code id="359">/usr/lib/perl5/vendor_perl/EV/ev.h</code><br />
-						
-            
-            <a class="navhash" href="#360">#</a>
-						
-              <code id="360">/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm</code><br />
-						
-            
-            <a class="navhash" href="#361">#</a>
-						
-              <code id="361">/sysroot/usr/lib/perl5/vendor_perl/EV.pm</code><br />
-						
-            
             <a class="navhash" href="#362">#</a>
 						
-              <code id="362">/sysroot/usr/lib/perl5/vendor_perl/EV/EVAPI.h</code><br />
+              <code id="362">/.PKGINFO</code><br />
 						
             
             <a class="navhash" href="#363">#</a>
 						
-              <code id="363">/sysroot/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm</code><br />
+              <code id="363">/.BUILDINFO</code><br />
 						
             
             <a class="navhash" href="#364">#</a>
 						
-              <code id="364">/sysroot/usr/lib/perl5/vendor_perl/EV/ev.h</code><br />
+              <code id="364">/.MTREE</code><br />
 						
             
             <a class="navhash" href="#365">#</a>
 						
-              <code id="365">/sysroot/usr/lib/perl5/vendor_perl/auto/EV/EV.so</code><br />
+              <code id="365">/usr/share/man/man3/EV::libev.3pm.gz</code><br />
+						
+            
+            <a class="navhash" href="#366">#</a>
+						
+              <code id="366">/usr/share/man/man3/EV::MakeMaker.3pm.gz</code><br />
+						
+            
+            <a class="navhash" href="#367">#</a>
+						
+              <code id="367">/usr/share/man/man3/EV.3pm.gz</code><br />
+						
+            
+            <a class="navhash" href="#368">#</a>
+						
+              <code id="368">/usr/lib/perl5/vendor_perl/EV.pm</code><br />
+						
+            
+            <a class="navhash" href="#369">#</a>
+						
+              <code id="369">/usr/lib/perl5/vendor_perl/auto/EV/EV.so</code><br />
+						
+            
+            <a class="navhash" href="#370">#</a>
+						
+              <code id="370">/usr/lib/perl5/vendor_perl/EV/EVAPI.h</code><br />
+						
+            
+            <a class="navhash" href="#371">#</a>
+						
+              <code id="371">/usr/lib/perl5/vendor_perl/EV/ev.h</code><br />
+						
+            
+            <a class="navhash" href="#372">#</a>
+						
+              <code id="372">/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm</code><br />
+						
+            
+            <a class="navhash" href="#373">#</a>
+						
+              <code id="373">/sysroot/usr/lib/perl5/vendor_perl/EV.pm</code><br />
+						
+            
+            <a class="navhash" href="#374">#</a>
+						
+              <code id="374">/sysroot/usr/lib/perl5/vendor_perl/EV/ev.h</code><br />
+						
+            
+            <a class="navhash" href="#375">#</a>
+						
+              <code id="375">/sysroot/usr/lib/perl5/vendor_perl/EV/EVAPI.h</code><br />
+						
+            
+            <a class="navhash" href="#376">#</a>
+						
+              <code id="376">/sysroot/usr/lib/perl5/vendor_perl/EV/MakeMaker.pm</code><br />
+						
+            
+            <a class="navhash" href="#377">#</a>
+						
+              <code id="377">/sysroot/usr/lib/perl5/vendor_perl/auto/EV/EV.so</code><br />
 						
             
           </div>
@@ -2079,9 +2152,9 @@
         
           <div class="output">
             
-            <a class="navhash" href="#366">#</a>
+            <a class="navhash" href="#378">#</a>
 						
-              <code id="366">.PKGINFO</code><br />
+              <code id="378">.PKGINFO</code><br />
 						
             
           </div>
@@ -2112,39 +2185,39 @@
         
           <div class="output">
             
-            <a class="navhash" href="#367">#</a>
+            <a class="navhash" href="#379">#</a>
 						
-              <code id="367">==> Extracting database to a temporary location...</code><br />
-						
-            
-            <a class="navhash" href="#368">#</a>
-						
-              <code id="368">==> Extracting database to a temporary location...</code><br />
+              <code id="379">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#369">#</a>
+            <a class="navhash" href="#380">#</a>
 						
-              <code id="369">==> Adding package '/var/cache/pacman/pkg/perl-ev.pkg.tar.xz'</code><br />
-						
-            
-            <a class="navhash" href="#370">#</a>
-						
-              <code id="370">  -> Computing checksums...</code><br />
+              <code id="380">==> Extracting database to a temporary location...</code><br />
 						
             
-            <a class="navhash" href="#371">#</a>
+            <a class="navhash" href="#381">#</a>
 						
-              <code id="371">  -> Creating 'desc' db entry...</code><br />
-						
-            
-            <a class="navhash" href="#372">#</a>
-						
-              <code id="372">  -> Creating 'files' db entry...</code><br />
+              <code id="381">==> Adding package '/var/cache/pacman/pkg/perl-ev.pkg.tar.xz'</code><br />
 						
             
-            <a class="navhash" href="#373">#</a>
+            <a class="navhash" href="#382">#</a>
 						
-              <code id="373">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
+              <code id="382">  -> Computing checksums...</code><br />
+						
+            
+            <a class="navhash" href="#383">#</a>
+						
+              <code id="383">  -> Creating 'desc' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#384">#</a>
+						
+              <code id="384">  -> Creating 'files' db entry...</code><br />
+						
+            
+            <a class="navhash" href="#385">#</a>
+						
+              <code id="385">==> Creating updated database file '/var/cache/pacman/pkg/tuscan.db.tar'</code><br />
 						
             
           </div>

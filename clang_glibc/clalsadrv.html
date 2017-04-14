@@ -30,7 +30,7 @@
     <h1>Build of clalsadrv
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 07m 17s and was
+    <p>The build took 00h 03m 04s and was
     NOT successful.</p>
     <p>
     The program in this build is written in the following languages,
@@ -58,12 +58,19 @@
       for details. Summary:
       </p>
       <ul>
+        <li>hardcoded invocation:<ul>
+            <li>&times;6: g++
+
+/usr/bin/clang++
+</li>
+        </ul></li>
+      
         <li>malformed path:<ul>
-            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin</li>
+            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+</li>
         
-            <li>&times;71: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
-        
-            <li>&times;18: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl</li>
+            <li>&times;1: PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
+</li>
         </ul></li>
       </ul>
     
@@ -203,14 +210,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: clalsadrv 2.0.0-2 (Sun Mar 12 21:27:54 UTC 2017)</code><br />
+              <code id="18">==> Making package: clalsadrv 2.0.0-2 (Thu Apr 13 12:44:29 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -370,12 +377,12 @@
             
             <a class="navhash" href="#50">#</a>
 						
-              <code id="50">clang++  -I../libs  -O2 -Wall -MMD -MP -DVERSION=\"\"  -c -o latency.o latency.cc</code><br />
+              <code id="50">g++  -L../libs -L/usr/lib64 -o alsa-loopback loopback.o -lasound -lclthreads -lclalsadrv -lpthread -lrt</code><br />
 						
             
             <a class="navhash" href="#51">#</a>
 						
-              <code id="51">g++  -L../libs -L/usr/lib64 -o alsa-loopback loopback.o -lasound -lclthreads -lclalsadrv -lpthread -lrt</code><br />
+              <code id="51">clang++  -I../libs  -O2 -Wall -MMD -MP -DVERSION=\"\"  -c -o latency.o latency.cc</code><br />
 						
             
             <a class="navhash" href="#52">#</a>

@@ -30,7 +30,7 @@
     <h1>Build of gf2x
         with <a href="../index.html">clang_glibc</a>
         toolchain</h1>
-    <p>The build took 00h 06m 33s and was
+    <p>The build took 00h 03m 35s and was
     SUCCESSFUL.
     </p>
     <p>
@@ -66,13 +66,15 @@
       </p>
       <ul>
         <li>hardcoded invocation:<ul>
-            <li>&times;72: /usr/bin/clang</li>
+            <li>&times;3: cc
+
+/usr/bin/clang
+</li>
         
-            <li>&times;22: /usr/bin/clang++</li>
-        </ul></li>
-      
-        <li>malformed path:<ul>
-            <li>&times;87: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</li>
+            <li>&times;3: /usr/bin/cc
+
+/usr/bin/clang
+</li>
         </ul></li>
       </ul>
     
@@ -212,14 +214,14 @@
     
       <div class="block">
         <div class="command">
-          <code><span class="prompt">CMD: </span>sudo -u tuscan CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
+          <code><span class="prompt">CMD: </span>sudo -u tuscan PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin CC=clang CXX=clang++ red makepkg --noextract --syncdeps --skipinteg --skippgpcheck --skipchecksums --noconfirm --nocolor --log --noprogressbar --nocheck</code>
         </div>
         
           <div class="output">
             
             <a class="navhash" href="#18">#</a>
 						
-              <code id="18">==> Making package: gf2x 1.1-2 (Sun Mar 12 19:20:50 UTC 2017)</code><br />
+              <code id="18">==> Making package: gf2x 1.1-2 (Thu Apr 13 11:35:09 UTC 2017)</code><br />
 						
             
             <a class="navhash" href="#19">#</a>
@@ -944,142 +946,142 @@
             
             <a class="navhash" href="#163">#</a>
 						
-              <code id="163">/bin/sh ./libtool --tag=CC   --mode=compile clang -DHAVE_CONFIG_H -I. -I./gf2x  -I. -I.   -msse2 -Wall -W -MT toom.lo -MD -MP -MF .deps/toom.Tpo -c -o toom.lo toom.c</code><br />
+              <code id="163">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT gf2x.lo -MD -MP -MF .deps/gf2x.Tpo -c gf2x.c  -fPIC -DPIC -o .libs/gf2x.o</code><br />
 						
             
             <a class="navhash" href="#164">#</a>
 						
-              <code id="164">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT gf2x.lo -MD -MP -MF .deps/gf2x.Tpo -c gf2x.c  -fPIC -DPIC -o .libs/gf2x.o</code><br />
+              <code id="164">gf2x.c:82:24: warning: sizeof on array function parameter will return size of 'struct gf2x_mul_pool_s *' instead of 'gf2x_mul_pool_t' (aka 'struct gf2x_mul_pool_s [1]') [-Wsizeof-array-argument]</code><br />
 						
             
             <a class="navhash" href="#165">#</a>
 						
-              <code id="165">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom.lo -MD -MP -MF .deps/toom.Tpo -c toom.c  -fPIC -DPIC -o .libs/toom.o</code><br />
+              <code id="165">    memset(p, 0, sizeof(p));</code><br />
 						
             
             <a class="navhash" href="#166">#</a>
 						
-              <code id="166">gf2x.c:82:24: warning: sizeof on array function parameter will return size of 'struct gf2x_mul_pool_s *' instead of 'gf2x_mul_pool_t' (aka 'struct gf2x_mul_pool_s [1]') [-Wsizeof-array-argument]</code><br />
+              <code id="166">                       ^</code><br />
 						
             
             <a class="navhash" href="#167">#</a>
 						
-              <code id="167">    memset(p, 0, sizeof(p));</code><br />
+              <code id="167">gf2x.c:80:41: note: declared here</code><br />
 						
             
             <a class="navhash" href="#168">#</a>
 						
-              <code id="168">                       ^</code><br />
+              <code id="168">void gf2x_mul_pool_init(gf2x_mul_pool_t p)</code><br />
 						
             
             <a class="navhash" href="#169">#</a>
 						
-              <code id="169">gf2x.c:80:41: note: declared here</code><br />
+              <code id="169">                                        ^</code><br />
 						
             
             <a class="navhash" href="#170">#</a>
 						
-              <code id="170">void gf2x_mul_pool_init(gf2x_mul_pool_t p)</code><br />
+              <code id="170">gf2x.c:82:25: warning: 'memset' call operates on objects of type 'struct gf2x_mul_pool_s' while the size is based on a different type 'struct gf2x_mul_pool_s *' [-Wsizeof-pointer-memaccess]</code><br />
 						
             
             <a class="navhash" href="#171">#</a>
 						
-              <code id="171">                                        ^</code><br />
+              <code id="171">    memset(p, 0, sizeof(p));</code><br />
 						
             
             <a class="navhash" href="#172">#</a>
 						
-              <code id="172">gf2x.c:82:25: warning: 'memset' call operates on objects of type 'struct gf2x_mul_pool_s' while the size is based on a different type 'struct gf2x_mul_pool_s *' [-Wsizeof-pointer-memaccess]</code><br />
+              <code id="172">           ~            ^</code><br />
 						
             
             <a class="navhash" href="#173">#</a>
 						
-              <code id="173">    memset(p, 0, sizeof(p));</code><br />
+              <code id="173">gf2x.c:82:25: note: did you mean to dereference the argument to 'sizeof' (and multiply it by the number of elements)?</code><br />
 						
             
             <a class="navhash" href="#174">#</a>
 						
-              <code id="174">           ~            ^</code><br />
+              <code id="174">    memset(p, 0, sizeof(p));</code><br />
 						
             
             <a class="navhash" href="#175">#</a>
 						
-              <code id="175">gf2x.c:82:25: note: did you mean to dereference the argument to 'sizeof' (and multiply it by the number of elements)?</code><br />
+              <code id="175">                        ^</code><br />
 						
             
             <a class="navhash" href="#176">#</a>
 						
-              <code id="176">    memset(p, 0, sizeof(p));</code><br />
+              <code id="176">2 warnings generated.</code><br />
 						
             
             <a class="navhash" href="#177">#</a>
 						
-              <code id="177">                        ^</code><br />
+              <code id="177">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT gf2x.lo -MD -MP -MF .deps/gf2x.Tpo -c gf2x.c -o gf2x.o >/dev/null 2>&1</code><br />
 						
             
             <a class="navhash" href="#178">#</a>
 						
-              <code id="178">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom.lo -MD -MP -MF .deps/toom.Tpo -c toom.c -o toom.o >/dev/null 2>&1</code><br />
+              <code id="178">mv -f .deps/gf2x.Tpo .deps/gf2x.Plo</code><br />
 						
             
             <a class="navhash" href="#179">#</a>
 						
-              <code id="179">2 warnings generated.</code><br />
+              <code id="179">/bin/sh ./libtool --tag=CC   --mode=compile clang -DHAVE_CONFIG_H -I. -I./gf2x  -I. -I.   -msse2 -Wall -W -MT toom.lo -MD -MP -MF .deps/toom.Tpo -c -o toom.lo toom.c</code><br />
 						
             
             <a class="navhash" href="#180">#</a>
 						
-              <code id="180">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT gf2x.lo -MD -MP -MF .deps/gf2x.Tpo -c gf2x.c -o gf2x.o >/dev/null 2>&1</code><br />
+              <code id="180">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom.lo -MD -MP -MF .deps/toom.Tpo -c toom.c  -fPIC -DPIC -o .libs/toom.o</code><br />
 						
             
             <a class="navhash" href="#181">#</a>
 						
-              <code id="181">mv -f .deps/toom.Tpo .deps/toom.Plo</code><br />
+              <code id="181">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom.lo -MD -MP -MF .deps/toom.Tpo -c toom.c -o toom.o >/dev/null 2>&1</code><br />
 						
             
             <a class="navhash" href="#182">#</a>
 						
-              <code id="182">/bin/sh ./libtool --tag=CC   --mode=compile clang -DHAVE_CONFIG_H -I. -I./gf2x  -I. -I.   -msse2 -Wall -W -MT toom2.lo -MD -MP -MF .deps/toom2.Tpo -c -o toom2.lo toom2.c</code><br />
+              <code id="182">mv -f .deps/toom.Tpo .deps/toom.Plo</code><br />
 						
             
             <a class="navhash" href="#183">#</a>
 						
-              <code id="183">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom2.lo -MD -MP -MF .deps/toom2.Tpo -c toom2.c  -fPIC -DPIC -o .libs/toom2.o</code><br />
+              <code id="183">/bin/sh ./libtool --tag=CC   --mode=compile clang -DHAVE_CONFIG_H -I. -I./gf2x  -I. -I.   -msse2 -Wall -W -MT toom2.lo -MD -MP -MF .deps/toom2.Tpo -c -o toom2.lo toom2.c</code><br />
 						
             
             <a class="navhash" href="#184">#</a>
 						
-              <code id="184">mv -f .deps/gf2x.Tpo .deps/gf2x.Plo</code><br />
+              <code id="184">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom2.lo -MD -MP -MF .deps/toom2.Tpo -c toom2.c  -fPIC -DPIC -o .libs/toom2.o</code><br />
 						
             
             <a class="navhash" href="#185">#</a>
 						
-              <code id="185">/bin/sh ./libtool --tag=CC   --mode=compile clang -DHAVE_CONFIG_H -I. -I./gf2x  -I. -I.   -msse2 -Wall -W -MT fft.lo -MD -MP -MF .deps/fft.Tpo -c -o fft.lo fft.c</code><br />
+              <code id="185">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom2.lo -MD -MP -MF .deps/toom2.Tpo -c toom2.c -o toom2.o >/dev/null 2>&1</code><br />
 						
             
             <a class="navhash" href="#186">#</a>
 						
-              <code id="186">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT fft.lo -MD -MP -MF .deps/fft.Tpo -c fft.c  -fPIC -DPIC -o .libs/fft.o</code><br />
+              <code id="186">mv -f .deps/toom2.Tpo .deps/toom2.Plo</code><br />
 						
             
             <a class="navhash" href="#187">#</a>
 						
-              <code id="187">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT toom2.lo -MD -MP -MF .deps/toom2.Tpo -c toom2.c -o toom2.o >/dev/null 2>&1</code><br />
+              <code id="187">/bin/sh ./libtool --tag=CC   --mode=compile clang -DHAVE_CONFIG_H -I. -I./gf2x  -I. -I.   -msse2 -Wall -W -MT fft.lo -MD -MP -MF .deps/fft.Tpo -c -o fft.lo fft.c</code><br />
 						
             
             <a class="navhash" href="#188">#</a>
 						
-              <code id="188">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT fft.lo -MD -MP -MF .deps/fft.Tpo -c fft.c -o fft.o >/dev/null 2>&1</code><br />
+              <code id="188">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT fft.lo -MD -MP -MF .deps/fft.Tpo -c fft.c  -fPIC -DPIC -o .libs/fft.o</code><br />
 						
             
             <a class="navhash" href="#189">#</a>
 						
-              <code id="189">mv -f .deps/fft.Tpo .deps/fft.Plo</code><br />
+              <code id="189">libtool: compile:  clang -DHAVE_CONFIG_H -I. -I./gf2x -I. -I. -msse2 -Wall -W -MT fft.lo -MD -MP -MF .deps/fft.Tpo -c fft.c -o fft.o >/dev/null 2>&1</code><br />
 						
             
             <a class="navhash" href="#190">#</a>
 						
-              <code id="190">mv -f .deps/toom2.Tpo .deps/toom2.Plo</code><br />
+              <code id="190">mv -f .deps/fft.Tpo .deps/fft.Plo</code><br />
 						
             
             <a class="navhash" href="#191">#</a>
@@ -1334,82 +1336,82 @@
             
             <a class="navhash" href="#241">#</a>
 						
-              <code id="241">test -z "/tmp/gf2x/pkg/gf2x/usr/include" || /usr/bin/mkdir -p "/tmp/gf2x/pkg/gf2x/usr/include"</code><br />
+              <code id="241"> /bin/sh ./libtool   --mode=install /usr/bin/install -c   libgf2x.la '/tmp/gf2x/pkg/gf2x/usr/lib'</code><br />
 						
             
             <a class="navhash" href="#242">#</a>
 						
-              <code id="242"> /bin/sh ./libtool   --mode=install /usr/bin/install -c   libgf2x.la '/tmp/gf2x/pkg/gf2x/usr/lib'</code><br />
+              <code id="242">libtool: install: /usr/bin/install -c .libs/libgf2x.so.1.0.0 /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.so.1.0.0</code><br />
 						
             
             <a class="navhash" href="#243">#</a>
 						
-              <code id="243"> /usr/bin/install -c -m 644  gf2x.h '/tmp/gf2x/pkg/gf2x/usr/include/.'</code><br />
+              <code id="243">libtool: install: (cd /tmp/gf2x/pkg/gf2x/usr/lib && { ln -s -f libgf2x.so.1.0.0 libgf2x.so.1 || { rm -f libgf2x.so.1 && ln -s libgf2x.so.1.0.0 libgf2x.so.1; }; })</code><br />
 						
             
             <a class="navhash" href="#244">#</a>
 						
-              <code id="244">/usr/bin/mkdir -p '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
+              <code id="244">libtool: install: (cd /tmp/gf2x/pkg/gf2x/usr/lib && { ln -s -f libgf2x.so.1.0.0 libgf2x.so || { rm -f libgf2x.so && ln -s libgf2x.so.1.0.0 libgf2x.so; }; })</code><br />
 						
             
             <a class="navhash" href="#245">#</a>
 						
-              <code id="245"> /usr/bin/install -c -m 644  gf2x/gf2x-impl.h gf2x/gf2x-tfft.h gf2x/gf2x-small.h '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
+              <code id="245">libtool: install: /usr/bin/install -c .libs/libgf2x.lai /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.la</code><br />
 						
             
             <a class="navhash" href="#246">#</a>
 						
-              <code id="246">test -z "/tmp/gf2x/pkg/gf2x/usr/include" || /usr/bin/mkdir -p "/tmp/gf2x/pkg/gf2x/usr/include"</code><br />
+              <code id="246">libtool: install: /usr/bin/install -c .libs/libgf2x.a /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.a</code><br />
 						
             
             <a class="navhash" href="#247">#</a>
 						
-              <code id="247">/usr/bin/mkdir -p '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
+              <code id="247">libtool: install: chmod 644 /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.a</code><br />
 						
             
             <a class="navhash" href="#248">#</a>
 						
-              <code id="248"> /usr/bin/install -c -m 644  gf2x/gf2x-config.h gf2x/gf2x-thresholds.h gf2x/gf2x_mul1.h gf2x/gf2x_mul2.h gf2x/gf2x_mul3.h gf2x/gf2x_mul4.h gf2x/gf2x_mul5.h gf2x/gf2x_mul6.h gf2x/gf2x_mul7.h gf2x/gf2x_mul8.h gf2x/gf2x_mul9.h '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
+              <code id="248">libtool: install: ranlib /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.a</code><br />
 						
             
             <a class="navhash" href="#249">#</a>
 						
-              <code id="249">libtool: install: /usr/bin/install -c .libs/libgf2x.so.1.0.0 /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.so.1.0.0</code><br />
+              <code id="249">libtool: install: warning: remember to run `libtool --finish /usr/lib'</code><br />
 						
             
             <a class="navhash" href="#250">#</a>
 						
-              <code id="250">libtool: install: (cd /tmp/gf2x/pkg/gf2x/usr/lib && { ln -s -f libgf2x.so.1.0.0 libgf2x.so.1 || { rm -f libgf2x.so.1 && ln -s libgf2x.so.1.0.0 libgf2x.so.1; }; })</code><br />
+              <code id="250">test -z "/tmp/gf2x/pkg/gf2x/usr/include" || /usr/bin/mkdir -p "/tmp/gf2x/pkg/gf2x/usr/include"</code><br />
 						
             
             <a class="navhash" href="#251">#</a>
 						
-              <code id="251">libtool: install: (cd /tmp/gf2x/pkg/gf2x/usr/lib && { ln -s -f libgf2x.so.1.0.0 libgf2x.so || { rm -f libgf2x.so && ln -s libgf2x.so.1.0.0 libgf2x.so; }; })</code><br />
+              <code id="251"> /usr/bin/install -c -m 644  gf2x.h '/tmp/gf2x/pkg/gf2x/usr/include/.'</code><br />
 						
             
             <a class="navhash" href="#252">#</a>
 						
-              <code id="252">libtool: install: /usr/bin/install -c .libs/libgf2x.lai /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.la</code><br />
+              <code id="252">/usr/bin/mkdir -p '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
 						
             
             <a class="navhash" href="#253">#</a>
 						
-              <code id="253">libtool: install: /usr/bin/install -c .libs/libgf2x.a /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.a</code><br />
+              <code id="253"> /usr/bin/install -c -m 644  gf2x/gf2x-impl.h gf2x/gf2x-tfft.h gf2x/gf2x-small.h '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
 						
             
             <a class="navhash" href="#254">#</a>
 						
-              <code id="254">libtool: install: chmod 644 /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.a</code><br />
+              <code id="254">test -z "/tmp/gf2x/pkg/gf2x/usr/include" || /usr/bin/mkdir -p "/tmp/gf2x/pkg/gf2x/usr/include"</code><br />
 						
             
             <a class="navhash" href="#255">#</a>
 						
-              <code id="255">libtool: install: ranlib /tmp/gf2x/pkg/gf2x/usr/lib/libgf2x.a</code><br />
+              <code id="255">/usr/bin/mkdir -p '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
 						
             
             <a class="navhash" href="#256">#</a>
 						
-              <code id="256">libtool: install: warning: remember to run `libtool --finish /usr/lib'</code><br />
+              <code id="256"> /usr/bin/install -c -m 644  gf2x/gf2x-config.h gf2x/gf2x-thresholds.h gf2x/gf2x_mul1.h gf2x/gf2x_mul2.h gf2x/gf2x_mul3.h gf2x/gf2x_mul4.h gf2x/gf2x_mul5.h gf2x/gf2x_mul6.h gf2x/gf2x_mul7.h gf2x/gf2x_mul8.h gf2x/gf2x_mul9.h '/tmp/gf2x/pkg/gf2x/usr/include/gf2x'</code><br />
 						
             
             <a class="navhash" href="#257">#</a>
@@ -1564,7 +1566,7 @@
             
             <a class="navhash" href="#287">#</a>
 						
-              <code id="287">==> Finished making: gf2x 1.1-2 (Sun Mar 12 19:21:34 UTC 2017)</code><br />
+              <code id="287">==> Finished making: gf2x 1.1-2 (Thu Apr 13 11:36:14 UTC 2017)</code><br />
 						
             
           </div>
@@ -2039,7 +2041,7 @@
             
             <a class="navhash" href="#350">#</a>
 						
-              <code id="350">hostname = 1eba5b38621b</code><br />
+              <code id="350">hostname = 3e1ddcde6156</code><br />
 						
             
             <a class="navhash" href="#351">#</a>
@@ -2049,7 +2051,7 @@
             
             <a class="navhash" href="#352">#</a>
 						
-              <code id="352">uname -r = 4.4.52-1-lts</code><br />
+              <code id="352">uname -r = 4.10.6-1-ARCH</code><br />
 						
             
             <a class="navhash" href="#353">#</a>
@@ -2059,7 +2061,7 @@
             
             <a class="navhash" href="#354">#</a>
 						
-              <code id="354">uname -v = #1 SMP Sun Feb 26 19:45:38 CET 2017</code><br />
+              <code id="354">uname -v = #1 SMP PREEMPT Mon Mar 27 08:28:22 CEST 2017</code><br />
 						
             
             <a class="navhash" href="#355">#</a>
@@ -5064,7 +5066,7 @@
             
             <a class="navhash" href="#955">#</a>
 						
-              <code id="955">on 1eba5b38621b</code><br />
+              <code id="955">on 3e1ddcde6156</code><br />
 						
             
             <a class="navhash" href="#956">#</a>
