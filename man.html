@@ -1,0 +1,147 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>tuscan/tuscan/all-builds/all</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900'
+          rel='stylesheet' type='text/css'>
+    <link
+    href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
+          rel='stylesheet' type='text/css'>
+    <link href="/tuscan/style.css" type="text/css" rel="stylesheet">
+    <link href="/tuscan/summary.css" type="text/css" rel="stylesheet">
+<style>
+img {
+  max-width: 100%;
+  max-height: 20em;
+}
+.content {
+  max-width: 80ex;
+  min-width: inherit;
+  margin: 0 auto;
+}
+h3 {
+  margin-top: 5em;
+}
+.red-error{
+  background-color: #ffcdd2;
+  color: #880e4f;
+}
+</style>
+  </head>
+<body>
+<div class="content">
+  <h2>Tuscan Catalog HOWTO</h2>
+  <p><a href="/tuscan">← Back to the catalog</a></p>
+  <hr />
+
+  <p>
+    There are three areas of the catalog: <em>build lists</em>,
+    <em>build details</em>, and <em>process trees</em>.
+  </p>
+
+  <h3>Build lists</h3>
+  <img src="/tuscan/img/build-list.png" />
+
+  <p>
+    <strong>Build lists</strong> summarize the build results for a large
+    number of packages that fulfil a certain criterion. The list of
+    packages is on the right; the name of a package is given next to all
+    the toolchains it was built with. Red builds failed; blue builds
+    passed. Some build pages have a brief summary of why the build
+    failed next to the package name. For example, <a
+    href="/tuscan/all-builds/cish-programs/passed-on-vanilla/musl/fail/unrecognised_flag/">this
+    page</a> gives a summary of the unrecognised compiler flags when
+  compiling with the Clang/Musl toolchain, both for each package and for
+  all 4 packages that failed because of this error.
+  </p>
+
+  <p>
+    The categories on the left are <strong>filters</strong>; sub-lists
+    of each hyperlink accumulate the filters. For example, in the
+    diagram above, there are 12 builds that failed due to a configure
+    error, out of the 433 builds that failed on the vanilla toolchain,
+    out of 1534 C/C++ programs. Clicking on <a
+    href="/tuscan/all-builds/cish-programs/vanilla/fail/configure_error/">configure_error
+    (12 builds)</a>
+    in the menu opens a build list containing only those 12 builds.
+    Builds that failed due to a configure error but under the
+    <em>android</em> or <em>musl</em> toolchain would be under a
+    different link, further down.
+  </p>
+
+  <table>
+  <tr>
+  <td class="build-cell">y</td>
+  <td class="no-build-cell">y</td>
+  <td>In the build list, these boxes are hyperlinks. They take you to
+    the detailed <strong>build page</strong> for that package under that
+    toolchain, so that you can examine how the build proceeded and
+    understand why a build failed under that particular toolchain.</td>
+  </tr>
+  </table>
+
+  <h3>Build pages</h3>
+  <img src="/tuscan/img/build-page.png" />
+
+  <p>
+  <strong>Build pages</strong> log the entire build process of a single
+  package under a single toolchain. There are several interesting
+  features of a build page:
+  </p>
+
+  <ul>
+    <li>
+      <span style="font-variant: small-caps;">Red</span> may have
+      partially or fully rescued the build. If there were build errors
+      that <span style="font-variant: small-caps;">Red</span> fixed,
+      they are listed with details, like this:
+      <img style="border: solid 1px grey;" src="/tuscan/img/red-list.png" />
+    </li>
+
+    <li>
+      Any lines of the log that indicate that a build occurred are
+      highlighted in <span class="error">strong red</span>, to help when
+      scrolling through long logs.
+    </li>
+
+    <li>
+      For your convenience, every line of the log can be linked to;
+      click the hash symbol (#) at the beginning of a log line to get a
+      hyperlink URL.
+    </li>
+
+    <li>
+      The build page contains a link to the <strong>process
+      tree</strong> for that build, for an extremely detailed view of
+      what went wrong with the build.
+    </li>
+  </ul>
+
+  <h3>Process Trees</h3>
+  <img src="/tuscan/img/proc-tree.png" />
+
+  <p>
+  <strong>Process trees</strong> show all of the tools that were invoked
+  during the build, their return codes, and command-line arguments. They
+  are arranged in a tree, since some build tools invoke others as
+  subprocesses. This information is all obtained by <span
+  style="font-variant: small-caps;">Red</span>, which injects logging
+  information into every process spawn.
+  </p>
+
+  <p>
+  Every time a subprocess is spawned, <span style="font-variant:
+  small-caps;">Red</span> may notice that the environment or process
+  invocation is likely to cause the build to fail, according to its
+  built-in patterns. If this happens, <span style="font-variant:
+  small-caps;">Red</span> modifies the environment, invocation, or
+  <code>argv</code> so that the build can proceed correctly. Such
+  erroneous invocations are indicated with a <span class="red-error">red
+  background</span> in the process log.
+  <p>
+
+  <p style="margin-top: 5em; margin-bottom: 2em;">
+  <a href="/tuscan">← Back to the catalog</a></p>
+</div>
+</body>
+</html>
